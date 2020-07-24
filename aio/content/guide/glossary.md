@@ -85,7 +85,7 @@ Obtenga más información en [Directivas de atributos](guide/attribute-directive
 En general, es la práctica de establecer una variable o propiedad en un valor de datos Dentro de Angular, generalmente se refiere a [enlace de datos](#data-binding), que coordina las propiedades del objeto DOM con las propiedades del objeto de datos.
 
 A veces se refiere a una [dependencia de la inyección](#dependency-injection) de enlace
-entre un [token](#token) y una dependencia de [proveedor] (#provider).
+entre un [token](#token) y una dependencia de [proveedor](#provider).
 
 {@a bootstrap}
 
