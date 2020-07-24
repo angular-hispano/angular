@@ -1,12 +1,8 @@
-# Glossary
+# Glosario
 
-Angular has its own vocabulary.
-Most Angular terms are common English words or computing terms
-that have a specific meaning within the Angular system.
+Angular tiene su propio vocabulario. La mayoría de los términos en Angular son palabras comunes en inglés o términos informáticos que tienen un significado específico dentro del sistema Angular.
 
-This glossary lists the most prominent terms
-and a few less familiar ones with unusual or
-unexpected definitions.
+Este glosario enumera los términos más destacados y algunos menos familiares con definiciones inusuales o inesperadas.
 
 [A](#A) [B](#B) [C](#C) [D](#D) [E](#E) [F](#F) [G](#G) [H](#H) [I](#I)
 [J](#J) [K](#K) [L](#L) [M](#M) [N](#N) [O](#O) [P](#P) [Q](#Q) [R](#R)
@@ -14,86 +10,82 @@ unexpected definitions.
 
 
 {@a A}
+
 {@a aot}
 
+## Compilación ahead-of-time (AOT)
 
-## ahead-of-time (AOT) compilation
+La compilación ahead-of-time (AOT) de Angular convierte el código Angular HTML y TypeScript en código JavaScript durante la fase de compilación de una manera eficiente, antes de que el navegador descargue y ejecuta ese código.
 
-The Angular ahead-of-time (AOT) compiler converts Angular HTML and TypeScript code
-into efficient JavaScript code during the build phase, before the browser downloads
-and runs that code.
-This is the best compilation mode for production environments, with decreased load time and increased performance compared to [just-in-time (JIT) compilation](#jit).
+Este es el mejor modo de compilación para entornos de producción, con un menor tiempo de carga y un mayor rendimiento en comparación con [compilación just-in-time (JIT)](#jit).
 
-By compiling your application using the `ngc` command-line tool, you can bootstrap directly to a module factory, so you don't need to include the Angular compiler in your JavaScript bundle.
+Al compilar su aplicación utilizando la herramienta de línea de comandos `ngc`, puede iniciar directamente a una module factory, por lo que no necesita incluir el compilador Angular en su paquete de JavaScript.
+
 
 {@a angular-element}
 
-## Angular element
+## Elemento angular
 
-An Angular [component](#component) packaged as a [custom element](#custom-element).
+Un [componente](#component) angular empaquetado como un [elemento personalizado](#custom-element).
 
-Learn more in [Angular Elements Overview](guide/elements).
+Obtenga más información en [Vista general de Elementos Angular](guide/elements).
 
 {@a annotation}
 
-## annotation
+## Anotaciones
 
-A structure that provides metadata for a class. See [decorator](#decorator).
+Una estructura que proporciona metadatos para una clase. Ver [decorador](#decorator).
 
 {@a app-shell}
 
-## app-shell
+## Shell de aplicación
 
-App shell is a way to render a portion of your application via a route at build time.
-This gives users a meaningful first paint of your application that appears quickly because the browser can render static HTML and CSS without the need to initialize JavaScript.
+El shell de aplicación es una forma de representar una parte de su aplicación a través de una ruta en el momento de la compilación.
+Esto brinda a los usuarios una primera visualización significativa de su aplicación que aparece rápidamente porque el navegador puede renderizar HTML y CSS estáticos sin la necesidad de inicializar JavaScript.
 
-Learn more in [The App Shell Model](https://developers.google.com/web/fundamentals/architecture/app-shell).
+Obtenga más información en [Modelo Shell de Aplicación](https://developers.google.com/web/fundamentals/architecture/app-shell).
 
-You can use the Angular CLI to [generate](cli/generate#appshell) an app shell.
-This can improve the user experience by quickly launching a static rendered page (a skeleton common to all pages) while the browser downloads the full client version and switches to it automatically after the code loads.
+Puedes usar angular CLI para [generar](cli/generate#appshell) un shell de aplicación.
+Esto puede mejorar la experiencia del usuario al iniciar rápidamente una página estática renderizada (un esqueleto común a todas las páginas) mientras el navegador descarga la versión completa del cliente y cambia automáticamente después de que se carga el código.
 
-See also [Service Worker and PWA](guide/service-worker-intro).
+Ver también [Service Worker y PWA](guide/service-worker-intro).
+
 {@a architect}
 
-## Architect
+## Arquitecto
 
-The tool that the CLI uses to perform complex tasks such as compilation and test running, according to a provided configuration.
-Architect is a shell that runs a [builder](#builder) (defined in an [npm package](#npm-package)) with a given [target configuration](#target).
+Es una herramienta que utiliza la CLI para realizar tareas complejas, como la compilación y la ejecución de pruebas, de acuerdo con una configuración proporcionada.
 
-In the [workspace configuration file](guide/workspace-config#project-tool-configuration-options), an "architect" section provides configuration options for Architect builders.
+El arquitecto es un shell que ejecuta un [generador](#builder) (definido en un [paquete npm](#npm-package)) con una [configuración de destino] dada (#target).
 
-For example, a built-in builder for linting is defined in the package `@angular-devkit/build_angular:tslint`, which uses the [TSLint](https://palantir.github.io/tslint/) tool to perform linting, with a configuration specified in a `tslint.json` file.
+En el [archivo de configuración del espacio de trabajo](guide/workspace-config#project-tool-configuration-options), una sección de "arquitecto" proporciona opciones de configuración para los arquitectos generadores.
 
-Use the [CLI command `ng run`](cli/run) to invoke a builder by specifying a [target configuration](#target) associated with that builder.
-Integrators can add builders to enable tools and workflows to run through the Angular CLI. For example, a custom builder can replace the third-party tools used by the built-in implementations for CLI commands such as `ng build` or `ng test`.
+Por ejemplo, un generador incorporado para el linting se define en el paquete `@angular-devkit/build_angular: tslint`, que utiliza la herramienta [TSLint](https://palantir.github.io/tslint/) para realizar el linting, con una configuración especificada en un archivo `tslint.json`.
+
+Utilice el [comando CLI `ng run`](cli/run) para invocar a un generador especificando una [configuración de destino](#target) asociada con ese generador.
+Los integradores pueden agregar generadores para permitir que las herramientas y los flujos de trabajo se ejecuten a través de la angular CLI. Por ejemplo, un generador personalizado puede reemplazar las herramientas de terceros utilizadas por las implementaciones integradas para los comandos de la CLI, como `ng build` o` ng test`.
 
 {@a attribute-directive}
-
 
 {@a attribute-directives}
 
 
-## attribute directives
+## Directivas de atributos
 
-A category of [directive](#directive) that can listen to and modify the behavior of
-other HTML elements, attributes, properties, and components. They are usually represented
-as HTML attributes, hence the name.
+Una categoría de [directiva](#directive) que puede escuchar y modificar el comportamiento de otros elementos HTML, atributos, propiedades y componentes. Generalmente están representados como atributos HTML, de ahí el nombre.
 
-Learn more in [Attribute Directives](guide/attribute-directives).
-
+Obtenga más información en [Directivas de atributos](guide/attribute-directives).
 
 {@a B}
 
 {@a binding}
 
-## binding
+## Enlaces de datos (binding)
 
-Generally, the practice of setting a variable or property to a data value.
-Within Angular, typically refers to [data binding](#data-binding),
-which coordinates DOM object properties with data object properties.
+En general, es la práctica de establecer una variable o propiedad en un valor de datos Dentro de Angular, generalmente se refiere a [enlace de datos](#data-binding), que coordina las propiedades del objeto DOM con las propiedades del objeto de datos.
 
-Sometimes refers to a [dependency-injection](#dependency-injection) binding
-between a [token](#token) and a dependency [provider](#provider).
+A veces se refiere a una [dependencia de la inyección](#dependency-injection) de enlace
+entre un [token](#token) y una dependencia de [proveedor] (#provider).
 
 {@a bootstrap}
 
@@ -516,7 +508,7 @@ See [ECMAScript](#ecma), [TypeScript](#typescript).
 {@a jit}
 
 
-## just-in-time (JIT) compilation
+## compilación just-in-time (JIT)
 
 The Angular just-in-time (JIT) compiler converts your Angular HTML and TypeScript code into
 efficient JavaScript code at run time, as part of bootstrapping.
@@ -525,7 +517,7 @@ JIT compilation is the default (as opposed to AOT compilation) when you run Angu
 JIT mode is strongly discouraged for production use
 because it results in large application payloads that hinder the bootstrap performance.
 
-Compare to [ahead-of-time (AOT) compilation](#aot).
+Compare to [compilación ahead-of-time (AOT)](#aot).
 
 
 {@a K}
