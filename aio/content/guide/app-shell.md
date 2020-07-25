@@ -61,12 +61,11 @@ Use la CLI para construir el `app-shell` target.
 ng run my-app:app-shell
 </code-example>
 
-O para usar la configuración de producción.
+O use la configuración de producción.
 
 <code-example language="bash">
 ng run my-app:app-shell:production
 </code-example>
 
 Para verificar el resultado de la compilación, abra `dist/my-app/index.html`. Busque el texto por defecto `app-shell works!` para mostrar que la ruta del shell de la aplicación se ha renderizado como parte de la carpeta de distribución.
-
 
