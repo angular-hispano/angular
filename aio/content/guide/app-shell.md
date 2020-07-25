@@ -7,7 +7,7 @@ Esto da a los usuarios una primera visualización significativa de su aplicació
 
 Obténga más información en [El modelo de aplicación Shell](https://developers.google.com/web/fundamentals/architecture/app-shell).
 
-## Paso 1: Prepara la aplicación
+## Paso 1: Prepare la aplicación
 
 Puede hacer esto con el siguiente comando CLI:
 <code-example language="bash">
