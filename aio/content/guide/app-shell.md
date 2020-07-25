@@ -16,7 +16,7 @@ ng new my-app --routing
 
 Para una aplicación existente, debe agregar manualmente el `RouterModule` y definir un` <router-outlet> `dentro de su aplicación.
 
-## Paso 2: Crea el shell de la aplicación
+## Paso 2: Cree el shell de la aplicación
 
 Use la CLI para crear automáticamente el shell de la aplicación.
 
@@ -68,4 +68,3 @@ ng run my-app:app-shell:production
 </code-example>
 
 Para verificar el resultado de la compilación, abra `dist/my-app/index.html`. Busque el texto por defecto `app-shell works!` para mostrar que la ruta del shell de la aplicación se ha renderizado como parte de la carpeta de distribución.
-
