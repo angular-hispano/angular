@@ -1,7 +1,7 @@
 # App shell
 
 App shell es una manera de renderizar una porción de tu aplicación a través de una ruta en tiempo de compilación (build time).
-Puede mejorar la experiencia de usuario lanzando rápidamente una page estática renderizada (un esqueleto común a todas las páginas) mientras el navegador descarga la versión completa del cliente y cambia a éste al finalizar su carga.
+Puede mejorar la experiencia de usuario lanzando rápidamente una página estática renderizada (un esqueleto común a todas las páginas) mientras el navegador descarga la versión completa del cliente y la muestra automáticamente al finalizar su carga.
 
 Esto da a los usuarios una primera visualización significativa de su aplicación que aparece rápidamente porque el navegador simplemente puede renderizar HTML y CSS sin la necesidad de inicializar JavaScript.
 
