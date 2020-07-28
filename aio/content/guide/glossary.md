@@ -13,7 +13,7 @@ Este glosario enumera los términos más destacados y algunos menos familiares c
 
 {@a aot}
 
-## Compilación ahead-of-time (AOT)
+## compilación ahead-of-time (AOT)
 
 La compilación ahead-of-time (AOT) de Angular convierte el código Angular HTML y TypeScript en código JavaScript durante la fase de compilación de una manera eficiente, antes de que el navegador descargue y ejecuta ese código.
 
@@ -24,26 +24,26 @@ Al compilar su aplicación utilizando la herramienta de línea de comandos `ngc`
 
 {@a angular-element}
 
-## Elemento angular
+## elemento angular
 
 Un [componente](#component) angular empaquetado como un [elemento personalizado](#custom-element).
 
-Obtenga más información en [Vista general de Elementos Angular](guide/elements).
+Obtiene más información en [Vista general de Elementos Angular](guide/elements).
 
 {@a annotation}
 
-## Anotaciones
+## anotaciones
 
 Una estructura que proporciona metadatos para una clase. Ver [decorador](#decorator).
 
 {@a app-shell}
 
-## Shell de aplicación
+## shell de aplicación
 
 El shell de aplicación es una forma de representar una parte de su aplicación a través de una ruta en el momento de la compilación.
 Esto brinda a los usuarios una primera visualización significativa de su aplicación que aparece rápidamente porque el navegador puede renderizar HTML y CSS estáticos sin la necesidad de inicializar JavaScript.
 
-Obtenga más información en [Modelo Shell de Aplicación](https://developers.google.com/web/fundamentals/architecture/app-shell).
+Obtiene más información en [Modelo Shell de Aplicación](https://developers.google.com/web/fundamentals/architecture/app-shell).
 
 Puedes usar angular CLI para [generar](cli/generate#appshell) un shell de aplicación.
 Esto puede mejorar la experiencia del usuario al iniciar rápidamente una página estática renderizada (un esqueleto común a todas las páginas) mientras el navegador descarga la versión completa del cliente y cambia automáticamente después de que se carga el código.
@@ -52,25 +52,25 @@ Ver también [Service Worker y PWA](guide/service-worker-intro).
 
 {@a architect}
 
-## Arquitecto
+## architect
 
 Es una herramienta que utiliza la CLI para realizar tareas complejas, como la compilación y la ejecución de pruebas, de acuerdo con una configuración proporcionada.
 
-El arquitecto es un shell que ejecuta un [generador](#builder) (definido en un [paquete npm](#npm-package)) con una [configuración de destino] dada (#target).
+El architect es un shell que ejecuta un [constructor](#builder) (definido en un [paquete npm](#npm-package)) con una [configuración de destino] dada (#target).
 
-En el [archivo de configuración del espacio de trabajo](guide/workspace-config#project-tool-configuration-options), una sección de "arquitecto" proporciona opciones de configuración para los arquitectos generadores.
+En el [archivo de configuración del espacio de trabajo](guide/workspace-config#project-tool-configuration-options), una sección de "architect" proporciona opciones de configuración para los architects constructores.
 
-Por ejemplo, un generador incorporado para el linting se define en el paquete `@angular-devkit/build_angular: tslint`, que utiliza la herramienta [TSLint](https://palantir.github.io/tslint/) para realizar el linting, con una configuración especificada en un archivo `tslint.json`.
+Por ejemplo, un constructor incorporado para el linting se define en el paquete `@angular-devkit/build_angular: tslint`, que utiliza la herramienta [TSLint](https://palantir.github.io/tslint/) para realizar el linting, con una configuración especificada en un archivo `tslint.json`.
 
-Utilice el [comando CLI `ng run`](cli/run) para invocar a un generador especificando una [configuración de destino](#target) asociada con ese generador.
-Los integradores pueden agregar generadores para permitir que las herramientas y los flujos de trabajo se ejecuten a través de la angular CLI. Por ejemplo, un generador personalizado puede reemplazar las herramientas de terceros utilizadas por las implementaciones integradas para los comandos de la CLI, como `ng build` o` ng test`.
+Utiliza el [comando CLI `ng run`](cli/run) para invocar a un constructor especificando una [configuración de destino](#target) asociada con ese constructor.
+Los integradores pueden agregar constructores para permitir que las herramientas y los flujos de trabajo se ejecuten a través de la angular CLI. Por ejemplo, un constructor personalizado puede reemplazar las herramientas de terceros utilizadas por las implementaciones integradas para los comandos de la CLI, como `ng build` o `ng test`.
 
 {@a attribute-directive}
 
 {@a attribute-directives}
 
 
-## Directivas de atributos
+## directivas de atributos
 
 Una categoría de [directiva](#directive) que puede escuchar y modificar el comportamiento de otros elementos HTML, atributos, propiedades y componentes. Generalmente están representados como atributos HTML, de ahí el nombre.
 
@@ -80,7 +80,7 @@ Obtenga más información en [Directivas de atributos](guide/attribute-directive
 
 {@a binding}
 
-## Enlaces de datos (binding)
+## enlaces de datos (binding)
 
 En general, es la práctica de establecer una variable o propiedad en un valor de datos Dentro de Angular, generalmente se refiere a [enlace de datos](#data-binding), que coordina las propiedades del objeto DOM con las propiedades del objeto de datos.
 
@@ -91,25 +91,24 @@ entre un [token](#token) y una dependencia de [proveedor](#provider).
 
 ## bootstrap
 
-A way to initialize and launch an app or system.
+Una forma de inicializar e iniciar una aplicación o sistema.
 
-In Angular, an app's root NgModule (`AppModule`) has a `bootstrap` property that identifies the app's top-level [components](#component).
-During the bootstrap process, Angular creates and inserts these components into the `index.html` host web page.
-You can bootstrap multiple apps in the same `index.html`. Each app contains its own components.
+En Angular, el NgModule raíz de una aplicación (`AppModule`) tiene una propiedad `bootstrap` que identifica los [componentes](#component) de nivel superior de la aplicación. 
+Durante el proceso de arranque, Angular crea e inserta estos componentes en la página web del host `index.html`. 
+Puede arrancar varias aplicaciones en el mismo `index.html`. Cada aplicación contiene sus propios componentes.
 
-Learn more in [Bootstrapping](guide/bootstrapping).
+Obtiene más información en [Bootstrapping](guide/bootstrapping).
 
 {@a builder}
 
-## builder
+## constructor
 
-A function that uses the [Architect](#architect) API to perform a complex process such as "build" or "test".
-The builder code is defined in an [npm package](#npm-package).
+Una función que utiliza la API de [Architect](#architect) para realizar un proceso complejo como "compilar" o "probar". 
+El código del constructor se define en un [paquete npm](#npm-package).
 
-For example, [BrowserBuilder](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/build_angular/src/browser) runs a [webpack](https://webpack.js.org/) build for a browser target and [KarmaBuilder](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/build_angular/src/karma) starts the Karma server and runs a webpack build for unit tests.
+Por ejemplo, [BrowserBuilder](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/build_angular/src/browser) ejecuta una compilación de [webpack](https://webpack.js.org/) para un destino de navegador y [KarmaBuilder](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/build_angular/src/karma) inicia el servidor Karma y ejecuta una compilación de webpack para pruebas unitarias.
 
-The [CLI command `ng run`](cli/run) invokes a builder with a specific [target configuration](#target).
-The [workspace configuration](guide/workspace-config) file, `angular.json`, contains default configurations for built-in builders.
+El [comando CLI `ng run`](cli/run) invoca un constructor con una [configuración de destino específica](#target). El [archivo de configuración del espacio de trabajo](guide/workspace-config), `angular.json`, contiene configuraciones predeterminadas para los constructores integrados.
 
 {@a C}
 
@@ -118,48 +117,49 @@ The [workspace configuration](guide/workspace-config) file, `angular.json`, cont
 {@a camelcase}
 {@a kebab-case}
 
-## case types
+## tipos de casos
 
-Angular uses capitalization conventions to distinguish the names of various types, as described in the [naming guidelines section](guide/styleguide#02-01) of the Style Guide. Here's a summary of the case types:
+Angular usa convenciones de mayúsculas para distinguir los nombres de varios tipos, como se describe en la [sección de pautas de nomenclatura](guide/styleguide#02-01) de la Guía de estilo. Aquí hay un resumen de los tipos de casos:
 
-* camelCase : Symbols, properties, methods, pipe names, non-component directive selectors, constants.
-Standard or lower camel case uses lowercase on the first letter of the item. For example, "selectedHero".
+* camelCase: símbolos, propiedades, métodos, nombres de pipelines, selectores de directivas sin componentes, constantes.
+El caso de camelcase estándar o inferior usa minúsculas en la primera letra del artículo. Por ejemplo, "selectedHero".
 
-* UpperCamelCase (or PascalCase): Class names, including classes that define components, interfaces, NgModules, directives, and pipes,
-Upper camel case uses uppercase on the first letter of the item. For example, "HeroListComponent".
+* UpperCamelCase (o PascalCase): nombres de clase, incluidas las clases que definen componentes, interfaces, NgModules, directivas y tuberías,
+La mayúscula del camelcase usa mayúscula en la primera letra del artículo. Por ejemplo, "HeroListComponent".
 
-* dash-case (or "kebab-case"): Descriptive part of file names, component selectors. For example, "app-hero-list".
+* dash-case (o "kebab-case"): Parte descriptiva de los nombres de archivos, selectores de componentes. Por ejemplo, "app-hero-list".
 
-* underscore_case (or "snake_case"): Not typically used in Angular. Snake case uses words connected with underscores.
-For example, "convert_link_mode".
+* underscore_case (o "snake_case"): No se usa típicamente en Angular. El caso de serpiente utiliza palabras relacionadas con guiones bajos.
+Por ejemplo, "convert_link_mode".
 
-* UPPER_UNDERSCORE_CASE (or UPPER_SNAKE_CASE, or SCREAMING_SNAKE_CASE): Traditional for constants (acceptable, but prefer camelCase).
-Upper snake case uses words in all capital letters connected with underscores. For example, "FIX_ME".
+* UPPER_UNDERSCORE_CASE (o UPPER_SNAKE_CASE, o SCREAMING_SNAKE_CASE): Tradicional para constantes (aceptable, pero prefiere camelCase).
+Las mayúsculas y minúsculas usan palabras en mayúsculas conectadas con guiones bajos. Por ejemplo, "FIX_ME".
 
 {@a change-detection}
 
-## change detection
+## detección de cambios
 
-The mechanism by which the Angular framework synchronizes the state of an application's UI with the state of the data.
-The change detector checks the current state of the data model whenever it runs, and maintains it as the previous state to compare on the next iteration.
+El mecanismo por el cual el framework de angular sincroniza el estado de la interfaz de usuario de una aplicación con el estado de los datos.
 
-As the application logic updates component data, values that are bound to DOM properties in the view can change.
-The change detector is responsible for updating the view to reflect the current data model.
-Similarly, the user can interact with the UI, causing events that change the state of the data model.
-These events can trigger change detection.
+El detector de cambios verifica el estado actual del modelo de datos cada vez que se ejecuta y lo mantiene como el estado anterior para compararlo en la siguiente iteración.
 
-Using the default ("CheckAlways") change-detection strategy, the change detector goes through the [view hierarchy](#view-tree) on each VM turn to check every [data-bound property](#data-binding) in the template. In the first phase, it compares the current state of the dependent data with the previous state, and collects changes.
-In the second phase, it updates the page DOM to reflect any new data values.
+A medida que la lógica de la aplicación actualiza los datos de los componentes, los valores que están vinculados a las propiedades DOM en la vista pueden cambiar.
+El detector de cambios es responsable de actualizar la vista para reflejar el modelo de datos actual.
+Del mismo modo, el usuario puede interactuar con la interfaz de usuario, lo que provoca eventos que cambian el estado del modelo de datos.
+Estos eventos pueden desencadenar la detección de cambios.
 
-If you set the `OnPush` ("CheckOnce") change-detection strategy, the change detector runs only when [explicitly invoked] (api/core/ChangeDetectorRef), or when it is triggered by an `Input` reference change or event handler. This typically improves performance. For more information, see [Optimize Angular's change detection](https://web.dev/faster-angular-change-detection/).
+Usando la estrategia de detección de cambio predeterminada ("CheckAlways"), el detector de cambio pasa por la [jerarquía de vista](#view-tree) en cada turno de VM para verificar cada [propiedad vinculada a datos](#data-binding) en la plantilla. en el modelo. En la primera fase, compara el estado actual de los datos dependientes con el estado anterior y recopila los cambios.
+En la segunda fase, actualiza la página DOM para reflejar los nuevos valores de datos.
+
+Si configuras la estrategia de detección de cambios `OnPush` ("CheckOnce"), el detector de cambios se ejecuta solo cuando [invocado explícitamente](api/core/ChangeDetectorRef), o cuando se activa mediante un cambio de referencia en mediante un `Input` o un controlador de eventos. Esto generalmente mejora el rendimiento. Para obtener más información, consulta [Optimizar la detección de cambios de Angular](https://web.dev/faster-angular-change-detection/).
 
 {@a class-decorator}
 
-## class decorator
+## decorador de clase
 
-A [decorator](#decorator) that appears immediately before a class definition, which declares the class to be of the given type, and provides metadata suitable to the type.
+Un [decorador](#decorator) que aparece inmediatamente antes de una definición de clase, que declara que la clase es del tipo dado y proporciona metadatos adecuados para el tipo.
 
-The following decorators can declare Angular class types:
+Los siguientes decoradores pueden declarar tipos de clase angular:
 * `@Component()`
 * `@Directive()`
 * `@Pipe()`
@@ -169,257 +169,253 @@ The following decorators can declare Angular class types:
 
 {@a class-field-decorator}
 
-## class field decorator
+## decorador de campo de clase
 
-A [decorator](#decorator) statement immediately before a field in a class definition that declares the type of that field. Some examples are `@Input` and `@Output`.
+Un [decorador](#decorator) declarado inmediatamente antes de un campo en una definición de clase que declara el tipo de ese campo. Algunos ejemplos son `@Input` y `@Output`.
 
 {@a collection}
 
-## collection
+## colección
 
-In Angular, a set of related [schematics](#schematic) collected in an [npm package](#npm-package).
+En Angular, un conjunto de [esquemas](#schematic) relacionados recogidos en un [paquete npm](#npm-package).
 
 {@a cli}
 
-## command-line interface (CLI)
+## interfaz de línea de comandos (CLI)
 
-The [Angular CLI](cli) is a command-line tool for managing the Angular development cycle. Use it to create the initial filesystem scaffolding for a [workspace](#workspace) or [project](#project), and to run [schematics](#schematic) that add and modify code for initial generic versions of various elements. The CLI supports all stages of the development cycle, including building, testing, bundling, and deployment.
+[Angular CLI](cli) es una herramienta de línea de comandos para administrar el ciclo de desarrollo angular. Úsalo para crear la estructura inicial del sistema de archivos para un [espacio de trabajo](#workspace) o [proyecto](#project), y para ejecutar [esquemas](#schematic) que agregue y modifique código para versiones genéricas iniciales de varios elementos. La CLI admite todas las etapas del ciclo de desarrollo, incluidas la construcción, las pruebas, la agrupación y la implementación.
 
-* To begin using the CLI for a new project, see [Local Environment Setup](guide/setup-local "Setting up for Local Development").
-* To learn more about the full capabilities of the CLI, see the [CLI command reference](cli).
+* Para comenzar a usar la CLI para un nuevo proyecto, consulte [Configuración del entorno local](guide/setup-local "Configuración para el desarrollo local").
+* Para obtener más información sobre las capacidades completas de la CLI, consulta la [Referencia del comando CLI](cli).
 
-See also [Schematics CLI](#schematics-cli).
+Ver también [Esquemas CLI](#schematics-cli).
 
 {@a component}
 
-## component
+## componente
 
-A class with the `@Component()` [decorator](#decorator) that associates it with a companion [template](#template). Together, the component class and template define a [view](#view).
-A component is a special type of [directive](#directive).
-The `@Component()` decorator extends the `@Directive()` decorator with template-oriented features.
+Una clase con el `@Component()` [decorador](#decorator) tque lo asocia con un compañero [plantilla](#template). Juntos, la clase de componente y la plantilla definen una [vista](#view).
+Un componente es un tipo especial de [directiva](#directive).
+El decorador `@Component()` extiende el decorador `@Directive()` con características orientadas a plantillas.
 
-An Angular component class is responsible for exposing data and handling most of the view's display and user-interaction logic through [data binding](#data-binding).
+Una clase de componente angular es responsable de exponer los datos y manejar la mayor parte de la visualización de la vista y la lógica de interacción del usuario a través de [enlace de datos](#data-binding).
 
-Read more about component classes, templates, and views in [Introduction to Angular concepts](guide/architecture).
+Lee más sobre clases de componentes, plantillas y vistas en [Introducción a los conceptos de Angular](guide/architecture).
 
 
-## configuration
+## configuración
 
-See  [workspace configuration](#cli-config)
+Ver [configuración del espacio de trabajo](#cli-config)
 
 {@a content-projection}
 
-## content projection
+## proyección de contenido
 
-A way to insert DOM content from outside a component into the component's view in a designated spot.
+Una forma de insertar contenido DOM desde fuera de un componente en la vista del componente en un lugar designado.
 
-For more information, see [Responding to changes in content](guide/lifecycle-hooks#content-projection).
+Para obtener más información, consulta [Respuesta a cambios en el contenido](guide/lifecycle-hooks#content-projection).
 
 {@a custom-element}
 
-## custom element
+## elemento personalizado
 
-A web platform feature, currently supported by most browsers and available in other browsers through polyfills (see [Browser support](guide/browser-support)).
+Una función de plataforma web, actualmente compatible con la mayoría de los navegadores y disponible en otros navegadores a través de polyfills (consulta [Soporte del navegador](guide/browser-support)).
 
-The custom element feature extends HTML by allowing you to define a tag whose content is created and controlled by JavaScript code. A custom element (also called a *web component*) is recognized by a browser when it's added to the [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry).
+La característica de elemento personalizado extiende HTML al permitirle definir una etiqueta cuyo contenido es creado y controlado por código JavaScript. Un elemento personalizado (también llamado *componente web*) es reconocido por un navegador cuando se agrega a [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry).
 
-You can use the API to transform an Angular component so that it can be registered with the browser and used in any HTML that you add directly to the DOM within an Angular app. The custom element tag inserts the component's view, with change-detection and data-binding functionality, into content that would otherwise be displayed without Angular processing.
+Puedes usar la API para transformar un componente Angular para que pueda registrarse con el navegador y usarse en cualquier HTML que agregue directamente al DOM dentro de una aplicación Angular. La etiqueta de elemento personalizado inserta la vista del componente, con la funcionalidad de detección de cambios y enlace de datos, en contenido que de otro modo se mostraría sin procesamiento angular.
 
-See [Angular element](#angular-element).
+Ver [Elemento angular](#angular-element).
 
-See also [dynamic component loading](#dynamic-components).
-
+Consulta también [carga de componentes dinámicos](#dynamic-components).
 
 {@a D}
 
 {@a data-binding}
 
-## data binding
+## enlace de datos
 
-A process that allows apps to display data values to a user and respond to user
-actions (such as clicks, touches, and keystrokes).
+Un proceso que permite a las aplicaciones mostrar valores de datos a un usuario y responder al usuario acciones (como clics, toques y pulsaciones de teclas).
 
-In data binding, you declare the relationship between an HTML widget and a data source
-and let the framework handle the details.
-Data binding is an alternative to manually pushing application data values into HTML, attaching
-event listeners, pulling changed values from the screen, and
-updating application data values.
+En el enlace de datos, declara la relación entre un widget HTML y una fuente de datos
+y deja que el framework maneje los detalles.
 
-Read about the following forms of binding in Angular's [Template Syntax](guide/template-syntax):
+El enlace de datos es una alternativa para insertar manualmente los valores de datos de la aplicación en HTML, adjuntando oyentes de eventos, extrayendo valores modificados de la pantalla y actualizar los valores de los datos de la aplicación.
 
- * [Interpolation](guide/interpolation)
- * [Property binding](guide/property-binding)
- * [Event binding](guide/event-binding)
- * [Attribute binding](guide/attribute-binding)
- * [Class binding](guide/attribute-binding#class-binding)
- * [Style binding](guide/attribute-binding#style-binding)
- * [Two-way data binding with ngModel](guide/built-in-directives#ngModel)
+Lee sobre las siguientes formas de enlace en la [Sintaxis de plantilla](guide/template-syntax) de Angular:
+
+ * [Interpolación](guide/interpolation)
+ * [Enlace de propiedad](guide/property-binding)
+ * [Enlace de evento](guide/event-binding)
+ * [Enlace de atributo](guide/attribute-binding)
+ * [Enlace de clase](guide/attribute-binding#class-binding)
+ * [Enlace de estilo](guide/attribute-binding#style-binding)
+ * [Enlace de datos bidireccional con ngModel](guide/built-in-directives#ngModel)
 
 {@a declarable}
 
 ## declarable
 
-A class type that you can add to the `declarations` list of an [NgModule](#ngmodule).
-You can declare [components](#component), [directives](#directive), and [pipes](#pipe).
+Un tipo de clase que puede agregar a la lista de 'declaraciones' de un [NgModule](#ngmodule).
+Puedes declarar [componentes](#component), [directivas](#directive), y [pipes](#pipe).
 
-Don't declare the following:
-* A class that's already declared in another NgModule
-* An array of directives imported from another package. For example, don't declare `FORMS_DIRECTIVES` from `@angular/forms`
-* NgModule classes
-* Service classes
-* Non-Angular classes and objects, such as strings, numbers, functions, entity models, configurations, business logic, and helper classes
+No declares lo siguiente:
+* Una clase que ya está declarada en otro NgModule
+* Un conjunto de directivas importadas de otro paquete. Por ejemplo, no declarar `FORMS_DIRECTIVES` de `@angular/forms`
+* Clases de NgModule
+* Clases de servicio
+* Clases y objetos no de Angular, como cadenas de texto, números, funciones, modelos de entidad, configuraciones, lógica de negocios y clases auxiliares.
 
 
 {@a decorator}
 
 {@a decoration}
 
-## decorator | decoration
+## decorador | decoración
 
-A function that modifies a class or property definition. Decorators (also called *annotations*) are an experimental (stage 2) [JavaScript language feature](https://github.com/wycats/javascript-decorators).
-TypeScript adds support for decorators.
+Una función que modifica una definición de clase o propiedad. Los decoradores (también llamados *anotaciones*) son experimentales (etapa 2)[característica del lenguaje JavaScript](https://github.com/wycats/javascript-decorators).
+TypeScript agrega soporte para decoradores.
 
-Angular defines decorators that attach metadata to classes or properties
-so that it knows what those classes or properties mean and how they should work.
+Angular define decoradores que adjuntan metadatos a clases o propiedades para que sepas qué significan esas clases o propiedades y cómo deberían funcionar.
 
-See [class decorator](#class-decorator), [class field decorator](#class-field-decorator).
+Consulta [decorador de clase](#class-decorator), [decorador de campo de clase](#class-field-decorator).
 
 {@a di}
 
 {@a dependency-injection}
 
-## dependency injection (DI)
+## inyección de dependencia (DI)
 
-A design pattern and mechanism for creating and delivering some parts of an application (dependencies) to other parts of an application that require them.
+Un patrón de diseño y un mecanismo para crear y entregar algunas partes de una aplicación (dependencias) a otras partes de una aplicación que las requieran.
 
-In Angular, dependencies are typically services, but they also can be values, such as strings or functions.
-An [injector](#injector) for an app (created automatically during bootstrap) instantiates dependencies when needed, using a configured [provider](#provider) of the service or value.
+En Angular, las dependencias suelen ser servicios, pero también pueden ser valores, como cadenas o funciones.
 
-Learn more in [Dependency Injection in Angular](guide/dependency-injection).
+Un [inyector](#injector) fpara una aplicación (creado automáticamente durante el arranque) crea instancias de dependencias cuando sea necesario, utilizando un [proveedor](#provider) configurado del servicio o valor.
+
+Más información en [Inyección de dependencia en Angular](guide/dependency-injection).
 
 {@a di-token}
 
-## DI token
+## token DI
 
-A lookup token associated with a dependency [provider](#provider), for use with the [dependency injection](#di) system.
+Un token de búsqueda asociado con una dependencia [proveedor](#provider), para usar con el sistema [inyección de dependencia](#di).
 
 {@a differential-loading}
 
-## differential loading
+## carga diferencial
 
-A build technique that creates two bundles for an application. One smaller bundle is for modern browsers. A second, larger bundle allows the application to run correctly in older browsers (such as IE11) that do not support all modern browser APIs.
+Una técnica de compilación que crea dos paquetes para una aplicación. Un paquete más pequeño es para navegadores modernos. Un segundo paquete más grande permite que la aplicación se ejecute correctamente en navegadores más antiguos (como IE11) que no son compatibles con todas las API de navegador modernas.
 
-For more information, see the [Deployment](guide/deployment#differential-loading) guide.
+Para obtener más información, consulta la guía de [Implementación](guide/deployment#differential-loading).
 
 
 {@a directive}
 {@a directives}
 
-## directive
+## directiva
 
-A class that can modify the structure of the DOM or modify attributes in the DOM and component data model. A directive class definition is immediately preceded by a `@Directive()` [decorator](#decorator) that supplies metadata.
+Una clase que puede modificar la estructura del DOM o modificar atributos en el DOM y el modelo de datos de componentes. Una definición de clase directiva está precedida inmediatamente por un `@Directive ()` [decorador](#decorator) que proporciona metadatos.
 
-A directive class is usually associated with an HTML element or attribute, and that element or attribute is often referred to as the directive itself. When Angular finds a directive in an HTML [template](#template), it creates the matching directive class instance and gives the instance control over that portion of the browser DOM.
+Una clase de directiva generalmente está asociada con un elemento o atributo HTML, y ese elemento o atributo a menudo se conoce como la directiva misma. Cuando Angular encuentra una directiva en una [plantilla](#template) HTML, crea la instancia de clase de directiva coincidente y le da a la instancia control sobre esa parte del DOM del navegador.
 
-There are three categories of directive:
-* [Components](#component) use `@Component()` (an extension of `@Directive()`) to associate a template with a class.
+Hay tres categorías de directivas:
+* [Componentes](#component) usa `@Component()` (una extensión de `@Directive()`) para asociar una plantilla con una clase.
 
-* [Attribute directives](#attribute-directive) modify behavior and appearance of page elements.
+* [Directivas de atributo](#attribute-directive) modifica el comportamiento y la apariencia de los elementos de la página.
 
-* [Structural directives](#structural-directive) modify the structure of the DOM.
+* [Directivas estructurales](#structural-directive) modifican la estructura del DOM.
 
-Angular supplies a number of built-in directives that begin with the `ng` prefix.
-You can also create new directives to implement your own functionality.
-You associate a *selector* (an HTML tag such as `<my-directive>`) with a custom directive, thereby extending the [template syntax](guide/template-syntax) that you can use in your apps.
+Angular proporciona una serie de directivas integradas que comienzan con el prefijo `ng`.
+También puede crear nuevas directivas para implementar su propia funcionalidad.
+Asocia un *selector* (una etiqueta HTML como `<my-directive>`) con una directiva personalizada, extendiendo así la [sintaxis de plantilla](guide/template-syntax) que puede usar en sus aplicaciones.
 
 {@a dom}
 
-## domain-specific language (DSL)
+## lenguaje específico de dominio (DSL)
 
-A special-purpose library or API; see [Domain-specific language](https://en.wikipedia.org/wiki/Domain-specific_language).
-Angular extends TypeScript with domain-specific languages for a number of domains relevant to Angular apps, defined in NgModules such as [animations](guide/animations), [forms](guide/forms), and [routing and navigation](guide/router).
+Una biblioteca o API de propósito especial; consulte [Idioma específico del dominio](https://en.wikipedia.org/wiki/Domain-specific_language).
+Angular extiende TypeScript con lenguajes específicos de dominio para varios dominios relevantes para aplicaciones Angular, definidas en NgModules como [animaciones](guide/animations), [formularios](guide/forms), y [enrutamiento y navegación](guide/router).
 
 {@a dynamic-components}
 
-## dynamic component loading
+## carga dinámica de componentes
 
-A technique for adding a component to the DOM at run time. Requires that you exclude the component from compilation and then connect it to Angular's change-detection and event-handling framework when you add it to the DOM.
+Una técnica para agregar un componente al DOM en tiempo de ejecución. Requiere que excluya el componente de la compilación y luego lo conecte al marco de detección de cambios y manejo de eventos de Angular cuando lo agrega al DOM.
 
-See also [custom element](#custom-element), which provides an easier path with the same result.
+Consulta también [elemento personalizado](#custom-element), que proporciona una ruta más fácil con el mismo resultado.
 
 
 {@a E}
 
 {@a eager-loading}
 
-## eager loading
+## carga eager
 
-NgModules or components that are loaded on launch are called eager-loaded, to distinguish them from those
-that are loaded at run time (lazy-loaded).
-See [lazy loading](#lazy-load).
+Los NgModules o componentes que se cargan en el lanzamiento se llaman eager-loaded, para distinguirlos de aquellos que se cargan en tiempo de ejecución (carga diferida).
+
+Ver [carga diferida](#lazy-load).
 
 
 {@a ecma}
 
 ## ECMAScript
 
-The [official JavaScript language specification](https://en.wikipedia.org/wiki/ECMAScript).
+La [especificación oficial del lenguaje JavaScript](https://en.wikipedia.org/wiki/ECMAScript).
 
-Not all browsers support the latest ECMAScript standard, but you can use a [transpiler](#transpile) (like [TypeScript](#typescript)) to write code using the latest features, which will then be transpiled to code that runs on versions that are supported by browsers.
+No todos los navegadores son compatibles con el último estándar ECMAScript, pero puede usar un [transpiler](#transpile) (como [TypeScript](#typescript)) para escribir código utilizando las últimas funciones, que luego se transpilarán al código que se ejecuta en las versiones que son compatibles con los navegadores.
 
-To learn more, see [Browser Support](guide/browser-support).
+Para obtener más información, consulta [Browser Support](guide/browser-support).
 
 
 {@a element}
 
-## element
+## elemento
 
-Angular defines an `ElementRef` class to wrap render-specific native UI elements.
-In most cases, this allows you to use Angular templates and data binding to access DOM elements
-without reference to the native element.
+Angular define una clase `ElementRef` para envolver elementos de interfaz de usuario nativos específicos del render.
+En la mayoría de los casos, esto le permite usar plantillas de angular y enlace de datos para acceder a elementos DOM sin referencia al elemento nativo.
 
-The documentation generally refers to *elements* (`ElementRef` instances), as distinct from  *DOM elements*
-(which can be accessed directly if necessary).
+La documentación generalmente se refiere a *elementos* (instancias `ElementRef`), a diferencia de *elementos DOM* (que se puede acceder directamente si es necesario).
 
-Compare to [custom element](#custom-element).
+Comparado con [elemento personalizado](#custom-element).
 
 {@a entry-point}
 
-## entry point
+## punto de entrada
 
-A [JavaScript module](#module) that is intended to be imported by a user of [an
-npm package](guide/npm-packages). An entry-point module typically re-exports
-symbols from other internal modules. A package can contain multiple
-entry points. For example, the `@angular/core` package has two entry-point
-modules, which can be imported using the module names `@angular/core` and
+Un [módulo de JavaScript](#module) que está destinado a ser importado por un usuario de [un
+paquete npm](guide/npm-packages). Un módulo de punto de entrada suele reexportarse símbolos de otros módulos internos. Un paquete puede contener múltiples puntos de entrada. Por ejemplo, el paquete `@angular/core` Un módulo de punto de entrada suele reexportarse
+símbolos de otros módulos internos. Un paquete puede contener múltiples puntos de entrada. Por ejemplo, el paquete `@angular/core` y
 `@angular/core/testing`.
 
 {@a F}
 
 {@a form-control}
 
-## form control
+## control de formulario
 
-A instance of `FormControl`, which is a fundamental building block for Angular forms. Together with `FormGroup` and `FormArray`, tracks the value, validation, and status of a form input element.
+Una instancia de `FormControl`, que es un elemento fundamental para los formularios angular.
+Junto con `FormGroup` y `FormArray`, rastrea el valor, la validación y el estado de un elemento de entrada de formulario.
 
-Read more forms in the [Introduction to forms in Angular](guide/forms-overview).
+Lee más sobre formularios en [Introducción a los formularios en angular](guide/forms-overview).
 
 {@a form-model}
 
 ## form model
 
-The "source of truth" for the value and validation status of a form input element at a given point in time. When using [reactive forms](#reactive-forms), the form model is created explicitly in the component class. When using [template-driven forms](#template-driven-forms), the form model is implicitly created by directives.
+modelo de formulario
 
-Learn more about reactive and template-driven forms in the [Introduction to forms in Angular](guide/forms-overview).
+La "fuente de verdad" para el valor y el estado de validación de un elemento de entrada de formulario en un momento dado. Cuando se usan [formularios reactivos](#reactive-forms), tel modelo de formulario se crea explícitamente en la clase de componente. Al utilizar [formularios controlados por plantilla](#template-driven-forms), el modelo de formulario se crea implícitamente mediante directivas.
+
+Obtiene más información sobre los formularios reactivos y basados en plantillas en [Introducción a los formularios en angular](guide/forms-overview).
 
 {@a form-validation}
 
-## form validation
+## validación de formulario
 
-A check that runs when form values change and reports whether the given values are correct and complete, according to the defined constraints. Reactive forms apply [validator functions](guide/form-validation#adding-to-reactive-forms). Template-driven forms use [validator directives](guide/form-validation#adding-to-template-driven-forms).
+Una comprobación que se ejecuta cuando cambian los valores del formulario e informa si los valores dados son correctos y completos, de acuerdo con las restricciones definidas. Se aplican formas reactivas [funciones de validación](guide/form-validation#adding-to-reactive-forms). Los formularios basados en plantillas usan [directivas de validación](guide/form-validation#adding-to-template-driven-forms).
 
+Para obtener más información, consulta [Validación de formularios](guide/form-validation).
 
-To learn more, see [Form Validation](guide/form-validation).
 
 {@a G}
 
@@ -431,34 +427,31 @@ To learn more, see [Form Validation](guide/form-validation).
 
 {@a immutability}
 
-## immutability
+## inmutabilidad
 
-The ability to alter the state of a value after its creation. [Reactive forms](#reactive-forms) perform immutable changes in that
-each change to the data model produces a new data model rather than modifying the existing one. [Template-driven forms](#template-driven-forms) perform mutable changes with `NgModel` and [two-way data binding](#data-binding) to modify the existing data model in place.
+La capacidad de alterar el estado de un valor después de su creación. [Formularios reactivos](#reactive-forms) realizan cambios inmutables en ese cada cambio en el modelo de datos produce un nuevo modelo de datos en lugar de modificar el existente. [Formas controladas por plantilla](#template-driven-forms) realizan cambios mutables con `NgModel` y [enlace de datos bidireccional](#data-binding) para modificar el modelo de datos existente en su lugar.
 
 {@a injectable}
 
-## injectable
+## inyectable
 
-An Angular class or other definition that provides a dependency using the [dependency injection](#di) mechanism. An injectable [service](#service) class must be marked by the `@Injectable()` [decorator](#decorator). Other items, such as constant values, can also be injectable.
+Una clase angular u otra definición que proporciona una dependencia utilizando el mecanismo de [inyección de dependencia](#di). Una clase inyectable [servicio](#service) debe estar marcada por el `@Injectable ()` [decorador](#decorator). Otros elementos, como valores constantes, también pueden ser inyectables.
 
 {@a injector}
 
-## injector
+## inyector
 
-An object in the Angular [dependency-injection](#dependency-injection) system
-that can find a named dependency in its cache or create a dependency
-using a configured [provider](#provider).
-Injectors are created for NgModules automatically as part of the bootstrap process
-and are inherited through the component hierarchy.
+Un objeto en el sistema angular [inyección de dependencia](#dependency-injection) que puede encontrar una dependencia con nombre en su caché o crear una dependencia utilizando un [proveedor](#provider) configurado.
+Los inyectores se crean para NgModules automáticamente como parte del proceso de arranque
+y se heredan a través de la jerarquía de componentes.
 
-* An injector provides a singleton instance of a dependency, and can inject this same instance in multiple components.
+* Un inyector proporciona una instancia singleton de una dependencia, y puede inyectar esta misma instancia en múltiples componentes.
 
-* A hierarchy of injectors at the NgModule and component level can provide different instances of a dependency to their own components and child components.
+* Una jerarquía de inyectores a nivel de NgModule y componente puede proporcionar diferentes instancias de dependencia a sus propios componentes y componentes secundarios.
 
-* You can configure injectors with different providers that can provide different implementations of the same dependency.
+* Puede configurar inyectores con diferentes proveedores que pueden proporcionar diferentes implementaciones de la misma dependencia.
 
-Learn more about the injector hierarchy in [Hierarchical Dependency Injectors](guide/hierarchical-dependency-injection).
+Obtenga más información sobre la jerarquía de inyectores en [Inyectores de dependencia jerárquica](guide/hierarchical-dependency-injection).
 
 {@a input}
 
