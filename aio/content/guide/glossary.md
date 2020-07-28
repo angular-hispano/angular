@@ -28,7 +28,7 @@ Al compilar su aplicación utilizando la herramienta de línea de comandos `ngc`
 
 Un [componente](#component) angular empaquetado como un [elemento personalizado](#custom-element).
 
-Obtiene más información en [Vista general de Elementos Angular](guide/elements).
+Obtén más información en [Vista general de Elementos Angular](guide/elements).
 
 {@a annotation}
 
@@ -43,7 +43,7 @@ Una estructura que proporciona metadatos para una clase. Ver [decorador](#decora
 El shell de aplicación es una forma de representar una parte de su aplicación a través de una ruta en el momento de la compilación.
 Esto brinda a los usuarios una primera visualización significativa de su aplicación que aparece rápidamente porque el navegador puede renderizar HTML y CSS estáticos sin la necesidad de inicializar JavaScript.
 
-Obtiene más información en [Modelo Shell de Aplicación](https://developers.google.com/web/fundamentals/architecture/app-shell).
+Obtén más información en [Modelo Shell de Aplicación](https://developers.google.com/web/fundamentals/architecture/app-shell).
 
 Puedes usar angular CLI para [generar](cli/generate#appshell) un shell de aplicación.
 Esto puede mejorar la experiencia del usuario al iniciar rápidamente una página estática renderizada (un esqueleto común a todas las páginas) mientras el navegador descarga la versión completa del cliente y cambia automáticamente después de que se carga el código.
@@ -74,7 +74,7 @@ Los integradores pueden agregar constructores para permitir que las herramientas
 
 Una categoría de [directiva](#directive) que puede escuchar y modificar el comportamiento de otros elementos HTML, atributos, propiedades y componentes. Generalmente están representados como atributos HTML, de ahí el nombre.
 
-Obtenga más información en [Directivas de atributos](guide/attribute-directives).
+Obtén más información en [Directivas de atributos](guide/attribute-directives).
 
 {@a B}
 
@@ -97,7 +97,7 @@ En Angular, el NgModule raíz de una aplicación (`AppModule`) tiene una propied
 Durante el proceso de arranque, Angular crea e inserta estos componentes en la página web del host `index.html`. 
 Puede arrancar varias aplicaciones en el mismo `index.html`. Cada aplicación contiene sus propios componentes.
 
-Obtiene más información en [Bootstrapping](guide/bootstrapping).
+Obtén más información en [Bootstrapping](guide/bootstrapping).
 
 {@a builder}
 
@@ -185,8 +185,8 @@ En Angular, un conjunto de [esquemas](#schematic) relacionados recogidos en un [
 
 [Angular CLI](cli) es una herramienta de línea de comandos para administrar el ciclo de desarrollo angular. Úsalo para crear la estructura inicial del sistema de archivos para un [espacio de trabajo](#workspace) o [proyecto](#project), y para ejecutar [esquemas](#schematic) que agregue y modifique código para versiones genéricas iniciales de varios elementos. La CLI admite todas las etapas del ciclo de desarrollo, incluidas la construcción, las pruebas, la agrupación y la implementación.
 
-* Para comenzar a usar la CLI para un nuevo proyecto, consulte [Configuración del entorno local](guide/setup-local "Configuración para el desarrollo local").
-* Para obtener más información sobre las capacidades completas de la CLI, consulta la [Referencia del comando CLI](cli).
+* Para comenzar a usar la CLI para un nuevo proyecto, consultá [Configuración del entorno local](guide/setup-local "Configuración para el desarrollo local").
+* Para obtener más información sobre las capacidades completas de la CLI, consultá la [Referencia del comando CLI](cli).
 
 Ver también [Esquemas CLI](#schematics-cli).
 
@@ -213,7 +213,7 @@ Ver [configuración del espacio de trabajo](#cli-config)
 
 Una forma de insertar contenido DOM desde fuera de un componente en la vista del componente en un lugar designado.
 
-Para obtener más información, consulta [Respuesta a cambios en el contenido](guide/lifecycle-hooks#content-projection).
+Para obtener más información, consultá [Respuesta a cambios en el contenido](guide/lifecycle-hooks#content-projection).
 
 {@a custom-element}
 
@@ -227,7 +227,7 @@ Puedes usar la API para transformar un componente Angular para que pueda registr
 
 Ver [Elemento angular](#angular-element).
 
-Consulta también [carga de componentes dinámicos](#dynamic-components).
+Consultá también [carga de componentes dinámicos](#dynamic-components).
 
 {@a D}
 
@@ -292,7 +292,7 @@ En Angular, las dependencias suelen ser servicios, pero también pueden ser valo
 
 Un [inyector](#injector) fpara una aplicación (creado automáticamente durante el arranque) crea instancias de dependencias cuando sea necesario, utilizando un [proveedor](#provider) configurado del servicio o valor.
 
-Más información en [Inyección de dependencia en Angular](guide/dependency-injection).
+Obtén más información en [Inyección de dependencia en Angular](guide/dependency-injection).
 
 {@a di-token}
 
@@ -306,7 +306,7 @@ Un token de búsqueda asociado con una dependencia [proveedor](#provider), para 
 
 Una técnica de compilación que crea dos paquetes para una aplicación. Un paquete más pequeño es para navegadores modernos. Un segundo paquete más grande permite que la aplicación se ejecute correctamente en navegadores más antiguos (como IE11) que no son compatibles con todas las API de navegador modernas.
 
-Para obtener más información, consulta la guía de [Implementación](guide/deployment#differential-loading).
+Obtén más información en la guía de [Implementación](guide/deployment#differential-loading).
 
 
 {@a directive}
@@ -342,7 +342,7 @@ Angular extiende TypeScript con lenguajes específicos de dominio para varios do
 
 Una técnica para agregar un componente al DOM en tiempo de ejecución. Requiere que excluya el componente de la compilación y luego lo conecte al marco de detección de cambios y manejo de eventos de Angular cuando lo agrega al DOM.
 
-Consulta también [elemento personalizado](#custom-element), que proporciona una ruta más fácil con el mismo resultado.
+Consultá también [elemento personalizado](#custom-element), que proporciona una ruta más fácil con el mismo resultado.
 
 
 {@a E}
@@ -364,7 +364,7 @@ La [especificación oficial del lenguaje JavaScript](https://en.wikipedia.org/wi
 
 No todos los navegadores son compatibles con el último estándar ECMAScript, pero puede usar un [transpiler](#transpile) (como [TypeScript](#typescript)) para escribir código utilizando las últimas funciones, que luego se transpilarán al código que se ejecuta en las versiones que son compatibles con los navegadores.
 
-Para obtener más información, consulta [Browser Support](guide/browser-support).
+Para obtener más información, consultá [Browser Support](guide/browser-support).
 
 
 {@a element}
@@ -406,7 +406,7 @@ modelo de formulario
 
 La "fuente de verdad" para el valor y el estado de validación de un elemento de entrada de formulario en un momento dado. Cuando se usan [formularios reactivos](#reactive-forms), tel modelo de formulario se crea explícitamente en la clase de componente. Al utilizar [formularios controlados por plantilla](#template-driven-forms), el modelo de formulario se crea implícitamente mediante directivas.
 
-Obtiene más información sobre los formularios reactivos y basados en plantillas en [Introducción a los formularios en angular](guide/forms-overview).
+Obtén más información sobre los formularios reactivos y basados en plantillas en [Introducción a los formularios en angular](guide/forms-overview).
 
 {@a form-validation}
 
@@ -414,7 +414,7 @@ Obtiene más información sobre los formularios reactivos y basados en plantilla
 
 Una comprobación que se ejecuta cuando cambian los valores del formulario e informa si los valores dados son correctos y completos, de acuerdo con las restricciones definidas. Se aplican formas reactivas [funciones de validación](guide/form-validation#adding-to-reactive-forms). Los formularios basados en plantillas usan [directivas de validación](guide/form-validation#adding-to-template-driven-forms).
 
-Para obtener más información, consulta [Validación de formularios](guide/form-validation).
+Obtén más información en [Validación de formularios](guide/form-validation).
 
 
 {@a G}
@@ -449,9 +449,9 @@ y se heredan a través de la jerarquía de componentes.
 
 * Una jerarquía de inyectores a nivel de NgModule y componente puede proporcionar diferentes instancias de dependencia a sus propios componentes y componentes secundarios.
 
-* Puede configurar inyectores con diferentes proveedores que pueden proporcionar diferentes implementaciones de la misma dependencia.
+* Puedes configurar inyectores con diferentes proveedores que pueden proporcionar diferentes implementaciones de la misma dependencia.
 
-Obtenga más información sobre la jerarquía de inyectores en [Inyectores de dependencia jerárquica](guide/hierarchical-dependency-injection).
+Obtén más información sobre la jerarquía de inyectores en [Inyectores de dependencia jerárquica](guide/hierarchical-dependency-injection).
 
 {@a input}
 
