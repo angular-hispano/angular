@@ -24,8 +24,6 @@ Comprueba si tu PR cumple los siguientes requisitos:
 
 ## ¿Cuál es el comportamiento actual?
 <!-- Describe el comportamiento actual que está modificando o vincule a un problema relevante.
-
-Marca con una "x" si la PR ya la enlazaste con el issue correspondiente
 -->
 
 
