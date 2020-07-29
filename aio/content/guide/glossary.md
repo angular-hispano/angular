@@ -67,6 +67,7 @@ Obtén más información en [Bootstrapping](guide/bootstrapping).
 {@a C}
 
 {@a lazy-load}
+{@a lazy-loading}
 
 ## carga diferida
 
@@ -356,7 +357,7 @@ Obtén más información en [propiedades de entrada y salida] (guide/inputs-outp
 
 Una herramienta que configura e implementa la navegación entre estados y [vistas](#view) dentro de una aplicación angular.
 
-El módulo `Router` es un [NgModule](#ngmodule) que proporciona los proveedores de servicios y las directivas necesarias para navegar por las vistas de la aplicación. Un [componente de enrutamiento](#routing-component) es aquel que importa el módulo `Router` y cuya plantilla contiene un elemento `RouterOutlet` donde puede mostrar vistas producidas por el enrutador.
+El módulo `Router` es un [NgModule](#ngmodule) que proporciona los proveedores de servicios y las directivas necesarias para navegar por las vistas de la aplicación. Un [componente de enrutamiento](#router-outlet) es aquel que importa el módulo `Router` y cuya plantilla contiene un elemento `RouterOutlet` donde puede mostrar vistas producidas por el enrutador.
 
 El enrutador define la navegación entre vistas en una sola página, a diferencia de la navegación entre páginas. Interpreta enlaces de tipo URL para determinar qué vistas crear o destruir, y qué componentes cargar o descargar. Le permite aprovechar [carga diferida](#lazy-load) en las aplicaciones angular.
 
@@ -522,6 +523,7 @@ Un [inyector](#injector) fpara una aplicación (creado automáticamente durante 
 
 Obtén más información en [Inyección de dependencia en Angular](guide/dependency-injection).
 
+{@a command-line-interface-cli}
 {@a cli}
 
 ## interfaz de línea de comandos (CLI)
@@ -922,6 +924,7 @@ Por ejemplo, el constructor de la herramienta Architect proporciona un conjunto 
 También puede definir un generador personalizado y agregar un target a la configuración del proyecto que utiliza su generador personalizado. Luego puede ejecutar el target utilizando el comando [`ng run`](cli/run).
 
 {@a case-conventions}
+{@a case-types}
 {@a dash-case}
 {@a camelcase}
 {@a kebab-case}
