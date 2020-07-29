@@ -455,39 +455,36 @@ Obtén más información sobre la jerarquía de inyectores en [Inyectores de dep
 
 {@a input}
 
-## input
+## entrada
 
-When defining a [directive](#directive), the `@Input()` decorator on a directive property
-makes that property available as a *target* of a [property binding](guide/property-binding).
-Data values flow into an input property from the data source identified
-in the [template expression](#template-expression) to the right of the equal sign.
+Al definir una [directiva](#directive), el decorador `@Input()` en una propiedad directiva
+hace que esa propiedad esté disponible como *objetivo* de un [enlace de propiedad](guide/property-binding).
+Los valores de datos fluyen a una propiedad de entrada desde la fuente de datos identificada en la [expresión de plantilla](#template-expression) a la derecha del signo igual.
 
-To learn more, see [input and output properties](guide/inputs-outputs).
+Obtén más información en [propiedades de entrada y salida] (guide/inputs-outputs).
 
 {@a interpolation}
 
-## interpolation
+## interpolación
 
-A form of property [data binding](#data-binding) in which a [template expression](#template-expression) between double-curly braces renders as text.
-That text can be concatenated with neighboring text before it is assigned to an element property
-or displayed between element tags, as in this example.
+Una forma de propiedad [enlace de datos](#data-binding)  en la que una [expresión de plantilla](#template-expression) entre llaves dobles se representa como texto.
+Ese texto se puede concatenar con el texto vecino antes de asignarlo a una propiedad de elemento
+o se muestra entre etiquetas de elementos, como en este ejemplo.
 
 ```html
-<label>My current hero is {{hero.name}}</label>
+<label>Mi héroe actual es {{hero.name}}</label>
 ```
 
-
-Read more in the [Interpolation](guide/interpolation) guide.
+Lee más en la guía [Interpolación](guide/interpolation).
 
 {@a ivy}
 
 ## Ivy
 
-Ivy is the code name for Angular's [next-generation compilation and rendering pipeline](https://blog.angular.io/a-plan-for-version-8-0-and-ivy-b3318dfc19f7).
-With the version 9 release of Angular, the new compiler and runtime instructions are used by default instead of the older compiler and runtime, known as [View Engine](#ve).
+Ivy es el nombre en clave del [canal de compilación y renderización de próxima generación](https://blog.angular.io/a-plan-for-version-8-0-and-ivy-b3318dfc19f7) de Angulae.
+Con la versión 9 de Angular, el nuevo compilador y las instrucciones de tiempo de ejecución se utilizan de forma predeterminada en lugar del compilador y el tiempo de ejecución más antiguos, conocidos como [View Engine](#ve).
 
-See [Angular Ivy](guide/ivy).
-
+Lee más en [Angular Ivy](guide/ivy).
 
 {@a J}
 
@@ -495,7 +492,7 @@ See [Angular Ivy](guide/ivy).
 
 ## JavaScript
 
-See [ECMAScript](#ecma), [TypeScript](#typescript).
+Ver [ECMAScript](#ecma), [TypeScript](#typescript).
 
 
 {@a jit}
@@ -503,14 +500,12 @@ See [ECMAScript](#ecma), [TypeScript](#typescript).
 
 ## compilación just-in-time (JIT)
 
-The Angular just-in-time (JIT) compiler converts your Angular HTML and TypeScript code into
-efficient JavaScript code at run time, as part of bootstrapping.
+El compilador Angular just-in-time (JIT) convierte su código Angular HTML y TypeScript en código JavaScript eficiente en tiempo de ejecución, como parte del arranque.
 
-JIT compilation is the default (as opposed to AOT compilation) when you run Angular's `ng build` and `ng serve` CLI commands, and is a good choice during development.
-JIT mode is strongly discouraged for production use
-because it results in large application payloads that hinder the bootstrap performance.
+La compilación JIT es el valor predeterminado (a diferencia de la compilación AOT) cuando ejecuta los comandos CLI `ng build` y`ng serve` de Angular, y es una buena opción durante el desarrollo.
+El modo JIT no se recomienda para el uso en producción porque da como resultado grandes cargas útiles de aplicaciones que dificultan el rendimiento de arranque.
 
-Compare to [compilación ahead-of-time (AOT)](#aot).
+Comparar con [compilación ahead-of-time (AOT)](#aot).
 
 
 {@a K}
@@ -520,63 +515,63 @@ Compare to [compilación ahead-of-time (AOT)](#aot).
 
 {@a lazy-load}
 
-## lazy loading
+## carga lenta
 
-A process that speeds up application load time by splitting the application into multiple bundles and loading them on demand.
-For example, dependencies can be lazy loaded as needed&mdash;as opposed to [eager-loaded](#eager-loading) modules that are required by the root module and are thus loaded on launch.
+Un proceso que acelera el tiempo de carga de la aplicación al dividir la aplicación en múltiples paquetes y cargarlos bajo demanda.
+Por ejemplo, las dependencias pueden cargarse de forma diferida según sea necesario en lugar de los módulos [eager-loaded](#eager-loading) que requiere el módulo raíz y, por lo tanto, se cargan en el inicio.
 
-The [router](#router) makes use of lazy loading to load child views only when the parent view is activated.
-Similarly, you can build custom elements that can be loaded into an Angular app when needed.
+El [enrutador](#router) utiliza la carga diferida para cargar vistas secundarias solo cuando la vista principal está activada.
+Del mismo modo, puede crear elementos personalizados que se pueden cargar en una aplicación Angular cuando sea necesario.
 
 {@a library}
 
-## library
+## biblioteca
 
-In Angular, a [project](#project) that provides functionality that can be included in other Angular apps.
-A library isn't a complete Angular app and can't run independently.
-(To add re-usable Angular functionality to non-Angular web apps, you can use Angular [custom elements](#angular-element).)
+En Angular, un [proyecto](#project) que proporciona funcionalidad que se puede incluir en otras aplicaciones de Angular.
+Una biblioteca no es una aplicación angular completa y no puede ejecutarse de forma independiente.
+Para agregar funcionalidad angular reutilizable a aplicaciones web no angulares, puede usar Angular [elementos personalizados](#angular-element).)
 
-* Library developers can use the [Angular CLI](#cli) to `generate` scaffolding for a new library in an existing [workspace](#workspace), and can publish a library as an `npm` package.
+* Los desarrolladores de bibliotecas pueden usar la [CLI angular](#cli) para `generar` andamios para una nueva biblioteca en un [espacio de trabajo](#workspace) existente, y pueden publicar una biblioteca como un paquete `npm`.
 
-* Application developers can use the [Angular CLI](#cli) to `add` a published library for use with an application in the same [workspace](#workspace).
+* Los desarrolladores de aplicaciones pueden usar la [CLI angular](#cli) para `agregar` una biblioteca publicada para usar con una aplicación en el mismo [espacio de trabajo](#workspace).
 
-See also [schematic](#schematic).
+Ver también [esquema](#schematic).
 
 {@a lifecycle-hook}
 
 ## lifecycle hook
 
-An interface that allows you to tap into the lifecycle of [directives](#directive) and [components](#component) as they are created, updated, and destroyed.
+Una interfaz que le permite aprovechar el ciclo de vida de [directivas](#directive) and [componentes](#component) a medida que se crean, actualizan y destruyen.
 
-Each interface has a single hook method whose name is the interface name prefixed with `ng`.
-For example, the `OnInit` interface has a hook method named `ngOnInit`.
+Cada interfaz tiene un método de enlace único cuyo nombre es el nombre de la interfaz con el prefijo `ng`.
+Por ejemplo, la interfaz `OnInit` tiene un método de enlace llamado `ngOnInit`.
 
-Angular calls these hook methods in the following order:
+Angular llama a estos métodos de enlace en el siguiente orden:
 
-* `ngOnChanges`: When an [input](#input)/[output](#output) binding value changes.
-* `ngOnInit`: After the first `ngOnChanges`.
-* `ngDoCheck`: Developer's custom change detection.
-* `ngAfterContentInit`: After component content initialized.
-* `ngAfterContentChecked`: After every check of component content.
-* `ngAfterViewInit`: After a component's views are initialized.
-* `ngAfterViewChecked`: After every check of a component's views.
-* `ngOnDestroy`: Just before the directive is destroyed.
+* `ngOnChanges`: Cuando cambia un valor de enlace [entrada](#input)/[salida](#output).
+* `ngOnInit`: Después de los primeros `ngOnChanges`.
+* `ngDoCheck`: Detección de cambios personalizados del desarrollador.
+* `ngAfterContentInit`: Después del contenido del componente inicializado.
+* `ngAfterContentChecked`: Después de cada verificación del contenido del componente.
+* `ngAfterViewInit`: Después de que se inicializan las vistas de un componente.
+* `ngAfterViewChecked`: Después de cada comprobación de las vistas de un componente.
+* `ngOnDestroy`: Justo antes de que se destruya la directiva.
 
-To learn more, see [Lifecycle Hooks](guide/lifecycle-hooks).
+Obtén más información en [Lifecycle Hooks](guide/lifecycle-hooks).
 
 {@a M}
 
 {@a module}
 
-## module
+## módulo
 
-In general, a module collects a block of code dedicated to a single purpose. Angular uses standard JavaScript modules and also defines an Angular module, `NgModule`.
+En general, un módulo recopila un bloque de código dedicado a un solo propósito. Angular utiliza módulos JavaScript estándar y también define un módulo angular, `NgModule`.
 
-In JavaScript (ECMAScript), each file is a module and all objects defined in the file belong to that module. Objects can exported, making them public, and public objects can be imported for use by other modules.
+En JavaScript (ECMAScript), cada archivo es un módulo y todos los objetos definidos en el archivo pertenecen a ese módulo. Los objetos se pueden exportar, haciéndolos públicos, y los objetos públicos se pueden importar para su uso por otros módulos.
 
-Angular ships as a collection of JavaScript modules (also called libraries). Each Angular library name begins with the `@angular` prefix. Install Angular libraries with the [npm package manager](https://docs.npmjs.com/getting-started/what-is-npm) and import parts of them with JavaScript `import` declarations.
+Angular se envía como una colección de módulos JavaScript (también llamados bibliotecas). Cada nombre de biblioteca angular comienza con el prefijo `@angular`. Instala bibliotecas angulares con el [administrador de paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) e importa partes de ellas con las declaraciones de JavaScript `import`.
 
-Compare to [NgModule](#ngmodule).
+Comparar con [NgModule](#ngmodule).
 
 
 {@a N}
@@ -585,32 +580,32 @@ Compare to [NgModule](#ngmodule).
 
 ## ngcc
 
-Angular compatibility compiler.
-If you build your app using [Ivy](#ivy), but it depends on libraries that have not been compiled with Ivy, the CLI uses `ngcc` to automatically update the dependent libraries to use Ivy.
+Compilador de compatibilidad angular.
+Si se crea la aplicación usando [Ivy](#ivy), pero depende de las bibliotecas que no se han compilado con Ivy, la CLI usa `ngcc` para actualizar automáticamente las bibliotecas dependientes para usar Ivy.
 
 
 {@a ngmodule}
 
 ## NgModule
 
-A class definition preceded by the `@NgModule()` [decorator](#decorator), which declares and serves as a manifest for a block of code dedicated to an application domain, a workflow, or a closely related set of capabilities.
+Una definición de clase precedida por el `@NgModule()` [decorador](#decorator),  que declara y sirve como manifiesto para un bloque de código dedicado a un dominio de aplicación, un flujo de trabajo o un conjunto de capacidades estrechamente relacionadas.
 
-Like a [JavaScript module](#module), an NgModule can export functionality for use by other NgModules and import public functionality from other NgModules.
-The metadata for an NgModule class collects components, directives, and pipes that the application uses along with the list of imports and exports. See also [declarable](#declarable).
+Al igual que un [módulo JavaScript](#module), un NgModule puede exportar la funcionalidad para que otros NgModules la usen e importar la funcionalidad pública de otros NgModules.
+Los metadatos para una clase NgModule recopilan componentes, directivas y canalizaciones que la aplicación usa junto con la lista de importaciones y exportaciones. Ver también [declarable](#declarable).
 
-NgModules are typically named after the file in which the exported thing is defined. For example, the Angular [DatePipe](api/common/DatePipe) class belongs to a feature module named `date_pipe` in the file `date_pipe.ts`. You import them from an Angular [scoped package](#scoped-package) such as `@angular/core`.
+Los NgModules generalmente llevan el nombre del archivo en el que se define lo exportado. Por ejemplo, la clase Angular [DatePipe](api/common/DatePipe) pertenece a un módulo de características llamado `date_pipe` en el archivo` date_pipe.ts`. Se importa desde un [paquete con scope] (#scoped-package) como `@angular/core`.
 
-Every Angular application has a root module. By convention, the class is called `AppModule` and resides in a file named `app.module.ts`.
+Cada aplicación angular tiene un módulo raíz. Por convención, la clase se llama `AppModule` y reside en un archivo llamado `app.module.ts`.
 
-To learn more, see [NgModules](guide/ngmodules).
+Para obtener más información, consulta [NgModules](guide/ngmodules).
 
 {@a npm-package}
 
-## npm package
+## paquete npm
 
-The [npm package manager](https://docs.npmjs.com/getting-started/what-is-npm) is used to distribute and load Angular modules and libraries.
+El [administrador de paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) se usa para distribuir y cargar módulos y bibliotecas angular.
 
-Learn more about how Angular uses [Npm Packages](guide/npm-packages).
+Obtén más información acerca de cómo Angular usa [Paquetes npm](guide/npm-packages).
 
 {@a O}
 
@@ -618,31 +613,31 @@ Learn more about how Angular uses [Npm Packages](guide/npm-packages).
 
 ## observable
 
-A producer of multiple values, which it pushes to [subscribers](#subscriber). Used for asynchronous event handling throughout Angular. You execute an observable by subscribing to it with its `subscribe()` method, passing callbacks for notifications of new values, errors, or completion.
+Un productor de múltiples valores, que empuja a [suscriptores](#subscriber). Se utiliza para el manejo de eventos asíncronos en todo Angular. Ejecutas un observable suscribiéndote con su método `subscribe ()`, pasando devoluciones de llamada para notificaciones de nuevos valores, errores o finalización.
 
-Observables can deliver single or multiple values of any type to subscribers, either synchronously (as a function delivers a value to its caller) or on a schedule. A subscriber receives notification of new values as they are produced and notification of either normal completion or error completion.
+Los observables pueden entregar valores únicos o múltiples de cualquier tipo a los suscriptores, ya sea sincrónicamente (como una función entrega un valor a la persona que llama) o en un horario. Un suscriptor recibe una notificación de los nuevos valores a medida que se producen y una notificación de finalización normal o finalización de error.
 
-Angular uses a third-party library called [Reactive Extensions (RxJS)](http://reactivex.io/rxjs/).
+Angular utiliza una biblioteca de terceros llamada [Extensiones reactivas (RxJS)](http://reactivex.io/rxjs/).
 
-To learn more, see [Observables](guide/observables).
+Obtén más información en [Observables](guide/observables).
 
 
 {@a observer}
 
-## observer
+## observador
 
-An object passed to the `subscribe()` method for an [observable](#observable). The object defines the callbacks for the [subscriber](#subscriber).
+Un objeto pasado al método `subscribe()` para un [observable](#observable). El objeto define las devoluciones de llamada para el [suscriptor](#subscriber).
 
 {@a output}
 
-## output
+## salida
 
-When defining a [directive](#directive), the `@Output{}` decorator on a directive property
-makes that property available as a *target* of [event binding](guide/event-binding).
-Events stream *out* of this property to the receiver identified
-in the [template expression](#template-expression) to the right of the equal sign.
+Al definir una [directiva](#directive), el decorador `@Output{}` en una propiedad directiva
+hace que esa propiedad esté disponible como *objetivo* de [enlace de evento](guide/event-binding).
+La secuencia de eventos *fuera* de esta propiedad al receptor identificado
+en la [expresión de plantilla](#template-expression) a la derecha del signo igual.
 
-To learn more, see [Input and Output Properties](guide/inputs-outputs).
+Obtén más información en [Propiedades de entrada y salida](guide/inputs-outputs).
 
 
 {@a P}
@@ -651,29 +646,29 @@ To learn more, see [Input and Output Properties](guide/inputs-outputs).
 
 ## pipe
 
-A class which is preceded by the `@Pipe{}` decorator and which defines a function that transforms input values to output values for display in a [view](#view). Angular defines various pipes, and you can define new pipes.
+Una clase precedida por el decorador `@Pipe{}` y que define una función que transforma los valores de entrada en valores de salida para mostrar en una [vista](#view). Angular define varias pipes y puedes definir nuevas pipes.
 
-To learn more, see [Pipes](guide/pipes).
+Obtén más información en [Pipes](guide/pipes).
 
 {@a platform}
 
-## platform
+## plataforma
 
-In Angular terminology, a platform is the context in which an Angular application runs.
-The most common platform for Angular applications is a web browser, but it can also be an operating system for a mobile device, or a web server.
+En terminología angular, una plataforma es el contexto en el que se ejecuta una aplicación angular.
+La plataforma más común para aplicaciones angulares es un navegador web, pero también puede ser un sistema operativo para un dispositivo móvil o un servidor web.
 
-Support for the various Angular run-time platforms is provided by the `@angular/platform-*` packages. These packages allow applications that make use of `@angular/core` and `@angular/common` to execute in different environments by providing implementation for gathering user input and rendering UIs for the given platform. Isolating platform-specific functionality allows the developer to make platform-independent use of the rest of the framework.
+Los paquetes `@angular/platform-*` proporcionan soporte para las diversas plataformas de tiempo de ejecución angular. Estos paquetes permiten que las aplicaciones que utilizan `@angular/core` y `@angular/common` se ejecuten en diferentes entornos al proporcionar la implementación para recopilar la entrada del usuario y representar las IU para la plataforma dada. El aislamiento de la funcionalidad específica de la plataforma permite al desarrollador hacer un uso independiente de la plataforma del resto del marco.
 
-* When running in a web browser, [`BrowserModule`](api/platform-browser/BrowserModule) is imported from the `platform-browser` package, and supports services that simplify security and event processing, and allows applications to access browser-specific features, such as interpreting keyboard input and controlling the title of the document being displayed. All applications running in the browser use the same platform service.
+* Cuando se ejecuta en un navegador web, [`BrowserModule`](api/platform-browser/BrowserModule) se importa desde el paquete `platform-browser`, y admite servicios que simplifican la seguridad y el procesamiento de eventos, y permite que las aplicaciones accedan al navegador- características específicas, como interpretar la entrada del teclado y controlar el título del documento que se muestra. Todas las aplicaciones que se ejecutan en el navegador utilizan el mismo servicio de plataforma.
 
-* When [server-side rendering](#server-side-rendering) (SSR) is used, the [`platform-server`](api/platform-server) package provides web server implementations of the `DOM`, `XMLHttpRequest`, and other low-level features that don't rely on a browser.
+* Cuando se utiliza [renderizado del lado del servidor](#server-side-rendering) (SSR) el paquete  [`platform-server`](api/platform-server) proporciona implementaciones de servidor web de` DOM`, `XMLHttpRequest`, y otras características de bajo nivel que no dependen de un navegador.
 
 {@a polyfill}
 
 ## polyfill
 
-An [npm package](guide/npm-packages) that plugs gaps in a browser's JavaScript implementation.
-See [Browser Support](guide/browser-support) for polyfills that support particular functionality for particular platforms.
+Un [paquete npm](guide/npm-packages) que cierra las brechas en la implementación de JavaScript de un navegador.
+Consulta [Soporte del navegador](guide/browser-support) para ver polyfills que admiten funcionalidades particulares para plataformas particulares.
 
 {@a project}
 
