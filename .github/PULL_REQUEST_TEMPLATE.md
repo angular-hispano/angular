@@ -38,7 +38,7 @@ Ejemplo: Archivo en Español
 - [ ] Si
 - [ ] No
 
-## Tendras que crear un nuevo archivo que es el que contiene la traducción
+## Tendrás que crear un nuevo archivo que es el que contiene la traducción
 <!--
 - El archivo orginal que esta en Inglés cambia su extensión a .en.md
 - El archivo con la traducción a Español tendra la extensión .md
