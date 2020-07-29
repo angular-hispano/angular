@@ -1,5 +1,5 @@
 ## PR Checklist
-Compruebe si su RP cumple los siguientes requisitos:
+Comprueba si tu PR cumple los siguientes requisitos:
 
 - [ ] The commit message follows our guidelines: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
 - [ ] Examina los cambios que agregaste (arreglo de bugs / funcionalidades)
