@@ -19,6 +19,8 @@ Comprueba si tu PR cumple los siguientes requisitos:
 - [ ] Cambios relacionados al CI (Integración continua)
 - [ ] Cambios en el contenido de la documentación
 - [ ] Cambios en la aplicación / infrastructura de angular.io
+- [ ] Consulté el diccionario de términos en español [aquí][1]
+- [ ] Se han creado dos archivos con la extensión correspondiente(.en.md para el archivo en inglés y .md para el Archivo en español)
 - [ ] Otro... Por favor describela:
 
 ## ¿Cuál es el comportamiento actual?
@@ -31,39 +33,6 @@ Marca con una "x" si la PR ya la enlazaste con el issue correspondiente
 
 ## ¿Cuál es el nuevo comportamiento?
 <!--
-Ejemplo: Archivo en Español
+Ejemplo: Archivo en inglés traducido al español
 -->
-## ¿Este PR introduce algunos errores?
-
-- [ ] Si
-- [ ] No
-
-## Tendrás que crear un nuevo archivo que es el que contiene la traducción
-<!--
-- El archivo orginal que esta en Inglés cambia su extensión a .en.md
-- El archivo con la traducción a Español tendra la extensión .md
-
-Ejemplo:
-
-creating-libraries.md (Archivo en Español)
-
-creating-libraries.en.md (Archivo en Inglés)
-
--->
-
-<!--
-Marca con una "x" si creaste dos archivos con la extensión correspondiente.
--->
-- [ ] Se han creado dos archivos con la extensión correspondiente
-
-## ⚠️ Consulta el diccionario de términos
-<!--
-Temporalmente tenemos la terminología utilizada en este tema. Se migrará a un archivo pronto
-
-La terminologia que estamos usando la podras encontrar aqui:
-
-https://github.com/angular-hispano/angular/issues/9
-
-Marca con una "x" si consultaste el diccionario de términos
--->
-- [ ] Consulté el diccionario de términos
+[1]:https://github.com/angular-hispano/angular/issues/9
