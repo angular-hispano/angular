@@ -3,6 +3,7 @@ Comprueba si tu PR cumple los siguientes requisitos:
 
 - [ ] The commit message follows our guidelines: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
 - [ ] Prueba los cambios que agregaste (arreglo de bugs / funcionalidades)
+- [ ] Revisa tus traducciones o cambios de contenido
 - [ ] Docs se han agregado / actualizado (para arreglos de bugs / funcionalidades)
 
 
