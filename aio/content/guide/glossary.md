@@ -830,39 +830,39 @@ Puede preparar fácilmente una aplicación para la representación del lado del 
 
 {@a service}
 
-## service
+## Servicio
 
-In Angular, a class with the [@Injectable()](#injectable) decorator that encapsulates non-UI logic and code that can be reused across an application.
-Angular distinguishes components from services to increase modularity and reusability.
+En Angular, una clase con el decorador [@Injectable()](#injectable) que encapsula la lógica y el código no UI que se pueden reutilizar en una aplicación.
+Angular distingue los componentes de los servicios para aumentar la modularidad y la reutilización.
 
-The `@Injectable()` metadata allows the service class to be used with the [dependency injection](#di) mechanism.
-The injectable class is instantiated by a [provider](#provider).
-[Injectors](#injector) maintain lists of providers and use them to provide service instances when they are required by components or other services.
+Los metadatos `@Injectable()` permiten que la clase de servicio se use con el mecanismo [inyección de dependencia](#di).
+La clase inyectable es instanciada por un [proveedor](#provider).
+Los [Inyectores](#injector) mantienen listas de proveedores y los utilizan para proporcionar instancias de servicio cuando son requeridos por componentes u otros servicios.
 
-To learn more, see [Introduction to Services and Dependency Injection](guide/architecture-services).
+Obtén más información en [Introducción a los servicios y la inyección de dependencias](guide/architecture-services).
 
 {@a structural-directive}
 {@a structural-directives}
 
-## structural directives
+## directivas estructurales
 
-A category of [directive](#directive) that is responsible for shaping HTML layout by modifying the DOM&mdashthat is, adding, removing, or manipulating elements and their children.
+Una categoría de [directiva](#directive) que es responsable de dar forma al diseño HTML modificando DOM y mdashthat, es decir, agregando, eliminando o manipulando elementos y sus elementos secundarios.
 
-To learn more, see [Structural Directives](guide/structural-directives).
+Obtén más información en [Directivas estructurales](guide/structural-directives).
 
 {@a subscriber}
 
-## subscriber
+## suscriptor
 
-A function that defines how to obtain or generate values or messages to be published. This function is executed when a consumer calls the `subscribe()` method of an [observable](#observable).
+Una función que define cómo obtener o generar valores o mensajes para publicar. Esta función se ejecuta cuando un consumidor llama al método `subscribe()` de un [observable](#observable).
 
-The act of subscribing to an observable triggers its execution, associates callbacks with it, and creates a `Subscription` object that lets you unsubscribe.
+El acto de suscribirse a un observable desencadena su ejecución, asocia devoluciones de llamada con él y crea un objeto de `Subscription` que le permite darse de baja.
 
-The `subscribe()` method takes a JavaScript object (called an [observer](#observer)) with up to three callbacks, one for each type of notification that an observable can deliver:
+El método `subscribe ()` toma un objeto JavaScript (llamado [observador](#observer)) con hasta tres devoluciones de llamada, una para cada tipo de notificación que un observable puede entregar:
 
-* The `next` notification sends a value such as a number, a string, or an object.
-* The `error` notification sends a JavaScript Error or exception.
-* The `complete` notification doesn't send a value, but the handler is called when the call completes. Scheduled values can continue to be returned after the call completes.
+* La notificación `next` envía un valor como un número, una cadena o un objeto.
+* La notificación `error` envía un error de JavaScript o una excepción.
+* La notificación `complete` no envía un valor, pero se llama al controlador cuando finaliza la llamada. Los valores programados pueden continuar devolviéndose después de que se complete la llamada.
 
 {@a T}
 
@@ -870,183 +870,180 @@ The `subscribe()` method takes a JavaScript object (called an [observer](#observ
 
 ## target
 
-A buildable or runnable subset of a [project](#project), configured as an object in the [workspace configuration file](guide/workspace-config#project-tool-configuration-options), and executed by an [Architect](#architect) [builder](#builder).
+Un subconjunto construible o ejecutable de un [proyecto](#project), configurado como un objeto en el [archivo de configuración del espacio de trabajo](guide/workspace-config#project-tool-configuration-options), y ejecutado por un [Architect](#architect) [constructor](#builder).
 
-In the `angular.json` file, each project has an "architect" section that contains targets which configure builders. Some of these targets correspond to [CLI commands](#cli), such as `build`, `serve`, `test`, and `lint`.
+En el archivo `angular.json`, cada proyecto tiene una sección de "architect" que contiene targets que configuran los constructores. Algunos de estos targets corresponden a [comandos CLI] (#cli), como `build`, `serve`, `test` y `lint`.
 
-For example, the Architect builder invoked by the `ng build` command to compile a project uses a particular build tool, and has a default configuration whose values can be overridden on the command line. The `build` target also defines an alternate configuration for a "production" build, that can be invoked with the `--prod` flag on the `build` command.
+Por ejemplo, el constructor de Architect invocado por el comando `ng build` para compilar un proyecto usa una herramienta de construcción particular, y tiene una configuración predeterminada cuyos valores pueden ser anulados en la línea de comando. El objetivo `build` también define una configuración alternativa para una compilación "producción", que se puede invocar con el indicador `--prod` en el comando `build`.
 
-The Architect tool provides a set of builders. The [`ng new` command](cli/new) provides a set of targets for the initial application project. The [`ng generate application`](cli/generate#application) and [`ng generate library`](cli/generate#library) commands provide a set of targets for each new [project](#project). These targets, their options and configurations, can be customized to meet the needs of your project. For example, you may want to add a "staging" or "testing" configuration to a project's "build" target.
+Por ejemplo, el constructor de la herramienta Architect proporciona un conjunto de constructores. El comando [`ng new`](cli/new) proporciona un conjunto de targets para el proyecto de aplicación inicial. Los comandos [`ng generate application`](cli/generate#application) y [`ng generate library`](cli/generate#library) proporcionan un conjunto de targets para cada nuevo [proyecto](#project). Estos targets, sus opciones y configuraciones, se pueden personalizar para satisfacer las necesidades de su proyecto. Por ejemplo, es posible que desee agregar una configuración de "puesta en escena" o "prueba" al objetivo de "compilación" de un proyecto.
 
-You can also define a custom builder, and add a target to the project configuration that uses your custom builder. You can then run the target using the [`ng run`](cli/run) CLI command.
+También puede definir un generador personalizado y agregar un target a la configuración del proyecto que utiliza su generador personalizado. Luego puede ejecutar el target utilizando el comando [`ng run`](cli/run).
 
 {@a template}
 
-## template
+## plantilla
 
-Code that defines how to render a component's [view](#view).
+Código que define cómo representar la [vista](#view) de un componente.
 
-A template combines straight HTML with Angular [data-binding](#data-binding) syntax, [directives](#directive),
-and [template expressions](#template-expression) (logical constructs).
-The Angular elements insert or calculate values that modify the HTML elements before the page is displayed. Learn more about Angular template language in the [Template Syntax](guide/template-syntax) guide.
+Una plantilla combina HTML directo con sintaxis angular [enlace de datos](#data-binding), [directivas](#directive),y [expresiones de plantilla](#template-expression) (construcciones lógicas).
+Los elementos angular insertan o calculan valores que modifican los elementos HTML antes de que se muestre la página. Obtén más información sobre el lenguaje de plantilla angular en la guía [Sintaxis de plantilla](guide/template-syntax).
 
-A template is associated with a [component class](#component) through the `@Component()` [decorator](#decorator). The template code can be provided inline, as the value of the `template` property, or in a separate HTML file linked through the `templateUrl` property.
+Una plantilla está asociada con una [clase de componente](#component) a través del [decorador](#decorator) `@Component()`. El código de la plantilla se puede proporcionar en línea, como el valor de la propiedad `template`, o en un archivo HTML separado vinculado a través de la propiedad` templateUrl`.
 
-Additional templates, represented by `TemplateRef` objects, can define alternative or *embedded* views, which can be referenced from multiple components.
+Las plantillas adicionales, representadas por objetos `TemplateRef`, pueden definir vistas alternativas o *incrustadas*, a las que se puede hacer referencia desde múltiples componentes.
 
 {@a template-driven-forms}
 
-## template-driven forms
+## formularios basados en plantillas
 
-A format for building Angular forms using HTML forms and input elements in the view.
-The alternative format uses the [reactive forms](#reactive-forms) framework.
+Un formato para crear formularios angular utilizando formularios HTML y elementos de entrada en la vista.
+El formato alternativo utiliza el framework [formularios reactivos](#reactive-forms).
 
-When using template-driven forms:
+Al usar formularios basados en plantillas:
 
-* The "source of truth" is the template. The validation is defined using attributes on the individual input elements.
-* [Two-way binding](#data-binding) with `ngModel` keeps the component model synchronized with the user's entry into the input elements.
-* Behind the scenes, Angular creates a new control for each input element, provided you have set up a `name` attribute and two-way binding for each input.
-* The associated Angular directives are prefixed with `ng` such as `ngForm`, `ngModel`, and `ngModelGroup`.
+* La "fuente de la verdad" es la plantilla. La validación se define utilizando atributos en los elementos de entrada individuales.
+* [Enlace bidireccional](#data-binding) con `ngModel` mantiene el modelo de componente sincronizado con la entrada del usuario en los elementos de entrada.
+* Detrás de escena, Angular crea un nuevo control para cada elemento de entrada, siempre que haya configurado un atributo `name` y un enlace bidireccional para cada entrada.
+* Las directivas angulares asociadas tienen el prefijo `ng` como `ngForm`, `ngModel` y `ngModelGroup`.
 
-The alternative is a reactive form. For an introduction and comparison of both forms approaches, see [Introduction to Angular Forms](guide/forms-overview).
+La alternativa es una forma reactiva. Para una introducción y comparación de ambos enfoques de formularios, consulta [Introducción a los formularios angular](guide/forms-overview).
 
 {@a template-expression}
 
-## template expression
+## expresión de plantilla
 
-A TypeScript-like syntax that Angular evaluates within a [data binding](#data-binding).
+Una sintaxis tipo TypeScript que Angular evalúa dentro de un [enlace de datos](#data-binding).
 
-Read about how to write template expressions in the [template expressions](guide/interpolation#template-expressions) section of the [Interpolation](guide/interpolation) guide.
+Lee acerca de cómo escribir expresiones de plantilla en la sección [expresiones de plantilla](guide/interpolation#template-expressions) de la guía [Interpolación](guide/interpolation).
 
 {@a token}
 
 ## token
 
-An opaque identifier used for efficient table lookup. In Angular, a [DI token](#di-token) is used to find [providers](#provider) of dependencies in the [dependency injection](#di) system.
+Un identificador opaco utilizado para la búsqueda eficiente de tablas. En Angular, se utiliza un [token DI](#di-token) para encontrar [proveedores](#provider) de dependencias en el sistema [inyección de dependencia](#di).
 
 {@a transpile}
 
 ## transpile
 
-The translation process that transforms one version of JavaScript to another version; for example, down-leveling ES2015 to the older ES5 version.
+El proceso de traducción que transforma una versión de JavaScript en otra versión; por ejemplo, bajar el nivel de ES2015 a la versión anterior de ES5.
 
 {@a file-tree}
 
 ## tree
 
-In [schematics](#schematic), a virtual file system represented by the `Tree` class.
-Schematic [rules](#rule) take a tree object as input, operate on them, and return a new tree object.
+En [esquemas](#schematic), un sistema de archivos virtual representado por la clase `Tree`.
+Las [reglas](#rule) esquemáticas toman un objeto de árbol como entrada, operan en ellas y devuelven un nuevo objeto de árbol.
 
 {@a typescript}
 
 ## TypeScript
 
-A programming language based on JavaScript that is notable for its optional typing system.
-TypeScript provides compile-time type checking and strong tooling support (such as
-code completion, refactoring, inline documentation, and intelligent search).
-Many code editors and IDEs support TypeScript either natively or with plug-ins.
+Un lenguaje de programación basado en JavaScript que destaca por su sistema de escritura opcional.
+TypeScript proporciona verificación de tipos en tiempo de compilación y un fuerte soporte de herramientas (como
+terminación de código, refactorización, documentación en línea y búsqueda inteligente).
+Muchos editores de código e IDE admiten TypeScript de forma nativa o con complementos.
 
-TypeScript is the preferred language for Angular development.
-Read more about TypeScript at [typescriptlang.org](http://www.typescriptlang.org/).
+TypeScript es el lenguaje preferido para el desarrollo angular.
+Lee más sobre TypeScript en [typescriptlang.org](http://www.typescriptlang.org/).
 
-## TypeScript configuration file
+## archivo de configuración de TypeScript
 
-A file specifies the root files and the compiler options required to compile a TypeScript project. For more information, see [TypeScript configuration](/guide/typescript-configuration).
+Un archivo especifica los archivos raíz y las opciones de compilación necesarias para compilar un proyecto TypeScript. Para obtener más información, consulta [Configuración de TypeScript](/guide/typescript-configuration).
 
 
 {@a U}
 
 {@a unidirectional-data-flow}
 
-## unidirectional data flow
+## flujo de datos unidireccional
 
-A data flow model where the component tree is always checked for changes in one direction (parent to child), which prevents cycles in the change detection graph.
+Un modelo de flujo de datos donde el árbol de componentes siempre se verifica en busca de cambios en una dirección (principal a secundario), lo que evita los ciclos en el gráfico de detección de cambios.
 
-In practice, this means that data in Angular flows downward during change detection.
-A parent component can easily change values in its child components because the parent is checked first.
-A failure could occur, however, if a child component tries to change a value in its parent during change detection (inverting the expected data flow), because the parent component has already been rendered.
-In development mode, Angular throws the `ExpressionChangedAfterItHasBeenCheckedError` error if your app attempts to do this, rather than silently failing to render the new value.
+En la práctica, esto significa que los datos en Angular fluyen hacia abajo durante la detección de cambios.
+Un componente primario puede cambiar fácilmente los valores en sus componentes secundarios porque primero se verifica el primario.
+Sin embargo, podría producirse un error si un componente secundario intenta cambiar un valor en su elemento primario durante la detección de cambio (invirtiendo el flujo de datos esperado), porque el componente principal ya se ha procesado.
+En modo de desarrollo, Angular arroja el error `ExpressionChangedAfterItHasBeenCheckedError` si su aplicación intenta hacer esto, en lugar de fallar silenciosamente en representar el nuevo valor.
 
-To avoid this error, a [lifecycle hook](guide/lifecycle-hooks) method that seeks to make such a change should trigger a new change detection run. The new run follows the same direction as before, but succeeds in picking up the new value.
+Para evitar este error, un método [lifecycle hook](guide/lifecycle-hooks)que busca realizar dicho cambio debería desencadenar una nueva ejecución de detección de cambio. La nueva ejecución sigue la misma dirección que antes, pero logra recoger el nuevo valor.
 
 {@a universal}
 
 ## Universal
 
-A tool for implementing [server-side rendering](#server-side-rendering) of an Angular application.
-When integrated with an app, Universal generates and serves static pages on the server in response to requests from browsers.
-The initial static page serves as a fast-loading placeholder while the full application is being prepared for normal execution in the browser.
+Una herramienta para implementar [renderizado del lado del servidor](#server-side-rendering) de una aplicación angular.
+Cuando se integra con una aplicación, Universal genera y sirve páginas estáticas en el servidor en respuesta a las solicitudes de los navegadores.
+La página estática inicial sirve como marcador de posición de carga rápida mientras se prepara la aplicación completa para la ejecución normal en el navegador.
 
-To learn more, see [Angular Universal: server-side rendering](guide/universal).
+Para obtener más información, consulta [Angular Universal: representación del lado del servidor](guide/universal).
 
 {@a V}
 
 {@a view}
 
-## view
+## vista
 
-The smallest grouping of display elements that can be created and destroyed together.
-Angular renders a view under the control of one or more [directives](#directive).
+La agrupación más pequeña de elementos de visualización que se pueden crear y destruir juntos.
+Angular representa una vista bajo el control de una o más [directivas](#directive).
 
-A [component](#component) class and its associated [template](#template) define a view.
-A view is specifically represented by a `ViewRef` instance associated with a component.
-A view that belongs immediately to a component is called a *host view*.
-Views are typically collected into [view hierarchies](#view-tree).
+Una clase [componente](#component) y su [plantilla](#template) asociada definen una vista.
+Una vista está representada específicamente por una instancia `ViewRef` asociada con un componente.
+Una vista que pertenece inmediatamente a un componente se llama *vista de host*.
+Las vistas se suelen recopilar en [jerarquías de vista](#view-tree).
 
-Properties of elements in a view can change dynamically, in response to user actions;
-the structure (number and order) of elements in a view can't.
-You can change the structure of elements by inserting, moving, or removing nested views within their view containers.
+Las propiedades de los elementos en una vista pueden cambiar dinámicamente, en respuesta a las acciones del usuario; la estructura (número y orden) de elementos en una vista no puede.
+Puede cambiar la estructura de los elementos insertando, moviendo o eliminando vistas anidadas dentro de sus contenedores de vistas.
 
-View hierarchies can be loaded and unloaded dynamically as the user navigates through the application, typically under the control of a [router](#router).
+Las jerarquías de vista se pueden cargar y descargar dinámicamente a medida que el usuario navega por la aplicación, generalmente bajo el control de un [enrutador](#router).
 
 {@a ve}
 
 ## View Engine
 
-The compilation and rendering pipeline used by Angular before version 9. Compare [Ivy](#ivy).
+La canalización de compilación y representación utilizada por Angular antes de la versión 9. Comparar con [Ivy](#ivy).
 
 
 {@a view-tree}
 
-## view hierarchy
+## jerarquía de vistas
 
-A tree of related views that can be acted on as a unit. The root view is a component's *host view*. A host view can be the root of a tree of *embedded views*, collected in a *view container* (`ViewContainerRef`) attached to an anchor element in the hosting component. The view hierarchy is a key part of Angular [change detection](#change-detection).
+Un árbol de vistas relacionadas en el que se puede actuar como una unidad. La vista raíz es la *vista de host* de un componente. Una vista de host puede ser la raíz de un árbol de *vistas incrustadas*, recopiladas en un *contenedor de vista* (`ViewContainerRef`) adjunto a un elemento de anclaje en el componente de alojamiento. La jerarquía de vistas es una parte clave de Angular [detección de cambios](#change-detection).
 
-The view hierarchy doesn't imply a component hierarchy. Views that are embedded in the context of a particular hierarchy can be host views of other components. Those components can be in the same NgModule as the hosting component, or belong to other NgModules.
+La jerarquía de vistas no implica una jerarquía de componentes. Las vistas que están integradas en el contexto de una jerarquía particular pueden ser vistas de host de otros componentes. Esos componentes pueden estar en el mismo NgModule que el componente de alojamiento o pertenecer a otros NgModules.
 
 {@a W}
 {@a web-component}
 
 ## web component
 
-See [custom element](#custom-element).
+Ver [elementos personalizados](#custom-element).
 
 {@a workspace}
 
-## workspace
+## espacio de trabajo
 
-A collection of Angular [projects](#project) (that is, applications and libraries) powered by the [Angular CLI] (#cli) that are typically co-located in a single source-control repository (such as [git](https://git-scm.com/)).
+Una colección de [proyectos](#project) angular (es decir, aplicaciones y bibliotecas) con tecnología de [anglar CLI](#cli) que generalmente se ubican en un único repositorio de control de fuente (como [git](https://git-scm.com/)).
 
-The [CLI](#cli) [`ng new` command](cli/new) creates a file system directory (the "workspace root").
-In the workspace root, it also creates the workspace [configuration file](#configuration) (`angular.json`) and, by default, an initial application project with the same name.
+El [CLI](#cli) [`ng new` command](cli/new) crea un directorio del sistema de archivos (la "raíz del espacio de trabajo"). En la raíz del espacio de trabajo, también crea el espacio de trabajo [archivo de configuración](#configuration) (`angular.json`) y, por defecto, un proyecto de aplicación inicial con el mismo nombre.
 
-Commands that create or operate on apps and libraries (such as `add` and `generate`) must be executed from within a workspace folder.
+Los comandos que crean u operan en aplicaciones y bibliotecas (como `add` y `generate`) deben ejecutarse desde una carpeta de espacio de trabajo.
 
-For more information, see [Workspace Configuration](guide/workspace-config).
+Para obtener más información, consulta [Configuración del espacio de trabajo](guide/workspace-config).
 
 {@a cli-config}
 
 {@a config}
 
-## workspace configuration
+## configuración del espacio de trabajo
 
-A file named `angular.json` at the root level of an Angular [workspace](#workspace) provides workspace-wide and project-specific configuration defaults for build and development tools that are provided by or integrated with the [Angular CLI](#cli).
+Un archivo llamado `angular.json` en el nivel raíz de un [espacio de trabajo](#workspace) angular proporciona valores predeterminados de configuración de todo el espacio de trabajo y específicos del proyecto para las herramientas de compilación y desarrollo proporcionadas o integradas con la [Angular CLI](#cli).
 
-For more information, see [Workspace Configuration](guide/workspace-config).
+Para obtener más información, consulta [Configuración del espacio de trabajo](guide/workspace-config).
 
-Additional project-specific configuration files are used by tools, such as `package.json` for the [npm package manager](#npm-package), `tsconfig.json` for [TypeScript transpilation](#transpile), and `tslint.json` for [TSLint](https://palantir.github.io/tslint/).
+Las herramientas utilizan archivos de configuración adicionales específicos del proyecto, como `package.json` para el [manejador de paquetes npm](#npm-package), `tsconfig.json` para [TypeScript transpilation](#transpile), y `tslint.json` para [TSLint](https://palantir.github.io/tslint/).
 
-For more information, see [Workspace and Project File Structure](guide/file-structure).
+Para obtener más información, consulta [Espacio de trabajo y estructura de archivos de proyecto](guide/file-structure).
 
 {@a X}
 
@@ -1057,13 +1054,12 @@ For more information, see [Workspace and Project File Structure](guide/file-stru
 {@a Z}
 {@a zone}
 
-## zone
+## zona
 
-An execution context for a set of asynchronous tasks. Useful for debugging, profiling, and testing apps that include asynchronous operations such as event processing, promises, and calls to remote servers.
+Un contexto de ejecución para un conjunto de tareas asincrónicas. Útil para depurar, perfilar y probar aplicaciones que incluyen operaciones asincrónicas como el procesamiento de eventos, promesas y llamadas a servidores remotos.
 
-An Angular app runs in a zone where it can respond to asynchronous events by checking for data changes and updating the information it displays by resolving [data bindings](#data-binding).
+Una aplicación Angular se ejecuta en una zona donde puede responder a eventos asincrónicos al verificar los cambios de datos y actualizar la información que muestra al resolver [enlaces de datos](#data-binding).
 
-A zone client can take action before and after an async operation completes.
+Un cliente de zona puede tomar medidas antes y después de que se complete una operación asincrónica.
 
-Learn more about zones in this
-[Brian Ford video](https://www.youtube.com/watch?v=3IqtmUscE_U).
+Obtén más información sobre las zonas en este [Video de Brian Ford](https://www.youtube.com/watch?v=3IqtmUscE_U).
