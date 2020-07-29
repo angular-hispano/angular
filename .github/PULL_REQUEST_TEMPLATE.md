@@ -33,4 +33,3 @@ Marca con una "x" si la PR ya la enlazaste con el issue correspondiente
 <!--
 Ejemplo: Archivo en inglés traducido al español
 -->
-[1]:https://github.com/angular-hispano/angular/issues/9
