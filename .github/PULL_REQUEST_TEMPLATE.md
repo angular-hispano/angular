@@ -13,7 +13,7 @@ Comprueba si tu PR cumple los siguientes requisitos:
 
 - [ ] Bugfix
 - [ ] Funcionalidad
-- [ ] Actualizar el stilo de codigo (formato, variables locales)
+- [ ] Actualizar el estilo del código (formato, variables locales)
 - [ ] Refactorización (no cambios en la funcionalidad, no cambios en el api)
 - [ ] Cambios relacionados al build
 - [ ] Cambios relacionados al CI (Integración continua)
