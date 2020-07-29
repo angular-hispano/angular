@@ -1,4 +1,4 @@
-## PR Checklist
+## Lista de Verificación del PR
 Comprueba si tu PR cumple los siguientes requisitos:
 
 - [ ] El mensaje de commit conforme con [nuestras reglas](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
