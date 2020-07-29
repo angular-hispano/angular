@@ -35,7 +35,7 @@ Ejemplo: Archivo en Español
 -->
 ## ¿Este PR introduce algunos errores?
 
-- [ ] Yes
+- [ ] Si
 - [ ] No
 
 ## Tendras que crear un nuevo archivo que es el que contiene la traducción
