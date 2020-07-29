@@ -19,7 +19,7 @@ Comprueba si tu PR cumple los siguientes requisitos:
 - [ ] Cambios relacionados al CI (Integración continua)
 - [ ] Cambios en el contenido de la documentación
 - [ ] Cambios en la aplicación / infrastructura de angular.io
-- [ ] Otro... Porfavor describela:
+- [ ] Otro... Por favor describela:
 
 ## ¿Cuál es el comportamiento actual?
 <!-- Describa el comportamiento actual que está modificando o vincule a un problema relevante.
