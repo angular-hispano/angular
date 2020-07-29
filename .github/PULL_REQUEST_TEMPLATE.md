@@ -67,9 +67,3 @@ https://github.com/angular-hispano/angular/issues/9
 Marca con una "x" si consultaste el diccionario de términos
 -->
 - [ ] Consulté el diccionario de términos
-
-
-<!-- Si este PR contiene un cambio importante, describa el impacto y la ruta de migración para las aplicaciones existentes a continuación. -->
-
-
-## Otra información
