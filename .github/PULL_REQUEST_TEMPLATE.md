@@ -19,8 +19,6 @@ Comprueba si tu PR cumple los siguientes requisitos:
 - [ ] Cambios relacionados al CI (Integración continua)
 - [ ] Cambios en el contenido de la documentación
 - [ ] Cambios en la aplicación / infrastructura de angular.io
-- [ ] Consulté el diccionario de términos en español [aquí][1]
-- [ ] Se han creado dos archivos con la extensión correspondiente(.en.md para el archivo en inglés y .md para el Archivo en español)
 - [ ] Otro... Por favor describela:
 
 ## ¿Cuál es el comportamiento actual?
