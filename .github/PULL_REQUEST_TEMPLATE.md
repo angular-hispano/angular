@@ -4,7 +4,7 @@ Comprueba si tu PR cumple los siguientes requisitos:
 - [ ] El mensaje de commit conforme con [nuestras reglas](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
 - [ ] Prueba los cambios que agregaste (arreglo de bugs / funcionalidades)
 - [ ] Revisa tus traducciones o cambios de contenido
-- [ ] Consulté el diccionario de términos en español [aquí][1]
+- [ ] Consulté el [diccionario de términos](https://github.com/angular-hispano/angular/issues/9) en español
 - [ ] Se han creado dos archivos con la extensión correspondiente(.en.md para el archivo en inglés y .md para el Archivo en español)
 - [ ] PR enlazada con el issue correspondiente
 
