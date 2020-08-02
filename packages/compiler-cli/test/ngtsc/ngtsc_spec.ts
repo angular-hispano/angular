@@ -3822,7 +3822,8 @@ runInEachFileSystem(os => {
 
       expect(jsContents)
           .toContain('function Base_Factory(t) { return new (t || Base)(i0.ɵɵinject(Dep)); }');
-      expect(jsContents).toContain('var \u0275Child_BaseFactory = i0.ɵɵgetInheritedFactory(Child)');
+      expect(jsContents)
+          .toContain('var \u0275Child_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(Child)');
       expect(jsContents)
           .toContain('function Child_Factory(t) { return \u0275Child_BaseFactory(t || Child); }');
       expect(jsContents)
@@ -3849,7 +3850,8 @@ runInEachFileSystem(os => {
       env.driveMain();
       const jsContents = env.getContents('test.js');
 
-      expect(jsContents).toContain('var \u0275Dir_BaseFactory = i0.ɵɵgetInheritedFactory(Dir)');
+      expect(jsContents)
+          .toContain('var \u0275Dir_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(Dir)');
     });
 
     it('should wrap "directives" in component metadata in a closure when forward references are present',
@@ -6622,6 +6624,128 @@ export const Foo = Foo__PRE_R3__;
         env.driveMain();
         const jsContents = env.getContents('test.js');
         expect(jsContents).toContain('styles: ["h1[_ngcontent-%COMP%] {font-size: larger}"]');
+      });
+
+      it('should share same styles declared in different components in the same file', () => {
+        env.write('test.ts', `
+          import {Component} from '@angular/core';
+
+          @Component({
+            selector: 'comp-a',
+            template: 'Comp A',
+            styles: [
+              'span { font-size: larger; }',
+              'div { background: url(/some-very-very-long-path.png); }',
+              'img { background: url(/a/some-very-very-long-path.png); }'
+            ]
+          })
+          export class CompA {}
+
+          @Component({
+            selector: 'comp-b',
+            template: 'Comp B',
+            styles: [
+              'span { font-size: larger; }',
+              'div { background: url(/some-very-very-long-path.png); }',
+              'img { background: url(/b/some-very-very-long-path.png); }'
+            ]
+          })
+          export class CompB {}
+        `);
+
+        env.driveMain();
+        const jsContents = env.getContents('test.js');
+
+        // Verify that long styles present in both components are extracted to a separate var.
+        expect(jsContents)
+            .toContain(
+                '_c0 = "div[_ngcontent-%COMP%] { background: url(/some-very-very-long-path.png); }";');
+
+        expect(jsContents)
+            .toContain(
+                'styles: [' +
+                // This style is present in both components, but was not extracted into a separate
+                // var since it doesn't reach length threshold (50 chars) in `ConstantPool`.
+                '"span[_ngcontent-%COMP%] { font-size: larger; }", ' +
+                // Style that is present in both components, but reaches length threshold -
+                // extracted to a separate var.
+                '_c0, ' +
+                // Style that is unique to this component, but that reaches length threshold -
+                // remains a string in the `styles` array.
+                '"img[_ngcontent-%COMP%] { background: url(/a/some-very-very-long-path.png); }"]');
+
+        expect(jsContents)
+            .toContain(
+                'styles: [' +
+                // This style is present in both components, but was not extracted into a separate
+                // var since it doesn't reach length threshold (50 chars) in `ConstantPool`.
+                '"span[_ngcontent-%COMP%] { font-size: larger; }", ' +
+                // Style that is present in both components, but reaches length threshold -
+                // extracted to a separate var.
+                '_c0, ' +
+                // Style that is unique to this component, but that reaches length threshold -
+                // remains a string in the `styles` array.
+                '"img[_ngcontent-%COMP%] { background: url(/b/some-very-very-long-path.png); }"]');
+      });
+
+      it('large strings are wrapped in a function for Closure', () => {
+        env.tsconfig({
+          annotateForClosureCompiler: true,
+        });
+
+        env.write('test.ts', `
+          import {Component} from '@angular/core';
+
+          @Component({
+            selector: 'comp-a',
+            template: 'Comp A',
+            styles: [
+              'div { background: url(/a.png); }',
+              'div { background: url(/some-very-very-long-path.png); }',
+            ]
+          })
+          export class CompA {}
+
+          @Component({
+            selector: 'comp-b',
+            template: 'Comp B',
+            styles: [
+              'div { background: url(/b.png); }',
+              'div { background: url(/some-very-very-long-path.png); }',
+            ]
+          })
+          export class CompB {}
+        `);
+
+        env.driveMain();
+        const jsContents = env.getContents('test.js');
+
+        // Verify that long strings are extracted to a separate var. This should be wrapped in a
+        // function to trick Closure not to inline the contents for very large strings.
+        // See: https://github.com/angular/angular/pull/38253.
+        expect(jsContents)
+            .toContain(
+                '_c0 = function () {' +
+                ' return "div[_ngcontent-%COMP%] {' +
+                ' background: url(/some-very-very-long-path.png);' +
+                ' }";' +
+                ' };');
+
+        expect(jsContents)
+            .toContain(
+                'styles: [' +
+                // Check styles for component A.
+                '"div[_ngcontent-%COMP%] { background: url(/a.png); }", ' +
+                // Large string should be called from function definition.
+                '_c0()]');
+
+        expect(jsContents)
+            .toContain(
+                'styles: [' +
+                // Check styles for component B.
+                '"div[_ngcontent-%COMP%] { background: url(/b.png); }", ' +
+                // Large string should be called from function definition.
+                '_c0()]');
       });
     });
 
