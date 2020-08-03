@@ -48,7 +48,7 @@ Recibirías este error:
 </code-example>
 
 Como dice el mensaje, el elemento `<td>` no tiene una propiedad `colspan`. Esto es verdad
-porque `colspan` es un atributo&mdash;`colSpan`, wcon una` S` mayúscula, es la propiedad correspondiente. La interpolación y el enlace de propiedades solo pueden establecer *propiedades*, no atributos.
+porque `colspan` es un atributo&mdash;`colSpan`, con una `S` mayúscula, es la propiedad correspondiente. La interpolación y el enlace de propiedades solo pueden establecer *propiedades*, no atributos.
 
 En su lugar, puedes usar el enlace de propiedad y lo escribirías así:
 
