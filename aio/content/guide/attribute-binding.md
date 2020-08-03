@@ -19,7 +19,7 @@ no hay ninguna propiedad de elemento para vincular, por lo que la vinculación d
 Considera el [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) y
 [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG). Son puramente atributos, no corresponden a las propiedades del elemento y no establecen las propiedades del elemento. En estos casos, no hay objetivos de propiedad a los que vincularse.
 
-La sintaxis de enlace de atributo se parece al enlace de propiedad, pero en lugar de una propiedad de elemento entre paréntesis, comience con el prefijo `attr`, seguido de un punto (`.`) y el nombre del atributo.
+La sintaxis de enlace de atributo se parece al enlace de propiedad, pero en lugar de una propiedad de elemento entre paréntesis, comienza con el prefijo `attr`, seguido de un punto (`.`) y el nombre del atributo.
 Luego establece el valor del atributo, utilizando una expresión que se resuelve en una cadena, o elimina el atributo cuando la expresión se resuelva en `nulo`.
 
 Uno de los casos de uso principales para el enlace de atributos es establecer atributos ARIA, como en este ejemplo:
