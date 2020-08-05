@@ -7,7 +7,7 @@ Además, diseñar una aplicación para que sea más accesible, normalmente mejor
 
 Para una introducción en profundidad a los problemas y técnicas sobre el diseño de aplicaciones accesibles, puede consultar la sección de [Accesibilidad](https://developers.google.com/web/fundamentals/accessibility/#what_is_accessibility) de Google [Fundamentos Web](https://developers.google.com/web/fundamentals/).
 
-Esta página muestra las mejores prácticas a la hora de diseñar aplicaciones en Angular que funcionan
+Esta página habla de las mejores prácticas para diseñar aplicaciones en Angular que funcionan
 bien para todos los usuarios, incluyendo aquéllos que necesitan tecnologías de apoyo.
 
 <div class="alert is-helpful">
