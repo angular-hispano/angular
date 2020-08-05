@@ -20,7 +20,7 @@ bien para todos los usuarios, incluyendo aquéllos que necesitan tecnologías de
 
 Crear una web accesible a menudo implica establecer los [atributos ARIA](https://developers.google.com/web/fundamentals/accessibility/semantics-aria)
 para proporcionar la semántica que, de otro modo, podría no estar presente.
-Usa la sintaxis del [enlace de atributos](guide/attribute-binding) (attribute binding) para controlar los valores de los atributos relacionados con la accesibilidad.
+Usa la plantilla de sintaxis del [enlace de atributos](attribute binding) (guide/attribute-binding) para controlar los valores de los atributos relacionados con la accesibilidad.
 
 Para enlazar los atributos ARIA en Angular, debes usar el prefijo `attr.`, ya que la especificación ARIA
 depende de los atributos HTML y no de las propiedades de los elementos del DOM.
