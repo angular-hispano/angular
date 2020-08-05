@@ -44,7 +44,7 @@ NOTA:
 
    Por convenio, los atributos HTML se escriben en minúscula (`tabindex`), mientras que para las propiedades se usa *camelCase*  (`tabIndex`).
 
-   Consulta la guía [Sintaxis del enlace](guide/binding-syntax#html-attribute-vs-dom-property) (Binding syntax) para saber más sobre las diferencias entre atributos y propiedades.
+   Consulta la guía [Sintaxis del enlace](guide/binding-syntax#html-attribute-vs-dom-property) para saber más sobre las diferencias entre atributos y propiedades.
 
 </div>
 
