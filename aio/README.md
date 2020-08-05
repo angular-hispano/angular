@@ -1,4 +1,4 @@
-# Proyecto de documentación Angular (https://angular.io)
+# Proyecto de documentación Angular (https://docs.angular.lat)
 
 Todo en esta carpeta es parte del proyecto de documentación. Esto incluye:
 
@@ -10,7 +10,7 @@ Todo en esta carpeta es parte del proyecto de documentación. Esto incluye:
 
 Nosotros usamos [Yarn](https://yarnpkg.com) para gestionar las dependencias y crear tareas de compilación.
 Debes ejecutar todas estas tareas desde la carpeta `angular/aio`.
-Aquí están las tareas más importantes que podrías necesitar a usar:
+Aquí están las tareas más importantes que podrías necesitar usar:
 
 * `yarn` - instalar todas las dependencias.
 * `yarn setup` - instalar todas las dependencias, boilerplate, stackblitz, zips y ejecuta dgeni en los documentos.
@@ -24,12 +24,12 @@ Aquí están las tareas más importantes que podrías necesitar a usar:
 * `yarn start` - ejecutar un servidor web de desarrollo que observa los archivos; luego crea el doc-viewer y vuelve a cargar la página, según sea necesario.
 * `yarn serve-and-sync` - ejecutar ambos, el `docs-watch` y `start` en la misma consola.
 * `yarn lint` - comprobar que el código del doc-viewer sigue nuestras reglas de estilo.
-* `yarn test` - observar todos los archivos de origen, para el doc-viewer, y ejecutar todas las pruebas unitarias cuando haya algún cambio.
+* `yarn test` - observar todos los archivos de origen, para el doc-viewer, y ejecuta todas las pruebas unitarias cuando haya algún cambio.
 * `yarn test --watch=false` -ejecutar todas las pruebas unitarias una sola vez.
 * `yarn e2e` - ejecutar todas las pruebas de e2e para el doc-viewer.
 
-* `yarn docs` - generar todos los documentos desde los archivos de origen.
-* `yarn docs-watch` - observar el código de Angular y los archivos desde documentos y ejecutar un doc-gen en short-circuited para los documentos que fueron cambiados.
+* `yarn docs` - generar toda la documentación desde los archivos fuente.
+* `yarn docs-watch` - observar el código Angular, los archivos de documentación y ejecutar un 'doc-gen' en corto circuito para los documentos que fueron cambiados.
 * `yarn docs-lint` - comprobar que el código del documento generado sigue nuestras reglas de estilo.
 * `yarn docs-test` - ejecutar las pruebas unitarias para el código de generación de doc.
 
@@ -38,10 +38,10 @@ Aquí están las tareas más importantes que podrías necesitar a usar:
 
 * `yarn boilerplate:remove` - eliminar todo el código boilerplate que fue añadido a través`yarn boilerplate:add`.
 * `yarn generate-stackblitz` - generar los archivos stackblitz que están usados por la etiqueta `live-example` en documentos.
-* `yarn generate-zips` - generar los archivos zip desde los ejemplos. Zip esta disponible a través de la etiqueta `live-example` en los documentos.
+* `yarn generate-zips` - generar los archivos zip desde los ejemplos. Zip está disponible a través de la etiqueta `live-example` en los documentos.
 
 * `yarn example-e2e` - ejecutar todas las pruebas e2e para ejemplos. Opciones disponibles:
-  - `--setup`: generar boilerplate, forzar la actualización del controlador web y otra configuración, luego ejecutar prueba.
+  - `--setup`: generar boilerplate, forzar la actualización del controlador web y otras configuraciones, luego ejecutar las pruebas.
   - `--local`: ejecutar pruebas e2e con la versión local de Angular contenida en la carpeta "dist".
                _Requiere `--setup` para que surta efecto._
   - `--viewengine`: ejecutar pruebas e2e en modo `ViewEngine` (pre-Ivy).
@@ -49,7 +49,7 @@ Aquí están las tareas más importantes que podrías necesitar a usar:
 
 > **Nota para usuarios Windows**
 >
-> Configurar los ejemplos implica crear algunos [enlaces simbólicos](https://en.wikipedia.org/wiki/Symbolic_link) (ver [Aquí](./tools/examples/README.md#symlinked-node_modules) para más detalles). En Windows, esto requiere tener [Habilitado el Modo de desarrollador ](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10) (compatible con  Windows 10 o más reciente) o ejecutar los comandos de configuración cómo administrador.
+> Configurar los ejemplos implica crear algunos [enlaces simbólicos](https://es.wikipedia.org/wiki/Enlace_simb%C3%B3lico) (ver [Aquí](./tools/examples/README.md#symlinked-node_modules) para más detalles). En Windows, esto requiere tener [Habilitado el Modo de desarrollador ](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10) (compatible con  Windows 10 o más reciente) o ejecutar los comandos de configuración cómo administrador.
 >
 > Los comandos afectados son:
 > - `yarn setup` / `yarn setup-*`
@@ -60,15 +60,15 @@ Aquí están las tareas más importantes que podrías necesitar a usar:
 ## Usando ServiceWorker localmente
 
 Ejecutando `yarn start` (incluso cuando se apunta explícitamente al modo de producción) no configura el
-ServiceWorker. Si tú quieres probar el ServiceWorker localmente, tú puedes usar `yarn build` y luego
+ServiceWorker. Si quieres probar el ServiceWorker localmente, puedes usar `yarn build` y luego
 ejecutar los archivos en `dist/` con `yarn http-server dist -p 4200`.
 
 
 ## Guía de autoría
 Existen dos tipos de contenido en la documentación:
 
-* **API docs**: descripciones de los módulos, clases, interfaces, decoradores, etc que son parte de la plataforma Angular.
-API docs estan generados directamente desde el código fuente.
+* **Documentación de API**: descripciones de los módulos, clases, interfaces, decoradores, etc que son parte de la plataforma Angular.
+La documentacion de API está generada directamente desde el código fuente.
 El código fuente está contenido en archivos TypeScript , almacenados en la carpeta `angular/packages`.
 Cada elemento de la API puede tener un comentario anterior, el cual contiene etiquetas y contenido de estilos JSDoc.
 El contenido está escrito en markdown.
@@ -79,13 +79,13 @@ Más específicamente, hay subcarpetas que contienen tipos particulares de conte
 
 * **Ejempos de código**: los ejemplos de código deben ser comprobables para garantizar su precisión.
 Además, nuestros ejemplos tienen un aspecto específico y permiten al usuario copiar el código fuente. Para mayor
-ejemplos se representan en una interfaz con pestañas (e.g. template, HTML, y TypeScript en pestañas separadas). Adicionalmente, algunos son ejemplos en acción ,que proporcionan enlaces donde se puede editar el código, ejecuta, y/o descarga. Para obtener más detalles sobre cómo trabajar con ejemplos de código, lea los [fragmentos de código](https://angular.io/guide/docs-style-guide#code-snippets), [código fuente de marcado ](https://angular.io/guide/docs-style-guide#source-code-markup), y [ ejemplos en acción ](https://angular.io/guide/docs-style-guide#live-examples) paginas de los [ autores de guías de estilo ](https://angular.io/guide/docs-style-guide).
+ejemplos se representan en una interfaz con pestañas (e.g. template, HTML, y TypeScript en pestañas separadas). Adicionalmente, algunos son ejemplos en acción, que proporcionan enlaces donde se puede editar el código, ejecutar, y/o descargar. Para obtener más detalles sobre cómo trabajar con ejemplos de código, lea los [fragmentos de código](https://docs.angular.lat/guide/docs-style-guide#code-snippets), [código fuente de marcado ](https://docs.angular.lat/guide/docs-style-guide#source-code-markup), y [ ejemplos en acción ](https://docs.angular.lat/guide/docs-style-guide#live-examples) paginas de los [ autores de guías de estilo ](https://docs.angular.lat/guide/docs-style-guide).
 
 Usamos la herramienta [dgeni](https://github.com/angular/dgeni) para convertir estos archivos en docs que se pueden ver en el doc-viewer.
-Los [Autores de guías de estilo](https://angular.io/guide/docs-style-guide) prescribe pautas para
+Las [guías de estilo para Autores](https://docs.angular.lat/guide/docs-style-guide) prescriben pautas para
 escribir páginas de guía, explica cómo usar la documentación de clases y componentes, y cómo marcar el código fuente para producir fragmentos de código.
 
-### Generando doumentos completos
+### Generando documentos completos
 
 La principal tarea para generar los documentos es `yarn docs`. Esto procesará todos los archivos fuente (API y otros), extrayendo la documentación y generando archivos JSON que pueden ser consumidos por el doc-viewer.
 
@@ -111,7 +111,7 @@ yarn setup
 yarn start
 ```
 
-* Abrir una segunda terminal y iniciar el observador de documentos
+* Abrir una segunda terminal e iniciar el observador de documentos.
 
 ```bash
 yarn docs-watch
@@ -122,11 +122,10 @@ yarn docs-watch
 yarn serve-and-sync
 ```
 
-* Abrir un navegador con la siguiente dirección https://localhost:4200/ y navega hasta el documento en el que quieras trabajar.
-Puedes automáticamente abrir el navegador utilizando `yarn start -o` en el primer terminal.
+* Abre un navegador con la siguiente dirección https://localhost:4200/ y navega hasta el documento en el que quieras trabajar.
+Puedes automáticamente abrir el navegador utilizando `yarn start -o` en la primera terminal.
 
-* Realizá cambios en el doc asociado de la página o en los archivos de ejemplo. Cada vez que un archivo es guardado, el doc
- se regenerará, la aplicación se reconstruirá y la página se volverá a cargar.
+* Realiza cambios en la página de documentación asociada o en los archivos de ejemplo. Cada vez que un archivo es guardado, la documentación se regenerará, la aplicación se reconstruirá y la página se volverá a cargar.
 
-*Si recibes un error de compilación acerca de los ejemplos o cualquier otro error, asegúrese de consultar la
- [Guía de estilo de autores.](https://angular.io/guide/docs-style-guide) para más información.
+*Si recibes un error de compilación acerca de los ejemplos o cualquier otro error, asegúrate de consultar las
+ [guías de estilo para Autores](https://angular.io/guide/docs-style-guide) para más información.
