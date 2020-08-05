@@ -1,6 +1,6 @@
 # Enlaces de atributos, clases y estilos
 
-La sintaxis de la plantilla proporciona enlaces unidireccionales especializados para escenarios menos adecuados para el enlace de propiedades.
+La sintaxis de la plantilla proporciona enlaces one-way especializados para escenarios menos adecuados para el enlace de propiedades.
 
 <div class="alert is-helpful">
 
