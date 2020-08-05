@@ -51,7 +51,7 @@ NOTA:
 
 ## Componentes del interfaz de usuario de Angular
 
-La librería [Angular Material](https://material.angular.io/), cuyo mantenimiento corre a cargo del equipo de Angular, es un conjunto de componentes reutilizables para la interfaz de usuario que pretende ser totalmente accesible.
+La librería [Angular Material](https://material.angular.io/), que es mantenida por el equipo Angular, es un conjunto de componentes reutilizables para la interfaz de usuario que pretende ser totalmente accesible.
 El [Kit de Desarrollo de Componentes (CDK)](https://material.angular.io/cdk/categories) (Component Development Kit) incluye el paquete  `a11y` que proporciona herramientas para dar soporte a distintos aspectos de la accesibilidad.
 Por ejemplo:
 
