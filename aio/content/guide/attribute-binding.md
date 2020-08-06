@@ -13,7 +13,7 @@ Consulta el <live-example></live-example> para ver un ejemplo práctico que cont
 
 Establece el valor de un atributo directamente con un **enlace de atributo**. Esta es la única excepción a la regla de que un enlace establece una propiedad de destino y el único enlace que crea y establece un atributo.
 
-Por lo general, establecer una propiedad de elemento con un [enlace de propiedad](guide/property-binding) es preferible establecer el atributo con una cadena. Sin embargo, a veces
+Por lo general, establecer una propiedad de elemento con un [enlace de propiedad](guide/property-binding) es preferible establecer el atributo con una string. Sin embargo, a veces
 no hay ninguna propiedad de elemento para vincular, por lo que la vinculación de atributos es la solución.
 
 Considera el [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) y
