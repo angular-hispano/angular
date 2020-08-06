@@ -153,7 +153,7 @@ Aquí se explica cómo configurar el atributo `style` sin un enlace en HTML simp
 También se puede establecer estilos dinámicamente con un **enlace de estilo**.
 
 Para crear un enlace de estilo único, comienza con el prefijo `style` seguido de un punto (`.`) y el nombre de la propiedad de estilo CSS (por ejemplo, `[style.width]="width"`).
-La propiedad se establecerá en el valor de la expresión enlazada, que normalmente es una cadena.
+La propiedad se establecerá en el valor de la expresión enlazada, que normalmente es una string.
 Opcionalmente, se puede agregar una extensión de unidad como `em` o `%`, que requiere un tipo de número.
 
 <div class="alert is-helpful">
