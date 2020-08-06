@@ -163,7 +163,7 @@ Ten en cuenta que se puede escribir una _propiedad de estilo_ en [dash-case](gui
 </div>
 
 Si deseas alternar múltiples estilos, puedes vincular la propiedad `[style]` directamente sin el punto (por ejemplo,  `[style]="styleExpr"`).
-La expresión asociada al enlace `[style]` suele ser una lista de cadenas de estilos como `"width: 100px; height: 100px;"`.
+La expresión asociada al enlace `[style]` suele ser una lista de string de estilos como `"width: 100px; height: 100px;"`.
 
 También se puede formatear la expresión como un objeto con nombres de estilo como claves y valores de estilo como los valores, como `{width: '100px', height: '100px'}`.
 Es importante tener en cuenta que con cualquier expresión similar a un objeto (`object`, `Array`, `Map`, `Set`, etc), la identidad del objeto debe cambiar para que se actualice la lista de clases.
