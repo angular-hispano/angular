@@ -75,7 +75,7 @@ Para crear un enlace de clase único, comienza con el prefijo `class` seguido de
 Angular agrega la clase cuando la expresión enlazada es verdadera y elimina la clase cuando la expresión es falsa (con la excepción de `undefined`, vea [delegación de estilo](#styling-delegation)).
 
 Para crear un enlace a varias clases, usa un enlace genérico `[class]` sin el punto (por ejemplo, `[class]="classExpr"`).
-La expresión puede ser una cadena de nombres de clase delimitada por espacios, o puede formatearla como un objeto con nombres de clase como claves y expresiones de verdad / falsedad como valores.
+La expresión puede ser una string de nombres de clase delimitada por espacios, o puede formatearla como un objeto con nombres de clase como claves y expresiones de verdad / falsedad como valores.
 Con el formato de objeto, Angular agregará una clase solo si su valor asociado es verdadero.
 
 Es importante tener en cuenta que con cualquier expresión similar a un objeto (`object`,`Array`, `Map`, `Set`, etc.), la identidad del objeto debe cambiar para que se actualice la lista de clases.
