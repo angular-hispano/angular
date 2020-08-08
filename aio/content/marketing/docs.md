@@ -21,7 +21,7 @@ Los tutoriales y guías incluyen ejemplos descargables para acelerar tus proyect
   <a href="start" class="docs-card" title="Try out Angular">
       <section>Echa un vistazo</section>
       <p>Examina y trabaja con una pequeña aplicación Angular lista para usar, sin configuraciónes.</p>
-      <p class="card-footer">Pruebalo ahora</p>
+      <p class="card-footer">Pruébalo ahora</p>
   </a>
   <a href="tutorial" class="docs-card" title="Create an app">
       <section>Hola Mundo</section>
@@ -39,14 +39,14 @@ Los tutoriales y guías incluyen ejemplos descargables para acelerar tus proyect
 Esta documentación asume que estas familiarizado con [HTML](https://developer.mozilla.org/docs/Learn/HTML/Introduction_to_HTML "Aprende HTML"), [CSS](https://developer.mozilla.org/docs/Learn/CSS/First_steps "Aprende CSS"), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript "Aprende JavaScript"),
 y algunas herramientas de los [últimos estándares javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Language_Resources "Últimos estándares JavaScript"), como son las [clases](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes "Clases ES2015") y [modulos](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import "Modulos ES2015").
 Los ejemplos de código son escritos usando [TypeScript](https://www.typescriptlang.org/ "TypeScript").
-La mayor parte del código angular se puede escribir tan solo con la versión más reciente de JavaScript, usando [tipos](https://www.typescriptlang.org/docs/handbook/classes.html "Tipos TypeScript") para inyección de dependencia, y usando [decoradores](https://www.typescriptlang.org/docs/handbook/decorators.html "Decoradores") para metadatos.
+La mayor parte del código Angular se puede escribir tan solo con la versión más reciente de JavaScript, usando [tipos](https://www.typescriptlang.org/docs/handbook/classes.html "Tipos TypeScript") para inyección de dependencia, y usando [decoradores](https://www.typescriptlang.org/docs/handbook/decorators.html "Decoradores") para metadatos.
 
 
 ## Retrolimentación
 
 <h3>Puedes sentarte con nosotros!</h3>
 
-Queremos saber de ti. [Informa problemas o envia sugerencias para nueva documentación.](https://github.com/angular-hispano/angular/issues/new/choose "Repositorio GitHub de Angular, form para nuevo issue")
+Queremos saber de ti. [Informa problemas o envía sugerencias para nueva documentación.](https://github.com/angular-hispano/angular/issues/new/choose "Repositorio GitHub de Angular, form para nuevo issue")
 
 Colabora con la documentación de Angular creando [pull requests](https://github.com/angular-hispano/angular/pulls "Angular Github pull requests")
 en el repositorio Github de Angular en español.
