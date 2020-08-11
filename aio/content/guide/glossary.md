@@ -150,7 +150,7 @@ En Angular, un conjunto de [esquemas](#schematic) relacionados recogidos en un [
 
 ## componente
 
-Una clase con el `@Component()` [decorador](#decorator) tque lo asocia con un compañero [plantilla](#template). Juntos, la clase de componente y la plantilla definen una [vista](#view).
+Una clase con el `@Component()` [decorador](#decorator) que lo asocia con un compañero [plantilla](#template). Juntos, la clase de componente y la plantilla definen una [vista](#view).
 Un componente es un tipo especial de [directiva](#directive).
 El decorador `@Component()` extiende el decorador `@Directive()` con características orientadas a plantillas.
 
