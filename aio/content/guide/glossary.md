@@ -908,7 +908,7 @@ Por ejemplo, el constructor de Architect invocado por el comando `ng build` para
 
 Por ejemplo, el constructor de la herramienta Architect proporciona un conjunto de constructores. El comando [`ng new`](cli/new) proporciona un conjunto de targets para el proyecto de aplicación inicial. Los comandos [`ng generate application`](cli/generate#application) y [`ng generate library`](cli/generate#library) proporcionan un conjunto de targets para cada nuevo [proyecto](#project). Estos targets, sus opciones y configuraciones, se pueden personalizar para satisfacer las necesidades de su proyecto. Por ejemplo, es posible que desee agregar una configuración de "puesta en escena" o "prueba" al objetivo de "compilación" de un proyecto.
 
-También puede definir un generador personalizado y agregar un target a la configuración del proyecto que utiliza su generador personalizado. Luego puede ejecutar el target utilizando el comando [`ng run`](cli/run).
+También puedes definir un generador personalizado y agregar un target a la configuración del proyecto que utiliza su generador personalizado. Luego puede ejecutar el target utilizando el comando [`ng run`](cli/run).
 
 {@a case-conventions}
 {@a case-types}
