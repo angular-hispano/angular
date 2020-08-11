@@ -90,7 +90,7 @@ Obtén más información en la guía de [Implementación](guide/deployment#diffe
 
 Una técnica para agregar un componente al DOM en tiempo de ejecución. Requiere que excluya el componente de la compilación y luego lo conecte al marco de detección de cambios y manejo de eventos de Angular cuando lo agrega al DOM.
 
-Consultá también [elemento personalizado](#custom-element), que proporciona una ruta más fácil con el mismo resultado.
+Consulta también [elemento personalizado](#custom-element), que proporciona una ruta más fácil con el mismo resultado.
 
 {@a eager-loading}
 
@@ -389,7 +389,7 @@ Puedes usar la API para transformar un componente Angular para que pueda registr
 
 Ver [Elemento Angular](#angular-element).
 
-Consultá también [carga de componentes dinámicos](#dynamic-components).
+Consulta también [carga de componentes dinámicos](#dynamic-components).
 
 {@a schematic}
 
