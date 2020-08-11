@@ -513,7 +513,7 @@ Un patrón de diseño y un mecanismo para crear y entregar algunas partes de una
 
 En Angular, las dependencias suelen ser servicios, pero también pueden ser valores, como cadenas o funciones.
 
-Un [inyector](#injector) fpara una aplicación (creado automáticamente durante el arranque) crea instancias de dependencias cuando sea necesario, utilizando un [proveedor](#provider) configurado del servicio o valor.
+Un [inyector](#injector) para una aplicación (creado automáticamente durante el arranque) crea instancias de dependencias cuando sea necesario, utilizando un [proveedor](#provider) configurado del servicio o valor.
 
 Obtén más información en [Inyección de dependencia en Angular](guide/dependency-injection).
 
