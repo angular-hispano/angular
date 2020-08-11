@@ -59,7 +59,7 @@ Una forma de inicializar e iniciar una aplicación o sistema.
 
 En Angular, el NgModule raíz de una aplicación (`AppModule`) tiene una propiedad `bootstrap` que identifica los [componentes](#component) de nivel superior de la aplicación.
 Durante el proceso de arranque, Angular crea e inserta estos componentes en la página web del host `index.html`.
-Puede arrancar varias aplicaciones en el mismo `index.html`. Cada aplicación contiene sus propios componentes.
+Puedes arrancar varias aplicaciones en el mismo `index.html`. Cada aplicación contiene sus propios componentes.
 
 Obtén más información en [Bootstrapping](guide/bootstrapping).
 
@@ -787,7 +787,7 @@ Un objeto que implementa una de las interfaces [`Provider`](api/core/Provider). 
 Un [inyector](#injector) usa el proveedor para crear una nueva instancia de una dependencia para una clase que lo requiera.
 
 Angular registra sus propios proveedores con cada inyector, para los servicios que Angular define.
-Puede registrar sus propios proveedores para los servicios que su aplicación necesita.
+Puedes registrar sus propios proveedores para los servicios que su aplicación necesita.
 
 Consulta también [servicio](#service), [inyección de dependencia](#di).
 
@@ -822,7 +822,7 @@ También puede pregenerar páginas como archivos HTML que servirá más adelante
 Esta técnica puede mejorar el rendimiento en dispositivos móviles y de baja potencia y mejorar la experiencia del usuario al mostrar una primera página estática rápidamente mientras se carga la aplicación del lado del cliente.
 La versión estática también puede hacer que su aplicación sea más visible para los rastreadores web.
 
-Puede preparar fácilmente una aplicación para la representación del lado del servidor utilizando la [CLI](#cli) para ejecutar la herramienta [Angular Universal](#universal) utilizando el [esquema](#schematic) `@nguniversal/express-engine`.
+Puedes preparar fácilmente una aplicación para la representación del lado del servidor utilizando la [CLI](#cli) para ejecutar la herramienta [Angular Universal](#universal) utilizando el [esquema](#schematic) `@nguniversal/express-engine`.
 
 {@a resolver}
 
@@ -1006,7 +1006,7 @@ Una vista que pertenece inmediatamente a un componente se llama _vista de host_.
 Las vistas se suelen recopilar en [jerarquías de vista](#view-tree).
 
 Las propiedades de los elementos en una vista pueden cambiar dinámicamente, en respuesta a las acciones del usuario; la estructura (número y orden) de elementos en una vista no puede.
-Puede cambiar la estructura de los elementos insertando, moviendo o eliminando vistas anidadas dentro de sus contenedores de vistas.
+Puedes cambiar la estructura de los elementos insertando, moviendo o eliminando vistas anidadas dentro de sus contenedores de vistas.
 
 Las jerarquías de vista se pueden cargar y descargar dinámicamente a medida que el usuario navega por la aplicación, generalmente bajo el control de un [enrutador](#router).
 
