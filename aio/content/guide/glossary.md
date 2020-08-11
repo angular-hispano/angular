@@ -45,9 +45,9 @@ En Angular, un [proyecto](#project) que proporciona funcionalidad que se puede i
 Una biblioteca no es una aplicación Angular completa y no puede ejecutarse de forma independiente.
 Para agregar funcionalidades reutilizables de Angular a aplicaciones web no construidas con Angular, puedes usar Angular [elementos personalizados](#angular-element).)
 
-- Los desarrolladores de bibliotecas pueden usar la [CLI Angular](#cli) para `generar` andamios para una nueva biblioteca en un [espacio de trabajo](#workspace) existente, y pueden publicar una biblioteca como un paquete `npm`.
+- Los desarrolladores de bibliotecas pueden usar la [Angular CLI](#cli) para `generar` andamios para una nueva biblioteca en un [espacio de trabajo](#workspace) existente, y pueden publicar una biblioteca como un paquete `npm`.
 
-- Los desarrolladores de aplicaciones pueden usar la [CLI Angular](#cli) para `agregar` una biblioteca publicada para usar con una aplicación en el mismo [espacio de trabajo](#workspace).
+- Los desarrolladores de aplicaciones pueden usar la [Angular CLI](#cli) para `agregar` una biblioteca publicada para usar con una aplicación en el mismo [espacio de trabajo](#workspace).
 
 Ver también [esquema](#schematic).
 
@@ -402,7 +402,7 @@ La [Angular CLI](#cli) utiliza esquemas para generar y modificar [proyectos Angu
 
 - Angular proporciona un conjunto de esquemas para usar con la CLI. Consulta la [Referencia de comando de Angular CLI](cli). El comando [`ng add`](cli/add) ejecuta esquemas como parte de agregar una biblioteca a su proyecto. El comando [`ng generate`](cli/generate) ejecuta esquemas para crear aplicaciones, bibliotecas y construcciones de código Angular.
 
-- Los desarrolladores de [Bibliotecas](#library) pueden crear esquemas que permitan a la CLI Angular agregar y actualizar sus bibliotecas publicadas y generar artefactos que la biblioteca defina.
+- Los desarrolladores de [Bibliotecas](#library) pueden crear esquemas que permitan a la Angular CLI agregar y actualizar sus bibliotecas publicadas y generar artefactos que la biblioteca defina.
   Agregue estos esquemas al paquete npm que usa para publicar y compartir su biblioteca.
 
 Obtén más información en [Esquemas](guide/schematics) e [Integración de bibliotecas con la CLI](guide/creating-libraries#integrating-with-the-cli).
