@@ -43,7 +43,7 @@ Un archivo especifica los archivos raíz y las opciones de compilación necesari
 
 En Angular, un [proyecto](#project) que proporciona funcionalidad que se puede incluir en otras aplicaciones de Angular.
 Una biblioteca no es una aplicación Angular completa y no puede ejecutarse de forma independiente.
-Para agregar funcionalidad Angular reutilizable a aplicaciones web no Angular, puede usar Angular [elementos personalizados](#angular-element).)
+Para agregar funcionalidades reutilizables de Angular a aplicaciones web no construidas con Angular, puedes usar Angular [elementos personalizados](#angular-element).)
 
 - Los desarrolladores de bibliotecas pueden usar la [CLI Angular](#cli) para `generar` andamios para una nueva biblioteca en un [espacio de trabajo](#workspace) existente, y pueden publicar una biblioteca como un paquete `npm`.
 
