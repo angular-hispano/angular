@@ -8,7 +8,6 @@ Este glosario enumera los términos más destacados y algunos menos familiares c
 [J](#J) [K](#K) [L](#L) [M](#M) [N](#N) [O](#O) [P](#P) [Q](#Q) [R](#R)
 [S](#S) [T](#T) [U](#U) [V](#V) [W](#W) [X](#X) [Y](#Y) [Z](#Z)
 
-
 {@a A}
 
 {@a annotation}
@@ -30,7 +29,7 @@ En el [archivo de configuración del espacio de trabajo](guide/workspace-config#
 Por ejemplo, un constructor incorporado para el linting se define en el paquete `@angular-devkit/build_angular: tslint`, que utiliza la herramienta [TSLint](https://palantir.github.io/tslint/) para realizar el linting, con una configuración especificada en un archivo `tslint.json`.
 
 Utiliza el [comando CLI `ng run`](cli/run) para invocar a un constructor especificando una [configuración de destino](#target) asociada con ese constructor.
-Los integradores pueden agregar constructores para permitir que las herramientas y los flujos de trabajo se ejecuten a través de la angular CLI. Por ejemplo, un constructor personalizado puede reemplazar las herramientas de terceros utilizadas por las implementaciones integradas para los comandos de la CLI, como `ng build` o `ng test`.
+Los integradores pueden agregar constructores para permitir que las herramientas y los flujos de trabajo se ejecuten a través de la Angular CLI. Por ejemplo, un constructor personalizado puede reemplazar las herramientas de terceros utilizadas por las implementaciones integradas para los comandos de la CLI, como `ng build` o `ng test`.
 
 ## archivo de configuración de TypeScript
 
@@ -43,12 +42,12 @@ Un archivo especifica los archivos raíz y las opciones de compilación necesari
 ## biblioteca
 
 En Angular, un [proyecto](#project) que proporciona funcionalidad que se puede incluir en otras aplicaciones de Angular.
-Una biblioteca no es una aplicación angular completa y no puede ejecutarse de forma independiente.
-Para agregar funcionalidad angular reutilizable a aplicaciones web no angulares, puede usar Angular [elementos personalizados](#angular-element).)
+Una biblioteca no es una aplicación Angular completa y no puede ejecutarse de forma independiente.
+Para agregar funcionalidad Angular reutilizable a aplicaciones web no Angular, puede usar Angular [elementos personalizados](#angular-element).)
 
-* Los desarrolladores de bibliotecas pueden usar la [CLI angular](#cli) para `generar` andamios para una nueva biblioteca en un [espacio de trabajo](#workspace) existente, y pueden publicar una biblioteca como un paquete `npm`.
+- Los desarrolladores de bibliotecas pueden usar la [CLI Angular](#cli) para `generar` andamios para una nueva biblioteca en un [espacio de trabajo](#workspace) existente, y pueden publicar una biblioteca como un paquete `npm`.
 
-* Los desarrolladores de aplicaciones pueden usar la [CLI angular](#cli) para `agregar` una biblioteca publicada para usar con una aplicación en el mismo [espacio de trabajo](#workspace).
+- Los desarrolladores de aplicaciones pueden usar la [CLI Angular](#cli) para `agregar` una biblioteca publicada para usar con una aplicación en el mismo [espacio de trabajo](#workspace).
 
 Ver también [esquema](#schematic).
 
@@ -58,8 +57,8 @@ Ver también [esquema](#schematic).
 
 Una forma de inicializar e iniciar una aplicación o sistema.
 
-En Angular, el NgModule raíz de una aplicación (`AppModule`) tiene una propiedad `bootstrap` que identifica los [componentes](#component) de nivel superior de la aplicación. 
-Durante el proceso de arranque, Angular crea e inserta estos componentes en la página web del host `index.html`. 
+En Angular, el NgModule raíz de una aplicación (`AppModule`) tiene una propiedad `bootstrap` que identifica los [componentes](#component) de nivel superior de la aplicación.
+Durante el proceso de arranque, Angular crea e inserta estos componentes en la página web del host `index.html`.
 Puede arrancar varias aplicaciones en el mismo `index.html`. Cada aplicación contiene sus propios componentes.
 
 Obtén más información en [Bootstrapping](guide/bootstrapping).
@@ -85,7 +84,6 @@ Una técnica de compilación que crea dos paquetes para una aplicación. Un paqu
 
 Obtén más información en la guía de [Implementación](guide/deployment#differential-loading).
 
-
 {@a dynamic-components}
 
 ## carga dinámica de componentes
@@ -102,12 +100,11 @@ Los NgModules o componentes que se cargan en el lanzamiento se llaman eager-load
 
 Ver [carga diferida](#lazy-load).
 
-
 {@a builder}
 
 ## constructor
 
-Una función que utiliza la API de [Architect](#architect) para realizar un proceso complejo como "compilar" o "probar". 
+Una función que utiliza la API de [Architect](#architect) para realizar un proceso complejo como "compilar" o "probar".
 El código del constructor se define en un [paquete npm](#npm-package).
 
 Por ejemplo, [BrowserBuilder](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/build_angular/src/browser) ejecuta una compilación de [webpack](https://webpack.js.org/) para un destino de navegador y [KarmaBuilder](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/build_angular/src/karma) inicia el servidor Karma y ejecuta una compilación de webpack para pruebas unitarias.
@@ -149,7 +146,6 @@ Obtén más información en [Enrutamiento y navegación](guide/router).
 
 En Angular, un conjunto de [esquemas](#schematic) relacionados recogidos en un [paquete npm](#npm-package).
 
-
 {@a component}
 
 ## componente
@@ -158,7 +154,7 @@ Una clase con el `@Component()` [decorador](#decorator) tque lo asocia con un co
 Un componente es un tipo especial de [directiva](#directive).
 El decorador `@Component()` extiende el decorador `@Directive()` con características orientadas a plantillas.
 
-Una clase de componente angular es responsable de exponer los datos y manejar la mayor parte de la visualización de la vista y la lógica de interacción del usuario a través de [enlace de datos](#data-binding).
+Una clase de componente Angular es responsable de exponer los datos y manejar la mayor parte de la visualización de la vista y la lógica de interacción del usuario a través de [enlace de datos](#data-binding).
 
 Lee más sobre clases de componentes, plantillas y vistas en [Introducción a los conceptos de Angular](guide/architecture).
 
@@ -174,7 +170,7 @@ Ver [configuración del espacio de trabajo](#cli-config)
 
 ## configuración del espacio de trabajo
 
-Un archivo llamado `angular.json` en el nivel raíz de un [espacio de trabajo](#workspace) angular proporciona valores predeterminados de configuración de todo el espacio de trabajo y específicos del proyecto para las herramientas de compilación y desarrollo proporcionadas o integradas con la [Angular CLI](#cli).
+Un archivo llamado `angular.json` en el nivel raíz de un [espacio de trabajo](#workspace) Angular proporciona valores predeterminados de configuración de todo el espacio de trabajo y específicos del proyecto para las herramientas de compilación y desarrollo proporcionadas o integradas con la [Angular CLI](#cli).
 
 Para obtener más información, consulta [Configuración del espacio de trabajo](guide/workspace-config).
 
@@ -186,10 +182,10 @@ Para obtener más información, consulta [Espacio de trabajo y estructura de arc
 
 ## control de formulario
 
-Una instancia de `FormControl`, que es un elemento fundamental para los formularios angular.
+Una instancia de `FormControl`, que es un elemento fundamental para los formularios Angular.
 Junto con `FormGroup` y `FormArray`, rastrea el valor, la validación y el estado de un elemento de entrada de formulario.
 
-Lee más sobre formularios en [Introducción a los formularios en angular](guide/forms-overview).
+Lee más sobre formularios en [Introducción a los formularios en Angular](guide/forms-overview).
 
 {@a D}
 
@@ -197,7 +193,7 @@ Lee más sobre formularios en [Introducción a los formularios en angular](guide
 
 ## detección de cambios
 
-El mecanismo por el cual el framework de angular sincroniza el estado de la interfaz de usuario de una aplicación con el estado de los datos.
+El mecanismo por el cual el framework de Angular sincroniza el estado de la interfaz de usuario de una aplicación con el estado de los datos.
 
 El detector de cambios verifica el estado actual del modelo de datos cada vez que se ejecuta y lo mantiene como el estado anterior para compararlo en la siguiente iteración.
 
@@ -217,13 +213,13 @@ Si configuras la estrategia de detección de cambios `OnPush` ("CheckOnce"), el 
 
 Un [decorador](#decorator) que aparece inmediatamente antes de una definición de clase, que declara que la clase es del tipo dado y proporciona metadatos adecuados para el tipo.
 
-Los siguientes decoradores pueden declarar tipos de clase angular:
-* `@Component()`
-* `@Directive()`
-* `@Pipe()`
-* `@Injectable()`
-* `@NgModule()`
+Los siguientes decoradores pueden declarar tipos de clase Angular:
 
+- `@Component()`
+- `@Directive()`
+- `@Pipe()`
+- `@Injectable()`
+- `@NgModule()`
 
 {@a class-field-decorator}
 
@@ -257,25 +253,24 @@ Un tipo de clase que puede agregar a la lista de 'declaraciones' de un [NgModule
 Puedes declarar [componentes](#component), [directivas](#directive), y [pipes](#pipe).
 
 No declares lo siguiente:
-* Una clase que ya está declarada en otro NgModule
-* Un conjunto de directivas importadas de otro paquete. Por ejemplo, no declarar `FORMS_DIRECTIVES` de `@angular/forms`
-* Clases de NgModule
-* Clases de servicio
-* Clases y objetos no de Angular, como cadenas de texto, números, funciones, modelos de entidad, configuraciones, lógica de negocios y clases auxiliares.
 
+- Una clase que ya está declarada en otro NgModule
+- Un conjunto de directivas importadas de otro paquete. Por ejemplo, no declarar `FORMS_DIRECTIVES` de `@angular/forms`
+- Clases de NgModule
+- Clases de servicio
+- Clases y objetos no de Angular, como cadenas de texto, números, funciones, modelos de entidad, configuraciones, lógica de negocios y clases auxiliares.
 
 {@a decorator}
 {@a decoration}
 
 ## decorador | decoración
 
-Una función que modifica una definición de clase o propiedad. Los decoradores (también llamados *anotaciones*) son experimentales (etapa 2) [característica del lenguaje JavaScript](https://github.com/wycats/javascript-decorators).
+Una función que modifica una definición de clase o propiedad. Los decoradores (también llamados _anotaciones_) son experimentales (etapa 2) [característica del lenguaje JavaScript](https://github.com/wycats/javascript-decorators).
 TypeScript agrega soporte para decoradores.
 
 Angular define decoradores que adjuntan metadatos a clases o propiedades para que sepas qué significan esas clases o propiedades y cómo deberían funcionar.
 
 Consulta [decorador de clase](#class-decorator), [decorador de campo de clase](#class-field-decorator).
-
 
 {@a directive}
 {@a directives}
@@ -287,16 +282,16 @@ Una clase que puede modificar la estructura del DOM o modificar atributos en el 
 Una clase de directiva generalmente está asociada con un elemento o atributo HTML, y ese elemento o atributo a menudo se conoce como la directiva misma. Cuando Angular encuentra una directiva en una [plantilla](#template) HTML, crea la instancia de clase de directiva coincidente y le da a la instancia control sobre esa parte del DOM del navegador.
 
 Hay tres categorías de directivas:
-* [Componentes](#component) usa `@Component()` (una extensión de `@Directive()`) para asociar una plantilla con una clase.
 
-* [Directivas de atributo](#attribute-directive) modifica el comportamiento y la apariencia de los elementos de la página.
+- [Componentes](#component) usa `@Component()` (una extensión de `@Directive()`) para asociar una plantilla con una clase.
 
-* [Directivas estructurales](#structural-directive) modifican la estructura del DOM.
+- [Directivas de atributo](#attribute-directive) modifica el comportamiento y la apariencia de los elementos de la página.
+
+- [Directivas estructurales](#structural-directive) modifican la estructura del DOM.
 
 Angular proporciona una serie de directivas integradas que comienzan con el prefijo `ng`.
 También puede crear nuevas directivas para implementar su propia funcionalidad.
-Asocia un *selector* (una etiqueta HTML como `<my-directive>`) con una directiva personalizada, extendiendo así la [sintaxis de plantilla](guide/template-syntax) que puede usar en sus aplicaciones.
-
+Asocia un _selector_ (una etiqueta HTML como `<my-directive>`) con una directiva personalizada, extendiendo así la [sintaxis de plantilla](guide/template-syntax) que puede usar en sus aplicaciones.
 
 {@a E}
 
@@ -332,34 +327,34 @@ El enlace de datos es una alternativa para insertar manualmente los valores de d
 
 Lee sobre las siguientes formas de enlace en la [Sintaxis de plantilla](guide/template-syntax) de Angular:
 
- * [Interpolación](guide/interpolation)
- * [Enlace de propiedad](guide/property-binding)
- * [Enlace de evento](guide/event-binding)
- * [Enlace de atributo](guide/attribute-binding)
- * [Enlace de clase](guide/attribute-binding#class-binding)
- * [Enlace de estilo](guide/attribute-binding#style-binding)
- * [Enlace de datos bidireccional con ngModel](guide/built-in-directives#ngModel)
+- [Interpolación](guide/interpolation)
+- [Enlace de propiedad](guide/property-binding)
+- [Enlace de evento](guide/event-binding)
+- [Enlace de atributo](guide/attribute-binding)
+- [Enlace de clase](guide/attribute-binding#class-binding)
+- [Enlace de estilo](guide/attribute-binding#style-binding)
+- [Enlace de datos bidireccional con ngModel](guide/built-in-directives#ngModel)
 
 {@a input}
 
 ## entrada
 
 Al definir una [directiva](#directive), el decorador `@Input()` en una propiedad directiva
-hace que esa propiedad esté disponible como *objetivo* de un [enlace de propiedad](guide/property-binding).
+hace que esa propiedad esté disponible como _objetivo_ de un [enlace de propiedad](guide/property-binding).
 Los valores de datos fluyen a una propiedad de entrada desde la fuente de datos identificada en la [expresión de plantilla](#template-expression) a la derecha del signo igual.
 
-Obtén más información en [propiedades de entrada y salida] (guide/inputs-outputs).
+Obtén más información en [propiedades de entrada y salida](guide/inputs-outputs).
 
 {@a router}
 {@a router-module}
 
 ## enrutador
 
-Una herramienta que configura e implementa la navegación entre estados y [vistas](#view) dentro de una aplicación angular.
+Una herramienta que configura e implementa la navegación entre estados y [vistas](#view) dentro de una aplicación Angular.
 
 El módulo `Router` es un [NgModule](#ngmodule) que proporciona los proveedores de servicios y las directivas necesarias para navegar por las vistas de la aplicación. Un [componente de enrutamiento](#router-outlet) es aquel que importa el módulo `Router` y cuya plantilla contiene un elemento `RouterOutlet` donde puede mostrar vistas producidas por el enrutador.
 
-El enrutador define la navegación entre vistas en una sola página, a diferencia de la navegación entre páginas. Interpreta enlaces de tipo URL para determinar qué vistas crear o destruir, y qué componentes cargar o descargar. Le permite aprovechar [carga diferida](#lazy-load) en las aplicaciones angular.
+El enrutador define la navegación entre vistas en una sola página, a diferencia de la navegación entre páginas. Interpreta enlaces de tipo URL para determinar qué vistas crear o destruir, y qué componentes cargar o descargar. Le permite aprovechar [carga diferida](#lazy-load) en las aplicaciones Angular.
 
 Obtén más información en [Enrutamiento y navegación](guide/router).
 
@@ -368,17 +363,17 @@ Obtén más información en [Enrutamiento y navegación](guide/router).
 ## elemento
 
 Angular define una clase `ElementRef` para envolver elementos de interfaz de usuario nativos específicos del render.
-En la mayoría de los casos, esto le permite usar plantillas de angular y enlace de datos para acceder a elementos DOM sin referencia al elemento nativo.
+En la mayoría de los casos, esto le permite usar plantillas de Angular y enlace de datos para acceder a elementos DOM sin referencia al elemento nativo.
 
-La documentación generalmente se refiere a *elementos* (instancias `ElementRef`), a diferencia de *elementos DOM* (que se puede acceder directamente si es necesario).
+La documentación generalmente se refiere a _elementos_ (instancias `ElementRef`), a diferencia de _elementos DOM_ (que se puede acceder directamente si es necesario).
 
 Comparado con [elemento personalizado](#custom-element).
 
 {@a angular-element}
 
-## elemento angular
+## elemento Angular
 
-Un [componente](#component) angular empaquetado como un [elemento personalizado](#custom-element).
+Un [componente](#component) Angular empaquetado como un [elemento personalizado](#custom-element).
 
 Obtén más información en [Vista general de Elementos Angular](guide/elements).
 
@@ -388,14 +383,13 @@ Obtén más información en [Vista general de Elementos Angular](guide/elements)
 
 Una función de plataforma web, actualmente compatible con la mayoría de los navegadores y disponible en otros navegadores a través de polyfills (consulta [Soporte del navegador](guide/browser-support)).
 
-La característica de elemento personalizado extiende HTML al permitirle definir una etiqueta cuyo contenido es creado y controlado por código JavaScript. Un elemento personalizado (también llamado *componente web*) es reconocido por un navegador cuando se agrega a [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry).
+La característica de elemento personalizado extiende HTML al permitirle definir una etiqueta cuyo contenido es creado y controlado por código JavaScript. Un elemento personalizado (también llamado _componente web_) es reconocido por un navegador cuando se agrega a [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry).
 
-Puedes usar la API para transformar un componente Angular para que pueda registrarse con el navegador y usarse en cualquier HTML que agregue directamente al DOM dentro de una aplicación Angular. La etiqueta de elemento personalizado inserta la vista del componente, con la funcionalidad de detección de cambios y enlace de datos, en contenido que de otro modo se mostraría sin procesamiento angular.
+Puedes usar la API para transformar un componente Angular para que pueda registrarse con el navegador y usarse en cualquier HTML que agregue directamente al DOM dentro de una aplicación Angular. La etiqueta de elemento personalizado inserta la vista del componente, con la funcionalidad de detección de cambios y enlace de datos, en contenido que de otro modo se mostraría sin procesamiento Angular.
 
-Ver [Elemento angular](#angular-element).
+Ver [Elemento Angular](#angular-element).
 
 Consultá también [carga de componentes dinámicos](#dynamic-components).
-
 
 {@a schematic}
 
@@ -404,12 +398,12 @@ Consultá también [carga de componentes dinámicos](#dynamic-components).
 Una biblioteca de andamios que define cómo generar o transformar un proyecto de programación creando, modificando, refactorizando o moviendo archivos y códigos.
 Un esquema define [reglas](#rule) que operan en un sistema de archivos virtual llamado [árbol](#file-tree).
 
-La [angular CLI](#cli) utiliza esquemas para generar y modificar [proyectos Angular](#project) y partes de proyectos.
+La [Angular CLI](#cli) utiliza esquemas para generar y modificar [proyectos Angular](#project) y partes de proyectos.
 
-* Angular proporciona un conjunto de esquemas para usar con la CLI. Consulta la [Referencia de comando de angular CLI](cli). El comando [`ng add`](cli/add)  ejecuta esquemas como parte de agregar una biblioteca a su proyecto. El comando [`ng generate`](cli/generate) ejecuta esquemas para crear aplicaciones, bibliotecas y construcciones de código angular.
+- Angular proporciona un conjunto de esquemas para usar con la CLI. Consulta la [Referencia de comando de Angular CLI](cli). El comando [`ng add`](cli/add) ejecuta esquemas como parte de agregar una biblioteca a su proyecto. El comando [`ng generate`](cli/generate) ejecuta esquemas para crear aplicaciones, bibliotecas y construcciones de código Angular.
 
-* Los desarrolladores de [Bibliotecas](#library) pueden crear esquemas que permitan a la CLI angular agregar y actualizar sus bibliotecas publicadas y generar artefactos que la biblioteca defina.
-Agregue estos esquemas al paquete npm que usa para publicar y compartir su biblioteca.
+- Los desarrolladores de [Bibliotecas](#library) pueden crear esquemas que permitan a la CLI Angular agregar y actualizar sus bibliotecas publicadas y generar artefactos que la biblioteca defina.
+  Agregue estos esquemas al paquete npm que usa para publicar y compartir su biblioteca.
 
 Obtén más información en [Esquemas](guide/schematics) e [Integración de bibliotecas con la CLI](guide/creating-libraries#integrating-with-the-cli).
 
@@ -430,7 +424,7 @@ Esto instala el ejecutable `schematics`, que puede usar para crear un nuevo esqu
 
 ## espacio de trabajo
 
-Una colección de [proyectos](#project) angular (es decir, aplicaciones y bibliotecas) con tecnología de [anglar CLI](#cli) que generalmente se ubican en un único repositorio de control de fuente (como [git](https://git-scm.com/)).
+Una colección de [proyectos](#project) Angular (es decir, aplicaciones y bibliotecas) con tecnología de [anglar CLI](#cli) que generalmente se ubican en un único repositorio de control de fuente (como [git](https://git-scm.com/)).
 
 El [CLI](#cli) [`ng new` command](cli/new) crea un directorio del sistema de archivos (la "raíz del espacio de trabajo"). En la raíz del espacio de trabajo, también crea el espacio de trabajo [archivo de configuración](#configuration) (`angular.json`) y, por defecto, un proyecto de aplicación inicial con el mismo nombre.
 
@@ -452,17 +446,17 @@ Lee acerca de cómo escribir expresiones de plantilla en la sección [expresione
 
 ## formularios basados en plantillas
 
-Un formato para crear formularios angular utilizando formularios HTML y elementos de entrada en la vista.
+Un formato para crear formularios Angular utilizando formularios HTML y elementos de entrada en la vista.
 El formato alternativo utiliza el framework [formularios reactivos](#reactive-forms).
 
 Al usar formularios basados en plantillas:
 
-* La "fuente de la verdad" es la plantilla. La validación se define utilizando atributos en los elementos de entrada individuales.
-* [Enlace bidireccional](#data-binding) con `ngModel` mantiene el modelo de componente sincronizado con la entrada del usuario en los elementos de entrada.
-* Detrás de escena, Angular crea un nuevo control para cada elemento de entrada, siempre que haya configurado un atributo `name` y un enlace bidireccional para cada entrada.
-* Las directivas angulares asociadas tienen el prefijo `ng` como `ngForm`, `ngModel` y `ngModelGroup`.
+- La "fuente de la verdad" es la plantilla. La validación se define utilizando atributos en los elementos de entrada individuales.
+- [Enlace bidireccional](#data-binding) con `ngModel` mantiene el modelo de componente sincronizado con la entrada del usuario en los elementos de entrada.
+- Detrás de escena, Angular crea un nuevo control para cada elemento de entrada, siempre que haya configurado un atributo `name` y un enlace bidireccional para cada entrada.
+- Las directivas Angular asociadas tienen el prefijo `ng` como `ngForm`, `ngModel` y `ngModelGroup`.
 
-La alternativa es una forma reactiva. Para una introducción y comparación de ambos enfoques de formularios, consulta [Introducción a los formularios angular](guide/forms-overview).
+La alternativa es una forma reactiva. Para una introducción y comparación de ambos enfoques de formularios, consulta [Introducción a los formularios Angular](guide/forms-overview).
 
 {@a reactive-forms}
 
@@ -473,13 +467,13 @@ La alternativa es un [formulario controlado por plantilla](#template-driven-form
 
 Cuando se usan formularios reactivos:
 
-* La "fuente de verdad", el modelo de formulario, se define en la clase de componente.
-* La validación se configura mediante funciones de validación en lugar de directivas de validación.
-* Cada control se crea explícitamente en la clase de componente creando una instancia de `FormControl` manualmente o con `FormBuilder`.
-* Los elementos de entrada de la plantilla *no* usan `ngModel`.
-* as directivas Angular asociadas tienen el prefijo `form`, como `formControl`, `formGroup` y `formControlName`.
+- La "fuente de verdad", el modelo de formulario, se define en la clase de componente.
+- La validación se configura mediante funciones de validación en lugar de directivas de validación.
+- Cada control se crea explícitamente en la clase de componente creando una instancia de `FormControl` manualmente o con `FormBuilder`.
+- Los elementos de entrada de la plantilla _no_ usan `ngModel`.
+- as directivas Angular asociadas tienen el prefijo `form`, como `formControl`, `formGroup` y `formControlName`.
 
-La alternativa es un formulario basado en plantillas. Para una introducción y comparación de ambos enfoques de formularios, consulte [Introducción a los formularios angular](guide/forms-overview).
+La alternativa es un formulario basado en plantillas. Para una introducción y comparación de ambos enfoques de formularios, consulte [Introducción a los formularios Angular](guide/forms-overview).
 
 {@a unidirectional-data-flow}
 
@@ -528,10 +522,10 @@ Obtén más información en [Inyección de dependencia en Angular](guide/depende
 
 ## interfaz de línea de comandos (CLI)
 
-[Angular CLI](cli) es una herramienta de línea de comandos para administrar el ciclo de desarrollo angular. Úsalo para crear la estructura inicial del sistema de archivos para un [espacio de trabajo](#workspace) o [proyecto](#project), y para ejecutar [esquemas](#schematic) que agregue y modifique código para versiones genéricas iniciales de varios elementos. La CLI admite todas las etapas del ciclo de desarrollo, incluidas la construcción, las pruebas, la agrupación y la implementación.
+[Angular CLI](cli) es una herramienta de línea de comandos para administrar el ciclo de desarrollo Angular. Úsalo para crear la estructura inicial del sistema de archivos para un [espacio de trabajo](#workspace) o [proyecto](#project), y para ejecutar [esquemas](#schematic) que agregue y modifique código para versiones genéricas iniciales de varios elementos. La CLI admite todas las etapas del ciclo de desarrollo, incluidas la construcción, las pruebas, la agrupación y la implementación.
 
-* Para comenzar a usar la CLI para un nuevo proyecto, consultá [Configuración del entorno local](guide/setup-local "Configuración para el desarrollo local").
-* Para obtener más información sobre las capacidades completas de la CLI, consultá la [Referencia del comando CLI](cli).
+- Para comenzar a usar la CLI para un nuevo proyecto, consultá [Configuración del entorno local](guide/setup-local "Configuración para el desarrollo local").
+- Para obtener más información sobre las capacidades completas de la CLI, consultá la [Referencia del comando CLI](cli).
 
 Ver también [Esquemas CLI](#schematics-cli).
 
@@ -545,21 +539,21 @@ La capacidad de alterar el estado de un valor después de su creación. [Formula
 
 ## inyectable
 
-Una clase angular u otra definición que proporciona una dependencia utilizando el mecanismo de [inyección de dependencia](#di). Una clase inyectable [servicio](#service) debe estar marcada por el `@Injectable()` [decorador](#decorator). Otros elementos, como valores constantes, también pueden ser inyectables.
+Una clase Angular u otra definición que proporciona una dependencia utilizando el mecanismo de [inyección de dependencia](#di). Una clase inyectable [servicio](#service) debe estar marcada por el `@Injectable()` [decorador](#decorator). Otros elementos, como valores constantes, también pueden ser inyectables.
 
 {@a injector}
 
 ## inyector
 
-Un objeto en el sistema angular [inyección de dependencia](#dependency-injection) que puede encontrar una dependencia con nombre en su caché o crear una dependencia utilizando un [proveedor](#provider) configurado.
+Un objeto en el sistema Angular [inyección de dependencia](#dependency-injection) que puede encontrar una dependencia con nombre en su caché o crear una dependencia utilizando un [proveedor](#provider) configurado.
 Los inyectores se crean para NgModules automáticamente como parte del proceso de arranque
 y se heredan a través de la jerarquía de componentes.
 
-* Un inyector proporciona una instancia singleton de una dependencia, y puede inyectar esta misma instancia en múltiples componentes.
+- Un inyector proporciona una instancia singleton de una dependencia, y puede inyectar esta misma instancia en múltiples componentes.
 
-* Una jerarquía de inyectores a nivel de NgModule y componente puede proporcionar diferentes instancias de dependencia a sus propios componentes y componentes secundarios.
+- Una jerarquía de inyectores a nivel de NgModule y componente puede proporcionar diferentes instancias de dependencia a sus propios componentes y componentes secundarios.
 
-* Puedes configurar inyectores con diferentes proveedores que pueden proporcionar diferentes implementaciones de la misma dependencia.
+- Puedes configurar inyectores con diferentes proveedores que pueden proporcionar diferentes implementaciones de la misma dependencia.
 
 Obtén más información sobre la jerarquía de inyectores en [Inyectores de dependencia jerárquica](guide/hierarchical-dependency-injection).
 
@@ -567,7 +561,7 @@ Obtén más información sobre la jerarquía de inyectores en [Inyectores de dep
 
 ## interpolación
 
-Una forma de propiedad [enlace de datos](#data-binding)  en la que una [expresión de plantilla](#template-expression) entre llaves dobles se representa como texto.
+Una forma de propiedad [enlace de datos](#data-binding) en la que una [expresión de plantilla](#template-expression) entre llaves dobles se representa como texto.
 Ese texto se puede concatenar con el texto vecino antes de asignarlo a una propiedad de elemento
 o se muestra entre etiquetas de elementos, como en este ejemplo.
 
@@ -598,10 +592,9 @@ Ver [ECMAScript](#ecma), [TypeScript](#typescript).
 
 ## jerarquía de vistas
 
-Un árbol de vistas relacionadas en el que se puede actuar como una unidad. La vista raíz es la *vista de host* de un componente. Una vista de host puede ser la raíz de un árbol de *vistas incrustadas*, recopiladas en un *contenedor de vista* (`ViewContainerRef`) adjunto a un elemento de anclaje en el componente de alojamiento. La jerarquía de vistas es una parte clave de Angular [detección de cambios](#change-detection).
+Un árbol de vistas relacionadas en el que se puede actuar como una unidad. La vista raíz es la _vista de host_ de un componente. Una vista de host puede ser la raíz de un árbol de _vistas incrustadas_, recopiladas en un _contenedor de vista_ (`ViewContainerRef`) adjunto a un elemento de anclaje en el componente de alojamiento. La jerarquía de vistas es una parte clave de Angular [detección de cambios](#change-detection).
 
 La jerarquía de vistas no implica una jerarquía de componentes. Las vistas que están integradas en el contexto de una jerarquía particular pueden ser vistas de host de otros componentes. Esos componentes pueden estar en el mismo NgModule que el componente de alojamiento o pertenecer a otros NgModules.
-
 
 {@a K}
 
@@ -625,14 +618,14 @@ Por ejemplo, la interfaz `OnInit` tiene un método de enlace llamado `ngOnInit`.
 
 Angular llama a estos métodos de enlace en el siguiente orden:
 
-* `ngOnChanges`: Cuando cambia un valor de enlace [entrada](#input)/[salida](#output).
-* `ngOnInit`: Después de los primeros `ngOnChanges`.
-* `ngDoCheck`: Detección de cambios personalizados del desarrollador.
-* `ngAfterContentInit`: Después del contenido del componente inicializado.
-* `ngAfterContentChecked`: Después de cada verificación del contenido del componente.
-* `ngAfterViewInit`: Después de que se inicializan las vistas de un componente.
-* `ngAfterViewChecked`: Después de cada comprobación de las vistas de un componente.
-* `ngOnDestroy`: Justo antes de que se destruya la directiva.
+- `ngOnChanges`: Cuando cambia un valor de enlace [entrada](#input)/[salida](#output).
+- `ngOnInit`: Después de los primeros `ngOnChanges`.
+- `ngDoCheck`: Detección de cambios personalizados del desarrollador.
+- `ngAfterContentInit`: Después del contenido del componente inicializado.
+- `ngAfterContentChecked`: Después de cada verificación del contenido del componente.
+- `ngAfterViewInit`: Después de que se inicializan las vistas de un componente.
+- `ngAfterViewChecked`: Después de cada comprobación de las vistas de un componente.
+- `ngOnDestroy`: Justo antes de que se destruya la directiva.
 
 Obtén más información en [Lifecycle Hooks](guide/lifecycle-hooks).
 
@@ -644,20 +637,19 @@ Obtén más información en [Lifecycle Hooks](guide/lifecycle-hooks).
 
 La "fuente de verdad" para el valor y el estado de validación de un elemento de entrada de formulario en un momento dado. Cuando se usan [formularios reactivos](#reactive-forms), tel modelo de formulario se crea explícitamente en la clase de componente. Al utilizar [formularios controlados por plantilla](#template-driven-forms), el modelo de formulario se crea implícitamente mediante directivas.
 
-Obtén más información sobre los formularios reactivos y basados en plantillas en [Introducción a los formularios en angular](guide/forms-overview).
+Obtén más información sobre los formularios reactivos y basados en plantillas en [Introducción a los formularios en Angular](guide/forms-overview).
 
 {@a module}
 
 ## módulo
 
-En general, un módulo recopila un bloque de código dedicado a un solo propósito. Angular utiliza módulos JavaScript estándar y también define un módulo angular, `NgModule`.
+En general, un módulo recopila un bloque de código dedicado a un solo propósito. Angular utiliza módulos JavaScript estándar y también define un módulo Angular, `NgModule`.
 
 En JavaScript (ECMAScript), cada archivo es un módulo y todos los objetos definidos en el archivo pertenecen a ese módulo. Los objetos se pueden exportar, haciéndolos públicos, y los objetos públicos se pueden importar para su uso por otros módulos.
 
-Angular se envía como una colección de módulos JavaScript (también llamados bibliotecas). Cada nombre de biblioteca angular comienza con el prefijo `@angular`. Instala bibliotecas angulares con el [administrador de paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) e importa partes de ellas con las declaraciones de JavaScript `import`.
+Angular se envía como una colección de módulos JavaScript (también llamados bibliotecas). Cada nombre de biblioteca Angular comienza con el prefijo `@angular`. Instala bibliotecas Angular con el [administrador de paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) e importa partes de ellas con las declaraciones de JavaScript `import`.
 
 Comparar con [NgModule](#ngmodule).
-
 
 {@a N}
 
@@ -665,22 +657,21 @@ Comparar con [NgModule](#ngmodule).
 
 ## ngcc
 
-Compilador de compatibilidad angular.
+Compilador de compatibilidad Angular.
 Si se crea la aplicación usando [Ivy](#ivy), pero depende de las bibliotecas que no se han compilado con Ivy, la CLI usa `ngcc` para actualizar automáticamente las bibliotecas dependientes para usar Ivy.
-
 
 {@a ngmodule}
 
 ## NgModule
 
-Una definición de clase precedida por el `@NgModule()` [decorador](#decorator),  que declara y sirve como manifiesto para un bloque de código dedicado a un dominio de aplicación, un flujo de trabajo o un conjunto de capacidades estrechamente relacionadas.
+Una definición de clase precedida por el `@NgModule()` [decorador](#decorator), que declara y sirve como manifiesto para un bloque de código dedicado a un dominio de aplicación, un flujo de trabajo o un conjunto de capacidades estrechamente relacionadas.
 
 Al igual que un [módulo JavaScript](#module), un NgModule puede exportar la funcionalidad para que otros NgModules la usen e importar la funcionalidad pública de otros NgModules.
 Los metadatos para una clase NgModule recopilan componentes, directivas y canalizaciones que la aplicación usa junto con la lista de importaciones y exportaciones. Ver también [declarable](#declarable).
 
-Los NgModules generalmente llevan el nombre del archivo en el que se define lo exportado. Por ejemplo, la clase Angular [DatePipe](api/common/DatePipe) pertenece a un módulo de características llamado `date_pipe` en el archivo` date_pipe.ts`. Se importa desde un [paquete con scope] (#scoped-package) como `@angular/core`.
+Los NgModules generalmente llevan el nombre del archivo en el que se define lo exportado. Por ejemplo, la clase Angular [DatePipe](api/common/DatePipe) pertenece a un módulo de características llamado `date_pipe` en el archivo`date_pipe.ts`. Se importa desde un [paquete con scope](#scoped-package) como `@angular/core`.
 
-Cada aplicación angular tiene un módulo raíz. Por convención, la clase se llama `AppModule` y reside en un archivo llamado `app.module.ts`.
+Cada aplicación Angular tiene un módulo raíz. Por convención, la clase se llama `AppModule` y reside en un archivo llamado `app.module.ts`.
 
 Para obtener más información, consulta [NgModules](guide/ngmodules).
 
@@ -698,13 +689,11 @@ Angular utiliza una biblioteca de terceros llamada [Extensiones reactivas (RxJS)
 
 Obtén más información en [Observables](guide/observables).
 
-
 {@a observer}
 
 ## observador
 
 Un objeto pasado al método `subscribe()` para un [observable](#observable). El objeto define las devoluciones de llamada para el [suscriptor](#subscriber).
-
 
 {@a P}
 
@@ -712,7 +701,7 @@ Un objeto pasado al método `subscribe()` para un [observable](#observable). El 
 
 ## paquete npm
 
-El [administrador de paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) se usa para distribuir y cargar módulos y bibliotecas angular.
+El [administrador de paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) se usa para distribuir y cargar módulos y bibliotecas Angular.
 
 Obtén más información acerca de cómo Angular usa [Paquetes npm](guide/npm-packages).
 
@@ -721,7 +710,7 @@ Obtén más información acerca de cómo Angular usa [Paquetes npm](guide/npm-pa
 ## paquetes con scope
 
 Una forma de agrupar [paquetes npm](guide/npm-packages) relacionados.
-Los NgModules se entregan dentro de paquetes con ámbito cuyos nombres comienzan con Angular *nombre del scope* `@angular`. Por ejemplo, `@angular/core`, `@angular/common`, `@angular/forms`, y `@angular/router`.
+Los NgModules se entregan dentro de paquetes con ámbito cuyos nombres comienzan con Angular _nombre del scope_ `@angular`. Por ejemplo, `@angular/core`, `@angular/common`, `@angular/forms`, y `@angular/router`.
 
 Importa un paquete con alcance de la misma manera que se importa un paquete normal.
 
@@ -741,14 +730,14 @@ Obtén más información en [Pipes](guide/pipes).
 
 ## plataforma
 
-En terminología angular, una plataforma es el contexto en el que se ejecuta una aplicación angular.
-La plataforma más común para aplicaciones angulares es un navegador web, pero también puede ser un sistema operativo para un dispositivo móvil o un servidor web.
+En terminología Angular, una plataforma es el contexto en el que se ejecuta una aplicación Angular.
+La plataforma más común para aplicaciones Angular es un navegador web, pero también puede ser un sistema operativo para un dispositivo móvil o un servidor web.
 
-Los paquetes `@angular/platform-*` proporcionan soporte para las diversas plataformas de tiempo de ejecución angular. Estos paquetes permiten que las aplicaciones que utilizan `@angular/core` y `@angular/common` se ejecuten en diferentes entornos al proporcionar la implementación para recopilar la entrada del usuario y representar las IU para la plataforma dada. El aislamiento de la funcionalidad específica de la plataforma permite al desarrollador hacer un uso independiente de la plataforma del resto del marco.
+Los paquetes `@angular/platform-*` proporcionan soporte para las diversas plataformas de tiempo de ejecución Angular. Estos paquetes permiten que las aplicaciones que utilizan `@angular/core` y `@angular/common` se ejecuten en diferentes entornos al proporcionar la implementación para recopilar la entrada del usuario y representar las IU para la plataforma dada. El aislamiento de la funcionalidad específica de la plataforma permite al desarrollador hacer un uso independiente de la plataforma del resto del marco.
 
-* Cuando se ejecuta en un navegador web, [`BrowserModule`](api/platform-browser/BrowserModule) se importa desde el paquete `platform-browser`, y admite servicios que simplifican la seguridad y el procesamiento de eventos, y permite que las aplicaciones accedan al navegador- características específicas, como interpretar la entrada del teclado y controlar el título del documento que se muestra. Todas las aplicaciones que se ejecutan en el navegador utilizan el mismo servicio de plataforma.
+- Cuando se ejecuta en un navegador web, [`BrowserModule`](api/platform-browser/BrowserModule) se importa desde el paquete `platform-browser`, y admite servicios que simplifican la seguridad y el procesamiento de eventos, y permite que las aplicaciones accedan al navegador- características específicas, como interpretar la entrada del teclado y controlar el título del documento que se muestra. Todas las aplicaciones que se ejecutan en el navegador utilizan el mismo servicio de plataforma.
 
-* Cuando se utiliza [renderizado del lado del servidor](#server-side-rendering) (SSR) el paquete  [`platform-server`](api/platform-server) proporciona implementaciones de servidor web de` DOM`, `XMLHttpRequest`, y otras características de bajo nivel que no dependen de un navegador.
+- Cuando se utiliza [renderizado del lado del servidor](#server-side-rendering) (SSR) el paquete [`platform-server`](api/platform-server) proporciona implementaciones de servidor web de`DOM`, `XMLHttpRequest`, y otras características de bajo nivel que no dependen de un navegador.
 
 {@a template}
 
@@ -756,12 +745,12 @@ Los paquetes `@angular/platform-*` proporcionan soporte para las diversas plataf
 
 Código que define cómo representar la [vista](#view) de un componente.
 
-Una plantilla combina HTML directo con sintaxis angular [enlace de datos](#data-binding), [directivas](#directive),y [expresiones de plantilla](#template-expression) (construcciones lógicas).
-Los elementos angular insertan o calculan valores que modifican los elementos HTML antes de que se muestre la página. Obtén más información sobre el lenguaje de plantilla angular en la guía [Sintaxis de plantilla](guide/template-syntax).
+Una plantilla combina HTML directo con sintaxis Angular [enlace de datos](#data-binding), [directivas](#directive),y [expresiones de plantilla](#template-expression) (construcciones lógicas).
+Los elementos Angular insertan o calculan valores que modifican los elementos HTML antes de que se muestre la página. Obtén más información sobre el lenguaje de plantilla Angular en la guía [Sintaxis de plantilla](guide/template-syntax).
 
-Una plantilla está asociada con una [clase de componente](#component) a través del [decorador](#decorator) `@Component()`. El código de la plantilla se puede proporcionar en línea, como el valor de la propiedad `template`, o en un archivo HTML separado vinculado a través de la propiedad` templateUrl`.
+Una plantilla está asociada con una [clase de componente](#component) a través del [decorador](#decorator) `@Component()`. El código de la plantilla se puede proporcionar en línea, como el valor de la propiedad `template`, o en un archivo HTML separado vinculado a través de la propiedad`templateUrl`.
 
-Las plantillas adicionales, representadas por objetos `TemplateRef`, pueden definir vistas alternativas o *incrustadas*, a las que se puede hacer referencia desde múltiples componentes.
+Las plantillas adicionales, representadas por objetos `TemplateRef`, pueden definir vistas alternativas o _incrustadas_, a las que se puede hacer referencia desde múltiples componentes.
 
 {@a polyfill}
 
@@ -774,7 +763,7 @@ Consulta [Soporte del navegador](guide/browser-support) para ver polyfills que a
 
 ## proyecto
 
-En la angular CLI, una aplicación independiente o [biblioteca](#library) que se puede crear o modificar mediante un comando de la CLI.
+En la Angular CLI, una aplicación independiente o [biblioteca](#library) que se puede crear o modificar mediante un comando de la CLI.
 
 Un proyecto, generado por [`ng new`](cli/new), contiene el conjunto de archivos de origen, recursos y archivos de configuración que necesita para desarrollar y probar la aplicación utilizando la CLI. Los proyectos también se pueden crear con los comandos `ng generate application` y `ng generate library`.
 
@@ -858,8 +847,8 @@ Una [directiva](#directive) que actúa como marcador de posición en la plantill
 ## salida
 
 Al definir una [directiva](#directive), el decorador `@Output{}` en una propiedad directiva
-hace que esa propiedad esté disponible como *objetivo* de [enlace de evento](guide/event-binding).
-La secuencia de eventos *fuera* de esta propiedad al receptor identificado
+hace que esa propiedad esté disponible como _objetivo_ de [enlace de evento](guide/event-binding).
+La secuencia de eventos _fuera_ de esta propiedad al receptor identificado
 en la [expresión de plantilla](#template-expression) a la derecha del signo igual.
 
 Obtén más información en [Propiedades de entrada y salida](guide/inputs-outputs).
@@ -873,11 +862,10 @@ Esto brinda a los usuarios una primera visualización significativa de su aplica
 
 Obtén más información en [Modelo Shell de Aplicación](https://developers.google.com/web/fundamentals/architecture/app-shell).
 
-Puedes usar angular CLI para [generar](cli/generate#appshell) un shell de aplicación.
+Puedes usar Angular CLI para [generar](cli/generate#appshell) un shell de aplicación.
 Esto puede mejorar la experiencia del usuario al iniciar rápidamente una página estática renderizada (un esqueleto común a todas las páginas) mientras el navegador descarga la versión completa del cliente y cambia automáticamente después de que se carga el código.
 
 Ver también [Service Worker y PWA](guide/service-worker-intro).
-
 
 {@a service}
 
@@ -892,7 +880,6 @@ Los [Inyectores](#injector) mantienen listas de proveedores y los utilizan para 
 
 Obtén más información en [Introducción a los servicios y la inyección de dependencias](guide/architecture-services).
 
-
 {@a subscriber}
 
 ## suscriptor
@@ -903,9 +890,9 @@ El acto de suscribirse a un observable desencadena su ejecución, asocia devoluc
 
 El método `subscribe ()` toma un objeto JavaScript (llamado [observador](#observer)) con hasta tres devoluciones de llamada, una para cada tipo de notificación que un observable puede entregar:
 
-* La notificación `next` envía un valor como un número, una cadena o un objeto.
-* La notificación `error` envía un error de JavaScript o una excepción.
-* La notificación `complete` no envía un valor, pero se llama al controlador cuando finaliza la llamada. Los valores programados pueden continuar devolviéndose después de que se complete la llamada.
+- La notificación `next` envía un valor como un número, una cadena o un objeto.
+- La notificación `error` envía un error de JavaScript o una excepción.
+- La notificación `complete` no envía un valor, pero se llama al controlador cuando finaliza la llamada. Los valores programados pueden continuar devolviéndose después de que se complete la llamada.
 
 {@a T}
 
@@ -915,7 +902,7 @@ El método `subscribe ()` toma un objeto JavaScript (llamado [observador](#obser
 
 Un subconjunto construible o ejecutable de un [proyecto](#project), configurado como un objeto en el [archivo de configuración del espacio de trabajo](guide/workspace-config#project-tool-configuration-options), y ejecutado por un [Architect](#architect) [constructor](#builder).
 
-En el archivo `angular.json`, cada proyecto tiene una sección de "architect" que contiene targets que configuran los constructores. Algunos de estos targets corresponden a [comandos CLI] (#cli), como `build`, `serve`, `test` y `lint`.
+En el archivo `angular.json`, cada proyecto tiene una sección de "architect" que contiene targets que configuran los constructores. Algunos de estos targets corresponden a [comandos CLI](#cli), como `build`, `serve`, `test` y `lint`.
 
 Por ejemplo, el constructor de Architect invocado por el comando `ng build` para compilar un proyecto usa una herramienta de construcción particular, y tiene una configuración predeterminada cuyos valores pueden ser anulados en la línea de comando. El objetivo `build` también define una configuración alternativa para una compilación "producción", que se puede invocar con el indicador `--prod` en el comando `build`.
 
@@ -933,26 +920,25 @@ También puede definir un generador personalizado y agregar un target a la confi
 
 Angular usa convenciones de mayúsculas para distinguir los nombres de varios tipos, como se describe en la [sección de pautas de nomenclatura](guide/styleguide#02-01) de la Guía de estilo. Aquí hay un resumen de los tipos de casos:
 
-* camelCase: símbolos, propiedades, métodos, nombres de pipelines, selectores de directivas sin componentes, constantes.
-El caso de camelcase estándar o inferior usa minúsculas en la primera letra del artículo. Por ejemplo, "selectedHero".
+- camelCase: símbolos, propiedades, métodos, nombres de pipelines, selectores de directivas sin componentes, constantes.
+  El caso de camelcase estándar o inferior usa minúsculas en la primera letra del artículo. Por ejemplo, "selectedHero".
 
-* UpperCamelCase (o PascalCase): nombres de clase, incluidas las clases que definen componentes, interfaces, NgModules, directivas y tuberías,
-La mayúscula del camelcase usa mayúscula en la primera letra del artículo. Por ejemplo, "HeroListComponent".
+- UpperCamelCase (o PascalCase): nombres de clase, incluidas las clases que definen componentes, interfaces, NgModules, directivas y tuberías,
+  La mayúscula del camelcase usa mayúscula en la primera letra del artículo. Por ejemplo, "HeroListComponent".
 
-* dash-case (o "kebab-case"): Parte descriptiva de los nombres de archivos, selectores de componentes. Por ejemplo, "app-hero-list".
+- dash-case (o "kebab-case"): Parte descriptiva de los nombres de archivos, selectores de componentes. Por ejemplo, "app-hero-list".
 
-* underscore_case (o "snake_case"): No se usa típicamente en Angular. El caso de serpiente utiliza palabras relacionadas con guiones bajos.
-Por ejemplo, "convert_link_mode".
+- underscore_case (o "snake_case"): No se usa típicamente en Angular. El caso de serpiente utiliza palabras relacionadas con guiones bajos.
+  Por ejemplo, "convert_link_mode".
 
-* UPPER_UNDERSCORE_CASE (o UPPER_SNAKE_CASE, o SCREAMING_SNAKE_CASE): Tradicional para constantes (aceptable, pero prefiere camelCase).
-Las mayúsculas y minúsculas usan palabras en mayúsculas conectadas con guiones bajos. Por ejemplo, "FIX_ME".
+- UPPER_UNDERSCORE_CASE (o UPPER_SNAKE_CASE, o SCREAMING_SNAKE_CASE): Tradicional para constantes (aceptable, pero prefiere camelCase).
+  Las mayúsculas y minúsculas usan palabras en mayúsculas conectadas con guiones bajos. Por ejemplo, "FIX_ME".
 
 {@a di-token}
 
 ## token DI
 
 Un token de búsqueda asociado con una dependencia [proveedor](#provider), para usar con el sistema [inyección de dependencia](#di).
-
 
 {@a token}
 
@@ -982,9 +968,8 @@ TypeScript proporciona verificación de tipos en tiempo de compilación y un fue
 terminación de código, refactorización, documentación en línea y búsqueda inteligente).
 Muchos editores de código e IDE admiten TypeScript de forma nativa o con complementos.
 
-TypeScript es el lenguaje preferido para el desarrollo angular.
+TypeScript es el lenguaje preferido para el desarrollo Angular.
 Lee más sobre TypeScript en [typescriptlang.org](http://www.typescriptlang.org/).
-
 
 {@a U}
 
@@ -992,7 +977,7 @@ Lee más sobre TypeScript en [typescriptlang.org](http://www.typescriptlang.org/
 
 ## Universal
 
-Una herramienta para implementar [renderizado del lado del servidor](#server-side-rendering) de una aplicación angular.
+Una herramienta para implementar [renderizado del lado del servidor](#server-side-rendering) de una aplicación Angular.
 Cuando se integra con una aplicación, Universal genera y sirve páginas estáticas en el servidor en respuesta a las solicitudes de los navegadores.
 La página estática inicial sirve como marcador de posición de carga rápida mientras se prepara la aplicación completa para la ejecución normal en el navegador.
 
@@ -1017,7 +1002,7 @@ Angular representa una vista bajo el control de una o más [directivas](#directi
 
 Una clase [componente](#component) y su [plantilla](#template) asociada definen una vista.
 Una vista está representada específicamente por una instancia `ViewRef` asociada con un componente.
-Una vista que pertenece inmediatamente a un componente se llama *vista de host*.
+Una vista que pertenece inmediatamente a un componente se llama _vista de host_.
 Las vistas se suelen recopilar en [jerarquías de vista](#view-tree).
 
 Las propiedades de los elementos en una vista pueden cambiar dinámicamente, en respuesta a las acciones del usuario; la estructura (número y orden) de elementos en una vista no puede.
@@ -1037,7 +1022,6 @@ La canalización de compilación y representación utilizada por Angular antes d
 ## web component
 
 Ver [elementos personalizados](#custom-element).
-
 
 {@a X}
 
