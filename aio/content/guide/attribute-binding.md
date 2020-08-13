@@ -286,7 +286,7 @@ En el siguiente caso, `class` y `[class]` tienen una especificidad similar, pero
 ### Delegar a estilos con menor prioridad
 
 Es posible que los estilos de precedencia más alta "deleguen" a los estilos de precedencia más bajos utilizando valores `undefined`.
-Mientras que establecer una propiedad de estilo en `nulo` asegura que el estilo se elimine, establecerlo en `undefined` hará que Angular vuelva al siguiente enlace de precedencia más alto para ese estilo.
+Mientras que establecer una propiedad de estilo en `null` asegura que el estilo se elimine, establecerlo en `undefined` hará que Angular vuelva al siguiente enlace de precedencia más alto para ese estilo.
 
 Por ejemplo, considera la siguiente plantilla:
 
