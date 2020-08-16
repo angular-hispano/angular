@@ -165,7 +165,7 @@ Después de que se hizo merge de tu pull request, puedes eliminar de forma segur
 ## <a name="rules"></a> Reglas del código
 Para garantizar la coherencia en todo el código fuente, ten en cuenta estas reglas mientras trabajas:
 
-* Todas las funcionalidades o solución de errores **deben ser probadas** por una o más pruebas (pruebas unitarias).
+* Todas las funcionalidades o solución de bugs **deben ser probadas** por una o más pruebas (pruebas unitarias).
 * Todos los métodos públicos del API **deben ser documentados**.
 * Seguimos la [guía de estilo JavaScript de Google][js-style-guide], pero cada línea no debe exceder **100 caracteres**.
 
