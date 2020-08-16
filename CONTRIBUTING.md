@@ -77,7 +77,7 @@ Puedes presentar nuevos *issues* seleccionando nuestra [plantilla de _issues_](h
 
 ### <a name="submit-pr"></a> Creación de un Pull Requests (PR)
 
-Antes de crear tu _Pull Request_ (PR) considera los siguientes lineamientos:
+Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
 
 1. Busca en [GitHub](https://github.com/angular/angular/pulls) PRs que estén abiertos o cerrados y que estén relacionados con el que vas a crear.
   No deseas duplicar los esfuerzos existentes.
