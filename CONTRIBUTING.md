@@ -60,7 +60,7 @@ Si deseas implementar una nueva funcionalidad, por favor considera el tamaño de
 
 Antes de crear un *issue*, por favor busca en el el *issue tracker*, quizá un *issue* para tu problema ya existe y la discusión puede informarte sobre soluciones alternativas disponibles.
 
-Queremos solucionar todos los problemas lo antes posible, pero antes de corregir un error necesitamos reproducirlo y confirmarlo.
+Queremos solucionar todos los problemas lo antes posible, pero antes de corregir un bug necesitamos reproducirlo y confirmarlo.
 Para reproducir errores, requerimos que proporciones una reproducción mínima.
 Tener un escenario reproducible mínimo nos brinda una gran cantidad de información importante sin tener que ir y venir con preguntas adicionales.
 
