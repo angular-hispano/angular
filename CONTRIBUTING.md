@@ -190,7 +190,7 @@ Cada mensaje de un commit consta del **header**, el **body**, y el **footer**.
 <footer>
 ```
 
-El `header` es obligatorio y debe ajustarse al formato del [mensaje del header del _commit_](#commit-header).
+El `header` es obligatorio y debe ajustarse al formato del [mensaje del header del commit](#commit-header).
 
 El `body` es obligatorio para todos los commits excepto los que tenga scope "docs".
 Cuando el body es requerido debe tener al menos 20 caracteres.
