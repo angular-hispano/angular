@@ -75,7 +75,7 @@ Desafortunadamente no podemos investigar/corregir errores sin una reproducción 
 Puedes presentar nuevos *issues* seleccionando nuestra [plantilla de _issues_](https://github.com/angular/angular/issues/new/choose) y complentando la plantilla.
 
 
-### <a name="submit-pr"></a> Creación de _Pull Requests_ (PR)
+### <a name="submit-pr"></a> Creación de un Pull Requests (PR)
 
 Antes de crear tu _Pull Request_ (PR) considera los siguientes lineamientos:
 
