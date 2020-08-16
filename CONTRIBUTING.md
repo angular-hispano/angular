@@ -64,7 +64,7 @@ Queremos solucionar todos los problemas lo antes posible, pero antes de corregir
 Para reproducir errores, requerimos que proporciones una reproducción mínima.
 Tener un escenario reproducible mínimo nos brinda una gran cantidad de información importante sin tener que ir y venir con preguntas adicionales.
 
-Una reproducción mínima nos permite confirmar rápidamente un error (o señalar un problema de código), así también confirmar que estamos solucionando el problema correcto.
+Una reproducción mínima nos permite confirmar rápidamente un bug (o señalar un problema de código), así también confirmar que estamos solucionando el problema correcto.
 
 Requerimos una reproducción mínima para ahorrar tiempo a los encargados del mantenimiento y en última instancia, poder corregir más errores.
 A menudo los desarrolladores encuentran problemas de código mientras preparan una reproducción mínima.
