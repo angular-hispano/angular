@@ -117,7 +117,7 @@ Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
     git push origin my-fix-branch
     ```
 
-11. En GitHub, crea un _pull request_ a `angular:master`.
+11. En GitHub, crea un pull request a `angular:master`.
 
    Si solicitamos cambios a través de revisiones de código, sigue las siguientes indicaciones:
 
