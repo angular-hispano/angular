@@ -135,7 +135,7 @@ Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
 
 #### Después del merge de tu pull request
 
-Después de que se hizo merge de tu _pull request_, puedes eliminar de forma segura tu rama y hacer _pull_ de los cambios del repositorio principal (_upstream_):
+Después de que se hizo merge de tu pull request, puedes eliminar de forma segura tu rama y hacer pull de los cambios del repositorio principal (upstream):
 
 * Elimina la rama remota en GitHub a través de la interfaz de usuario web de GitHub o en tu línea de comandos de la siguiente manera:
 
