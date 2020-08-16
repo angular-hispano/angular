@@ -35,7 +35,7 @@ Para ahorrar tu tiempo y el nuestro, cerraremos sistemáticamente todos los *iss
 Si deseas chatear sobre alguna pregunta en tiempo real, puedes hacerlo a través de nuestro [canal de Gitter][gitter].
 
 
-## <a name="issue"></a> ¿Encontraste un error?
+## <a name="issue"></a> ¿Encontraste un Bug?
 
 Si encontraste un error en el código fuente, puedes ayudarnos [creando un *issue*](#submit-issue) en nuestro [repositorio de GitHub][github].
 O incluso mejor, puedes [crear un *Pull Request*](#submit-pr) con la solución.
