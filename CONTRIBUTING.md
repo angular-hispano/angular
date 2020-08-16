@@ -213,7 +213,7 @@ Cualquier línea del mensaje del commit no puede tener más de 100 caracteres.
   │                          platform-webworker-dynamic|router|service-worker|upgrade|zone.js|
   │                          packaging|changelog|dev-infra|docs-infra|migrations|ngcc|ve
   │
-  └─⫸ Tipo de _commit_: build|ci|docs|feat|fix|perf|refactor|style|test
+  └─⫸ Tipo de commit: build|ci|docs|feat|fix|perf|refactor|style|test
 ```
 
 El `<tipo>` y `<resumen>` son obligatorios, el `(<alcance>)` es opcional.
