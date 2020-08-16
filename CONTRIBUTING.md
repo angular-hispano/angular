@@ -293,7 +293,7 @@ Usa el campo resumen para proporcionar una descripción breve del cambio:
 
 Tal como en el resumen, usa el modo imperativo, tiempo presente: "cambia" no "cambió" o "cambios".
 
-Explica la razón del cambio en el el mensaje del cuerpo del _commit_. Este mensaje de confirmación debe explicar _por qué_ está realizando el cambio.
+Explica la razón del cambio en el el mensaje del cuerpo del commit. Este mensaje de confirmación debe explicar _por qué_ está realizando el cambio.
 Puedes incluir una comparación del comportamiento anterior con el nuevo comportamiento para ilustrar el impacto del cambio.
 
 
