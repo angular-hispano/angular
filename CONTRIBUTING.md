@@ -176,7 +176,7 @@ Para garantizar la coherencia en todo el código fuente, ten en cuenta estas reg
 
 *Esta especificación está inspirada y reemplaza el [Formato de mensaje de commits de AngularJS][commit-message-format].*
 
-Tenemos reglas muy precisas sobre cómo deben formatearse nuestros mensajes de los _commits_ de Git.
+Tenemos reglas muy precisas sobre cómo deben formatearse nuestros mensajes de los commits de Git.
 Este formato permite tener **un historial de commits más facil de leer**.
 
 Cada mensaje de un _commit_ consta del **header**, el **body**, y el **footer**.
