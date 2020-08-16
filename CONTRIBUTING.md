@@ -172,7 +172,7 @@ Para garantizar la coherencia en todo el código fuente, ten en cuenta estas reg
    Un formateador automatizado está disponible, revisar [DEVELOPER.md](docs/DEVELOPER.md#clang-format).
 
 
-## <a name="commit"></a> Convención para el mensaje de los commits
+## <a name="commit"></a> Formato para el mensaje de los commits
 
 *Esta especificación está inspirada y reemplaza el [Formato de mensaje de commits de AngularJS][commit-message-format].*
 
