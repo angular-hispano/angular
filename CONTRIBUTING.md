@@ -299,7 +299,7 @@ Puedes incluir una comparación del comportamiento anterior con el nuevo comport
 
 #### Mensaje del footer del _commit_
 
-El footer puede contener información sobre cambios significativos y también es el lugar para hacer referencia a _issues_ de GitHub, tickets de Jira y otros PRs que están relacionados con el _commit_.
+El footer puede contener información sobre cambios significativos y también es el lugar para hacer referencia a issues de GitHub, tickets de Jira y otros PRs que están relacionados con el commit.
 
 ```
 CAMBIO SIGNIFICATIVO: <resumen del cambio significativo>
