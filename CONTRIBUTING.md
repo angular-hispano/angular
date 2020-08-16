@@ -197,7 +197,7 @@ Cuando el body es requerido debe tener al menos 20 caracteres.
 
 El `footer` es opcional.
 
-Cualquier línea del mensaje del _commit_ no puede tener más de 100 caracteres.
+Cualquier línea del mensaje del commit no puede tener más de 100 caracteres.
 
 
 #### <a href="commit-header"></a>Mensaje del header del commit
