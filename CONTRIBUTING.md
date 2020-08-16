@@ -70,7 +70,7 @@ Requerimos una reproducción mínima para ahorrar tiempo a los encargados del ma
 A menudo los desarrolladores encuentran problemas de código mientras preparan una reproducción mínima.
 Entendemos que a veces puede ser difícil extraer porciones esenciales de código de un código más grande, pero realmente necesitamos aislar el problema antes de poder solucionarlo.
 
-Desafortunadamente no podemos investigar/corregir errores sin una reproducción mínima, por lo que si no tenemos tu retroalimentación del error, vamos a cerrar el *issue* ya que no tiene suficiente información para reproducirse.
+Desafortunadamente no podemos investigar/corregir errores sin una reproducción mínima, por lo que si no tenemos tu retroalimentación del bug, vamos a cerrar el *issue* ya que no tiene suficiente información para reproducirse.
 
 Puedes presentar nuevos *issues* seleccionando nuestra [plantilla de _issues_](https://github.com/angular/angular/issues/new/choose) y complentando la plantilla.
 
