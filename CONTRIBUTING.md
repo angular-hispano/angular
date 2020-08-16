@@ -22,7 +22,7 @@ Por favor lee y sigue nuestro [Código de conducta][coc].
 ## <a name="question"></a> ¿Tienes alguna pregunta o problema?
 
 No abras *issues* para preguntas de soporte general ya que queremos mantener los *issues* de GitHub para reporte de *bugs* y solicitud de funcionalidades.
-En su lugar, recomendamos utilizar [Stack Overflow](https://stackoverflow.com/questions/tagged/angular) para hacer preguntas relacionadas con soporte. Al crear una nueva pregunta en Stack Overflow, asegúrate de agregar el tag de `angular`.
+En su lugar, recomendamos utilizar [Stack Overflow](https://stackoverflow.com/questions/tagged/angular) para hacer preguntas relacionadas con soporte. Al crear una nueva pregunta en Stack Overflow, asegúrate de agregar el etiqueta (tag) de `angular`.
 
 Stack Overflow es mucho mejor para hacer preguntas ya que:
 
