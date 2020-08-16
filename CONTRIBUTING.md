@@ -207,7 +207,7 @@ Cualquier línea del mensaje del commit no puede tener más de 100 caracteres.
   │       │             │
   │       │             └─⫸ Resumen corto escrito en modo imperativo, tiempo presente. Sin mayúsculas. Sin punto final.
   │       │
-  │       └─⫸ Alcance del _commit_: animations|bazel|benchpress|common|compiler|compiler-cli|core|
+  │       └─⫸ Alcance del commit: animations|bazel|benchpress|common|compiler|compiler-cli|core|
   │                          elements|forms|http|language-service|localize|platform-browser|
   │                          platform-browser-dynamic|platform-server|platform-webworker|
   │                          platform-webworker-dynamic|router|service-worker|upgrade|zone.js|
