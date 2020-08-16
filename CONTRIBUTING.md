@@ -317,7 +317,7 @@ La sección de cambios significativos debería comenzar con la frase "CAMBIO SIG
 
 Si el _commit_ revierte un _commit_ previo, el _commit_ debería comenzar con `revert: `, seguido por el header del _commit_ revertido.
 
-El contenido del mensaje del _commit_ debería contener:
+El contenido del mensaje del commit debería contener:
 
 - Información sobre el SHA del _commit_ que se revierte en el siguiente formato: `Esto revierte el commit <SHA>`,
 - Una descripción clara de la razón para revertir el mensaje del _commit_.
