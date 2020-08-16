@@ -123,7 +123,7 @@ Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
 
    * Haz los cambios requeridos.
    * Ejecuta nuevamente el conjunto de pruebas de Angular para asegurar que todas las pruebas aún están pasando.
-   * Haz _rebase_ de tu rama a la rama master y haz _push_ con la opción `-f` a tu repositorio de Github (esto actualizará tu _Pull Request_):
+   * Haz rebase de tu rama a la rama master y haz push con la opción `-f` a tu repositorio de Github (esto actualizará tu Pull Request):
 
       ```shell
       git rebase master -i
