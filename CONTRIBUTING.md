@@ -297,7 +297,7 @@ Explica la razón del cambio en el el mensaje del cuerpo del _commit_. Este mens
 Puedes incluir una comparación del comportamiento anterior con el nuevo comportamiento para ilustrar el impacto del cambio.
 
 
-#### Mensaje del footer del _commit_
+#### Mensaje del footer del commit
 
 El footer puede contener información sobre cambios significativos y también es el lugar para hacer referencia a issues de GitHub, tickets de Jira y otros PRs que están relacionados con el commit.
 
