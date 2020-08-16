@@ -227,7 +227,7 @@ El tipo debe ser uno de los siguientes:
 * **ci**: cambios en nuestros archivos y scripts de configuración de CI (ejemplos de scopes: Circle, BrowserStack, SauceLabs)
 * **docs**: cambios en la documentación
 * **feat**: una nueva funcionalidad
-* **fix**: una solución de un error
+* **fix**: una solución de un bug
 * **perf**: un cambio de código que mejora el rendimiento.
 * **refactor**: un cambio de código que no corrige ningún error ni agrega ninguna funcionalidad
 * **style**: cambios que no afectan el significado del código (espacios en blanco, formato, falta de punto y coma, etc.)
