@@ -277,7 +277,7 @@ Actualmente hay algunas excepciones a la regla "usar el nombre de paquete":
 
 * `ve`: utilizado para cambios específicos de ViewEngine (legacy compiler/renderer).
 
-* scope vacío: útil para cambios de `style`, `test` y `refactor` que se realizan en todos los paquetes (ejemplo: `style: add missing semicolons`) y para cambios de la documentación que no están relacionados a un paquete en específico(ejemplo: `docs: corrige error gramatical en el tutorial`).
+* alcance vacío: útil para cambios de `style`, `test` y `refactor` que se realizan en todos los paquetes (ejemplo: `style: add missing semicolons`) y para cambios de la documentación que no están relacionados a un paquete en específico(ejemplo: `docs: corrige error gramatical en el tutorial`).
 
 
 ##### Resumen
