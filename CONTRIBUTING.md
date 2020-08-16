@@ -103,7 +103,7 @@ Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
 
 8. Ejecuta todo el conjunto de pruebas de Angular, tal como está descrito en la [documentación del desarrollador][dev-doc], y asegúrate de que todas las pruebas pasen.
 
-9. Crea un _commit_ de tus cambios utilizando un mensaje de _commit_ descriptivo que siga nuestra [convención para el mensaje de los commits](#commit).
+9. Crea un commit de tus cambios utilizando un mensaje de commit descriptivo que siga nuestra [convención para el mensaje de los commits](#commit).
    Es necesario cumplir con estas convenciones porque las notas de las versiones se generan automáticamente a partir de estos mensajes.
 
      ```shell
