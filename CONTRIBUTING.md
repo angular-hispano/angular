@@ -200,7 +200,7 @@ El `footer` es opcional.
 Cualquier línea del mensaje del _commit_ no puede tener más de 100 caracteres.
 
 
-#### <a href="commit-header"></a>Mensaje del header del _commit_
+#### <a href="commit-header"></a>Mensaje del header del commit
 
 ```
 <tipo>(<alcance>): <resumen>
