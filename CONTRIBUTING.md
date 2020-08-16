@@ -133,7 +133,7 @@ Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
 ¡Es todo! ¡Muchas gracias por tu contribución!
 
 
-#### Después del _merge_ de tu _pull request_
+#### Después del merge de tu pull request
 
 Después de que se hizo merge de tu _pull request_, puedes eliminar de forma segura tu rama y hacer _pull_ de los cambios del repositorio principal (_upstream_):
 
