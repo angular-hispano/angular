@@ -331,7 +331,7 @@ Por favor firma nuestro Acuerdo de Licencia de Colaborador (CLA) antes de crear 
 * Para corporaciones, necesitaremos que
   [impriman, firmen, escaneen y envíen por email, fax o correo el formulario][corporate-cla].
 
-Si tiene más de una cuenta de GitHub o varias direcciones de correo electrónico asociadas con una sola cuenta de GitHub, debes firmar el CLA utilizando la dirección de correo electrónico principal de la cuenta de GitHub utilizada para crear los _commits_ de Git y la creación de PRs.
+Si tiene más de una cuenta de GitHub o varias direcciones de correo electrónico asociadas con una sola cuenta de GitHub, debes firmar el CLA utilizando la dirección de correo electrónico principal de la cuenta de GitHub utilizada para crear los commits de Git y la creación de PRs.
 
 Los siguientes documentos pueden ayudarte a resolver problemas con cuentas de GitHub y múltiples direcciones de correo electrónico:
 
