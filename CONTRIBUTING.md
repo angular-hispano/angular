@@ -289,7 +289,7 @@ Usa el campo resumen para proporcionar una descripción breve del cambio:
 * no debe de conter punto (.) al final
 
 
-#### Mensaje del cuerpo del _commit_
+#### Mensaje del cuerpo del commit
 
 Tal como en el resumen, usa el modo imperativo, tiempo presente: "cambia" no "cambió" o "cambios".
 
