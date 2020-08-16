@@ -319,7 +319,7 @@ Si el commit revierte un commit previo, el commit debería comenzar con `revert:
 
 El contenido del mensaje del commit debería contener:
 
-- Información sobre el SHA del _commit_ que se revierte en el siguiente formato: `Esto revierte el commit <SHA>`,
+- Información sobre el SHA del commit que se revierte en el siguiente formato: `Esto revierte el commit <SHA>`,
 - Una descripción clara de la razón para revertir el mensaje del _commit_.
 
 
