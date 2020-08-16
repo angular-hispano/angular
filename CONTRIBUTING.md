@@ -235,7 +235,7 @@ El tipo debe ser uno de los siguientes:
 
 
 ##### Alcance
-El alcance debe ser el nombre del paquete npm afectado (tal como lo percibe la persona que lee el registro de cambios generado a partir de los mensajes de _commit_).
+El alcance debe ser el nombre del paquete npm afectado (tal como lo percibe la persona que lee el registro de cambios generado a partir de los mensajes de commit).
 
 La siguiente es la lista de alcances permitidos:
 
