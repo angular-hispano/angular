@@ -940,6 +940,19 @@ Angular usa convenciones de mayúsculas para distinguir los nombres de varios ti
 
 Un token de búsqueda asociado con una dependencia [proveedor](#provider), para usar con el sistema [inyección de dependencia](#di).
 
+{@a template-reference-variable}
+
+## template reference variable
+
+A variable defined in a template that references an instance associated with an element, such as a directive instance, component instance, template as in `TemplateRef`, or DOM element.
+After declaring a template reference variable on an element in a template,
+you can access values from that variable elsewhere within the same template.
+The following example defines a template reference variable named `#phone`.
+
+<code-example path="template-reference-variables/src/app/app.component.html" region="ref-var" header="src/app/app.component.html"></code-example>
+
+For more information, see the [Template reference variable](guide/template-reference-variables) guide.
+
 {@a token}
 
 ## token

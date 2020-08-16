@@ -5,22 +5,21 @@
 
 # Angular
 
-Angular is a development platform for building mobile and desktop web applications using TypeScript/JavaScript and other languages.
+Angular es una plataforma de desarrollo para construir aplicaciones web y móviles que usa TypeScript/JavaScript y otros lenguajes de programación.
 
-## Quickstart
+## Guía rápida
 
-[Get started in 5 minutes][quickstart].
+[Comienza a usarlo en 5 minutos][quickstart].
 
-## Changelog
+## Registro de cambios (Changelog)
 
-[Learn about the latest improvements][changelog].
+[Últimas mejoras realizadas][changelog].
 
-## Want to help?
+## ¿Quieres ayudar?
 
-Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our
-guidelines for [contributing][contributing] and then check out one of our issues in the [hotlist: community-help](https://github.com/angular/angular/labels/hotlist%3A%20community-help).
+¿Quieres encontrar fallos, colaborar con código, o mejorar la documentación? ¡Excelente! Lee nuestras
+pautas para [colaborar][contributing] y luego revisa algunos de nuestras incidencias (issues) en [ayuda comunitaria](https://github.com/angular-hispano/angular/labels/ayuda%20comunitaria).
 
-[contributing]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md
-[quickstart]: https://angular.io/start
+[contributing]: https://github.com/angular-hispano/angular/blob/master/CONTRIBUTING.md
+[quickstart]: https://docs.angular.lat/start
 [changelog]: https://github.com/angular/angular/blob/master/CHANGELOG.md
-[ng]: https://angular.io

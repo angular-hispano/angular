@@ -1,3 +1,95 @@
+<a name="10.1.0-next.4"></a>
+# 10.1.0-next.4 (2020-08-04)
+
+
+### Bug Fixes
+
+* **common:** narrow `NgIf` context variables in template type checker ([#36627](https://github.com/angular/angular/issues/36627)) ([9c8bc4a](https://github.com/angular/angular/commit/9c8bc4a))
+* **compiler:** mark `NgModuleFactory` construction as not side effectful ([#38147](https://github.com/angular/angular/issues/38147)) ([7f8c222](https://github.com/angular/angular/commit/7f8c222))
+
+
+### Features
+
+* **core:** rename async to waitForAsync to avoid confusing ([#37583](https://github.com/angular/angular/issues/37583)) ([8f07429](https://github.com/angular/angular/commit/8f07429))
+* **core:** update reference and doc to change `async` to `waitAsync`. ([#37583](https://github.com/angular/angular/issues/37583)) ([8fbf40b](https://github.com/angular/angular/commit/8fbf40b))
+
+
+
+<a name="10.0.8"></a>
+## 10.0.8 (2020-08-04)
+
+
+### Bug Fixes
+
+* **compiler:** add PURE annotation to getInheritedFactory calls ([#38291](https://github.com/angular/angular/issues/38291)) ([03d8e31](https://github.com/angular/angular/commit/03d8e31))
+* **compiler:** update unparsable character reference entity error messages ([#38319](https://github.com/angular/angular/issues/38319)) ([cea4678](https://github.com/angular/angular/commit/cea4678)), closes [#26067](https://github.com/angular/angular/issues/26067)
+
+
+
+<a name="10.0.7"></a>
+## 10.0.7 (2020-07-30)
+
+
+### Bug Fixes
+
+* **compiler:** Metadata should not include methods on Object.prototype ([#38292](https://github.com/angular/angular/issues/38292)) ([879ff08](https://github.com/angular/angular/commit/879ff08))
+
+
+
+<a name="10.1.0-next.3"></a>
+# 10.1.0-next.3 (2020-07-28)
+
+
+### Bug Fixes
+
+* **elements:** run strategy methods in correct zone ([#37814](https://github.com/angular/angular/issues/37814)) ([8df888d](https://github.com/angular/angular/commit/8df888d)), closes [#24181](https://github.com/angular/angular/issues/24181)
+
+
+
+<a name="10.0.6"></a>
+## 10.0.6 (2020-07-28)
+
+
+### Bug Fixes
+
+* **compiler:** share identical stylesheets between components in the same file ([#38213](https://github.com/angular/angular/issues/38213)) ([264950b](https://github.com/angular/angular/commit/264950b)), closes [#38204](https://github.com/angular/angular/issues/38204)
+* **compiler-cli:** Add support for string literal class members ([#38226](https://github.com/angular/angular/issues/38226)) ([b1e7775](https://github.com/angular/angular/commit/b1e7775))
+* **core:** `Attribute` decorator `attributeName` is mandatory ([#38131](https://github.com/angular/angular/issues/38131)) ([1c4fcce](https://github.com/angular/angular/commit/1c4fcce)), closes [#32658](https://github.com/angular/angular/issues/32658)
+* **core:** unify the signature between ngZone and noopZone ([#37581](https://github.com/angular/angular/issues/37581)) ([d5264f5](https://github.com/angular/angular/commit/d5264f5))
+
+
+
+<a name="10.1.0-next.2"></a>
+# 10.1.0-next.2 (2020-07-22)
+
+
+### Bug Fixes
+
+* **core:** Allow modification of lifecycle hooks any time before bootstrap ([#35464](https://github.com/angular/angular/issues/35464)) ([737506e](https://github.com/angular/angular/commit/737506e)), closes [#30497](https://github.com/angular/angular/issues/30497)
+
+
+### Features
+
+* **common:** add ReadonlyMap in place of Map in keyValuePipe ([#37311](https://github.com/angular/angular/issues/37311)) ([3373453](https://github.com/angular/angular/commit/3373453)), closes [#37308](https://github.com/angular/angular/issues/37308)
+* **forms:** AbstractControl to store raw validators in addition to combined validators function ([#37881](https://github.com/angular/angular/issues/37881)) ([ad7046b](https://github.com/angular/angular/commit/ad7046b))
+* **localize:** allow duplicate messages to be handled during extraction ([#38082](https://github.com/angular/angular/issues/38082)) ([cf9a47b](https://github.com/angular/angular/commit/cf9a47b)), closes [#38077](https://github.com/angular/angular/issues/38077)
+
+
+
+<a name="10.0.5"></a>
+## 10.0.5 (2020-07-22)
+
+
+### Bug Fixes
+
+* **compiler:** properly associate source spans for implicitly closed elements ([#38126](https://github.com/angular/angular/issues/38126)) ([e80278c](https://github.com/angular/angular/commit/e80278c)), closes [#36118](https://github.com/angular/angular/issues/36118)
+* **compiler-cli:** ensure file_system handles mixed Windows drives ([#38030](https://github.com/angular/angular/issues/38030)) ([dba4023](https://github.com/angular/angular/commit/dba4023)), closes [#36777](https://github.com/angular/angular/issues/36777)
+* **core:** Allow modification of lifecycle hooks any time before bootstrap ([#38119](https://github.com/angular/angular/issues/38119)) ([14b4718](https://github.com/angular/angular/commit/14b4718)), closes [#30497](https://github.com/angular/angular/issues/30497)
+* **core:** error due to integer overflow when there are too many host bindings ([#38014](https://github.com/angular/angular/issues/38014)) ([7b6e73c](https://github.com/angular/angular/commit/7b6e73c)), closes [#37876](https://github.com/angular/angular/issues/37876) [#37876](https://github.com/angular/angular/issues/37876)
+* **core:** incorrectly validating properties on ng-content and ng-container ([#37773](https://github.com/angular/angular/issues/37773)) ([17ddab9](https://github.com/angular/angular/commit/17ddab9))
+
+
+
 <a name="10.0.4"></a>
 ## 10.0.4 (2020-07-15)
 
