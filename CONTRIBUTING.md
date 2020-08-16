@@ -155,7 +155,7 @@ Después de que se hizo merge de tu pull request, puedes eliminar de forma segur
     git branch -D my-fix-branch
     ```
 
-* Actualiza tu rama master con la última versión del _fork_ (_upstream_):
+* Actualiza tu rama master con la última versión del fork (upstream):
 
     ```shell
     git pull --ff upstream master
