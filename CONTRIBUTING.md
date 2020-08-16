@@ -179,7 +179,7 @@ Para garantizar la coherencia en todo el código fuente, ten en cuenta estas reg
 Tenemos reglas muy precisas sobre cómo deben formatearse nuestros mensajes de los commits de Git.
 Este formato permite tener **un historial de commits más facil de leer**.
 
-Cada mensaje de un _commit_ consta del **header**, el **body**, y el **footer**.
+Cada mensaje de un commit consta del **header**, el **body**, y el **footer**.
 
 
 ```
