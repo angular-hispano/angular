@@ -111,7 +111,7 @@ Antes de crear tu Pull Request (PR) considera los siguientes lineamientos:
      ```
     Nota: la opción de la línea de comandos de Git `-a` automaticamente hará "add" y "rm" a los archivos editados.
 
-10. Haz _push_ de tu rama a GitHub:
+10. Haz push de tu rama a GitHub:
 
     ```shell
     git push origin my-fix-branch
