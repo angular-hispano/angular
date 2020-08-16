@@ -26,8 +26,8 @@ En su lugar, recomendamos utilizar [Stack Overflow](https://stackoverflow.com/qu
 
 Stack Overflow es mucho mejor para hacer preguntas ya que:
 
-- Hay miles de personas dispuestas a ayudar en Stack Overflow.
-- Las preguntas y respuestas permanecen disponibles para el público, por lo que tu pregunta o respuesta podría ayudar a otra persona.
+- Hay miles de personas dispuestas a ayudar en preguntas y respuestas de Stack Overflow
+que  permanecen disponibles para el público, por lo que tu pregunta o respuesta podría ayudar a otra persona.
 - El sistema de votación de Stack Overflow asegura que las mejores respuestas sobresalgan y sean visibles.
 
 Para ahorrar tu tiempo y el nuestro, cerraremos sistemáticamente todos los *issues* que sean solicitudes de soporte general y redirigiremos a las personas a Stack Overflow.
