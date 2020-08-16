@@ -299,7 +299,7 @@ Asocia un _selector_ (una etiqueta HTML como `<my-directive>`) con una directiva
 
 ## ECMAScript
 
-La [especificación oficial del lenguaje JavaScript](https://en.wikipedia.org/wiki/ECMAScript).
+La [especificación oficial del lenguaje JavaScript](https://es.wikipedia.org/wiki/ECMAScript).
 
 No todos los navegadores son compatibles con el último estándar ECMAScript, pero puede usar un [transpiler](#transpile) (como [TypeScript](#typescript)) para escribir código utilizando las últimas funciones, que luego se transpilarán al código que se ejecuta en las versiones que son compatibles con los navegadores.
 
@@ -311,7 +311,7 @@ Para obtener más información, consultá [Browser Support](guide/browser-suppor
 
 En general, es la práctica de establecer una variable o propiedad en un valor de datos Dentro de Angular, generalmente se refiere a [enlace de datos](#data-binding), que coordina las propiedades del objeto DOM con las propiedades del objeto de datos.
 
-A veces se refiere a una [dependencia de la inyección](#dependency-injection) de enlace
+A veces se refiere a una [inyección de dependencia](#dependency-injection) de enlace
 entre un [token](#token) y una dependencia de [proveedor](#provider).
 
 {@a data-binding}
@@ -383,7 +383,7 @@ Obtén más información en [Vista general de Elementos Angular](guide/elements)
 
 Una función de plataforma web, actualmente compatible con la mayoría de los navegadores y disponible en otros navegadores a través de polyfills (consulta [Soporte del navegador](guide/browser-support)).
 
-La característica de elemento personalizado extiende HTML al permitirle definir una etiqueta cuyo contenido es creado y controlado por código JavaScript. Un elemento personalizado (también llamado _componente web_) es reconocido por un navegador cuando se agrega a [CustomElementRegistry](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry).
+La característica de elemento personalizado extiende HTML al permitirle definir una etiqueta cuyo contenido es creado y controlado por código JavaScript. Un elemento personalizado (también llamado _componente web_) es reconocido por un navegador cuando se agrega a [CustomElementRegistry](https://developer.mozilla.org/es/docs/Web/API/CustomElementRegistry).
 
 Puedes usar la API para transformar un componente Angular para que pueda registrarse con el navegador y usarse en cualquier HTML que agregue directamente al DOM dentro de una aplicación Angular. La etiqueta de elemento personalizado inserta la vista del componente, con la funcionalidad de detección de cambios y enlace de datos, en contenido que de otro modo se mostraría sin procesamiento Angular.
 
@@ -575,7 +575,7 @@ Lee más en la guía [Interpolación](guide/interpolation).
 
 ## Ivy
 
-Ivy es el nombre en clave del [canal de compilación y renderización de próxima generación](https://blog.angular.io/a-plan-for-version-8-0-and-ivy-b3318dfc19f7) de Angulae.
+Ivy es el nombre en clave del [canal de compilación y renderización de próxima generación](https://blog.angular.io/a-plan-for-version-8-0-and-ivy-b3318dfc19f7) de Angular.
 Con la versión 9 de Angular, el nuevo compilador y las instrucciones de tiempo de ejecución se utilizan de forma predeterminada en lugar del compilador y el tiempo de ejecución más antiguos, conocidos como [View Engine](#ve).
 
 Lee más en [Angular Ivy](guide/ivy).
@@ -604,7 +604,7 @@ La jerarquía de vistas no implica una jerarquía de componentes. Las vistas que
 
 ## lenguaje específico de dominio (DSL)
 
-Una biblioteca o API de propósito especial; consulte [Idioma específico del dominio](https://en.wikipedia.org/wiki/Domain-specific_language).
+Una biblioteca o API de propósito especial; consulte [Idioma específico del dominio](https://es.wikipedia.org/wiki/Lenguaje_espec%C3%ADfico_de_dominio).
 Angular extiende TypeScript con lenguajes específicos de dominio para varios dominios relevantes para aplicaciones Angular, definidas en NgModules como [animaciones](guide/animations), [formularios](guide/forms), y [enrutamiento y navegación](guide/router).
 
 {@a lifecycle-hook}
