@@ -17,21 +17,21 @@ Use el CLI angular para generar un nuevo componente llamado `heroes`.
 </code-example>
 
 El CLI crea una nueva carpeta llamada `src/app/heroes/`,
-Genere tres archivos sobre `HeroesComponent` junto con los archivos de prueba.
+Genera tres archivos sobre `HeroesComponent` junto con un archivo de prueba.
 
-El archivo de clase de `HeroesComponent` es el siguiente:
+El archivo de la clase `HeroesComponent` es el siguiente:
 
 <code-example path="toh-pt1/src/app/heroes/heroes.component.ts" region="v1" header="app/heroes/heroes.component.ts (initial version)"></code-example>
 
-Importe siempre el símbolo `Componente` de la biblioteca central angular,
+Importe siempre el símbolo `Component` de la biblioteca central de Angular,
 Anote la clase de componente con `@Component`.
 
-`@Component` es una función decoradora que especifica metadatos angulares para un componente.
+`@Component`  es un decorador que especifica metadatos de Angular para un componente.
 
 El CLI generó 3 propiedades de metadatos:
 
-1. `selector`&mdash; Selector de elementos CSS para el componente
-1. `templateUrl`&mdash; Ubicación del archivo Plantillas para el componente
+1. `selector`&mdash; El selector de elementos CSS para el componente
+1. `templateUrl`&mdash; La ubicación del archivo de plantilla para el componente
 1. `styleUrls`&mdash; La ubicación de los estilos CSS privados del componente.
 
 {@a selector}
