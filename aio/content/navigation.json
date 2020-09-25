@@ -48,7 +48,7 @@
     {
       "url": "docs",
       "title": "Introducción",
-      "tooltip": "Introducción a la documentación angular.",
+      "tooltip": "Introducción a la documentación Angular.",
       "hidden": false
     },
     {
@@ -62,12 +62,12 @@
         },
         {
           "title": "Conceptos Angular",
-          "tooltip": "Introducción a los conceptos básicos de las aplicaciones angular.",
+          "tooltip": "Introducción a los conceptos básicos de las aplicaciones Angular.",
           "children": [
             {
               "url": "guide/architecture",
               "title": "Introducción a los conceptos básicos",
-              "tooltip": "Bloques de construcción básicos de aplicaciones angular"
+              "tooltip": "Bloques de construcción básicos de aplicaciones Angular"
             },
             {
               "url": "guide/architecture-modules",
@@ -164,7 +164,7 @@
             {
               "url": "tutorial/toh-pt5",
               "title": "5. Agregar navegación en la aplicación",
-              "tooltip": "Parte 5: Agregue el enrutador angular para moverse entre vistas."
+              "tooltip": "Parte 5: Agregue el enrutador Angular para moverse entre vistas."
             },
             {
               "url": "tutorial/toh-pt6",
@@ -214,7 +214,7 @@
                 },
                 {
                   "url": "guide/property-binding",
-                  "title": "Vinculación de propiedad",
+                  "title": "Enlace de propiedad",
                   "tooltip": "Guía introductoria para configurar propiedades de entrada o elemento."
                 },
                 {
@@ -229,7 +229,7 @@
                 },
                 {
                   "url": "guide/two-way-binding",
-                  "title": "Unión Bidireccional",
+                  "title": "Enlace Bidireccional",
                   "tooltip": "Guía introductoria para compartir datos entre una clase y una plantilla."
                 },
                 {
@@ -276,8 +276,8 @@
             },
             {
               "url": "guide/pipes",
-              "title": "tuberías",
-              "tooltip": "Las tuberías transforman los valores mostrados dentro de una plantilla."
+              "title": "Pipes",
+              "tooltip": "Los pipes transforman los valores mostrados dentro de una plantilla."
             },
             {
               "url": "guide/lifecycle-hooks",
@@ -313,7 +313,7 @@
             {
               "url": "guide/forms-overview",
               "title": "Introducción",
-              "tooltip": "Una forma angular coordina un conjunto de controles de usuario vinculados a datos, realiza un seguimiento de los cambios, valida la entrada y presenta errores."
+              "tooltip": "Una forma Angular coordina un conjunto de controles de usuario vinculados a datos, realiza un seguimiento de los cambios, valida la entrada y presenta errores."
             },
             {
               "url": "guide/reactive-forms",
@@ -343,8 +343,8 @@
             },
             {
               "url": "guide/rx-library",
-              "title": "La biblioteca RxJS",
-              "tooltip": "Una biblioteca para programación reactiva que utiliza observables para componer código asincrónico o basado en devolución de llamada."
+              "title": "La librería RxJS",
+              "tooltip": "Una librería para programación reactiva que utiliza observables para componer código asincrónico o basado en devolución de llamada."
             },
             {
               "url": "guide/observables-in-angular",
@@ -374,7 +374,7 @@
             },
             {
               "url": "guide/ngmodule-vs-jsmodule",
-              "title": "Modules JS vs NgModules",
+              "title": "Módulos JS vs NgModules",
               "tooltip": "Diferenciar entre módulos JavaScript y NgModules."
             },
             {
@@ -419,7 +419,7 @@
             },
             {
               "url": "guide/sharing-ngmodules",
-              "title": "Compartiendo NgModules",
+              "title": "Comparta NgModules para optimizar sus aplicaciones",
               "tooltip": "Share NgModules to streamline your apps."
             },
             {
@@ -590,7 +590,7 @@
             },
             {
               "url": "guide/angular-compiler-options",
-              "title": "Opciones del compilador angular",
+              "title": "Opciones del compilador Angular",
               "tooltip": "Configuración de la compilación AOT."
             },
             {
@@ -646,8 +646,8 @@
             },
             {
               "url": "guide/testing-pipes",
-              "title": "Prueba de tuberías",
-              "tooltip": "Escribir pruebas para tuberías."
+              "title": "Prueba de Pipes",
+              "tooltip": "Escribir pruebas para Pipes."
             },
             {
               "url": "guide/test-debugging",
@@ -717,37 +717,37 @@
         {
           "url": "guide/strict-mode",
           "title": "Modo estricto",
-          "tooltip": "Documentación de referencia para el modo estricto angular."
+          "tooltip": "Documentación de referencia para el modo estricto Angular."
         }
       ]
     },
     {
       "title": "Extendiendo Angular",
-      "tooltip": "Trabajar con bibliotecas y ampliar la CLI.",
+      "tooltip": "Trabajar con librerías y ampliar la CLI.",
       "children": [
         {
-          "title": "Bibliotecas Angular ",
-          "tooltip": "Ampliación de Angular con bibliotecas compartidas.",
+          "title": "Librerías Angular ",
+          "tooltip": "Ampliación de Angular con librerías compartidas.",
           "children": [
             {
               "url": "guide/libraries",
-              "title": "Descripción general de las bibliotecas",
-              "tooltip": "Comprenda cómo y cuándo usar o crear bibliotecas."
+              "title": "Descripción general de las librerías",
+              "tooltip": "Comprenda cómo y cuándo usar o crear librerías."
             },
             {
               "url": "guide/using-libraries",
-              "title": "Usar bibliotecas publicadas",
-              "tooltip": "Integra bibliotecas publicadas en una aplicación."
+              "title": "Usar librerías publicadas",
+              "tooltip": "Integra librerías publicadas en una aplicación."
             },
             {
               "url": "guide/creating-libraries",
-              "title": "Creando Bibliotecas",
-              "tooltip": "Amplíe Angular creando, publicando y usando sus propias bibliotecas."
+              "title": "Creando Librerías",
+              "tooltip": "Amplíe Angular creando, publicando y usando sus propias librerías."
             },
             {
               "url": "guide/lightweight-injection-tokens",
-              "title": "Tokens de inyección ligeros para bibliotecas",
-              "tooltip": "Optimice el tamaño de la aplicación cliente diseñando servicios de biblioteca con tokens de inyección ligeros."
+              "title": "Tokens de inyección ligeros para librerías",
+              "tooltip": "Optimice el tamaño de la aplicación cliente diseñando servicios de librería con tokens de inyección ligeros."
             }
           ]
         },
@@ -767,8 +767,8 @@
             },
             {
               "url": "guide/schematics-for-libraries",
-              "title": "Esquemas para bibliotecas",
-              "tooltip": "Use esquemas para integrar su biblioteca con el CLI Angular."
+              "title": "Esquemas para librerías",
+              "tooltip": "Use esquemas para integrar su librería con el CLI Angular."
             }
           ]
         },
@@ -790,7 +790,7 @@
             {
               "url": "guide/router-tutorial",
               "title": "Usar de rutas de Angular en una aplicación de una sola página",
-              "tooltip": "Un tutorial que cubre muchos patrones asociados con el enrutamiento angular."
+              "tooltip": "Un tutorial que cubre muchos patrones asociados con el enrutamiento Angular."
             },
             {
               "url": "guide/router-tutorial-toh",
@@ -802,18 +802,18 @@
         {
           "url": "guide/forms",
           "title": "Creación de un formulario basado en plantillas",
-          "tooltip": "Cree un formulario basado en plantillas utilizando directivas y sintaxis de plantilla angular."
+          "tooltip": "Cree un formulario basado en plantillas utilizando directivas y sintaxis de plantilla Angular."
         }
       ]
     },
     {
       "title": "Información de lanzamiento",
-      "tooltip": "Prácticas de lanzamiento angular, actualización y actualización.",
+      "tooltip": "Prácticas de lanzamiento Angular, actualización y actualización.",
       "children": [
         {
           "url": "guide/updating",
           "title": "Mantenerse al día",
-          "tooltip": "Información sobre cómo actualizar las aplicaciones y bibliotecas de Angular a la última versión."
+          "tooltip": "Información sobre cómo actualizar las aplicaciones y librerías de Angular a la última versión."
         },
         {
           "url": "guide/releases",
@@ -885,7 +885,7 @@
         {
           "url": "guide/ivy",
           "title": "Angular Ivy",
-          "tooltip": "Acerca de la canalización de compilación y renderizado de Angular Ivy."
+          "tooltip": "Acerca de la pipeline de compilación y renderizado de Angular Ivy."
         },
         {
           "title": "Actualización desde AngularJS",
