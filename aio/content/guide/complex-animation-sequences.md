@@ -67,7 +67,7 @@ Una segunda función llamada `sequence()` permite ejecutar esas mismas animacion
 
 Echemos un vistazo a otra animación en la página de ejemplo. En la pestaña Filter/Stagger, ingresa un texto en el cuadro de texto **Search Heroes**, como `Magnet` o `tornado`.
 
-El filtro funciona en tiempo real a medida que escribe. Los elementos abandonan la página a medida que escribe cada nueva letra y el filtro se vuelve progresivamente más estricto. La lista de héroes vuelve a entrar gradualmente en la página a medida que elimina cada letra en el cuadro de filtro.
+El filtro funciona en tiempo real a medida que escribe. Los elementos abandonan la página a medida que escribe cada nueva letra y el filtro se vuelve progresivamente más estricto. La lista de héroes vuelve a entrar gradualmente en la página a medida que eliminas cada letra en la caja de filtro.
 
 La plantilla HTML contiene un trigger llamado `filterAnimation`.
 
