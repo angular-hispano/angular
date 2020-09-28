@@ -32,7 +32,7 @@ El siguiente ejemplo demuestra cómo utilizar las funciones `query()` y `stagger
 
 - Usa `query()` para buscar un elemento que ingrese a la página que cumpla con ciertos criterios.
 
-- Para cada uno de estos elementos, use `style()` para establecer el mismo estilo inicial para el elemento. Hazlo invisible y usa `transform` para moverlo fuera de su posición para que pueda deslizarse a su lugar.
+- Para cada uno de estos elementos, usa `style()` para establecer el mismo estilo inicial para el elemento. Hazlo invisible y usa `transform` para moverlo fuera de su posición para que pueda deslizarse a su lugar.
 
 - Usa `stagger()` para retrasar cada animación en 30 milisegundos.
 
