@@ -16,7 +16,7 @@ También será más fácil realizar pruebas unitarias con un servicio simulado.
 Los componentes no deberían buscar ni guardar datos directamente y, desde luego, no deberían presentar a sabiendas datos simulados.
 Deben centrarse en presentar datos y delegar el acceso a los datos a un servicio.
 
-En este tutorial, creará un `HeroService` que todas las clases de aplicación pueden usar para obtener héroes.
+En este tutorial, crearás un `HeroService` que todas las clases de aplicación pueden usar para obtener héroes.
 En lugar de crear ese servicio con la [palabra clave `new`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new),
 confiará en la [*inyección de dependencia*](guide/dependency-injection) de Angular
 para inyectarlo en el constructor `HeroesComponent`.
@@ -373,7 +373,7 @@ Esta plantilla se une directamente al componente `messageService` del componente
 * Un `*ngFor` presenta la lista de mensajes en elementos repetidos` <div> `.
 
 
-* Un [enlace de evento](guide/template-syntax#event-binding) en angular une el evento de clic del botón
+* Un [enlace de evento](guide/template-syntax) en angular une el evento de clic del botón
 a `MessageService.clear ()`.
 
 Los mensajes se verán mejor cuando agregue los estilos CSS privados a `messages.component.css`
