@@ -19,24 +19,21 @@ Para ver la aplicación de ejemplo que describe esta página, consulta el <live-
 
 Para preparar su entorno de desarrollo, siga las instrucciones en [Creación de un entorno local](guide/setup-local "Setting up for Local Desarrollo").
 
-
-
-
 ## Crear un nuevo espacio de trabajo y un enlace de aplicación inicial
 
-Desarrolle su aplicación en el contexto del espacio de trabajo Angular. [Espacio de trabajo](guide/glossary#workspace). contiene uno o más archivos [proyecto]. Un proyecto es un conjunto de archivos que componen una aplicación, biblioteca o prueba de extremo a extremo (e2e). 
-En este Tutorial, creará un nuevo espacio de trabajo.
+Desarrolla tu aplicación en el contexto del espacio de trabajo Angular. [Espacio de trabajo](guide/glossary#workspace). contiene uno o más archivos [proyecto]. Un proyecto es un conjunto de archivos que componen una aplicación, biblioteca o prueba de extremo a extremo (e2e).
+En este Tutorial, crearas un nuevo espacio de trabajo.
 
 Para crear un nuevo espacio de trabajo y un proyecto de aplicación inicial:
 
-  1. Asegúrese de que no esté en la carpeta del espacio de trabajo Angular. Por ejemplo, si creó anteriormente el espacio de trabajo Introducción, cambie a la carpeta principal de esa carpeta.
-  2. Ejecute el comando CLI `ng new` y asígnele el nombre` angular-tour-of-heroes`, como se muestra a continuación.
+  1. Asegurate de que no esté en la carpeta del espacio de trabajo Angular. Por ejemplo, si creó anteriormente el espacio de trabajo Introducción, cambia a la carpeta principal de esa carpeta.
+  2. Ejecuta el comando CLI `ng new` y asígnale el nombre `angular-tour-of-heroes`, como se muestra a continuación.
 
   <code-example language="sh" class="code-shell">
     ng new angular-tour-of-heroes
   </code-example>
 
-3. Ejecute el comando `ng new` y verá información sobre las funciones que desea incluir en su primer proyecto de aplicación. Presione Entrar o Volver para aceptar el valor predeterminado.
+3. Ejecuta el comando `ng new` y verá información sobre las funciones que desea incluir en su primer proyecto de aplicación. Presione Entrar o Volver para aceptar el valor predeterminado.
 
 Angular CLI instala los paquetes Angular npm necesarios y otras dependencias. Esto puede tomar unos pocos minutos.
 
@@ -79,7 +76,7 @@ Los componentes muestran datos en la pantalla, escuchan la entrada del usuario y
 
 ## Cambiar la aplicación
 
-Para hacer algunos cambios en la aplicación de inicio, abra el proyecto en su editor de texto favorito o IDE y vaya a `src/app`.
+Para hacer algunos cambios en la aplicación de inicio, abre el proyecto en su editor de texto favorito o IDE y vaya a `src/app`.
 
 Encontrará la implementación del caparazón `AppComponent`, dividido en tres archivos:
 
@@ -89,13 +86,13 @@ Encontrará la implementación del caparazón `AppComponent`, dividido en tres a
 
 ### Cambiar el título de la aplicación
 
-Abra el archivo de clase de componente (`app.component.ts`) y cambie el valor de la propiedad` title` a `Tour de Heroes`.
+Abre el archivo de clase de componente (`app.component.ts`) y cambie el valor de la propiedad `title` a `Tour de Heroes`.
 
 <code-example path="toh-pt0/src/app/app.component.ts" region="set-title" header="app.component.ts (class title property)"></code-example>
 
-Abra el archivo de plantilla de componente (`app.component.html`) y
+Abre el archivo de plantilla de componente (`app.component.html`) y
 Elimina la plantilla predeterminada generada por el Angular CLI.
-Coloque el siguiente HTML en su lugar.
+Coloca el siguiente HTML en su lugar.
 
 <code-example path="toh-pt0/src/app/app.component.html"
   header="app.component.html (template)"></code-example>
@@ -113,7 +110,7 @@ La mayoría de las aplicaciones apuntan a una apariencia consistente en toda la 
 El CLI ha generado un `styles.css` vacío para este propósito.
 Escriba estilos que se apliquen a toda la aplicación allí.
 
-Abra `src/style.css` y agregue el siguiente código al archivo.
+Abre `src/style.css` y agrega el siguiente código al archivo.
 
 <code-example path="toh-pt0/src/styles.1.css" header="src/styles.css (excerpt)">
 </code-example>
@@ -138,6 +135,6 @@ A continuación se muestra un archivo del código mencionado en esta página.
 
 ## Resumen
 
-* Usted creó la estructura de la aplicación inicial utilizando el CLI Angular.
-* Aprendio que los componentes de Angular muestran datos.
+* Creaste la estructura de la aplicación inicial utilizando el CLI Angular.
+* Aprendiste que los componentes de Angular muestran datos.
 * Utilizaste las llaves dobles de interpolación para mostrar el título de la aplicación.
