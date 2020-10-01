@@ -33,3 +33,10 @@ Comprueba si tu PR cumple los siguientes requisitos:
 <!--
 Ejemplo: Archivo en inglés traducido al español
 -->
+
+## ¿Cuál es el id de la issue que resuelve?
+<!--
+Ejemplo: Fix: #1 
+-->
+
+
