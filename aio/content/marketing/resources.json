@@ -6,7 +6,7 @@
         "order": 1,
         "resources": {
           "awesome-angular-components": {
-            "desc": "Un índice de la comunidad de componentes y bibliotecas mantenido en GitHub",
+            "desc": "Un índice de componentes y bibliotecas de la comunidad mantenido en GitHub",
             "title": "Catálogo de bibliotecas y componentes Angular",
             "url": "https://github.com/brillout/awesome-angular-components"
           },
@@ -31,7 +31,7 @@
             "title": "DEV Community"
           },
           "angular-in-depth": {
-            "desc": "El lugar donde se explican los conceptos angular avanzados",
+            "desc": "El lugar donde se explican los conceptos Angular avanzados",
             "url": "https://blog.angularindepth.com",
             "title": "Angular In Depth"
           }
@@ -263,7 +263,7 @@
             "url": "https://js.devexpress.com/Overview/Angular/"
           },
           "234237": {
-            "desc": "Las pautas de UX, el marco HTML / CSS y los componentes angular trabajan juntos para crear experiencias excepcionales",
+            "desc": "Las pautas de UX, el marco HTML / CSS y los componentes Angular trabajan juntos para crear experiencias excepcionales",
             "title": "Sistema de diseño de Clarity",
             "url": "https://vmware.github.io/clarity/"
           },
@@ -351,12 +351,12 @@
             "url": "https://github.com/ghiscoding/Angular-Slickgrid"
           },
           "fancygrid": {
-            "desc": "Biblioteca de cuadrícula angular con integración de gráficos y comunicación con el servidor para empresas.",
+            "desc": "Biblioteca de cuadrícula Angular con integración de gráficos y comunicación con el servidor para empresas.",
             "title": "FancyGrid",
             "url": "https://fancygrid.com/docs/getting-started/angular"
           },
           "ngx-smart-modal": {
-            "desc": "Controlador modal angular inteligente, ligero y rápido para administrar modales y datos en todas partes.",
+            "desc": "Controlador modal Angular inteligente, ligero y rápido para administrar modales y datos en todas partes.",
             "title": "ngx-smart-modal",
             "url": "https://biig-io.github.io/ngx-smart-modal"
           },
@@ -383,7 +383,7 @@
             "url": "https://www.syncfusion.com/products/angular-js2"
           },
           "trulyui": {
-            "desc": "TrulyUI es un marco de interfaz de usuario angular especialmente desarrollado para aplicaciones de escritorio basadas en componentes web que utilizan las mejores tecnologías del mundo.",
+            "desc": "TrulyUI es un marco de interfaz de usuario Angular especialmente desarrollado para aplicaciones de escritorio basadas en componentes web que utilizan las mejores tecnologías del mundo.",
             "title": "Truly UI",
             "url": "http://truly-ui.com"
           },
@@ -409,7 +409,7 @@
             "url": "https://akveo.github.io/nebular/"
           },
           "carbondesignsystem": {
-            "desc": "Una implementación angular del Carbon Design System para IBM.",
+            "desc": "Una implementación Angular del Carbon Design System para IBM.",
             "title": "Carbon Components Angular",
             "url": "https://angular.carbondesignsystem.com/"
           },
@@ -459,7 +459,7 @@
             "url": "https://chrisnoring.gitbooks.io/rxjs-5-ultimate/content/"
           },
           "vsavkin-angular-router": {
-            "desc": "Este libro es una guía completa del enrutador angular escrita por su diseñador. El libro explora la biblioteca en profundidad, incluido el modelo mental, las limitaciones de diseño y las sutilezas de la API.",
+            "desc": "Este libro es una guía completa del enrutador Angular escrita por su diseñador. El libro explora la biblioteca en profundidad, incluido el modelo mental, las limitaciones de diseño y las sutilezas de la API.",
             "title": "Angular Router",
             "url": "https://leanpub.com/router"
           },
@@ -477,7 +477,7 @@
           "wishtack-guide-angular": {
             "desc": "La guía Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
             "logo": "https://raw.githubusercontent.com/wishtack/gitbook-guide-angular/master/.gitbook/assets/wishtack-logo-with-text.png",
-            "title": "La guía angular de Wishtack (Francés)",
+            "title": "La guía Angular de Wishtack (Francés)",
             "url": "https://guide-angular.wishtack.io/"
           },
           "ab5": {
@@ -530,13 +530,13 @@
             "url": "https://angularplaybook.com"
           },
           "a2b": {
-            "desc": "Cientos de cursos angular para todos los niveles",
+            "desc": "Cientos de cursos Angular para todos los niveles",
             "logo": "",
             "title": "Pluralsight",
             "url": "https://www.pluralsight.com/paths/angular"
           },
           "ab3": {
-            "desc": "Cursos angular alojados por Udemy",
+            "desc": "Cursos Angular alojados por Udemy",
             "logo": "",
             "title": "Udemy",
             "url": "https://www.udemy.com/courses/search/?q=angular"
@@ -559,7 +559,7 @@
             "url": "http://www.angular.love/"
           },
           "learn-angular-fr": {
-            "desc": "Contenido angular en Lengua francesa.",
+            "desc": "Contenido Angular en Lengua francesa.",
             "title": "Aprende Angular (francés)",
             "url": "http://www.learn-angular.fr/"
           },
@@ -615,7 +615,7 @@
             "url": "https://www.webucator.com/webdev-training/angular-training"
           },
           "-acceleb": {
-            "desc": "Entrenamiento angular personalizado y dirigido por un instructor",
+            "desc": "Entrenamiento Angular personalizado y dirigido por un instructor",
             "title": "Accelebrate",
             "url": "https://www.accelebrate.com/angular-training"
           },
@@ -640,7 +640,7 @@
             "url": "https://www.thecodecampus.de/schulungen/angular"
           },
           "-KLIzFhfGKi1xttqJ7Uh": {
-            "desc": "Formación angular en profundidad de 4 días en Israel",
+            "desc": "Formación Angular en profundidad de 4 días en Israel",
             "title": "ng-course (Israel)",
             "url": "http://ng-course.org/"
           },
@@ -678,22 +678,22 @@
             "url": "https://learn.javascript.ru/courses/angular"
           },
           "zenika-angular": {
-            "desc": "Entrenamientos angular impartidos por Zenika (FRANCIA)",
-            "title": "Entrenamientos angular (francés)",
+            "desc": "Entrenamientos Angular impartidos por Zenika (FRANCIA)",
+            "title": "Entrenamientos Angular (francés)",
             "url": "https://training.zenika.com/fr/training/angular/description"
           },
           "formationjs": {
-            "desc": "Formación angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
+            "desc": "Formación Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
             "title": "Formation JavaScript (French)",
             "url": "https://formationjavascript.com/formation-angular/"
           },
           "humancoders-angular": {
-            "desc": "Entrenamientos angular impartidos por Human Coders (France)",
+            "desc": "Entrenamientos Angular impartidos por Human Coders (France)",
             "title": "Formation Angular (French)",
             "url": "https://www.humancoders.com/formations/angular"
           },
           "wao": {
-            "desc": "Formación angular impartida por We Are One Sàrl en Suiza",
+            "desc": "Formación Angular impartida por We Are One Sàrl en Suiza",
             "logo": "https://weareone.ch/wordpress/wao-content/uploads/2014/12/logo_200_2x.png",
             "title": "We Are One Sàrl",
             "url": "https://weareone.ch/courses/angular/"
@@ -710,7 +710,7 @@
             "url": "https://strongbrew.io/"
           },
           "angular.de": {
-            "desc": "Capacitación angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
+            "desc": "Capacitación Angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
             "logo": "https://angular.de/assets/img/angular-de-logo.svg",
             "title": "Angular.de (German)",
             "url": "https://angular.de/"
