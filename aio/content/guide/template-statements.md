@@ -5,7 +5,7 @@ como un elemento, componente o directiva.
 
 <div class="alert is-helpful">
 
-Vea la <live-example name="template-syntax">sintaxis de la plantilla</live-example> para
+Mira la <live-example name="template-syntax">sintaxis de la plantilla</live-example> para
 la sintaxis y los fragmentos de código de esta guía.
 
 </div>
