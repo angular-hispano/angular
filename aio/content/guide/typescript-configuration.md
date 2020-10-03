@@ -1,30 +1,30 @@
-# TypeScript configuration
+# Configuración TypeScript
 
-TypeScript is a primary language for Angular application development.
-It is a superset of JavaScript with design-time support for type safety and tooling.
+TypeScript es el principal lenguaje para el desarrollo de aplicaciones con Angular.
+Es un superset de JavaScript con soporte tiempo-diseño para herramientas y seguridad de tipos.
 
-Browsers can't execute TypeScript directly.
-Typescript must be "transpiled" into JavaScript using the *tsc* compiler, which requires some configuration.
+Los navegadores no pueden ejecutar TypeScript directamente. 
+Este debe “transpilarse” a JavaScript utilizando el compilador tsc, que requiere de cierta configuración.
 
-This page covers some aspects of TypeScript configuration and the TypeScript environment
-that are important to Angular developers, including details about the following files:
+Esta pagina cubre algunos de los aspectos de la configuración de TypeScript y su entorno.
+Los cuales son importantes para los desarrolladores de Angular, incluyendo algunos detalles sobre los siguientes archivos:
 
-* [tsconfig.json](guide/typescript-configuration#tsconfig)&mdash;TypeScript compiler configuration.
-* [typings](guide/typescript-configuration#typings)&mdash;TypesScript declaration files.
+* [tsconfig.json](guide/typescript-configuration#tsconfig)&mdash; Configuración del  compilador de TypeScript.
+* [typings](guide/typescript-configuration#typings)&mdash; Archivos de  declaración de TypeScript.
 
 
 {@a tsconfig}
 
-## Configuration files
+## Archivos de configuración
 
-A given Angular workspace contains several TypeScript configuration files.
-At the root level, there are two main TypeScript configuration files: a `tsconfig.json` file and a `tsconfig.base.json` file.
+Un área de trabajo de Angular contiene varios archivos de configuración de TypeScript.
+En el nivel raíz, están los dos archivos de configuración principales: el archivo `tsconfig.json` y el archivo `tsconfig.base.json`.
 
-The `tsconfig.json` file is a ["Solution Style"](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html#support-for-solution-style-tsconfigjson-files) TypeScript configuration file.
-Code editors and TypeScript’s language server use this file to improve development experience.
-Compilers do not use this file.
+El archivo `tsconfig.json` es un archivo de ["Solution Style"](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-9.html#support-for-solution-style-tsconfigjson-files) de la configuración de TypeScript. 
+Los editores de código y el servidor de TypeScript utilizan este archivo para  mejorar la experiencia de desarrollo. 
+Los compiladores no usan  este archivo. 
 
-The `tsconfig.json` file contains a list of paths to the other TypeScript configuration files used in the workspace.
+El archivo `tsconfig.json` contiene una lista de rutas a otros archivos de configuración, utilizados en el área de trabajo.
 
 <code-example lang="json" header="tsconfig.json" linenums="false">
 {
@@ -43,19 +43,19 @@ The `tsconfig.json` file contains a list of paths to the other TypeScript config
 }
 </code-example>
 
-The `tsconfig.base.json` file specifies the base TypeScript and Angular compiler options that all projects in the workspace inherit.
+El archivo `tsconfig.base.json` especifica las opciones básicas del compilador de TypeScript y Angular que heredan todos los proyectos en el área de trabajo. 
 
-The TypeScript and Angular have a wide range of options which can be used to configure type-checking features and generated output.
-For more information, see the [Configuration inheritance with extends](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#configuration-inheritance-with-extends) section of the TypeScript documentation.
+TypeScript y Angular tienen una amplia gama de opciones que se pueden usar para configurar funciones de verificación de tipos y salidas generadas.
+Para mas información, consulte la sección [Herencia  de configuración extendida](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#configuration-inheritance-with-extends) de la documentación de TypeScript. 
 
 <div class="alert is-helpful">
 
-For more information TypeScript configuration files, see the official [TypeScript wiki](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
-For details about configuration inheritance, see the [Configuration inheritance with extends](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#configuration-inheritance-with-extends) section.
+Para obtener más información sobre los archivos de configuración de TypeScript, consulte la [Wiki oficial de TypeScript](http://www.typescriptlang.org/docs/handbook/tsconfig-json.html). 
+Para obtener detalles sobre la herencia en la configuración consulte la sección [Herencia  de configuración extendida](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#configuration-inheritance-with-extends) 
 
 </div>
 
-The initial `tsconfig.base.json` for an Angular workspace typically looks like the following example.
+El archivo inicial `tsconfig.base.json` para un área de trabajo en Angular suele parecerse al siguiente ejemplo.
 
 <code-example lang="json" header="tsconfig.base.json" linenums="false">
 {
@@ -64,7 +64,7 @@ The initial `tsconfig.base.json` for an Angular workspace typically looks like t
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "declaration": false,
+    "declarativo": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
@@ -79,33 +79,33 @@ The initial `tsconfig.base.json` for an Angular workspace typically looks like t
 }
 </code-example>
 
-### Strict mode
+### Modo estricto
 
-When you create new workspaces and projects, you have the option to use Angular's strict mode, which can help you write better, more maintainable code.
-For more information, see [Strict mode](/guide/strict-mode).
+Cuando creas nuevas áreas de trabajo y proyectos, tienes la opción de usar el Modo Estricto de Angular, que puede ayudarte a escribir un código mejor y mas fácil de mantener. 
+Para obtener mas información consulte [Modo estricto](/guide/strict-mode).
 
 {@a noImplicitAny}
 
-### *noImplicitAny* and *suppressImplicitAnyIndexErrors*
+### *noImplicitAny* y *suppressImplicitAnyIndexErrors*
 
-TypeScript developers disagree about whether the `noImplicitAny` flag should be `true` or `false`.
-There is no correct answer and you can change the flag later.
-But your choice now can make a difference in larger projects, so it merits discussion.
+Los desarrolladores de TypeScript no están de acuerdo sobre si la bandera `noImplicitAny` debería ser `true` o  `false`. 
+No hay una respuesta correcta y puede cambiar la bandera más tarde. 
+Pero su elección ahora puede marcar la diferencia en proyectos más grandes, por lo que merece una discusión.
 
-When the `noImplicitAny` flag is `false` (the default), and if
-the compiler cannot infer the variable type based on how it's used,
-the compiler silently defaults the type to `any`. That's what is meant by *implicit `any`*.
+Cuando la bandera `noImplicitAny` es `false`(el valor por defecto), y si 
+el compilador no puede inferir el tipo de variable en función de cómo se usa, 
+el compilador coloca como predeterminado el tipo `any`. Eso es lo que se entiende por *implícito `any`*.
 
-When the `noImplicitAny` flag is `true` and the TypeScript compiler cannot infer
-the type, it still generates the JavaScript files, but it also **reports an error**.
-Many seasoned developers prefer this stricter setting because type checking catches more
-unintentional errors at compile time.
+Cuando la bandera `noImplicitAny` es `true`, y el compilador no puede inferir 
+el tipo de variable, aun  se generan  los archivos de JavaScript, pero también **muestra un error**. 
+Muchos desarrolladores experimentados prefieren esta configuración mas estricta porque la verificación de tipos detecta mas errores 
+en el momento de la compilación.
 
-You can set a variable's type to `any` even when the `noImplicitAny` flag is `true`.
+Puedes declarar el tipo de variable como `any` aunque la bandera `noImplicitAny` sea `true`.
 
-When the `noImplicitAny` flag is `true`, you may get *implicit index errors* as well.
-Most developers feel that *this particular error* is more annoying than helpful.
-You can suppress them with the following additional flag:
+Cuando la bandera `noImplicitAny` es `true`, puedes obtener  *implicit index errors*. 
+La mayoría  de los desarrolladores sienten que *este error en particular* es mas molesto que útil. 
+Puedes suprimirlos añadiendo la siguiente bandera: 
 
 <code-example>
 
@@ -115,61 +115,61 @@ You can suppress them with the following additional flag:
 
 <div class="alert is-helpful">
 
-For more information about how the TypeScript configuration affects compilation, see [Angular Compiler Options](guide/angular-compiler-options) and [Template Type Checking](guide/template-typecheck).
+Para obtener más información sobre cómo afecta la configuración de TypeScript a la compilación, consulte [Opciones del compilador de angular](guide/angular-compiler-options) y [Comprobación del tipo de plantilla](guide/template-typecheck).
 
 </div>
 
 
 {@a typings}
 
-## TypeScript typings
+## Tipeado en TypeScript
 
-Many JavaScript libraries, such as jQuery, the Jasmine testing library, and Angular,
-extend the JavaScript environment with features and syntax
-that the TypeScript compiler doesn't recognize natively.
-When the compiler doesn't recognize something, it throws an error.
+Muchas bibliotecas de JavaScript, como jQuery, la biblioteca de pruebas de Jasmine y Angular, 
+amplían el entorno de JavaScript con características y sintaxis 
+que el compilador de TypeScript no reconoce de forma nativa.
+Cuando el compilador no reconoce algo, arroja un error.
 
-Use [TypeScript type definition files](https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html)&mdash;`d.ts files`&mdash;to tell the compiler about the libraries you load.
+Usa [Archivos para la definición de tipos de TypeScript](https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html)&mdash;`d.ts files`&mdash; para decirle al compilador sobre las librerías que cargas. 
 
-TypeScript-aware editors leverage these same definition files to display type information about library features.
+Los editores compatibles con TypeScript aprovechan estos mismos archivos de definición para mostar información de tipo sobre las funciones de la biblioteca.
 
-Many libraries include definition files in their npm packages where both the TypeScript compiler and editors
-can find them. Angular is one such library.
-The `node_modules/@angular/core/` folder of any Angular application contains several `d.ts` files that describe parts of Angular.
+Muchas bibliotecas incluyen archivos de definición en sus paquetes npm donde tanto el compilador de TypeScript como los editores 
+puedan encontrarlos. Angular es una de esas bibliotecas.
+La carpeta `node_modules/@angular/core/` en cualquier aplicación de Angular contiene varios archivos `d.ts` que describen partes de Angular.
 
 <div class="alert is-helpful">
 
-You don't need to do anything to get *typings* files for library packages that include `d.ts` files.
-Angular packages include them already.
+No necesitas hacer nada para obtener los archivos de *tipado* de la biblioteca de archivos que incluyen los archivos `d.ts`.
+Los paquetes de Angular ya los incluyen
 
 </div>
 
 ### lib.d.ts
 
-TypeScript includes a special declaration file called `lib.d.ts`. This file contains the ambient declarations for various common JavaScript constructs present in JavaScript runtimes and the DOM.
+TypeScript incluye un archivo de declaración especial llamado `lib.d.ts`. Este archivo contiene las declaraciones de ambiente para varias construcciones comunes de JavaScript en el tiempo de ejecución de JavaScript y el DOM.
 
-Based on the `--target`, TypeScript adds _additional_ ambient declarations
-like `Promise` if the target is `es6`.
+Según el `--target`, TypeScript agrega declaraciones de ambiente _adicionales_ como `Promise` 
+si la selección es `es6`.
 
-By default, the target is `es2015`. If you are targeting `es5`, you still have newer type declarations due to the list of declaration files included:
+Por defecto, la selección es `es2015`. Si se selecciona `es5`, tienes declaraciones de tipo, mas nuevas  debido a la lista de archivos de declaración incluidos:
 
-<code-example path="getting-started/tsconfig.0.json" header="tsconfig.json (lib excerpt)" region="lib"></code-example>
+<code-example path="getting-started/tsconfig.0.json" header="tsconfig.json (lib excerpt)" region="lib"></code-example> 
 
-### Installable typings files
+### Archivos de tipos instalables. 
 
-Many libraries&mdash;jQuery, Jasmine, and Lodash among them&mdash;do *not* include `d.ts` files in their npm packages.
-Fortunately, either their authors or community contributors have created separate `d.ts` files for these libraries and
-published them in well-known locations.
+Muchas bibliotecas &mdash;jQuery, Jasmine y Lodash entre ellas&mdash; *no* incluyen archivos `d.ts` en sus paquetes npm. 
+Afortunadamente, sus autores o colaboradores de la comunidad han creado archivos `d.ts` separados para estas bibliotecas y 
+los han publicado en ubicaciones conocidas.
 
-You can install these typings via `npm` using the
-[`@types/*` scoped package](http://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html)
-and Typescript, starting at 2.0, automatically recognizes them.
+Puedes instalar estos tipos mediante `npm` usando 
+[`@types/*` scoped package](http://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html) 
+y TypeScript, a partir de 2.0, los reconoce automáticamente.
 
-For instance, to install typings for `jasmine` you run `npm install @types/jasmine --save-dev`.
+Por ejemplo, para instalar los tipos de `jasmine` se ejecuta `npm install @types/jasmine –save-dev`.
 
 
 {@a target}
 
-### *target*
+### *Selección*
 
-By default, the target is `es2015`, which is supported only in modern browsers. You can configure the target to `es5` to specifically support legacy browsers. [Differential loading](guide/deployment#differential-loading) is also provided by the Angular CLI to support modern, and legacy browsers with separate bundles.
+Por defecto, la selección es `es2015`, el cual es soportado unicamente en los navegadores modernos. Puedes configurar la  selección para que `es5` admita  las especificaciones de los navegadores de legado. La CLI de Angular proporciona una [Carga diferencial](guide/deployment#differential-loading) para admitir navegadores modernos y de legado con paquetes separados. 
