@@ -17,7 +17,7 @@ Para ver la aplicación de ejemplo que describe esta página, consulta el <live-
 
 ## Configura tu entorno
 
-Para preparar su entorno de desarrollo, siga las instrucciones en [Creación de un entorno local](guide/setup-local "Setting up for Local Desarrollo").
+Para preparar tu entorno de desarrollo, sigue las instrucciones en [Creación de un entorno local](guide/setup-local "Configuración para el desarrollo local").
 
 ## Crear un nuevo espacio de trabajo y un enlace de aplicación inicial
 
@@ -48,7 +48,7 @@ El primer proyecto de aplicación contiene una aplicación de bienvenida simple 
 
 ## Servir la aplicación
 
-Vaya a su directorio de espacio de trabajo e inicie la aplicación.
+Ve al directorio de tu espacio de trabajo e inicia la aplicación.
 
 <code-example language="sh" class="code-shell">
   cd angular-tour-of-heroes
@@ -60,25 +60,25 @@ Vaya a su directorio de espacio de trabajo e inicie la aplicación.
 El comando `ng serve` crea la aplicación, inicia el servidor de desarrollo y observa los archivos de origen.
 Cuando realiza un cambio en un archivo que se está viendo, se realizará una reconstrucción en el archivo modificado.
 
-Si especifica la bandera `--open`, se abrirá `http://localhost:4200` en su navegador.
+Si especificas la bandera `--open`, se abrirá `http://localhost:4200` en tu navegador.
 
 </div>
 
-Asegúrese de que la aplicación se esté ejecutando en su navegador.
+Asegúrate de que la aplicación se esté ejecutando en su navegador.
 
 ## Componentes de Angular
 
-La página que se muestra es _Caparazón de Aplicación_.
+La página que se muestra es _Shell de Aplicación_.
 Este caparazón funciona desde un **componente** Angular llamado `AppComponent`.
 
-Los componentes son los componentes básicos de las aplicaciones Angular.
-Los componentes muestran datos en la pantalla, escuchan la entrada del usuario y toman medidas al respecto.
+Los componentes son los bloques de construcción fundamentales de las aplicaciones Angular.
+Ellos muestran informacion en la pantalla, esperan el ingreso de datos del usuario y toman acciones basados en esa informacion ingresada.
 
 ## Cambiar la aplicación
 
 Para hacer algunos cambios en la aplicación de inicio, abre el proyecto en su editor de texto favorito o IDE y vaya a `src/app`.
 
-Encontrará la implementación del caparazón `AppComponent`, dividido en tres archivos:
+Encontrará la implementación del shell `AppComponent`, dividido en tres archivos:
 
 1. `app.component.ts`&mdash; Este es el código para la clase de componente escrita en TypeScript.
 1. `app.component.html`&mdash; Este es el componente Plantillas escrito en HTML.
