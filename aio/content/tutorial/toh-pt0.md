@@ -69,7 +69,7 @@ Asegúrate de que la aplicación se esté ejecutando en su navegador.
 ## Componentes de Angular
 
 La página que se muestra es _Shell de Aplicación_.
-Este caparazón funciona desde un **componente** Angular llamado `AppComponent`.
+Este shell funciona desde un **componente** Angular llamado `AppComponent`.
 
 Los componentes son los bloques de construcción fundamentales de las aplicaciones Angular.
 Ellos muestran informacion en la pantalla, esperan el ingreso de datos del usuario y toman acciones basados en esa informacion ingresada.
