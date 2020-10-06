@@ -42,7 +42,7 @@ Puedes inyectar el servicio `Title` en la raíz de `AppComponent` y exponer un m
 
 <code-example path="set-document-title/src/app/app.component.ts" region="class" header="src/app/app.component.ts (class)"></code-example>
 
-¡Enlace ese método a tres etiquetas de anclaje y listo!
+¡Enlaza ese método a tres etiquetas de anclaje y listo!
 
 <div class="lightbox">
   <img src="generated/images/guide/set-document-title/set-title-anim.gif" alt="Set title">
