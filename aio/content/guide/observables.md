@@ -1,4 +1,4 @@
-# Usando observable spara pasar valores
+# Usando observables para pasar valores
 
 Los observables proporcionan soporte al pase de mensajes entre partes de su aplicación.
 Se usan frecuentemente en Angular y son la técnica recomendada para el manejo de eventos, programación asíncrona y manejar valores múltiples.
@@ -33,19 +33,18 @@ Un manejador para recibir notificaciones de un observable implementa la interfac
 | `error`              | Opcional. Un manejador para una notificación de error. Un error detiene la ejecución de la instancia observable. |
 | `complete`           | Opcional. Un manejador de la notificación "ejecución completa". Los valores retrasados pueden seguir siendo entregados al siguiente manejador después de que la ejecución se completa. |
 
-Un objeto observador puede difinir cualquier combinación de estos manejadores, Si no provee un método para un tipo de notificación, el observador ignora notificaciones de ese tipo.
+Un objeto observador puede definir cualquier combinación de estos manejadores, Si no provee un método para un tipo de notificación, el observador ignora notificaciones de ese tipo.
 
 ## Suscribiéndose
 
-Una instancia `Observable` empieza publicando valores sólo cuando alguien se suscribe a ésta. Se suscribe llamando al método `subscribe()` de la instancia, pasando un objeto observer para recibir las notificaciones.
+Una instancia `Observable` empieza publicando valores sólo cuando alguien se suscribe a ésta llamando al método `subscribe()` de la instancia, pasando un objeto observer para recibir las notificaciones.
 
 <div class="alert is-helpful">
-
 
 En orden para mostrar cómo funcionan las suscripciones, necesitamos crear un observable. Hay un constructor que se usa para crear nuevas instancias, pero a manera ilustrativa, podemos usar algunos médotos de la librería RxJS que crea observables simples de tipos usados frecuentemente:
 
   * `of(...items)`&mdash;Retorna una instancia `Observable` que entrega sincrónicamente los valores envíados como argumentos.
-  * `from(iterable)`&mdash;Convierte sus argumentos a una instancia `Observable`. Éste método es usado comúnmente para convertir un arreglo en un observable.
+  * `from(iterable)`&mdash;Convierte sus argumentos a una instancia `Observable`. Éste método es usado comúnmente para convertir un array en un observable.
 
 </div>
 
@@ -62,7 +61,7 @@ Alternativamente, el método `subscribe()` puede aceptar funciónes retrollamada
 
 En cualquier caso, un manejador `next`es necesario. Los manejadores `error` y `complete` son opcionales.
 
-Tome en cuenta que la función `next()` puede recibir, por ejemplo, cadenas de mensajes, eventos de objetos, valores numérics o estructuras, dependiendo del contexto. Como un término general, nos referimos a la data publicada por un observable como un *stream*. Cualquier tipo de valor puede representarse con un observable y los valores publicados como un stream.
+Tome en cuenta que la función `next()` puede recibir, por ejemplo, cadenas de mensajes, eventos de objetos, valores numéricos o estructuras, dependiendo del contexto. Como un término general, nos referimos a la data publicada por un observable como un *stream*. Cualquier tipo de valor puede representarse con un observable y los valores publicados como un stream.
 
 ## Creando observables
 
@@ -80,7 +79,7 @@ Ahora puede usar esta función para crear un observable que publica eventos de p
 
 <code-example path="observables/src/creating.ts" region="fromevent_use" header="Usando función fromEvent personalizada"></code-example>
 
-## Multidifusión
+## Multidifusión (Multicasting)
 
 Un observable típico crea una ejecución nueva e independiente para cada observador suscrito. Cuando un observador se suscribe, el observable conecta un manejador de evento y entrega valores a ese observador. Cuando un segundo observador se suscribe, el observable conecta a un nuevo manejador de eventos y entrega valores a el segundo observador en una ejecución separada.
 
@@ -109,7 +108,7 @@ Cambiando al observable a multidifusión se vería similar a esta manera:
 
 ## Manejo de errores
 
-Como los observable producen valores de manera asíncrona, try/catch no va a agarrar errrores efectivamente. Los errores se manejan especificando una retrollamada `error` en el observador. Produciendo un error también causa que el observable limpie sus suscripciones y deje de producir valores. Un observable puede producir (haciendo retrollamada a `next`), o puede completar, con la retrollamda `complete` o `error`.
+Como los observable producen valores de manera asíncrona, try/catch no va a detectar errores efectivamente. Los errores se manejan especificando una retrollamada `error` en el observador. Produciendo un error también causa que el observable limpie sus suscripciones y deje de producir valores. Un observable puede producir (haciendo retrollamada a `next`), o puede completar, con la retrollamda `complete` o `error`.
 
 <code-example>
 myObservable.subscribe({
