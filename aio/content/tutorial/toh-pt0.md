@@ -86,7 +86,7 @@ Encontrará la implementación del shell `AppComponent`, dividido en tres archiv
 
 ### Cambiar el título de la aplicación
 
-Abre el archivo de clase de componente (`app.component.ts`) y cambie el valor de la propiedad `title` a `Tour de Heroes`.
+Abre el archivo de clase de componente (`app.component.ts`) y cambia el valor de la propiedad `title` a `Tour de Heroes`.
 
 <code-example path="toh-pt0/src/app/app.component.ts" region="set-title" header="app.component.ts (class title property)"></code-example>
 
@@ -108,7 +108,7 @@ El navegador actualiza la página con el nuevo título de la aplicación.
 
 La mayoría de las aplicaciones apuntan a una apariencia consistente en toda la aplicación.
 El CLI ha generado un `styles.css` vacío para este propósito.
-Escriba estilos que se apliquen a toda la aplicación allí.
+Escriba estilos que se apliquen a toda la aplicación, allí.
 
 Abre `src/style.css` y agrega el siguiente código al archivo.
 
