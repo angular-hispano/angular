@@ -6,7 +6,7 @@ Es posible utilizar SVG como un template válido en Angular. Toda la sintaxis de
 
 Consulta <live-example name="template-syntax"></live-example> para ver un ejemplo funcional que contiene los fragmentos de código mostrados en esta guía. </div>
 
-¿Por qué usar una template SVG, cuando puedes simplemente añadirla como una imagen a tu aplicación? 
+¿Por qué usar un template SVG, cuando puedes simplemente añadirlo como una imagen a tu aplicación? 
 
 Cuando utilizas SVG como template, puedes emplear directivas y bindings de la misma forma que harías con templates HTML. Esto significa que puedes generar gráficos interactivos dinámicamente
 
