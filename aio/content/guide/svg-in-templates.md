@@ -1,6 +1,6 @@
 # SVG en templates
 
-Es posible utilizar SVG como una template válida en Angular. Toda la sintaxis de templates a continuación es aplicable tanto a SVG como a HTML. Puedes consultar más en las especificaciones SVG [1.1](https://www.w3.org/TR/SVG11/) y [2.0](https://www.w3.org/TR/SVG2/) .
+Es posible utilizar SVG como un template válido en Angular. Toda la sintaxis de templates a continuación es aplicable tanto a SVG como a HTML. Puedes consultar más en las especificaciones SVG [1.1](https://www.w3.org/TR/SVG11/) y [2.0](https://www.w3.org/TR/SVG2/) .
 
 <div class="alert is-helpful">
 
