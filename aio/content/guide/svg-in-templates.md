@@ -18,4 +18,4 @@ Añade este código a tu archivo`svg.component.svg`:
 
 <code-example path="template-syntax/src/app/svg.component.svg" header="src/app/svg.component.svg"></code-example>
 
-Aquí puedes ver el uso de un evento binding `click()` y la sintaxis de binding de propiedades (`[attr.fill]="fillColor"`).
+Aquí puedes ver el uso de un enlace de evento `click()` y la sintaxis de un enlace de propiedad (`[attr.fill]="fillColor"`).
