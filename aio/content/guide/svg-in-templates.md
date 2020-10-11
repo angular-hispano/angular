@@ -8,7 +8,7 @@ Consulta <live-example name="template-syntax"></live-example> para ver un ejempl
 
 ¿Por qué usar un template SVG, cuando puedes simplemente añadirlo como una imagen a tu aplicación? 
 
-Cuando utilizas SVG como template, puedes emplear directivas y bindings de la misma forma que harías con templates HTML. Esto significa que puedes generar gráficos interactivos dinámicamente
+Cuando utilizas SVG como template, puedes emplear directivas y enlaces de la misma forma que harías con templates HTML. Esto significa que puedes generar gráficos interactivos dinámicamente
 
 Consulta el fragmento de código proporcionado para un ejemplo de la sintaxis:
 
