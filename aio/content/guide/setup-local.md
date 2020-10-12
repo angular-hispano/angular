@@ -1,7 +1,7 @@
 # Configurar el ambiente y el espacio de trabajo locales
 
 
-Esta guía explica cómo configurar tu ambiente para el desarrollo Angular usando el [Angular CLI tool](cli "CLI command reference").
+Esta guía explica cómo configurar tu ambiente para el desarrollo Angular usando la [Herramienta CLI de Angular](cli "CLI command reference").
 Incluye información sobre los requisitos previos, la instalación de la CLI, la creación de un espacio de trabajo inicial y una aplicación de inicio, y la ejecución de esa aplicación localmente para verificar su configuración.
 
 
