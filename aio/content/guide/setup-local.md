@@ -58,7 +58,7 @@ Para instalar Angular en su sistema local, necesitas lo siguiente:
 
 Utilizaraz la CLI de Angular para crear proyectos, generar código de aplicaciones y bibliotecas, y realizar una variedad de tareas de desarrollo, como pruebas, agrupación e implementación.
 
-Para instalar Angular CLI, abre una terminal y ejecuta el siguiente comando:
+Para instalar CLI de Angular, abre una terminal y ejecuta el siguiente comando:
 
 <code-example language="sh" class="code-shell">
   npm install -g @angular/cli
