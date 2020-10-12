@@ -127,6 +127,6 @@ Si tu instalación y configuración fue exitosa, deberías ver una página simil
 
 * Trabaja en el [Tutorial de Tour de los Heroes](tutorial), un ejercicio práctico completo que te presenta el proceso de desarrollo de aplicaciones mediante la CLI de Angular y te explica los subsistemas importantes.
 
-* Para obtener más información sobre el uso de Angular CLI, consulte la [Descripción general del CLI](cli "CLI Overview"). Además de crear el espacio de trabajo inicial y andamios de la aplicación, puedes usar la CLI para generar código de Angular como componentes y servicios. La CLI soporta el ciclo de desarrollo completo, incluida la creación, las pruebas, la agrupación y la implementación.
+* Para obtener más información sobre el uso de la CLI de Angular, consulta la [Descripción general del CLI](cli "CLI Overview"). Además de crear el espacio de trabajo inicial y andamios de la aplicación, puedes usar la CLI para generar código de Angular como componentes y servicios. La CLI soporta el ciclo de desarrollo completo, incluida la creación, las pruebas, la agrupación y la implementación.
 
 * Para obtener más información sobre los archivos de Angular generados por `ng new`, consulta [Espacio de trabajo y Estructura de archivos del proyecto](guide/file-structure).
