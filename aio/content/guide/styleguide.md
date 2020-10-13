@@ -1,137 +1,107 @@
-# Angular coding style guide
+# Guía de estilo de codificación angular
 
-Looking for an opinionated guide to Angular syntax, conventions, and application structure?
-Step right in!
-This style guide presents preferred conventions and, as importantly, explains why.
+¿Busca una guía obstinada sobre la sintaxis, las convenciones y la estructura de la aplicación de Angular?
+¡Entra directamente!
+Esta guía de estilo presenta las convenciones preferidas y, lo que es más importante, explica por qué.
 
 {@a toc}
 
-## Style vocabulary
+## Vocabulario de estilo
 
-Each guideline describes either a good or bad practice, and all have a consistent presentation.
+Cada guía describe una buena o una mala práctica, y todas tienen una presentación coherente.
 
-The wording of each guideline indicates how strong the recommendation is.
+La redacción de cada directriz indica qué tan fuerte es la recomendación.
 
 <div class="s-rule do">
 
-**Do** is one that should always be followed.
-_Always_ might be a bit too strong of a word.
-Guidelines that literally should always be followed are extremely rare.
-On the other hand, you need a really unusual case for breaking a *Do* guideline.
+**Realizar:** es uno que siempre debe seguirse.
+_Siempre_ puede ser una palabra demasiado fuerte.
+Las pautas que deben seguirse literalmente siempre son extremadamente raras.
+Por otro lado, necesita un caso realmente inusual para romper una pauta de _Realizar_
 
 </div>
 
 <div class="s-rule consider">
 
-**Consider** guidelines should generally be followed.
-If you fully understand the meaning behind the guideline and have a good reason to deviate, then do so. Please strive to be consistent.
+**Considerar:** que se deben seguir las pautas.
+Si comprende completamente el significado detrás de la directriz y tiene una buena razón para desviarse, hágalo. Por favor, esfuércese por ser coherente.
 
 </div>
 
 <div class="s-rule avoid">
 
-**Avoid** indicates something you should almost never do. Code examples to *avoid* have an unmistakable red header.
+**Evitar:** indica algo que casi nunca debes hacer. Los ejemplos de código que se deben _evitar_ tienen un encabezado rojo inconfundible.
 
 </div>
 
 <div class="s-why">
 
-**Why?** gives reasons for following the previous recommendations.
+**¿Por qué?:** da razones para seguir las recomendaciones anteriores.
 
 </div>
 
-## File structure conventions
+## Convenciones de estructuras de archivos
 
-Some code examples display a file that has one or more similarly named companion files.
-For example, `hero.component.ts` and `hero.component.html`.
+Algunos ejemplos de código muestran un archivo que tiene uno o más archivos complementarios con nombres similares.
+Por ejemplo, `hero.component.ts` y `hero.component.html`.
 
-The guideline uses the shortcut `hero.component.ts|html|css|spec` to represent those various files. Using this shortcut makes this guide's file structures easier to read and more terse.
-
+La guía usa atajos `hero.component.ts|html|css|spec` para representar esos diversos archivos. El uso de este acceso directo hace que las estructuras de archivos de esta guía sean más fáciles de leer y concisas.
 
 {@a single-responsibility}
 
-## Single responsibility
+## Responsabilidad única
 
-Apply the
-<a href="https://wikipedia.org/wiki/Single_responsibility_principle"><i>single responsibility principle</i> (SRP)</a>
-to all components, services, and other symbols.
-This helps make the app cleaner, easier to read and maintain, and more testable.
+Aplica el
+<a href="https://wikipedia.org/wiki/Single_responsibility_principle"><i>principio de responsabilidad única</i> (SRP)</a> a todos los componentes, servicios y otros símbolos.
+Esto ayuda a que la aplicación sea más limpia, más fácil de leer y mantener y más comprobable.
 
 {@a 01-01}
 
-### Rule of One
+### Regla de uno
 
-#### Style 01-01
+#### Estilo 01-01
 
 <div class="s-rule do">
 
-**Do** define one thing, such as a service or component, per file.
-
+**Realizar:** defina una cosa, como un servicio o componente, por archivo.
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** limiting files to 400 lines of code.
-
+**Considerar:** limitando archivos a 400 líneas de código.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** One component per file makes it far easier to read, maintain, and avoid
-collisions with teams in source control.
-
+**¿Por qué?:** Un componente por archivo hace que sea mucho más fácil de leer, mantener y evitar colisiones con equipos de control de fuentes.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** One component per file avoids hidden bugs that often arise when combining components in a file where they may share variables, create unwanted closures, or unwanted coupling with dependencies.
-
+**¿Por qué?:** Un componente por archivo evita errores ocultos que a menudo surgen al combinar componentes en un archivo donde pueden compartir variables, crear cierres no deseados o acoplamientos no deseados con dependencias.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** A single component can be the default export for its file which facilitates lazy loading with the router.
+**¿Por qué?:** Un solo componente puede ser la exportación predeterminada para su archivo, lo que facilita la carga diferida con el enrutador.
 
 </div>
 
+La clave es hacer que el código sea más reutilizable, más fácil de leer y menos propenso a errores.
 
-
-The key is to make the code more reusable, easier to read, and less mistake prone.
-
-The following *negative* example defines the `AppComponent`, bootstraps the app,
-defines the `Hero` model object, and loads heroes from the server all in the same file.
-*Don't do this*.
-
+El siguiente ejemplo _negativo_ define el `AppComponent`, inicia la aplicación, define el objeto modelo `Hero` y carga héroes desde el servicio en el mismo archivo.
+_No hagas esto_.
 
 <code-example path="styleguide/src/01-01/app/heroes/hero.component.avoid.ts" header="app/heroes/hero.component.ts">
 
 </code-example>
 
-
-
-It is a better practice to redistribute the component and its
-supporting classes into their own, dedicated files.
-
+Es una mejor práctica redistribuir el componente y su
+clases de apoyo en sus propios archivos dedicados.
 
 <code-tabs>
 
@@ -165,338 +135,202 @@ supporting classes into their own, dedicated files.
 
 </code-tabs>
 
-
-
-As the app grows, this rule becomes even more important.
-<a href="#toc">Back to top</a>
-
+A medida que la aplicación crece, esta regla se vuelve aún más importante.
+<a href="#toc">Volver arriba</a>
 
 {@a 01-02}
 
-### Small functions
+### Pequeñas funciones
 
-#### Style 01-02
-
+#### Estilo 01-02
 
 <div class="s-rule do">
 
-
-
-**Do** define small functions
-
+**Realizar:** definir pequeñas funciones
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** limiting to no more than 75 lines.
-
+**Considerar:** limitando a no más de 75 líneas.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Small functions are easier to test, especially when they do one thing and serve one purpose.
-
+**¿Por qué?:** Las funciones pequeñas son más fáciles de probar, especialmente cuando hacen una cosa y tienen un propósito.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Small functions promote reuse.
-
+**¿Por qué?:** Las pequeñas funciones promueven la reutilización.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Small functions are easier to read.
-
+**¿Por qué?:** Las funciones pequeñas son más fáciles de leer.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Small functions are easier to maintain.
-
+**¿Por qué?:** Las funciones pequeñas son más fáciles de mantener.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Small functions help avoid hidden bugs that come with large functions that share variables with external scope, create unwanted closures, or unwanted coupling with dependencies.
-
+**¿Por qué?:** Las funciones pequeñas ayudan a evitar errores ocultos que vienen con funciones grandes que comparten variables con alcance externo, crean cierres no deseados o acoplamientos no deseados con dependencias.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
+## Nombrar
 
-## Naming
-
-Naming conventions are hugely important to maintainability and readability. This guide recommends naming conventions for the file name and the symbol name.
-
-
+Las convenciones de nomenclatura son muy importantes para la facilidad de mantenimiento y la legibilidad. Esta guía recomienda convenciones de nomenclatura para el nombre del archivo y el nombre del símbolo.
 
 {@a 02-01}
 
-### General Naming Guidelines
+### Pautas generales de nomenclatura
 
-#### Style 02-01
-
-
-<div class="s-rule do">
-
-
-
-**Do** use consistent names for all symbols.
-
-
-</div>
-
-
+#### Estilo 02-01
 
 <div class="s-rule do">
 
-
-
-**Do** follow a pattern that describes the symbol's feature then its type. The recommended pattern is `feature.type.ts`.
-
+**Realizar:** utilizar nombres consistentes para todos los símbolos.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** siga un patrón que describa la característica de los símbolos y luego su tipo. El patrón recomendado es `feature.type.ts`.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Naming conventions help provide a consistent way to find content at a glance. Consistency within the project is vital. Consistency with a team is important. Consistency across a company provides tremendous efficiency.
-
+**¿Por qué?:** Las convenciones de nomenclatura ayudan a proporcionar una forma coherente de buscar contenido de un vistazo. La coherencia dentro del proyecto es vital. La coherencia con un equipo es importante. La coherencia en una empresa proporciona una eficiencia tremenda.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** The naming conventions should simply help find desired code faster and make it easier to understand.
-
+**¿Por qué?:** Las convenciones de nomenclatura deberían simplemente ayudar a encontrar el código deseado más rápido y hacerlo más fácil de entender.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Names of folders and files should clearly convey their intent. For example, `app/heroes/hero-list.component.ts` may contain a component that manages a list of heroes.
-
+**¿Por qué?:** Los nombres de carpetas y archivos deben transmitir claramente su intención. Por ejemplo, `app/heroes/hero-list.component.ts` puede contener un componente que gestiona una lista de héroes.
 
 </div>
 
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-02}
 
-### Separate file names with dots and dashes
+### Separe los nombres de los archivos con puntos y guiones.
 
-#### Style 02-02
-
-
-<div class="s-rule do">
-
-
-
-**Do** use dashes to separate words in the descriptive name.
-
-
-</div>
-
-
+#### Estilo 02-02
 
 <div class="s-rule do">
 
-
-
-**Do** use dots to separate the descriptive name from the type.
-
+**Realizar:** utilice guiones para separar palabras en el nombre descriptivo.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** use consistent type names for all components following a pattern that describes the component's feature then its type. A recommended pattern is `feature.type.ts`.
-
+**Realizar:** use puntos para separar el nombre descriptivo del tipo.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** use conventional type names including `.service`, `.component`, `.pipe`, `.module`, and `.directive`.
-Invent additional type names if you must but take care not to create too many.
-
+**Realizar:** utilice nombres de tipo coherentes para todos los componentes siguiendo un patrón que describa la característica de los componentes y luego su tipo. Un patrón recomendado es `feature.type.ts`.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** utilice nombres de los tipos convencionales incluyendo `.service`, `.component`, `.pipe`, `.module`, y `.directive`.
+Invente nombres de tipos adicionales si es necesario, pero tenga cuidado de no crear demasiados.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Type names provide a consistent way to quickly identify what is in the file.
-
+**¿Por qué?:** Los nombres de tipo proporcionan una forma coherente de identificar rápidamente lo que hay en el archivo.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Type names make it easy to find a specific file type using an editor or IDE's fuzzy search techniques.
-
+**¿Por qué?:** Los nombres de los tipos facilitan la búsqueda de un tipo de archivo específico mediante un editor o técnicas de búsqueda difusa IDE.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Unabbreviated type names such as `.service` are descriptive and unambiguous.
-Abbreviations such as `.srv`, `.svc`, and `.serv` can be confusing.
-
+**¿Por qué?:** Nombres de tipos no abreviados como `.service` son descriptivos e inequívocos.
+Abreviaturas como `.srv`, `.svc`, y `.serv` puede ser confuso.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Type names provide pattern matching for any automated tasks.
-
+**¿Por qué?:** Los nombres de tipo proporcionan una coincidencia de patrones para cualquier tarea automatizada.
 
 </div>
 
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-03}
 
-### Symbols and file names
+### Símbolos y nombres de archivos
 
-#### Style 02-03
-
-
-<div class="s-rule do">
-
-
-
-**Do** use consistent names for all assets named after what they represent.
-
-
-</div>
-
-
+#### Estilo 02-03
 
 <div class="s-rule do">
 
-
-
-**Do** use upper camel case for class names.
-
+**Realizar:** use nombres consistentes para todos los activos con el nombre de lo que representan.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** match the name of the symbol to the name of the file.
-
+**Realizar:** use mayúsculas/minúsculas en frases o palabras compuestas para los nombres de las clases.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** append the symbol name with the conventional suffix (such as `Component`,
-`Directive`, `Module`, `Pipe`, or `Service`) for a thing of that type.
-
+**Realizar:** Haga coincidir el nombre del símbolo con el nombre del archivo.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** give the filename the conventional suffix (such as `.component.ts`, `.directive.ts`,
-`.module.ts`, `.pipe.ts`, or `.service.ts`) for a file of that type.
+**Realizar:** agregue el nombre del símbolo con el sufijo convencional (como `Component`,
+`Directive`, `Module`, `Pipe`, o `Service`) por algo de ese tipo.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** dar al nombre de archivo el sufijo convencional (como `.component.ts`, `.directive.ts`,
+`.module.ts`, `.pipe.ts`, or `.service.ts`) para un archivo de ese tipo.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Consistent conventions make it easy to quickly identify
-and reference assets of different types.
-
+**¿Por qué?:** Las convenciones coherentes facilitan la identificación rápida y activos de referencia de diferentes tipos.
 
 </div>
-
-
 
 <table width="100%">
 
@@ -511,11 +345,11 @@ and reference assets of different types.
   <tr>
 
     <th>
-      Symbol Name
+      Nombre del símbolo
     </th>
 
     <th>
-      File Name
+      Nombre del archivo
     </th>
 
   </tr>
@@ -532,8 +366,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       app.component.ts
     </td>
 
@@ -542,7 +374,6 @@ and reference assets of different types.
   <tr style=top>
 
     <td>
-
       <code-example hideCopy class="no-box">
         @Component({ ... })
         export class HeroesComponent { }
@@ -551,8 +382,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       heroes.component.ts
     </td>
 
@@ -570,8 +399,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       hero-list.component.ts
     </td>
 
@@ -589,8 +416,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       hero-detail.component.ts
     </td>
 
@@ -608,8 +433,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       validation.directive.ts
     </td>
 
@@ -627,8 +450,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       app.module.ts
     </td>
 
@@ -646,8 +467,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       init-caps.pipe.ts
     </td>
 
@@ -665,8 +484,6 @@ and reference assets of different types.
     </td>
 
     <td>
-
-
       user-profile.service.ts
     </td>
 
@@ -674,79 +491,51 @@ and reference assets of different types.
 
 </table>
 
-
-
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-04}
 
-### Service names
+### Nombres de servicios
 
-#### Style 02-04
-
-<div class="s-rule do">
-
-
-
-**Do** use consistent names for all services named after their feature.
-
-
-</div>
-
-
+#### Estilo 02-04
 
 <div class="s-rule do">
 
-
-
-**Do** suffix a service class name with `Service`.
-For example, something that gets data or heroes
-should be called a `DataService` or a `HeroService`.
-
-A few terms are unambiguously services. They typically
-indicate agency by ending in "-er". You may prefer to name
-a service that logs messages `Logger` rather than `LoggerService`.
-Decide if this exception is agreeable in your project.
-As always, strive for consistency.
-
+**Realizar:** use nombres consistentes para todos los servicios nombrados según su función.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** sufijo un nombre de clase de servicio con `Service`.
+Por ejemplo, algo que obtiene datos o héroes.
+debería llamarse un `DataService` o un `HeroService`.
+
+Algunos términos son inequívocamente servicios. Normalmente
+indique la agencia terminando en "-er". Puede preferir nombrar
+un servicio que registra mensajes `Logger` más bien que `LoggerService`.
+Decida si esta excepción es aceptable en su proyecto.
+Como siempre, esfuércese por la coherencia.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Provides a consistent way to quickly identify and reference services.
-
+**¿Por qué?:** Proporciona una forma coherente de identificar y hacer referencia a los servicios rápidamente.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Clear service names such as `Logger` do not require a suffix.
-
+**¿Por qué?:** Nombres de servicios claros como `Logger` no requiere un sufijo.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Service names such as `Credit` are nouns and require a suffix and should be named with a suffix when it is not obvious if it is a service or something else.
-
+**¿Por qué?:** Nombres de servicios como `Credit` son sustantivos y requieren un sufijo y deben nombrarse con un sufijo cuando no es obvio si se trata de un servicio o de otra cosa.
 
 </div>
-
-
 
 <table width="100%">
 
@@ -761,11 +550,11 @@ As always, strive for consistency.
   <tr>
 
     <th>
-      Symbol Name
+      Nombre del símbolo
     </th>
 
     <th>
-      File Name
+      Nombre del archivo
     </th>
 
   </tr>
@@ -782,8 +571,6 @@ As always, strive for consistency.
     </td>
 
     <td>
-
-
       hero-data.service.ts
     </td>
 
@@ -801,8 +588,6 @@ As always, strive for consistency.
     </td>
 
     <td>
-
-
       credit.service.ts
     </td>
 
@@ -820,8 +605,6 @@ As always, strive for consistency.
     </td>
 
     <td>
-
-
       logger.service.ts
     </td>
 
@@ -829,67 +612,65 @@ As always, strive for consistency.
 
 </table>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 02-05}
 
 ### Bootstrapping
 
-#### Style 02-05
-
+#### Estilo 02-05
 
 <div class="s-rule do">
 
-**Do** put bootstrapping and platform logic for the app in a file named `main.ts`.
+**Realizar:** poner bootstrapping y lógica de plataforma para la aplicación en un archivo llamado `main.ts`.
 
 </div>
 
 <div class="s-rule do">
 
-**Do** include error handling in the bootstrapping logic.
+**Realizar:** incluir el manejo de errores en la lógica de arranque.
 
 </div>
 
 <div class="s-rule avoid">
 
-**Avoid** putting app logic in `main.ts`. Instead, consider placing it in a component or service.
+**Evitar:** incluir la lógica de la aplicación en `main.ts`. En su lugar, considere colocarlo en un componente o servicio.
 
 </div>
 
 <div class="s-why">
 
-**Why?** Follows a consistent convention for the startup logic of an app.
+**¿Por qué?:** Sigue una convención coherente para la lógica de inicio de una aplicación.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** Follows a familiar convention from other technology platforms.
+**¿Por qué?:** Sigue una convención familiar de otras plataformas tecnológicas.
 
 </div>
-
 
 <code-example path="styleguide/src/02-05/main.ts" header="main.ts">
 
 </code-example>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-02}
 
-### Component selectors
+### Selectores de componentes
 
-#### Style 05-02
+#### Estilo 05-02
 
 <div class="s-rule do">
 
-**Do** use _dashed-case_ or _kebab-case_ for naming the element selectors of components.
+**Realizar:** use _dashed-case_ o _kebab-case_ para nombrar los selectores de elementos de los componentes.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** Keeps the element names consistent with the specification for [Custom Elements](https://www.w3.org/TR/custom-elements/).
+**¿Por qué?:** Mantiene los nombres de los elementos coherentes con la especificación de [Elementos personalizados](https://www.w3.org/TR/custom-elements/).
 
 </div>
 
@@ -909,49 +690,48 @@ As always, strive for consistency.
 
 </code-tabs>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 02-07}
 
-### Component custom prefix
+### Prefijo personalizado de componente
 
-#### Style 02-07
-
+#### Estilo 02-07
 
 <div class="s-rule do">
 
-**Do** use a hyphenated, lowercase element selector value; for example, `admin-users`.
+**Realizar:** utilice un valor selector de elementos en minúsculas y con guión; por ejemplo, `admin-users`.
 
 </div>
 
 <div class="s-rule do">
 
-**Do** use a custom prefix for a component selector.
-For example, the prefix `toh` represents **T**our **o**f **H**eroes and the prefix `admin` represents an admin feature area.
+**Realizar:** utilice un prefijo personalizado para un selector de componentes.
+Por ejemplo, el prefijo `toh` representa **T**our **o**f **H**eroes y el prefijo `admin` representa un área de funciones de administración.
 
 </div>
 
 <div class="s-rule do">
 
-**Do** use a prefix that identifies the feature area or the app itself.
+**Realizar:** utilice un prefijo que identifique el área de funciones o la propia aplicación.
 
 </div>
 
 <div class="s-why">
 
-**Why?** Prevents element name collisions with components in other apps and with native HTML elements.
+**¿Por qué?:** Evita las colisiones de nombres de elementos con componentes de otras aplicaciones y con elementos HTML nativos.
 
 </div>
 
 <div class="s-why">
 
-**Why?** Makes it easier to promote and share the component in other apps.
+**¿Por qué?:** Hace que sea más fácil promocionar y compartir el componente en otras aplicaciones.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** Components are easy to identify in the DOM.
+**¿Por qué?:** Los componentes son fáciles de identificar en el DOM.
 
 </div>
 
@@ -971,135 +751,95 @@ For example, the prefix `toh` represents **T**our **o**f **H**eroes and the pref
 
 </code-example>
 
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-06}
 
-### Directive selectors
+### Selectores de directivas
 
-#### Style 02-06
+#### Estilo 02-06
 
 <div class="s-rule do">
 
-**Do** Use lower camel case for naming the selectors of directives.
+**Realizar:** Utilice mayúsculas y minúsculas para nombrar los selectores de directivas.
 
 </div>
 
 <div class="s-why">
 
-**Why?** Keeps the names of the properties defined in the directives that are bound to the view consistent with the attribute names.
+**¿Por qué?:** Mantiene los nombres de las propiedades definidas en las directivas que están vinculadas a la vista de acuerdo con los nombres de los atributos.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** The Angular HTML parser is case sensitive and recognizes lower camel case.
+**¿Por qué?:** El analizador de HTML angular distingue entre mayúsculas y minúsculas y reconoce las minúsculas en camel.
 
 </div>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 02-08}
 
-### Directive custom prefix
+### Prefijo personalizado de directiva
 
-#### Style 02-08
-
-<div class="s-rule do">
-
-
-
-**Do** use a custom prefix for the selector of directives (e.g, the prefix `toh` from **T**our **o**f **H**eroes).
-
-
-</div>
-
-
+#### Estilo 02-08
 
 <div class="s-rule do">
 
-
-
-**Do** spell non-element selectors in lower camel case unless the selector is meant to match a native HTML attribute.
-
+**Realizar:** utilizar un prefijo personalizado para el selector de directivas (por ejemplo, el prefijo `toh` desde **T**our **o**f **H**eroes).
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** deletrear selectores no de elementos en mayúsculas y minúsculas menos que el selector está destinado a coincidir con un atributo HTML nativo.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Prevents name collisions.
-
+**¿Por qué?:** Evita colisiones de nombres.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Directives are easily identified.
-
+**¿Por qué?:** Las directivas se identifican fácilmente.
 
 </div>
-
-
 
 <code-example path="styleguide/src/02-08/app/shared/validate.directive.avoid.ts" region="example" header="app/shared/validate.directive.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/02-08/app/shared/validate.directive.ts" region="example" header="app/shared/validate.directive.ts">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-09}
 
-### Pipe names
+### Nombre de pipes
 
-#### Style 02-09
+#### Estilo 02-09
 
 <div class="s-rule do">
 
-
-
-**Do** use consistent names for all pipes, named after their feature.
-The pipe class name should use [UpperCamelCase](guide/glossary#case-types)
-(the general convention for class names),
-and the corresponding `name` string should use *lowerCamelCase*.
-The `name` string cannot use hyphens ("dash-case" or "kebab-case").
-
+**Realizar:** Utilizar nombres consistentes para todos los pipes, llamados así por su función.
+El nombre de la clase de pipe debe usar [UpperCamelCase](guide/glossary#case-types)
+(la convención general para los nombres de clases),
+y el correspondiente `name` string debería usar _lowerCamelCase_.
+EL `name` string no puede usar guiones ("dash-case" or "kebab-case").
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Provides a consistent way to quickly identify and reference pipes.
-
+**¿Por qué?:** Proporciona una forma coherente de identificar y hacer referencia a los pipes rápidamente.
 
 </div>
-
-
 
 <table width="100%">
 
@@ -1114,11 +854,11 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr>
 
     <th>
-      Symbol Name
+      Nombre del símbolo
     </th>
 
     <th>
-      File Name
+      Nombre del archivo
     </th>
 
   </tr>
@@ -1135,8 +875,6 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
     </td>
 
     <td>
-
-
       ellipsis.pipe.ts
     </td>
 
@@ -1154,8 +892,6 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
     </td>
 
     <td>
-
-
       init-caps.pipe.ts
     </td>
 
@@ -1163,62 +899,37 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
 
 </table>
 
-
-
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-10}
 
-### Unit test file names
+### Nombres de archivos de prueba unitaria
 
-#### Style 02-10
-
-<div class="s-rule do">
-
-
-
-**Do** name test specification files the same as the component they test.
-
-
-</div>
-
-
+#### Estilo 02-10
 
 <div class="s-rule do">
 
-
-
-**Do** name test specification files with a suffix of `.spec`.
-
+**Realizar:** nombrar los archivos de especificación de prueba de la misma manera que el componente que prueban.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** nombrar archivos de especificación de prueba con un sufijo de `.spec`.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Provides a consistent way to quickly identify tests.
-
+**¿Por qué?:** Proporciona una forma coherente de identificar pruebas rápidamente.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Provides pattern matching for [karma](http://karma-runner.github.io/) or other test runners.
-
+**¿Por qué?:** Proporciona coincidencia de patrones para [karma](http://karma-runner.github.io/) o otros corredores de prueba.
 
 </div>
-
-
-
-
 
 <table width="100%">
 
@@ -1233,11 +944,11 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr>
 
     <th>
-      Test Type
+      Tipo de prueba
     </th>
 
     <th>
-      File Names
+      Nombres de archivos
     </th>
 
   </tr>
@@ -1245,14 +956,10 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr style=top>
 
     <td>
-
-
-      Components
+      Componentes
     </td>
 
     <td>
-
-
       heroes.component.spec.ts
 
       hero-list.component.spec.ts
@@ -1265,14 +972,10 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr style=top>
 
     <td>
-
-
-      Services
+      Servicios
     </td>
 
     <td>
-
-
       logger.service.spec.ts
 
       hero.service.spec.ts
@@ -1285,16 +988,11 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr style=top>
 
     <td>
-
-
       Pipes
     </td>
 
     <td>
-
-
       ellipsis.pipe.spec.ts
-
       init-caps.pipe.spec.ts
     </td>
 
@@ -1302,53 +1000,31 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
 
 </table>
 
-
-
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 02-11}
 
-### _End-to-End_ (E2E) test file names
+### Nombres de archivos de puebas _End-to-End_ (E2E)
 
-#### Style 02-11
+#### Estilo 02-11
 
 <div class="s-rule do">
 
-
-
-**Do** name end-to-end test specification files after the feature they test with a suffix of `.e2e-spec`.
-
+**Realizar:** denominar los archivos de especificación de prueba de extremo a extremo después de la función que ponen a prueba con el sufijo `.e2e-spec`.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Provides a consistent way to quickly identify end-to-end tests.
-
+**¿Por qué?:** Proporciona una forma coherente de identificar rápidamente las pruebas de un extremo a otro.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Provides pattern matching for test runners and build automation.
-
+**¿Por qué?:** Proporciona coincidencia de patrones para los corredores de pruebas y la automatización de compilaciones.
 
 </div>
-
-
-
-
-
-
 
 <table width="100%">
 
@@ -1363,11 +1039,11 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr>
 
     <th>
-      Test Type
+      Tipo de prueba
     </th>
 
     <th>
-      File Names
+      Nombres de archivos
     </th>
 
   </tr>
@@ -1375,16 +1051,11 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
   <tr style=top>
 
     <td>
-
-
       End-to-End Tests
     </td>
 
     <td>
-
-
       app.e2e-spec.ts
-
       heroes.e2e-spec.ts
     </td>
 
@@ -1392,115 +1063,67 @@ The `name` string cannot use hyphens ("dash-case" or "kebab-case").
 
 </table>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 02-12}
 
-### Angular _NgModule_ names
+### Angular _NgModule_ nombres
 
-#### Style 02-12
-
-
-<div class="s-rule do">
-
-
-
-**Do** append the symbol name with the suffix `Module`.
-
-
-</div>
-
-
+#### Estilo 02-12
 
 <div class="s-rule do">
 
-
-
-**Do** give the file name the `.module.ts` extension.
-
+**Realizar:** añadir el nombre del símbolo con el sufijo `Module`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** name the module after the feature and folder it resides in.
-
+**Realizar:** dar el nombre del archivo `.module.ts` extensión.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** el módulo según la función y la carpeta en la que reside.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Provides a consistent way to quickly identify and reference modules.
-
+**¿Por qué?:** Proporciona una forma coherente de identificar y hacer referencia a los módulos rápidamente.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Upper camel case is conventional for identifying objects that can be instantiated using a constructor.
-
+**¿Por qué?:** El caso de mayúsculas/minúsculas superior es convencional para identificar objetos que se pueden instanciar usando un constructor.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Easily identifies the module as the root of the same named feature.
-
+**¿Por qué?:** Identifica fácilmente el módulo como la raíz de la misma función nombrada.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** suffix a _RoutingModule_ class name with `RoutingModule`.
-
+**Realizar:** sufijo a _RoutingModule_ nombre de clase con `RoutingModule`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** end the filename of a _RoutingModule_ with `-routing.module.ts`.
-
+**Realizar:** termina el nombre del archivo de una _RoutingModule_ con `-routing.module.ts`.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** A `RoutingModule` is a module dedicated exclusively to configuring the Angular router.
-A consistent class and file name convention make these modules easy to spot and verify.
+**¿Por qué?:** Un `RoutingModule` es un módulo dedicado exclusivamente a configurar el enrutador angular. Una convención consistente de clases y nombres de archivos hace que estos módulos sean fáciles de detectar y verificar.
 
 </div>
-
-
 
 <table width="100%">
 
@@ -1515,11 +1138,11 @@ A consistent class and file name convention make these modules easy to spot and 
   <tr>
 
     <th>
-      Symbol Name
+      Nombre del símbolo
     </th>
 
     <th>
-      File Name
+      Nombre del archivo
     </th>
 
   </tr>
@@ -1527,17 +1150,13 @@ A consistent class and file name convention make these modules easy to spot and 
   <tr style=top>
 
     <td>
-
       <code-example hideCopy class="no-box">
         @NgModule({ ... })
         export class AppModule { }
       </code-example>
-
     </td>
 
     <td>
-
-
       app.module.ts
     </td>
 
@@ -1555,8 +1174,6 @@ A consistent class and file name convention make these modules easy to spot and 
     </td>
 
     <td>
-
-
       heroes.module.ts
     </td>
 
@@ -1574,8 +1191,6 @@ A consistent class and file name convention make these modules easy to spot and 
     </td>
 
     <td>
-
-
       villains.module.ts
     </td>
 
@@ -1593,8 +1208,6 @@ A consistent class and file name convention make these modules easy to spot and 
     </td>
 
     <td>
-
-
       app-routing.module.ts
     </td>
 
@@ -1612,8 +1225,6 @@ A consistent class and file name convention make these modules easy to spot and 
     </td>
 
     <td>
-
-
       heroes-routing.module.ts
     </td>
 
@@ -1621,352 +1232,237 @@ A consistent class and file name convention make these modules easy to spot and 
 
 </table>
 
+<a href="#toc">Volver arriba</a>
 
-<a href="#toc">Back to top</a>
+## Estructura de la aplicación y NgModules
 
+Tener una visión a corto plazo de la implementación y una visión a largo plazo. Comience con algo pequeño, pero tenga en cuenta hacia dónde se dirige la aplicación en el futuro.
 
-## Application structure and NgModules
+Todo el código de la aplicación va en una carpeta llamada "src".
+Todas las áreas de características están en su propia carpeta, con su propio NgModule.
 
-Have a near-term view of implementation and a long-term vision. Start small but keep in mind where the app is heading down the road.
+Todo el contenido es un activo por archivo. Cada componente, servicio y canalización está en su propio archivo.
+Todos los scripts de terceros se almacenan en otra carpeta y no en la carpeta `src`.
+No los escribiste y no quieres que abarroten `src`.
+Utilice las convenciones de nomenclatura para los archivos de esta guía.
 
-All of the app's code goes in a folder named `src`.
-All feature areas are in their own folder, with their own NgModule.
-
-All content is one asset per file. Each component, service, and pipe is in its own file.
-All third party vendor scripts are stored in another folder and not in the `src` folder.
-You didn't write them and you don't want them cluttering `src`.
-Use the naming conventions for files in this guide.
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-01}
 
 ### _LIFT_
 
-#### Style 04-01
-
-
-<div class="s-rule do">
-
-
-
-**Do** structure the app such that you can **L**ocate code quickly,
-**I**dentify the code at a glance,
-keep the **F**lattest structure you can, and
-**T**ry to be DRY.
-
-
-</div>
-
-
+#### Estilo 04-01
 
 <div class="s-rule do">
 
-
-
-**Do** define the structure to follow these four basic guidelines, listed in order of importance.
-
+**Realizar:** estructura la aplicación de modo que puedas **L**ocalizar el código rápidamente.
+**I**dentificar el código de un vistazo,
+mantener la estructura más **P**lana que puedas, y
+**T**rate de estar DRY(Don't Repeat Yourself).
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** definir la estructura para seguir estas cuatro pautas básicas, enumeradas en orden de importancia.
+
+</div>
 
 <div class="s-why-last">
 
-
-
-**Why?** LIFT provides a consistent structure that scales well, is modular, and makes it easier to increase developer efficiency by finding code quickly.
-To confirm your intuition about a particular structure, ask:
-_can I quickly open and start work in all of the related files for this feature_?
-
+**¿Por qué?:** LIFT (Locate Identify Flattest Try) proporciona una estructura consistente que escala bien, es modular y facilita el aumento de la eficiencia del desarrollador al encontrar código rápidamente.
+Para confirmar su intuición sobre una estructura en particular, pregunte:
+¿_Puedo abrir rápidamente y comenzar a trabajar en todos los archivos relacionados para esta función_?
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-02}
 
-### Locate
+### Localizar
 
-#### Style 04-02
-
+#### Estilo 04-02
 
 <div class="s-rule do">
 
-
-
-**Do** make locating code intuitive, simple, and fast.
-
+**Realizar:** hacer que la localización de código sea intuitiva, simple y rápida.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** To work efficiently you must be able to find files quickly,
-especially when you do not know (or do not remember) the file _names_.
-Keeping related files near each other in an intuitive location saves time.
-A descriptive folder structure makes a world of difference to you and the people who come after you.
-
+**¿Por qué?:** Para trabajar de manera eficiente, debe poder encontrar archivos rápidamente,
+especialmente cuando no conoce (o no recuerda) el archivo _names_.
+Mantener los archivos relacionados cerca unos de otros en una ubicación intuitiva ahorra tiempo.
+Una estructura de carpetas descriptiva hace una gran diferencia para usted y las personas que vienen después de usted.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-03}
 
-### Identify
+### Identificar
 
-#### Style 04-03
-
-
-<div class="s-rule do">
-
-
-
-**Do** name the file such that you instantly know what it contains and represents.
-
-
-</div>
-
-
+#### Estilo 04-03
 
 <div class="s-rule do">
 
-
-
-**Do** be descriptive with file names and keep the contents of the file to exactly one component.
-
+**Realizar:** designar el archivo de modo que sepa instantáneamente lo que contiene y representa.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** Sea descriptivo con los nombres de archivo y mantenga el contenido del archivo exactamente en un componente.
+
+</div>
 
 <div class="s-rule avoid">
 
-
-
-**Avoid** files with multiple components, multiple services, or a mixture.
-
+**Evitar:** archivos con varios componentes, varios servicios o una combinación.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Spend less time hunting and pecking for code, and become more efficient.
-Longer file names are far better than _short-but-obscure_ abbreviated names.
-
+**¿Por qué?:** Dedique menos tiempo a buscar y escarbar código, y sea más eficiente.
+Los nombres de archivo más largos son mucho mejores que _short-but-obscure_ nombres abreviados.
 
 </div>
-
-
 
 <div class="alert is-helpful">
 
-
-
-It may be advantageous to deviate from the _one-thing-per-file_ rule when
-you have a set of small, closely-related features that are better discovered and understood
-in a single file than as multiple files. Be wary of this loophole.
-
+Puede ser ventajoso desviarse de la _one-thing-per-file_ regla cuando
+tiene un conjunto de características pequeñas estrechamente relacionadas que se descubren y comprenden mejor
+en un solo archivo que como varios archivos. Tenga cuidado con esta laguna.
 
 </div>
 
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 04-04}
 
-### Flat
+### Plano
 
-#### Style 04-04
+#### Estilo 04-04
 
 <div class="s-rule do">
 
-
-
-**Do** keep a flat folder structure as long as possible.
-
+**Realizar:** mantenga una estructura de carpetas plana el mayor tiempo posible.
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** creating sub-folders when a folder reaches seven or more files.
-
+**Considerar:** creando subcarpetas cuando una carpeta alcanza siete o más archivos.
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** configuring the IDE to hide distracting, irrelevant files such as generated `.js` and `.js.map` files.
-
+**Considerar:** configurar el IDE para ocultar archivos irrelevantes que distraigan, como archivos generados `.js` y` .js.map`.
 
 </div>
-
-
 
 <div class="s-why-last">
 
+**¿Por qué?:** Nadie quiere buscar un archivo en siete niveles de carpetas.
+Una estructura plana es fácil de escanear.
 
+Por otra parte,
+<a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two">Los psicólogos creen</a>
+que los humanos comienzan a luchar cuando el número de cosas interesantes adyacentes supera las nueve.
+Entonces, cuando una carpeta tiene diez o más archivos, puede ser el momento de crear subcarpetas.
 
-**Why?** No one wants to search for a file through seven levels of folders.
-A flat structure is easy to scan.
-
-On the other hand,
-<a href="https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two">psychologists believe</a>
-that humans start to struggle when the number of adjacent interesting things exceeds nine.
-So when a folder has ten or more files, it may be time to create subfolders.
-
-Base your decision on your comfort level.
-Use a flatter structure until there is an obvious value to creating a new folder.
-
+Base su decisión en su nivel de comodidad.
+Utilice una estructura más plana hasta que haya un valor obvio para crear una nueva carpeta.
 
 </div>
 
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 04-05}
 
-### _T-DRY_ (Try to be _DRY_)
+### _T-DRY_ (Tratar de estar _DRY_)
 
-#### Style 04-05
+#### Estilo 04-05
 
 <div class="s-rule do">
 
-
-
-**Do** be DRY (Don't Repeat Yourself).
-
+**Realizar:** ser DRY (Don't Repeat Yourself).
 
 </div>
-
-
 
 <div class="s-rule avoid">
 
-
-
-**Avoid** being so DRY that you sacrifice readability.
-
+**Evitar:** la información no debe repetirse puesto que sacrifica la legibilidad.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Being DRY is important, but not crucial if it sacrifices the other elements of LIFT.
-That's why it's called _T-DRY_.
-For example, it's redundant to name a template `hero-view.component.html` because
-with the `.html` extension, it is obviously a view.
-But if something is not obvious or departs from a convention, then spell it out.
-
+**¿Por qué?:** Estar DRY es importante, pero no crucial si sacrifica los otros elementos de LIFT.
+Por eso se llama _T-DRY_.
+Por ejemplo, es redundante nombrar una plantilla `hero-view.component.html` porque con la extensión `.html`, obviamente es una vista.
+Pero si algo no es obvio o se aparta de una convención, escríbalo.
 
 </div>
 
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 04-06}
 
-### Overall structural guidelines
+### Directrices estructurales generales
 
-#### Style 04-06
-
-<div class="s-rule do">
-
-
-
-**Do** start small but keep in mind where the app is heading down the road.
-
-
-</div>
-
-
+#### Estilo 04-06
 
 <div class="s-rule do">
 
-
-
-**Do** have a near term view of implementation and a long term vision.
-
+**Realizar:** comience poco a poco, pero tenga en cuenta hacia dónde se dirige la aplicación en el futuro.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** put all of the app's code in a folder named `src`.
-
+**Realizar:** tener una visión a corto plazo de la implementación y una visión a largo plazo.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** poner todo el código de la aplicación en una carpeta llamada `src`.
+
+</div>
 
 <div class="s-rule consider">
 
-
-
-**Consider** creating a folder for a component when it has multiple accompanying files (`.ts`, `.html`, `.css` and `.spec`).
-
+**Considerar:** crear una carpeta para un componente cuando tiene varios archivos adjuntos (`.ts`,` .html`, `.css` y` .spec`).
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Helps keep the app structure small and easy to maintain in the early stages, while being easy to evolve as the app grows.
-
+**¿Por qué?:** Ayuda a mantener la estructura de la aplicación pequeña y fácil de mantener en las primeras etapas, mientras que es fácil de evolucionar a medida que la aplicación crece.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Components often have four files (e.g. `*.html`, `*.css`, `*.ts`, and `*.spec.ts`) and can clutter a folder quickly.
-
+**¿Por qué?:** Los componentes suelen tener cuatro archivos (p. Ej., `* .Html`,` * .css`, `* .ts` y` * .spec.ts`) y pueden saturar una carpeta rápidamente.
 
 </div>
 
-
-
 {@a file-tree}
 
-
-Here is a compliant folder and file structure:
-
+Aquí hay una carpeta y una estructura de archivos compatibles:
 
 <div class='filetree'>
 
   <div class='file'>
-    &lt;project root&gt;
+    &lt;raíz del proyecto&gt;
   </div>
 
   <div class='children'>
@@ -2183,422 +1679,279 @@ Here is a compliant folder and file structure:
 
 </div>
 
-
-
-
-
 <div class="alert is-helpful">
 
-
-
-While components in dedicated folders are widely preferred,
-another option for small apps is to keep components flat (not in a dedicated folder).
-This adds up to four files to the existing folder, but also reduces the folder nesting.
-Whatever you choose, be consistent.
-
+Si bien los componentes en carpetas dedicadas son los más preferidos,
+otra opción para aplicaciones pequeñas es mantener los componentes planos (no en una carpeta dedicada).
+Esto agrega hasta cuatro archivos a la carpeta existente, pero también reduce el anidamiento de la carpeta.
+Sea lo que sea que elija, sea coherente.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-07}
 
-### _Folders-by-feature_ structure
+### _Folders-by-feature_ estructura
 
-#### Style 04-07
-
-
-<div class="s-rule do">
-
-**Do** create folders named for the feature area they represent.
-
-</div>
-
-<div class="s-why">
-
-**Why?** A developer can locate the code and identify what each file represents
-at a glance. The structure is as flat as it can be and there are no repetitive or redundant names.
-
-</div>
-
-<div class="s-why">
-
-**Why?** The LIFT guidelines are all covered.
-
-</div>
-
-<div class="s-why">
-
-**Why?** Helps reduce the app from becoming cluttered through organizing the
-content and keeping them aligned with the LIFT guidelines.
-
-</div>
-
-<div class="s-why">
-
-**Why?** When there are a lot of files, for example 10+,
-locating them is easier with a consistent folder structure
-and more difficult in a flat structure.
-
-</div>
+#### Estilo 04-07
 
 <div class="s-rule do">
 
-**Do** create an NgModule for each feature area.
+**Realizar:** crear carpetas con el nombre del área de funciones que representan.
 
 </div>
 
 <div class="s-why">
 
-**Why?** NgModules make it easy to lazy load routable features.
+**¿Por qué?:** Un desarrollador puede localizar el código e identificar lo que representa cada archivo
+de un vistazo. La estructura es tan plana como puede ser y no hay nombres repetitivos o redundantes.
+
+</div>
+
+<div class="s-why">
+
+**¿Por qué?:** Todas las pautas LIFT están cubiertas.
+
+</div>
+
+<div class="s-why">
+
+**¿Por qué?:** Ayuda a evitar que la aplicación se abarrote al organizar la
+contenido y manteniéndolos alineados con las pautas de LIFT.
+
+</div>
+
+<div class="s-why">
+
+**¿Por qué?:** Cuando hay muchos archivos, por ejemplo 10+,
+localizarlos es más fácil con una estructura de carpetas consistente
+y más difícil en una estructura plana.
+
+</div>
+
+<div class="s-rule do">
+
+**Realizar:** cree un NgModule para cada área de características.
+
+</div>
+
+<div class="s-why">
+
+**¿Por qué?:** NgModules facilita la carga diferida de funciones enrutables.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** NgModules make it easier to isolate, test, and reuse features.
+**¿Por qué?:** NgModules facilita el aislamiento, prueba y reutilización de funciones.
 
 </div>
 
 <div>
 
-  For more information, refer to <a href="#file-tree">this folder and file structure example.</a>
+Para obtener más información, consulte <a href="#file-tree"> este ejemplo de estructura de carpetas y archivos.</a>
 
 </div>
 
-<a href="#toc">Back to top
+<a href="#toc">Volver arriba
 
 </a>
-
 
 {@a 04-08}
 
 ### App _root module_
 
-#### Style 04-08
+#### Estilo 04-08
 
 <div class="s-rule do">
 
-
-
-**Do** create an NgModule in the app's root folder,
-for example, in `/src/app`.
-
+**Realizar:** crea un NgModule en la carpeta raíz de la aplicación,
+por ejemplo, en`/src/app`.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Every app requires at least one root NgModule.
-
+**¿Por qué?:** Cada aplicación requiere al menos un NgModule raíz.
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** naming the root module `app.module.ts`.
-
+**Considerar:** nombrar el módulo raíz `app.module.ts`.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Makes it easier to locate and identify the root module.
-
+**¿Por qué?:** Facilita la localización e identificación del módulo raíz.
 
 </div>
-
-
 
 <code-example path="styleguide/src/04-08/app/app.module.ts" region="example" header="app/app.module.ts">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 04-09}
 
-### Feature modules
+### Módulos de funciones
 
-#### Style 04-09
-
-
-<div class="s-rule do">
-
-
-
-**Do** create an NgModule for all distinct features in an application;
-for example, a `Heroes` feature.
-
-
-</div>
-
-
+#### Estilo 04-09
 
 <div class="s-rule do">
 
-
-
-**Do** place the feature module in the same named folder as the feature area;
-for example, in `app/heroes`.
-
+**Realizar:** cree un NgModule para todas las funciones distintas en una aplicación;
+por ejemplo, una función de `Heroes`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** name the feature module file reflecting the name of the feature area
-and folder; for example, `app/heroes/heroes.module.ts`.
-
+**Realizar:** coloque el módulo de funciones en la misma carpeta con el nombre que el área de funciones;
+por ejemplo, en `app/heroes`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** name the feature module symbol reflecting the name of the feature
-area, folder, and file; for example, `app/heroes/heroes.module.ts` defines `HeroesModule`.
-
+**Realizar:** nombrar el archivo del módulo de características que refleje el nombre del área de características
+y carpeta; por ejemplo, `app/heroes/heroes.module.ts`.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** nombrar el símbolo del módulo de características que refleje el nombre de la característica
+área, carpeta y archivo; por ejemplo, `app/heroes/heroes.module.ts` define `HeroesModule`.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** A feature module can expose or hide its implementation from other modules.
-
+**¿Por qué?:** Un módulo de funciones puede exponer u ocultar su implementación de otros módulos.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** A feature module identifies distinct sets of related components that comprise the feature area.
-
+**¿Por qué?:** Un módulo de características identifica distintos conjuntos de componentes relacionados que comprenden el área de características.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** A feature module can easily be routed to both eagerly and lazily.
-
+**¿Por qué?:** Un módulo de funciones puede enrutarse fácilmente tanto con entusiasmo como con pereza.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** A feature module defines clear boundaries between specific functionality and other application features.
-
+**¿Por qué?:** Un módulo de funciones define límites claros entre funciones específicas y otras funciones de la aplicación.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** A feature module helps clarify and make it easier to assign development responsibilities to different teams.
-
+**¿Por qué?:** Un módulo de funciones ayuda a aclarar y facilitar la asignación de responsabilidades de desarrollo a diferentes equipos.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** A feature module can easily be isolated for testing.
-
+**¿Por qué?:** Un módulo de funciones se puede aislar fácilmente para realizar pruebas.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-10}
 
-### Shared feature module
+### Módulo de funciones compartidas
 
-#### Style 04-10
-
-
-<div class="s-rule do">
-
-
-
-**Do** create a feature module named `SharedModule` in a `shared` folder;
-for example, `app/shared/shared.module.ts` defines `SharedModule`.
-
-
-</div>
-
-
+#### Estilo 04-10
 
 <div class="s-rule do">
 
-
-
-**Do** declare components, directives, and pipes in a shared module when those
-items will be re-used and referenced by the components declared in other feature modules.
-
+**Realizar:** crear un módulo de funciones llamado `SharedModule` en una carpeta llamada `shared` ;
+por ejemplo, `app/shared/shared.module.ts` define `SharedModule`.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** declarar componentes, directivas y canalizaciones en un módulo compartido cuando esos
+Los elementos serán reutilizados y referenciados por los componentes declarados en otros módulos de funciones.
+
+</div>
 
 <div class="s-rule consider">
 
-
-
-**Consider** using the name SharedModule when the contents of a shared
-module are referenced across the entire application.
-
+**Considerar:** utilizando el nombre SharedModule cuando el contenido de un compartido
+se hace referencia a los módulos en toda la aplicación.
 
 </div>
-
-
 
 <div class="s-rule avoid">
 
-
-
-**Consider** _not_ providing services in shared modules. Services are usually
-singletons that are provided once for the entire application or
-in a particular feature module. There are exceptions, however. For example, in the sample code that follows, notice that the `SharedModule` provides `FilterTextService`. This is acceptable here because the service is stateless;that is, the consumers of the service aren't impacted by new instances.
-
+**Considerar:** _no_ prestar servicios en módulos compartidos. Los servicios son generalmente
+singletons que se proporcionan una vez para toda la aplicación o
+en un módulo de funciones en particular. Sin embargo, existen excepciones. Por ejemplo, en el código de muestra que sigue, observe que el `SharedModule` proporciona` FilterTextService`. Esto es aceptable aquí porque el servicio no tiene estado; es decir, los consumidores del servicio no se ven afectados por nuevas instancias.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** import all modules required by the assets in the `SharedModule`;
-for example, `CommonModule` and `FormsModule`.
-
+**Realizar:** importar todos los módulos requeridos por los activos en el `SharedModule`;
+por ejemplo, `CommonModule` y` FormsModule`.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** `SharedModule` will contain components, directives and pipes
-that may need features from another common module; for example,
-`ngFor` in `CommonModule`.
-
+**¿Por qué?:** `SharedModule` contendrá componentes, directivas y canalizaciones que pueden necesitar características de otro módulo común; por ejemplo,
+`ngFor` en` CommonModule`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** declare all components, directives, and pipes in the `SharedModule`.
-
+**Realizar:** declare todos los componentes, directivas y canalizaciones en el `SharedModule`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** export all symbols from the `SharedModule` that other feature modules need to use.
-
+**Realizar:** exportar todos los símbolos del `SharedModule` que otros módulos de funciones necesitan usar.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** `SharedModule` exists to make commonly used components, directives and pipes available for use in the templates of components in many other modules.
-
+**¿Por qué?:** `SharedModule` existe para hacer que los componentes, directivas y conductos de uso común estén disponibles para su uso en las plantillas de componentes en muchos otros módulos.
 
 </div>
-
-
 
 <div class="s-rule avoid">
 
-
-
-**Avoid** specifying app-wide singleton providers in a `SharedModule`. Intentional singletons are OK. Take care.
-
+**Evitar:** especificando proveedores singleton para toda la aplicación en un `SharedModule`. Los singleton intencionales están bien. Cuídate.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** A lazy loaded feature module that imports that shared module will make its own copy of the service and likely have undesirable results.
-
+**¿Por qué?:** Un módulo de funciones de carga diferida que importa ese módulo compartido hará su propia copia del servicio y probablemente tenga resultados no deseados.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** You don't want each module to have its own separate instance of singleton services.
-Yet there is a real danger of that happening if the `SharedModule` provides a service.
-
+**¿Por qué?:** No desea que cada módulo tenga su propia instancia separada de servicios singleton.
+Sin embargo, existe un peligro real de que eso suceda si el `SharedModule` proporciona un servicio.
 
 </div>
-
-
 
 <div class='filetree'>
 
@@ -2613,13 +1966,11 @@ Yet there is a real danger of that happening if the `SharedModule` provides a se
     </div>
 
     <div class='children'>
-
       <div class='file'>
         shared
       </div>
 
       <div class='children'>
-
         <div class='file'>
           shared.module.ts
         </div>
@@ -2668,10 +2019,6 @@ Yet there is a real danger of that happening if the `SharedModule` provides a se
 
 </div>
 
-
-
-
-
 <code-tabs>
 
   <code-pane header="app/shared/shared.module.ts" path="styleguide/src/04-10/app/shared/shared.module.ts">
@@ -2700,87 +2047,82 @@ Yet there is a real danger of that happening if the `SharedModule` provides a se
 
 </code-tabs>
 
-
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-11}
 
-### Lazy Loaded folders
+### Carpetas cargadas de forma diferida
 
-#### Style 04-11
+#### Estilo 04-11
 
-A distinct application feature or workflow may be *lazy loaded* or *loaded on demand* rather than when the application starts.
-
+Una función de aplicación o un flujo de trabajo distintos pueden cargarse de _forma diferida_ o _según demanda_ en lugar de cuando se inicia la aplicación.
 
 <div class="s-rule do">
 
-**Do** put the contents of lazy loaded features in a *lazy loaded folder*.
-A typical *lazy loaded folder* contains a *routing component*, its child components, and their related assets and modules.
+**Realizar:** coloque el contenido de las funciones de carga _diferida en una carpeta_.
+Una _carpeta con carga diferida_ contiene un _routing component_, sus componentes secundarios y sus activos y módulos relacionados.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** The folder makes it easy to identify and isolate the feature content.
+**¿Por qué?:** La carpeta facilita la identificación y el aislamiento del contenido de la función.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 04-12}
 
-### Never directly import lazy loaded folders
+### Nunca importe directamente carpetas cargadas de forma diferida
 
-#### Style 04-12
-
+#### Estilo 04-12
 
 <div class="s-rule avoid">
 
-**Avoid** allowing modules in sibling and parent folders to directly import a module in a *lazy loaded feature*.
+**Evitar:** permitiendo que los módulos en las carpetas del hermano y de los padres importen directamente un módulo en una _función de carga diferida_.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** Directly importing and using a module will load it immediately when the intention is to load it on demand.
+**¿Por qué?:** La importación directa y el uso de un módulo lo cargarán inmediatamente cuando la intención sea cargarlo a pedido.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
-## Components
+## Componentes
 
 {@a 05-03}
 
-### Components as elements
+### Componentes como elementos
 
-#### Style 05-03
+#### Estilo 05-03
 
 <div class="s-rule do">
 
-**Consider** giving components an _element_ selector, as opposed to _attribute_ or _class_ selectors.
+**Considerar:** dando a los componentes un selector de _elemento_, a diferencia de los selectores de _attribute_ o _clase_.
 
 </div>
 
 <div class="s-why">
 
-**Why?** Components have templates containing HTML and optional Angular template syntax.
-They display content.
-Developers place components on the page as they would native HTML elements and web components.
+**¿Por qué?:** Los componentes tienen plantillas que contienen HTML y sintaxis de plantilla angular opcional.
+Muestran contenido.
+Los desarrolladores colocan componentes en la página como lo harían con elementos HTML nativos y componentes web.
 
 </div>
 
 <div class="s-why-last">
 
-**Why?** It is easier to recognize that a symbol is a component by looking at the template's html.
+**¿Por qué?:** Es más fácil reconocer que un símbolo es un componente mirando las plantillas html.
 
 </div>
 
 <div class="alert is-helpful">
 
-There are a few cases where you give a component an attribute, such as when you want to augment a built-in element. For example, [Material Design](https://material.angular.io/components/button/overview) uses this technique with `<button mat-button>`. However, you wouldn't use this technique on a custom element.
+Hay algunos casos en los que le asigna un atributo a un componente, como cuando desea aumentar un elemento integrado. Por ejemplo, [Material Design](https://material.angular.io/components/button/overview) utiliza esta técnica con `<button mat-button>`. Sin embargo, no utilizaría esta técnica en un elemento personalizado.
 
 </div>
 
@@ -2804,107 +2146,67 @@ There are a few cases where you give a component an attribute, such as when you 
 
 </code-tabs>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-04}
 
-### Extract templates and styles to their own files
+### Extraiga plantillas y estilos a sus propios archivos
 
-#### Style 05-04
-
-
-<div class="s-rule do">
-
-**Do** extract templates and styles into a separate file, when more than 3 lines.
-
-</div>
-
-
+#### Estilo 05-04
 
 <div class="s-rule do">
 
-**Do** name the template file `[component-name].component.html`, where [component-name] is the component name.
+**Realizar:** extrae plantillas y estilos en un archivo separado, cuando hay más de 3 líneas.
 
 </div>
 
 <div class="s-rule do">
 
-
-
-**Do** name the style file `[component-name].component.css`, where [component-name] is the component name.
-
+**Realizar:** nombrar el archivo de plantilla `[component-name].component.html`, donde [component-name] es el nombre del componente.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** specify _component-relative_ URLs, prefixed with `./`.
-
+**Realizar:** nombrar el archivo de estilo `[component-name].component.css`, donde [component-name] es el nombre del componente.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** especificar _component-relative_ URLs, prefijado con `./`.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Large, inline templates and styles obscure the component's purpose and implementation, reducing readability and maintainability.
-
+**¿Por qué?:** Las plantillas y estilos grandes en línea oscurecen el propósito y la implementación del componente, lo que reduce la legibilidad y el mantenimiento.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** In most editors, syntax hints and code snippets aren't available when developing inline templates and styles.
-The Angular TypeScript Language Service (forthcoming) promises to overcome this deficiency for HTML templates
-in those editors that support it; it won't help with CSS styles.
-
+**¿Por qué?:** En la mayoría de los editores, las sugerencias de sintaxis y los fragmentos de código no están disponibles al desarrollar estilos y plantillas en línea.
+El servicio de lenguaje Angular TypeScript (de próxima aparición) promete superar esta deficiencia para las plantillas HTML
+en aquellos editores que lo apoyan; no ayudará con los estilos CSS.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** A _component relative_ URL requires no change when you move the component files, as long as the files stay together.
-
+**¿Por qué?:** Una _component relative_ La URL no requiere cambios cuando mueve los archivos componentes, siempre que los archivos permanezcan juntos.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** The `./` prefix is standard syntax for relative URLs; don't depend on Angular's current ability to do without that prefix.
-
-
+**¿Por qué?:** El prefijo `./` es una sintexia estándar para URL relativas; no depende de la capacidad actual de Angular para prescindir de ese prefijo.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-04/app/heroes/heroes.component.avoid.ts" region="example" header="app/heroes/heroes.component.ts">
 
 </code-example>
-
-
-
-
 
 <code-tabs>
 
@@ -2922,159 +2224,95 @@ in those editors that support it; it won't help with CSS styles.
 
 </code-tabs>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-12}
 
-### Decorate _input_ and _output_ properties
+### decorador de las propiedades _input_ and _output_
 
-#### Style 05-12
-
+#### Estilo 05-12
 
 <div class="s-rule do">
 
-
-
-**Do** use the `@Input()` and `@Output()` class decorators instead of the `inputs` and `outputs` properties of the
-`@Directive` and `@Component` metadata:
-
+**Realizar:** utilizar los decoradores de clase `@Input ()` y `@Output ()` en lugar de las propiedades `inputs` y `outputs` de los
+Metadatos `@Directive` y` @Component`:
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** placing `@Input()` or `@Output()` on the same line as the property it decorates.
-
+**Considerar:** colocando `@Input ()` o `@Output ()` en la misma línea que la propiedad que decora.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** It is easier and more readable to identify which properties in a class are inputs or outputs.
-
+**¿Por qué?:** Es más fácil y legible identificar qué propiedades de una clase son entradas o salidas.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** If you ever need to rename the property or event name associated with
-`@Input()` or `@Output()`, you can modify it in a single place.
-
+**¿Por qué?:** Si alguna vez necesita cambiar el nombre de la propiedad o del evento asociado con
+`@Input()` o `@Output()`, puedes modificarlo en un solo lugar.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** The metadata declaration attached to the directive is shorter and thus more readable.
-
+**¿Por qué?:** La declaración de metadatos adjunta a la directiva es más corta y, por tanto, más legible.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Placing the decorator on the same line _usually_ makes for shorter code and still easily identifies the property as an input or output.
-Put it on the line above when doing so is clearly more readable.
-
+**¿Por qué?:** Colocar al decorador en la misma línea _ generalmente_ hace que el código sea más corto y aún identifica fácilmente la propiedad como una entrada o salida.
+Colóquelo en la línea de arriba cuando al hacerlo sea claramente más legible.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-12/app/heroes/shared/hero-button/hero-button.component.avoid.ts" region="example" header="app/heroes/shared/hero-button/hero-button.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/05-12/app/heroes/shared/hero-button/hero-button.component.ts" region="example" header="app/heroes/shared/hero-button/hero-button.component.ts">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
-
+<a href="#toc">Volver arriba</a>
 
 {@a 05-13}
 
-### Avoid aliasing _inputs_ and _outputs_
+### Evite el alias _inputs_ and _outputs_
 
-#### Style 05-13
-
+#### Estilo 05-13
 
 <div class="s-rule avoid">
 
-
-
-**Avoid** _input_ and _output_ aliases except when it serves an important purpose.
-
+**Evitar:** _input_ y _output_ alias excepto cuando tiene un propósito importante.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Two names for the same property (one private, one public) is inherently confusing.
-
+**¿Por qué?:** Dos nombres para la misma propiedad (uno privado y otro público) es intrínsecamente confuso.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** You should use an alias when the directive name is also an _input_ property,
-and the directive name doesn't describe the property.
-
+**¿Por qué?:** Debería utilizar un alias cuando el nombre de la directiva también sea una propiedad _input_,
+y el nombre de la directiva no describe la propiedad.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-13/app/heroes/shared/hero-button/hero-button.component.avoid.ts" region="example" header="app/heroes/shared/hero-button/hero-button.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/05-13/app/app.component.avoid.html" header="app/app.component.html">
 
 </code-example>
-
-
-
-
 
 <code-tabs>
 
@@ -3092,222 +2330,132 @@ and the directive name doesn't describe the property.
 
 </code-tabs>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-14}
 
-### Member sequence
+### Secuencia de miembros
 
-#### Style 05-14
-
-
-<div class="s-rule do">
-
-
-
-**Do** place properties up top followed by methods.
-
-
-</div>
-
-
+#### Estilo 05-14
 
 <div class="s-rule do">
 
-
-
-**Do** place private members after public members, alphabetized.
-
+**Realizar:** coloque las propiedades en la parte superior seguidas de los métodos.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** coloque los miembros privados después de los miembros públicos, en orden alfabético.
+
+</div>
 
 <div class="s-why-last">
 
-
-
-**Why?** Placing members in a consistent sequence makes it easy to read and
-helps instantly identify which members of the component serve which purpose.
-
+**¿Por qué?:** Colocar los miembros en una secuencia consistente hace que sea fácil de leer y
+ayuda a identificar instantáneamente qué miembros del componente sirven para qué propósito.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-14/app/shared/toast/toast.component.avoid.ts" region="example" header="app/shared/toast/toast.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/05-14/app/shared/toast/toast.component.ts" region="example" header="app/shared/toast/toast.component.ts">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-15}
 
-### Delegate complex component logic to services
+### Delegar lógica de componentes complejos a los servicios
 
-#### Style 05-15
-
-
-<div class="s-rule do">
-
-
-
-**Do** limit logic in a component to only that required for the view. All other logic should be delegated to services.
-
-
-</div>
-
-
+#### Estilo 05-15
 
 <div class="s-rule do">
 
-
-
-**Do** move reusable logic to services and keep components simple and focused on their intended purpose.
-
+**Realizar:** limitar la lógica en un componente a solo la requerida para la vista. Toda otra lógica debe delegarse a los servicios.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** Mueva la lógica reutilizable a los servicios y mantenga los componentes simples y enfocados en su propósito previsto.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** Logic may be reused by multiple components when placed within a service and exposed via a function.
-
+**¿Por qué?:** La lógica puede ser reutilizada por múltiples componentes cuando se coloca dentro de un servicio y se expone a través de una función.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Logic in a service can more easily be isolated in a unit test, while the calling logic in the component can be easily mocked.
-
+**¿Por qué?:** La lógica de un servicio se puede aislar más fácilmente en una prueba unitaria, mientras que la lógica de llamada en el componente se puede burlar fácilmente.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Removes dependencies and hides implementation details from the component.
-
+**¿Por qué?:** Elimina las dependencias y oculta los detalles de implementación del componente.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Keeps the component slim, trim, and focused.
-
+**¿Por qué?:** Mantiene el componente delgado, recortado y enfocado.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-15/app/heroes/hero-list/hero-list.component.avoid.ts" header="app/heroes/hero-list/hero-list.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/05-15/app/heroes/hero-list/hero-list.component.ts" region="example" header="app/heroes/hero-list/hero-list.component.ts">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-16}
 
-### Don't prefix _output_ properties
+### No prefijas las propiedades _output_
 
-#### Style 05-16
-
-
-<div class="s-rule do">
-
-
-
-**Do** name events without the prefix `on`.
-
-
-</div>
-
-
+#### Estilo 05-16
 
 <div class="s-rule do">
 
-
-
-**Do** name event handler methods with the prefix `on` followed by the event name.
-
+**Realizar:** nombrar eventos sin el prefijo `on`.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** Nombre los métodos de manejo de eventos con el prefijo `on` seguido del nombre del evento.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** This is consistent with built-in events such as button clicks.
-
+**¿Por qué?:** Esto es coherente con los eventos integrados, como los clics en los botones.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Angular allows for an [alternative syntax](guide/binding-syntax) `on-*`. If the event itself was prefixed with `on` this would result in an `on-onEvent` binding expression.
-
+**¿Por qué?:** Angular permite una [alternative syntax](guide/binding-syntax) `on-*`. Si el evento en sí tuviera el prefijo `on` esto resultaría en una expresión de enlace `on-onEvent`.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-16/app/heroes/hero.component.avoid.ts" region="example" header="app/heroes/hero.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/05-16/app/app.component.avoid.html" header="app/app.component.html">
 
 </code-example>
-
-
-
-
 
 <code-tabs>
 
@@ -3321,616 +2469,395 @@ helps instantly identify which members of the component serve which purpose.
 
 </code-tabs>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 05-17}
 
-### Put presentation logic in the component class
+### Ponga lógica de presentación en la clase de componente
 
-#### Style 05-17
-
+#### Estilo 05-17
 
 <div class="s-rule do">
 
-
-
-**Do** put presentation logic in the component class, and not in the template.
-
+**Realizar:** coloque la lógica de presentación en la clase de componente y no en la plantilla.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Logic will be contained in one place (the component class) instead of being spread in two places.
-
+**¿Por qué?:** La lógica estará contenida en un lugar (la clase de componente) en lugar de estar esparcida en dos lugares.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Keeping the component's presentation logic in the class instead of the template improves testability, maintainability, and reusability.
-
+**¿Por qué?:** Mantener la lógica de presentación del componente en la clase en lugar de la plantilla mejora la capacidad de prueba, el mantenimiento y la reutilización.
 
 </div>
-
-
 
 <code-example path="styleguide/src/05-17/app/heroes/hero-list/hero-list.component.avoid.ts" region="example" header="app/heroes/hero-list/hero-list.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/05-17/app/heroes/hero-list/hero-list.component.ts" region="example" header="app/heroes/hero-list/hero-list.component.ts">
 
 </code-example>
 
+<a href="#toc">Volver arriba</a>
 
-
-<a href="#toc">Back to top</a>
-
-
-## Directives
+## Directivas
 
 {@a 06-01}
 
-### Use directives to enhance an element
+### Usar directivas para mejorar un elemento
 
-#### Style 06-01
-
+#### Estilo 06-01
 
 <div class="s-rule do">
 
-
-
-**Do** use attribute directives when you have presentation logic without a template.
-
+**Realizar:** use directivas de atributo cuando tenga lógica de presentación sin una plantilla.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Attribute directives don't have an associated template.
-
+**¿Por qué?:** Las directivas de atributo no tienen una plantilla asociada.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** An element may have more than one attribute directive applied.
-
+**¿Por qué?:** Un elemento puede tener aplicada más de una directiva de atributo.
 
 </div>
-
-
 
 <code-example path="styleguide/src/06-01/app/shared/highlight.directive.ts" region="example" header="app/shared/highlight.directive.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/06-01/app/app.component.html" header="app/app.component.html">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 06-03}
 
-### _HostListener_/_HostBinding_ decorators versus _host_ metadata
+### El decorador _HostListener_/_HostBinding_ versus el decorador _host_ metadata
 
-#### Style 06-03
-
+#### Estilo 06-03
 
 <div class="s-rule consider">
 
-
-
-**Consider** preferring the `@HostListener` and `@HostBinding` to the
-`host` property of the `@Directive` and `@Component` decorators.
-
+**Considerar:** prefiriendo el `@HostListener` y` @HostBinding` al
+Propiedad `host` de los decoradores` @Directive` y `@Component`.
 
 </div>
-
-
 
 <div class="s-rule do">
 
-
-
-**Do** be consistent in your choice.
-
+**Realizar:** Sea consistente en su elección.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** The property associated with `@HostBinding` or the method associated with `@HostListener`
-can be modified only in a single place&mdash;in the directive's class.
-If you use the `host` metadata property, you must modify both the property/method declaration in the
-directive's class and the metadata in the decorator associated with the directive.
-
+**¿Por qué?:** La propiedad asociada con `@ HostBinding` o el método asociado con` @ HostListener`
+se puede modificar solo en un solo lugar&mdash; en la clase de la directiva.
+Si usa la propiedad de metadatos `host`, debe modificar tanto la declaración de propiedad / método en el
+la clase de la directiva y los metadatos en el decorador asociado con la directiva.
 
 </div>
-
-
 
 <code-example path="styleguide/src/06-03/app/shared/validator.directive.ts" header="app/shared/validator.directive.ts">
 
 </code-example>
 
-
-
-Compare with the less preferred `host` metadata alternative.
-
+Compare con la alternativa de metadatos de `host` menos preferida.
 
 <div class="s-why-last">
 
-
-
-**Why?** The `host` metadata is only one term to remember and doesn't require extra ES imports.
-
+**¿Por qué?:** Los metadatos del `host` son solo un término para recordar y no requieren importaciones de ES adicionales.
 
 </div>
-
-
 
 <code-example path="styleguide/src/06-03/app/shared/validator2.directive.ts" header="app/shared/validator2.directive.ts">
 
 </code-example>
 
+<a href="#toc">Volver arriba</a>
 
-
-<a href="#toc">Back to top</a>
-
-
-## Services
+## Servicios
 
 {@a 07-01}
 
-### Services are singletons
+### Los servicios son singletons
 
-#### Style 07-01
-
+#### Estilo 07-01
 
 <div class="s-rule do">
 
-
-
-**Do** use services as singletons within the same injector. Use them for sharing data and functionality.
-
+**Realizar:** utilice los servicios como singletons dentro del mismo inyector. Úselos para compartir datos y funcionalidad.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** Services are ideal for sharing methods across a feature area or an app.
-
+**¿Por qué?:** Los servicios son ideales para compartir métodos en un área de funciones o una aplicación.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Services are ideal for sharing stateful in-memory data.
-
+**¿Por qué?:** Services are ideal for sharing stateful in-memory data.
 
 </div>
-
-
 
 <code-example path="styleguide/src/07-01/app/heroes/shared/hero.service.ts" region="example" header="app/heroes/shared/hero.service.ts">
 
 </code-example>
 
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 07-02}
 
-### Single responsibility
+### Responsabilidad única
 
-#### Style 07-02
-
-
-<div class="s-rule do">
-
-
-
-**Do** create services with a single responsibility that is encapsulated by its context.
-
-
-</div>
-
-
+#### Estilo 07-02
 
 <div class="s-rule do">
 
-
-
-**Do** create a new service once the service begins to exceed that singular purpose.
-
+**Realizar:** crear servicios con una sola responsabilidad que está encapsulada por su contexto.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** crear un nuevo servicio una vez que el servicio comience a exceder ese propósito singular.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** When a service has multiple responsibilities, it becomes difficult to test.
-
+**¿Por qué?:** Cuando un servicio tiene múltiples responsabilidades, resulta difícil probarlo.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** When a service has multiple responsibilities, every component or service that injects it now carries the weight of them all.
-
+**¿Por qué?:** Cuando un servicio tiene múltiples responsabilidades, cada componente o servicio que lo inyecta ahora tiene el peso de todas.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 07-03}
 
-### Providing a service
+### Brindar un servicio
 
-#### Style 07-03
-
+#### Estilo 07-03
 
 <div class="s-rule do">
 
-
-
-**Do** provide a service with the app root injector in the `@Injectable` decorator of the service.
-
+**Realizar:** proporcionar un servicio con la aplicación root injector en el decorador `@Injectable` del servicio.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** The Angular injector is hierarchical.
-
+**¿Por qué?:** El inyector angular es jerárquico.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** When you provide the service to a root injector, that instance of the service is shared and available in every class that needs the service. This is ideal when a service is sharing methods or state.
-
-
+**¿Por qué?:** Cuando proporciona el servicio a un inyector raíz, esa instancia del servicio se comparte y está disponible en todas las clases que necesitan el servicio. Esto es ideal cuando un servicio comparte métodos o estado.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** When you register a service in the `@Injectable` decorator of the service, optimization tools such as those used by the [Angular CLI's](cli) production builds can perform tree shaking and remove services that aren't used by your app.
+**¿Por qué?:** Cuando registra un servicio en el decorador `@Injectable` del servicio, las herramientas de optimización como las utilizadas por las compilaciones de producción de [Angular CLI's](cli) pueden realizar sacudidas de árbol y eliminar servicios que no utiliza su aplicación.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** This is not ideal when two different components need different instances of a service. In this scenario it would be better to provide the service at the component level that needs the new and separate instance.
-
+**¿Por qué?:** Esto no es ideal cuando dos componentes diferentes necesitan diferentes instancias de un servicio. En este escenario, sería mejor proporcionar el servicio en el nivel de componente que necesita la instancia nueva y separada.
 
 </div>
 
 <code-example path="dependency-injection/src/app/tree-shaking/service.ts" header="src/app/treeshaking/service.ts"></code-example>
 
-
-
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 07-04}
 
-### Use the @Injectable() class decorator
+### Usa el decorador de clases @Injectable()
 
-#### Style 07-04
-
+#### Estilo 07-04
 
 <div class="s-rule do">
 
-
-
-**Do** use the `@Injectable()` class decorator instead of the `@Inject` parameter decorator when using types as tokens for the dependencies of a service.
-
+**Realizar:** use el decorador de clase `@Injectable()` en lugar del decorador de parámetros `@Inject` cuando use tipos como tokens para las dependencias de un servicio.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** The Angular Dependency Injection (DI) mechanism resolves a service's own
-dependencies based on the declared types of that service's constructor parameters.
-
+**¿Por qué?:** El mecanismo de inyección de dependencia angular (DI) resuelve el propio servicio
+dependencias basadas en los tipos declarados de los parámetros del constructor de ese servicio.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** When a service accepts only dependencies associated with type tokens, the `@Injectable()` syntax is much less verbose compared to using `@Inject()` on each individual constructor parameter.
-
+**¿Por qué?:** Cuando un servicio acepta solo dependencias asociadas con tokens de tipo, la sintaxis `@Injectable()` es mucho menos detallada en comparación con el uso de `@Inject()` en cada parámetro de constructor individual.
 
 </div>
-
-
 
 <code-example path="styleguide/src/07-04/app/heroes/shared/hero-arena.service.avoid.ts" region="example" header="app/heroes/shared/hero-arena.service.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/07-04/app/heroes/shared/hero-arena.service.ts" region="example" header="app/heroes/shared/hero-arena.service.ts">
 
 </code-example>
 
+<a href="#toc">Volver arriba</a>
 
-
-<a href="#toc">Back to top</a>
-
-
-## Data Services
+## Servicios de datos
 
 {@a 08-01}
 
-### Talk to the server through a service
+### Hablar con el servidor a través de un servicio
 
-#### Style 08-01
-
-
-<div class="s-rule do">
-
-
-
-**Do** refactor logic for making data operations and interacting with data to a service.
-
-
-</div>
-
-
+#### Estilo 08-01
 
 <div class="s-rule do">
 
-
-
-**Do** make data services responsible for XHR calls, local storage, stashing in memory, or any other data operations.
-
+**Realizar:** refactorizar la lógica para realizar operaciones de datos e interactuar con los datos en un servicio.
 
 </div>
 
+<div class="s-rule do">
 
+**Realizar:** hacer que los servicios de datos sean responsables de las llamadas XHR, el almacenamiento local, el almacenamiento en la memoria o cualquier otra operación de datos.
+
+</div>
 
 <div class="s-why">
 
-
-
-**Why?** The component's responsibility is for the presentation and gathering of information for the view. It should not care how it gets the data, just that it knows who to ask for it. Separating the data services moves the logic on how to get it to the data service, and lets the component be simpler and more focused on the view.
-
+**¿Por qué?:** The component's responsibility is for the presentation and gathering of information for the view. It should not care how it gets the data, just that it knows who to ask for it. Separating the data services moves the logic on how to get it to the data service, and lets the component be simpler and more focused on the view.
 
 </div>
-
-
 
 <div class="s-why">
 
-
-
-**Why?** This makes it easier to test (mock or real) the data calls when testing a component that uses a data service.
-
+**¿Por qué?:** Esto facilita la prueba (simulada o real) de las llamadas de datos cuando se prueba un componente que utiliza un servicio de datos.
 
 </div>
-
-
 
 <div class="s-why-last">
 
+**¿Por qué?:** Los detalles de la gestión de datos, como encabezados, métodos HTTP, el almacenamiento en caché, el manejo de errores y la lógica de reintento son irrelevantes para los componentes
+y otros consumidores de datos.
 
-
-**Why?** The details of data management, such as headers, HTTP methods,
-caching, error handling, and retry logic, are irrelevant to components
-and other data consumers.
-
-A data service encapsulates these details. It's easier to evolve these
-details inside the service without affecting its consumers. And it's
-easier to test the consumers with mock service implementations.
-
+Un servicio de datos encapsula estos detalles. Es más fácil evolucionar estos
+detalles dentro del servicio sin afectar a sus consumidores. Y es
+Es más fácil probar a los consumidores con implementaciones de servicios simuladas.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
+## Ciclo de vida de los hooks
 
-## Lifecycle hooks
+Use los hooks del ciclo de vida para aprovechar los eventos importantes expuestos por Angular.
 
-Use Lifecycle hooks to tap into important events exposed by Angular.
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a 09-01}
 
-### Implement lifecycle hook interfaces
+### Implementar interfaces de enlace de ciclo de vida
 
-#### Style 09-01
-
+#### Estilo 09-01
 
 <div class="s-rule do">
 
-
-
-**Do** implement the lifecycle hook interfaces.
-
+**Realizar:** implementar las interfaces de enlace del ciclo de vida.
 
 </div>
-
-
 
 <div class="s-why-last">
 
-
-
-**Why?** Lifecycle interfaces prescribe typed method
-signatures. Use those signatures to flag spelling and syntax mistakes.
-
+**¿Por qué?:** Las interfaces de ciclo de vida prescriben un método escrito
+firmas. Utilice esas firmas para marcar errores de ortografía y sintaxis.
 
 </div>
-
-
 
 <code-example path="styleguide/src/09-01/app/heroes/shared/hero-button/hero-button.component.avoid.ts" region="example" header="app/heroes/shared/hero-button/hero-button.component.ts">
 
 </code-example>
 
-
-
-
-
 <code-example path="styleguide/src/09-01/app/heroes/shared/hero-button/hero-button.component.ts" region="example" header="app/heroes/shared/hero-button/hero-button.component.ts">
 
 </code-example>
 
+<a href="#toc">Volver arriba</a>
 
+## Apéndice
 
-<a href="#toc">Back to top</a>
+Herramientas y consejos útiles para Angular.
 
-
-## Appendix
-
-Useful tools and tips for Angular.
-
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a A-01}
 
-### Codelyzer
+### Codelyzer.
 
-#### Style A-01
-
+#### Estilo A-01
 
 <div class="s-rule do">
 
-
-
-**Do** use [codelyzer](https://www.npmjs.com/package/codelyzer) to follow this guide.
-
+**Realizar:** Utilice [codelyzer](https://www.npmjs.com/package/codelyzer) para seguir esta guía.
 
 </div>
-
-
 
 <div class="s-rule consider">
 
-
-
-**Consider** adjusting the rules in codelyzer to suit your needs.
-
+**Considerar:** ajustando las reglas en codelyzer para satisfacer sus necesidades.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
 
 {@a A-02}
 
-### File templates and snippets
+### Plantillas de archivos y fragmentos
 
-#### Style A-02
-
+#### Estilo A-02
 
 <div class="s-rule do">
 
-
-
-**Do** use file templates or snippets to help follow consistent styles and patterns. Here are templates and/or snippets for some of the web development editors and IDEs.
-
+**Use** plantillas de archivo o fragmentos para ayudar a seguir estilos y patrones consistentes. Aquí hay plantillas y / o fragmentos de algunos de los IDE y editores de desarrollo web.
 
 </div>
 
-
-
 <div class="s-rule consider">
 
-**Consider** using [snippets](https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2) for [Visual Studio Code](https://code.visualstudio.com/) that follow these styles and guidelines.
+**Considerar:** Utilizando [snippets](https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2) for [Visual Studio Code](https://code.visualstudio.com/) que siguen estos estilos y pautas.
 
 <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2">
   <img src="generated/images/guide/styleguide/use-extension.gif" alt="Use Extension">
 </a>
 
-**Consider** using [snippets](https://atom.io/packages/angular-2-typescript-snippets) for [Atom](https://atom.io/) that follow these styles and guidelines.
+**Considerar:** Utilizando [snippets](https://atom.io/packages/angular-2-typescript-snippets) para [Atom](https://atom.io/) Siga estos estilos y pautas.
 
-**Consider** using [snippets](https://github.com/orizens/sublime-angular2-snippets) for [Sublime Text](http://www.sublimetext.com/) that follow these styles and guidelines.
+**Considerar:** Utilizando [snippets](https://github.com/orizens/sublime-angular2-snippets) for [Sublime Text](http://www.sublimetext.com/) Siga estos estilos y pautas.
 
-**Consider** using [snippets](https://github.com/mhartington/vim-angular2-snippets) for [Vim](http://www.vim.org/) that follow these styles and guidelines.
-
+**Considerar:** Utilizando [snippets](https://github.com/mhartington/vim-angular2-snippets) for [Vim](http://www.vim.org/) Siga estos estilos y pautas.
 
 </div>
 
-<a href="#toc">Back to top</a>
+<a href="#toc">Volver arriba</a>
