@@ -58,7 +58,7 @@ Las utilidades de pruebas de Angular facilitan la investigación de cómo se com
 
 ## Probando los servicios con _TestBed_
 
-Su aplicación se basa en la [inyección de dependencias (DI)](guide/dependency-injection) de Angular
+Tu aplicación se basa en la [inyección de dependencias (ID)](guide/dependency-injection) de Angular
 para crear servicios.
 Cuando un servicio tiene un servicio dependiente, DI busca o crea ese servicio dependiente.
 Y si ese servicio dependiente tiene sus propias dependencias, DI también las encuentra o crea.
