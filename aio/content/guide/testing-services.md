@@ -122,7 +122,7 @@ y confían en `TestBed` para crear clases e inyectar servicios.
 
 Hay otra escuela de pruebas que nunca llama a `beforeEach()` y prefiere crear clases explícitamente en lugar de usar el `TestBed`.
 
-Así es como podría reescribir uno de las pruebas del `MasterService` en ese estilo.
+Así es como podrías reescribir una de las pruebas del `MasterService` en ese estilo.
 
 Empieza poniendo código preparatorio reutilizable en una función _setup_ en lugar de `beforeEach()`.
 
