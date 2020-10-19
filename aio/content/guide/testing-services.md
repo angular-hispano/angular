@@ -188,7 +188,7 @@ test runner probablemente atribuirá a una prueba completamente diferente.
 
 ## _HttpClientTestingModule_
 
-Las interacciones extendidas entre un servicio de datos y el "HttpClient" pueden ser complejas
+Las interacciones extendidas entre un servicio de datos y el `HttpClient` pueden ser complejas
 y difícil de crear un mock con los espías.
 
 El `HttpClientTestingModule` puede hacer que estos escenarios de prueba sean más manejables.
