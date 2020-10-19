@@ -158,7 +158,7 @@ que el estilo tradicional `beforeEach()`.
 Aunque esta guía de prueba sigue el estilo tradicional y
 los [esquemas CLI](https://github.com/angular/angular-cli) predeterminados
 generan archivos de prueba con `beforeEach()` y `TestBed`,
-no dudes en adoptar este enfoque alternativo en tus propios proyectos.
+no dudes en adoptar _este enfoque alternativo_ en tus propios proyectos.
 
 ## Pruebas de servicios HTTP
 
