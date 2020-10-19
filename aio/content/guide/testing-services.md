@@ -61,7 +61,7 @@ Las utilidades de pruebas de Angular facilitan la investigación de cómo se com
 Tu aplicación se basa en la [inyección de dependencias (ID)](guide/dependency-injection) de Angular
 para crear servicios.
 Cuando un servicio tiene un servicio dependiente, la inyección de dependencia busca o crea ese servicio dependiente.
-Y si ese servicio dependiente tiene sus propias dependencias, DI también las encuentra o crea.
+Y si ese servicio dependiente tiene sus propias dependencias, la inyección de dependencia también las encuentra o crea.
 
 Como _consumidor_ de servicios, no te preocupas por nada de esto.
 No te preocupes por el orden de los argumentos del constructor o cómo se crean.
