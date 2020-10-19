@@ -67,7 +67,7 @@ Como _consumidor_ de servicios, no te preocupas por nada de esto.
 No te preocupes por el orden de los argumentos del constructor o cómo se crean.
 
 Como _probador_ de servicios, debes pensar al menos en el primer nivel de dependencias del servicio
-pero _puedes_ dejar que Angular DI haga la creación del servicio y se ocupe del orden de los argumentos del constructor
+pero _puedes_ dejar que la inyección de dependencia de Angular haga la creación del servicio y se ocupe del orden de los argumentos del constructor
 cuando uses la utilidad de prueba `TestBed` para proporcionar y crear servicios.
 
 {@a testbed}
