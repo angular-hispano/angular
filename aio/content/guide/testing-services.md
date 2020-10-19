@@ -179,7 +179,7 @@ Los métodos del `HeroService` devuelven `Observables`. Debes
 _subscribirte_ a un observable para (a) hacer que se ejecute y (b)
 afirmar que el método funciona o no.
 
-El método `subscribe()` toma una callback de exito (`next`) y una de falla (`error`).
+El método `subscribe()` toma una callback de éxito (`next`) y una de falla (`error`).
 Asegurate de proporcionar _ambas_ callback para capturar errores.
 Si no lo haces, se produce un error observable asincrónico no detectado que el
 test runner probablemente atribuirá a una prueba completamente diferente.
