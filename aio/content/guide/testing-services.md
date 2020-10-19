@@ -193,6 +193,6 @@ y difícil de crear un mock con los espías.
 
 El `HttpClientTestingModule` puede hacer que estos escenarios de prueba sean más manejables.
 
-Si bien el _código de muestra_ que acompaña a esta guía muestra `HttpClientTestingModule`,
+Si bien el _ejemplo de código_ que acompaña a esta guía muestra `HttpClientTestingModule`,
 esta página se remite a la [guía Http](guide/http#testing-http-requests),
 que cubre las pruebas con el `HttpClientTestingModule` en detalle.
