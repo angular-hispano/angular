@@ -12,7 +12,7 @@ Para comprobar que tus servicios funcionan como deseas, puedes escribir pruebas 
 </div>
 
 
-Los servicios suelen ser los archivos en los que es mas facil realizar pruebas unitarias.
+Los servicios suelen ser los archivos en los que es mas fácil realizar pruebas unitarias.
 A continuación se muestran algunas pruebas unitarias sincrónicas y asincrónicas del `ValueService`
 escritas sin ayuda de las utilidades de prueba Angular.
 
@@ -196,4 +196,3 @@ El `HttpClientTestingModule` puede hacer que estos escenarios de prueba sean má
 Si bien el _código de muestra_ que acompaña a esta guía muestra `HttpClientTestingModule`,
 esta página se remite a la [guía Http](guide/http#testing-http-requests),
 que cubre las pruebas con el `HttpClientTestingModule` en detalle.
-
