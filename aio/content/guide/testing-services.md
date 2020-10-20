@@ -104,7 +104,7 @@ O dentro del `beforeEach()` si prefieres inyectar el servicio como parte de tu c
 
 Al probar un servicio con una dependencia, proporcione un mock en el array de `providers`.
 
-En el siguiente ejemplo, la imitaciόn es un objeto espía.
+En el siguiente ejemplo, el mock es un objeto espía.
 
 <code-example path="testing/src/app/demo/demo.testbed.spec.ts" region="master-service-before-each"></code-example>
 
