@@ -56,7 +56,7 @@ La sección **Workflow de Desarrollo** detalla las herramientas y los procesos u
 
 * [Compilación](guide/aot-compiler): Angular proporciona compilación `just-in-time` (JIT) para el entorno de desarrollo y compilación `ahead-of-time` (AOT) para el entorno de producción.
 
-* [Plataforma de Pruebas](guide/testing): Ejecuta pruebas unitarias sobre las distintas partes de tu aplicación a medida que interactúan con el framework de Angular.
+* [Plataforma de pruebas](guide/testing): Ejecuta pruebas unitarias sobre las distintas partes de tu aplicación a medida que interactúan con el framework de Angular.
 
 * [Despliegue](guide/deployment): Aprende técnicas para desplegar tu aplicación Angular en un servidor remoto.
 
