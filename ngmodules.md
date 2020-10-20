@@ -31,7 +31,7 @@ Los metadatos NgModule hacen lo siguiente:
 * Importar otros módulos con los componentes, directivas y pipes que los componentes del módulo actual requieren
 * Proveer servicios que otros componentes de la aplicación pueden usar.
 
-Todas las apps de Angular contienen como mínimo un módulo, el módulo root.  Se hace [bootstrap](guide/bootstrapping) a ese módulo para iniciar la aplicación.
+Todas las apps de Angular contienen como mínimo un módulo, el módulo root. Se hace [bootstrap](guide/bootstrapping) a ese módulo para iniciar la aplicación.
 
 El módulo root es todo lo que necesitas en una aplicación simple de pocos componentes. Según tu app crezca, puedes refactorizar el módulo root en [módulos de funcionalidades](guide/feature-modules), que representan colecciones de funcionalidades similares. Luego, importa esos módulos al módulo root.
 
