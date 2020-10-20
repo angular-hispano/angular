@@ -43,7 +43,7 @@ El [CLI de Angular ](cli) genera los siguientes `AppModule` básicos cuando crea
 // decorador @NgModule con sus metadatos
 </code-example>
 
-Encima están las declaraciones de import. La siguiente sección es donde se configura el `@NgModule`, indicando qué componentes y directivas le pertenecen (`declarations`), además de qué otros módulos utiliza (`imports`). Para más información sobre la estructura de un `@NgModule`, consulta [Bootstrapping](guide/bootstrapping).
+Encima están las declaraciones de `import`. La siguiente sección es donde se configura el `@NgModule`, indicando qué componentes y directivas le pertenecen (`declarations`), además de qué otros módulos utiliza (`imports`). Para más información sobre la estructura de un `@NgModule`, consulta [Bootstrapping](guide/bootstrapping).
 
 <hr />
 
