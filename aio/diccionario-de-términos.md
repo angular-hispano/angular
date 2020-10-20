@@ -18,7 +18,7 @@ A continuación algunas palabras las cuales hemos definido como traducción corr
 | Bootstrap | Cargar |
 | binding | enlace |
 | Build | Crear / crear | 
-| building | creando | 
+| Building | Creando | 
 | builder | constructor |
 | Bug | Bug |
 | Contributor | colaborador |
