@@ -35,7 +35,7 @@ A continuación algunas palabras las cuales hemos definido como traducción corr
 | Pipeline | Pipeline |
 | Promises | Promesas |
 | Pull Request | Pull Request | 
-| map | map |
+| Map | map |
 | Module | Módulo |
 | Getting start | comenzando |
 | Issue | Issue |
