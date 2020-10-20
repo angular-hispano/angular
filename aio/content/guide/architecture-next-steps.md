@@ -52,7 +52,7 @@ Para algunas plataformas y aplicaciones, se puede también querer utilizar el mo
 
 La sección **Workflow de Desarrollo** detalla las herramientas y los procesos utilizados para compilar, probar y desplegar aplicaciones Angular.
 
-* [CLI de Angular](cli): La CLI de Angular es una interfaz de línea de comandos utilizada para crear proyectos, generar código de aplicaciones y librerías y realizar un conjunto de tareas de desarrollo tales como pruebas, empaquetamiento y despliegue de aplicaciones.
+* [CLI Referencia de Comando](cli): La CLI de Angular es una interfaz de línea de comandos utilizada para crear proyectos, generar código de aplicaciones y librerías y realizar un conjunto de tareas de desarrollo tales como pruebas, empaquetamiento y despliegue de aplicaciones.
 
 * [Compilación](guide/aot-compiler): Angular proporciona compilación `just-in-time` (JIT) para el entorno de desarrollo y compilación `ahead-of-time` (AOT) para el entorno de producción.
 
