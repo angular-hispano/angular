@@ -81,7 +81,7 @@ un [@NgModule](guide/ngmodules) de Angular.
 El método `TestBed.configureTestingModule()` toma un objeto de metadatos que puede tener la mayoría de las propiedades de un [@NgModule](guide/ngmodules).
 
 Para probar un servicio, estableces la propiedad de metadatos de `providers` con un
-array de los servicios que probará o simulará.
+array de los servicios que probarás o simularás.
 
 <code-example path="testing/src/app/demo/demo.testbed.spec.ts" region="value-service-before-each" header="app/demo/demo.testbed.spec.ts (provide ValueService in beforeEach)"></code-example>
 
