@@ -13,7 +13,7 @@ Para comprobar que tus servicios funcionan como deseas, puedes escribir pruebas 
 
 
 Los servicios suelen ser los archivos en los que es mas fácil realizar pruebas unitarias.
-A continuación se muestran algunas pruebas unitarias sincrónicas y asincrónicas del `ValueService`
+ Estas son algunas pruebas unitarias sincrónicas y asincrónicas del `ValueService`
 escritas sin ayuda de las utilidades de prueba Angular.
 
 <code-example path="testing/src/app/demo/demo.spec.ts" region="ValueService" header="app/demo/demo.spec.ts"></code-example>
