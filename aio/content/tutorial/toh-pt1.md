@@ -2,17 +2,17 @@
 
 Se ha agregado un título básico a la aplicación.
 Luego crea un nuevo componente para mostrar la información del héroe,
-Coloque el componente en el (app shell) de la aplicación.
+Coloca el componente en el (app shell) de la aplicación.
 
 <div class="alert is-helpful">
 
-  Para ver la aplicación de ejemplo que describe esta página, consulte el <live-example></live-example>.
+  Para ver la aplicación de ejemplo que describe esta página, consulta el <live-example></live-example>.
 
 </div>
 
 ## Crear un componente de héroes
 
-Use la CLI angular para generar un nuevo componente llamado `heroes`.
+Usa la CLI angular para generar un nuevo componente llamado `heroes`.
 
 <code-example language="sh" class="code-shell">
   ng generate component heroes
@@ -46,9 +46,9 @@ Adecuado para poner la lógica de inicialización.
 
 Siempre `exporta` la clase de componente, por lo que siempre puede `importarla` en otro lugar, como un `AppModule`.
 
-### Agregue la propiedad `hero`
+### Agrega la propiedad `hero`
 
-Agregue una propiedad `hero` al `HeroesComponent` para un héroe llamado "Windstorm".
+Agrega una propiedad `hero` al `HeroesComponent` para un héroe llamado "Windstorm".
 
 <code-example path="toh-pt1/src/app/heroes/heroes.component.ts" region="add-hero" header="heroes.component.ts (hero property)"></code-example>
 
@@ -65,7 +65,7 @@ Reemplaza con un enlace de datos a la nueva propiedad `hero`.
 Para ver el `HeroesComponent`, debe agregarlo a las Plantillas en el `AppComponent` del shell de tu aplicación.
 
 Recuerda que `app-heroes` es el [selector de elemento](#selector) del `HeroesComponent`.
-Entonces, en el archivo Plantillas de `AppComponent`, agrege el elemento `<app-heroes>` directamente debajo del título.
+Entonces, en el archivo Plantillas de `AppComponent`, agrega el elemento `<app-heroes>` directamente debajo del título.
 
 <code-example path="toh-pt1/src/app/app.component.html" header="src/app/app.component.html"></code-example>
 
@@ -110,13 +110,13 @@ Modifica el enlace para `hero.name` de esta manera:
 
 El navegador se actualizará para mostrar el nombre del héroe en mayúsculas.
 
-En el enlace de interpolación, la palabra `mayúscula` inmediatamente después del operador de tubería (|) es
-Inicie el 'Tubo(Pipe) en mayúscula' incorporado.
+En el enlace de interpolación, la palabra `mayúscula` inmediatamente después del operador pipe (|) es
+Inicie el 'UppercasePipe' incorporado.
 
-[tuberia](guide/pipes) ("pipe") Es adecuado para formatear cadenas, importes monetarios, fechas y otros datos de visualización.
-Angular viene con múltiples tuberías incorporadas, y puede crear las suyas propias.
+[pipe](guide/pipes) ("pipe") Es adecuado para formatear cadenas, importes monetarios, fechas y otros datos de visualización.
+Angular viene con múltiples pipes incorporadas, y puede crear las suyas propias.
 
-## Editar héroe
+## Editar el héroe
 
 El usuario debe poder editar el nombre del héroe en el cuadro de texto `<input>`.
 
