@@ -108,15 +108,7 @@
             "url": "https://ngrx.io/"
           },
           "ngxs": {
-<<<<<<< HEAD
             "desc": "NGXS es un patrón de gestión de estado + librería para Angular. NGXS se basa en el patrón CRS implementado popularmente en librerías como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
-=======
-<<<<<<< HEAD
-            "desc": "NGXS es un patrón de gestión de estado + biblioteca para Angular. NGXS se basa en el patrón CRS implementado popularmente en librerías como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
-=======
-            "desc": "NGXS es un patrón de gestión de estado + librería para Angular. NGXS se basa en el patrón CRS implementado popularmente en librerías como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "NGXS",
             "url": "https://ngxs.io/"
           },
@@ -178,24 +170,7 @@
             "url": "https://www.genuitec.com/products/angular-ide"
           },
           "amexio-canvas": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Amexio Canvas es un entorno de arrastrar y soltar para crear aplicaciones web y de dispositivos inteligentes HTML5 / Angular totalmente sensibles El código se generará automáticamente y se implementará en caliente mediante Canvas para realizar pruebas en vivo. Soporte listo para usar 50+ Temas de Diseño Material. Confirme su código en el repositorio público o privado de GitHub.",
-=======
-<<<<<<< HEAD
-            "desc": "Amexio Canvas es un entorno de arrastrar y soltar para crear aplicaciones web y de dispositivos inteligentes HTML5 / angulares totalmente sensibles El código se generará automáticamente y se implementará en caliente mediante Canvas para realizar pruebas en vivo. Soporte listo para usar 50+ Temas de Diseño Material. Confirme su código en el repositorio público o privado de GitHub.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Amexio Canvas es un entorno de arrastrar y soltar para crear aplicaciones web y de dispositivos inteligentes HTML5 / Angular totalmente sensibles El código se generará automáticamente y se implementará en caliente mediante Canvas para realizar pruebas en vivo. Soporte listo para usar 50+ Temas de Diseño Material. Confirme su código en el repositorio público o privado de GitHub.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Amexio Canvas Web Based Drag and Drop IDE by MetaMagic",
             "url": "https://amexio.tech/"
           }
@@ -211,24 +186,7 @@
             "url": "http://augury.angular.io/"
           },
           "b1": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Representación del lado del servidor para aplicaciones Angular.",
-=======
-<<<<<<< HEAD
-            "desc": "Representación del lado del servidor para aplicaciones angulares.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Representación del lado del servidor para aplicaciones Angular.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "https://cloud.githubusercontent.com/assets/1016365/10639063/138338bc-7806-11e5-8057-d34c75f3cafc.png",
             "title": "Angular Universal",
             "url": "https://angular.io/guide/universal"
@@ -257,24 +215,7 @@
             "url": "https://github.com/compodoc/compodoc"
           },
           "angular-playground": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Entorno de desarrollo de la interfaz de usuario para crear, probar y documentar aplicaciones Angular.",
-=======
-<<<<<<< HEAD
-            "desc": "Entorno de desarrollo de la interfaz de usuario para crear, probar y documentar aplicaciones angulares.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Entorno de desarrollo de la interfaz de usuario para crear, probar y documentar aplicaciones Angular.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Patio de juegos Angular",
             "url": "http://www.angularplayground.it/"
           },
@@ -302,24 +243,7 @@
         "order": 4,
         "resources": {
           "AngularUIToolkit": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Kit de herramientas de interfaz de usuario angular: 115 componentes de interfaz de usuario mantenidos profesionalmente que van desde una cuadrícula robusta hasta gráficos y más. Pruébelo gratis y cree aplicaciones Angular más rápido.",
-=======
-<<<<<<< HEAD
-            "desc": "Kit de herramientas de interfaz de usuario angular: 115 componentes de interfaz de usuario mantenidos profesionalmente que van desde una cuadrícula robusta hasta gráficos y más. Pruébelo gratis y cree aplicaciones angulares más rápido.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Kit de herramientas de interfaz de usuario angular: 115 componentes de interfaz de usuario mantenidos profesionalmente que van desde una cuadrícula robusta hasta gráficos y más. Pruébelo gratis y cree aplicaciones Angular más rápido.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Kit de herramientas Angular UI",
             "url": "https://www.angular-ui-tools.com"
           },
@@ -344,46 +268,12 @@
             "url": "https://vmware.github.io/clarity/"
           },
           "-KMVB8P4TDfht8c0L1AE": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "La versión de Angular de la biblioteca Bootstrap de Angular UI. Esta biblioteca se está construyendo desde cero en Typescript utilizando el marco CSS Bootstrap 4.",
-=======
-<<<<<<< HEAD
-            "desc": "La versión Angular de la biblioteca Bootstrap de Angular UI. Esta biblioteca se está construyendo desde cero en Typescript utilizando el marco CSS Bootstrap 4.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "La versión de Angular de la biblioteca Bootstrap de Angular UI. Esta biblioteca se está construyendo desde cero en Typescript utilizando el marco CSS Bootstrap 4.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "ng-bootstrap",
             "url": "https://ng-bootstrap.github.io/"
           },
           "4ab": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Directivas y componentes Angular nativos para Lightning Design System",
-=======
-<<<<<<< HEAD
-            "desc": "Directivas y componentes angulares nativos para Lightning Design System",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Directivas y componentes Angular nativos para Lightning Design System",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "http://ng-lightning.github.io/ng-lightning/img/shield.svg",
             "title": "ng-lightning",
             "url": "http://ng-lightning.github.io/ng-lightning/"
@@ -418,24 +308,7 @@
             "url": "https://vaadin.com/elements"
           },
           "a7b": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Directivas Angular nativas para Bootstrap",
-=======
-<<<<<<< HEAD
-            "desc": "Directivas Angulars nativas para Bootstrap",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Directivas Angular nativas para Bootstrap",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "",
             "title": "ngx-bootstrap",
             "url": "http://valor-software.com/ngx-bootstrap/#/"
@@ -493,24 +366,7 @@
             "url": "https://www.jqwidgets.com/angular/"
           },
           "amexio": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Amexio es un rico conjunto de componentes Angular impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
-=======
-<<<<<<< HEAD
-            "desc": "Amexio es un rico conjunto de componentes angulares impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Amexio es un rico conjunto de componentes Angular impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Amexio - Extensiones Angular",
             "url": "http://www.amexio.tech/",
             "logo": "http://www.amexio.org/amexio-logo.png"
@@ -522,24 +378,7 @@
             "url": "https://github.com/src-zone/material"
           },
           "essentialjs2": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Essential JS 2 para Angular es una colección de componentes Angular verdaderos basados en TypeScript modernos. Tiene soporte para la compilación Ahead Of Time (AOT) y Tree-Shaking. Todos los componentes se desarrollan desde cero para ser livianos, receptivos, modulares y fáciles de tocar.",
-=======
-<<<<<<< HEAD
-            "desc": "Essential JS 2 para Angular es una colección de componentes angulares verdaderos basados en TypeScript modernos. Tiene soporte para la compilación Ahead Of Time (AOT) y Tree-Shaking. Todos los componentes se desarrollan desde cero para ser livianos, receptivos, modulares y fáciles de tocar.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Essential JS 2 para Angular es una colección de componentes Angular verdaderos basados en TypeScript modernos. Tiene soporte para la compilación Ahead Of Time (AOT) y Tree-Shaking. Todos los componentes se desarrollan desde cero para ser livianos, receptivos, modulares y fáciles de tocar.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Essential JS 2",
             "url": "https://www.syncfusion.com/products/angular-js2"
           },
@@ -555,24 +394,7 @@
             "url": "https://sq-ui.github.io/ng-sq-ui/#/"
           },
           "smart": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Componentes web para Angular. Componentes Angular sin dependencias para crear aplicaciones web modernas y aptas para dispositivos móviles",
-=======
-<<<<<<< HEAD
-            "desc": "Componentes web para Angular. Componentes angulares sin dependencias para crear aplicaciones web modernas y aptas para dispositivos móviles",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Componentes web para Angular. Componentes Angular sin dependencias para crear aplicaciones web modernas y aptas para dispositivos móviles",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Componentes web inteligentes",
             "url": "https://www.htmlelements.com/angular/"
           },
@@ -653,22 +475,6 @@
             "url": "https://angular-buch.com/"
           },
           "wishtack-guide-angular": {
-<<<<<<< HEAD
-            "desc": "La guía de Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
-=======
-<<<<<<< HEAD
-            "desc": "La guía Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
->>>>>>> cambios
-            "logo": "https://raw.githubusercontent.com/wishtack/gitbook-guide-angular/master/.gitbook/assets/wishtack-logo-with-text.png",
-            "title": "La guía de Angular de Wishtack (Francés)",
-            "url": "https://guide-angular.wishtack.io/"
-          },
-          "ab5": {
-<<<<<<< HEAD
-            "desc": "Cómo construir aplicaciones Angular usando NGRX",
-=======
-            "desc": "Cómo construir aplicaciones angulares usando NGRX",
-=======
             "desc": "La guía de Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
             "logo": "https://raw.githubusercontent.com/wishtack/gitbook-guide-angular/master/.gitbook/assets/wishtack-logo-with-text.png",
             "title": "La guía de Angular de Wishtack (Francés)",
@@ -676,8 +482,6 @@
           },
           "ab5": {
             "desc": "Cómo construir aplicaciones Angular usando NGRX",
->>>>>>> cambios
->>>>>>> cambios
             "logo": "",
             "title": "Arquitectura de aplicaciones Angular con NGRX",
             "url": "https://www.packtpub.com/web-development/architecting-angular-applications-redux"
@@ -693,24 +497,7 @@
         "order": 3,
         "resources": {
           "angular-dyma": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Aprende Angular y todo su ecosistema (Material, Flex-layout, Ngrx y más) desde cero.",
-=======
-<<<<<<< HEAD
-            "desc": "Aprenda Angular y todo su ecosistema (Material, Flex-layout, Ngrx y más) desde cero.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Aprende Angular y todo su ecosistema (Material, Flex-layout, Ngrx y más) desde cero.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Dyma (francés)",
             "url": "https://dyma.fr/angular"
           },
@@ -749,24 +536,7 @@
             "url": "https://www.pluralsight.com/paths/angular"
           },
           "ab3": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Cursos de Angular alojados por Udemy",
-=======
-<<<<<<< HEAD
-            "desc": "Cursos Angular alojados por Udemy",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Cursos de Angular alojados por Udemy",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "",
             "title": "Udemy",
             "url": "https://www.udemy.com/courses/search/?q=angular"
@@ -789,24 +559,7 @@
             "url": "http://www.angular.love/"
           },
           "learn-angular-fr": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Contenido de Angular en Lengua francesa.",
-=======
-<<<<<<< HEAD
-            "desc": "Contenido Angular en Lengua francesa.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Contenido de Angular en Lengua francesa.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Aprende Angular (francés)",
             "url": "http://www.learn-angular.fr/"
           },
@@ -836,24 +589,7 @@
             "url": "https://loiane.training/course/angular/"
           },
           "web-dev-angular": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Cree aplicaciones Angular progresivas y de alto rendimiento.",
-=======
-<<<<<<< HEAD
-            "desc": "Cree aplicaciones angulares progresivas y de alto rendimiento.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Cree aplicaciones Angular progresivas y de alto rendimiento.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "web.dev/angular",
             "url": "https://web.dev/angular"
           },
@@ -874,24 +610,7 @@
         "order": 2,
         "resources": {
           "webucator": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Capacitación en Angular personalizada en persona dirigida por un instructor para grupos privados y clases Angular públicas en línea dirigidas por un instructor.",
-=======
-<<<<<<< HEAD
-            "desc": "Capacitación Angular personalizada en persona dirigida por un instructor para grupos privados y clases angulares públicas en línea dirigidas por un instructor.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Capacitación en Angular personalizada en persona dirigida por un instructor para grupos privados y clases Angular públicas en línea dirigidas por un instructor.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Webucator",
             "url": "https://www.webucator.com/webdev-training/angular-training"
           },
@@ -921,24 +640,7 @@
             "url": "https://www.thecodecampus.de/schulungen/angular"
           },
           "-KLIzFhfGKi1xttqJ7Uh": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Formación en Angular en profundidad de 4 días en Israel",
-=======
-<<<<<<< HEAD
-            "desc": "Formación Angular en profundidad de 4 días en Israel",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Formación en Angular en profundidad de 4 días en Israel",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "ng-course (Israel)",
             "url": "http://ng-course.org/"
           },
@@ -958,24 +660,7 @@
             "url": "http://ninja-squad.com/formations/formation-angular2"
           },
           "a2b": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Angular Boot Camp cubre temas Angular desde la introducción hasta los avanzados. Incluye extensas sesiones de talleres, con la ayuda práctica de nuestros experimentados formadores-desarrolladores. Llevamos a los desarrolladores o equipos desde los inicios de la comprensión de Angular a través de un conocimiento práctico de todas las características esenciales de Angular.",
-=======
-<<<<<<< HEAD
-            "desc": "Angular Boot Camp cubre temas angulares desde la introducción hasta los avanzados. Incluye extensas sesiones de talleres, con la ayuda práctica de nuestros experimentados formadores-desarrolladores. Llevamos a los desarrolladores o equipos desde los inicios de la comprensión de Angular a través de un conocimiento práctico de todas las características esenciales de Angular.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Angular Boot Camp cubre temas Angular desde la introducción hasta los avanzados. Incluye extensas sesiones de talleres, con la ayuda práctica de nuestros experimentados formadores-desarrolladores. Llevamos a los desarrolladores o equipos desde los inicios de la comprensión de Angular a través de un conocimiento práctico de todas las características esenciales de Angular.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "https://angularbootcamp.com/images/angular-boot-camp-logo.svg",
             "title": "Angular Boot Camp",
             "url": "https://angularbootcamp.com"
@@ -992,84 +677,18 @@
             "title": "Learn Javascript (Russian)",
             "url": "https://learn.javascript.ru/courses/angular"
           },
-          "zenika-angular": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
-            "title": "Entrenamientos en Angular (francés)",
-            "url": "https://training.zenika.com/fr/training/angular/description"
-          },
           "formationjs": {
             "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
-=======
-<<<<<<< HEAD
-            "desc": "Entrenamientos Angular impartidos por Zenika (FRANCIA)",
-            "title": "Entrenamientos Angular (francés)",
-            "url": "https://training.zenika.com/fr/training/angular/description"
-          },
-          "formationjs": {
-            "desc": "Formación Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
-            "title": "Entrenamientos en Angular (francés)",
-            "url": "https://training.zenika.com/fr/training/angular/description"
-          },
-          "formationjs": {
-            "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Formation JavaScript (French)",
             "url": "https://formationjavascript.com/formation-angular/"
           },
           "humancoders-angular": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Entrenamientos en Angular impartidos por Human Coders (France)",
-=======
-<<<<<<< HEAD
-            "desc": "Entrenamientos Angular impartidos por Human Coders (France)",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Entrenamientos en Angular impartidos por Human Coders (France)",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "Formation Angular (French)",
             "url": "https://www.humancoders.com/formations/angular"
           },
           "wao": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Formación en Angular impartida por We Are One Sàrl en Suiza",
-=======
-<<<<<<< HEAD
-            "desc": "Formación Angular impartida por We Are One Sàrl en Suiza",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Formación en Angular impartida por We Are One Sàrl en Suiza",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "https://weareone.ch/wordpress/wao-content/uploads/2014/12/logo_200_2x.png",
             "title": "We Are One Sàrl",
             "url": "https://weareone.ch/courses/angular/"
@@ -1081,46 +700,12 @@
             "url": "https://angular.schule/"
           },
           "strbrw": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Entrenamientos en Angular y RxJS, Revisiones de Código y consultoría. Ayudamos a los ingenieros de software de todo el mundo a crear mejores aplicaciones web ...",
-=======
-<<<<<<< HEAD
-            "desc": "Entrenamientos Angular y RxJS, Revisiones de Código y consultoría. Ayudamos a los ingenieros de software de todo el mundo a crear mejores aplicaciones web ...",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Entrenamientos en Angular y RxJS, Revisiones de Código y consultoría. Ayudamos a los ingenieros de software de todo el mundo a crear mejores aplicaciones web ...",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "title": "StrongBrew",
             "url": "https://strongbrew.io/"
           },
           "angular.de": {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "desc": "Capacitación en Angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
-=======
-<<<<<<< HEAD
-            "desc": "Capacitación Angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
-            "desc": "Capacitación en Angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
-<<<<<<< HEAD
->>>>>>> cambios
-<<<<<<< HEAD
->>>>>>> cambios
-=======
-=======
->>>>>>> Fix: marketing-resouces.json
->>>>>>> Fix: marketing-resouces.json
             "logo": "https://angular.de/assets/img/angular-de-logo.svg",
             "title": "Angular.de (German)",
             "url": "https://angular.de/"
