@@ -481,10 +481,10 @@
             "url": "https://guide-angular.wishtack.io/"
           },
           "ab5": {
-            "desc": "Cómo construir aplicaciones Angular usando NGRX",
-            "logo": "",
-            "title": "Arquitectura de aplicaciones Angular con NGRX",
-            "url": "https://www.packtpub.com/web-development/architecting-angular-applications-redux"
+            "desc": "La guía de Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
+            "logo": "https://raw.githubusercontent.com/wishtack/gitbook-guide-angular/master/.gitbook/assets/wishtack-logo-with-text.png",
+            "title": "La guía de Angular de Wishtack (Francés)",
+            "url": "https://guide-angular.wishtack.io/"
           },
           "dwa": {
             "desc": "Viaje práctico con Angular framework, ES6, TypeScript, webpack y Angular CLI.",
@@ -678,6 +678,19 @@
             "url": "https://learn.javascript.ru/courses/angular"
           },
           "zenika-angular": {
+
+            "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
+            "title": "Entrenamientos en Angular (francés)",
+            "url": "https://training.zenika.com/fr/training/angular/description"
+          },
+          "formationjs": {
+            "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
+
+            "desc": "Entrenamientos Angular impartidos por Zenika (FRANCIA)",
+            "title": "Entrenamientos Angular (francés)",
+            "url": "https://training.zenika.com/fr/training/angular/description"
+          },
+          "formationjs": {
             "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
             "title": "Entrenamientos en Angular (francés)",
             "url": "https://training.zenika.com/fr/training/angular/description"
