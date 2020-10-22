@@ -17,7 +17,7 @@ Para ver la aplicación de ejemplo que describe esta página, consulte el <live-
 
 ## Crear `HeroDetailComponent`
 
-Usa212 la CLI angular para generar un nuevo componente llamado `hero-detail`.
+Usa la CLI angular para generar un nuevo componente llamado `hero-detail`.
 
 <code-example language="sh" class="code-shell">
   ng generate component hero-detail
@@ -36,7 +36,6 @@ Genera cuatro archivos en este directorio:
 * Archivo de prueba de la clase `HeroDetailComponent`
 
 Este comando también agrega `HeroDetailComponent` como `declaraciones` en el decorador `@ NgModule` del archivo `src/app/app.module.ts`.
-
 
 ### Escribir plantilla
 
@@ -79,13 +78,13 @@ Este componente solo toma un objeto héroe a través de la propiedad `hero` y lo
 
 ## Mostrar `HeroDetailComponent`
 
-El `HeroesComponent` todavía está en la vista maestra / detalle.
+El `HeroesComponent` todavía está en la vista maestra/detalle.
 
 Hasta que eliminé los detalles del héroe de Plantillas, lo estaba mostrando en este componente. Ahora deleguemos a `HeroDetailComponent`.
 
 Los dos componentes tienen una relación padre-hijo.
 Para mostrar un nuevo héroe cada vez que el usuario selecciona un héroe de la lista,
-El padre `HeroesComponent` controla al hijo` HeroDetailComponent` enviándolo.
+El padre `HeroesComponent` controla al hijo `HeroDetailComponent` enviándolo.
 
 No cambiarás la _clase_ de `HeroesComponent` pero cambiarás su _template_.
 
@@ -93,11 +92,11 @@ No cambiarás la _clase_ de `HeroesComponent` pero cambiarás su _template_.
 
 ### Actualizar las plantillas `HeroesComponent`
 
-El selector para `HeroDetailComponent` es` `app-hero-detail ''.
+El selector para `HeroDetailComponent` es `'app-hero-detail'`.
 
 Agrega un elemento `<app-hero-detail>` a la parte inferior de las plantillas `HeroesComponent` donde la vista detallada de héroe existió una vez.
 
-Vincula `HeroesComponent.selectedHero` a la propiedad` hero` de este elemento de la siguiente manera:
+Vincula `HeroesComponent.selectedHero` a la propiedad `hero` de este elemento de la siguiente manera:
 
 <code-example path="toh-pt3/src/app/heroes/heroes.component.html" region="hero-detail-binding" header="heroes.component.html (HeroDetail binding)">
 
@@ -109,7 +108,7 @@ Este es un enlace de datos unidireccional de la propiedad `selectedHero`  `Heroe
 Aquí se asigna la propiedad `hero` de `HeroDetailComponent`.
 
 Cuando el usuario hace clic en un héroe en la lista, el `selectedHero` cambia.
-Cuando `selectedHero` cambia, _enlace de propiedad_ actualiza `hero` y
+Cuando `selectedHero` cambia,el _enlace de propiedad_ actualiza `hero` y
   `HeroDetailComponent` muestra el nuevo héroe.
 
 La plantilla modificada de `HeroesComponent` se ve así:
@@ -157,8 +156,6 @@ Los archivos de código descritos en esta página son:
 
 * Creaste un `HeroDetailComponent` independiente y reutilizable.
 
-
 * Usaste el [enlace de propiedad](guide/template-syntax#property-binding) para que el padre `HeroesComponent` pueda controlar al hijo `HeroDetailComponent`.
-
 
 * Usaste el [`decorador @Input`](guide/template-syntax#inputs-outputs) para hacer que la propiedad del heroe esté disponible para ser vinculada por el componente `HeroesComponent` externamente.
