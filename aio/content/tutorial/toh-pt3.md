@@ -17,7 +17,7 @@ Para ver la aplicación de ejemplo que describe esta página, consulte el <live-
 
 ## Crear `HeroDetailComponent`
 
-Use la CLI angular para generar un nuevo componente llamado `hero-detail`.
+Usa212 la CLI angular para generar un nuevo componente llamado `hero-detail`.
 
 <code-example language="sh" class="code-shell">
   ng generate component hero-detail
