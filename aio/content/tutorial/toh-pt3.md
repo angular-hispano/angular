@@ -58,6 +58,7 @@ Abre el archivo de clase `HeroDetailComponent` e importe el símbolo `Hero`.
 <code-example path="toh-pt3/src/app/hero-detail/hero-detail.component.ts" 
 region="import-hero" header="src/app/hero-detail/hero-detail.component.ts (import Hero)">
 </code-example>
+
 La propiedad `hero` debe ser una [_propiedad de entrada_](guide/inputs-outputs "Input and Output properties") -->, anotada con el decorador `@Input()` porque el `HeroesComponent` _externo_ [se vinculará de esta manera.](#heroes-component-template)
 
 <code-example path="toh-pt3/src/app/heroes/heroes.component.html" region="hero-detail-binding">
@@ -152,6 +153,7 @@ Los archivos de código descritos en esta página son:
 </code-tabs>
 
 ## Resumen
+
 * Creaste un `HeroDetailComponent` independiente y reutilizable.
 
 * Usaste el [enlace de propiedad](guide/property-binding) para que el padre `HeroesComponent` pueda controlar al hijo `HeroDetailComponent`.
