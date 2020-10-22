@@ -6,8 +6,7 @@ Comprueba si tu PR cumple los siguientes requisitos:
 - [ ] Revisé previamente las traducciones o cambios de contenido
 - [ ] Consulté el [diccionario de términos](https://github.com/angular-hispano/angular/issues/9) en español
 - [ ] He creado dos archivos con la extensión correspondiente(.en.md para el archivo en inglés y .md para el Archivo en español)
-- [ ] He utilizado la forma de expresión "tú" en las traducciones
-- [ ] He enlazado la PR con el issue correspondiente <!-- ejemplo fix #X  -->
+- [ ] He enlazado el commit con el issue correspondiente <!-- ejemplo Fixes #X  -->
 
 
 ## Tipo de PR
