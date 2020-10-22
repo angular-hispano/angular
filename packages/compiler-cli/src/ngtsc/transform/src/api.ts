@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -13,7 +13,7 @@ import {Reexport} from '../../imports';
 import {IndexingContext} from '../../indexer';
 import {ClassDeclaration, Decorator} from '../../reflection';
 import {ImportManager} from '../../translator';
-import {TypeCheckContext} from '../../typecheck';
+import {TypeCheckContext} from '../../typecheck/api';
 
 export enum HandlerPrecedence {
   /**

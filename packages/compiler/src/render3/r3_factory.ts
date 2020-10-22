@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -212,7 +212,9 @@ export function compileFactoryFunction(meta: R3FactoryMetadata): R3FactoryFn {
     const baseFactory = o.variable(`ɵ${meta.name}_BaseFactory`);
     const getInheritedFactory = o.importExpr(R3.getInheritedFactory);
     const baseFactoryStmt =
-        baseFactory.set(getInheritedFactory.callFn([meta.internalType]))
+        baseFactory
+            .set(getInheritedFactory.callFn(
+                [meta.internalType], /* sourceSpan */ undefined, /* pure */ true))
             .toDeclStmt(o.INFERRED_TYPE, [o.StmtModifier.Exported, o.StmtModifier.Final]);
     statements.push(baseFactoryStmt);
 

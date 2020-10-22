@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -48,7 +48,6 @@ export {
   ɵɵclassMapInterpolateV,
 
   ɵɵclassProp,
-  ɵɵcomponentHostSyntheticListener,
 
   ɵɵdirectiveInject,
 
@@ -113,6 +112,9 @@ export {
   ɵɵstylePropInterpolate8,
   ɵɵstylePropInterpolateV,
 
+  ɵɵsyntheticHostListener,
+  ɵɵsyntheticHostProperty,
+
   ɵɵtemplate,
 
   ɵɵtext,
@@ -126,8 +128,6 @@ export {
   ɵɵtextInterpolate7,
   ɵɵtextInterpolate8,
   ɵɵtextInterpolateV,
-
-  ɵɵupdateSyntheticHostBinding,
 } from './instructions/all';
 export {RenderFlags} from './interfaces/definition';
 export {

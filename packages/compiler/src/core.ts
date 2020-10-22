@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -22,10 +22,10 @@ export const createInjectionToken = makeMetadataFactory<object>(
     'InjectionToken', (desc: string) => ({_desc: desc, ɵprov: undefined}));
 
 export interface Attribute {
-  attributeName?: string;
+  attributeName: string;
 }
 export const createAttribute =
-    makeMetadataFactory<Attribute>('Attribute', (attributeName?: string) => ({attributeName}));
+    makeMetadataFactory<Attribute>('Attribute', (attributeName: string) => ({attributeName}));
 
 export interface Query {
   descendants: boolean;

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -75,8 +75,8 @@ export const angularCoreEnv: {[name: string]: Function} =
        'ɵɵrestoreView': r3.ɵɵrestoreView,
        'ɵɵlistener': r3.ɵɵlistener,
        'ɵɵprojection': r3.ɵɵprojection,
-       'ɵɵupdateSyntheticHostBinding': r3.ɵɵupdateSyntheticHostBinding,
-       'ɵɵcomponentHostSyntheticListener': r3.ɵɵcomponentHostSyntheticListener,
+       'ɵɵsyntheticHostProperty': r3.ɵɵsyntheticHostProperty,
+       'ɵɵsyntheticHostListener': r3.ɵɵsyntheticHostListener,
        'ɵɵpipeBind1': r3.ɵɵpipeBind1,
        'ɵɵpipeBind2': r3.ɵɵpipeBind2,
        'ɵɵpipeBind3': r3.ɵɵpipeBind3,

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -14,7 +14,7 @@ import {IncrementalBuild} from '../../incremental/api';
 import {IndexingContext} from '../../indexer';
 import {PerfRecorder} from '../../perf';
 import {ClassDeclaration, Decorator, ReflectionHost} from '../../reflection';
-import {ProgramTypeCheckAdapter, TypeCheckContext} from '../../typecheck';
+import {ProgramTypeCheckAdapter, TypeCheckContext} from '../../typecheck/api';
 import {getSourceFile, isExported} from '../../util/src/typescript';
 
 import {AnalysisOutput, CompileResult, DecoratorHandler, HandlerFlags, HandlerPrecedence, ResolveResult} from './api';

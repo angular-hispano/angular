@@ -457,7 +457,7 @@ The object reference did not change when the value of its own `name` property ch
 
 ### Responding to view changes
 
-As Angular traverses the [view hierarchy](guide/glossary#view-hierarchy "Definition of view hierarchy definition") during change detection, it needs to be sure that a change in a child does not attempt to cause a change in its own parent. Such a change would not be rendered properly, because of how [unidirectional data flow](guide/glossary#unidirectional-data-flow "Definition") works.
+As Angular traverses the [view hierarchy](guide/glossary#view-tree "Definition of view hierarchy definition") during change detection, it needs to be sure that a change in a child does not attempt to cause a change in its own parent. Such a change would not be rendered properly, because of how [unidirectional data flow](guide/glossary#unidirectional-data-flow "Definition") works.
 
 If you need to make a change that inverts the expected data flow, you must trigger a new change detection cycle to allow that change to be rendered.
 The examples illustrate how to make such changes safely.
@@ -495,7 +495,7 @@ for one turn of the browser's JavaScript cycle, which triggers a new change-dete
 
 #### Write lean hook methods to avoid performance problems
 
-When you run the *AfterView* sample, notice how frequently Angular calls `AfterViewChecked()`$emdash;often when there are no changes of interest.
+When you run the *AfterView* sample, notice how frequently Angular calls `AfterViewChecked()`-often when there are no changes of interest.
 Be very careful about how much logic or computation you put into one of these methods.
 
 <div class="lightbox">
@@ -569,7 +569,7 @@ which can only be reached by querying for them via the property decorated with
 
 {@a no-unidirectional-flow-worries}
 
-<div class="alert is-helpful>
+<div class="alert is-helpful">
 
 <header>No need to wait for content updates</header>
 

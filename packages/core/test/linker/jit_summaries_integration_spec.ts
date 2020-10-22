@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -10,7 +10,7 @@ import {ResourceLoader} from '@angular/compiler';
 import {CompileMetadataResolver} from '@angular/compiler/src/metadata_resolver';
 import {MockResourceLoader} from '@angular/compiler/testing/src/resource_loader_mock';
 import {Component, Directive, Injectable, NgModule, OnDestroy, Pipe} from '@angular/core';
-import {async, getTestBed, TestBed} from '@angular/core/testing';
+import {getTestBed, TestBed, waitForAsync} from '@angular/core/testing';
 import {expect} from '@angular/platform-browser/testing/src/matchers';
 import {obsoleteInIvy} from '@angular/private/testing';
 
@@ -135,7 +135,7 @@ import {obsoleteInIvy} from '@angular/private/testing';
           SomeService.annotations = [];
         }
 
-        beforeEach(async(() => {
+        beforeEach(waitForAsync(() => {
           instances = new Map<any, any>();
           createSummaries().then(s => summaries = s);
         }));

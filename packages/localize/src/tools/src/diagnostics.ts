@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -35,8 +35,8 @@ export class Diagnostics {
     this.messages.push(...other.messages);
   }
   formatDiagnostics(message: string): string {
-    const errors = this.messages!.filter(d => d.type === 'error').map(d => ' - ' + d.message);
-    const warnings = this.messages!.filter(d => d.type === 'warning').map(d => ' - ' + d.message);
+    const errors = this.messages.filter(d => d.type === 'error').map(d => ' - ' + d.message);
+    const warnings = this.messages.filter(d => d.type === 'warning').map(d => ' - ' + d.message);
     if (errors.length) {
       message += '\nERRORS:\n' + errors.join('\n');
     }

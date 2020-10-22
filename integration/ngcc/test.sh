@@ -104,10 +104,10 @@ assertSucceeded "Expected 'ngcc' to log 'Compiling'."
 
 
 # Did it generate a base factory call for synthesized constructors correctly?
-  grep "const ɵMatTable_BaseFactory = ɵngcc0.ɵɵgetInheritedFactory(MatTable);" node_modules/@angular/material/esm2015/table/table.js
+  grep "const ɵMatTable_BaseFactory = /\*@__PURE__\*/ ɵngcc0.ɵɵgetInheritedFactory(MatTable);" node_modules/@angular/material/esm2015/table/table.js
   assertSucceeded "Expected 'ngcc' to generate a base factory for 'MatTable' in '@angular/material' (esm2015)."
 
-  grep "var ɵMatTable_BaseFactory = ɵngcc0.ɵɵgetInheritedFactory(MatTable);" node_modules/@angular/material/esm5/table/table.js
+  grep "var ɵMatTable_BaseFactory = /\*@__PURE__\*/ ɵngcc0.ɵɵgetInheritedFactory(MatTable);" node_modules/@angular/material/esm5/table/table.js
   assertSucceeded "Expected 'ngcc' to generate a base factory for 'MatTable' in '@angular/material' (esm5)."
 
 
@@ -119,13 +119,19 @@ assertSucceeded "Expected 'ngcc' to log 'Compiling'."
   assertSucceeded "Expected 'ngcc' to generate an abstract directive definition for 'MatMenuBase' in '@angular/material' (esm5)."
 
 
+# TODO: This assertion is disabled because @angular/common no longer contains __decorate calls.
+#       We should either remove this assertion or use a syntentic JS file as input.
+#       Discuss with the ngcc folks.
 # Did it handle namespace imported decorators in UMD using `__decorate` syntax?
-  grep "type: i0.Injectable" node_modules/@angular/common/bundles/common.umd.js
-  assertSucceeded "Expected 'ngcc' to correctly handle '__decorate' syntax in '@angular/common' (umd)."
+  #grep "type: i0.Injectable" node_modules/@angular/common/bundles/common.umd.js
+  #assertSucceeded "Expected 'ngcc' to correctly handle '__decorate' syntax in '@angular/common' (umd)."
 
+# TODO: This assertion is disabled because @angular/common no longer contains __decorate calls.
+#       We should either remove this assertion or use a syntentic JS file as input.
+#       Discuss with the ngcc folks.
   # (and ensure the @angular/common package is indeed using `__decorate` syntax)
-  grep "JsonPipe = __decorate(" node_modules/@angular/common/bundles/common.umd.js.__ivy_ngcc_bak
-  assertSucceeded "Expected '@angular/common' (umd) to actually use '__decorate' syntax."
+  #grep "JsonPipe = __decorate(" node_modules/@angular/common/bundles/common.umd.js.__ivy_ngcc_bak
+  #assertSucceeded "Expected '@angular/common' (umd) to actually use '__decorate' syntax."
 
 
 # Did it handle namespace imported decorators in UMD using static properties?

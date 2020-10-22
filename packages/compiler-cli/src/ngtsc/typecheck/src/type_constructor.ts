@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -9,8 +9,8 @@
 import * as ts from 'typescript';
 
 import {ClassDeclaration, ReflectionHost} from '../../reflection';
+import {TypeCtorMetadata} from '../api';
 
-import {TypeCtorMetadata} from './api';
 import {TypeParameterEmitter} from './type_parameter_emitter';
 
 export function generateTypeCtorDeclarationFn(
@@ -166,8 +166,8 @@ function constructTypeCtorParameter(
   if (coercedKeys.length > 0) {
     const coercedLiteral = ts.createTypeLiteralNode(coercedKeys);
 
-    initType =
-        initType !== null ? ts.createUnionTypeNode([initType, coercedLiteral]) : coercedLiteral;
+    initType = initType !== null ? ts.createIntersectionTypeNode([initType, coercedLiteral]) :
+                                   coercedLiteral;
   }
 
   if (initType === null) {

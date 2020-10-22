@@ -1,12 +1,13 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 import * as realFs from 'fs';
 import * as fsExtra from 'fs-extra';
+import * as os from 'os';
 import {absoluteFrom, dirname, relativeFrom, setFileSystem} from '../src/helpers';
 import {NodeJSFileSystem} from '../src/node_js_file_system';
 import {AbsoluteFsPath} from '../src/types';
@@ -245,4 +246,13 @@ describe('NodeJSFileSystem', () => {
       expect(fs.isCaseSensitive()).toEqual(isCaseSensitive);
     });
   });
+
+  if (os.platform() === 'win32') {
+    // Only relevant on Windows
+    describe('relative', () => {
+      it('should handle Windows paths on different drives', () => {
+        expect(fs.relative('C:\\a\\b\\c', 'D:\\a\\b\\d')).toEqual(absoluteFrom('D:\\a\\b\\d'));
+      });
+    });
+  }
 });

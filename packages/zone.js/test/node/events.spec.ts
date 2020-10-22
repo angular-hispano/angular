@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -62,6 +62,18 @@ describe('nodejs EventEmitter', () => {
     });
     zoneB.run(() => {
       emitter.removeListener('test2', shouldNotRun);
+      emitter.emit('test', 'test value');
+      emitter.emit('test2', 'test value');
+    });
+  });
+  it('should remove listeners by calling off properly', () => {
+    zoneA.run(() => {
+      emitter.on('test', shouldNotRun);
+      emitter.on('test2', shouldNotRun);
+      emitter.off('test', shouldNotRun);
+    });
+    zoneB.run(() => {
+      emitter.off('test2', shouldNotRun);
       emitter.emit('test', 'test value');
       emitter.emit('test2', 'test value');
     });

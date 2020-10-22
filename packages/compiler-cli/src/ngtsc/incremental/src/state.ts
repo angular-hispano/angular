@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -10,7 +10,7 @@ import * as ts from 'typescript';
 
 import {absoluteFrom, absoluteFromSourceFile, AbsoluteFsPath} from '../../file_system';
 import {ClassRecord, TraitCompiler} from '../../transform';
-import {FileTypeCheckingData} from '../../typecheck/src/context';
+import {FileTypeCheckingData} from '../../typecheck/src/checker';
 import {IncrementalBuild} from '../api';
 
 import {FileDependencyGraph} from './dependency_tracking';

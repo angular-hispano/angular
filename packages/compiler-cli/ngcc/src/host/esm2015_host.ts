@@ -1,16 +1,17 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 
 import * as ts from 'typescript';
+import {absoluteFromSourceFile} from '../../../src/ngtsc/file_system';
 
+import {Logger} from '../../../src/ngtsc/logging';
 import {ClassDeclaration, ClassMember, ClassMemberKind, CtorParameter, Declaration, Decorator, EnumMember, isDecoratorIdentifier, isNamedClassDeclaration, isNamedFunctionDeclaration, isNamedVariableDeclaration, KnownDeclaration, reflectObjectLiteral, SpecialDeclarationKind, TypeScriptReflectionHost, TypeValueReference} from '../../../src/ngtsc/reflection';
 import {isWithinPackage} from '../analysis/util';
-import {Logger} from '../logging/logger';
 import {BundleProgram} from '../packages/bundle_program';
 import {findAll, getNameText, hasNameIdentifier, isDefined, stripDollarSuffix} from '../utils';
 
@@ -130,6 +131,13 @@ export class Esm2015ReflectionHost extends TypeScriptReflectionHost implements N
     const symbol = this.getClassSymbolFromOuterDeclaration(declaration);
     if (symbol !== undefined) {
       return symbol;
+    }
+
+    if (declaration.parent !== undefined && isNamedVariableDeclaration(declaration.parent)) {
+      const variableValue = this.getVariableValue(declaration.parent);
+      if (variableValue !== null) {
+        declaration = variableValue;
+      }
     }
 
     return this.getClassSymbolFromInnerDeclaration(declaration);
@@ -294,8 +302,15 @@ export class Esm2015ReflectionHost extends TypeScriptReflectionHost implements N
     if (superDeclaration.known !== null || superDeclaration.identity !== null) {
       return superDeclaration;
     }
+    let declarationNode: ts.Node = superDeclaration.node;
+    if (isNamedVariableDeclaration(superDeclaration.node) && !isTopLevel(superDeclaration.node)) {
+      const variableValue = this.getVariableValue(superDeclaration.node);
+      if (variableValue !== null && ts.isClassExpression(variableValue)) {
+        declarationNode = getContainingStatement(variableValue);
+      }
+    }
 
-    const outerClassNode = getClassDeclarationFromInnerDeclaration(superDeclaration.node);
+    const outerClassNode = getClassDeclarationFromInnerDeclaration(declarationNode);
     const declaration = outerClassNode !== null ?
         this.getDeclarationOfIdentifier(outerClassNode.name) :
         superDeclaration;
@@ -852,10 +867,10 @@ export class Esm2015ReflectionHost extends TypeScriptReflectionHost implements N
   /**
    * Try to retrieve the symbol of a static property on a class.
    *
-   * In some cases, a static property can either be set on the inner declaration inside the class'
-   * IIFE, or it can be set on the outer variable declaration. Therefore, the host checks both
-   * places, first looking up the property on the inner symbol, and if the property is not found it
-   * will fall back to looking up the property on the outer symbol.
+   * In some cases, a static property can either be set on the inner (implementation or adjacent)
+   * declaration inside the class' IIFE, or it can be set on the outer variable declaration.
+   * Therefore, the host checks all places, first looking up the property on the inner symbols, and
+   * if the property is not found it will fall back to looking up the property on the outer symbol.
    *
    * @param symbol the class whose property we are interested in.
    * @param propertyName the name of static property.
@@ -863,8 +878,9 @@ export class Esm2015ReflectionHost extends TypeScriptReflectionHost implements N
    */
   protected getStaticProperty(symbol: NgccClassSymbol, propertyName: ts.__String): ts.Symbol
       |undefined {
-    return symbol.implementation.exports && symbol.implementation.exports.get(propertyName) ||
-        symbol.declaration.exports && symbol.declaration.exports.get(propertyName);
+    return symbol.implementation.exports?.get(propertyName) ||
+        symbol.adjacent?.exports?.get(propertyName) ||
+        symbol.declaration.exports?.get(propertyName);
   }
 
   /**
@@ -2510,7 +2526,7 @@ function getRootFileOrFail(bundle: BundleProgram): ts.SourceFile {
 function getNonRootPackageFiles(bundle: BundleProgram): ts.SourceFile[] {
   const rootFile = bundle.program.getSourceFile(bundle.path);
   return bundle.program.getSourceFiles().filter(
-      f => (f !== rootFile) && isWithinPackage(bundle.package, f));
+      f => (f !== rootFile) && isWithinPackage(bundle.package, absoluteFromSourceFile(f)));
 }
 
 function isTopLevel(node: ts.Node): boolean {
@@ -2525,19 +2541,20 @@ function isTopLevel(node: ts.Node): boolean {
 /**
  * Get the actual (outer) declaration of a class.
  *
- * In ES5, the implementation of a class is a function expression that is hidden inside an IIFE and
+ * Sometimes, the implementation of a class is an expression that is hidden inside an IIFE and
  * returned to be assigned to a variable outside the IIFE, which is what the rest of the program
  * interacts with.
  *
- * Given the inner function declaration, we want to get to the declaration of the outer variable
- * that represents the class.
+ * Given the inner declaration, we want to get to the declaration of the outer variable that
+ * represents the class.
  *
- * @param node a node that could be the function expression inside an ES5 class IIFE.
- * @returns the outer variable declaration or `undefined` if it is not a "class".
+ * @param node a node that could be the inner declaration inside an IIFE.
+ * @returns the outer variable declaration or `null` if it is not a "class".
  */
 export function getClassDeclarationFromInnerDeclaration(node: ts.Node):
     ClassDeclaration<ts.VariableDeclaration>|null {
-  if (ts.isFunctionDeclaration(node) || ts.isClassDeclaration(node)) {
+  if (ts.isFunctionDeclaration(node) || ts.isClassDeclaration(node) ||
+      ts.isVariableStatement(node)) {
     // It might be the function expression inside the IIFE. We need to go 5 levels up...
 
     // - IIFE body.

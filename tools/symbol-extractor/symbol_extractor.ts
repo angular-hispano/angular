@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -57,6 +57,10 @@ export class SymbolExtractor {
         case ts.SyntaxKind.FunctionDeclaration:
           const funcDecl = child as ts.FunctionDeclaration;
           funcDecl.name && symbols.push({name: stripSuffix(funcDecl.name.getText())});
+          break;
+        case ts.SyntaxKind.ClassDeclaration:
+          const classDecl = child as ts.ClassDeclaration;
+          classDecl.name && symbols.push({name: stripSuffix(classDecl.name.getText())});
           break;
         default:
           // Left for easier debugging.

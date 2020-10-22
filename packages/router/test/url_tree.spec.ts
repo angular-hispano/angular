@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -65,6 +65,24 @@ describe('UrlTree', () => {
         const t1 = serializer.parse('/one/two?test=1&page=5');
         const t2 = serializer.parse('/one/two?test=1');
         expect(containsTree(t1, t2, true)).toBe(false);
+      });
+
+      it('should return false when queryParams are not the same', () => {
+        const t1 = serializer.parse('/one/two?test=4&test=4&test=2');
+        const t2 = serializer.parse('/one/two?test=4&test=3&test=2');
+        expect(containsTree(t1, t2, false)).toBe(false);
+      });
+
+      it('should return true when queryParams are the same in different order', () => {
+        const t1 = serializer.parse('/one/two?test=4&test=3&test=2');
+        const t2 = serializer.parse('/one/two?test=2&test=3&test=4');
+        expect(containsTree(t1, t2, false)).toBe(true);
+      });
+
+      it('should return true when queryParams are the same in different order', () => {
+        const t1 = serializer.parse('/one/two?test=4&test=4&test=1');
+        const t2 = serializer.parse('/one/two?test=1&test=4&test=4');
+        expect(containsTree(t1, t2, false)).toBe(true);
       });
 
       it('should return false when containee is missing queryParams', () => {

@@ -1,43 +1,35 @@
-## PR Checklist
-Please check if your PR fulfills the following requirements:
+## Lista de Verificación del PR
+Comprueba si tu PR cumple los siguientes requisitos:
 
-- [ ] The commit message follows our guidelines: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been added / updated (for bug fixes / features)
+- [ ] El mensaje de commit esta conforme con [nuestras reglas](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
+- [ ] Probe los cambios que agregué (arreglo de bugs / funcionalidades)
+- [ ] Revisé previamente las traducciones o cambios de contenido
+- [ ] Consulté el [diccionario de términos](https://github.com/angular-hispano/angular/blob/master/aio/diccionario-de-términos.md) en español
+- [ ] He creado dos archivos con la extensión correspondiente(.en.md para el archivo en inglés y .md para el Archivo en español)
+- [ ] La PR fue enlazada con el issue correspondiente
 
 
-## PR Type
-What kind of change does this PR introduce?
+## Tipo de PR
+¿Qué tipo de cambio introduce este PR?
 
-<!-- Please check the one that applies to this PR using "x". -->
+<!-- Marca con una "x" las opciones que aplican. -->
 
 - [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, local variables)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Build related changes
-- [ ] CI related changes
-- [ ] Documentation content changes
-- [ ] angular.io application / infrastructure changes
-- [ ] Other... Please describe:
+- [ ] Funcionalidad
+- [ ] Actualización de el estilo del código (formato, variables locales)
+- [ ] Refactorización (no cambios en la funcionalidad, no cambios en el api)
+- [ ] Cambios relacionados al build
+- [ ] Cambios relacionados al CI (Integración continua)
+- [ ] Cambios en el contenido de la documentación
+- [ ] Cambios en la aplicación / infraestructura de angular.io
+- [ ] Otro... Por favor describe la:
+
+## ¿Cuál es el comportamiento actual?
+<!-- Describe el comportamiento actual que está modificando o vincule a un problema relevante.
+-->
 
 
-## What is the current behavior?
-<!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
-
-Issue Number: N/A
-
-
-## What is the new behavior?
-
-
-## Does this PR introduce a breaking change?
-
-- [ ] Yes
-- [ ] No
-
-
-<!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
-
-
-## Other information
+## ¿Cuál es el nuevo comportamiento?
+<!--
+Ejemplo: Archivo en inglés traducido al español
+-->

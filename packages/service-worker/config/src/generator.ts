@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -131,7 +131,10 @@ function matches(file: string, patterns: {positive: boolean, regex: RegExp}[]): 
 
 function urlToRegex(url: string, baseHref: string, literalQuestionMark?: boolean): string {
   if (!url.startsWith('/') && url.indexOf('://') === -1) {
-    url = joinUrls(baseHref, url);
+    // Prefix relative URLs with `baseHref`.
+    // Strip a leading `.` from a relative `baseHref` (e.g. `./foo/`), since it would result in an
+    // incorrect regex (matching a literal `.`).
+    url = joinUrls(baseHref.replace(/^\.(?=\/)/, ''), url);
   }
 
   return globToRegex(url, literalQuestionMark);

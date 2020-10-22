@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -70,8 +70,8 @@ export interface Injectable {
    * - 'root' : The application-level injector in most apps.
    * - 'platform' : A special singleton platform injector shared by all
    * applications on the page.
-   * - 'any' : Provides a unique instance in every module (including lazy modules) that injects the
-   * token.
+   * - 'any' : Provides a unique instance in each lazy loaded module while all eagerly loaded
+   * modules share one instance.
    *
    */
   providedIn?: Type<any>|'root'|'platform'|'any'|null;

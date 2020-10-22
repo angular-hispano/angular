@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -136,6 +136,16 @@ function _unexpectedCharacterErrorMsg(charCode: number): string {
 
 function _unknownEntityErrorMsg(entitySrc: string): string {
   return `Unknown entity "${entitySrc}" - use the "&#<decimal>;" or  "&#x<hex>;" syntax`;
+}
+
+function _unparsableEntityErrorMsg(type: CharacterReferenceType, entityStr: string): string {
+  return `Unable to parse entity "${entityStr}" - ${
+      type} character reference entities must end with ";"`;
+}
+
+enum CharacterReferenceType {
+  HEX = 'hexadecimal',
+  DEC = 'decimal',
 }
 
 class _ControlFlowError {
@@ -400,8 +410,13 @@ class _Tokenizer {
       const codeStart = this._cursor.clone();
       this._attemptCharCodeUntilFn(isDigitEntityEnd);
       if (this._cursor.peek() != chars.$SEMICOLON) {
+        // Advance cursor to include the peeked character in the string provided to the error
+        // message.
+        this._cursor.advance();
+        const entityType = isHex ? CharacterReferenceType.HEX : CharacterReferenceType.DEC;
         throw this._createError(
-            _unexpectedCharacterErrorMsg(this._cursor.peek()), this._cursor.getSpan());
+            _unparsableEntityErrorMsg(entityType, this._cursor.getChars(start)),
+            this._cursor.getSpan());
       }
       const strNum = this._cursor.getChars(codeStart);
       this._cursor.advance();

@@ -17,7 +17,7 @@ echo "source $envHelpersPath;" >> $BASH_ENV;
 ####################################################################################################
 setPublicVar CI "$CI"
 setPublicVar PROJECT_ROOT "$projectDir";
-setPublicVar CI_AIO_MIN_PWA_SCORE "95";
+setPublicVar CI_AIO_MIN_PWA_SCORE "62";
 # This is the branch being built; e.g. `pull/12345` for PR builds.
 setPublicVar CI_BRANCH "$CIRCLE_BRANCH";
 setPublicVar CI_BUILD_URL "$CIRCLE_BUILD_URL";
@@ -74,7 +74,7 @@ setPublicVar COMPONENTS_REPO_TMP_DIR "/tmp/angular-components-repo"
 setPublicVar COMPONENTS_REPO_URL "https://github.com/angular/components.git"
 setPublicVar COMPONENTS_REPO_BRANCH "master"
 # **NOTE**: When updating the commit SHA, also update the cache key in the CircleCI `config.yml`.
-setPublicVar COMPONENTS_REPO_COMMIT "448523bffffecd2b53a3d2854c3051b6b7a3934f"
+setPublicVar COMPONENTS_REPO_COMMIT "09e68db8ed5b1253f2fe38ff954ef0df019fc25a"
 
 
 ####################################################################################################

@@ -1,20 +1,22 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 import {Injector} from '../../di';
 import {ErrorHandler} from '../../error_handler';
+import {DoCheck, OnChanges, OnInit} from '../../interface/lifecycle_hooks';
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, SchemaMetadata} from '../../metadata/schema';
 import {ViewEncapsulation} from '../../metadata/view';
 import {validateAgainstEventAttributes, validateAgainstEventProperties} from '../../sanitization/sanitization';
 import {Sanitizer} from '../../sanitization/sanitizer';
-import {assertDataInRange, assertDefined, assertDomNode, assertEqual, assertGreaterThan, assertNotEqual, assertNotSame, assertSame} from '../../util/assert';
+import {assertDataInRange, assertDefined, assertDomNode, assertEqual, assertGreaterThan, assertLessThan, assertNotEqual, assertNotSame, assertSame} from '../../util/assert';
 import {createNamedArrayType} from '../../util/named_array_type';
 import {initNgDevMode} from '../../util/ng_dev_mode';
 import {normalizeDebugBindingName, normalizeDebugBindingValue} from '../../util/ng_reflect';
+import {stringify} from '../../util/stringify';
 import {assertFirstCreatePass, assertLContainer, assertLView} from '../assert';
 import {attachPatchData} from '../context_discovery';
 import {getFactoryDef} from '../definition';
@@ -29,7 +31,7 @@ import {isProceduralRenderer, RComment, RElement, Renderer3, RendererFactory3, R
 import {SanitizerFn} from '../interfaces/sanitization';
 import {isComponentDef, isComponentHost, isContentQueryHost, isLContainer, isRootView} from '../interfaces/type_checks';
 import {CHILD_HEAD, CHILD_TAIL, CLEANUP, CONTEXT, DECLARATION_COMPONENT_VIEW, DECLARATION_VIEW, FLAGS, HEADER_OFFSET, HOST, InitPhaseState, INJECTOR, LView, LViewFlags, NEXT, PARENT, RENDERER, RENDERER_FACTORY, RootContext, RootContextFlags, SANITIZER, T_HOST, TData, TRANSPLANTED_VIEWS_TO_REFRESH, TVIEW, TView, TViewType} from '../interfaces/view';
-import {assertNodeOfPossibleTypes} from '../node_assert';
+import {assertNodeNotOfTypes, assertNodeOfPossibleTypes} from '../node_assert';
 import {isInlineTemplate, isNodeMatchingSelectorList} from '../node_selector_matcher';
 import {enterView, getBindingsEnabled, getCheckNoChangesMode, getCurrentDirectiveIndex, getIsParent, getPreviousOrParentTNode, getSelectedIndex, leaveView, setBindingIndex, setBindingRootForHostBindings, setCheckNoChangesMode, setCurrentDirectiveIndex, setCurrentQueryIndex, setPreviousOrParentTNode, setSelectedIndex} from '../state';
 import {NO_CHANGE} from '../tokens';
@@ -98,6 +100,10 @@ export function setHostBindingsByExecutingExpandoInstructions(tView: TView, lVie
         } else {
           // If it's not a number, it's a host binding function that needs to be executed.
           if (instruction !== null) {
+            ngDevMode &&
+                assertLessThan(
+                    currentDirectiveIndex, TNodeProviderIndexes.CptViewProvidersCountShifter,
+                    'Reached the max number of host bindings');
             setBindingRootForHostBindings(bindingRootIndex, currentDirectiveIndex);
             const hostCtx = lView[currentDirectiveIndex];
             instruction(RenderFlags.Update, hostCtx);
@@ -230,6 +236,13 @@ export function getOrCreateTNode(
   const tNode = tView.data[adjustedIndex] as TNode ||
       createTNodeAtIndex(tView, tHostNode, adjustedIndex, type, name, attrs);
   setPreviousOrParentTNode(tNode, true);
+  if (ngDevMode) {
+    // For performance reasons it is important that the tNode retains the same shape during runtime.
+    // (To make sure that all of the code is monomorphic.) For this reason we seal the object to
+    // prevent class transitions.
+    // FIXME(misko): re-enable this once i18n code is compliant with this.
+    // Object.seal(tNode);
+  }
   return tNode as TElementNode & TViewNode & TContainerNode & TElementContainerNode &
       TProjectionNode & TIcuContainerNode;
 }
@@ -272,7 +285,7 @@ export function assignTViewNodeToLView(
   let tNode = tView.node;
   if (tNode == null) {
     ngDevMode && tParentNode &&
-        assertNodeOfPossibleTypes(tParentNode, TNodeType.Element, TNodeType.Container);
+        assertNodeOfPossibleTypes(tParentNode, [TNodeType.Element, TNodeType.Container]);
     tView.node = tNode = createTNode(
                              tView,
                              tParentNode as TElementNode | TContainerNode | null,  //
@@ -686,7 +699,9 @@ export function createTView(
              null,                                           // firstChild: TNode|null,
              schemas,                                        // schemas: SchemaMetadata[]|null,
              consts,                                         // consts: TConstants|null
-             false                                           // incompleteFirstPass: boolean
+             false,                                          // incompleteFirstPass: boolean
+             decls,                                          // ngDevMode only: decls
+             vars,                                           // ngDevMode only: vars
              ) :
       {
         type: type,
@@ -791,22 +806,6 @@ export function storeCleanupWithContext(
 
   if (tView.firstCreatePass) {
     getTViewCleanup(tView).push(cleanupFn, lCleanup.length - 1);
-  }
-}
-
-/**
- * Saves the cleanup function itself in LView.cleanupInstances.
- *
- * This is necessary for functions that are wrapped with their contexts, like in renderer2
- * listeners.
- *
- * On the first template pass, the index of the cleanup function is saved in TView.
- */
-export function storeCleanupFn(tView: TView, lView: LView, cleanupFn: Function): void {
-  getLCleanup(lView).push(cleanupFn);
-
-  if (tView.firstCreatePass) {
-    getTViewCleanup(tView).push(lView[CLEANUP]!.length - 1, null);
   }
 }
 
@@ -994,7 +993,7 @@ export function elementPropertyInternal<T>(
 
     if (ngDevMode) {
       validateAgainstEventProperties(propName);
-      if (!validateProperty(tView, lView, element, propName, tNode)) {
+      if (!validateProperty(tView, element, propName, tNode)) {
         // Return here since we only log warnings for unknown properties.
         logUnknownPropertyError(propName, tNode);
         return;
@@ -1011,10 +1010,10 @@ export function elementPropertyInternal<T>(
       (element as RElement).setProperty ? (element as any).setProperty(propName, value) :
                                           (element as any)[propName] = value;
     }
-  } else if (tNode.type === TNodeType.Container) {
+  } else if (tNode.type === TNodeType.Container || tNode.type === TNodeType.ElementContainer) {
     // If the node is a container and the property didn't
     // match any of the inputs or schemas we should throw.
-    if (ngDevMode && !matchingSchemas(tView, lView, tNode.tagName)) {
+    if (ngDevMode && !matchingSchemas(tView, tNode.tagName)) {
       logUnknownPropertyError(propName, tNode);
     }
   }
@@ -1072,8 +1071,7 @@ export function setNgReflectProperties(
 }
 
 function validateProperty(
-    tView: TView, lView: LView, element: RElement|RComment, propName: string,
-    tNode: TNode): boolean {
+    tView: TView, element: RElement|RComment, propName: string, tNode: TNode): boolean {
   // If `schemas` is set to `null`, that's an indication that this Component was compiled in AOT
   // mode where this check happens at compile time. In JIT mode, `schemas` is always present and
   // defined as an array (as an empty array in case `schemas` field is not defined) and we should
@@ -1082,8 +1080,7 @@ function validateProperty(
 
   // The property is considered valid if the element matches the schema, it exists on the element
   // or it is synthetic, and we are in a browser context (web worker nodes should be skipped).
-  if (matchingSchemas(tView, lView, tNode.tagName) || propName in element ||
-      isAnimationProp(propName)) {
+  if (matchingSchemas(tView, tNode.tagName) || propName in element || isAnimationProp(propName)) {
     return true;
   }
 
@@ -1092,7 +1089,7 @@ function validateProperty(
   return typeof Node === 'undefined' || Node === null || !(element instanceof Node);
 }
 
-export function matchingSchemas(tView: TView, lView: LView, tagName: string|null): boolean {
+export function matchingSchemas(tView: TView, tagName: string|null): boolean {
   const schemas = tView.schemas;
 
   if (schemas !== null) {
@@ -1183,9 +1180,11 @@ export function resolveDirectives(
         if (def.hostBindings !== null || def.hostAttrs !== null || def.hostVars !== 0)
           tNode.flags |= TNodeFlags.hasHostBindings;
 
+        const lifeCycleHooks: OnChanges&OnInit&DoCheck = def.type.prototype;
         // Only push a node index into the preOrderHooks array if this is the first
         // pre-order hook found on this node.
-        if (!preOrderHooksFound && (def.onChanges || def.onInit || def.doCheck)) {
+        if (!preOrderHooksFound &&
+            (lifeCycleHooks.ngOnChanges || lifeCycleHooks.ngOnInit || lifeCycleHooks.ngDoCheck)) {
           // We will push the actual hook function into this array later during dir instantiation.
           // We cannot do it now because we must ensure hooks are registered in the same
           // order that directives are created (i.e. injection order).
@@ -1193,7 +1192,7 @@ export function resolveDirectives(
           preOrderHooksFound = true;
         }
 
-        if (!preOrderCheckHooksFound && (def.onChanges || def.doCheck)) {
+        if (!preOrderCheckHooksFound && (lifeCycleHooks.ngOnChanges || lifeCycleHooks.ngDoCheck)) {
           (tView.preOrderCheckHooks || (tView.preOrderCheckHooks = []))
               .push(tNode.index - HEADER_OFFSET);
           preOrderCheckHooksFound = true;
@@ -1278,7 +1277,7 @@ function instantiateAllDirectives(
     const isComponent = isComponentDef(def);
 
     if (isComponent) {
-      ngDevMode && assertNodeOfPossibleTypes(tNode, TNodeType.Element);
+      ngDevMode && assertNodeOfPossibleTypes(tNode, [TNodeType.Element]);
       addComponentLogic(lView, tNode as TElementNode, def as ComponentDef<any>);
     }
 
@@ -1366,7 +1365,7 @@ function findDirectiveDefMatches(
   ngDevMode && assertFirstCreatePass(tView);
   ngDevMode &&
       assertNodeOfPossibleTypes(
-          tNode, TNodeType.Element, TNodeType.ElementContainer, TNodeType.Container);
+          tNode, [TNodeType.Element, TNodeType.ElementContainer, TNodeType.Container]);
   const registry = tView.directiveRegistry;
   let matches: any[]|null = null;
   if (registry) {
@@ -1377,6 +1376,12 @@ function findDirectiveDefMatches(
         diPublicInInjector(getOrCreateNodeInjectorForNode(tNode, viewData), tView, def.type);
 
         if (isComponentDef(def)) {
+          ngDevMode &&
+              assertNodeOfPossibleTypes(
+                  tNode, [TNodeType.Element],
+                  `"${tNode.tagName}" tags cannot be used as component hosts. ` +
+                      `Please use a different tag to activate the ${
+                          stringify(def.type)} component.`);
           if (tNode.flags & TNodeFlags.isComponentHost) throwMultipleComponentError(tNode);
           markAsComponentHost(tView, tNode);
           // The component is always stored first with directives after.
@@ -1484,8 +1489,14 @@ function addComponentLogic<T>(lView: LView, hostTNode: TElementNode, def: Compon
 export function elementAttributeInternal(
     tNode: TNode, lView: LView, name: string, value: any, sanitizer: SanitizerFn|null|undefined,
     namespace: string|null|undefined) {
-  ngDevMode && assertNotSame(value, NO_CHANGE as any, 'Incoming value should never be NO_CHANGE.');
-  ngDevMode && validateAgainstEventAttributes(name);
+  if (ngDevMode) {
+    assertNotSame(value, NO_CHANGE as any, 'Incoming value should never be NO_CHANGE.');
+    validateAgainstEventAttributes(name);
+    assertNodeNotOfTypes(
+        tNode, [TNodeType.Container, TNodeType.ElementContainer],
+        `Attempted to set attribute \`${name}\` on a container node. ` +
+            `Host bindings are not valid on ng-container or ng-template.`);
+  }
   const element = getNativeByTNode(tNode, lView) as RElement;
   const renderer = lView[RENDERER];
   if (value == null) {

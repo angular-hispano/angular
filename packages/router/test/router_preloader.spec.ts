@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -18,6 +18,23 @@ describe('RouterPreloader', () => {
   @Component({template: ''})
   class LazyLoadedCmp {
   }
+
+  describe('should properly handle', () => {
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [RouterTestingModule.withRoutes(
+            [{path: 'lazy', loadChildren: 'expected', canLoad: ['someGuard']}])],
+        providers: [{provide: PreloadingStrategy, useExisting: PreloadAllModules}]
+      });
+    });
+
+    it('being destroyed before expected', () => {
+      const preloader: RouterPreloader = TestBed.get(RouterPreloader);
+      // Calling the RouterPreloader's ngOnDestroy method is done to simulate what would happen if
+      // the containing NgModule is destroyed.
+      expect(() => preloader.ngOnDestroy()).not.toThrow();
+    });
+  });
 
   describe('should not load configurations with canLoad guard', () => {
     @NgModule({

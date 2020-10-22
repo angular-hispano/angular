@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -25,8 +25,8 @@ export class MockFileSystemPosix extends MockFileSystem {
     return this.normalize(p.posix.join(basePath, ...paths)) as T;
   }
 
-  relative<T extends PathString>(from: T, to: T): PathSegment {
-    return this.normalize(p.posix.relative(from, to)) as PathSegment;
+  relative<T extends PathString>(from: T, to: T): PathSegment|AbsoluteFsPath {
+    return this.normalize(p.posix.relative(from, to)) as PathSegment | AbsoluteFsPath;
   }
 
   basename(filePath: string, extension?: string): PathSegment {

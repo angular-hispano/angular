@@ -1,13 +1,13 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 
 import {EventEmitter, NgZone} from '@angular/core';
-import {async, fakeAsync, flushMicrotasks} from '@angular/core/testing';
+import {fakeAsync, flushMicrotasks, waitForAsync} from '@angular/core/testing';
 import {AsyncTestCompleter, beforeEach, describe, expect, inject, it, Log, xit} from '@angular/core/testing/src/testing_internal';
 import {browserDetection} from '@angular/platform-browser/testing/src/browser_util';
 
@@ -914,7 +914,7 @@ function commonTests() {
           asyncResult = null!;
         });
 
-        it('should async even if the NgZone was created outside.', async(() => {
+        it('should async even if the NgZone was created outside.', waitForAsync(() => {
              // try to escape the current async zone by using NgZone which was created outside.
              ngZone.run(() => {
                setTimeout(() => {

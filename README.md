@@ -1,26 +1,25 @@
-[![CircleCI](https://circleci.com/gh/angular/angular/tree/master.svg?style=shield)](https://circleci.com/gh/angular/workflows/angular/tree/master)
-[![Join the chat at https://gitter.im/angular/angular](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular/angular?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://www.npmjs.com/@angular/core)
+# Angular en español
 
+Angular es una plataforma de desarrollo para construir aplicaciones web y móviles que usa
+TypeScript/JavaScript y otros lenguajes de programación.
 
-# Angular
+## ¿Quieres ayudar?
 
-Angular is a development platform for building mobile and desktop web applications using TypeScript/JavaScript and other languages.
+### Documentación en español
 
-## Quickstart
+¿Quieres mejorar la documentación? ¡Excelente! Lee nuestras pautas para
+[colaborar](CONTRIBUTING.md) y luego revisa algunos de nuestras
+[issues](https://github.com/angular-hispano/angular/issues).
 
-[Get started in 5 minutes][quickstart].
+### El framework
 
-## Changelog
+La colaboración para corregir errores y agregar funciones en el framework debe realizarse en inglés a través
+del repositorio [angular/angular](https://github.com/angular/angular) upstream.
 
-[Learn about the latest improvements][changelog].
+## Guía rápida
 
-## Want to help?
+[Comienza a usarlo en 5 minutos](https://docs.angular.lat/start).
 
-Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our
-guidelines for [contributing][contributing] and then check out one of our issues in the [hotlist: community-help](https://github.com/angular/angular/labels/hotlist%3A%20community-help).
+## Registro de cambios (Changelog)
 
-[contributing]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md
-[quickstart]: https://angular.io/start
-[changelog]: https://github.com/angular/angular/blob/master/CHANGELOG.md
-[ng]: https://angular.io
+[Últimas mejoras realizadas](CHANGELOG.md).

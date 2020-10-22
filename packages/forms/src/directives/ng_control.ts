@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -18,7 +18,7 @@ function unimplemented(): any {
 
 /**
  * @description
- * A base class that all control `FormControl`-based directives extend. It binds a `FormControl`
+ * A base class that all `FormControl`-based directives extend. It binds a `FormControl`
  * object to a DOM element.
  *
  * @publicApi

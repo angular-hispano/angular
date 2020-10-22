@@ -1,12 +1,12 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {NgModuleFactory, ɵisObservable as isObservable, ɵisPromise as isPromise} from '@angular/core';
+import {ɵisObservable as isObservable, ɵisPromise as isPromise} from '@angular/core';
 import {from, Observable, of} from 'rxjs';
 import {concatAll, last as lastValue, map} from 'rxjs/operators';
 
@@ -45,8 +45,10 @@ export function shallowEqual(a: Params, b: Params): boolean {
  */
 export function equalArraysOrString(a: string|string[], b: string|string[]) {
   if (Array.isArray(a) && Array.isArray(b)) {
-    if (a.length != b.length) return false;
-    return a.every(aItem => b.indexOf(aItem) > -1);
+    if (a.length !== b.length) return false;
+    const aSorted = [...a].sort();
+    const bSorted = [...b].sort();
+    return aSorted.every((val, index) => bSorted[index] === val);
   } else {
     return a === b;
   }

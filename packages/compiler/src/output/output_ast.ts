@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -176,8 +176,9 @@ export abstract class Expression {
     return new InvokeMethodExpr(this, name, params, null, sourceSpan);
   }
 
-  callFn(params: Expression[], sourceSpan?: ParseSourceSpan|null): InvokeFunctionExpr {
-    return new InvokeFunctionExpr(this, params, null, sourceSpan);
+  callFn(params: Expression[], sourceSpan?: ParseSourceSpan|null, pure?: boolean):
+      InvokeFunctionExpr {
+    return new InvokeFunctionExpr(this, params, null, sourceSpan, pure);
   }
 
   instantiate(params: Expression[], type?: Type|null, sourceSpan?: ParseSourceSpan|null):

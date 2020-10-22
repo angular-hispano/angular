@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -152,13 +152,13 @@ export interface ClassMember {
   name: string;
 
   /**
-   * TypeScript `ts.Identifier` representing the name of the member, or `null` if no such node
-   * is present.
+   * TypeScript `ts.Identifier` or `ts.StringLiteral` representing the name of the member, or `null`
+   * if no such node is present.
    *
    * The `nameNode` is useful in writing references to this member that will be correctly source-
    * mapped back to the original file.
    */
-  nameNode: ts.Identifier|null;
+  nameNode: ts.Identifier|ts.StringLiteral|null;
 
   /**
    * TypeScript `ts.Expression` which represents the value of the member.

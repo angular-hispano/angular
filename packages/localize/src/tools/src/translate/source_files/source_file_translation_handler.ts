@@ -1,11 +1,11 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import {absoluteFrom, AbsoluteFsPath, FileSystem, PathSegment, relativeFrom} from '@angular/compiler-cli/src/ngtsc/file_system';
+import {absoluteFrom, AbsoluteFsPath, FileSystem, PathSegment} from '@angular/compiler-cli/src/ngtsc/file_system';
 import {parseSync, transformFromAstSync} from '@babel/core';
 import {File, Program} from '@babel/types';
 
@@ -27,8 +27,8 @@ export class SourceFileTranslationHandler implements TranslationHandler {
       TranslatePluginOptions = {...this.translationOptions, missingTranslation: 'ignore'};
   constructor(private fs: FileSystem, private translationOptions: TranslatePluginOptions = {}) {}
 
-  canTranslate(relativeFilePath: PathSegment, _contents: Buffer): boolean {
-    return this.fs.extname(relativeFrom(relativeFilePath)) === '.js';
+  canTranslate(relativeFilePath: PathSegment|AbsoluteFsPath, _contents: Buffer): boolean {
+    return this.fs.extname(relativeFilePath) === '.js';
   }
 
   translate(

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -109,6 +109,7 @@ export function injectInjectorOnly<T>(
  *
  * @see inject
  * @codeGenApi
+ * @publicApi This instruction has been emitted by ViewEngine for some time and is deployed to npm.
  */
 export function ɵɵinject<T>(token: Type<T>|InjectionToken<T>): T;
 export function ɵɵinject<T>(token: Type<T>|InjectionToken<T>, flags?: InjectFlags): T|null;

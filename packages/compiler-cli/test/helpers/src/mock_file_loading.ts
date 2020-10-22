@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -37,7 +37,7 @@ export function loadStandardTestFiles(
     loadFakeCore(tmpFs, basePath);
   } else {
     getAngularPackagesFromRunfiles().forEach(({name, pkgPath}) => {
-      loadTestDirectory(tmpFs, pkgPath, tmpFs.resolve('/node_modules/@angular', name));
+      loadTestDirectory(tmpFs, pkgPath, tmpFs.resolve(basePath, 'node_modules/@angular', name));
     });
   }
 

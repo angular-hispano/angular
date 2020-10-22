@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -9,8 +9,7 @@ import {InjectFlags, InjectionToken, resolveForwardRef} from '../../di';
 import {ɵɵinject} from '../../di/injector_compatibility';
 import {Type} from '../../interface/type';
 import {getOrCreateInjectable, injectAttributeImpl} from '../di';
-import {TDirectiveHostNode, TNodeType} from '../interfaces/node';
-import {assertNodeOfPossibleTypes} from '../node_assert';
+import {TDirectiveHostNode} from '../interfaces/node';
 import {getLView, getPreviousOrParentTNode} from '../state';
 
 /**

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -55,7 +55,7 @@ export function patchTimer(window: any, setName: string, cancelName: string, nam
   }
 
   function clearTask(task: Task) {
-    return clearNative!((<TimerOptions>task.data).handleId);
+    return clearNative!.call(window, (<TimerOptions>task.data).handleId);
   }
 
   setNative =

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -8,7 +8,7 @@
 import {ChildProcess, fork} from 'child_process';
 
 import {AbsoluteFsPath, FileSystem} from '../../../../src/ngtsc/file_system';
-import {Logger, LogLevel} from '../../logging/logger';
+import {Logger, LogLevel} from '../../../../src/ngtsc/logging';
 import {getLockFilePath, LockFile} from '../lock_file';
 
 import {removeLockFile} from './util';

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
@@ -124,7 +124,6 @@ export {
   ɵɵclassMapInterpolateV,
   ɵɵclassProp,
   ɵɵComponentDefWithMeta,
-  ɵɵcomponentHostSyntheticListener,
   ɵɵcontentQuery,
   ɵɵCopyDefinitionFeature,
   ɵɵdefineComponent,
@@ -227,6 +226,8 @@ export {
   ɵɵstylePropInterpolate7,
   ɵɵstylePropInterpolate8,
   ɵɵstylePropInterpolateV,
+  ɵɵsyntheticHostListener,
+  ɵɵsyntheticHostProperty,
   ɵɵtemplate,
   ɵɵtemplateRefExtractor,
   ɵɵtext,
@@ -240,7 +241,6 @@ export {
   ɵɵtextInterpolate7,
   ɵɵtextInterpolate8,
   ɵɵtextInterpolateV,
-  ɵɵupdateSyntheticHostBinding,
   ɵɵviewQuery,
 } from './render3/index';
 export {
@@ -292,5 +292,8 @@ export {
   ɵɵsanitizeUrl,
   ɵɵsanitizeUrlOrResourceUrl,
 } from './sanitization/sanitization';
+export {
+  noSideEffects as ɵnoSideEffects,
+} from './util/closure';
 
 // clang-format on

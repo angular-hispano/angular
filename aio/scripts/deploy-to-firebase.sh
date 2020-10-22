@@ -33,7 +33,7 @@ else
   readonly majorVersionStable=${CI_STABLE_BRANCH%%.*}
 
   # Do not deploy if the major version is not less than the stable branch major version
-  if [[ !( "$majorVersion" < "$majorVersionStable" ) ]]; then
+  if (( $majorVersion >= $majorVersionStable )); then
     echo "Skipping deploy of branch \"$CI_BRANCH\" to firebase."
     echo "We only deploy archive branches with the major version less than the stable branch: \"$CI_STABLE_BRANCH\""
     exit 0
@@ -63,18 +63,15 @@ fi
 
 case $deployEnv in
   next)
-    readonly projectId=aio-staging
-    readonly deployedUrl=https://next.angular.io/
+    readonly projectId=angular-hispano-staging
+    readonly siteId=angular-hispano-docs-staging
+    readonly deployedUrl=https://angular-hispano-docs-staging.web.app/
     readonly firebaseToken=$CI_SECRET_AIO_DEPLOY_FIREBASE_TOKEN
     ;;
   stable)
-    readonly projectId=angular-io
-    readonly deployedUrl=https://angular.io/
-    readonly firebaseToken=$CI_SECRET_AIO_DEPLOY_FIREBASE_TOKEN
-    ;;
-  archive)
-    readonly projectId=v${majorVersion}-angular-io
-    readonly deployedUrl=https://v${majorVersion}.angular.io/
+    readonly projectId=angular-latino
+    readonly siteId=angular-hispano-docs-prod
+    readonly deployedUrl=https://docs.angular.lat/
     readonly firebaseToken=$CI_SECRET_AIO_DEPLOY_FIREBASE_TOKEN
     ;;
 esac
@@ -82,6 +79,7 @@ esac
 echo "Git branch        : $CI_BRANCH"
 echo "Build/deploy mode : $deployEnv"
 echo "Firebase project  : $projectId"
+echo "Firebase site     : $siteId"
 echo "Deployment URL    : $deployedUrl"
 
 if [[ ${1:-} == "--dry-run" ]]; then
@@ -92,23 +90,29 @@ fi
 (
   cd "`dirname $0`/.."
 
-  # Build the app
+  echo "\n\n\n==== Build the aio app ====\n"
   yarn build --configuration=$deployEnv --progress=false
 
-  # Include any mode-specific files
+
+  echo "\n\n\n==== Add any mode-specific files into the aio distribution ====\n"
   cp -rf src/extra-files/$deployEnv/. dist/
 
-  # Set deployedUrl as parameter in the opensearch description
+
+  echo "\n\n\n==== Update opensearch descriptor for aio with the deployedUrl ====\n"
   # deployedUrl must end with /
   yarn set-opensearch-url $deployedUrl
 
-  # Check payload size
+  echo "\n\n\n==== Check payload size and upload the numbers to firebase db ====\n"
   yarn payload-size
 
-  # Deploy to Firebase
-  yarn firebase use "$projectId" --token "$firebaseToken"
-  yarn firebase deploy --message "Commit: $CI_COMMIT" --non-interactive --token "$firebaseToken"
 
-  # Run PWA-score tests
+  echo "\n\n\n==== Deploy aio to firebase hosting ====\n"
+
+  yarn firebase use "${projectId}" --token "$firebaseToken"
+  yarn firebase target:apply hosting aio $siteId --token "$firebaseToken"
+  yarn firebase deploy --only hosting:aio --message "Commit: $CI_COMMIT" --non-interactive --token "$firebaseToken"
+
+
+  echo "\n\n\n==== Run PWA-score tests ====\n"
   yarn test-pwa-score "$deployedUrl" "$CI_AIO_MIN_PWA_SCORE"
 )

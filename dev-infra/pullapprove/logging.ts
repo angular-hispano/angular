@@ -1,23 +1,33 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 
+import {info} from '../utils/console';
 import {PullApproveGroupResult} from './group';
 
+type ConditionGrouping = keyof Pick<
+    PullApproveGroupResult, 'matchedConditions'|'unmatchedConditions'|'unverifiableConditions'>;
+
 /** Create logs for each pullapprove group result. */
-export function logGroup(group: PullApproveGroupResult, matched = true) {
-  const conditions = matched ? group.matchedConditions : group.unmatchedConditions;
-  console.groupCollapsed(`[${group.groupName}]`);
+export function logGroup(
+    group: PullApproveGroupResult, conditionsToPrint: ConditionGrouping, printMessageFn = info) {
+  const conditions = group[conditionsToPrint];
+  printMessageFn.group(`[${group.groupName}]`);
   if (conditions.length) {
-    conditions.forEach(matcher => {
-      const count = matcher.matchedFiles.size;
-      console.info(`${count} ${count === 1 ? 'match' : 'matches'} - ${matcher.expression}`)
+    conditions.forEach(groupCondition => {
+      const count = groupCondition.matchedFiles.size;
+      if (conditionsToPrint === 'unverifiableConditions') {
+        printMessageFn(`${groupCondition.expression}`);
+      } else {
+        printMessageFn(
+            `${count} ${count === 1 ? 'match' : 'matches'} - ${groupCondition.expression}`);
+      }
     });
-    console.groupEnd();
+    printMessageFn.groupEnd();
   }
 }
 
@@ -30,7 +40,7 @@ export function logHeader(...params: string[]) {
   const rightSpace = fillWidth - leftSpace - headerText.length;
   const fill = (count: number, content: string) => content.repeat(count);
 
-  console.info(`┌${fill(fillWidth, '─')}┐`);
-  console.info(`│${fill(leftSpace, ' ')}${headerText}${fill(rightSpace, ' ')}│`);
-  console.info(`└${fill(fillWidth, '─')}┘`);
+  info(`┌${fill(fillWidth, '─')}┐`);
+  info(`│${fill(leftSpace, ' ')}${headerText}${fill(rightSpace, ' ')}│`);
+  info(`└${fill(fillWidth, '─')}┘`);
 }

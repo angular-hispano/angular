@@ -22,7 +22,7 @@ StackBlitz projects are public by default, allowing you to share your Angular ap
 
 To build your application locally or for production, download the source code from your StackBlitz project by clicking the `Download Project` icon in the left menu across from `Project` to download your files.
 
-Once you have the source code downloaded and unzipped, use the [Angular Console](https://angularconsole.com "Angular Console web site") to serve the application, or install `Node.js` and serve your app with the Angular CLI.
+Once you have the source code downloaded and unzipped, install `Node.js` and serve your app with the Angular CLI.
 
 From the terminal, install the Angular CLI globally with:
 
@@ -86,6 +86,6 @@ Angular offers many more capabilities, and you now have a foundation that empowe
 * Angular provides advanced capabilities for mobile apps, animation, internationalization, server-side rendering, and more.
 * [Angular Material](https://material.angular.io/ "Angular Material web site") offers an extensive library of Material Design components.
 * [Angular Protractor](https://protractor.angular.io/ "Angular Protractor web site") offers an end-to-end testing framework for Angular apps.
-* Angular also has an extensive [network of 3rd-party tools and libraries](https://angular.io/resources "Angular resources list").
+* Angular also has an extensive [network of 3rd-party tools and libraries](resources "Angular resources list").
 
 Keep current by following the [Angular blog](https://blog.angular.io/ "Angular blog").

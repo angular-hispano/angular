@@ -1,13 +1,13 @@
 /**
  * @license
- * Copyright Google Inc. All Rights Reserved.
+ * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
 
 import {Component, Directive, EventEmitter, Input, Output, Type, ViewChild} from '@angular/core';
-import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed, tick, waitForAsync} from '@angular/core/testing';
 import {AbstractControl, ControlValueAccessor, FormControl, FormGroup, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgControl, NgForm, NgModel, ReactiveFormsModule, Validators} from '@angular/forms';
 import {By} from '@angular/platform-browser/src/dom/debug/by';
 import {dispatchEvent} from '@angular/platform-browser/testing/src/browser_util';
@@ -498,6 +498,18 @@ import {dispatchEvent} from '@angular/platform-browser/testing/src/browser_util'
             expect(options[i].nativeElement.selected).toBe(selectedStates[i]);
           }
         };
+
+        it('verify that native `selectedOptions` field is used while detecting the list of selected options',
+           fakeAsync(() => {
+             if (isNode || !HTMLSelectElement.prototype.hasOwnProperty('selectedOptions')) return;
+             const spy = spyOnProperty(HTMLSelectElement.prototype, 'selectedOptions', 'get')
+                             .and.callThrough();
+             setSelectedCities([]);
+
+             selectOptionViaUI('1: Object');
+             assertOptionElementSelectedState([false, true, false]);
+             expect(spy.calls.count()).toBe(2);
+           }));
 
         it('should reflect state of model after option selected and new options subsequently added',
            fakeAsync(() => {
@@ -1066,7 +1078,7 @@ import {dispatchEvent} from '@angular/platform-browser/testing/src/browser_util'
       });
 
       describe('in template-driven forms', () => {
-        it('should support standard writing to view and model', async(() => {
+        it('should support standard writing to view and model', waitForAsync(() => {
              const fixture = initTest(NgModelCustomWrapper, NgModelCustomComp);
              fixture.componentInstance.name = 'Nancy';
              fixture.detectChanges();
