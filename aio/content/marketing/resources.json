@@ -6,8 +6,8 @@
         "order": 1,
         "resources": {
           "awesome-angular-components": {
-            "desc": "Un índice de componentes y bibliotecas de la comunidad mantenido en GitHub",
-            "title": "Catálogo de bibliotecas y componentes Angular",
+            "desc": "Un índice de componentes y librerías de la comunidad mantenido en GitHub",
+            "title": "Catálogo de librerías y componentes Angular",
             "url": "https://github.com/brillout/awesome-angular-components"
           },
           "angular-ru": {
@@ -94,7 +94,7 @@
           }
         }
       },
-      "Bibliotecas de datos": {
+      "Librerías de datos": {
         "order": 3,
         "resources": {
           "rx-web": {
@@ -108,7 +108,7 @@
             "url": "https://ngrx.io/"
           },
           "ngxs": {
-            "desc": "NGXS es un patrón de gestión de estado + biblioteca para Angular. NGXS se basa en el patrón CQRS implementado popularmente en bibliotecas como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
+            "desc": "NGXS es un patrón de gestión de estado + biblioteca para Angular. NGXS se basa en el patrón CRS implementado popularmente en librerías como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
             "title": "NGXS",
             "url": "https://ngxs.io/"
           },
