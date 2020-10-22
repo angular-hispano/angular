@@ -15,32 +15,32 @@ Para ver la aplicación de ejemplo que describe esta página, consulte el  <live
 Primero, necesitarás algunos héroes para mostrar.
 Eventualmente los obtendrá de un servidor de datos remoto. Por ahora, creará algunos _héroes simulados_ y pretenderá que provienen del servidor.
 
-Cree un archivo llamado `mock-heroes.ts` en la carpeta `src/app/`.
-Defina la constante `HEROES` como un conjunto de 10 héroes y expórtela.
+Crea un archivo llamado `mock-heroes.ts` en la carpeta `src/app/`.
+Define la constante `HEROES` como un conjunto de 10 héroes y expórtela.
 El archivo se verá así:
 
 <code-example path="toh-pt2/src/app/mock-heroes.ts" header="src/app/mock-heroes.ts"></code-example>
 
 ## Mostrar Héroe
 
-Abra el archivo de clase `HeroesComponent` e importe el mock `HEROES`.
+Abre el archivo de clase `HeroesComponent` e importe el mock `HEROES`.
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.ts" region="import-heroes" header="src/app/heroes/heroes.component.ts (import HEROES)">
 </code-example>
 
-En el mismo archivo (clase `HeroesComponent`), defina una propiedad de componente llamada `heroes` para exponer el array HEROES para la vinculación.
+En el mismo archivo (clase `HeroesComponent`), define una propiedad de componente llamada `heroes` para exponer el array HEROES para la vinculación.
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.ts" header="src/app/heroes/heroes.component.ts" region="component">
 </code-example>
 
 ### Enumerar héroes con `*ngFor`
 
-Abra las Plantillas `HeroesComponent` y realice los siguientes cambios:
+Abre las Plantillas `HeroesComponent` y realice los siguientes cambios:
 
-* Agregue `<h2>` al principio
-* Agregue una lista HTML desordenada (`<ul>`) debajo de ella
-* Inserte `<li>` dentro del `<ul>` que muestra la propiedad `hero`
-* Espolvorea algunas clases CSS al estilo (agregaremos estilos CSS en breve)
+* Agrega `<h2>` al principio
+* Agrega una lista HTML desordenada (`<ul>`) debajo de ella
+* Inserta `<li>` dentro del `<ul>` que muestra la propiedad `hero`
+* Espolvoreé algunas clases CSS al estilo (agregaremos estilos CSS en breve)
 
 Se parece a esto:
 
@@ -63,7 +63,7 @@ La sintaxis para este ejemplo es:
 
 <div class="alert is-important">
 
-No olvide el asterisco (*) antes del `ngFor`. Esta es una parte importante de la sintaxis.
+No olvides el asterisco (*) antes del `ngFor`. Esta es una parte importante de la sintaxis.
 
 </div>
 
@@ -81,7 +81,7 @@ No incluí el estilo de la lista de héroes en esta hoja de estilo.
 
 Puede agregar más estilos a `styles.css` y seguir expandiendo esa hoja de estilo a medida que agrega componentes
 
-Es posible que prefiera definir un estilo privado para un componente en particular y mantener todo lo que el componente necesita &mdash;
+Es posible que prefieras definir un estilo privado para un componente en particular y mantener todo lo que el componente necesita &mdash;
 código, HTML, CSS&mdash; en un solo lugar.
 
 Este enfoque facilita la reutilización del componente en otro lugar y aún así proporciona al componente la apariencia deseada, incluso cuando los estilos aplicados globalmente son diferentes.
@@ -95,8 +95,8 @@ Cuando la CLI crea un `HeroesComponent`, se crea un `heroes.component.css` vací
  header="src/app/heroes/heroes.component.ts (@Component)">
 </code-example>
 
-Abra `heroes.component.css` y pegue el estilo privado para `HeroesComponent`.
-Puede encontrarlos en la [Revisión del código final](#final-code-review) al final de esta guía.
+Abre `heroes.component.css` y pegue el estilo privado para `HeroesComponent`.
+Puedes encontrarlos en la [Revisión del código final](#final-code-review) al final de esta guía.
 
 <div class="alert is-important">
 
@@ -112,7 +112,7 @@ En este capítulo, esperemos a que se haga clic en el elemento del héroe y lueg
 
 ### Agregar enlace de evento de clic
 
-Agregue el enlace de evento click a su `<li>` así:
+Agrega el enlace de evento click a su `<li>` así:
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.1.html" region="selectedHero-click" header="heroes.component.html (template excerpt)"></code-example>
 
@@ -125,10 +125,10 @@ En la siguiente sección, definiremos el método `onSelect()` en el `HeroesCompo
 
 ### Agregar un controlador de eventos de clic
 
-Cambie el nombre de la propiedad `hero` del componente a `selectedHero`, pero no la asigne todavía.
+Cambia el nombre de la propiedad `hero` del componente a `selectedHero`, pero no la asignes todavía.
 No hay _héroe seleccionado_ cuando se inicia la aplicación.
 
-Agregue el método `onSelect()` de la siguiente manera y asigne el héroe en el que se hizo clic desde Plantillas al componente 'seleccionadoHero`.
+Agrega el método `onSelect()` de la siguiente manera y asigne el héroe en el que se hizo clic desde Plantillas al componente 'seleccionadoHero`.
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.ts" region="on-select" header="src/app/heroes/heroes.component.ts (onSelect)"></code-example>
 
@@ -136,13 +136,13 @@ Agregue el método `onSelect()` de la siguiente manera y asigne el héroe en el 
 
 Actualmente, el componente Plantillas tiene una lista.
 Para hacer clic en un héroe en la lista para ver los detalles de ese héroe, necesita una sección de detalles para representarlo en Plantillas.
-Agregue lo siguiente debajo de la sección de la lista de `heroes.component.html`.
+Agrega lo siguiente debajo de la sección de la lista de `heroes.component.html`.
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.html" region="selectedHero-details" header="heroes.component.html (selected hero details)"></code-example>
 
 Cuando actualizo el navegador, la aplicación está rota.
 
-Abra las herramientas de desarrollador de su navegador y busque un mensaje de error como este en la consola:
+Abre y busca las herramientas de desarrollador de su navegador y busque un mensaje de error como este en la consola:
 
 <code-example language="sh" class="code-shell">
   HeroesComponent.html:3 ERROR TypeError: no se puede leer la propiedad 'nombre' de undefined
@@ -158,12 +158,12 @@ Los enlaces de expresión en Plantillas que se refieren a las propiedades de `se
 
 El componente solo debe mostrar detalles para el héroe seleccionado si `selectedHero` está presente.
 
-Adjunte los detalles del héroe en HTML `<div>`.
-Agregue la directiva angular `*ngIf` a su `<div>` y configúrelo en `selectedHero`.
+Adjunta los detalles del héroe en HTML `<div>`.
+Agrega la directiva angular `*ngIf` a su `<div>` y configúrelo en `selectedHero`.
 
 <div class="alert is-important">
 
-No olvide el asterisco (*) antes del `ngIf`. Esta es una parte importante de la sintaxis.
+No olvides el asterisco (*) antes del `ngIf`. Esta es una parte importante de la sintaxis.
 
 </div>
 
@@ -197,7 +197,7 @@ Simplemente aplica la clase `.selected` a `<li>` cuando el usuario hace clic.
 El [enlace de clase](guide/template-syntax#class-binding)de Angular facilita la adición y eliminación de clases CSS condicionales.
 Simplemente agregue `[class.some-css-class] =" some-condition"` al elemento que desea decorar.
 
-Agregue el enlace `[class.selected]` al `<li>` en `HeroesComponent` Plantillas:
+Agrega el enlace `[class.selected]` al `<li>` en `HeroesComponent` Plantillas:
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.1.html" region="class-selected" header="heroes.component.html (toggle the 'selected' CSS class)"></code-example>
 
