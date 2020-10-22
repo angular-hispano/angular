@@ -16,10 +16,10 @@ A continuación algunas palabras las cuales hemos definido como traducción corr
 | Array | Array |
 | Angular CLI | CLI de Angular |
 | Bootstrap | Cargar |
-| binding | enlace |
+| Binding | Enlace |
 | Build | Crear / crear | 
 | Building | Creando | 
-| builder | constructor |
+| Builder | Constructor |
 | Bug | Bug |
 | Contributor | colaborador |
 | Company | Empresa |
@@ -41,9 +41,9 @@ A continuación algunas palabras las cuales hemos definido como traducción corr
 | Issue | Issue |
 | Roadmap | Hoja de ruta |
 | Router | Enrutador |
-| server-side-rendering | renderizado del lado del servidor |
+| Server-side Rendering | renderizado del lado del servidor |
 | Setup | Preparar |
 | Service Workers | Trabajadores de Servicio |
 | Shell | Armazón/Carcaza |
 | Schematics | Esquemas |
-| template HTML  | plantilla HTML |
+| Template HTML  | Plantilla HTML |
