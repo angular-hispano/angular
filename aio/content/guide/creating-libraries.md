@@ -112,7 +112,7 @@ Si este formulario necesita personalización adicional por parte del desarrollad
 Sin embargo, si el formulario siempre será el mismo y no necesita de mucha personalización por parte de los desarrolladores, entonces podría crear un componente dinámico que tome la configuración y genere el formulario.
 En general, entre más compleja sea personalización, la más util será en enfoque de un 'schematic'.
 
-Para aprender más, véase [Vista general de Schematics](guide/schematics)
+Para aprender más, véase [Vista general de Schematics](guide/schematics) y [Schematics para librerías](guide/schematics-for-libraries).
 
 ## Publicando tu librería
 
