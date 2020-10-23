@@ -12,7 +12,7 @@ describe('site App', function() {
   it('should show features text after clicking "Features"', () => {
     page.navigateTo('');
     page.click(page.getTopMenuLink('features'));
-    expect(page.getDocViewerText()).toMatch(/Progressive web apps/i);
+    expect(page.getDocViewerText()).toMatch(/Aplicaciones Web Progresivas/i);
   });
 
   it('should set appropriate window titles', () => {
@@ -20,7 +20,7 @@ describe('site App', function() {
     expect(browser.getTitle()).toBe('Angular');
 
     page.click(page.getTopMenuLink('features'));
-    expect(browser.getTitle()).toBe('Angular - FEATURES & BENEFITS');
+    expect(browser.getTitle()).toBe('Angular - FUNCIONALIDADES & VENTAJAS');
 
     page.click(page.homeLink);
     expect(browser.getTitle()).toBe('Angular');
@@ -79,7 +79,7 @@ describe('site App', function() {
 
     // navigate to a different page
     page.click(page.getTopMenuLink('features'));
-    expect(page.getDocViewerText()).toMatch(/Progressive web apps/i);
+    expect(page.getDocViewerText()).toMatch(/Aplicaciones Web Progresivas/i);
 
     // Show the menu
     page.click(page.docsMenuLink);
@@ -137,7 +137,7 @@ describe('site App', function() {
       expect(groupButtons.count()).toBe(3);
 
       const texts = groupButtons.map<string>(btn => btn && btn.getText());
-      expect(texts).toEqual(['ANGULAR', 'COLLABORATORS', 'GDE']);
+      expect(texts).toEqual(['ANGULAR', 'GDE', 'COLABORADORES']);
     });
 
     it('should have contributors listed in each group', () => {
