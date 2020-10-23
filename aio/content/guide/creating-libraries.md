@@ -114,6 +114,8 @@ En general, entre más compleja sea personalización, la más util será en enfo
 
 Para aprender más, véase [Vista general de Schematics](guide/schematics) y [Schematics para librerías](guide/schematics-for-libraries).
 
+{@a publishing-your-library}
+
 ## Publicando tu librería
 
 Usa el Angular CLI y el gestor de paquetes npm para construir y publicar tu librería como un paquete npm.
