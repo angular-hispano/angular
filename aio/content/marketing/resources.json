@@ -31,7 +31,7 @@
             "title": "DEV Community"
           },
           "angular-in-depth": {
-            "desc": "El lugar donde se explican los conceptos de Angular avanzados",
+            "desc": "El lugar donde se explican los conceptos avanzados de Angular",
             "url": "https://blog.angularindepth.com",
             "title": "Angular In Depth"
           }
@@ -41,7 +41,7 @@
         "order": 3,
         "resources": {
           "sdfjkdkfj": {
-            "desc": "Adventures in Angular es un podcast semanal dedicado a la plataforma Angular y tecnologías, herramientas, lenguajes y prácticas relacionados.",
+            "desc": "Adventures in Angular es un podcast semanal dedicado a la plataforma Angular y tecnologías relacionados, herramientas, lenguajes y prácticas.",
             "logo": "",
             "title": "Adventures in Angular",
             "url": "https://devchat.tv/adv-in-angular/"
