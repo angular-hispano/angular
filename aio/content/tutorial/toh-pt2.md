@@ -5,7 +5,7 @@ Permite al usuario seleccionar un héroe y ver los detalles del héroe.
 
 <div class="alert is-helpful">
 
-Para ver la aplicación de ejemplo que describe esta página, consulte el  <live-example></live-example>.
+Para ver la aplicación de ejemplo que describe esta página, consulta el  <live-example></live-example>.
 
 </div>
 
@@ -16,12 +16,12 @@ Primero, necesitarás algunos héroes para mostrar.
 Eventualmente los obtendrá de un servidor de datos remoto. Por ahora, creará algunos _héroes simulados_ y pretenderá que provienen del servidor.
 
 Crea un archivo llamado `mock-heroes.ts` en la carpeta `src/app/`.
-Define la constante `HEROES` como un conjunto de 10 héroes y expórtela.
+Define la constante `HEROES` como un conjunto de 10 héroes y expórtala.
 El archivo se verá así:
 
 <code-example path="toh-pt2/src/app/mock-heroes.ts" header="src/app/mock-heroes.ts"></code-example>
 
-## Mostrar Héroe
+## Mostrar Héroes
 
 Abre el archivo de clase `HeroesComponent` e importe el mock `HEROES`.
 
@@ -35,7 +35,7 @@ En el mismo archivo (clase `HeroesComponent`), define una propiedad de component
 
 ### Enumerar héroes con `*ngFor`
 
-Abre las Plantillas `HeroesComponent` y realice los siguientes cambios:
+Abre las Plantillas `HeroesComponent` y realiza los siguientes cambios:
 
 * Agrega `<h2>` al principio
 * Agrega una lista HTML desordenada (`<ul>`) debajo de ella
@@ -46,7 +46,7 @@ Se parece a esto:
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.1.html" region="list" header="heroes.component.html (heroes template)"></code-example>
 
-Esto muestra un héroe. Para enumerarlos a todos, agregue `*ngFor*` a `<li>` para iterar sobre la lista de héroes.
+Esto muestra un héroe. Para enumerarlos a todos, agrega `*ngFor*` a `<li>` para iterar sobre la lista de héroes.
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.1.html" region="li">
 </code-example>
@@ -75,11 +75,11 @@ Actualiza tu navegador para ver la lista de héroes.
 
 La lista de héroes debe ser atractiva y visualmente prominente cuando el usuario coloca el cursor y selecciona un héroe de la lista.
 
-En [Primer tutorial](tutorial/toh-pt0#app-wide-styles), configuro el estilo básico de toda la aplicación en `styles.css`.
+En el [Primer tutorial](tutorial/toh-pt0#app-wide-styles), configuro el estilo básico de toda la aplicación en `styles.css`.
 
 No incluí el estilo de la lista de héroes en esta hoja de estilo.
 
-Puede agregar más estilos a `styles.css` y seguir expandiendo esa hoja de estilo a medida que agrega componentes
+Puedes agregar más estilos a `styles.css` y seguir expandiendo esa hoja de estilo a medida que agrega componentes
 
 Es posible que prefieras definir un estilo privado para un componente en particular y mantener todo lo que el componente necesita &mdash;
 código, HTML, CSS&mdash; en un solo lugar.
@@ -95,7 +95,7 @@ Cuando la CLI crea un `HeroesComponent`, se crea un `heroes.component.css` vací
  header="src/app/heroes/heroes.component.ts (@Component)">
 </code-example>
 
-Abre `heroes.component.css` y pegue el estilo privado para `HeroesComponent`.
+Abre `heroes.component.css` y pega el estilo privado para `HeroesComponent`.
 Puedes encontrarlos en la [Revisión del código final](#final-code-review) al final de esta guía.
 
 <div class="alert is-important">
@@ -108,7 +108,7 @@ El estilo `heroes.component.css` solo se aplica a `HeroesComponent` y no afecta 
 
 Cuando haces clic en un héroe en la lista **maestro**, el componente debe mostrar los **detalles** del héroe seleccionado en la parte inferior de la página.
 
-En este capítulo, esperemos a que se haga clic en el elemento del héroe y luego actualice los detalles del héroe.
+En este capítulo, esperemos a que se haga clic en el elemento del héroe y luego actualiza los detalles del héroe.
 
 ### Agregar enlace de evento de clic
 
@@ -142,7 +142,7 @@ Agrega lo siguiente debajo de la sección de la lista de `heroes.component.html`
 
 Cuando actualizo el navegador, la aplicación está rota.
 
-Abre y busca las herramientas de desarrollador de su navegador y busque un mensaje de error como este en la consola:
+Abre y busca las herramientas de desarrollador de su navegador y busca un mensaje de error como este en la consola:
 
 <code-example language="sh" class="code-shell">
   HeroesComponent.html:3 ERROR TypeError: no se puede leer la propiedad 'nombre' de undefined
@@ -169,9 +169,9 @@ No olvides el asterisco (*) antes del `ngIf`. Esta es una parte importante de la
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.html" region="ng-if" header="src/app/heroes/heroes.component.html (*ngIf)"></code-example>
 
-Actualice su navegador y verá la lista de nombres nuevamente.
+Actualiza su navegador y verá la lista de nombres nuevamente.
 El área de detalles está en blanco.
-Haga clic en un héroe en la lista de héroes para ver más detalles.
+Hace clic en un héroe en la lista de héroes para ver más detalles.
 La aplicación comenzó a funcionar nuevamente.
 Los héroes se muestran en la lista, y los detalles del héroe seleccionado se muestran en la parte inferior de la página.
 
