@@ -1,36 +1,37 @@
-# Guidelines for creating NgModules
+# Directrices para crear NgModules
 
-This topic provides a conceptual overview of the different categories of [NgModules](guide/glossary#ngmodule "Definition of NgModule") you can create in order to organize your code in a modular structure.
-These categories are not cast in stone—they are suggestions.
-You may want to create NgModules for other purposes, or combine the characteristics of some of these categories.
+En este tema se proporciona una visión general conceptual de las diferentes categorías de [NgModules](guide/glossary-ngmodule "Definición de NgModule") que puede crear para organizar el código en una estructura modular.
+Estas categorías no se lanzan en piedra, son sugerencias.
+Es posible que desee crear NgModules para otros fines o combinar las características de algunas de estas categorías.
 
-NgModules are a great way to organize an app and keep code related to a specific functionality or feature separate from other code.
-Use NgModules to consolidate [components](guide/glossary#component "Definition of component"), [directives](guide/glossary#directive "Definition of directive"), and [pipes](guide/glossary#pipe "Definition of pipe)") into cohesive blocks of functionality.
-Focus each block on a feature or business domain, a workflow or navigation flow, a common collection of utilities, or one or more [providers](guide/glossary#provider "Definition of provider") for [services](guide/glossary#service "Definition of service").
+NgModules son una excelente manera de organizar una aplicación y mantener el código relacionado con una funcionalidad o característica específica separada de otro código.
+Utilice NgModules para consolidar [componentes](guide/glossary#component "Definición de componente"), [directivas](guide/glossary#directive "Definición de directiva") y [pipes](guide/glossary#pipe "Definición de pipes)") en bloques cohesivos de funcionalidad.
 
-For more about NgModules, see [Organizing your app with NgModules](guide/ngmodules "Organizing your app with NgModules").
+Enfoque cada bloque en una característica o dominio de negocio, un flujo de trabajo o flujo de navegación, una colección común de utilidades, o uno o más [proveedores](guide/glossary#provider "Definición del proveedor") para [servicios](guide/glossary#service "Definición de servicio").
+
+Para obtener más información sobre NgModules, vea [Organización de la aplicación con NgModules](guide/ngmodules "Organización de la aplicación con NgModules").
 
 <div class="alert is-helpful">
 
-For the example app used in NgModules-related topics, see the <live-example name="ngmodules"></live-example>.
+Para ver la aplicación de ejemplo utilizada en temas relacionados con NgModules, consulte el <live-example name="ngmodules"></live-example>.
 
 </div>
 
-## Summary of NgModule categories
+## Resumen de las categorías de NgModule
 
-All apps start by [bootstrapping a root NgModule](guide/bootstrapping "Launching an app with a root NgModule").
-You can organize your other NgModules any way you wish.
+Todas las aplicaciones comienzan por [bootstrapping el root NgModule](guide/bootstrapping "Lanzamiento de una aplicación con un NgModule raíz").
+Puede organizar sus otros NgModules de la manera que desee.
 
-This topic provides some guidelines for the following general categories of NgModules:
+En este tema se proporcionan algunas directrices para las siguientes categorías generales de NgModules:
 
-* [Domain](#domain): A domain NgModule is organized around a feature, business domain, or user experience.
-* [Routed](#routed): The top component of the NgModule acts as the destination of a [router](guide/glossary#router "Definition of router") navigation route.
-* [Routing](#routing): A routing NgModule provides the routing configuration for another NgModule.
-* [Service](#service): A service NgModule provides utility services such as data access and messaging.
-* [Widget](#widget): A widget NgModule makes a component, directive, or pipe available to other NgModules.
-* [Shared](#shared): A shared NgModule makes a set of components, directives, and pipes available to other NgModules.
+* [Domain](#domain): Un dominio NgModule se organiza en torno a una característica, dominio empresarial o experiencia de usuario.
+* [Enruteado](#Enruteado): El componente superior del NgModule actúa como el destino de una ruta de navegación [Enrutador](guide/glossary-router "Definition of router").
+* [Enrutamiento](#enrutamiento): Un NgModule de enrutamiento proporciona la configuración de enrutamiento para otro NgModule.
+* [Servicio](#servicio): Un servicio NgModule proporciona servicios de utilidad como acceso a datos y mensajería.
+* [Widget](#widget): Un widget NgModule hace que un componente, directiva o un pipe estén disponibles para otros NgModules.
+* [Compartido](#compartidio): Un NgModule compartido pone un conjunto de componentes, directivas y canalizaciones disponibles para otros NgModules.
 
-The following table summarizes the key characteristics of each category.
+En la tabla siguiente se resumen las características clave de cada categoría.
 
 <table>
  <tr>
@@ -39,190 +40,189 @@ The following table summarizes the key characteristics of each category.
    </th>
 
    <th style="vertical-align: top">
-     Declarations
+     Declaraciones
    </th>
 
    <th style="vertical-align: top">
-     Providers
+     Proveedores
    </th>
 
    <th style="vertical-align: top">
-     Exports
+     Exportaciones
    </th>
 
    <th style="vertical-align: top">
-     Imported by
+     Importado por
    </th>
  </tr>
 
  <tr>
-   <td>Domain</td>
-   <td>Yes</td>
+   <td>Dominio</td>
+   <td>Si</td>
    <td>Rare</td>
    <td>Top component</td>
    <td>Another domain, AppModule</td>
  </tr>
 
  <tr>
-   <td>Routed</td>
-   <td>Yes</td>
-   <td>Rare</td>
+   <td>Enrutado</td>
+   <td>Si</td>
+   <td>Raro</td>
    <td>No</td>
-   <td>None</td>
+   <td>Ninguno</td>
  </tr>
 
  <tr>
-   <td>Routing</td>
+   <td>Enrutamiento</td>
    <td>No</td>
-   <td>Yes (Guards)</td>
+   <td>Si (Guardias)</td>
    <td>RouterModule</td>
-   <td>Another domain (for routing)</td>
+   <td>Otro dominio (para enrutamiento)</td>
  </tr>
 
  <tr>
-   <td>Service</td>
+   <td>Servicios</td>
    <td>No</td>
-   <td>Yes</td>
+   <td>Si</td>
    <td>No</td>
    <td>AppModule</td>
  </tr>
 
  <tr>
    <td>Widget</td>
-   <td>Yes</td>
-   <td>Rare</td>
-   <td>Yes</td>
-   <td>Another domain</td>
+   <td>Si</td>
+   <td>Raro</td>
+   <td>Si</td>
+   <td>Otro dominio</td>
  </tr>
 
  <tr>
-   <td>Shared</td>
-   <td>Yes</td>
+   <td>Compartido</td>
+   <td>Si</td>
    <td>No</td>
-   <td>Yes</td>
-   <td>Another domain</td>
+   <td>Si</td>
+   <td>Otro dominio</td>
  </tr>
 </table>
 
 {@a domain}
 
-## Domain NgModules
+## Dominio NgModules
 
-Use a domain NgModule to deliver a user experience dedicated to a particular feature or app domain, such as editing a customer or placing an order.
-One example is `ContactModule` in the <live-example name="ngmodules"></live-example>.
+Utilice un NgModule de dominio para ofrecer una experiencia de usuario dedicada a una función o dominio de aplicación en particular, como editar un cliente o realizar un pedido.
+Un ejemplo es `ContactModule` en el <live-example name="ngmodules"></live-example>.
 
-A domain NgModule organizes the code related to a certain function, containing all of the components, routing, and templates that make up the function.
-Your top component in the domain NgModule acts as the feature or domain's root, and is the only component you export.
-Private supporting subcomponents descend from it.
+Un NgModule de dominio organiza el código relacionado con una función determinada, que contiene todos los componentes, el enrutamiento y las plantillas que componen la función.
+Su componente principal en el dominio NgModule actúa como la característica o la raíz del dominio, y es el único componente que exporta.
+De él descienden subcomponentes de apoyo privados.
 
-Import a domain NgModule exactly once into another NgModule, such as a domain NgModule, or into the root NgModule (`AppModule`) of an app that contains only a few NgModules.
+Importe un NgModule de dominio exactamente una vez a otro NgModule, como un NgModule de dominio, o al NgModule raíz (ʻAppModule`) de una aplicación que contenga solo unos pocos NgModule.
 
-Domain NgModules consist mostly of declarations.
-You rarely include providers.
-If you do, the lifetime of the provided services should be the same as the lifetime of the NgModule.
+Los NgModules de dominio consisten principalmente en declaraciones.
+Rara vez incluye proveedores.
+Si lo hace, la vida útil de los servicios proporcionados debe ser la misma que la vida útil del NgModule.
 
 <div class="alert is-helpful">
 
-For more information about lifecycles, see [Hooking into the component lifecycle](guide/lifecycle-hooks "Hooking into the component lifecycle").
+Para obtener más información sobre los ciclos de vida, consulte [Conexión en el ciclo de vida del componente](guía/lifecycle-hooks "Conexión en el ciclo de vida del componente").
 
 </div>
 
 {@a routed}
 
-## Routed NgModules
+## NgModules Enrutados
 
-Use a routed NgModule for all [lazy-loaded NgModules](guide/lazy-loading-ngmodules "Lazy-loading an NgModule").
-Use the top component of the NgModule as the destination of a router navigation route.
-Routed NgModules don’t export anything because their components never appear in the template of an external component.
+Utilice un NgModule enrutado para todos los [NgModules con carga diferida](guide/lazy-loading-ngmodules "Carga diferida de un NgModule").
+Utilice el componente superior del NgModule como destino de una ruta de navegación del enrutador.
+Los NgModules enrutados no exportan nada porque sus componentes nunca aparecen en la plantilla de un componente externo.
+No importe un NgModule enrutado con carga diferida a otro NgModule, ya que esto desencadenaría una carga ansiosa, anulando el propósito de la carga diferida.
 
-Don't import a lazy-loaded routed NgModule into another NgModule, as this would trigger an eager load, defeating the purpose of lazy loading.
-
-Routed NgModules rarely have providers because you load a routed NgModule only when needed (such as for routing).
-Services listed in the NgModules' `provider` array would not be available because the root injector wouldn’t know about the lazy-loaded NgModule.
-If you include providers, the lifetime of the provided services should be the same as the lifetime of the NgModule.
-Don't provide app-wide [singleton services](guide/singleton-services) in a routed NgModule or in an NgModule that the routed NgModule imports.
+Los NgModules enrutados rara vez tienen proveedores porque carga un NgModule enrutado solo cuando es necesario (como para el enrutamiento).
+Los servicios enumerados en el arreglo "proveedor" de NgModules no estarían disponibles porque el inyector raíz no conocería el NgModule cargado de forma diferida.
+Si incluye proveedores, la vida útil de los servicios prestados debe ser la misma que la vida útil del NgModule.
+No proporcione en toda la aplicación [servicios singleton](guía/servicios singleton) en un NgModule enrutado o en un NgModule que importa el NgModule enrutado.
 
 <div class="alert is-helpful">
 
-For more information about providers and lazy-loaded routed NgModules, see [Limiting provider scope](guide/providers#limiting-provider-scope-by-lazy-loading-modules "Providing dependencies: Limiting provider scope").
+Para obtener más información sobre proveedores y NgModules enrutados con carga diferida, consulte [Limitar el alcance del proveedor](guide/providers#limiting-provider-scope-by-lazy-loading-modules "Proporcionar dependencias: limitar el alcance del proveedor").
 
 </div>
 
 {@a routing}
 
-## Routing NgModules
+## NgModules Enrutados
 
-Use a routing NgModule to provide the routing configuration for a domain NgModule, thereby separating routing concerns from its companion domain NgModule.
-One example is `ContactRoutingModule` in the <live-example name="ngmodules"></live-example>, which provides the routing for its companion domain NgModule `ContactModule`.
+Utilice un NgModule de enrutamiento para proporcionar la configuración de enrutamiento para un NgModule de dominio, separando así las preocupaciones de enrutamiento de su dominio complementario NgModule.
+Un ejemplo es `ContactRoutingModule` en <live-example name =" ngmodules "> </live-example>, que proporciona el enrutamiento para su dominio complementario NgModule` ContactModule`.
 
 <div class="alert is-helpful">
 
-For an overview and details about routing, see [In-app navigation: routing to views](guide/router "In-app navigation: routing to views").
+Para obtener una descripción general y detalles sobre el enrutamiento, consulte [Navegación en la aplicación: enrutamiento a vistas](guide/router "Navegación en la aplicación: enrutamiento a vistas").
 
 </div>
 
-Use a routing NgModule to do the following tasks:
+Utilice un NgModule de enrutamiento para realizar las siguientes tareas:
 
-* Define routes.
-* Add router configuration to the NgModule's import.
-* Add guard and resolver service providers to the NgModule's providers.
+* Definir rutas.
+* Agregue la configuración del enrutador a la importación de NgModule.
+* Agregue proveedores de servicios de guardia y resolución a los proveedores de NgModule.
 
-The name of the routing NgModule should parallel the name of its companion NgModule, using the suffix `Routing`.
-For example, <code>ContactModule</code> in <code>contact.module.ts</code> has a routing NgModule named <code>ContactRoutingModule</code> in <code>contact-routing.module.ts</code>.
+El nombre del NgModule de enrutamiento debe ser paralelo al nombre de su NgModule complementario, utilizando el sufijo "Enrutamiento".
+Por ejemplo, <code> ContactModule </code> en <code> contact.module.ts </code> tiene un NgModule de enrutamiento llamado <code> ContactRoutingModule </code> en <code> contact-routing.module.ts </ código>.
 
-Import a routing NgModule only into its companion NgModule.
-If the companion NgModule is the root <code>AppModule</code>, the <code>AppRoutingModule</code> adds router configuration to its imports with <code>RouterModule.forRoot(routes)</code>.
-All other routing NgModules are children that import <code>RouterModule.forChild(routes)</code>.
+Importe un NgModule de enrutamiento solo en su NgModule complementario.
+Si el NgModule complementario es el <code> AppModule </code> raíz, el <code> AppRoutingModule </code> agrega la configuración del enrutador a sus importaciones con <code> RouterModule.forRoot (rutas) </code>.
+Todos los demás NgModules de enrutamiento son elementos secundarios que importan <code> RouterModule.forChild (rutas) </code>.
 
-In your routing NgModule, re-export the <code>RouterModule</code> as a convenience so that components of the companion NgModule have access to router directives such as <code>RouterLink</code> and <code>RouterOutlet</code>.
+En su NgModule de enrutamiento, vuelva a exportar el <code> RouterModule </code> como una conveniencia para que los componentes del NgModule complementario tengan acceso a las directivas del enrutador como <code> RouterLink </code> y <code> RouterOutlet </ code >.
 
-Don't use declarations in a routing NgModule.
-Components, directives, and pipes are the responsibility of the companion domain NgModule, not the routing NgModule.
+No use declaraciones en un NgModule de enrutamiento.
+Los componentes, directivas y canalizaciones son responsabilidad del dominio complementario NgModule, no del enrutamiento NgModule.
 
 {@a service}
 
-## Service NgModules
+## Servicios NgModules
 
-Use a service NgModule to provide a utility service such as data access or messaging.
-Ideal service NgModules consist entirely of providers and have no declarations.
-Angular's `HttpClientModule` is a good example of a service NgModule.
+Utilice un NgModule de servicio para proporcionar un servicio de utilidad, como acceso a datos o mensajería.
+Los NgModules de servicio ideal están compuestos completamente por proveedores y no tienen declaraciones.
+`HttpClientModule` de Angular es un buen ejemplo de un servicio NgModule.
 
-Use only the root `AppModule` to import service NgModules.
+Utilice sólo la raíz `AppModule` para importar el servicio NgModules.
 
 {@a widget}
 
 ## Widget NgModules
 
-Use a widget NgModule to make a component, directive, or pipe available to external NgModules.
-Import widget NgModules into any NgModules that need the widgets in their templates.
-Many third-party UI component libraries are provided as widget NgModules.
+Utilice un widget NgModule para hacer que un componente, directiva o canalización esté disponible para NgModules externos.
+Importe widgets NgModules en cualquier NgModules que necesite los widgets en sus plantillas.
+Muchas bibliotecas de componentes de IU de terceros se proporcionan como widgets NgModules.
 
-A widget NgModule should consist entirely of declarations, most of them exported.
-It would rarely have providers.
+Un widget NgModule debe constar completamente de declaraciones, la mayoría de ellas exportadas.
+Rara vez tendría proveedores.
 
 {@a shared}
 
-## Shared NgModules
+## NgModules Compartidos
 
-Put commonly used directives, pipes, and components into one NgModule, typically named `SharedModule`, and then import just that NgModule wherever you need it in other parts of your app.
-You can import the shared NgModule in your domain NgModules, including [lazy-loaded NgModules](guide/lazy-loading-ngmodules "Lazy-loading an NgModule").
-One example is `SharedModule` in the <live-example name="ngmodules"></live-example>, which provides the `AwesomePipe` custom pipe and `HighlightDirective` directive.
+Coloque directivas, canalizaciones y componentes de uso común en un NgModule, generalmente llamado `SharedModule`, y luego importe solo ese NgModule donde lo necesite en otras partes de su aplicación.
+Puede importar el NgModule compartido en su dominio NgModules, incluido [lazy-loaded NgModules](guide/lazy-loading-ngmodules "Lazy-loading an NgModule").
+Un ejemplo es `SharedModule` en el <live-example name="ngmodules"></live-example>, donde proporciona el `AwesomePipe` pipe personalizada y `HighlightDirective` directiva.
 
-Shared NgModules should not include providers, nor should any of its imported or re-exported NgModules include providers.
+Los NgModules compartidos no deben incluir proveedores, ni ninguno de sus NgModules importados o reexportados debe incluir proveedores.
 
-To learn how to use shared modules to organize and streamline your code, see [Sharing NgModules in an app](guide/sharing-ngmodules "Sharing NgModules in an app").
+Para aprender a usar módulos compartidos para organizar y optimizar su código, consulte [Compartir NgModules en una aplicación](guide/sharing-ngmodules "Compartir NgModules en una aplicación").
 
-## Next steps
+## Sigueintes pasos
 
-You may also be interested in the following:
+También te puede interesar lo siguiente:
 
-* For more about NgModules, see [Organizing your app with NgModules](guide/ngmodules "Organizing your app with NgModules").
-* To learn more about the root NgModule, see [Launching an app with a root NgModule](guide/bootstrapping "Launching an app with a root NgModule").
-* To learn about frequently used Angular NgModules and how to import them into your app, see [Frequently-used modules](guide/frequent-ngmodules "Frequently-used modules").
-* For a complete description of the NgModule metadata properties, see [Using the NgModule metadata](guide/ngmodule-api "Using the NgModule metadata").
+* Para obtener más información sobre NgModules, consulte [Organizar su aplicación con NgModules] (guía / ngmodules "Organizar su aplicación con NgModules").
+* Para obtener más información sobre el NgModule raíz, consulte [Lanzamiento de una aplicación con un NgModule raíz] (guía / bootstrapping "Lanzamiento de una aplicación con un NgModule raíz").
+* Para obtener más información sobre los NgModules angulares de uso frecuente y cómo importarlos a su aplicación, consulte [Módulos de uso frecuente] (guía/módulos de ng frecuentes "Módulos de uso frecuente").
+* Para obtener una descripción completa de las propiedades de los metadatos de NgModule, consulte [Uso de los metadatos de NgModule] (guía / ngmodule-api "Uso de los metadatos de NgModule").
 
-If you want to manage NgModule loading and the use of dependencies and services, see the following:
+Si desea administrar la carga de NgModule y el uso de dependencias y servicios, consulte lo siguiente:
 
-* To learn about loading NgModules eagerly when the app starts, or lazy-loading NgModules asynchronously by the router, see [Lazy-loading feature modules](guide/lazy-loading-ngmodules).
-* To understand how to provide a service or other dependency for your app, see [Providing Dependencies for an NgModule](guide/providers "Providing Dependencies for an NgModule").
-* To learn how to create a singleton service to use in NgModules, see [Making a service a singleton](guide/singleton-services "Making a service a singleton").
+* Para obtener más información sobre cómo cargar NgModules con entusiasmo cuando se inicia la aplicación, o cómo cargar NgModules de forma perezosa de forma asíncrona por el enrutador, consulte [Lazy-loading feature modules](guide/lazy-loading-ngmodules).
+* To comprender cómo proporcionar un servicio u otra dependencia para su aplicación, consulte [Proporcionar dependencias para un NgModule](guide/providers "Proporcionar dependencias para un NgModule").
+* Para aprender a crear un servicio singleton para usar en NgModules, consulte [Making a service a singleton](guide/singleton-services "Haciendo un servicio un singleton").
