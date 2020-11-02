@@ -51,7 +51,7 @@ Esto muestra un héroe. Para enumerarlos a todos, agrega `*ngFor*` a `<li>` para
 <code-example path="toh-pt2/src/app/heroes/heroes.component.1.html" region="li">
 </code-example>
 
-[`*ngFor`](guide/template-syntax#ngFor) es la directiva de _repetición_ de Angular.
+[`*ngFor`](guide/built-in-directives#ngFor) es la directiva de _repetición_ de Angular.
 
 Esto repite el elemento host para cada elemento de la lista.
 
@@ -116,7 +116,7 @@ Agrega el enlace de evento click a su `<li>` así:
 
 <code-example path="toh-pt2/src/app/heroes/heroes.component.1.html" region="selectedHero-click" header="heroes.component.html (template excerpt)"></code-example>
 
-Este es un ejemplo de la sintaxis de Angular [enlace de eventos](guide/template-syntax#event-binding) .
+Este es un ejemplo de la sintaxis de Angular [enlace de eventos](guide/event-binding) .
 
 Los paréntesis alrededor del `clic` le dicen a Angular que es un evento `clic` para el elemento `<li>`.
 Cuando el usuario hace clic en `<li>`, Angular ejecuta la expresión `onSelect(hero)`.
@@ -194,7 +194,7 @@ Si el usuario hace clic en "Magneta", el héroe debe dibujarse con un color de f
 El color del _héroe seleccionado_ es el trabajo de la clase CSS `.selected` en [el estilo que acaba de agregar](#styles).
 Simplemente aplica la clase `.selected` a `<li>` cuando el usuario hace clic.
 
-El [enlace de clase](guide/template-syntax#class-binding)de Angular facilita la adición y eliminación de clases CSS condicionales.
+El [enlace de clase](guide/attribute-binding#class-binding)de Angular facilita la adición y eliminación de clases CSS condicionales.
 Simplemente agregue `[class.some-css-class] =" some-condition"` al elemento que desea decorar.
 
 Agrega el enlace `[class.selected]` al `<li>` en `HeroesComponent` Plantillas:
