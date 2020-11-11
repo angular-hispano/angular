@@ -5,9 +5,11 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import {AbsoluteFsPath, relative} from '@angular/compiler-cli/src/ngtsc/file_system';
-import {ɵParsedMessage} from '@angular/localize';
+import {AbsoluteFsPath, FileSystem, getFileSystem} from '@angular/compiler-cli/src/ngtsc/file_system';
+import {ɵParsedMessage, ɵSourceLocation} from '@angular/localize';
 
+import {FormatOptions, validateOptions} from './format_options';
+import {extractIcuPlaceholders} from './icu_parsing';
 import {TranslationSerializer} from './translation_serializer';
 import {XmlFile} from './xml_file';
 
@@ -20,11 +22,15 @@ const MAX_LEGACY_XLIFF_2_MESSAGE_LENGTH = 20;
  * http://docs.oasis-open.org/xliff/xliff-core/v2.0/os/xliff-core-v2.0-os.html
  *
  * @see Xliff2TranslationParser
+ * @publicApi used by CLI
  */
 export class Xliff2TranslationSerializer implements TranslationSerializer {
+  private currentPlaceholderId = 0;
   constructor(
-      private sourceLocale: string, private basePath: AbsoluteFsPath,
-      private useLegacyIds: boolean) {}
+      private sourceLocale: string, private basePath: AbsoluteFsPath, private useLegacyIds: boolean,
+      private formatOptions: FormatOptions = {}, private fs: FileSystem = getFileSystem()) {
+    validateOptions('Xliff1TranslationSerializer', [['xml:space', ['preserve']]], formatOptions);
+  }
 
   serialize(messages: ɵParsedMessage[]): string {
     const ids = new Set<string>();
@@ -34,7 +40,14 @@ export class Xliff2TranslationSerializer implements TranslationSerializer {
       'xmlns': 'urn:oasis:names:tc:xliff:document:2.0',
       'srcLang': this.sourceLocale
     });
-    xml.startTag('file');
+    // NOTE: the `original` property is set to the legacy `ng.template` value for backward
+    // compatibility.
+    // We could compute the file from the `message.location` property, but there could
+    // be multiple values for this in the collection of `messages`. In that case we would probably
+    // need to change the serializer to output a new `<file>` element for each collection of
+    // messages that come from a particular original file, and the translation file parsers may
+    // not
+    xml.startTag('file', {'id': 'ngi18n', 'original': 'ng.template', ...this.formatOptions});
     for (const message of messages) {
       const id = this.getMessageId(message);
       if (ids.has(id)) {
@@ -43,7 +56,7 @@ export class Xliff2TranslationSerializer implements TranslationSerializer {
       }
       ids.add(id);
       xml.startTag('unit', {id});
-      if (message.meaning || message.description) {
+      if (message.meaning || message.description || message.location) {
         xml.startTag('notes');
         if (message.location) {
           const {file, start, end} = message.location;
@@ -51,7 +64,7 @@ export class Xliff2TranslationSerializer implements TranslationSerializer {
               end !== undefined && end.line !== start.line ? `,${end.line + 1}` : '';
           this.serializeNote(
               xml, 'location',
-              `${relative(this.basePath, file)}:${start.line + 1}${endLineString}`);
+              `${this.fs.relative(this.basePath, file)}:${start.line + 1}${endLineString}`);
         }
         if (message.description) {
           this.serializeNote(xml, 'description', message.description);
@@ -74,21 +87,54 @@ export class Xliff2TranslationSerializer implements TranslationSerializer {
   }
 
   private serializeMessage(xml: XmlFile, message: ɵParsedMessage): void {
-    xml.text(message.messageParts[0]);
-    for (let i = 1; i < message.messageParts.length; i++) {
-      const placeholderName = message.placeholderNames[i - 1];
-      if (placeholderName.startsWith('START_')) {
-        xml.startTag('pc', {
-          id: `${i}`,
-          equivStart: placeholderName,
-          equivEnd: placeholderName.replace(/^START/, 'CLOSE')
-        });
-      } else if (placeholderName.startsWith('CLOSE_')) {
-        xml.endTag('pc');
-      } else {
-        xml.startTag('ph', {id: `${i}`, equiv: placeholderName}, {selfClosing: true});
+    this.currentPlaceholderId = 0;
+    const length = message.messageParts.length - 1;
+    for (let i = 0; i < length; i++) {
+      this.serializeTextPart(xml, message.messageParts[i]);
+      this.serializePlaceholder(xml, message.placeholderNames[i], message.substitutionLocations);
+    }
+    this.serializeTextPart(xml, message.messageParts[length]);
+  }
+
+  private serializeTextPart(xml: XmlFile, text: string): void {
+    const pieces = extractIcuPlaceholders(text);
+    const length = pieces.length - 1;
+    for (let i = 0; i < length; i += 2) {
+      xml.text(pieces[i]);
+      this.serializePlaceholder(xml, pieces[i + 1], undefined);
+    }
+    xml.text(pieces[length]);
+  }
+
+  private serializePlaceholder(
+      xml: XmlFile, placeholderName: string,
+      substitutionLocations: Record<string, ɵSourceLocation|undefined>|undefined): void {
+    const text = substitutionLocations?.[placeholderName]?.text;
+
+    if (placeholderName.startsWith('START_')) {
+      const closingPlaceholderName = placeholderName.replace(/^START/, 'CLOSE');
+      const closingText = substitutionLocations?.[closingPlaceholderName]?.text;
+      const attrs: Record<string, string> = {
+        id: `${this.currentPlaceholderId++}`,
+        equivStart: placeholderName,
+        equivEnd: closingPlaceholderName,
+      };
+      if (text !== undefined) {
+        attrs.dispStart = text;
       }
-      xml.text(message.messageParts[i]);
+      if (closingText !== undefined) {
+        attrs.dispEnd = closingText;
+      }
+      xml.startTag('pc', attrs);
+    } else if (placeholderName.startsWith('CLOSE_')) {
+      xml.endTag('pc');
+    } else {
+      const attrs:
+          Record<string, string> = {id: `${this.currentPlaceholderId++}`, equiv: placeholderName};
+      if (text !== undefined) {
+        attrs.disp = text;
+      }
+      xml.startTag('ph', attrs, {selfClosing: true});
     }
   }
 
@@ -101,6 +147,8 @@ export class Xliff2TranslationSerializer implements TranslationSerializer {
   /**
    * Get the id for the given `message`.
    *
+   * If there was a custom id provided, use that.
+   *
    * If we have requested legacy message ids, then try to return the appropriate id
    * from the list of legacy ids that were extracted.
    *
@@ -111,7 +159,8 @@ export class Xliff2TranslationSerializer implements TranslationSerializer {
    * https://github.com/google/closure-compiler/blob/master/src/com/google/javascript/jscomp/GoogleJsMessageIdGenerator.java
    */
   private getMessageId(message: ɵParsedMessage): string {
-    return this.useLegacyIds && message.legacyIds !== undefined &&
+    return message.customId ||
+        this.useLegacyIds && message.legacyIds !== undefined &&
         message.legacyIds.find(
             id => id.length <= MAX_LEGACY_XLIFF_2_MESSAGE_LENGTH && !/[^0-9]/.test(id)) ||
         message.id;

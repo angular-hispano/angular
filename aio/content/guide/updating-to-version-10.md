@@ -37,10 +37,10 @@ If you're curious about the specific migrations being run by the CLI, see the [a
 {@a deprecations}
 ### New Deprecations
 
-| Area                          | API or Feature                                                                 | May be removed in |
-| ----------------------------- | ---------------------------------------------------------------------------    | ----------------- |
-| `@angular/core`               | [`WrappedValue`](guide/deprecations#wrapped-value)                                     | <!--v10--> v12 |
-| browser support               | [`IE 9, 10, and IE Mobile`](guide/deprecations#ie-9-10-and-ie-mobile-support) | <!--v10--> v11 |
+| Area                          | API or Feature                                     | May be removed in |
+| ----------------------------- | -------------------------------------------------- | ----------------- |
+| `@angular/core`               | [`WrappedValue`](guide/deprecations#wrapped-value) | <!--v10--> v12 |
+| browser support               | IE 9, 10, and IE Mobile                            | <!--v10--> v11 |
 
 
 {@a removals}
@@ -77,6 +77,5 @@ Read about the migrations the CLI handles for you automatically:
 
 * [Migrating missing `@Directive()`/`@Component()` decorators](guide/migration-undecorated-classes)
 * [Migrating `ModuleWithProviders`](guide/migration-module-with-providers)
-* [Solution-style `tsconfig.json` migration](guide/migration-solution-style-tsconfig)
 * [`tslib` direct dependency migration](guide/migration-update-libraries-tslib)
 * [Update `module` and `target` compiler options migration](guide/migration-update-module-and-target-compiler-options)

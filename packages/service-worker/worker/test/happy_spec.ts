@@ -74,6 +74,7 @@ const brokenManifest: Manifest = {
   }],
   dataGroups: [],
   navigationUrls: processNavigationUrls(''),
+  navigationRequestStrategy: 'performance',
   hashTable: tmpHashTableForFs(brokenFs, {'/foo.txt': true}),
 };
 
@@ -105,6 +106,7 @@ const brokenLazyManifest: Manifest = {
   ],
   dataGroups: [],
   navigationUrls: processNavigationUrls(''),
+  navigationRequestStrategy: 'performance',
   hashTable: tmpHashTableForFs(brokenFs, {'/bar.txt': true}),
 };
 
@@ -198,6 +200,7 @@ const manifest: Manifest = {
     },
   ],
   navigationUrls: processNavigationUrls(''),
+  navigationRequestStrategy: 'performance',
   hashTable: tmpHashTableForFs(dist),
 };
 
@@ -256,6 +259,7 @@ const manifestUpdate: Manifest = {
         '!/ignored/file1',
         '!/ignored/dir/**',
       ]),
+  navigationRequestStrategy: 'performance',
   hashTable: tmpHashTableForFs(distUpdate),
 };
 
@@ -983,6 +987,7 @@ describe('Driver', () => {
         },
       ],
       navigationUrls: processNavigationUrls(baseHref),
+      navigationRequestStrategy: 'performance',
       hashTable: tmpHashTableForFs(distDir, {}, baseHref),
     });
 
@@ -1343,6 +1348,7 @@ describe('Driver', () => {
         }
       ],
       navigationUrls: processNavigationUrls('./'),
+      navigationRequestStrategy: 'performance',
       hashTable: tmpHashTableForFs(distDir, {}, './'),
     });
 
@@ -1738,6 +1744,170 @@ describe('Driver', () => {
       expect(requestUrls2).toContain(httpsRequestUrl);
     });
 
+    describe('unrecoverable state', () => {
+      const generateMockServerState = (fileSystem: MockFileSystem) => {
+        const manifest: Manifest = {
+          configVersion: 1,
+          timestamp: 1234567890123,
+          index: '/index.html',
+          assetGroups: [{
+            name: 'assets',
+            installMode: 'prefetch',
+            updateMode: 'prefetch',
+            urls: fileSystem.list(),
+            patterns: [],
+            cacheQueryOptions: {ignoreVary: true},
+          }],
+          dataGroups: [],
+          navigationUrls: processNavigationUrls(''),
+          navigationRequestStrategy: 'performance',
+          hashTable: tmpHashTableForFs(fileSystem),
+        };
+
+        return {
+          serverState: new MockServerStateBuilder()
+                           .withManifest(manifest)
+                           .withStaticFiles(fileSystem)
+                           .build(),
+          manifest,
+        };
+      };
+
+      it('notifies affected clients', async () => {
+        const {serverState: serverState1} = generateMockServerState(
+            new MockFileSystemBuilder()
+                .addFile('/index.html', '<script src="foo.hash.js"></script>')
+                .addFile('/foo.hash.js', 'console.log("FOO");')
+                .build());
+
+        const {serverState: serverState2, manifest: manifest2} = generateMockServerState(
+            new MockFileSystemBuilder()
+                .addFile('/index.html', '<script src="bar.hash.js"></script>')
+                .addFile('/bar.hash.js', 'console.log("BAR");')
+                .build());
+
+        const {serverState: serverState3} = generateMockServerState(
+            new MockFileSystemBuilder()
+                .addFile('/index.html', '<script src="baz.hash.js"></script>')
+                .addFile('/baz.hash.js', 'console.log("BAZ");')
+                .build());
+
+        // Create initial server state and initialize the SW.
+        scope = new SwTestHarnessBuilder().withServerState(serverState1).build();
+        driver = new Driver(scope, scope, new CacheDatabase(scope, scope));
+
+        // Verify that all three clients are able to make the request.
+        expect(await makeRequest(scope, '/foo.hash.js', 'client1')).toBe('console.log("FOO");');
+        expect(await makeRequest(scope, '/foo.hash.js', 'client2')).toBe('console.log("FOO");');
+        expect(await makeRequest(scope, '/foo.hash.js', 'client3')).toBe('console.log("FOO");');
+
+        await driver.initialized;
+        serverState1.clearRequests();
+
+        // Verify that the `foo.hash.js` file is cached.
+        expect(await makeRequest(scope, '/foo.hash.js')).toBe('console.log("FOO");');
+        serverState1.assertNoRequestFor('/foo.hash.js');
+
+        // Update the ServiceWorker to the second version.
+        scope.updateServerState(serverState2);
+        expect(await driver.checkForUpdate()).toEqual(true);
+
+        // Update the first two clients to the latest version, keep `client3` as is.
+        const [client1, client2] =
+            await Promise.all([scope.clients.get('client1'), scope.clients.get('client2')]);
+
+        await Promise.all([driver.updateClient(client1), driver.updateClient(client2)]);
+
+        // Update the ServiceWorker to the latest version
+        scope.updateServerState(serverState3);
+        expect(await driver.checkForUpdate()).toEqual(true);
+
+        // Remove `bar.hash.js` from the cache to emulate the browser evicting files from the cache.
+        await removeAssetFromCache(scope, manifest2, '/bar.hash.js');
+
+        // Get all clients and verify their messages
+        const mockClient1 = scope.clients.getMock('client1')!;
+        const mockClient2 = scope.clients.getMock('client2')!;
+        const mockClient3 = scope.clients.getMock('client3')!;
+
+        // Try to retrieve `bar.hash.js`, which is neither in the cache nor on the server.
+        // This should put the SW in an unrecoverable state and notify clients.
+        expect(await makeRequest(scope, '/bar.hash.js', 'client1')).toBeNull();
+        serverState2.assertSawRequestFor('/bar.hash.js');
+        const unrecoverableMessage = {
+          type: 'UNRECOVERABLE_STATE',
+          reason:
+              'Failed to retrieve hashed resource from the server. (AssetGroup: assets | URL: /bar.hash.js)'
+        };
+
+        expect(mockClient1.messages).toContain(unrecoverableMessage);
+        expect(mockClient2.messages).toContain(unrecoverableMessage);
+        expect(mockClient3.messages).not.toContain(unrecoverableMessage);
+
+        // Because `client1` failed, `client1` and `client2` have been moved to the latest version.
+        // Verify that by retrieving `baz.hash.js`.
+        expect(await makeRequest(scope, '/baz.hash.js', 'client1')).toBe('console.log("BAZ");');
+        serverState2.assertNoRequestFor('/baz.hash.js');
+        expect(await makeRequest(scope, '/baz.hash.js', 'client2')).toBe('console.log("BAZ");');
+        serverState2.assertNoRequestFor('/baz.hash.js');
+
+        // Ensure that `client3` remains on the first version and can request `foo.hash.js`.
+        expect(await makeRequest(scope, '/foo.hash.js', 'client3')).toBe('console.log("FOO");');
+        serverState2.assertNoRequestFor('/foo.hash.js');
+      });
+
+      it('enters degraded mode', async () => {
+        const originalFiles = new MockFileSystemBuilder()
+                                  .addFile('/index.html', '<script src="foo.hash.js"></script>')
+                                  .addFile('/foo.hash.js', 'console.log("FOO");')
+                                  .build();
+
+        const updatedFiles = new MockFileSystemBuilder()
+                                 .addFile('/index.html', '<script src="bar.hash.js"></script>')
+                                 .addFile('/bar.hash.js', 'console.log("BAR");')
+                                 .build();
+
+        const {serverState: originalServer, manifest} = generateMockServerState(originalFiles);
+        const {serverState: updatedServer} = generateMockServerState(updatedFiles);
+
+        // Create initial server state and initialize the SW.
+        scope = new SwTestHarnessBuilder().withServerState(originalServer).build();
+        driver = new Driver(scope, scope, new CacheDatabase(scope, scope));
+
+        expect(await makeRequest(scope, '/foo.hash.js')).toBe('console.log("FOO");');
+        await driver.initialized;
+        originalServer.clearRequests();
+
+        // Verify that the `foo.hash.js` file is cached.
+        expect(await makeRequest(scope, '/foo.hash.js')).toBe('console.log("FOO");');
+        originalServer.assertNoRequestFor('/foo.hash.js');
+
+        // Update the server state to emulate deploying a new version (where `foo.hash.js` does not
+        // exist any more). Keep the cache though.
+        scope = new SwTestHarnessBuilder()
+                    .withCacheState(scope.caches.dehydrate())
+                    .withServerState(updatedServer)
+                    .build();
+        driver = new Driver(scope, scope, new CacheDatabase(scope, scope));
+
+        // The SW is still able to serve `foo.hash.js` from the cache.
+        expect(await makeRequest(scope, '/foo.hash.js')).toBe('console.log("FOO");');
+        updatedServer.assertNoRequestFor('/foo.hash.js');
+
+        // Remove `foo.hash.js` from the cache to emulate the browser evicting files from the cache.
+        await removeAssetFromCache(scope, manifest, '/foo.hash.js');
+
+        // Try to retrieve `foo.hash.js`, which is neither in the cache nor on the server.
+        // This should put the SW in an unrecoverable state and notify clients.
+        expect(await makeRequest(scope, '/foo.hash.js')).toBeNull();
+        updatedServer.assertSawRequestFor('/foo.hash.js');
+
+        // This should also enter the `SW` into degraded mode, because the broken version was the
+        // latest one.
+        expect(driver.state).toEqual(DriverReadyState.EXISTING_CLIENTS_ONLY);
+      });
+    });
+
     describe('backwards compatibility with v5', () => {
       beforeEach(() => {
         const serverV5 = new MockServerStateBuilder()
@@ -1759,8 +1929,64 @@ describe('Driver', () => {
          });
     });
   });
+
+  describe('navigationRequestStrategy', () => {
+    it('doesn\'t create navigate request in performance mode', async () => {
+      await makeRequest(scope, '/foo.txt');
+      await driver.initialized;
+      await server.clearRequests();
+
+      // Create multiple navigation requests to prove no navigation request was made.
+      // By default the navigation request is not sent, it's replaced
+      // with the index request - thus, the `this is foo` value.
+      expect(await makeNavigationRequest(scope, '/', '')).toBe('this is foo');
+      expect(await makeNavigationRequest(scope, '/foo', '')).toBe('this is foo');
+      expect(await makeNavigationRequest(scope, '/foo/bar', '')).toBe('this is foo');
+
+      server.assertNoOtherRequests();
+    });
+
+    it('sends the request to the server in freshness mode', async () => {
+      const {server, scope, driver} = createSwForFreshnessStrategy();
+
+      await makeRequest(scope, '/foo.txt');
+      await driver.initialized;
+      await server.clearRequests();
+
+      // Create multiple navigation requests to prove the navigation request is constantly made.
+      // When enabled, the navigation request is made each time and not replaced
+      // with the index request - thus, the `null` value.
+      expect(await makeNavigationRequest(scope, '/', '')).toBe(null);
+      expect(await makeNavigationRequest(scope, '/foo', '')).toBe(null);
+      expect(await makeNavigationRequest(scope, '/foo/bar', '')).toBe(null);
+
+      server.assertSawRequestFor('/');
+      server.assertSawRequestFor('/foo');
+      server.assertSawRequestFor('/foo/bar');
+      server.assertNoOtherRequests();
+    });
+
+    function createSwForFreshnessStrategy() {
+      const freshnessManifest: Manifest = {...manifest, navigationRequestStrategy: 'freshness'};
+      const server = serverBuilderBase.withManifest(freshnessManifest).build();
+      const scope = new SwTestHarnessBuilder().withServerState(server).build();
+      const driver = new Driver(scope, scope, new CacheDatabase(scope, scope));
+
+      return {server, scope, driver};
+    }
+  });
 });
 })();
+
+async function removeAssetFromCache(
+    scope: SwTestHarness, appVersionManifest: Manifest, assetPath: string) {
+  const assetGroupName =
+      appVersionManifest.assetGroups?.find(group => group.urls.includes(assetPath))?.name;
+  const cacheName = `${scope.cacheNamePrefix}:${sha1(JSON.stringify(appVersionManifest))}:assets:${
+      assetGroupName}:cache`;
+  const cache = await scope.caches.open(cacheName);
+  return cache.delete(assetPath);
+}
 
 async function makeRequest(
     scope: SwTestHarness, url: string, clientId: string|null = 'default',

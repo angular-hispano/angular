@@ -13,6 +13,7 @@ ts_library(
     srcs = [
         "test_utils.ts",
     ],
+    visibility = ["//packages/language-service:__subpackages__"],
     deps = [
         "//packages/compiler",
         "//packages/compiler-cli/test:test_utils",
@@ -58,6 +59,7 @@ ts_library(
         "//packages/compiler",
         "//packages/language-service",
         "//packages/language-service:ts_utils",
+        "//packages/language-service/common",
         "@npm//typescript",
     ],
 )

@@ -6,21 +6,23 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {CssSelector, ParseSourceFile, ParseSourceSpan, parseTemplate, R3TargetBinder, SchemaMetadata, SelectorMatcher, TmplAstElement, TmplAstReference, Type} from '@angular/compiler';
+import {CssSelector, ParseSourceFile, ParseSourceSpan, parseTemplate, R3TargetBinder, SchemaMetadata, SelectorMatcher, TmplAstElement, Type} from '@angular/compiler';
 import * as ts from 'typescript';
 
 import {absoluteFrom, AbsoluteFsPath, getSourceFileOrError, LogicalFileSystem} from '../../file_system';
 import {TestFile} from '../../file_system/testing';
-import {AbsoluteModuleStrategy, LocalIdentifierStrategy, LogicalProjectStrategy, ModuleResolver, Reference, ReferenceEmitter} from '../../imports';
+import {AbsoluteModuleStrategy, LocalIdentifierStrategy, LogicalProjectStrategy, ModuleResolver, Reexport, Reference, ReferenceEmitter} from '../../imports';
 import {NOOP_INCREMENTAL_BUILD} from '../../incremental';
+import {ClassPropertyMapping} from '../../metadata';
 import {ClassDeclaration, isNamedClassDeclaration, TypeScriptReflectionHost} from '../../reflection';
+import {ComponentScopeReader, ScopeData} from '../../scope';
 import {makeProgram} from '../../testing';
 import {getRootDirs} from '../../util/src/typescript';
 import {ProgramTypeCheckAdapter, TemplateTypeChecker, TypeCheckContext} from '../api';
 import {TemplateId, TemplateSourceMapping, TypeCheckableDirectiveMeta, TypeCheckBlockMetadata, TypeCheckingConfig, UpdateMode} from '../api/api';
+import {TemplateDiagnostic} from '../diagnostics';
 import {ReusedProgramStrategy} from '../src/augmented_program';
 import {TemplateTypeCheckerImpl} from '../src/checker';
-import {TemplateDiagnostic} from '../src/diagnostics';
 import {DomSchemaChecker} from '../src/dom';
 import {Environment} from '../src/environment';
 import {OutOfBandDiagnosticRecorder} from '../src/oob';
@@ -120,8 +122,9 @@ export function ngForDeclaration(): TestDeclaration {
     file: absoluteFrom('/ngfor.d.ts'),
     selector: '[ngForOf]',
     name: 'NgForOf',
-    inputs: {ngForOf: 'ngForOf'},
+    inputs: {ngForOf: 'ngForOf', ngForTrackBy: 'ngForTrackBy', ngForTemplate: 'ngForTemplate'},
     hasNgTemplateContextGuard: true,
+    isGeneric: true,
   };
 }
 
@@ -151,11 +154,23 @@ export function ngForDts(): TestFile {
   };
 }
 
+export function ngForTypeCheckTarget(): TypeCheckingTarget {
+  const dts = ngForDts();
+  return {
+    ...dts,
+    fileName: dts.name,
+    source: dts.contents,
+    templates: {},
+  };
+}
+
 export const ALL_ENABLED_CONFIG: TypeCheckingConfig = {
   applyTemplateContextGuards: true,
   checkQueries: false,
   checkTemplateBodies: true,
+  alwaysCheckSchemaInTemplateBodies: true,
   checkTypeOfInputBindings: true,
+  honorAccessModifiersForInputBindings: true,
   strictNullInputBindings: true,
   checkTypeOfAttributes: true,
   // Feature is still in development.
@@ -170,16 +185,20 @@ export const ALL_ENABLED_CONFIG: TypeCheckingConfig = {
   strictSafeNavigationTypes: true,
   useContextGenericType: true,
   strictLiteralTypes: true,
+  enableTemplateTypeChecker: false,
 };
 
 // Remove 'ref' from TypeCheckableDirectiveMeta and add a 'selector' instead.
 export type TestDirective = Partial<Pick<
     TypeCheckableDirectiveMeta,
-    Exclude<keyof TypeCheckableDirectiveMeta, 'ref'|'coercedInputFields'>>>&{
-  selector: string,
-  name: string,
-  file?: AbsoluteFsPath, type: 'directive',
-  coercedInputFields?: string[],
+    Exclude<
+        keyof TypeCheckableDirectiveMeta,
+        'ref'|'coercedInputFields'|'restrictedInputFields'|'stringLiteralInputFields'|
+        'undeclaredInputFields'|'inputs'|'outputs'>>>&{
+  selector: string, name: string, file?: AbsoluteFsPath, type: 'directive',
+      inputs?: {[fieldName: string]: string}, outputs?: {[fieldName: string]: string},
+      coercedInputFields?: string[], restrictedInputFields?: string[],
+      stringLiteralInputFields?: string[], undeclaredInputFields?: string[], isGeneric?: boolean;
 };
 export type TestPipe = {
   name: string,
@@ -210,6 +229,7 @@ export function tcb(
     applyTemplateContextGuards: true,
     checkQueries: false,
     checkTypeOfInputBindings: true,
+    honorAccessModifiersForInputBindings: false,
     strictNullInputBindings: true,
     checkTypeOfAttributes: true,
     checkTypeOfDomBindings: false,
@@ -220,9 +240,11 @@ export function tcb(
     checkTypeOfNonDomReferences: true,
     checkTypeOfPipes: true,
     checkTemplateBodies: true,
+    alwaysCheckSchemaInTemplateBodies: true,
     strictSafeNavigationTypes: true,
     useContextGenericType: true,
     strictLiteralTypes: true,
+    enableTemplateTypeChecker: false,
   };
   options = options || {
     emitSpans: false,
@@ -347,7 +369,7 @@ export function setup(targets: TypeCheckingTarget[], overrides: {
         const templateUrl = `${className}.html`;
         const templateFile = new ParseSourceFile(template, templateUrl);
         const {nodes, errors} = parseTemplate(template, templateUrl);
-        if (errors !== undefined) {
+        if (errors !== null) {
           throw new Error('Template parse errors: \n' + errors.join('\n'));
         }
 
@@ -383,9 +405,32 @@ export function setup(targets: TypeCheckingTarget[], overrides: {
     (programStrategy as any).supportsInlineOperations = overrides.inlining;
   }
 
+  const fakeScopeReader = {
+    getRequiresRemoteScope() {
+      return null;
+    },
+    // If there is a module with [className] + 'Module' in the same source file, returns
+    // `LocalModuleScope` with the ngModule class and empty arrays for everything else.
+    getScopeForComponent(clazz: ClassDeclaration) {
+      try {
+        const ngModule = getClass(clazz.getSourceFile(), `${clazz.name.getText()}Module`);
+        const stubScopeData = {directives: [], ngModules: [], pipes: []};
+        return {
+          ngModule,
+          compilation: stubScopeData,
+          reexports: [],
+          schemas: [],
+          exported: stubScopeData
+        };
+      } catch (e) {
+        return null;
+      }
+    }
+  };
+
   const templateTypeChecker = new TemplateTypeCheckerImpl(
       program, programStrategy, checkAdapter, fullConfig, emitter, reflectionHost, host,
-      NOOP_INCREMENTAL_BUILD);
+      NOOP_INCREMENTAL_BUILD, fakeScopeReader);
   return {
     templateTypeChecker,
     program,
@@ -412,12 +457,17 @@ function prepareDeclarations(
       name: decl.name,
       ref: new Reference(resolveDeclaration(decl)),
       exportAs: decl.exportAs || null,
+      selector: decl.selector || null,
       hasNgTemplateContextGuard: decl.hasNgTemplateContextGuard || false,
-      inputs: decl.inputs || {},
+      inputs: ClassPropertyMapping.fromMappedObject(decl.inputs || {}),
       isComponent: decl.isComponent || false,
       ngTemplateGuards: decl.ngTemplateGuards || [],
       coercedInputFields: new Set<string>(decl.coercedInputFields || []),
-      outputs: decl.outputs || {},
+      restrictedInputFields: new Set<string>(decl.restrictedInputFields || []),
+      stringLiteralInputFields: new Set<string>(decl.stringLiteralInputFields || []),
+      undeclaredInputFields: new Set<string>(decl.undeclaredInputFields || []),
+      isGeneric: decl.isGeneric ?? false,
+      outputs: ClassPropertyMapping.fromMappedObject(decl.outputs || {}),
       queries: decl.queries || [],
     };
     matcher.addSelectables(selector, meta);

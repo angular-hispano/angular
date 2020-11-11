@@ -7,11 +7,11 @@
  */
 
 import {types as graphQLTypes} from 'typed-graphqlify';
-import {URL} from 'url';
 
 import {getConfig, NgDevConfig} from '../../utils/config';
 import {error, info, promptConfirm} from '../../utils/console';
 import {GitClient} from '../../utils/git';
+import {addTokenToGitHttpsUrl} from '../../utils/git/github-urls';
 import {getPr} from '../../utils/github';
 
 /* GraphQL schema for the response body for each pending PR. */
@@ -55,14 +55,14 @@ export async function rebasePr(
    */
   const previousBranchOrRevision = git.getCurrentBranchOrRevision();
   /* Get the PR information from Github. */
-  const pr = await getPr(PR_SCHEMA, prNumber, config.github);
+  const pr = await getPr(PR_SCHEMA, prNumber, git);
 
   const headRefName = pr.headRef.name;
   const baseRefName = pr.baseRef.name;
   const fullHeadRef = `${pr.headRef.repository.nameWithOwner}:${headRefName}`;
   const fullBaseRef = `${pr.baseRef.repository.nameWithOwner}:${baseRefName}`;
-  const headRefUrl = addAuthenticationToUrl(pr.headRef.repository.url, githubToken);
-  const baseRefUrl = addAuthenticationToUrl(pr.baseRef.repository.url, githubToken);
+  const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, githubToken);
+  const baseRefUrl = addTokenToGitHttpsUrl(pr.baseRef.repository.url, githubToken);
 
   // Note: Since we use a detached head for rebasing the PR and therefore do not have
   // remote-tracking branches configured, we need to set our expected ref and SHA. This
@@ -99,12 +99,12 @@ export async function rebasePr(
       info(`Pushing rebased PR #${prNumber} to ${fullHeadRef}`);
       git.run(['push', headRefUrl, `HEAD:${headRefName}`, forceWithLeaseFlag]);
       info(`Rebased and updated PR #${prNumber}`);
-      cleanUpGitState();
+      git.checkout(previousBranchOrRevision, true);
       process.exit(0);
     }
   } catch (err) {
     error(err.message);
-    cleanUpGitState();
+    git.checkout(previousBranchOrRevision, true);
     process.exit(1);
   }
 
@@ -127,23 +127,6 @@ export async function rebasePr(
     info(`Cleaning up git state, and restoring previous state.`);
   }
 
-  cleanUpGitState();
+  git.checkout(previousBranchOrRevision, true);
   process.exit(1);
-
-  /** Reset git back to the original branch. */
-  function cleanUpGitState() {
-    // Ensure that any outstanding rebases are aborted.
-    git.runGraceful(['rebase', '--abort'], {stdio: 'ignore'});
-    // Ensure that any changes in the current repo state are cleared.
-    git.runGraceful(['reset', '--hard'], {stdio: 'ignore'});
-    // Checkout the original branch from before the run began.
-    git.runGraceful(['checkout', previousBranchOrRevision], {stdio: 'ignore'});
-  }
-}
-
-/** Adds the provided token as username to the provided url. */
-function addAuthenticationToUrl(urlString: string, token: string) {
-  const url = new URL(urlString);
-  url.username = token;
-  return url.toString();
 }

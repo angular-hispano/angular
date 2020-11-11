@@ -6,23 +6,23 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {assertDataInRange, assertDefined, assertEqual} from '../../util/assert';
+import {assertDefined, assertEqual, assertIndexInRange} from '../../util/assert';
 import {assertFirstCreatePass, assertHasParent} from '../assert';
 import {attachPatchData} from '../context_discovery';
 import {registerPostOrderHooks} from '../hooks';
-import {hasClassInput, hasStyleInput, TAttributes, TElementNode, TNode, TNodeType} from '../interfaces/node';
+import {hasClassInput, hasStyleInput, TAttributes, TElementNode, TNode, TNodeFlags, TNodeType} from '../interfaces/node';
 import {RElement} from '../interfaces/renderer';
 import {isContentQueryHost, isDirectiveHost} from '../interfaces/type_checks';
-import {HEADER_OFFSET, LView, RENDERER, T_HOST, TVIEW, TView} from '../interfaces/view';
-import {assertNodeType} from '../node_assert';
-import {appendChild, writeDirectClass, writeDirectStyle} from '../node_manipulation';
-import {decreaseElementDepthCount, getBindingIndex, getElementDepthCount, getIsParent, getLView, getNamespace, getPreviousOrParentTNode, getTView, increaseElementDepthCount, setIsNotParent, setPreviousOrParentTNode} from '../state';
+import {HEADER_OFFSET, LView, RENDERER, TView} from '../interfaces/view';
+import {assertTNodeType} from '../node_assert';
+import {appendChild, createElementNode, writeDirectClass, writeDirectStyle} from '../node_manipulation';
+import {decreaseElementDepthCount, getBindingIndex, getCurrentTNode, getElementDepthCount, getLView, getNamespace, getTView, increaseElementDepthCount, isCurrentTNodeParent, setCurrentTNode, setCurrentTNodeAsNotParent} from '../state';
 import {computeStaticStyling} from '../styling/static_styling';
 import {setUpAttributes} from '../util/attrs_utils';
 import {getConstant} from '../util/view_utils';
-
 import {setDirectiveInputsWhichShadowsStyling} from './property';
-import {createDirectivesInstances, elementCreate, executeContentQueries, getOrCreateTNode, matchingSchemas, resolveDirectives, saveResolvedLocalsInData} from './shared';
+import {createDirectivesInstances, executeContentQueries, getOrCreateTNode, matchingSchemas, resolveDirectives, saveResolvedLocalsInData} from './shared';
+
 
 
 function elementStartFirstCreatePass(
@@ -33,7 +33,7 @@ function elementStartFirstCreatePass(
 
   const tViewConsts = tView.consts;
   const attrs = getConstant<TAttributes>(tViewConsts, attrsIndex);
-  const tNode = getOrCreateTNode(tView, lView[T_HOST], index, TNodeType.Element, name, attrs);
+  const tNode = getOrCreateTNode(tView, index, TNodeType.Element, name, attrs);
 
   const hasDirectives =
       resolveDirectives(tView, lView, tNode, getConstant<string[]>(tViewConsts, localRefsIndex));
@@ -78,16 +78,15 @@ export function ɵɵelementStart(
       assertEqual(
           getBindingIndex(), tView.bindingStartIndex,
           'elements should be created before any bindings');
-  ngDevMode && ngDevMode.rendererCreateElement++;
-  ngDevMode && assertDataInRange(lView, adjustedIndex);
+  ngDevMode && assertIndexInRange(lView, adjustedIndex);
 
   const renderer = lView[RENDERER];
-  const native = lView[adjustedIndex] = elementCreate(name, renderer, getNamespace());
-
+  const native = lView[adjustedIndex] = createElementNode(renderer, name, getNamespace());
   const tNode = tView.firstCreatePass ?
-      elementStartFirstCreatePass(index, tView, lView, native, name, attrsIndex, localRefsIndex) :
+      elementStartFirstCreatePass(
+          adjustedIndex, tView, lView, native, name, attrsIndex, localRefsIndex) :
       tView.data[adjustedIndex] as TElementNode;
-  setPreviousOrParentTNode(tNode, true);
+  setCurrentTNode(tNode, true);
 
   const mergedAttrs = tNode.mergedAttrs;
   if (mergedAttrs !== null) {
@@ -102,7 +101,11 @@ export function ɵɵelementStart(
     writeDirectStyle(renderer, native, styles);
   }
 
-  appendChild(tView, lView, native, tNode);
+  if ((tNode.flags & TNodeFlags.isDetached) !== TNodeFlags.isDetached) {
+    // In the i18n case, the translation may have removed this element, so only add it if it is not
+    // detached. See `TNodeType.Placeholder` and `LFrame.inI18n` for more context.
+    appendChild(tView, lView, native, tNode);
+  }
 
   // any immediate children of a component or template container must be pre-emptively
   // monkey-patched with the component view data so that the element can be inspected
@@ -128,27 +131,27 @@ export function ɵɵelementStart(
  * @codeGenApi
  */
 export function ɵɵelementEnd(): void {
-  let previousOrParentTNode = getPreviousOrParentTNode();
-  ngDevMode && assertDefined(previousOrParentTNode, 'No parent node to close.');
-  if (getIsParent()) {
-    setIsNotParent();
+  let currentTNode = getCurrentTNode()!;
+  ngDevMode && assertDefined(currentTNode, 'No parent node to close.');
+  if (isCurrentTNodeParent()) {
+    setCurrentTNodeAsNotParent();
   } else {
-    ngDevMode && assertHasParent(getPreviousOrParentTNode());
-    previousOrParentTNode = previousOrParentTNode.parent!;
-    setPreviousOrParentTNode(previousOrParentTNode, false);
+    ngDevMode && assertHasParent(getCurrentTNode());
+    currentTNode = currentTNode.parent!;
+    setCurrentTNode(currentTNode, false);
   }
 
-  const tNode = previousOrParentTNode;
-  ngDevMode && assertNodeType(tNode, TNodeType.Element);
+  const tNode = currentTNode;
+  ngDevMode && assertTNodeType(tNode, TNodeType.AnyRNode);
 
 
   decreaseElementDepthCount();
 
   const tView = getTView();
   if (tView.firstCreatePass) {
-    registerPostOrderHooks(tView, previousOrParentTNode);
-    if (isContentQueryHost(previousOrParentTNode)) {
-      tView.queries!.elementEnd(previousOrParentTNode);
+    registerPostOrderHooks(tView, currentTNode);
+    if (isContentQueryHost(currentTNode)) {
+      tView.queries!.elementEnd(currentTNode);
     }
   }
 
@@ -187,7 +190,7 @@ function logUnknownElementError(
   // execute the check below.
   if (schemas === null) return;
 
-  const tagName = tNode.tagName;
+  const tagName = tNode.value;
 
   // If the element matches any directive, it's considered as valid.
   if (!hasDirectives && tagName !== null) {

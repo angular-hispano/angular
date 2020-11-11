@@ -6,8 +6,11 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {ParseError, TmplAstNode} from '@angular/compiler';
+import {AST, ParseError, TmplAstNode, TmplAstTemplate} from '@angular/compiler';
 import * as ts from 'typescript';
+
+import {GlobalCompletion} from './completion';
+import {Symbol} from './symbols';
 
 /**
  * Interface to the Angular Template Type Checker to extract diagnostics and intelligence from the
@@ -27,6 +30,14 @@ export interface TemplateTypeChecker {
    * Clear all overrides and return the template type-checker to the original input program state.
    */
   resetOverrides(): void;
+
+  /**
+   * Retrieve the template in use for the given component.
+   *
+   * If the template has been overridden via `overrideComponentTemplate`, this will retrieve the
+   * overridden template nodes.
+   */
+  getTemplate(component: ts.ClassDeclaration): TmplAstNode[]|null;
 
   /**
    * Provide a new template string that will be used in place of the user-defined template when
@@ -69,6 +80,27 @@ export interface TemplateTypeChecker {
    * This method always runs in `OptimizeFor.SingleFile` mode.
    */
   getTypeCheckBlock(component: ts.ClassDeclaration): ts.Node|null;
+
+  /**
+   * Retrieves a `Symbol` for the node in a component's template.
+   *
+   * This method can return `null` if a valid `Symbol` cannot be determined for the node.
+   *
+   * @see Symbol
+   */
+  getSymbolOfNode(node: AST|TmplAstNode, component: ts.ClassDeclaration): Symbol|null;
+
+  /**
+   * Get "global" `Completion`s in the given context.
+   *
+   * Global completions are completions in the global context, as opposed to completions within an
+   * existing expression. For example, completing inside a new interpolation expression (`{{|}}`) or
+   * inside a new property binding `[input]="|" should retrieve global completions, which will
+   * include completions from the template's context component, as well as any local references or
+   * template variables which are in scope for that expression.
+   */
+  getGlobalCompletions(context: TmplAstTemplate|null, component: ts.ClassDeclaration):
+      GlobalCompletion[];
 }
 
 /**

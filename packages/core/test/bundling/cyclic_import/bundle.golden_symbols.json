@@ -156,9 +156,6 @@
     "name": "generatePropertyAliases"
   },
   {
-    "name": "getCheckNoChangesMode"
-  },
-  {
     "name": "getClosureSafeProperty"
   },
   {
@@ -171,13 +168,13 @@
     "name": "getConstant"
   },
   {
+    "name": "getCurrentTNode"
+  },
+  {
+    "name": "getCurrentTNodePlaceholderOk"
+  },
+  {
     "name": "getFirstLContainer"
-  },
-  {
-    "name": "getIsParent"
-  },
-  {
-    "name": "getLContainer"
   },
   {
     "name": "getLView"
@@ -202,9 +199,6 @@
   },
   {
     "name": "getOrCreateTNode"
-  },
-  {
-    "name": "getPreviousOrParentTNode"
   },
   {
     "name": "getSimpleChangesStore"
@@ -249,10 +243,13 @@
     "name": "isCssClassMatching"
   },
   {
-    "name": "isInlineTemplate"
+    "name": "isCurrentTNodeParent"
   },
   {
-    "name": "isLContainer"
+    "name": "isInCheckNoChangesMode"
+  },
+  {
+    "name": "isInlineTemplate"
   },
   {
     "name": "isNodeMatchingSelector"
@@ -286,6 +283,9 @@
   },
   {
     "name": "nativeAppendOrInsertBefore"
+  },
+  {
+    "name": "nativeInsertBefore"
   },
   {
     "name": "nextNgElementId"
@@ -330,6 +330,9 @@
     "name": "setCurrentQueryIndex"
   },
   {
+    "name": "setCurrentTNode"
+  },
+  {
     "name": "setDirectiveInputsWhichShadowsStyling"
   },
   {
@@ -342,16 +345,10 @@
     "name": "setInputsFromAttrs"
   },
   {
-    "name": "setPreviousOrParentTNode"
-  },
-  {
     "name": "setSelectedIndex"
   },
   {
     "name": "setUpAttributes"
-  },
-  {
-    "name": "throwMultipleComponentError"
   },
   {
     "name": "unwrapRNode"

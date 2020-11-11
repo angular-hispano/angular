@@ -11,8 +11,7 @@
 import {Type} from '../core';
 import {Injector} from '../di/injector';
 import {Sanitizer} from '../sanitization/sanitizer';
-import {assertDataInRange} from '../util/assert';
-
+import {assertDefined, assertIndexInRange} from '../util/assert';
 import {assertComponentType} from './assert';
 import {getComponentDef} from './definition';
 import {diPublicInInjector, getOrCreateNodeInjectorForNode} from './di';
@@ -24,7 +23,7 @@ import {PlayerHandler} from './interfaces/player';
 import {domRendererFactory3, RElement, Renderer3, RendererFactory3} from './interfaces/renderer';
 import {CONTEXT, HEADER_OFFSET, LView, LViewFlags, RootContext, RootContextFlags, TVIEW, TViewType} from './interfaces/view';
 import {writeDirectClass, writeDirectStyle} from './node_manipulation';
-import {enterView, getPreviousOrParentTNode, leaveView, setSelectedIndex} from './state';
+import {enterView, getCurrentTNode, leaveView, setSelectedIndex} from './state';
 import {computeStaticStyling} from './styling/static_styling';
 import {setUpAttributes} from './util/attrs_utils';
 import {publishDefaultGlobalUtils} from './util/global_utils';
@@ -129,12 +128,12 @@ export function renderComponent<T>(
   const rootContext = createRootContext(opts.scheduler, opts.playerHandler);
 
   const renderer = rendererFactory.createRenderer(hostRNode, componentDef);
-  const rootTView = createTView(TViewType.Root, -1, null, 1, 0, null, null, null, null, null);
+  const rootTView = createTView(TViewType.Root, null, null, 1, 0, null, null, null, null, null);
   const rootView: LView = createLView(
-      null, rootTView, rootContext, rootFlags, null, null, rendererFactory, renderer, undefined,
+      null, rootTView, rootContext, rootFlags, null, null, rendererFactory, renderer, null,
       opts.injector || null);
 
-  enterView(rootView, null);
+  enterView(rootView);
   let component: T;
 
   try {
@@ -163,6 +162,7 @@ export function renderComponent<T>(
  * @param rNode Render host element.
  * @param def ComponentDef
  * @param rootView The parent view where the host node is stored
+ * @param rendererFactory Factory to be used for creating child renderers.
  * @param hostRenderer The current renderer
  * @param sanitizer The sanitizer, if provided
  *
@@ -172,9 +172,13 @@ export function createRootComponentView(
     rNode: RElement|null, def: ComponentDef<any>, rootView: LView,
     rendererFactory: RendererFactory3, hostRenderer: Renderer3, sanitizer?: Sanitizer|null): LView {
   const tView = rootView[TVIEW];
-  ngDevMode && assertDataInRange(rootView, 0 + HEADER_OFFSET);
-  rootView[0 + HEADER_OFFSET] = rNode;
-  const tNode: TElementNode = getOrCreateTNode(tView, null, 0, TNodeType.Element, null, null);
+  const index = HEADER_OFFSET;
+  ngDevMode && assertIndexInRange(rootView, index);
+  rootView[index] = rNode;
+  // '#host' is added here as we don't know the real host DOM name (we don't want to read it) and at
+  // the same time we want to communicate the the debug `TNode` that this is a special `TNode`
+  // representing a host element.
+  const tNode: TElementNode = getOrCreateTNode(tView, index, TNodeType.Element, '#host', null);
   const mergedAttrs = tNode.mergedAttrs = def.hostAttrs;
   if (mergedAttrs !== null) {
     computeStaticStyling(tNode, mergedAttrs, true);
@@ -192,8 +196,8 @@ export function createRootComponentView(
   const viewRenderer = rendererFactory.createRenderer(rNode, def);
   const componentView = createLView(
       rootView, getOrCreateTComponentView(def), null,
-      def.onPush ? LViewFlags.Dirty : LViewFlags.CheckAlways, rootView[HEADER_OFFSET], tNode,
-      rendererFactory, viewRenderer, sanitizer);
+      def.onPush ? LViewFlags.Dirty : LViewFlags.CheckAlways, rootView[index], tNode,
+      rendererFactory, viewRenderer, sanitizer || null, null);
 
   if (tView.firstCreatePass) {
     diPublicInInjector(getOrCreateNodeInjectorForNode(tNode, rootView), tView, def.type);
@@ -204,7 +208,7 @@ export function createRootComponentView(
   addToViewTree(rootView, componentView);
 
   // Store component view at node index, with node as the HOST
-  return rootView[HEADER_OFFSET] = componentView;
+  return rootView[index] = componentView;
 }
 
 /**
@@ -229,11 +233,11 @@ export function createRootComponent<T>(
     componentDef.contentQueries(RenderFlags.Create, component, rootLView.length - 1);
   }
 
-  const rootTNode = getPreviousOrParentTNode();
+  const rootTNode = getCurrentTNode()!;
+  ngDevMode && assertDefined(rootTNode, 'tNode should have been already created');
   if (tView.firstCreatePass &&
       (componentDef.hostBindings !== null || componentDef.hostAttrs !== null)) {
-    const elementIndex = rootTNode.index - HEADER_OFFSET;
-    setSelectedIndex(elementIndex);
+    setSelectedIndex(rootTNode.index);
 
     const rootTView = rootLView[TVIEW];
     addHostBindingsToExpandoInstructions(rootTView, componentDef);

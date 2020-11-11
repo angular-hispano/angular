@@ -9,6 +9,8 @@
 import {join} from 'path';
 import * as ts from 'typescript/lib/tsserverlibrary';
 
+import {isTypeScriptFile} from '../utils';
+
 const logger: ts.server.Logger = {
   close(): void{},
   hasLevel(level: ts.server.LogLevel): boolean {
@@ -45,14 +47,7 @@ export const host: ts.server.ServerHost = {
   ...ts.sys,
   readFile(absPath: string, encoding?: string): string |
       undefined {
-        const content = ts.sys.readFile(absPath, encoding);
-        if (content === undefined) {
-          return undefined;
-        }
-        if (absPath === APP_COMPONENT || absPath === PARSING_CASES || absPath === TEST_TEMPLATE) {
-          return removeReferenceMarkers(removeLocationMarkers(content));
-        }
-        return content;
+        return ts.sys.readFile(absPath, encoding);
       },
   watchFile(path: string, callback: ts.FileWatcherCallback): ts.FileWatcher {
     return NOOP_FILE_WATCHER;
@@ -105,7 +100,18 @@ export function setup() {
   };
 }
 
-class MockService {
+interface OverwriteResult {
+  /**
+   * Position of the cursor, -1 if there isn't one.
+   */
+  position: number;
+  /**
+   * Overwritten content without the cursor.
+   */
+  text: string;
+}
+
+export class MockService {
   private readonly overwritten = new Set<ts.server.NormalizedPath>();
 
   constructor(
@@ -113,20 +119,32 @@ class MockService {
       private readonly ps: ts.server.ProjectService,
   ) {}
 
-  overwrite(fileName: string, newText: string): string {
+  /**
+   * Overwrite the entire content of `fileName` with `newText`. If cursor is
+   * present in `newText`, it will be removed and the position of the cursor
+   * will be returned.
+   */
+  overwrite(fileName: string, newText: string): OverwriteResult {
     const scriptInfo = this.getScriptInfo(fileName);
-    this.overwriteScriptInfo(scriptInfo, preprocess(newText));
-    return newText;
+    return this.overwriteScriptInfo(scriptInfo, newText);
   }
 
-  overwriteInlineTemplate(fileName: string, newTemplate: string): string {
+  /**
+   * Overwrite an inline template defined in `fileName` and return the entire
+   * content of the source file (not just the template). If a cursor is present
+   * in `newTemplate`, it will be removed and the position of the cursor in the
+   * source file will be returned.
+   */
+  overwriteInlineTemplate(fileName: string, newTemplate: string): OverwriteResult {
     const scriptInfo = this.getScriptInfo(fileName);
     const snapshot = scriptInfo.getSnapshot();
-    const originalContent = snapshot.getText(0, snapshot.getLength());
-    const newContent =
-        originalContent.replace(/template: `([\s\S]+)`/, `template: \`${newTemplate}\``);
-    this.overwriteScriptInfo(scriptInfo, preprocess(newContent));
-    return newContent;
+    const originalText = snapshot.getText(0, snapshot.getLength());
+    const {position, text} =
+        replaceOnce(originalText, /template: `([\s\S]+?)`/, `template: \`${newTemplate}\``);
+    if (position === -1) {
+      throw new Error(`${fileName} does not contain a component with template`);
+    }
+    return this.overwriteScriptInfo(scriptInfo, text);
   }
 
   reset() {
@@ -141,35 +159,62 @@ class MockService {
       }
     }
     this.overwritten.clear();
+    // updateGraph() will clear the internal dirty flag.
+    this.project.updateGraph();
   }
 
   getScriptInfo(fileName: string): ts.server.ScriptInfo {
     const scriptInfo = this.ps.getScriptInfo(fileName);
-    if (!scriptInfo) {
+    if (scriptInfo) {
+      return scriptInfo;
+    }
+    // There is no script info for external template, so create one.
+    // But we need to make sure it's not a TS file.
+    if (isTypeScriptFile(fileName)) {
       throw new Error(`No existing script info for ${fileName}`);
     }
-    return scriptInfo;
+    const newScriptInfo = this.ps.getOrCreateScriptInfoForNormalizedPath(
+        ts.server.toNormalizedPath(fileName),
+        true,                    // openedByClient
+        '',                      // fileContent
+        ts.ScriptKind.External,  // scriptKind
+    );
+    if (!newScriptInfo) {
+      throw new Error(`Failed to create new script info for ${fileName}`);
+    }
+    newScriptInfo.attachToProject(this.project);
+    return newScriptInfo;
   }
 
-  private overwriteScriptInfo(scriptInfo: ts.server.ScriptInfo, newText: string) {
+  /**
+   * Remove the cursor from `newText`, then replace `scriptInfo` with the new
+   * content and return the position of the cursor.
+   * @param scriptInfo
+   * @param newText Text that possibly contains a cursor
+   */
+  private overwriteScriptInfo(scriptInfo: ts.server.ScriptInfo, newText: string): OverwriteResult {
+    const result = replaceOnce(newText, /¦/, '');
     const snapshot = scriptInfo.getSnapshot();
-    scriptInfo.editContent(0, snapshot.getLength(), newText);
+    scriptInfo.editContent(0, snapshot.getLength(), result.text);
     this.overwritten.add(scriptInfo.fileName);
+    return result;
   }
 }
 
-const REGEX_CURSOR = /¦/g;
-function preprocess(text: string): string {
-  return text.replace(REGEX_CURSOR, '');
-}
-
-const REF_MARKER = /«(((\w|\-)+)|([^ᐱ]*ᐱ(\w+)ᐱ.[^»]*))»/g;
-const LOC_MARKER = /\~\{(\w+(-\w+)*)\}/g;
-
-function removeReferenceMarkers(value: string): string {
-  return value.replace(REF_MARKER, '');
-}
-
-function removeLocationMarkers(value: string): string {
-  return value.replace(LOC_MARKER, '');
+/**
+ * Replace at most one occurence that matches `regex` in the specified
+ * `searchText` with the specified `replaceText`. Throw an error if there is
+ * more than one occurrence.
+ */
+function replaceOnce(searchText: string, regex: RegExp, replaceText: string): OverwriteResult {
+  regex = new RegExp(regex.source, regex.flags + 'g' /* global */);
+  let position = -1;
+  const text = searchText.replace(regex, (...args) => {
+    if (position !== -1) {
+      throw new Error(`${regex} matches more than one occurrence in text: ${searchText}`);
+    }
+    position = args[args.length - 2];  // second last argument is always the index
+    return replaceText;
+  });
+  return {position, text};
 }

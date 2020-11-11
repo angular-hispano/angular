@@ -159,6 +159,59 @@ describe('Integration', () => {
          expect(navigation.extras.state).toEqual({foo: 'bar'});
        })));
 
+    it('should set history.state when navigation with browser back and forward',
+       fakeAsync(inject([Router, Location], (router: Router, location: SpyLocation) => {
+         router.resetConfig([
+           {path: '', component: SimpleCmp},
+           {path: 'simple', component: SimpleCmp},
+         ]);
+
+         const fixture = createRoot(router, RootCmp);
+         let navigation: Navigation = null!;
+         router.events.subscribe(e => {
+           if (e instanceof NavigationStart) {
+             navigation = <Navigation>router.getCurrentNavigation()!;
+           }
+         });
+
+         const state = {foo: 'bar'};
+         router.navigateByUrl('/simple', {state});
+         tick();
+         location.back();
+         tick();
+         location.forward();
+         tick();
+
+         expect(navigation.extras.state).toBeDefined();
+         expect(navigation.extras.state).toEqual(state);
+       })));
+
+    it('should not error if state is not {[key: string]: any}',
+       fakeAsync(inject([Router, Location], (router: Router, location: SpyLocation) => {
+         router.resetConfig([
+           {path: '', component: SimpleCmp},
+           {path: 'simple', component: SimpleCmp},
+         ]);
+
+         const fixture = createRoot(router, RootCmp);
+         let navigation: Navigation = null!;
+         router.events.subscribe(e => {
+           if (e instanceof NavigationStart) {
+             navigation = <Navigation>router.getCurrentNavigation()!;
+           }
+         });
+
+         location.replaceState('', '', 42);
+         router.navigateByUrl('/simple');
+         tick();
+         location.back();
+         advance(fixture);
+
+         // Angular does not support restoring state to the primitive.
+         expect(navigation.extras.state).toEqual(undefined);
+         expect(location.getState()).toEqual({navigationId: 3});
+       })));
+
     it('should not pollute browser history when replaceUrl is set to true',
        fakeAsync(inject([Router, Location], (router: Router, location: SpyLocation) => {
          router.resetConfig([
@@ -2084,7 +2137,7 @@ describe('Integration', () => {
          @Component({
            selector: 'someRoot',
            template:
-               `<router-outlet></router-outlet><a routerLink="/home" preserveQueryParams preserveFragment>Link</a>`
+               `<router-outlet></router-outlet><a routerLink="/home" queryParamsHandling="preserve" preserveFragment>Link</a>`
          })
          class RootCmpWithLink {
          }
@@ -2974,6 +3027,13 @@ describe('Integration', () => {
                   resolve: {data: 'resolver'},
                 },
               ]
+            },
+            {
+              path: 'throwing',
+              runGuardsAndResolvers,
+              component: ThrowingCmp,
+              canActivate: ['guard'],
+              resolve: {data: 'resolver'}
             }
           ]);
 
@@ -3072,6 +3132,15 @@ describe('Integration', () => {
              advance(fixture);
              expect(guardRunCount).toEqual(5);
              expect(recordedData).toEqual([{data: 0}, {data: 1}, {data: 2}, {data: 3}, {data: 4}]);
+
+             // Issue #39030, always running guards and resolvers should not throw
+             // when navigating away from a component with a throwing constructor.
+             expect(() => {
+               router.navigateByUrl('/throwing').catch(() => {});
+               advance(fixture);
+               router.navigateByUrl('/a;p=1');
+               advance(fixture);
+             }).not.toThrow();
            })));
 
         it('should rerun rerun guards and resolvers when path params change',
@@ -4037,7 +4106,7 @@ describe('Integration', () => {
         return of(delayMs).pipe(delay(delayMs), mapTo(true));
       }
 
-      @NgModule()
+      @NgModule({imports: [RouterModule.forChild([{path: '', component: BlankCmp}])]})
       class LoadedModule {
       }
 
@@ -4067,6 +4136,15 @@ describe('Integration', () => {
               }
             },
             {
+              provide: 'returnFalseAndNavigate',
+              useFactory: (router: Router) => () => {
+                log.push('returnFalseAndNavigate');
+                router.navigateByUrl('/redirected');
+                return false;
+              },
+              deps: [Router]
+            },
+            {
               provide: 'returnUrlTree',
               useFactory: (router: Router) => () => {
                 return delayObservable(15).pipe(
@@ -4079,7 +4157,23 @@ describe('Integration', () => {
         });
       });
 
-      it('should wait for higher priority guards to be resolved',
+      it('should only execute canLoad guards of routes being activated', fakeAsync(() => {
+           const router = TestBed.inject(Router);
+
+           router.resetConfig([
+             {path: 'lazy', canLoad: ['guard1'], loadChildren: () => of(LoadedModule)},
+             {path: 'redirected', component: SimpleCmp},
+             // canLoad should not run for this route because 'lazy' activates first
+             {path: '', canLoad: ['returnFalseAndNavigate'], loadChildren: () => of(LoadedModule)},
+           ]);
+
+           router.navigateByUrl('/lazy');
+           tick(5);
+           expect(log.length).toEqual(1);
+           expect(log).toEqual(['guard1']);
+         }));
+
+      it('should execute canLoad guards',
          fakeAsync(inject(
              [Router, NgModuleFactoryLoader],
              (router: Router, loader: SpyNgModuleFactoryLoader) => {
@@ -4291,7 +4385,7 @@ describe('Integration', () => {
        })));
   });
 
-  describe('routerActiveLink', () => {
+  describe('routerLinkActive', () => {
     it('should set the class when the link is active (a tag)',
        fakeAsync(inject([Router, Location], (router: Router, location: Location) => {
          const fixture = createRoot(router, RootCmp);
@@ -4440,6 +4534,29 @@ describe('Integration', () => {
          advance(fixture);
          advance(fixture);
          expect(paragraph.textContent).toEqual('false');
+       }));
+
+    it('should not trigger change detection when active state has not changed', fakeAsync(() => {
+         @Component({
+           template: `<div id="link" routerLinkActive="active" [routerLink]="link"></div>`,
+         })
+         class LinkComponent {
+           link = 'notactive';
+         }
+
+         @Component({template: ''})
+         class SimpleComponent {
+         }
+
+         TestBed.configureTestingModule({
+           imports: [RouterTestingModule.withRoutes([{path: '', component: SimpleComponent}])],
+           declarations: [LinkComponent, SimpleComponent]
+         });
+
+         const fixture = createRoot(TestBed.inject(Router), LinkComponent);
+         fixture.componentInstance.link = 'stillnotactive';
+         fixture.detectChanges(false /** checkNoChanges */);
+         expect(TestBed.inject(NgZone).hasPendingMicrotasks).toBe(false);
        }));
   });
 
@@ -5508,30 +5625,54 @@ describe('Integration', () => {
 });
 
 describe('Testing router options', () => {
-  describe('paramsInheritanceStrategy', () => {
-    beforeEach(() => {
+  describe('should configure the router', () => {
+    it('assigns errorHandler', () => {
+      function errorHandler(error: any) {
+        throw error;
+      }
       TestBed.configureTestingModule(
-          {imports: [RouterTestingModule.withRoutes([], {paramsInheritanceStrategy: 'always'})]});
+          {imports: [RouterTestingModule.withRoutes([], {errorHandler})]});
+      const router: Router = TestBed.inject(Router);
+      expect(router.errorHandler).toBe(errorHandler);
     });
 
-    it('should configure the router', fakeAsync(inject([Router], (router: Router) => {
-         expect(router.paramsInheritanceStrategy).toEqual('always');
-       })));
-  });
-
-  describe('malformedUriErrorHandler', () => {
-    function malformedUriErrorHandler(e: URIError, urlSerializer: UrlSerializer, url: string) {
-      return urlSerializer.parse('/error');
-    }
-
-    beforeEach(() => {
+    it('assigns malformedUriErrorHandler', () => {
+      function malformedUriErrorHandler(e: URIError, urlSerializer: UrlSerializer, url: string) {
+        return urlSerializer.parse('/error');
+      }
       TestBed.configureTestingModule(
           {imports: [RouterTestingModule.withRoutes([], {malformedUriErrorHandler})]});
+      const router: Router = TestBed.inject(Router);
+      expect(router.malformedUriErrorHandler).toBe(malformedUriErrorHandler);
     });
 
-    it('should configure the router', fakeAsync(inject([Router], (router: Router) => {
-         expect(router.malformedUriErrorHandler).toBe(malformedUriErrorHandler);
-       })));
+    it('assigns onSameUrlNavigation', () => {
+      TestBed.configureTestingModule(
+          {imports: [RouterTestingModule.withRoutes([], {onSameUrlNavigation: 'reload'})]});
+      const router: Router = TestBed.inject(Router);
+      expect(router.onSameUrlNavigation).toBe('reload');
+    });
+
+    it('assigns paramsInheritanceStrategy', () => {
+      TestBed.configureTestingModule(
+          {imports: [RouterTestingModule.withRoutes([], {paramsInheritanceStrategy: 'always'})]});
+      const router: Router = TestBed.inject(Router);
+      expect(router.paramsInheritanceStrategy).toBe('always');
+    });
+
+    it('assigns relativeLinkResolution', () => {
+      TestBed.configureTestingModule(
+          {imports: [RouterTestingModule.withRoutes([], {relativeLinkResolution: 'corrected'})]});
+      const router: Router = TestBed.inject(Router);
+      expect(router.relativeLinkResolution).toBe('corrected');
+    });
+
+    it('assigns urlUpdateStrategy', () => {
+      TestBed.configureTestingModule(
+          {imports: [RouterTestingModule.withRoutes([], {urlUpdateStrategy: 'eager'})]});
+      const router: Router = TestBed.inject(Router);
+      expect(router.urlUpdateStrategy).toBe('eager');
+    });
   });
 });
 

@@ -33,7 +33,7 @@ export abstract class PreloadingStrategy {
  * Provides a preloading strategy that preloads all modules as quickly as possible.
  *
  * ```
- * RouteModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
+ * RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
  * ```
  *
  * @publicApi
@@ -97,6 +97,7 @@ export class RouterPreloader implements OnDestroy {
     return this.processRoutes(ngModule, this.router.config);
   }
 
+  /** @nodoc */
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();

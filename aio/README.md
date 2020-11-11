@@ -6,6 +6,7 @@ Todo en esta carpeta es parte del proyecto de documentación. Esto incluye:
 * La configuración de dgeni para convertir los archivos de origen a archivos renderizados que se pueden vizualizar en el sitio web.
 * Las herramientas para establecer ejemplos para el desarrollo; y generar archivos en tiempo real y archivos zip desde los ejemplos.
 
+<a name="developer-tasks"></a>
 ## Tareas de desarrollador
 
 Nosotros usamos [Yarn](https://yarnpkg.com) para gestionar las dependencias y crear tareas de compilación.
@@ -35,8 +36,9 @@ Aquí están las tareas más importantes que podrías necesitar usar:
 
 * `yarn boilerplate:add` - generar todo el código boilerplate para los ejemplos, para que puedan ejecutarse localmente.
 * `yarn boilerplate:add:viewengine` - igual que `boilerplate:add` pero también enciende el modo `ViewEngine` (pre-Ivy).
-
 * `yarn boilerplate:remove` - eliminar todo el código boilerplate que fue añadido a través`yarn boilerplate:add`.
+* `yarn create-example` - crear un nuevo directorio de ejemplo que contenga los archivos fuente iniciales.
+
 * `yarn generate-stackblitz` - generar los archivos stackblitz que están usados por la etiqueta `live-example` en documentos.
 * `yarn generate-zips` - generar los archivos zip desde los ejemplos. Zip está disponible a través de la etiqueta `live-example` en los documentos.
 

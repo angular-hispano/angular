@@ -11,7 +11,7 @@ import * as ts from 'typescript';
 
 import {AbsoluteFsPath} from '../../file_system';
 import {Reference} from '../../imports';
-import {TemplateGuardMeta} from '../../metadata';
+import {ClassPropertyMapping, DirectiveTypeCheckMeta} from '../../metadata';
 import {ClassDeclaration} from '../../reflection';
 
 
@@ -19,12 +19,11 @@ import {ClassDeclaration} from '../../reflection';
  * Extension of `DirectiveMeta` that includes additional information required to type-check the
  * usage of a particular directive.
  */
-export interface TypeCheckableDirectiveMeta extends DirectiveMeta {
+export interface TypeCheckableDirectiveMeta extends DirectiveMeta, DirectiveTypeCheckMeta {
   ref: Reference<ClassDeclaration>;
   queries: string[];
-  ngTemplateGuards: TemplateGuardMeta[];
-  coercedInputFields: Set<string>;
-  hasNgTemplateContextGuard: boolean;
+  inputs: ClassPropertyMapping;
+  outputs: ClassPropertyMapping;
 }
 
 export type TemplateId = string&{__brand: 'TemplateId'};
@@ -92,6 +91,14 @@ export interface TypeCheckingConfig {
    * `checkTypeOfDomBindings` is set.
    */
   checkTypeOfInputBindings: boolean;
+
+  /**
+   * Whether to honor the access modifiers on input bindings for the component/directive.
+   *
+   * If a template binding attempts to assign to an input that is private/protected/readonly,
+   * this will produce errors when enabled but will not when disabled.
+   */
+  honorAccessModifiersForInputBindings: boolean;
 
   /**
    * Whether to use strict null types for input bindings for directives.
@@ -179,6 +186,22 @@ export interface TypeCheckingConfig {
   checkTypeOfNonDomReferences: boolean;
 
   /**
+   * Whether to adjust the output of the TCB to ensure compatibility with the `TemplateTypeChecker`.
+   *
+   * The statements generated in the TCB are optimized for performance and producing diagnostics.
+   * These optimizations can result in generating a TCB that does not have all the information
+   * needed by the `TemplateTypeChecker` for retrieving `Symbol`s. For example, as an optimization,
+   * the TCB will not generate variable declaration statements for directives that have no
+   * references, inputs, or outputs. However, the `TemplateTypeChecker` always needs these
+   * statements to be present in order to provide `ts.Symbol`s and `ts.Type`s for the directives.
+   *
+   * When set to `false`, enables TCB optimizations for template diagnostics.
+   * When set to `true`, ensures all information required by `TemplateTypeChecker` to
+   * retrieve symbols for template nodes is available in the TCB.
+   */
+  enableTemplateTypeChecker: boolean;
+
+  /**
    * Whether to include type information from pipes in the type-checking operation.
    *
    * If this is `true`, then the pipe's type signature for `transform()` will be used to check the
@@ -206,6 +229,12 @@ export interface TypeCheckingConfig {
    * Whether to descend into template bodies and check any bindings there.
    */
   checkTemplateBodies: boolean;
+
+  /**
+   * Whether to always apply DOM schema checks in template bodies, independently of the
+   * `checkTemplateBodies` setting.
+   */
+  alwaysCheckSchemaInTemplateBodies: boolean;
 
   /**
    * Whether to check resolvable queries.

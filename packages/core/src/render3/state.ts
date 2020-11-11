@@ -6,12 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {assertDefined, assertEqual} from '../util/assert';
-import {assertLViewOrUndefined} from './assert';
+import {assertDefined, assertEqual, assertGreaterThanOrEqual, assertLessThan, assertNotEqual} from '../util/assert';
+import {assertLViewOrUndefined, assertTNodeForTView} from './assert';
 import {DirectiveDef} from './interfaces/definition';
-import {TNode} from './interfaces/node';
-import {CONTEXT, DECLARATION_VIEW, LView, OpaqueViewState, TData, TVIEW, TView} from './interfaces/view';
+import {TNode, TNodeType} from './interfaces/node';
+import {CONTEXT, DECLARATION_VIEW, HEADER_OFFSET, LView, OpaqueViewState, TData, TVIEW, TView} from './interfaces/view';
 import {MATH_ML_NAMESPACE, SVG_NAMESPACE} from './namespaces';
+import {assertTNodeType} from './node_assert';
 import {getTNode} from './util/view_utils';
 
 
@@ -54,12 +55,12 @@ interface LFrame {
    *
    * This is used in conjunction with `isParent`.
    */
-  previousOrParentTNode: TNode;
+  currentTNode: TNode|null;
 
   /**
    * If `isParent` is:
-   *  - `true`: then `previousOrParentTNode` points to a parent node.
-   *  - `false`: then `previousOrParentTNode` points to previous node (sibling).
+   *  - `true`: then `currentTNode` points to a parent node.
+   *  - `false`: then `currentTNode` points to previous node (sibling).
    */
   isParent: boolean;
 
@@ -116,6 +117,22 @@ interface LFrame {
    * `LView[currentDirectiveIndex]` is directive instance.
    */
   currentDirectiveIndex: number;
+
+  /**
+   * Are we currently in i18n block as denoted by `ɵɵelementStart` and `ɵɵelementEnd`.
+   *
+   * This information is needed because while we are in i18n block all elements must be pre-declared
+   * in the translation. (i.e. `Hello �#2�World�/#2�!` pre-declares element at `�#2�` location.)
+   * This allocates `TNodeType.Placeholder` element at location `2`. If translator removes `�#2�`
+   * from translation than the runtime must also ensure tha element at `2` does not get inserted
+   * into the DOM. The translation does not carry information about deleted elements. Therefor the
+   * only way to know that an element is deleted is that it was not pre-declared in the translation.
+   *
+   * This flag works by ensuring that elements which are created without pre-declaration
+   * (`TNodeType.Placeholder`) are not inserted into the DOM render tree. (It does mean that the
+   * element still gets instantiated along with all of its behavior [directives])
+   */
+  inI18n: boolean;
 }
 
 /**
@@ -159,15 +176,27 @@ interface InstructionState {
    * In this mode, any changes in bindings will throw an ExpressionChangedAfterChecked error.
    *
    * Necessary to support ChangeDetectorRef.checkNoChanges().
+   *
+   * checkNoChanges Runs only in devmode=true and verifies that no unintended changes exist in
+   * the change detector or its children.
    */
-  checkNoChangesMode: boolean;
+  isInCheckNoChangesMode: boolean;
 }
 
-export const instructionState: InstructionState = {
+const instructionState: InstructionState = {
   lFrame: createLFrame(null),
   bindingsEnabled: true,
-  checkNoChangesMode: false,
+  isInCheckNoChangesMode: false,
 };
+
+/**
+ * Returns true if the instruction state stack is empty.
+ *
+ * Intended to be called from tests only (tree shaken otherwise).
+ */
+export function specOnlyIsInstructionStateEmpty(): boolean {
+  return instructionState.lFrame.parent === null;
+}
 
 
 export function getElementDepthCount() {
@@ -262,23 +291,40 @@ export function ɵɵrestoreView(viewToRestore: OpaqueViewState) {
   instructionState.lFrame.contextLView = viewToRestore as any as LView;
 }
 
-export function getPreviousOrParentTNode(): TNode {
-  return instructionState.lFrame.previousOrParentTNode;
+
+export function getCurrentTNode(): TNode|null {
+  let currentTNode = getCurrentTNodePlaceholderOk();
+  while (currentTNode !== null && currentTNode.type === TNodeType.Placeholder) {
+    currentTNode = currentTNode.parent;
+  }
+  return currentTNode;
 }
 
-export function setPreviousOrParentTNode(tNode: TNode, isParent: boolean) {
-  instructionState.lFrame.previousOrParentTNode = tNode;
-  instructionState.lFrame.isParent = isParent;
+export function getCurrentTNodePlaceholderOk(): TNode|null {
+  return instructionState.lFrame.currentTNode;
 }
 
-export function getIsParent(): boolean {
+export function getCurrentParentTNode(): TNode|null {
+  const lFrame = instructionState.lFrame;
+  const currentTNode = lFrame.currentTNode;
+  return lFrame.isParent ? currentTNode : currentTNode!.parent;
+}
+
+export function setCurrentTNode(tNode: TNode|null, isParent: boolean) {
+  ngDevMode && tNode && assertTNodeForTView(tNode, instructionState.lFrame.tView);
+  const lFrame = instructionState.lFrame;
+  lFrame.currentTNode = tNode;
+  lFrame.isParent = isParent;
+}
+
+export function isCurrentTNodeParent(): boolean {
   return instructionState.lFrame.isParent;
 }
 
-export function setIsNotParent(): void {
+export function setCurrentTNodeAsNotParent(): void {
   instructionState.lFrame.isParent = false;
 }
-export function setIsParent(): void {
+export function setCurrentTNodeAsParent(): void {
   instructionState.lFrame.isParent = true;
 }
 
@@ -286,13 +332,13 @@ export function getContextLView(): LView {
   return instructionState.lFrame.contextLView;
 }
 
-export function getCheckNoChangesMode(): boolean {
+export function isInCheckNoChangesMode(): boolean {
   // TODO(misko): remove this from the LView since it is ngDevMode=true mode only.
-  return instructionState.checkNoChangesMode;
+  return instructionState.isInCheckNoChangesMode;
 }
 
-export function setCheckNoChangesMode(mode: boolean): void {
-  instructionState.checkNoChangesMode = mode;
+export function setIsInCheckNoChangesMode(mode: boolean): void {
+  instructionState.isInCheckNoChangesMode = mode;
 }
 
 // top level variables should not be exported for performance reasons (PERF_NOTES.md)
@@ -322,6 +368,14 @@ export function incrementBindingIndex(count: number): number {
   const index = lFrame.bindingIndex;
   lFrame.bindingIndex = lFrame.bindingIndex + count;
   return index;
+}
+
+export function isInI18nBlock() {
+  return instructionState.lFrame.inI18n;
+}
+
+export function setInI18nBlock(isInI18nBlock: boolean): void {
+  instructionState.lFrame.inI18n = isInI18nBlock;
 }
 
 /**
@@ -388,7 +442,7 @@ export function enterDI(newView: LView, tNode: TNode) {
   ngDevMode && assertLViewOrUndefined(newView);
   const newLFrame = allocLFrame();
   instructionState.lFrame = newLFrame;
-  newLFrame.previousOrParentTNode = tNode!;
+  newLFrame.currentTNode = tNode!;
   newLFrame.lView = newView;
 }
 
@@ -401,17 +455,17 @@ export function enterDI(newView: LView, tNode: TNode) {
  * exited the state has to be restored
  *
  * @param newView New lView to become active
- * @param tNode Element to which the View is a child of
  * @returns the previously active lView;
  */
-export function enterView(newView: LView, tNode: TNode|null): void {
+export function enterView(newView: LView): void {
+  ngDevMode && assertNotEqual(newView[0], newView[1] as any, '????');
   ngDevMode && assertLViewOrUndefined(newView);
   const newLFrame = allocLFrame();
   if (ngDevMode) {
     assertEqual(newLFrame.isParent, true, 'Expected clean LFrame');
     assertEqual(newLFrame.lView, null, 'Expected clean LFrame');
     assertEqual(newLFrame.tView, null, 'Expected clean LFrame');
-    assertEqual(newLFrame.selectedIndex, 0, 'Expected clean LFrame');
+    assertEqual(newLFrame.selectedIndex, -1, 'Expected clean LFrame');
     assertEqual(newLFrame.elementDepthCount, 0, 'Expected clean LFrame');
     assertEqual(newLFrame.currentDirectiveIndex, -1, 'Expected clean LFrame');
     assertEqual(newLFrame.currentNamespace, null, 'Expected clean LFrame');
@@ -420,11 +474,13 @@ export function enterView(newView: LView, tNode: TNode|null): void {
   }
   const tView = newView[TVIEW];
   instructionState.lFrame = newLFrame;
-  newLFrame.previousOrParentTNode = tNode!;
+  ngDevMode && tView.firstChild && assertTNodeForTView(tView.firstChild, tView);
+  newLFrame.currentTNode = tView.firstChild!;
   newLFrame.lView = newView;
   newLFrame.tView = tView;
   newLFrame.contextLView = newView!;
   newLFrame.bindingIndex = tView.bindingStartIndex;
+  newLFrame.inI18n = false;
 }
 
 /**
@@ -439,20 +495,21 @@ function allocLFrame() {
 
 function createLFrame(parent: LFrame|null): LFrame {
   const lFrame: LFrame = {
-    previousOrParentTNode: null!,  //
-    isParent: true,                //
-    lView: null!,                  //
-    tView: null!,                  //
-    selectedIndex: 0,              //
-    contextLView: null!,           //
-    elementDepthCount: 0,          //
-    currentNamespace: null,        //
-    currentDirectiveIndex: -1,     //
-    bindingRootIndex: -1,          //
-    bindingIndex: -1,              //
-    currentQueryIndex: 0,          //
-    parent: parent!,               //
-    child: null,                   //
+    currentTNode: null,
+    isParent: true,
+    lView: null!,
+    tView: null!,
+    selectedIndex: -1,
+    contextLView: null!,
+    elementDepthCount: 0,
+    currentNamespace: null,
+    currentDirectiveIndex: -1,
+    bindingRootIndex: -1,
+    bindingIndex: -1,
+    currentQueryIndex: 0,
+    parent: parent!,
+    child: null,
+    inI18n: false,
   };
   parent !== null && (parent.child = lFrame);  // link the new LFrame for reuse.
   return lFrame;
@@ -461,7 +518,7 @@ function createLFrame(parent: LFrame|null): LFrame {
 /**
  * A lightweight version of leave which is used with DI.
  *
- * This function only resets `previousOrParentTNode` and `LView` as those are the only properties
+ * This function only resets `currentTNode` and `LView` as those are the only properties
  * used with DI (`enterDI()`).
  *
  * NOTE: This function is reexported as `leaveDI`. However `leaveDI` has return type of `void` where
@@ -470,7 +527,7 @@ function createLFrame(parent: LFrame|null): LFrame {
 function leaveViewLight(): LFrame {
   const oldLFrame = instructionState.lFrame;
   instructionState.lFrame = oldLFrame.parent;
-  oldLFrame.previousOrParentTNode = null!;
+  oldLFrame.currentTNode = null!;
   oldLFrame.lView = null!;
   return oldLFrame;
 }
@@ -495,7 +552,7 @@ export function leaveView() {
   const oldLFrame = leaveViewLight();
   oldLFrame.isParent = true;
   oldLFrame.tView = null!;
-  oldLFrame.selectedIndex = 0;
+  oldLFrame.selectedIndex = -1;
   oldLFrame.contextLView = null!;
   oldLFrame.elementDepthCount = 0;
   oldLFrame.currentDirectiveIndex = -1;
@@ -543,6 +600,11 @@ export function getSelectedIndex() {
  * run if and when the provided `index` value is different from the current selected index value.)
  */
 export function setSelectedIndex(index: number) {
+  ngDevMode && index !== -1 &&
+      assertGreaterThanOrEqual(index, HEADER_OFFSET, 'Index must be past HEADER_OFFSET (or -1).');
+  ngDevMode &&
+      assertLessThan(
+          index, instructionState.lFrame.lView.length, 'Can\'t set index passed end of LView');
   instructionState.lFrame.selectedIndex = index;
 }
 

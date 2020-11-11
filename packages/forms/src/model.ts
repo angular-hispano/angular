@@ -173,8 +173,7 @@ export abstract class AbstractControl {
   // TODO(issue/24571): remove '!'.
   _updateOn!: FormHooks;
 
-  // TODO(issue/24571): remove '!'.
-  private _parent!: FormGroup|FormArray;
+  private _parent: FormGroup|FormArray|null = null;
   private _asyncValidationSubscription: any;
 
   /**
@@ -267,7 +266,7 @@ export abstract class AbstractControl {
   /**
    * The parent control.
    */
-  get parent(): FormGroup|FormArray {
+  get parent(): FormGroup|FormArray|null {
     return this._parent;
   }
 
@@ -1018,7 +1017,7 @@ export abstract class AbstractControl {
    */
   private _parentMarkedDirty(onlySelf?: boolean): boolean {
     const parentDirty = this._parent && this._parent.dirty;
-    return !onlySelf && parentDirty && !this._parent._anyControlsDirty();
+    return !onlySelf && !!parentDirty && !this._parent!._anyControlsDirty();
   }
 }
 
@@ -1149,8 +1148,15 @@ export class FormControl extends AbstractControl {
     super(pickValidators(validatorOrOpts), pickAsyncValidators(asyncValidator, validatorOrOpts));
     this._applyFormState(formState);
     this._setUpdateStrategy(validatorOrOpts);
-    this.updateValueAndValidity({onlySelf: true, emitEvent: false});
     this._initObservables();
+    this.updateValueAndValidity({
+      onlySelf: true,
+      // If `asyncValidator` is present, it will trigger control status change from `PENDING` to
+      // `VALID` or `INVALID`.
+      // The status should be broadcasted via the `statusChanges` observable, so we set `emitEvent`
+      // to `true` to allow that during the control creation process.
+      emitEvent: !!asyncValidator
+    });
   }
 
   /**
@@ -1403,7 +1409,13 @@ export class FormGroup extends AbstractControl {
     this._initObservables();
     this._setUpdateStrategy(validatorOrOpts);
     this._setUpControls();
-    this.updateValueAndValidity({onlySelf: true, emitEvent: false});
+    this.updateValueAndValidity({
+      onlySelf: true,
+      // If `asyncValidator` is present, it will trigger control status change from `PENDING` to
+      // `VALID` or `INVALID`. The status should be broadcasted via the `statusChanges` observable,
+      // so we set `emitEvent` to `true` to allow that during the control creation process.
+      emitEvent: !!asyncValidator
+    });
   }
 
   /**
@@ -1566,7 +1578,7 @@ export class FormGroup extends AbstractControl {
   }
 
   /**
-   * Resets the `FormGroup`, marks all descendants are marked `pristine` and `untouched`, and
+   * Resets the `FormGroup`, marks all descendants `pristine` and `untouched` and sets
    * the value of all descendants to null.
    *
    * You reset to a specific form state by passing in a map of states
@@ -1659,7 +1671,7 @@ export class FormGroup extends AbstractControl {
   _throwIfControlMissing(name: string): void {
     if (!Object.keys(this.controls).length) {
       throw new Error(`
-        There are no form controls registered with this group yet.  If you're using ngModel,
+        There are no form controls registered with this group yet. If you're using ngModel,
         you may want to check next tick (e.g. use setTimeout).
       `);
     }
@@ -1823,7 +1835,14 @@ export class FormArray extends AbstractControl {
     this._initObservables();
     this._setUpdateStrategy(validatorOrOpts);
     this._setUpControls();
-    this.updateValueAndValidity({onlySelf: true, emitEvent: false});
+    this.updateValueAndValidity({
+      onlySelf: true,
+      // If `asyncValidator` is present, it will trigger control status change from `PENDING` to
+      // `VALID` or `INVALID`.
+      // The status should be broadcasted via the `statusChanges` observable, so we set `emitEvent`
+      // to `true` to allow that during the control creation process.
+      emitEvent: !!asyncValidator
+    });
   }
 
   /**
@@ -2101,7 +2120,7 @@ export class FormArray extends AbstractControl {
   _throwIfControlMissing(index: number): void {
     if (!this.controls.length) {
       throw new Error(`
-        There are no form controls registered with this array yet.  If you're using ngModel,
+        There are no form controls registered with this array yet. If you're using ngModel,
         you may want to check next tick (e.g. use setTimeout).
       `);
     }

@@ -7,7 +7,7 @@
  */
 
 import {CommonModule} from '@angular/common';
-import {Attribute, ChangeDetectorRef, Component, ComponentFactoryResolver, ComponentRef, Directive, ElementRef, EventEmitter, forwardRef, Host, HostBinding, Inject, Injectable, InjectionToken, INJECTOR, Injector, Input, LOCALE_ID, ModuleWithProviders, NgModule, NgZone, Optional, Output, Pipe, PipeTransform, Self, SkipSelf, TemplateRef, ViewChild, ViewContainerRef, ViewRef, ɵDEFAULT_LOCALE_ID as DEFAULT_LOCALE_ID} from '@angular/core';
+import {Attribute, ChangeDetectorRef, Component, ComponentFactoryResolver, ComponentRef, Directive, ElementRef, EventEmitter, forwardRef, Host, HostBinding, Inject, Injectable, InjectionToken, INJECTOR, Injector, Input, LOCALE_ID, NgModule, NgZone, Optional, Output, Pipe, PipeTransform, Self, SkipSelf, TemplateRef, ViewChild, ViewContainerRef, ViewRef, ɵDEFAULT_LOCALE_ID as DEFAULT_LOCALE_ID} from '@angular/core';
 import {ɵINJECTOR_SCOPE} from '@angular/core/src/core';
 import {ViewRef as ViewRefInternal} from '@angular/core/src/render3/view_ref';
 import {TestBed} from '@angular/core/testing';
@@ -2304,18 +2304,6 @@ describe('di', () => {
   });
 
   it('should not be able to inject ViewRef', () => {
-    // If the current browser does not support `__proto__` natively, this test will never
-    // result in an error as the `__NG_ELEMENT_ID__` from `ChangeDetectorRef` is directly
-    // assigned to the `ViewRef` instance, due to TypeScript, and `setPrototypeOf` polyfills
-    // not being able to simulate the prototype chain. This means that Angular's DI system
-    // considers `ViewRef` as injectable due to it having a `__NG_ELEMENT_ID__` directly
-    // assigned. We skip this test in such cases. This is currently the case in IE9 and
-    // IE10 as those don't support `__proto__`. Related TypeScript issue:
-    // https://github.com/microsoft/TypeScript/issues/1601#issuecomment-94892833.
-    if (!('__proto__' in {})) {
-      return;
-    }
-
     @Component({template: ''})
     class App {
       constructor(_viewRef: ViewRef) {}

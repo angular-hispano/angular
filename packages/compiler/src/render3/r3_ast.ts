@@ -43,12 +43,18 @@ export class BoundAttribute implements Node {
   constructor(
       public name: string, public type: BindingType, public securityContext: SecurityContext,
       public value: AST, public unit: string|null, public sourceSpan: ParseSourceSpan,
-      public valueSpan?: ParseSourceSpan, public i18n?: I18nMeta) {}
+      readonly keySpan: ParseSourceSpan, public valueSpan: ParseSourceSpan|undefined,
+      public i18n: I18nMeta|undefined) {}
 
-  static fromBoundElementProperty(prop: BoundElementProperty, i18n?: I18nMeta) {
+  static fromBoundElementProperty(prop: BoundElementProperty, i18n?: I18nMeta): BoundAttribute {
+    if (prop.keySpan === undefined) {
+      throw new Error(
+          `Unexpected state: keySpan must be defined for bound attributes but was not for ${
+              prop.name}: ${prop.sourceSpan}`);
+    }
     return new BoundAttribute(
         prop.name, prop.type, prop.securityContext, prop.value, prop.unit, prop.sourceSpan,
-        prop.valueSpan, i18n);
+        prop.keySpan, prop.valueSpan, i18n);
   }
 
   visit<Result>(visitor: Visitor<Result>): Result {
@@ -79,13 +85,8 @@ export class Element implements Node {
   constructor(
       public name: string, public attributes: TextAttribute[], public inputs: BoundAttribute[],
       public outputs: BoundEvent[], public children: Node[], public references: Reference[],
-      public sourceSpan: ParseSourceSpan, public startSourceSpan: ParseSourceSpan|null,
-      public endSourceSpan: ParseSourceSpan|null, public i18n?: I18nMeta) {
-    // If the element is empty then the source span should include any closing tag
-    if (children.length === 0 && startSourceSpan && endSourceSpan) {
-      this.sourceSpan = new ParseSourceSpan(sourceSpan.start, endSourceSpan.end);
-    }
-  }
+      public sourceSpan: ParseSourceSpan, public startSourceSpan: ParseSourceSpan,
+      public endSourceSpan: ParseSourceSpan|null, public i18n?: I18nMeta) {}
   visit<Result>(visitor: Visitor<Result>): Result {
     return visitor.visitElement(this);
   }
@@ -96,7 +97,7 @@ export class Template implements Node {
       public tagName: string, public attributes: TextAttribute[], public inputs: BoundAttribute[],
       public outputs: BoundEvent[], public templateAttrs: (BoundAttribute|TextAttribute)[],
       public children: Node[], public references: Reference[], public variables: Variable[],
-      public sourceSpan: ParseSourceSpan, public startSourceSpan: ParseSourceSpan|null,
+      public sourceSpan: ParseSourceSpan, public startSourceSpan: ParseSourceSpan,
       public endSourceSpan: ParseSourceSpan|null, public i18n?: I18nMeta) {}
   visit<Result>(visitor: Visitor<Result>): Result {
     return visitor.visitTemplate(this);
@@ -117,7 +118,7 @@ export class Content implements Node {
 export class Variable implements Node {
   constructor(
       public name: string, public value: string, public sourceSpan: ParseSourceSpan,
-      public valueSpan?: ParseSourceSpan) {}
+      readonly keySpan: ParseSourceSpan, public valueSpan?: ParseSourceSpan) {}
   visit<Result>(visitor: Visitor<Result>): Result {
     return visitor.visitVariable(this);
   }

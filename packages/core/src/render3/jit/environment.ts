@@ -134,7 +134,6 @@ export const angularCoreEnv: {[name: string]: Function} =
        'ɵɵstylePropInterpolate8': r3.ɵɵstylePropInterpolate8,
        'ɵɵstylePropInterpolateV': r3.ɵɵstylePropInterpolateV,
        'ɵɵclassProp': r3.ɵɵclassProp,
-       'ɵɵselect': r3.ɵɵselect,
        'ɵɵadvance': r3.ɵɵadvance,
        'ɵɵtemplate': r3.ɵɵtemplate,
        'ɵɵtext': r3.ɵɵtext,
@@ -167,4 +166,7 @@ export const angularCoreEnv: {[name: string]: Function} =
        'ɵɵsanitizeScript': sanitization.ɵɵsanitizeScript,
        'ɵɵsanitizeUrl': sanitization.ɵɵsanitizeUrl,
        'ɵɵsanitizeUrlOrResourceUrl': sanitization.ɵɵsanitizeUrlOrResourceUrl,
+       'ɵɵtrustConstantHtml': sanitization.ɵɵtrustConstantHtml,
+       'ɵɵtrustConstantScript': sanitization.ɵɵtrustConstantScript,
+       'ɵɵtrustConstantResourceUrl': sanitization.ɵɵtrustConstantResourceUrl,
      }))();

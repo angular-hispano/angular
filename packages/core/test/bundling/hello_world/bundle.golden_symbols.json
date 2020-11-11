@@ -60,9 +60,6 @@
     "name": "allocLFrame"
   },
   {
-    "name": "appendChild"
-  },
-  {
     "name": "attachPatchData"
   },
   {
@@ -111,9 +108,6 @@
     "name": "extractPipeDef"
   },
   {
-    "name": "getCheckNoChangesMode"
-  },
-  {
     "name": "getClosureSafeProperty"
   },
   {
@@ -123,10 +117,13 @@
     "name": "getComponentLViewByIndex"
   },
   {
-    "name": "getFirstLContainer"
+    "name": "getCurrentTNode"
   },
   {
-    "name": "getLContainer"
+    "name": "getCurrentTNodePlaceholderOk"
+  },
+  {
+    "name": "getFirstLContainer"
   },
   {
     "name": "getNativeByTNode"
@@ -139,9 +136,6 @@
   },
   {
     "name": "getOrCreateTNode"
-  },
-  {
-    "name": "getPreviousOrParentTNode"
   },
   {
     "name": "getSimpleChangesStore"
@@ -165,7 +159,7 @@
     "name": "invertObject"
   },
   {
-    "name": "isLContainer"
+    "name": "isInCheckNoChangesMode"
   },
   {
     "name": "isProceduralRenderer"
@@ -181,6 +175,9 @@
   },
   {
     "name": "nativeAppendOrInsertBefore"
+  },
+  {
+    "name": "nativeInsertBefore"
   },
   {
     "name": "nextNgElementId"
@@ -216,13 +213,13 @@
     "name": "setCurrentQueryIndex"
   },
   {
+    "name": "setCurrentTNode"
+  },
+  {
     "name": "setIncludeViewProviders"
   },
   {
     "name": "setInjectImplementation"
-  },
-  {
-    "name": "setPreviousOrParentTNode"
   },
   {
     "name": "setSelectedIndex"
@@ -235,5 +232,8 @@
   },
   {
     "name": "viewAttachedToChangeDetector"
+  },
+  {
+    "name": "ɵɵtext"
   }
 ]

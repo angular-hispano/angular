@@ -222,15 +222,6 @@
     "name": "FormControlName"
   },
   {
-    "name": "FormErrorExamples_formControlName"
-  },
-  {
-    "name": "FormErrorExamples_formGroupName"
-  },
-  {
-    "name": "FormErrorExamples_ngModelGroup"
-  },
-  {
     "name": "FormGroup"
   },
   {
@@ -366,9 +357,6 @@
     "name": "NG_PROV_DEF"
   },
   {
-    "name": "NG_PROV_DEF_FALLBACK"
-  },
-  {
     "name": "NG_VALIDATORS"
   },
   {
@@ -498,9 +486,6 @@
     "name": "RangeValueAccessor"
   },
   {
-    "name": "ReactiveErrors"
-  },
-  {
     "name": "ReactiveFormsComponent"
   },
   {
@@ -609,9 +594,6 @@
     "name": "TRANSITION_ID"
   },
   {
-    "name": "TemplateDrivenErrors"
-  },
-  {
     "name": "TemplateFormsComponent"
   },
   {
@@ -702,9 +684,6 @@
     "name": "_keyMap"
   },
   {
-    "name": "_noControlError"
-  },
-  {
     "name": "_randomChar"
   },
   {
@@ -717,16 +696,10 @@
     "name": "_testabilityGetter"
   },
   {
-    "name": "_throwError"
-  },
-  {
     "name": "addComponentLogic"
   },
   {
     "name": "addHostBindingsToExpandoInstructions"
-  },
-  {
-    "name": "addRemoveViewFromContainer"
   },
   {
     "name": "addToArray"
@@ -825,6 +798,9 @@
     "name": "createDirectivesInstances"
   },
   {
+    "name": "createElementNode"
+  },
+  {
     "name": "createElementRef"
   },
   {
@@ -886,9 +862,6 @@
   },
   {
     "name": "domRendererFactory3"
-  },
-  {
-    "name": "elementCreate"
   },
   {
     "name": "empty"
@@ -978,12 +951,6 @@
     "name": "generatePropertyAliases"
   },
   {
-    "name": "getBeforeNodeForView"
-  },
-  {
-    "name": "getCheckNoChangesMode"
-  },
-  {
     "name": "getClosureSafeProperty"
   },
   {
@@ -996,7 +963,10 @@
     "name": "getConstant"
   },
   {
-    "name": "getContainerRenderParent"
+    "name": "getCurrentTNode"
+  },
+  {
+    "name": "getCurrentTNodePlaceholderOk"
   },
   {
     "name": "getDOM"
@@ -1020,13 +990,7 @@
     "name": "getInjectorIndex"
   },
   {
-    "name": "getIsParent"
-  },
-  {
     "name": "getLCleanup"
-  },
-  {
-    "name": "getLContainer"
   },
   {
     "name": "getLView"
@@ -1083,19 +1047,10 @@
     "name": "getParentInjectorView"
   },
   {
-    "name": "getParentInjectorViewOffset"
-  },
-  {
-    "name": "getParentState"
-  },
-  {
     "name": "getPlatform"
   },
   {
     "name": "getPreviousIndex"
-  },
-  {
-    "name": "getPreviousOrParentTNode"
   },
   {
     "name": "getPromiseCtor"
@@ -1144,6 +1099,9 @@
   },
   {
     "name": "hostReportError"
+  },
+  {
+    "name": "icuContainerIterate"
   },
   {
     "name": "identity"
@@ -1215,6 +1173,9 @@
     "name": "isCssClassMatching"
   },
   {
+    "name": "isCurrentTNodeParent"
+  },
+  {
     "name": "isDirectiveHost"
   },
   {
@@ -1225,6 +1186,9 @@
   },
   {
     "name": "isFunction"
+  },
+  {
+    "name": "isInCheckNoChangesMode"
   },
   {
     "name": "isInlineTemplate"
@@ -1530,9 +1494,6 @@
     "name": "setBindingRootForHostBindings"
   },
   {
-    "name": "setCheckNoChangesMode"
-  },
-  {
     "name": "setCurrentDirectiveIndex"
   },
   {
@@ -1540,6 +1501,9 @@
   },
   {
     "name": "setCurrentQueryIndex"
+  },
+  {
+    "name": "setCurrentTNode"
   },
   {
     "name": "setDirectiveInputsWhichShadowsStyling"
@@ -1557,10 +1521,10 @@
     "name": "setInputsFromAttrs"
   },
   {
-    "name": "setLocaleId"
+    "name": "setIsInCheckNoChangesMode"
   },
   {
-    "name": "setPreviousOrParentTNode"
+    "name": "setLocaleId"
   },
   {
     "name": "setSelectedIndex"
@@ -1608,12 +1572,6 @@
     "name": "syncPendingControls"
   },
   {
-    "name": "throwMixedMultiProviderError"
-  },
-  {
-    "name": "throwMultipleComponentError"
-  },
-  {
     "name": "toObservable"
   },
   {
@@ -1627,9 +1585,6 @@
   },
   {
     "name": "u"
-  },
-  {
-    "name": "unimplemented"
   },
   {
     "name": "unwrapRNode"

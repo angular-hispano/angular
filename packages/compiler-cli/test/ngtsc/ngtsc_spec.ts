@@ -390,6 +390,43 @@ runInEachFileSystem(os => {
           expect(jsContents).toContain('/** @nocollapse */ TestCmp.ɵcmp');
         });
 
+        it('should still perform schema checks in embedded views', () => {
+          env.tsconfig({
+            'fullTemplateTypeCheck': false,
+            'annotateForClosureCompiler': true,
+            'ivyTemplateTypeCheck': true,
+          });
+          env.write('test.ts', `
+            import {Component, Directive, NgModule} from '@angular/core';
+
+            @Component({
+              selector: 'test-cmp',
+              template: \`
+                <ng-template>
+                  <some-dir>Has a directive, should be okay</some-dir>
+                  <not-a-cmp>Should trigger a schema error</not-a-cmp>
+                </ng-template>
+              \`
+            })
+            export class TestCmp {}
+
+            @Directive({
+              selector: 'some-dir',
+            })
+            export class TestDir {}
+
+            @NgModule({
+              declarations: [TestCmp, TestDir],
+            })
+            export class TestModule {}
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(diags[0].code).toBe(ngErrorCode(ErrorCode.SCHEMA_INVALID_ELEMENT));
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toContain('not-a-cmp');
+        });
         /**
          * The following set of tests verify that after Tsickle run we do not have cases
          * which trigger automatic semicolon insertion, which breaks the code. In order
@@ -2079,7 +2116,13 @@ runInEachFileSystem(os => {
 
              const errors = env.driveDiagnostics();
              expect(errors.length).toBe(1);
-             expect(errors[0].messageText).toContain('No suitable injection token for parameter');
+             expect(ts.flattenDiagnosticMessageText(errors[0].messageText, '\n'))
+                 .toBe(
+                     `No suitable injection token for parameter 'notInjectable' of class 'Test'.\n` +
+                     `  Consider using the @Inject decorator to specify an injection token.`);
+             expect(errors[0].relatedInformation!.length).toBe(1);
+             expect(errors[0].relatedInformation![0].messageText)
+                 .toBe('This type is not supported as injection token.');
            });
 
         it('should give a compile-time error if an invalid @Injectable is used with an argument',
@@ -2096,8 +2139,167 @@ runInEachFileSystem(os => {
 
              const errors = env.driveDiagnostics();
              expect(errors.length).toBe(1);
-             expect(errors[0].messageText).toContain('No suitable injection token for parameter');
+             expect(ts.flattenDiagnosticMessageText(errors[0].messageText, '\n'))
+                 .toBe(
+                     `No suitable injection token for parameter 'notInjectable' of class 'Test'.\n` +
+                     `  Consider using the @Inject decorator to specify an injection token.`);
+             expect(errors[0].relatedInformation!.length).toBe(1);
+             expect(errors[0].relatedInformation![0].messageText)
+                 .toBe('This type is not supported as injection token.');
            });
+
+        it('should report an error when using a type-only import as injection token', () => {
+          env.tsconfig({strictInjectionParameters: true});
+          env.write(`types.ts`, `
+             export class TypeOnly {}
+           `);
+          env.write(`test.ts`, `
+             import {Injectable} from '@angular/core';
+             import type {TypeOnly} from './types';
+
+             @Injectable()
+             export class MyService {
+               constructor(param: TypeOnly) {}
+             }
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toBe(
+                  `No suitable injection token for parameter 'param' of class 'MyService'.\n` +
+                  `  Consider changing the type-only import to a regular import, ` +
+                  `or use the @Inject decorator to specify an injection token.`);
+          expect(diags[0].relatedInformation!.length).toBe(2);
+          expect(diags[0].relatedInformation![0].messageText)
+              .toBe(
+                  'This type is imported using a type-only import, ' +
+                  'which prevents it from being usable as an injection token.');
+          expect(diags[0].relatedInformation![1].messageText)
+              .toBe('The type-only import occurs here.');
+        });
+
+        it('should report an error when using a primitive type as injection token', () => {
+          env.tsconfig({strictInjectionParameters: true});
+          env.write(`test.ts`, `
+             import {Injectable} from '@angular/core';
+
+             @Injectable()
+             export class MyService {
+               constructor(param: string) {}
+             }
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toBe(
+                  `No suitable injection token for parameter 'param' of class 'MyService'.\n` +
+                  `  Consider using the @Inject decorator to specify an injection token.`);
+          expect(diags[0].relatedInformation!.length).toBe(1);
+          expect(diags[0].relatedInformation![0].messageText)
+              .toBe('This type is not supported as injection token.');
+        });
+
+        it('should report an error when using a union type as injection token', () => {
+          env.tsconfig({strictInjectionParameters: true});
+          env.write(`test.ts`, `
+             import {Injectable} from '@angular/core';
+
+             export class ClassA {}
+             export class ClassB {}
+
+             @Injectable()
+             export class MyService {
+               constructor(param: ClassA|ClassB) {}
+             }
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toBe(
+                  `No suitable injection token for parameter 'param' of class 'MyService'.\n` +
+                  `  Consider using the @Inject decorator to specify an injection token.`);
+          expect(diags[0].relatedInformation!.length).toBe(1);
+          expect(diags[0].relatedInformation![0].messageText)
+              .toBe('This type is not supported as injection token.');
+        });
+
+        it('should report an error when using an interface as injection token', () => {
+          env.tsconfig({strictInjectionParameters: true});
+          env.write(`test.ts`, `
+             import {Injectable} from '@angular/core';
+
+             export interface Interface {}
+
+             @Injectable()
+             export class MyService {
+               constructor(param: Interface) {}
+             }
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toBe(
+                  `No suitable injection token for parameter 'param' of class 'MyService'.\n` +
+                  `  Consider using the @Inject decorator to specify an injection token.`);
+          expect(diags[0].relatedInformation!.length).toBe(2);
+          expect(diags[0].relatedInformation![0].messageText)
+              .toBe('This type does not have a value, so it cannot be used as injection token.');
+          expect(diags[0].relatedInformation![1].messageText).toBe('The type is declared here.');
+        });
+
+        it('should report an error when using a missing type as injection token', () => {
+          // This test replicates the situation where a symbol does not have any declarations at
+          // all, e.g. because it's imported from a missing module. This would result in a
+          // semantic TypeScript diagnostic which we ignore in this test to verify that ngtsc's
+          // analysis is able to operate in this situation.
+          env.tsconfig({strictInjectionParameters: true});
+          env.write(`test.ts`, `
+             import {Injectable} from '@angular/core';
+             // @ts-expect-error
+             import {Interface} from 'missing';
+
+             @Injectable()
+             export class MyService {
+               constructor(param: Interface) {}
+             }
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toBe(
+                  `No suitable injection token for parameter 'param' of ` +
+                  `class 'MyService'.\n` +
+                  `  Consider using the @Inject decorator to specify an injection token.`);
+          expect(diags[0].relatedInformation!.length).toBe(1);
+          expect(diags[0].relatedInformation![0].messageText)
+              .toBe('This type does not have a value, so it cannot be used as injection token.');
+        });
+
+        it('should report an error when no type is present', () => {
+          env.tsconfig({strictInjectionParameters: true, noImplicitAny: false});
+          env.write(`test.ts`, `
+             import {Injectable} from '@angular/core';
+
+             @Injectable()
+             export class MyService {
+               constructor(param) {}
+             }
+          `);
+
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
+              .toBe(
+                  `No suitable injection token for parameter 'param' of class 'MyService'.\n` +
+                  `  Consider adding a type to the parameter or ` +
+                  `use the @Inject decorator to specify an injection token.`);
+          expect(diags[0].relatedInformation).toBeUndefined();
+        });
 
         it('should not give a compile-time error if an invalid @Injectable is used with useValue',
            () => {
@@ -2240,7 +2442,8 @@ runInEachFileSystem(os => {
 
           const errors = env.driveDiagnostics();
           expect(errors.length).toBe(1);
-          expect(errors[0].messageText).toContain('No suitable injection token for parameter');
+          expect(ts.flattenDiagnosticMessageText(errors[0].messageText, '\n'))
+              .toContain('No suitable injection token for parameter');
         });
       });
 
@@ -2861,12 +3064,13 @@ runInEachFileSystem(os => {
     it('should generate queries for directives', () => {
       env.write(`test.ts`, `
         import {Directive, ContentChild, ContentChildren, TemplateRef, ViewChild} from '@angular/core';
+        import * as core from '@angular/core';
 
         @Directive({
           selector: '[test]',
           queries: {
             'mview': new ViewChild('test1'),
-            'mcontent': new ContentChild('test2'),
+            'mcontent': new core.ContentChild('test2'),
           }
         })
         class FooCmp {
@@ -4194,9 +4398,16 @@ runInEachFileSystem(os => {
 
         const diags = env.driveDiagnostics();
         expect(diags.length).toBe(1);
-        expect(diags[0].messageText)
+        expect(ts.flattenDiagnosticMessageText(diags[0].messageText, '\n'))
             .toBe(
-                `No suitable injection token for parameter 'foo' of class 'MyService'.\nFound Foo`);
+                `No suitable injection token for parameter 'foo' of class 'MyService'.\n` +
+                `  Consider using the @Inject decorator to specify an injection token.`);
+        expect(diags[0].relatedInformation!.length).toBe(2);
+        expect(diags[0].relatedInformation![0].messageText)
+            .toBe(
+                'This type corresponds with a namespace, which cannot be used as injection token.');
+        expect(diags[0].relatedInformation![1].messageText)
+            .toBe('The namespace import occurs here.');
       });
     });
 
@@ -4222,6 +4433,90 @@ runInEachFileSystem(os => {
          const jsContents = trim(env.getContents('test.js'));
          expect(jsContents).not.toContain(`import { MyType } from './types';`);
          // Note: `type: undefined` below, since MyType can't be represented as a value
+         expect(jsContents).toMatch(setClassMetadataRegExp('type: undefined'));
+       });
+
+    it('should use `undefined` in setClassMetadata for const enums', () => {
+      env.write(`keycodes.ts`, `
+        export const enum KeyCodes {A, B};
+      `);
+      env.write(`test.ts`, `
+        import {Component, Inject} from '@angular/core';
+        import {KeyCodes} from './keycodes';
+
+        @Component({
+          selector: 'some-comp',
+          template: '...',
+        })
+        export class SomeComp {
+          constructor(@Inject('arg-token') arg: KeyCodes) {}
+        }
+      `);
+
+      env.driveMain();
+      const jsContents = trim(env.getContents('test.js'));
+      expect(jsContents).not.toContain(`import { KeyCodes } from './keycodes';`);
+      // Note: `type: undefined` below, since KeyCodes can't be represented as a value
+      expect(jsContents).toMatch(setClassMetadataRegExp('type: undefined'));
+    });
+
+    it('should preserve the types of non-const enums in setClassMetadata', () => {
+      env.write(`keycodes.ts`, `
+        export enum KeyCodes {A, B};
+      `);
+      env.write(`test.ts`, `
+        import {Component, Inject} from '@angular/core';
+        import {KeyCodes} from './keycodes';
+
+        @Component({
+          selector: 'some-comp',
+          template: '...',
+        })
+        export class SomeComp {
+          constructor(@Inject('arg-token') arg: KeyCodes) {}
+        }
+      `);
+
+      env.driveMain();
+      const jsContents = trim(env.getContents('test.js'));
+      expect(jsContents).toContain(`import { KeyCodes } from './keycodes';`);
+      expect(jsContents).toMatch(setClassMetadataRegExp('type: i1.KeyCodes'));
+    });
+
+    it('should use `undefined` in setClassMetadata if types originate from type-only imports',
+       () => {
+         env.write(`types.ts`, `
+           export default class {}
+           export class TypeOnly {}
+         `);
+         env.write(`test.ts`, `
+           import {Component, Inject, Injectable} from '@angular/core';
+           import type DefaultImport from './types';
+           import type {TypeOnly} from './types';
+           import type * as types from './types';
+
+           @Component({
+             selector: 'some-comp',
+             template: '...',
+           })
+           export class SomeComp {
+             constructor(
+               @Inject('token') namedImport: TypeOnly,
+               @Inject('token') defaultImport: DefaultImport,
+               @Inject('token') namespacedImport: types.TypeOnly,
+             ) {}
+           }
+        `);
+
+         env.driveMain();
+         const jsContents = trim(env.getContents('test.js'));
+         // Module specifier for type-only import should not be emitted
+         expect(jsContents).not.toContain('./types');
+         // Default type-only import should not be emitted
+         expect(jsContents).not.toContain('DefaultImport');
+         // Named type-only import should not be emitted
+         expect(jsContents).not.toContain('TypeOnly');
+         // The parameter type in class metadata should be undefined
          expect(jsContents).toMatch(setClassMetadataRegExp('type: undefined'));
        });
 
@@ -7150,6 +7445,54 @@ export const Foo = Foo__PRE_R3__;
            const diags = env.driveDiagnostics();
            expect(diags.length).toBe(0);
          });
+
+      describe('template parsing diagnostics', () => {
+        // These tests validate that errors which occur during template parsing are expressed as
+        // diagnostics instead of a compiler crash (which used to be the case). They only assert
+        // that the error is produced with an accurate span - the exact semantics of the errors are
+        // tested separately, via the parser tests.
+        it('should emit a diagnostic for a template parsing error', () => {
+          env.write('test.ts', `
+            import {Component} from '@angular/core';
+            @Component({
+              template: '<div></span>',
+              selector: 'test-cmp',
+            })
+            export class TestCmp {}
+          `);
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(getDiagnosticSourceCode(diags[0])).toBe('</span>');
+        });
+
+        it('should emit a diagnostic for an expression parsing error', () => {
+          env.write('test.ts', `
+            import {Component} from '@angular/core';
+            @Component({
+              template: '<cmp [input]="x ? y">',
+              selector: 'test-cmp',
+            })
+            export class TestCmp {}
+          `);
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(getDiagnosticSourceCode(diags[0])).toBe('x ? y');
+        });
+
+        it('should use a single character span for an unexpected EOF parsing error', () => {
+          env.write('test.ts', `
+              import {Component} from '@angular/core';
+              @Component({
+                template: '<cmp [input]="x>',
+                selector: 'test-cmp',
+              })
+              export class TestCmp {}
+            `);
+          const diags = env.driveDiagnostics();
+          expect(diags.length).toBe(1);
+          expect(getDiagnosticSourceCode(diags[0])).toBe('\'');
+        });
+      });
     });
   });
 

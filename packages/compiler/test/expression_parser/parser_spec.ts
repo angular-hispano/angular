@@ -34,11 +34,11 @@ describe('parser', () => {
       checkAction('undefined');
     });
 
-    it('should parse unary - expressions', () => {
-      checkAction('-1', '0 - 1');
-      checkAction('+1', '1 - 0');
-      checkAction(`-'1'`, `0 - "1"`);
-      checkAction(`+'1'`, `"1" - 0`);
+    it('should parse unary - and + expressions', () => {
+      checkAction('-1', '-1');
+      checkAction('+1', '+1');
+      checkAction(`-'1'`, `-"1"`);
+      checkAction(`+'1'`, `+"1"`);
     });
 
     it('should parse unary ! expressions', () => {
@@ -128,14 +128,21 @@ describe('parser', () => {
       });
 
       it('should only allow identifier or keyword as member names', () => {
-        expectActionError('x.(', 'identifier or keyword');
-        expectActionError('x. 1234', 'identifier or keyword');
-        expectActionError('x."foo"', 'identifier or keyword');
+        checkActionWithError('x.', 'x.', 'identifier or keyword');
+        checkActionWithError('x.(', 'x.', 'identifier or keyword');
+        checkActionWithError('x. 1234', 'x.', 'identifier or keyword');
+        checkActionWithError('x."foo"', 'x.', 'identifier or keyword');
       });
 
       it('should parse safe field access', () => {
         checkAction('a?.a');
         checkAction('a.a?.a');
+      });
+
+      it('should parse incomplete safe field accesses', () => {
+        checkActionWithError('a?.a.', 'a?.a.', 'identifier or keyword');
+        checkActionWithError('a.a?.a.', 'a.a?.a.', 'identifier or keyword');
+        checkActionWithError('a.a?.a?. 1234', 'a.a?.a?.', 'identifier or keyword');
       });
     });
 
@@ -151,6 +158,84 @@ describe('parser', () => {
     describe('functional calls', () => {
       it('should parse function calls', () => {
         checkAction('fn()(1, 2)');
+      });
+    });
+
+    describe('keyed read', () => {
+      it('should parse keyed reads', () => {
+        checkAction('a["a"]');
+        checkAction('this.a["a"]', 'a["a"]');
+        checkAction('a.a["a"]');
+      });
+
+      describe('malformed keyed reads', () => {
+        it('should recover on missing keys', () => {
+          checkActionWithError('a[]', 'a[]', 'Key access cannot be empty');
+        });
+
+        it('should recover on incomplete expression keys', () => {
+          checkActionWithError('a[1 + ]', 'a[1 + ]', 'Unexpected token ]');
+        });
+
+        it('should recover on unterminated keys', () => {
+          checkActionWithError(
+              'a[1 + 2', 'a[1 + 2]', 'Missing expected ] at the end of the expression');
+        });
+
+        it('should recover on incomplete and unterminated keys', () => {
+          checkActionWithError(
+              'a[1 + ', 'a[1 + ]', 'Missing expected ] at the end of the expression');
+        });
+      });
+    });
+
+    describe('keyed write', () => {
+      it('should parse keyed writes', () => {
+        checkAction('a["a"] = 1 + 2');
+        checkAction('this.a["a"] = 1 + 2', 'a["a"] = 1 + 2');
+        checkAction('a.a["a"] = 1 + 2');
+      });
+
+      describe('malformed keyed writes', () => {
+        it('should recover on empty rvalues', () => {
+          checkActionWithError('a["a"] = ', 'a["a"] = ', 'Unexpected end of expression');
+        });
+
+        it('should recover on incomplete rvalues', () => {
+          checkActionWithError('a["a"] = 1 + ', 'a["a"] = 1 + ', 'Unexpected end of expression');
+        });
+
+        it('should recover on missing keys', () => {
+          checkActionWithError('a[] = 1', 'a[] = 1', 'Key access cannot be empty');
+        });
+
+        it('should recover on incomplete expression keys', () => {
+          checkActionWithError('a[1 + ] = 1', 'a[1 + ] = 1', 'Unexpected token ]');
+        });
+
+        it('should recover on unterminated keys', () => {
+          checkActionWithError('a[1 + 2 = 1', 'a[1 + 2] = 1', 'Missing expected ]');
+        });
+
+        it('should recover on incomplete and unterminated keys', () => {
+          const ast = parseAction('a[1 + = 1');
+          expect(unparse(ast)).toEqual('a[1 + ] = 1');
+          validate(ast);
+
+          const errors = ast.errors.map(e => e.message);
+          expect(errors.length).toBe(2);
+          expect(errors[0]).toContain('Unexpected token =');
+          expect(errors[1]).toContain('Missing expected ]');
+        });
+
+        it('should error on writes after a keyed write', () => {
+          const ast = parseAction('a[1] = 1 = 2');
+          expect(unparse(ast)).toEqual('a[1] = 1');
+          validate(ast);
+
+          expect(ast.errors.length).toBe(1);
+          expect(ast.errors[0].message).toContain('Unexpected token \'=\'');
+        });
       });
     });
 
@@ -650,6 +735,13 @@ describe('parser', () => {
       expect(parseInterpolation('nothing')).toBe(null);
     });
 
+    it('should not parse malformed interpolations as strings', () => {
+      const ast = parseInterpolation('{{a}} {{example}<!--->}')!.ast as Interpolation;
+      expect(ast.strings).toEqual(['', ' {{example}<!--->}']);
+      expect(ast.expressions.length).toEqual(1);
+      expect(ast.expressions[0].name).toEqual('a');
+    });
+
     it('should parse no prefix/suffix interpolation', () => {
       const ast = parseInterpolation('{{a}}')!.ast as Interpolation;
       expect(ast.strings).toEqual(['', '']);
@@ -925,4 +1017,12 @@ function expectActionError(text: string, message: string) {
 
 function expectBindingError(text: string, message: string) {
   expectError(validate(parseBinding(text)), message);
+}
+
+/**
+ * Check that a malformed action parses to a recovered AST while emitting an error.
+ */
+function checkActionWithError(text: string, expected: string, error: string) {
+  checkAction(text, expected);
+  expectActionError(text, error);
 }

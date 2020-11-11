@@ -6,8 +6,6 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {platform} from 'os';
-
 import {ErrorCode, ngErrorCode} from '../../diagnostics';
 import {absoluteFrom, absoluteFromSourceFile, getSourceFileOrError} from '../../file_system';
 import {runInEachFileSystem} from '../../file_system/testing';
@@ -15,7 +13,7 @@ import {OptimizeFor} from '../api';
 
 import {getClass, setup, TestDeclaration} from './test_utils';
 
-runInEachFileSystem(os => {
+runInEachFileSystem(() => {
   describe('TemplateTypeChecker', () => {
     it('should batch diagnostic operations when requested in WholeProgram mode', () => {
       const file1 = absoluteFrom('/file1.ts');
@@ -66,7 +64,7 @@ runInEachFileSystem(os => {
       const file1 = absoluteFrom('/file1.ts');
       const file2 = absoluteFrom('/file2.ts');
       const {program, templateTypeChecker, programStrategy} = setup([
-        {fileName: file1, templates: {'Cmp1': '<div></div>'}},
+        {fileName: file1, templates: {'Cmp1': '<div>{{value}}</div>'}},
         {fileName: file2, templates: {'Cmp2': '<span></span>'}}
       ]);
 
@@ -74,7 +72,7 @@ runInEachFileSystem(os => {
       const block = templateTypeChecker.getTypeCheckBlock(cmp1);
       expect(block).not.toBeNull();
       expect(block!.getText()).toMatch(/: i[0-9]\.Cmp1/);
-      expect(block!.getText()).toContain(`document.createElement("div")`);
+      expect(block!.getText()).toContain(`value`);
     });
 
     it('should clear old inlines when necessary', () => {
@@ -86,6 +84,7 @@ runInEachFileSystem(os => {
         selector: '[dir]',
         file: dirFile,
         type: 'directive',
+        isGeneric: true,
       };
       const {program, templateTypeChecker, programStrategy} = setup([
         {
@@ -104,7 +103,7 @@ runInEachFileSystem(os => {
                 // A non-exported interface used as a type bound for a generic directive causes
                 // an inline type constructor to be required.
                 interface NotExported {}
-                export class TestDir<T extends NotExported> {}`,
+                export abstract class TestDir<T extends NotExported> {}`,
           templates: {},
         },
       ]);
@@ -161,7 +160,7 @@ runInEachFileSystem(os => {
         const {program, templateTypeChecker} = setup(
             [{
               fileName,
-              source: `class Cmp {} // not exported, so requires inline`,
+              source: `abstract class Cmp {} // not exported, so requires inline`,
               templates: {'Cmp': '<div></div>'}
             }],
             {inlining: false});
@@ -171,49 +170,47 @@ runInEachFileSystem(os => {
         expect(diags[0].code).toBe(ngErrorCode(ErrorCode.INLINE_TCB_REQUIRED));
       });
 
-      // These tests are currently disabled when running in Windows mode as the assertions involving
-      // the filename attached to the diagnostic are suffering from a case-sensitivity issue.
-      if (os !== 'Windows' && platform() !== 'win32') {
-        it('should produce errors for components that require type constructor inlining', () => {
-          const fileName = absoluteFrom('/main.ts');
-          const dirFile = absoluteFrom('/dir.ts');
-          const {program, templateTypeChecker} = setup(
-              [
-                {
-                  fileName,
-                  source: `export class Cmp {}`,
-                  templates: {'Cmp': '<div dir></div>'},
-                  declarations: [{
-                    name: 'TestDir',
-                    selector: '[dir]',
-                    file: dirFile,
-                    type: 'directive',
-                  }]
-                },
-                {
-                  fileName: dirFile,
-                  source: `
-                  // A non-exported interface used as a type bound for a generic directive causes
-                  // an inline type constructor to be required.
-                  interface NotExported {}
-                  export class TestDir<T extends NotExported> {}`,
-                  templates: {},
-                }
-              ],
-              {inlining: false});
-          const sf = getSourceFileOrError(program, fileName);
-          const diags = templateTypeChecker.getDiagnosticsForFile(sf, OptimizeFor.WholeProgram);
-          expect(diags.length).toBe(1);
-          expect(diags[0].code).toBe(ngErrorCode(ErrorCode.INLINE_TYPE_CTOR_REQUIRED));
+      it('should produce errors for components that require type constructor inlining', () => {
+        const fileName = absoluteFrom('/main.ts');
+        const dirFile = absoluteFrom('/dir.ts');
+        const {program, templateTypeChecker} = setup(
+            [
+              {
+                fileName,
+                source: `export class Cmp {}`,
+                templates: {'Cmp': '<div dir></div>'},
+                declarations: [{
+                  name: 'TestDir',
+                  selector: '[dir]',
+                  file: dirFile,
+                  type: 'directive',
+                  isGeneric: true,
+                }]
+              },
+              {
+                fileName: dirFile,
+                source: `
+                // A non-exported interface used as a type bound for a generic directive causes
+                // an inline type constructor to be required.
+                interface NotExported {}
+                export class TestDir<T extends NotExported> {}`,
+                templates: {},
+              }
+            ],
+            {inlining: false});
+        const sf = getSourceFileOrError(program, fileName);
+        const diags = templateTypeChecker.getDiagnosticsForFile(sf, OptimizeFor.WholeProgram);
+        expect(diags.length).toBe(1);
+        expect(diags[0].code).toBe(ngErrorCode(ErrorCode.INLINE_TYPE_CTOR_REQUIRED));
 
-          // The relatedInformation of the diagnostic should point to the directive which required
-          // the inline type constructor.
-          expect(diags[0].relatedInformation).not.toBeUndefined();
-          expect(diags[0].relatedInformation!.length).toBe(1);
-          expect(diags[0].relatedInformation![0].file).not.toBeUndefined();
-          expect(absoluteFromSourceFile(diags[0].relatedInformation![0].file!)).toBe(dirFile);
-        });
-      }
+        // The relatedInformation of the diagnostic should point to the directive which required
+        // the inline type constructor.
+        const dirSf = getSourceFileOrError(program, dirFile);
+        expect(diags[0].relatedInformation).not.toBeUndefined();
+        expect(diags[0].relatedInformation!.length).toBe(1);
+        expect(diags[0].relatedInformation![0].file).not.toBeUndefined();
+        expect(absoluteFromSourceFile(diags[0].relatedInformation![0].file!)).toBe(dirSf.fileName);
+      });
     });
 
     describe('template overrides', () => {
@@ -221,43 +218,43 @@ runInEachFileSystem(os => {
         const fileName = absoluteFrom('/main.ts');
         const {program, templateTypeChecker} = setup([{
           fileName,
-          templates: {'Cmp': '<div></div>'},
+          templates: {'Cmp': '<div>{{original}}</div>'},
         }]);
 
         const sf = getSourceFileOrError(program, fileName);
         const cmp = getClass(sf, 'Cmp');
 
         const tcbReal = templateTypeChecker.getTypeCheckBlock(cmp)!;
-        expect(tcbReal.getText()).toContain('div');
+        expect(tcbReal.getText()).toContain('original');
 
-        templateTypeChecker.overrideComponentTemplate(cmp, '<span></span>');
+        templateTypeChecker.overrideComponentTemplate(cmp, '<div>{{override}}</div>');
         const tcbOverridden = templateTypeChecker.getTypeCheckBlock(cmp);
         expect(tcbOverridden).not.toBeNull();
-        expect(tcbOverridden!.getText()).not.toContain('div');
-        expect(tcbOverridden!.getText()).toContain('span');
+        expect(tcbOverridden!.getText()).not.toContain('original');
+        expect(tcbOverridden!.getText()).toContain('override');
       });
 
       it('should clear overrides on request', () => {
         const fileName = absoluteFrom('/main.ts');
         const {program, templateTypeChecker} = setup([{
           fileName,
-          templates: {'Cmp': '<div></div>'},
+          templates: {'Cmp': '<div>{{original}}</div>'},
         }]);
 
         const sf = getSourceFileOrError(program, fileName);
         const cmp = getClass(sf, 'Cmp');
 
-        templateTypeChecker.overrideComponentTemplate(cmp, '<span></span>');
+        templateTypeChecker.overrideComponentTemplate(cmp, '<div>{{override}}</div>');
         const tcbOverridden = templateTypeChecker.getTypeCheckBlock(cmp)!;
-        expect(tcbOverridden.getText()).not.toContain('div');
-        expect(tcbOverridden.getText()).toContain('span');
+        expect(tcbOverridden.getText()).not.toContain('original');
+        expect(tcbOverridden.getText()).toContain('override');
 
         templateTypeChecker.resetOverrides();
 
-        // The template should be back to the original, which has <div> and not <span>.
+        // The template should be back to the original.
         const tcbReal = templateTypeChecker.getTypeCheckBlock(cmp)!;
-        expect(tcbReal.getText()).toContain('div');
-        expect(tcbReal.getText()).not.toContain('span');
+        expect(tcbReal.getText()).toContain('original');
+        expect(tcbReal.getText()).not.toContain('override');
       });
 
       it('should override a template and make use of previously unused directives', () => {
@@ -274,11 +271,13 @@ runInEachFileSystem(os => {
                   selector: '[dir]',
                   file: dirFile,
                   type: 'directive',
+                  inputs: {'input': 'input'},
+                  isGeneric: true,
                 }]
               },
               {
                 fileName: dirFile,
-                source: `export class TestDir {}`,
+                source: `export class TestDir<T> {}`,
                 templates: {},
               }
             ],
@@ -292,7 +291,7 @@ runInEachFileSystem(os => {
         const tcbReal = templateTypeChecker.getTypeCheckBlock(cmp)!;
         expect(tcbReal.getSourceFile().text).not.toContain('TestDir');
 
-        templateTypeChecker.overrideComponentTemplate(cmp, '<div dir></div>');
+        templateTypeChecker.overrideComponentTemplate(cmp, '<div dir [input]="value"></div>');
 
         const tcbOverridden = templateTypeChecker.getTypeCheckBlock(cmp);
         expect(tcbOverridden).not.toBeNull();
@@ -348,6 +347,41 @@ runInEachFileSystem(os => {
       expect(diags2.length).toBe(1);
       expect(diags2[0].messageText).toContain('invalid-element-b');
       expect(diags2[0].messageText).not.toContain('invalid-element-a');
+    });
+
+    describe('getTemplateOfComponent()', () => {
+      it('should provide access to a component\'s real template', () => {
+        const fileName = absoluteFrom('/main.ts');
+        const {program, templateTypeChecker} = setup([{
+          fileName,
+          templates: {
+            'Cmp': '<div>Template</div>',
+          },
+        }]);
+        const cmp = getClass(getSourceFileOrError(program, fileName), 'Cmp');
+
+        const nodes = templateTypeChecker.getTemplate(cmp)!;
+        expect(nodes).not.toBeNull();
+        expect(nodes[0].sourceSpan.start.file.content).toBe('<div>Template</div>');
+      });
+
+      it('should provide access to an overridden template', () => {
+        const fileName = absoluteFrom('/main.ts');
+        const {program, templateTypeChecker} = setup([{
+          fileName,
+          templates: {
+            'Cmp': '<div>Template</div>',
+          },
+        }]);
+        const cmp = getClass(getSourceFileOrError(program, fileName), 'Cmp');
+
+        templateTypeChecker.overrideComponentTemplate(cmp, '<div>Overridden</div>');
+        templateTypeChecker.getDiagnosticsForComponent(cmp);
+
+        const nodes = templateTypeChecker.getTemplate(cmp)!;
+        expect(nodes).not.toBeNull();
+        expect(nodes[0].sourceSpan.start.file.content).toBe('<div>Overridden</div>');
+      });
     });
   });
 });

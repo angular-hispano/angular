@@ -11,13 +11,10 @@ import {getConfig, getRepoBaseDir} from '../../utils/config';
 import {error, green, info, promptConfirm, red, yellow} from '../../utils/console';
 import {GitClient} from '../../utils/git';
 import {GithubApiRequestError} from '../../utils/git/github';
+import {GITHUB_TOKEN_GENERATE_URL} from '../../utils/git/github-urls';
 
-import {loadAndValidateConfig, MergeConfig, MergeConfigWithRemote} from './config';
+import {loadAndValidateConfig, MergeConfigWithRemote} from './config';
 import {MergeResult, MergeStatus, PullRequestMergeTask} from './task';
-
-/** URL to the Github page where personal access tokens can be generated. */
-export const GITHUB_TOKEN_GENERATE_URL = `https://github.com/settings/tokens`;
-
 
 /**
  * Merges a given pull request based on labels configured in the given merge configuration.
@@ -35,6 +32,10 @@ export const GITHUB_TOKEN_GENERATE_URL = `https://github.com/settings/tokens`;
 export async function mergePullRequest(
     prNumber: number, githubToken: string, projectRoot: string = getRepoBaseDir(),
     config?: MergeConfigWithRemote) {
+  // Set the environment variable to skip all git commit hooks triggered by husky. We are unable to
+  // rely on `--no-verify` as some hooks still run, notably the `prepare-commit-msg` hook.
+  process.env['HUSKY_SKIP_HOOKS'] = '1';
+
   const api = await createPullRequestMergeTask(githubToken, projectRoot, config);
 
   // Perform the merge. Force mode can be activated through a command line flag.

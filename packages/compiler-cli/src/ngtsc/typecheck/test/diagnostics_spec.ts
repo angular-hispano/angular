@@ -176,6 +176,21 @@ runInEachFileSystem(() => {
       ]);
     });
 
+    it('checks expressions in ICUs', () => {
+      const messages = diagnose(
+          `<span i18n>{switch, plural, other { {{interpolation}}
+            {nestedSwitch, plural, other { {{nestedInterpolation}} }}
+          }}</span>`,
+          `class TestComponent {}`);
+
+      expect(messages.sort()).toEqual([
+        `TestComponent.html(1, 13): Property 'switch' does not exist on type 'TestComponent'.`,
+        `TestComponent.html(1, 39): Property 'interpolation' does not exist on type 'TestComponent'.`,
+        `TestComponent.html(2, 14): Property 'nestedSwitch' does not exist on type 'TestComponent'.`,
+        `TestComponent.html(2, 46): Property 'nestedInterpolation' does not exist on type 'TestComponent'.`,
+      ]);
+    });
+
     it('produces diagnostics for pipes', () => {
       const messages = diagnose(
           `<div>{{ person.name | pipe:person.age:1 }}</div>`, `
@@ -227,7 +242,8 @@ runInEachFileSystem(() => {
             name: 'GuardDir',
             selector: '[guard]',
             inputs: {'guard': 'guard'},
-            ngTemplateGuards: [{inputName: 'guard', type: 'binding'}]
+            ngTemplateGuards: [{inputName: 'guard', type: 'binding'}],
+            undeclaredInputFields: ['guard'],
           }]);
 
       expect(messages).toEqual([
@@ -245,6 +261,17 @@ runInEachFileSystem(() => {
       }`);
 
       expect(messages).toEqual([]);
+    });
+
+    it('should treat unary operators as literal types', () => {
+      const messages = diagnose(`{{ test(-1) + test(+1) + test(-2) }}`, `
+      class TestComponent {
+        test(value: -1 | 1): number { return value; }
+      }`);
+
+      expect(messages).toEqual([
+        `TestComponent.html(1, 31): Argument of type '-2' is not assignable to parameter of type '1 | -1'.`,
+      ]);
     });
 
     describe('outputs', () => {
@@ -444,7 +471,7 @@ class TestComponent {
         }`);
 
       expect(messages).toEqual(
-          [`TestComponent.html(1, 15): Type '2' is not assignable to type 'string'.`]);
+          [`TestComponent.html(1, 15): Type 'number' is not assignable to type 'string'.`]);
     });
   });
 });

@@ -14,6 +14,7 @@ import {ControlContainer} from '../control_container';
 import {Form} from '../form_interface';
 import {ReactiveErrors} from '../reactive_errors';
 import {cleanUpControl, composeAsyncValidators, composeValidators, removeDir, setUpControl, setUpFormContainer, syncPendingControls} from '../shared';
+import {AsyncValidator, AsyncValidatorFn, Validator, ValidatorFn} from '../validators';
 
 import {FormControlName} from './form_control_name';
 import {FormArrayName, FormGroupName} from './form_group_name';
@@ -81,17 +82,13 @@ export class FormGroupDirective extends ControlContainer implements Form, OnChan
   @Output() ngSubmit = new EventEmitter();
 
   constructor(
-      @Optional() @Self() @Inject(NG_VALIDATORS) private _validators: any[],
-      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) private _asyncValidators: any[]) {
+      @Optional() @Self() @Inject(NG_VALIDATORS) private _validators: (Validator|ValidatorFn)[],
+      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) private _asyncValidators:
+          (AsyncValidator|AsyncValidatorFn)[]) {
     super();
   }
 
-  /**
-   * @description
-   * A lifecycle method called when the directive's inputs change. For internal use only.
-   *
-   * @param changes A object of key/value pairs for the set of changed inputs.
-   */
+  /** @nodoc */
   ngOnChanges(changes: SimpleChanges): void {
     this._checkFormPresent();
     if (changes.hasOwnProperty('form')) {
@@ -291,7 +288,7 @@ export class FormGroupDirective extends ControlContainer implements Form, OnChan
   }
 
   private _checkFormPresent() {
-    if (!this.form) {
+    if (!this.form && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       ReactiveErrors.missingFormException();
     }
   }

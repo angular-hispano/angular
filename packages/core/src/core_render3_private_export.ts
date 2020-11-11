@@ -201,7 +201,6 @@ export {
   ɵɵresolveWindow,
   ɵɵrestoreView,
 
-  ɵɵselect,
   ɵɵsetComponentScope,
   ɵɵsetNgModuleScope,
   ɵɵstaticContentQuery,
@@ -291,6 +290,9 @@ export {
   ɵɵsanitizeStyle,
   ɵɵsanitizeUrl,
   ɵɵsanitizeUrlOrResourceUrl,
+  ɵɵtrustConstantHtml,
+  ɵɵtrustConstantResourceUrl,
+  ɵɵtrustConstantScript,
 } from './sanitization/sanitization';
 export {
   noSideEffects as ɵnoSideEffects,

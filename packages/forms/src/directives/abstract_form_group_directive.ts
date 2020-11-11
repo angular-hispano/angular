@@ -13,7 +13,7 @@ import {FormGroup} from '../model';
 import {ControlContainer} from './control_container';
 import {Form} from './form_interface';
 import {composeAsyncValidators, composeValidators, controlPath} from './shared';
-import {AsyncValidatorFn, ValidatorFn} from './validators';
+import {AsyncValidator, AsyncValidatorFn, Validator, ValidatorFn} from './validators';
 
 
 
@@ -41,7 +41,7 @@ export class AbstractFormGroupDirective extends ControlContainer implements OnIn
    * @internal
    */
   // TODO(issue/24571): remove '!'.
-  _validators!: any[];
+  _validators!: (Validator|ValidatorFn)[];
 
   /**
    * @description
@@ -50,25 +50,19 @@ export class AbstractFormGroupDirective extends ControlContainer implements OnIn
    * @internal
    */
   // TODO(issue/24571): remove '!'.
-  _asyncValidators!: any[];
+  _asyncValidators!: (AsyncValidator|AsyncValidatorFn)[];
 
-  /**
-   * @description
-   * An internal callback method triggered on the instance after the inputs are set.
-   * Registers the group with its parent group.
-   */
+  /** @nodoc */
   ngOnInit(): void {
     this._checkParentType();
+    // Register the group with its parent group.
     this.formDirective!.addFormGroup(this);
   }
 
-  /**
-   * @description
-   * An internal callback method triggered before the instance is destroyed.
-   * Removes the group from its parent group.
-   */
+  /** @nodoc */
   ngOnDestroy(): void {
     if (this.formDirective) {
+      // Remove the group from its parent group.
       this.formDirective.removeFormGroup(this);
     }
   }

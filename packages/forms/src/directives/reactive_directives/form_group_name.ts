@@ -14,7 +14,7 @@ import {AbstractFormGroupDirective} from '../abstract_form_group_directive';
 import {ControlContainer} from '../control_container';
 import {ReactiveErrors} from '../reactive_errors';
 import {composeAsyncValidators, composeValidators, controlPath} from '../shared';
-import {AsyncValidatorFn, ValidatorFn} from '../validators';
+import {AsyncValidator, AsyncValidatorFn, Validator, ValidatorFn} from '../validators';
 
 import {FormGroupDirective} from './form_group_directive';
 
@@ -86,8 +86,9 @@ export class FormGroupName extends AbstractFormGroupDirective implements OnInit,
 
   constructor(
       @Optional() @Host() @SkipSelf() parent: ControlContainer,
-      @Optional() @Self() @Inject(NG_VALIDATORS) validators: any[],
-      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: any[]) {
+      @Optional() @Self() @Inject(NG_VALIDATORS) validators: (Validator|ValidatorFn)[],
+      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators:
+          (AsyncValidator|AsyncValidatorFn)[]) {
     super();
     this._parent = parent;
     this._validators = validators;
@@ -96,7 +97,7 @@ export class FormGroupName extends AbstractFormGroupDirective implements OnInit,
 
   /** @internal */
   _checkParentType(): void {
-    if (_hasInvalidParent(this._parent)) {
+    if (_hasInvalidParent(this._parent) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       ReactiveErrors.groupParentException();
     }
   }
@@ -137,10 +138,10 @@ export class FormArrayName extends ControlContainer implements OnInit, OnDestroy
   _parent: ControlContainer;
 
   /** @internal */
-  _validators: any[];
+  _validators: (Validator|ValidatorFn)[];
 
   /** @internal */
-  _asyncValidators: any[];
+  _asyncValidators: (AsyncValidator|AsyncValidatorFn)[];
 
   /**
    * @description
@@ -156,8 +157,9 @@ export class FormArrayName extends ControlContainer implements OnInit, OnDestroy
 
   constructor(
       @Optional() @Host() @SkipSelf() parent: ControlContainer,
-      @Optional() @Self() @Inject(NG_VALIDATORS) validators: any[],
-      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: any[]) {
+      @Optional() @Self() @Inject(NG_VALIDATORS) validators: (Validator|ValidatorFn)[],
+      @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators:
+          (AsyncValidator|AsyncValidatorFn)[]) {
     super();
     this._parent = parent;
     this._validators = validators;
@@ -165,10 +167,9 @@ export class FormArrayName extends ControlContainer implements OnInit, OnDestroy
   }
 
   /**
-   * @description
    * A lifecycle method called when the directive's inputs are initialized. For internal use only.
-   *
    * @throws If the directive does not have a valid parent.
+   * @nodoc
    */
   ngOnInit(): void {
     this._checkParentType();
@@ -176,8 +177,8 @@ export class FormArrayName extends ControlContainer implements OnInit, OnDestroy
   }
 
   /**
-   * @description
    * A lifecycle method called before the directive's instance is destroyed. For internal use only.
+   * @nodoc
    */
   ngOnDestroy(): void {
     if (this.formDirective) {
@@ -228,7 +229,7 @@ export class FormArrayName extends ControlContainer implements OnInit, OnDestroy
   }
 
   private _checkParentType(): void {
-    if (_hasInvalidParent(this._parent)) {
+    if (_hasInvalidParent(this._parent) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
       ReactiveErrors.arrayParentException();
     }
   }

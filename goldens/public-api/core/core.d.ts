@@ -85,10 +85,6 @@ export declare interface ClassSansProvider {
     useClass: Type<any>;
 }
 
-/** @deprecated */
-export declare interface CollectionChangeRecord<V> extends IterableChangeRecord<V> {
-}
-
 export declare class Compiler {
     compileModuleAndAllComponentsAsync: <T>(moduleType: Type<T>) => Promise<ModuleWithComponentFactories<T>>;
     compileModuleAndAllComponentsSync: <T>(moduleType: Type<T>) => ModuleWithComponentFactories<T>;
@@ -803,7 +799,7 @@ export declare abstract class Renderer2 {
     abstract createElement(name: string, namespace?: string | null): any;
     abstract createText(value: string): any;
     abstract destroy(): void;
-    abstract insertBefore(parent: any, newChild: any, refChild: any): void;
+    abstract insertBefore(parent: any, newChild: any, refChild: any, isMove?: boolean): void;
     abstract listen(target: 'window' | 'document' | 'body' | any, eventName: string, callback: (event: any) => boolean | void): () => void;
     abstract nextSibling(node: any): any;
     abstract parentNode(node: any): any;
@@ -1036,7 +1032,6 @@ export declare abstract class ViewContainerRef {
 
 export declare enum ViewEncapsulation {
     Emulated = 0,
-    Native = 1,
     None = 2,
     ShadowDom = 3
 }
