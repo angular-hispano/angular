@@ -6,8 +6,13 @@
         "order": 1,
         "resources": {
           "awesome-angular-components": {
+<<<<<<< HEAD
             "desc": "Un índice de componentes y bibliotecas de la comunidad mantenido en GitHub",
             "title": "Catálogo de bibliotecas y componentes Angular",
+=======
+            "desc": "Un índice de componentes y librerías de la comunidad mantenido en GitHub",
+            "title": "Catálogo de librerías y componentes Angular",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "url": "https://github.com/brillout/awesome-angular-components"
           },
           "angular-ru": {
@@ -31,7 +36,11 @@
             "title": "DEV Community"
           },
           "angular-in-depth": {
+<<<<<<< HEAD
             "desc": "El lugar donde se explican los conceptos Angular avanzados",
+=======
+            "desc": "El lugar donde se explican los conceptos avanzados de Angular",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "url": "https://blog.angularindepth.com",
             "title": "Angular In Depth"
           }
@@ -41,7 +50,11 @@
         "order": 3,
         "resources": {
           "sdfjkdkfj": {
+<<<<<<< HEAD
             "desc": "Adventures in Angular es un podcast semanal dedicado a la plataforma Angular y tecnologías, herramientas, lenguajes y prácticas relacionados.",
+=======
+            "desc": "Adventures in Angular es un podcast semanal dedicado a la plataforma Angular y tecnologías relacionados, herramientas, lenguajes y prácticas.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "",
             "title": "Adventures in Angular",
             "url": "https://devchat.tv/adv-in-angular/"
@@ -94,7 +107,11 @@
           }
         }
       },
+<<<<<<< HEAD
       "Bibliotecas de datos": {
+=======
+      "Librerías de datos": {
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
         "order": 3,
         "resources": {
           "rx-web": {
@@ -108,7 +125,11 @@
             "url": "https://ngrx.io/"
           },
           "ngxs": {
+<<<<<<< HEAD
             "desc": "NGXS es un patrón de gestión de estado + biblioteca para Angular. NGXS se basa en el patrón CQRS implementado popularmente en bibliotecas como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
+=======
+            "desc": "NGXS es un patrón de gestión de estado + biblioteca para Angular. NGXS se basa en el patrón CRS implementado popularmente en librerías como Redux y NgRx, pero reduce el texto estándar mediante el uso de características modernas de TypeScript, como clases y decoradores.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "NGXS",
             "url": "https://ngxs.io/"
           },
@@ -170,7 +191,11 @@
             "url": "https://www.genuitec.com/products/angular-ide"
           },
           "amexio-canvas": {
+<<<<<<< HEAD
             "desc": "Amexio Canvas es un entorno de arrastrar y soltar para crear aplicaciones web y de dispositivos inteligentes HTML5 / angulares totalmente sensibles El código se generará automáticamente y se implementará en caliente mediante Canvas para realizar pruebas en vivo. Soporte listo para usar 50+ Temas de Diseño Material. Confirme su código en el repositorio público o privado de GitHub.",
+=======
+            "desc": "Amexio Canvas es un entorno de arrastrar y soltar para crear aplicaciones web y de dispositivos inteligentes HTML5 / Angular totalmente sensibles El código se generará automáticamente y se implementará en caliente mediante Canvas para realizar pruebas en vivo. Soporte listo para usar 50+ Temas de Diseño Material. Confirme su código en el repositorio público o privado de GitHub.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Amexio Canvas Web Based Drag and Drop IDE by MetaMagic",
             "url": "https://amexio.tech/"
           }
@@ -186,7 +211,11 @@
             "url": "http://augury.angular.io/"
           },
           "b1": {
+<<<<<<< HEAD
             "desc": "Representación del lado del servidor para aplicaciones angulares.",
+=======
+            "desc": "Representación del lado del servidor para aplicaciones Angular.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "https://cloud.githubusercontent.com/assets/1016365/10639063/138338bc-7806-11e5-8057-d34c75f3cafc.png",
             "title": "Angular Universal",
             "url": "https://angular.io/guide/universal"
@@ -215,7 +244,11 @@
             "url": "https://github.com/compodoc/compodoc"
           },
           "angular-playground": {
+<<<<<<< HEAD
             "desc": "Entorno de desarrollo de la interfaz de usuario para crear, probar y documentar aplicaciones angulares.",
+=======
+            "desc": "Entorno de desarrollo de la interfaz de usuario para crear, probar y documentar aplicaciones Angular.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Patio de juegos Angular",
             "url": "http://www.angularplayground.it/"
           },
@@ -243,7 +276,11 @@
         "order": 4,
         "resources": {
           "AngularUIToolkit": {
+<<<<<<< HEAD
             "desc": "Kit de herramientas de interfaz de usuario angular: 115 componentes de interfaz de usuario mantenidos profesionalmente que van desde una cuadrícula robusta hasta gráficos y más. Pruébelo gratis y cree aplicaciones angulares más rápido.",
+=======
+            "desc": "Kit de herramientas de interfaz de usuario angular: 115 componentes de interfaz de usuario mantenidos profesionalmente que van desde una cuadrícula robusta hasta gráficos y más. Pruébelo gratis y cree aplicaciones Angular más rápido.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Kit de herramientas Angular UI",
             "url": "https://www.angular-ui-tools.com"
           },
@@ -268,12 +305,20 @@
             "url": "https://vmware.github.io/clarity/"
           },
           "-KMVB8P4TDfht8c0L1AE": {
+<<<<<<< HEAD
             "desc": "La versión Angular de la biblioteca Bootstrap de Angular UI. Esta biblioteca se está construyendo desde cero en Typescript utilizando el marco CSS Bootstrap 4.",
+=======
+            "desc": "La versión de Angular de la biblioteca Bootstrap de Angular UI. Esta biblioteca se está construyendo desde cero en Typescript utilizando el marco CSS Bootstrap 4.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "ng-bootstrap",
             "url": "https://ng-bootstrap.github.io/"
           },
           "4ab": {
+<<<<<<< HEAD
             "desc": "Directivas y componentes angulares nativos para Lightning Design System",
+=======
+            "desc": "Directivas y componentes Angular nativos para Lightning Design System",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "http://ng-lightning.github.io/ng-lightning/img/shield.svg",
             "title": "ng-lightning",
             "url": "http://ng-lightning.github.io/ng-lightning/"
@@ -296,7 +341,7 @@
             "url": "http://www.telerik.com/kendo-angular-ui/"
           },
           "a5b": {
-            "desc": "High-performance UI controls with the most complete Angular support available. Wijmo’s controls are all written in TypeScript and have zero dependencies. FlexGrid control includes full declarative markup, including cell templates.",
+            "desc": "Controles UI de Alto-Rendimiento con el soporte más completo para Angular. Wijmo’s controla todo lo que esta escrito en TypeScript y no tiene ninguna dependecia. El control FlexGrid incluye marcado declarativo completo, incluyendo plantillas de celda.",
             "logo": "http://wijmocdn.azureedge.net/wijmositeblob/wijmo-theme/logos/wijmo-55.png",
             "title": "Wijmo",
             "url": "http://wijmo.com/products/wijmo-5/"
@@ -308,7 +353,11 @@
             "url": "https://vaadin.com/elements"
           },
           "a7b": {
+<<<<<<< HEAD
             "desc": "Directivas Angulars nativas para Bootstrap",
+=======
+            "desc": "Directivas Angular nativas para Bootstrap",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "",
             "title": "ngx-bootstrap",
             "url": "http://valor-software.com/ngx-bootstrap/#/"
@@ -366,7 +415,11 @@
             "url": "https://www.jqwidgets.com/angular/"
           },
           "amexio": {
+<<<<<<< HEAD
             "desc": "Amexio es un rico conjunto de componentes angulares impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
+=======
+            "desc": "Amexio es un rico conjunto de componentes Angular impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Amexio - Extensiones Angular",
             "url": "http://www.amexio.tech/",
             "logo": "http://www.amexio.org/amexio-logo.png"
@@ -378,7 +431,11 @@
             "url": "https://github.com/src-zone/material"
           },
           "essentialjs2": {
+<<<<<<< HEAD
             "desc": "Essential JS 2 para Angular es una colección de componentes angulares verdaderos basados en TypeScript modernos. Tiene soporte para la compilación Ahead Of Time (AOT) y Tree-Shaking. Todos los componentes se desarrollan desde cero para ser livianos, receptivos, modulares y fáciles de tocar.",
+=======
+            "desc": "Essential JS 2 para Angular es una colección de componentes Angular verdaderos basados en TypeScript modernos. Tiene soporte para la compilación Ahead Of Time (AOT) y Tree-Shaking. Todos los componentes se desarrollan desde cero para ser livianos, receptivos, modulares y fáciles de tocar.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Essential JS 2",
             "url": "https://www.syncfusion.com/products/angular-js2"
           },
@@ -394,7 +451,11 @@
             "url": "https://sq-ui.github.io/ng-sq-ui/#/"
           },
           "smart": {
+<<<<<<< HEAD
             "desc": "Componentes web para Angular. Componentes angulares sin dependencias para crear aplicaciones web modernas y aptas para dispositivos móviles",
+=======
+            "desc": "Componentes web para Angular. Componentes Angular sin dependencias para crear aplicaciones web modernas y aptas para dispositivos móviles",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Componentes web inteligentes",
             "url": "https://www.htmlelements.com/angular/"
           },
@@ -475,13 +536,13 @@
             "url": "https://angular-buch.com/"
           },
           "wishtack-guide-angular": {
-            "desc": "La guía Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
+            "desc": "La guía de Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
             "logo": "https://raw.githubusercontent.com/wishtack/gitbook-guide-angular/master/.gitbook/assets/wishtack-logo-with-text.png",
-            "title": "La guía Angular de Wishtack (Francés)",
+            "title": "La guía de Angular de Wishtack (Francés)",
             "url": "https://guide-angular.wishtack.io/"
           },
           "ab5": {
-            "desc": "Cómo construir aplicaciones angulares usando NGRX",
+            "desc": "Cómo construir aplicaciones Angular usando NGRX",
             "logo": "",
             "title": "Arquitectura de aplicaciones Angular con NGRX",
             "url": "https://www.packtpub.com/web-development/architecting-angular-applications-redux"
@@ -497,7 +558,11 @@
         "order": 3,
         "resources": {
           "angular-dyma": {
+<<<<<<< HEAD
             "desc": "Aprenda Angular y todo su ecosistema (Material, Flex-layout, Ngrx y más) desde cero.",
+=======
+            "desc": "Aprende Angular y todo su ecosistema (Material, Flex-layout, Ngrx y más) desde cero.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Dyma (francés)",
             "url": "https://dyma.fr/angular"
           },
@@ -536,7 +601,11 @@
             "url": "https://www.pluralsight.com/paths/angular"
           },
           "ab3": {
+<<<<<<< HEAD
             "desc": "Cursos Angular alojados por Udemy",
+=======
+            "desc": "Cursos de Angular alojados por Udemy",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "",
             "title": "Udemy",
             "url": "https://www.udemy.com/courses/search/?q=angular"
@@ -559,7 +628,11 @@
             "url": "http://www.angular.love/"
           },
           "learn-angular-fr": {
+<<<<<<< HEAD
             "desc": "Contenido Angular en Lengua francesa.",
+=======
+            "desc": "Contenido de Angular en Lengua francesa.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Aprende Angular (francés)",
             "url": "http://www.learn-angular.fr/"
           },
@@ -589,7 +662,11 @@
             "url": "https://loiane.training/course/angular/"
           },
           "web-dev-angular": {
+<<<<<<< HEAD
             "desc": "Cree aplicaciones angulares progresivas y de alto rendimiento.",
+=======
+            "desc": "Cree aplicaciones Angular progresivas y de alto rendimiento.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "web.dev/angular",
             "url": "https://web.dev/angular"
           },
@@ -610,7 +687,11 @@
         "order": 2,
         "resources": {
           "webucator": {
+<<<<<<< HEAD
             "desc": "Capacitación Angular personalizada en persona dirigida por un instructor para grupos privados y clases angulares públicas en línea dirigidas por un instructor.",
+=======
+            "desc": "Capacitación en Angular personalizada en persona dirigida por un instructor para grupos privados y clases Angular públicas en línea dirigidas por un instructor.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Webucator",
             "url": "https://www.webucator.com/webdev-training/angular-training"
           },
@@ -640,7 +721,11 @@
             "url": "https://www.thecodecampus.de/schulungen/angular"
           },
           "-KLIzFhfGKi1xttqJ7Uh": {
+<<<<<<< HEAD
             "desc": "Formación Angular en profundidad de 4 días en Israel",
+=======
+            "desc": "Formación en Angular en profundidad de 4 días en Israel",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "ng-course (Israel)",
             "url": "http://ng-course.org/"
           },
@@ -660,7 +745,11 @@
             "url": "http://ninja-squad.com/formations/formation-angular2"
           },
           "a2b": {
+<<<<<<< HEAD
             "desc": "Angular Boot Camp cubre temas angulares desde la introducción hasta los avanzados. Incluye extensas sesiones de talleres, con la ayuda práctica de nuestros experimentados formadores-desarrolladores. Llevamos a los desarrolladores o equipos desde los inicios de la comprensión de Angular a través de un conocimiento práctico de todas las características esenciales de Angular.",
+=======
+            "desc": "Angular Boot Camp cubre temas Angular desde la introducción hasta los avanzados. Incluye extensas sesiones de talleres, con la ayuda práctica de nuestros experimentados formadores-desarrolladores. Llevamos a los desarrolladores o equipos desde los inicios de la comprensión de Angular a través de un conocimiento práctico de todas las características esenciales de Angular.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "https://angularbootcamp.com/images/angular-boot-camp-logo.svg",
             "title": "Angular Boot Camp",
             "url": "https://angularbootcamp.com"
@@ -678,22 +767,39 @@
             "url": "https://learn.javascript.ru/courses/angular"
           },
           "zenika-angular": {
+<<<<<<< HEAD
             "desc": "Entrenamientos Angular impartidos por Zenika (FRANCIA)",
             "title": "Entrenamientos Angular (francés)",
             "url": "https://training.zenika.com/fr/training/angular/description"
           },
           "formationjs": {
             "desc": "Formación Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
+=======
+            "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
+            "title": "Entrenamientos en Angular (francés)",
+            "url": "https://training.zenika.com/fr/training/angular/description"
+          },
+          "formationjs": {
+            "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Formation JavaScript (French)",
             "url": "https://formationjavascript.com/formation-angular/"
           },
           "humancoders-angular": {
+<<<<<<< HEAD
             "desc": "Entrenamientos Angular impartidos por Human Coders (France)",
+=======
+            "desc": "Entrenamientos en Angular impartidos por Human Coders (France)",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "Formation Angular (French)",
             "url": "https://www.humancoders.com/formations/angular"
           },
           "wao": {
+<<<<<<< HEAD
             "desc": "Formación Angular impartida por We Are One Sàrl en Suiza",
+=======
+            "desc": "Formación en Angular impartida por We Are One Sàrl en Suiza",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "https://weareone.ch/wordpress/wao-content/uploads/2014/12/logo_200_2x.png",
             "title": "We Are One Sàrl",
             "url": "https://weareone.ch/courses/angular/"
@@ -705,12 +811,20 @@
             "url": "https://angular.schule/"
           },
           "strbrw": {
+<<<<<<< HEAD
             "desc": "Entrenamientos Angular y RxJS, Revisiones de Código y consultoría. Ayudamos a los ingenieros de software de todo el mundo a crear mejores aplicaciones web ...",
+=======
+            "desc": "Entrenamientos en Angular y RxJS, Revisiones de Código y consultoría. Ayudamos a los ingenieros de software de todo el mundo a crear mejores aplicaciones web ...",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "title": "StrongBrew",
             "url": "https://strongbrew.io/"
           },
           "angular.de": {
+<<<<<<< HEAD
             "desc": "Capacitación Angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
+=======
+            "desc": "Capacitación en Angular en el lugar impartida por la mayor comunidad en el área de habla alemana en Alemania, Austria y Suiza. También publicamos regularmente artículos y tutoriales en nuestro blog.",
+>>>>>>> 509ce4bd4cfaca5ea35194fee35a4727e3cf5280
             "logo": "https://angular.de/assets/img/angular-de-logo.svg",
             "title": "Angular.de (German)",
             "url": "https://angular.de/"
