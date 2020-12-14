@@ -366,7 +366,7 @@
             "url": "https://www.jqwidgets.com/angular/"
           },
           "amexio": {
-            "desc": "Amexio es un rico conjunto de componentes Angular impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
+            "desc": "Amexio es un extenso conjunto de componentes Angular impulsados por HTML5 y CSS3 para diseño web receptivo y más de 80 temas de diseño de materiales integrados. Amexio tiene 3 ediciones, Standard, Enterprise y Creative. Std Edition consta de una interfaz de usuario básica de Componentes que incluye cuadrícula, pestañas, entradas de formulario, etc. Mientras que Enterprise Edition consta de componentes como Calendario, pestañas de árbol, inicios de sesión en redes sociales (Facebook, GitHub, Twitter, etc.) y Creative Edition se centra en la construcción de sitios web elegantes y hermosos. Con más de 200 componentes/características. Todas las ediciones son de código abierto y gratuitas, basadas en la licencia Apache 2.",
             "title": "Amexio - Extensiones Angular",
             "url": "http://www.amexio.tech/",
             "logo": "http://www.amexio.org/amexio-logo.png"
@@ -559,6 +559,7 @@
             "url": "http://www.angular.love/"
           },
           "learn-angular-fr": {
+
             "desc": "Contenido de Angular en Lengua francesa.",
             "title": "Aprende Angular (francés)",
             "url": "http://www.learn-angular.fr/"
@@ -678,7 +679,6 @@
             "url": "https://learn.javascript.ru/courses/angular"
           },
           "zenika-angular": {
-
             "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
             "title": "Entrenamientos en Angular (francés)",
             "url": "https://training.zenika.com/fr/training/angular/description"
@@ -691,7 +691,7 @@
             "url": "https://training.zenika.com/fr/training/angular/description"
           },
           "formationjs": {
-            "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
+            "desc": "Formación Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
             "title": "Entrenamientos en Angular (francés)",
             "url": "https://training.zenika.com/fr/training/angular/description"
           },
