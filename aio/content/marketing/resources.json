@@ -677,6 +677,11 @@
             "title": "Learn Javascript (Russian)",
             "url": "https://learn.javascript.ru/courses/angular"
           },
+          "zenika-angular": {
+            "desc": "Entrenamientos en Angular impartidos por Zenika (FRANCIA)",
+            "title": "Entrenamientos en Angular (francés)",
+            "url": "https://training.zenika.com/fr/training/angular/description"
+          },
           "formationjs": {
             "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
             "title": "Formation JavaScript (French)",
