@@ -23,7 +23,7 @@ Por ejemplo, para agregar un web worker al componente raíz, `src/app/app.compon
 
 El comando realiza las siguientes acciones.
 
-- Configura el proyecto para que use web workers, si aún no lo es.
+- Configura el proyecto para que use web workers, si aún no lo está.
 - Agrega el siguiente código de scaffolding a `src/app/app.worker.ts` para recibir mensajes.
 
   <code-example language="typescript" header="src/app/app.worker.ts">
