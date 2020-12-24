@@ -17,7 +17,7 @@ Para agregar un web worker a un proyecto existente, utilice el comando de Angula
 `ng generate web-worker` *location*
 
 Puede agregar un trabajador web en cualquier lugar de la aplicación.
-Por ejemplo, para agregar un trabajo web al componente raíz, `src/app/app.component.ts`, ejecute el siguiente comando.
+Por ejemplo, para agregar un web worker al componente raíz, `src/app/app.component.ts`, ejecute el siguiente comando.
 
 `ng generate web-worker app`
 
