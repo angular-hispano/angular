@@ -12,7 +12,7 @@ La CLI no admite la ejecución de Angular en un web worker.
 
 ## Agregando un web worker
 
-Para agregar un web worker a un proyecto existente, utilice el comando de angular `ng generate` de la CLI.
+Para agregar un web worker a un proyecto existente, utilice el comando de Angular `ng generate` de la CLI.
 
 `ng generate web-worker` *location*
 
