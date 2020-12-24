@@ -53,6 +53,6 @@ Después de generar este scaffolding inicial, debe refactorizar el código para 
 
 <div class="alert is-important">
 
-Algunos entornos o plataformas, como `@angular/platform-server` utilizado en [Renderizado del lado del servidor](guía/universal), no admiten trabajadores web. Para asegurarse de que la aplicación funcionará en estos entornos, debe proporcionar un mecanismo de reserva para realizar los cálculos que el trabajador realizaría de otro modo.
+Algunos entornos o plataformas, como `@angular/platform-server` utilizado en [Renderizado del lado del servidor](guía/universal), no admiten web workers. Para asegurarse de que la aplicación funcionará en estos entornos, debes proporcionar un mecanismo de reserva para realizar los cálculos que el worker realizaría de otro modo.
 
 </div>
