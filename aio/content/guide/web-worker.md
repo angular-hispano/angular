@@ -33,7 +33,7 @@ El comando realiza las siguientes acciones.
   });
  </code-example>
 
-- Agrega el siguiente codigo `src/app/app.component.ts` para user el worker.
+- Agrega el siguiente código `src/app/app.component.ts` para usar el worker.
 
   <code-example language="typescript" header="src/app/app.component.ts">
   if (typeof Worker !== 'undefined') {
