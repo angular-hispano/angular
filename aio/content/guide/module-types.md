@@ -1,6 +1,6 @@
 # Directrices para crear NgModules
 
-En este tema se proporciona una visión general conceptual de las diferentes categorías de [NgModules](guide/glossary-ngmodule "Definición de NgModule") que puede crear para organizar el código en una estructura modular.
+En este tema se proporciona una visión general conceptual de las diferentes categorías de [NgModules](guide/glossary#ngmodule "Definición de NgModule") que puede crear para organizar el código en una estructura modular.
 Estas categorías no están grabadas en piedra.
 Es posible que desee crear NgModules para otros fines o combinar las características de algunas de estas categorías.
 
@@ -25,11 +25,11 @@ Puede organizar sus otros NgModules de la manera que desee.
 En este tema se proporcionan algunas directrices para las siguientes categorías generales de NgModules:
 
 * [Domain](#domain): Un dominio NgModule se organiza en torno a una característica, dominio empresarial o experiencia de usuario.
-* [Enruteado](#Enruteado): El componente superior del NgModule actúa como el destino de una ruta de navegación [Enrutador](guide/glossary-router "Definition of router").
-* [Enrutamiento](#enrutamiento): Un NgModule de enrutamiento proporciona la configuración de enrutamiento para otro NgModule.
-* [Servicio](#servicio): Un servicio NgModule proporciona servicios de utilidad como acceso a datos y mensajería.
+* [Enruteado](#routed): El componente superior del NgModule actúa como el destino de una ruta de navegación [Enrutador](guide/glossary#router "Definition of router").
+* [Enrutamiento](#routing): Un NgModule de enrutamiento proporciona la configuración de enrutamiento para otro NgModule.
+* [Servicio](#service): Un servicio NgModule proporciona servicios de utilidad como acceso a datos y mensajería.
 * [Widget](#widget): Un widget NgModule hace que un componente, directiva o un pipe estén disponibles para otros NgModules.
-* [Compartido](#compartidio): Un NgModule compartido pone un conjunto de componentes, directivas y canalizaciones disponibles para otros NgModules.
+* [Compartido](#shared): Un NgModule compartido pone un conjunto de componentes, directivas y canalizaciones disponibles para otros NgModules.
 
 En la tabla siguiente se resumen las características clave de cada categoría.
 
@@ -124,7 +124,7 @@ Si lo hace, la vida útil de los servicios proporcionados debe ser la misma que 
 
 <div class="alert is-helpful">
 
-Para obtener más información sobre los ciclos de vida, consulte [Conexión en el ciclo de vida del componente](guía/lifecycle-hooks "Conexión en el ciclo de vida del componente").
+Para obtener más información sobre los ciclos de vida, consulte [Conexión en el ciclo de vida del componente](guide/lifecycle-hooks "Conexión en el ciclo de vida del componente").
 
 </div>
 
