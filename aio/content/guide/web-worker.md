@@ -6,7 +6,7 @@ Si encuentra que la aplicación realiza una gran cantidad de cálculos, como gen
 
 <div class="alert is-helpful">
 
-La CLI no admite la ejecución de Angular en un programa de web workers
+La CLI no admite la ejecución de Angular en un web worker.
 
 </div>
 
