@@ -49,7 +49,7 @@ El comando realiza las siguientes acciones.
   }
   </code-example>
 
-Después de generar este scaffolding inicial, debe refactorizar el código para usar el programa del web worker enviando mensajes desde y hacia el web worker.
+Después de generar este scaffolding inicial, debe refactorizar el código para usar el web worker enviando mensajes desde y hacia el worker.
 
 <div class="alert is-important">
 
