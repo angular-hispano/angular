@@ -49,7 +49,7 @@ Para instalar Angular en tu sistema local, necesitas lo siguiente:
   Angular, CLI de Angular, y las aplicaciones de Angular dependen de [paquetes npm](https://docs.npmjs.com/getting-started/what-is-npm) para muchas funcionalidades y funciones.
   Para descargar e instalar paquetes npm, necesitas un administrador de paquetes npm.
   Esta guía utiliza la interfaz de línea de comandos del [cliente npm](https://docs.npmjs.com/cli/install), que se instala con `Node.js` por defecto.
-  Para comprobar que tienes instalado el cliente npm, ejecute `npm -v` en una terminal.
+  Para comprobar que tienes instalado el cliente npm, ejecuta `npm -v` en una terminal.
 
 
 {@a install-cli}
