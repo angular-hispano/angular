@@ -61,7 +61,7 @@ Ahora el `AppModule` conoce el módulo de funciones. Si tuviera que agregar cual
 
 ## Representación de la plantilla de componente de un módulo de funciones
 
-Cuando la CLI generó el `CustomerDashboardComponent` para el módulo de funciones, incluyó una plantilla, `customer-dashboard.component.html`, con el siguiente marcado:
+Cuando la CLI generó el `CustomerDashboardComponent` para el módulo de funcionalidades, incluyó una plantilla, `customer-dashboard.component.html`, con el siguiente marcado:
 
 <code-example path="feature-modules/src/app/customer-dashboard/customer-dashboard/customer-dashboard.component.html" region="feature-template" header="src/app/customer-dashboard/customer-dashboard/customer-dashboard.component.html"></code-example>
 
