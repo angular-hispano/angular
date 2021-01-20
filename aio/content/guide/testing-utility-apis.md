@@ -1,4 +1,4 @@
-# Testing Utility APIs
+# APIs de Utilidades de Testing
 
 Esta página describe las funciones de testing más útiles de Angular
 
@@ -169,7 +169,7 @@ Cada método de sobreescribir toma un `MetadataOverride<T>` donde  `T` es el tip
 {@a testbed-métodos}
 {@a testbed-api-resumen}
 
-La API`TestBed` consiste de métodos de clase estáticos que o actualizan o referencian una instancia global de `TestBed`.
+La API `TestBed` consiste de métodos de clase estáticos que o actualizan o referencian una instancia global de `TestBed`.
 
 Internamente, todos los métodos estáticos cubren los métodos de la instancia `TestBed` actual, lo cual también es devuelto por la función `getTestBed()`.
 
@@ -737,4 +737,3 @@ La clase Angular `By` tiene tres métodos estáticos para predicados comunes:
 <code-example path="testing/src/app/hero/hero-list.component.spec.ts" region="by" header="app/hero/hero-list.component.spec.ts"></code-example>
 
 <hr>
-
