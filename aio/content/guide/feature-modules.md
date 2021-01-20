@@ -59,7 +59,7 @@ Para incorporar el módulo de funciones en su aplicación, debe informar al mód
 
 Ahora el `AppModule` conoce el módulo de funciones. Si tuviera que agregar cualquier proveedor de servicios al módulo de funciones, `AppModule` también lo conocería, al igual que cualquier otro módulo de funciones. Sin embargo, los NgModules no exponen sus componentes.
 
-## Representación de la plantilla de componente de un módulo de funciones
+## Representación de la plantilla de componente de un módulo de funcionalidades
 
 Cuando la CLI generó el `CustomerDashboardComponent` para el módulo de funcionalidades, incluyó una plantilla, `customer-dashboard.component.html`, con el siguiente marcado:
 
