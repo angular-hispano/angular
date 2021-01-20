@@ -11,7 +11,7 @@ A medida que su aplicación crece, puede organizar el código relevante para una
 puede mantener el código relacionado con una funcionalidad o característica específica
 separado de otro código. Delinear áreas de suaplicación ayuda con la colaboración entre desarrolladores y equipos, separando directivas y gestionar el tamaño del módulo raíz.
 
-## Módulos de funciones frente a módulos raíz
+## Módulos de funcionalidades frente a módulos raíz
 
 Un módulo de funciones es una mejor práctica organizativa, a diferencia de un concepto de la API angular principal. Un módulo de funciones ofrece un conjunto coherente de funciones centradas en una necesidad de aplicación específica, como un flujo de trabajo, enrutamiento o formularios de usuario. Si bien puede hacer todo dentro del módulo raíz, los módulos de funciones lo ayudan a dividir la aplicación en áreas específicas. Un módulo de funciones colabora con el módulo raíz y con otros módulos a través de los servicios que proporciona y los componentes, directivas y canalizaciones que comparte.
 
