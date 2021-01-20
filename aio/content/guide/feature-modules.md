@@ -1,4 +1,4 @@
-# Módulos de funciones
+# Módulos de funcionalidades
 
 Los módulos de funciones son NgModules con el propósito de organizar el código.
 
