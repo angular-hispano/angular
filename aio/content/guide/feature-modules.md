@@ -57,7 +57,7 @@ Para incorporar el módulo de funciones en su aplicación, debe informar al mód
 
 <code-example path="feature-modules/src/app/app.module.ts" region="app-module" header="src/app/app.module.ts"></code-example>
 
-Ahora el `AppModule` conoce el módulo de funciones. Si tuviera que agregar cualquier proveedor de servicios al módulo de funciones, `AppModule` también lo conocería, al igual que cualquier otro módulo de funciones. Sin embargo, los NgModules no exponen sus componentes.
+Ahora el `AppModule` conoce el módulo de funcionalidades. Si tuviera que agregar cualquier proveedor de servicios al módulo de funcionalidades, `AppModule` también lo conocería, al igual que cualquier otro módulo de funcionalidades. Sin embargo, los NgModules no exponen sus componentes.
 
 ## Representación de la plantilla de componente de un módulo de funcionalidades
 
