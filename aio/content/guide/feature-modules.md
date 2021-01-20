@@ -17,7 +17,7 @@ Un módulo de funcionalidades es una mejor práctica organizativa, a diferencia 
 
 ## Cómo hacer un módulo de funcionalidades
 
-Suponiendo que ya tiene una aplicación que creó con la [CLI Angular](cli), cree un módulo de funciones usando la CLI ingresando el siguiente comando en el directorio raíz del proyecto. Reemplaza `CustomerDashboard` con el nombre de tu módulo. Puede omitir el sufijo "Módulo" / "Module" del nombre porque la CLI lo agrega:
+Suponiendo que ya tiene una aplicación que creó con la [CLI Angular](cli), cree un módulo de funcionalidades usando la CLI ingresando el siguiente comando en el directorio raíz del proyecto. Reemplaza `CustomerDashboard` con el nombre de tu módulo. Puede omitir el sufijo "Módulo" / "Module" del nombre porque la CLI lo agrega:
 
 ```sh
 ng generate module CustomerDashboard
