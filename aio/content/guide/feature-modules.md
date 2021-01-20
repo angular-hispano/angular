@@ -7,7 +7,7 @@ ver el <live-example> </live-example>.
 
 <hr>
 
-A medida que su aplicación crece, puede organizar el código relevante para una función específica. Esto ayuda a aplicar límites claros para las funciones. Con módulos de funciones,
+A medida que su aplicación crece, puede organizar el código relevante para una funcionalidad específica. Esto ayuda a aplicar límites claros para las funcionalidades. Con módulos de funcionalidades,
 puede mantener el código relacionado con una función o característica específica
 separado de otro código. Delinear áreas de suaplicación ayuda con la colaboración entre desarrolladores y equipos, separando directivas y gestionar el tamaño del módulo raíz.
 
