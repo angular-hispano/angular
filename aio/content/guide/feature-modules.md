@@ -15,7 +15,7 @@ separado de otro código. Delinear áreas de suaplicación ayuda con la colabora
 
 Un módulo de funcionalidades es una mejor práctica organizativa, a diferencia de un concepto de la API angular principal. Un módulo de funcionalidades ofrece un conjunto coherente de funcionalidades centradas en una necesidad de aplicación específica, como un flujo de trabajo, enrutamiento o formularios de usuario. Si bien puede hacer todo dentro del módulo raíz, los módulos de funcionalidades lo ayudan a dividir la aplicación en áreas específicas. Un módulo de funcionalidades colabora con el módulo raíz y con otros módulos a través de los servicios que proporciona y los componentes, directivas y canalizaciones que comparte.
 
-## Cómo hacer un módulo de funciones
+## Cómo hacer un módulo de funcionalidades
 
 Suponiendo que ya tiene una aplicación que creó con la [CLI Angular](cli), cree un módulo de funciones usando la CLI ingresando el siguiente comando en el directorio raíz del proyecto. Reemplaza `CustomerDashboard` con el nombre de tu módulo. Puede omitir el sufijo "Módulo" / "Module" del nombre porque la CLI lo agrega:
 
