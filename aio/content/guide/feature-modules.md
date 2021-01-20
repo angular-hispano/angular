@@ -1,6 +1,6 @@
 # Módulos de funcionalidades
 
-Los módulos de funciones son NgModules con el propósito de organizar el código.
+Los módulos de funcionalidades son NgModules con el propósito de organizar el código.
 
 Para la aplicación de muestra final con un módulo de funciones que se describe en esta página,
 ver el <live-example> </live-example>.
