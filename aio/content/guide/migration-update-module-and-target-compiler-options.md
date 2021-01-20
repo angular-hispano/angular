@@ -2,7 +2,7 @@
 
 ## ¿Qué hace esta migración?
 
-Esta migración ajusta la configuración de [`target`](https://www.typescriptlang.org/v2/en/tsconfig#target) y [`module`](https://www.typescriptlang.org/v2/en/tsconfig#module) dentro de [los archivos de configuración de TypeScript](guide/typescript-configuration) para el espacio de trabajo.
+Esta migración ajusta la configuración de [`target`](https://www.typescriptlang.org/tsconfig#target) y [`module`](https://www.typescriptlang.org/v2/en/tsconfig#module) dentro de [los archivos de configuración de TypeScript](guide/typescript-configuration) para el espacio de trabajo.
 Los cambios en cada opción varían según el constructor o comando que usa el archivo de configuración de TypeScript. A menos que se indique lo contrario, los cambios solo se realizan si el valor existente no se modificó desde que se creó el proyecto. Este proceso ayuda a garantizar que se mantengan los cambios intencionales en las opciones.
 
 Archivo(s) de configuración de TypeScript | Propiedad Cambiada | Valor existente | Nuevo Valor
