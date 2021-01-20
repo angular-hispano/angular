@@ -51,7 +51,7 @@ Esto genera una carpeta para el nuevo componente dentro de la carpeta del panel 
 
 El `CustomerDashboardComponent` ahora se encuentra en la lista de importación de JavaScript en la parte superior y se agregó a la matriz de `declaraciones`, lo que le permite a Angular asociar este nuevo componente con este módulo de funciones.
 
-## Importación de un módulo de funciones
+## Importación de un módulo de funcionalidades
 
 Para incorporar el módulo de funcionalidades en su aplicación, debe informar al módulo raíz, `app.module.ts`. Observe la exportación de "CustomerDashboardModule" en la parte inferior de `customer-dashboard.module.ts`. Esto lo expone para que otros módulos puedan acceder a él. Para importarlo en el `AppModule`, agréguelo a las importaciones en` app.module.ts` y al arreglo de `import`:
 
