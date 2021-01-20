@@ -45,7 +45,7 @@ La matriz `declaraciones` está disponible para que agregue declarables, que son
 ng generate component customer-dashboard/CustomerDashboard
 ```
 
-Esto genera una carpeta para el nuevo componente dentro de la carpeta del panel del cliente y actualiza el módulo de funciones con la información de `CustomerDashboardComponent`:
+Esto genera una carpeta para el nuevo componente dentro de la carpeta del panel del cliente y actualiza el módulo de funcionalidades con la información de `CustomerDashboardComponent`:
 
 <code-example path="feature-modules/src/app/customer-dashboard/customer-dashboard.module.ts" region="customer-dashboard-component" header="src/app/customer-dashboard/customer-dashboard.module.ts"></code-example>
 
