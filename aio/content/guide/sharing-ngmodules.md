@@ -37,7 +37,7 @@ Aunque los componentes declarados por `SharedModule` pueden no vincularse con `[
 
 ### Uso de componentes vs servicios de otros módulos
 
-Existe una distinción importante entre usar el componente de otro módulo y utilizando un servicio de otro módulo. Importa módulos cuando quieras usar directivas, `pipes` y componentes. Importar un módulo con servicios significa que tendrá una nueva instancia de ese servicio, que normalmente no es lo que necesita (normalmente, quieres reutilizar un servicio existente). Utilice las importaciones de módulos para controlar la creación de instancias de servicios.
+Existe una distinción importante entre usar el componente de otro módulo y utilizar un servicio de otro módulo. Importa módulos cuando quieras usar directivas, `pipes` y componentes. Importar un módulo con servicios significa que tendrá una nueva instancia de ese servicio, que normalmente no es lo que necesitas (normalmente, quieres reutilizar un servicio existente). Utiliza las importaciones de módulos para controlar la creación de instancias de servicios.
 
 La forma más común de obtener servicios compartidos es através de Angular
 [inyección de dependencia](guide/dependency-injection), en lugar de a través del sistema del módulo (la importación de un módulo dará como resultado una nueva instancia de servicio, que no es un uso típico).
