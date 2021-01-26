@@ -22,7 +22,7 @@ import { OrdersPipe } from './orders.pipe';
 export class SharedModule { }
 ```
 
-Tenga en cuenta lo siguiente:
+Ten en cuenta lo siguiente:
 
 * Esto Importa `CommonModule` porque el componente del módulo necesita directivas comunes.
 * Declara y exporta las clases de componentes, directivas y `pipes`
