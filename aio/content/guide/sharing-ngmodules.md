@@ -1,6 +1,6 @@
 # Compartiendo módulos
 
-La creación de módulos compartidos le permite organizar y optimizar su código. Puede colocar directivas, `pipes`, y componentes de uso común en un módulo y despues importar solo ese módulo donde lo necesite en otras partes de su aplicación.
+La creación de módulos compartidos te permite organizar y optimizar tu código. Puedes colocar directivas, `pipes`, y componentes de uso común en un módulo y despues importar solo ese módulo donde lo necesites en otras partes de tu aplicación.
 
 Considere el siguiente módulo de una aplicación imaginaria:
 
