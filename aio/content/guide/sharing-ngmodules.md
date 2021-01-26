@@ -33,7 +33,7 @@ Al reexportar `CommonModule` y `FormsModule`, cualquier otro módulo que importe
 y puede vincularse a las propiedades del componente con `[(ngModel)]`, a una directiva en `FormsModule`.
 
 Aunque los componentes declarados por `SharedModule` pueden no vincularse con `[(ngModel)]` y puede que no sea necesario que `SharedModule` importe `FormsModule`, `SharedModule` aún puede exportar 
-`FormsModule` sin incluirlo entre sus `imports (importaciones)`. De esta manera, puede dar acceso a otros módulos a  `FormsModule` sin tener que importarlo directamente al decorador `@NgModule`.
+`FormsModule` sin incluirlo entre sus `imports (importaciones)`. De esta manera, puedes  dar acceso a otros módulos a  `FormsModule` sin tener que importarlo directamente al decorador `@NgModule`.
 
 ### Uso de componentes vs servicios de otros módulos
 
