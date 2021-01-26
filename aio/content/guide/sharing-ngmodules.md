@@ -42,7 +42,7 @@ Existe una distinción importante entre usar el componente de otro módulo y uti
 La forma más común de obtener servicios compartidos es através de Angular
 [inyección de dependencia](guide/dependency-injection), en lugar de a través del sistema del módulo (la importación de un módulo dará como resultado una nueva instancia de servicio, que no es un uso típico).
 
-Para leer acerca de compartir servicios, consulte [Proveedores](guide/providers).
+Para leer acerca de compartir servicios, consulta [Proveedores](guide/providers).
 
 
 <hr />
