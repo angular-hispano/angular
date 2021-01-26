@@ -2,7 +2,7 @@
 
 La creación de módulos compartidos te permite organizar y optimizar tu código. Puedes colocar directivas, `pipes`, y componentes de uso común en un módulo y despues importar solo ese módulo donde lo necesites en otras partes de tu aplicación.
 
-Considere el siguiente módulo de una aplicación imaginaria:
+Considera el siguiente módulo de una aplicación imaginaria:
 
 
 ```typescript
