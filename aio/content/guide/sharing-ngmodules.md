@@ -24,7 +24,7 @@ export class SharedModule { }
 
 Ten en cuenta lo siguiente:
 
-* Esto Importa `CommonModule` porque el componente del módulo necesita directivas comunes.
+* Esto importa `CommonModule` porque el componente del módulo necesita directivas comunes.
 * Declara y exporta las clases de componentes, directivas y `pipes`
 * Esto reexporta `CommonModule` y `FormsModule`.
 
