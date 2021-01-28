@@ -39,7 +39,7 @@ export class CustomerDashboardModule {}
 
 La estructura de un NgModule es la misma si es un módulo raíz o un módulo de funcionalidades. En el módulo de funcionalidades generado por CLI, hay dos declaraciones de importación de JavaScript en la parte superior del archivo: la primera importa `NgModule`, que, como el módulo raíz, le permite usar el decorador `@NgModule`; el segundo importa `CommonModule`, que aporta muchas directivas comunes como `ngIf` y `ngFor`. Los módulos de funcionalidades importan `CommonModule` en lugar de `BrowserModule`, que solo se importa una vez en el módulo raíz. `CommonModule` solo contiene información para directivas comunes como `ngIf` y `ngFor` que se necesitan en la mayoría de las plantillas, mientras que `BrowserModule` configura la aplicación Angular para el navegador, lo cual debe hacerse solo una vez.
 
-La matriz `declaraciones` está disponible para que agregue declarables, que son componentes, directivas y canalizaciones que pertenecen exclusivamente a este módulo en particular. Para agregar un componente, ingrese el siguiente comando en la línea de comando donde `customer-dashboard` es el directorio donde la CLI generó el módulo de funciones y CustomerDashboard` es el nombre del componente:
+La matriz `declaraciones` está disponible para que agregue declarables, que son componentes, directivas y canalizaciones que pertenecen exclusivamente a este módulo en particular. Para agregar un componente, ingresa el siguiente comando en la línea de comando donde `customer-dashboard` es el directorio donde la CLI generó el módulo de funciones y CustomerDashboard` es el nombre del componente:
 
 ```sh
 ng generate component customer-dashboard/CustomerDashboard
