@@ -65,7 +65,7 @@ Cuando la CLI generó el `CustomerDashboardComponent` para el módulo de funcion
 
 <code-example path="feature-modules/src/app/customer-dashboard/customer-dashboard/customer-dashboard.component.html" region="feature-template" header="src/app/customer-dashboard/customer-dashboard/customer-dashboard.component.html"></code-example>
 
-Para ver este HTML en el `AppComponent`, primero tiene que exportar el `CustomerDashboardComponent` en el `CustomerDashboardModule`. En `customer-dashboard.module.ts`, justo debajo de la matriz de `declaraciones`, agregue una matriz de `exportaciones` que contenga `CustomerDashboardComponent`:
+Para ver este HTML en el `AppComponent`, primero tienes que exportar el `CustomerDashboardComponent` en el `CustomerDashboardModule`. En `customer-dashboard.module.ts`, justo debajo de la matriz de `declaraciones`, agrega una matriz de `exportaciones` que contenga `CustomerDashboardComponent`:
 
 <code-example path="feature-modules/src/app/customer-dashboard/customer-dashboard.module.ts" region="component-exports" header="src/app/customer-dashboard/customer-dashboard.module.ts"></code-example>
 
