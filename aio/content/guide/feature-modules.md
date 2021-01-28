@@ -69,7 +69,7 @@ Para ver este HTML en el `AppComponent`, primero tienes que exportar el `Custome
 
 <code-example path="feature-modules/src/app/customer-dashboard/customer-dashboard.module.ts" region="component-exports" header="src/app/customer-dashboard/customer-dashboard.module.ts"></code-example>
 
-Luego, en el `AppComponent`, `app.component.html`, agregue la etiqueta `<app-customer-dashboard>`:
+Luego, en el `AppComponent`, `app.component.html`, agrega la etiqueta `<app-customer-dashboard>`:
 
 <code-example path="feature-modules/src/app/app.component.html" region="app-component-template" header="src/app/app.component.html"></code-example>
 
