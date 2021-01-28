@@ -53,7 +53,7 @@ El `CustomerDashboardComponent` ahora se encuentra en la lista de importación d
 
 ## Importación de un módulo de funcionalidades
 
-Para incorporar el módulo de funcionalidades en su aplicación, debe informar al módulo raíz, `app.module.ts`. Observe la exportación de "CustomerDashboardModule" en la parte inferior de `customer-dashboard.module.ts`. Esto lo expone para que otros módulos puedan acceder a él. Para importarlo en el `AppModule`, agréguelo a las importaciones en` app.module.ts` y al arreglo de `import`:
+Para incorporar el módulo de funcionalidades en tu aplicación, debes informar al módulo raíz, `app.module.ts`. Observa la exportación de "CustomerDashboardModule" en la parte inferior de `customer-dashboard.module.ts`. Esto lo expone para que otros módulos puedan acceder a él. Para importarlo en el `AppModule`, agrégalo a las importaciones en` app.module.ts` y al arreglo de `import`:
 
 <code-example path="feature-modules/src/app/app.module.ts" region="app-module" header="src/app/app.module.ts"></code-example>
 
