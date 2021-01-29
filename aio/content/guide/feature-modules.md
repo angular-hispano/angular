@@ -27,8 +27,8 @@ ng generate module CustomerDashboard
 Esto hace que la CLI cree una carpeta llamada `customer-dashboard` con un archivo dentro llamado` customer-dashboard.module.ts` con el siguiente contenido:
 
 ```typescript
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [CommonModule],
