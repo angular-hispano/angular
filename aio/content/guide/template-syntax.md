@@ -20,7 +20,7 @@ In Angular, the component plays the part of the controller/viewmodel, and the te
 
 <hr />
 
-Cada plantilla Angular de tu aplicación es una sección de HTML que puede incluir como parte de la página que muestra el navegador.
+Cada plantilla Angular de tu aplicación es una sección de HTML que puedes incluir como parte de la página que muestra el navegador.
 Una plantilla HTML Angular muestra una vista, o interfaz de usuario, en el navegador, como HTML normal, pero con mucha más funcionalidad.
 
 Cuando generas una aplicación Angular con Angular CLI, el archivo `app.component.html` es la plantilla predeterminada que contiene HTML de marcador de posición.
