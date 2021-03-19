@@ -685,24 +685,12 @@
           },
           "formationjs": {
             "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
-
-            "desc": "Entrenamientos Angular impartidos por Zenika (FRANCIA)",
-            "title": "Entrenamientos Angular (francés)",
-            "url": "https://training.zenika.com/fr/training/angular/description"
-          },
-          "formationjs": {
-            "desc": "Formación Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
-            "title": "Entrenamientos en Angular (francés)",
-            "url": "https://training.zenika.com/fr/training/angular/description"
-          },
-          "formationjs": {
-            "desc": "Formación en Angular presencial en París (Francia). Talleres Angular mensuales y clases presenciales personalizadas. Estamos enfocados en Angular, por lo que siempre estamos al día.",
-            "title": "Formation JavaScript (French)",
+            "title": "Formation JavaScript (Frances)",
             "url": "https://formationjavascript.com/formation-angular/"
           },
           "humancoders-angular": {
             "desc": "Entrenamientos en Angular impartidos por Human Coders (France)",
-            "title": "Formation Angular (French)",
+            "title": "Formation Angular (Frances)",
             "url": "https://www.humancoders.com/formations/angular"
           },
           "wao": {
