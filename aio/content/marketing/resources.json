@@ -26,7 +26,7 @@
             "url": "https://www.reddit.com/r/Angular2/"
           },
           "angular-devto": {
-            "desc": "Lea y comparta contenido y chatee sobre Angular en la comunidad DEV.",
+            "desc": "Lee, comparte contenido y chatea sobre Angular en la comunidad DEV.",
             "url": "https://dev.to/t/angular",
             "title": "DEV Community"
           },
@@ -41,7 +41,7 @@
         "order": 3,
         "resources": {
           "sdfjkdkfj": {
-            "desc": "Adventures in Angular es un podcast semanal dedicado a la plataforma Angular y tecnologías relacionados, herramientas, lenguajes y prácticas.",
+            "desc": "Adventures in Angular es un podcast semanal dedicado a la plataforma Angular y tecnologías relacionadas, herramientas, lenguajes y prácticas.",
             "logo": "",
             "title": "Adventures in Angular",
             "url": "https://devchat.tv/adv-in-angular/"
@@ -53,7 +53,7 @@
             "url": "https://angularair.com/"
           },
           "sdlkfjsldfkz": {
-            "desc": "Un podcast alemán semanal para Angular sobre la marcha",
+            "desc": "Un podcast alemán semanal para Angular muy activo.",
             "logo": "",
             "title": "Podcast de Happy Angular",
             "url": "https://happy-angular.de/"
@@ -429,7 +429,7 @@
         "order": 1,
         "resources": {
           "-KLIzGEp8Mh5W-FkiQnL": {
-            "desc": "Su guía rápida y sensata para crear aplicaciones del mundo real con Angular",
+            "desc": "Tu guía rápida y sensata para crear aplicaciones del mundo real con Angular",
             "title": "Aprendiendo Angular - Segunda edición",
             "url": "https://www.packtpub.com/web-development/learning-angular-second-edition"
           },
@@ -444,8 +444,8 @@
             "url": "https://www.ng-book.com/2/"
           },
           "a7b": {
-            "desc": "Este libro electrónico lo ayudará a comprender la filosofía del marco: qué proviene de 1.x, qué se ha introducido y por qué",
-            "title": "Convertirse en un ninja con angular",
+            "desc": "Este libro electrónico te ayudará a comprender la filosofía del marco: qué proviene de 1.x, qué se ha introducido y por qué",
+            "title": "Convertirse en un ninja con Angular",
             "url": "https://books.ninja-squad.com/angular"
           },
           "ab": {
@@ -454,7 +454,7 @@
             "url": "https://www.packtpub.com/catalogsearch/result/?q=angular"
           },
           "cnoring-rxjs-fundamentals": {
-            "desc": "Un libro gratuito que cubre todas las facetas del trabajo con Rxjs, desde su primer Observable hasta cómo hacer que su código se ejecute a una velocidad óptima con Schedulers.",
+            "desc": "Un libro gratuito que cubre todas las facetas del trabajo con Rxjs, desde tu primer Observable hasta cómo hacer que tu código se ejecute a una velocidad óptima con Schedulers.",
             "title": "RxJS Ultimate",
             "url": "https://chrisnoring.gitbooks.io/rxjs-5-ultimate/content/"
           },
@@ -464,12 +464,12 @@
             "url": "https://leanpub.com/router"
           },
           "vsavkin-essential-angular": {
-            "desc": "El libro es una descripción breve, pero al mismo tiempo bastante completa, de los aspectos clave de Angular escrita por sus colaboradores principales, Victor Savkin y Jeff Cross. El libro le dará una base sólida. Le ayudará a poner todos los conceptos en los lugares correctos. De este modo, comprenderá bien por qué el marco es como es.",
+            "desc": "El libro es una descripción breve, pero al mismo tiempo bastante completa, de los aspectos clave de Angular escrita por sus colaboradores principales, Victor Savkin y Jeff Cross. El libro te dará una base sólida. Te ayudará a poner todos los conceptos en los lugares correctos. De este modo, comprenderás bien por qué el marco es como es.",
             "title": "Angular Esencial",
             "url": "https://gumroad.com/l/essential_angular"
           },
           "angular-buch": {
-            "desc": "El primer libro alemán sobre Angular. Le brinda una descripción práctica detallada de los conceptos clave de la plataforma. En cada capítulo se crea una aplicación de muestra con un nuevo tema de Angular. Todas las fuentes están disponibles en GitHub.",
+            "desc": "El primer libro alemán sobre Angular. Te brinda una descripción práctica detallada de los conceptos clave de la plataforma. En cada capítulo se crea una aplicación de muestra con un nuevo tema de Angular. Todas las fuentes están disponibles en GitHub.",
             "logo": "https://angular-buch.com/assets/img/brand.svg",
             "title": "Angular-Buch (Alemán)",
             "url": "https://angular-buch.com/"
@@ -481,10 +481,10 @@
             "url": "https://guide-angular.wishtack.io/"
           },
           "ab5": {
-            "desc": "La guía de Angular gratuita, de código abierto y actualizada. Esta guía pragmática se centra en las mejores prácticas y lo llevará de cero a la nube.",
-            "logo": "https://raw.githubusercontent.com/wishtack/gitbook-guide-angular/master/.gitbook/assets/wishtack-logo-with-text.png",
-            "title": "La guía de Angular de Wishtack (Francés)",
-            "url": "https://guide-angular.wishtack.io/"
+            "desc": "Cómo construir aplicaciones Angular usando NGRX",
+            "logo": "",
+            "title": "Arquitectura de aplicaciones Angular con NGRX",
+            "url": "https://www.packtpub.com/web-development/architecting-angular-applications-redux"
           },
           "dwa": {
             "desc": "Viaje práctico con Angular framework, ES6, TypeScript, webpack y Angular CLI.",
