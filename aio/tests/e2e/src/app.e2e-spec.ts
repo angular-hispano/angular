@@ -12,7 +12,7 @@ describe('site App', function() {
   it('should show features text after clicking "Features"', () => {
     page.navigateTo('');
     page.click(page.getTopMenuLink('features'));
-    expect(page.getDocViewerText()).toMatch(/Progressive web apps/i);
+    expect(page.getDocViewerText()).toMatch(/Aplicaciones Web Progresivas/i);
   });
 
   it('should set appropriate window titles', () => {
@@ -20,7 +20,7 @@ describe('site App', function() {
     expect(browser.getTitle()).toBe('Angular');
 
     page.click(page.getTopMenuLink('features'));
-    expect(browser.getTitle()).toBe('Angular - FEATURES & BENEFITS');
+    expect(browser.getTitle()).toBe('Angular - FUNCIONALIDADES Y VENTAJAS');
 
     page.click(page.homeLink);
     expect(browser.getTitle()).toBe('Angular');
@@ -79,7 +79,7 @@ describe('site App', function() {
 
     // navigate to a different page
     page.click(page.getTopMenuLink('features'));
-    expect(page.getDocViewerText()).toMatch(/Progressive web apps/i);
+    expect(page.getDocViewerText()).toMatch(/Aplicaciones Web Progresivas/i);
 
     // Show the menu
     page.click(page.docsMenuLink);
@@ -87,7 +87,7 @@ describe('site App', function() {
     // Tutorial folder should still be expanded because this test runs in wide mode
     // Navigate to the tutorial introduction via a link in the sidenav
     page.click(page.getNavItem(/El Editor de Héroe/i));
-    expect(page.getDocViewerText()).toMatch(/The hero editor/i);
+    expect(page.getDocViewerText()).toMatch(/El editor de Héroe/i);
   });
 
   it('should render `{@example}` dgeni tags as `<code-example>` elements with HTML escaped content', () => {
@@ -137,7 +137,7 @@ describe('site App', function() {
       expect(groupButtons.count()).toBe(3);
 
       const texts = groupButtons.map<string>(btn => btn && btn.getText());
-      expect(texts).toEqual(['ANGULAR', 'COLLABORATORS', 'GDE']);
+      expect(texts).toEqual(['ANGULAR', 'GDE', 'COLABORADORES']);
     });
 
     it('should have contributors listed in each group', () => {
