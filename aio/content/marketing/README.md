@@ -4,7 +4,7 @@ Tenemos una contabilidad oficial de quiénes están en el Angular Team, quiénes
 
 El `contributors.json` debe mantenerse para mantener nuestro" organigrama "en un solo lugar coherente.
 
-## lista de GDE
+## Lista de GDE
 
 Hay dos páginas:
 
@@ -26,7 +26,7 @@ Alex Eagle está investigando cómo conciliar estas dos listas.
 
 ## Procesando los datos
 
-Instale https://stedolan.github.io/jq/ que es increíble.
+Instala https://stedolan.github.io/jq/ que es increíble.
 
 ```sh
 for handle in $(jq keys[] --raw-output < aio/content/marketing/contributors.json)
