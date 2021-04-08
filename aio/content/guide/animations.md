@@ -1,27 +1,28 @@
-# Introduction to Angular animations
+# Introducción a las animaciones en Angular
 
-Animation provides the illusion of motion: HTML elements change styling over time. Well-designed animations can make your application more fun and easier to use, but they aren't just cosmetic. Animations can improve your app and user experience in a number of ways:
+La animación proporciona la ilusión de movimiento: los elementos HTML cambian de estilo con el tiempo. 
+Las animaciones bien diseñadas pueden hacer que su aplicación sea más divertida y fácil de usar, pero no son sólo un decorado. Las animaciones pueden mejorar su aplicación y la experiencia del usuario de varias formas:
 
-* Without animations, web page transitions can seem abrupt and jarring.
+* Sin animaciones, las transiciones de páginas web pueden parecer abruptas y discordantes.
 
-* Motion greatly enhances the user experience, so animations give users a chance to detect the application's response to their actions.
+* El movimiento mejora en gran medida la experiencia del usuario, por lo que las animaciones les dan la oportunidad de detectar la respuesta de la aplicación a sus acciones.
 
-* Good animations intuitively call the user's attention to where it is needed.
+* Las buenas animaciones llaman la atención del usuario de forma intuitiva hacia donde se necesita.
 
-Typically, animations involve multiple style *transformations* over time. An HTML element can move, change color, grow or shrink, fade, or slide off the page. These changes can occur simultaneously or sequentially. You can control the timing of each transformation.
+Normalmente, las animaciones implican múltiples *transformaciones* de estilo a lo largo del tiempo. Un elemento HTML puede moverse, cambiar de color, crecer o encogerse, desvanecerse o deslizarse fuera de la página. Estos cambios pueden ocurrir de forma simultánea o secuencial. Usted puede controlar el momento de cada transformación.
 
-Angular's animation system is built on CSS functionality, which means you can animate any property that the browser considers animatable. This includes positions, sizes, transforms, colors, borders, and more. The W3C maintains a list of animatable properties on its [CSS Transitions](https://www.w3.org/TR/css-transitions-1/) page.
+El sistema de animación de Angular se basa en las funcionalidades  de CSS, lo que significa que puede animar cualquier propiedad que el navegador considere animable. Esto incluye posiciones, tamaños, transformaciones, colores, bordes, etc. El W3C mantiene una lista de propiedades animables en su página
+[CSS Transitions](https://www.w3.org/TR/css-transitions-1/).
 
 
-## About this guide
+## Sobre esta guía
+Esta guía cubre las funciones básicas de animación en Angular para comenzar a agregar animaciones de Angular a su proyecto.
 
-This guide covers the basic Angular animation features to get you started on adding Angular animations to your project.
+Las funciones descritas en esta guía &mdash; y las funciones más avanzadas descritas en las guías de animaciones en Angular relacionadas &mdash; se muestran en una aplicación de ejemplo disponible como <live-example></live-example>.
 
-The features described in this guide &mdash; and the more advanced features described in the related Angular animations guides &mdash; are demonstrated in an example app available as a <live-example></live-example>.
+#### Prerequisitos
 
-#### Prerequisites
-
-The guide assumes that you're familiar with building basic Angular apps, as described in the following sections:
+La guía asume que está familiarizado con la creación de aplicaciones básicas en Angular, como se describe en las siguientes secciones:
 
 * [Tutorial](tutorial)
 * [Architecture Overview](guide/architecture)
