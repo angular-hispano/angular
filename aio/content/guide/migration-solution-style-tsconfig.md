@@ -6,7 +6,7 @@ Esta migración agrega soporte a proyectos existentes la nueva funcionalidad de 
 
 El soporte es agregado al realizar dos cambios:
 
-1. Renombrando el nombre del nivel de espacio de trabajo `tsconfig.json` a `tsconfig.base.json`. Todos los [archivos de configuración de TypeScript](guide/typescript-configuration) se extenderán desde esta base que contiene las opciones comunes utilizadas en todo el espacio de trabajo.
+1. Renombrando el espacio de trabajo de `tsconfig.json` a `tsconfig.base.json`. Todos los [archivos de configuración de TypeScript](guide/typescript-configuration) se extenderán desde esta base que contiene las opciones comunes utilizadas en todo el espacio de trabajo.
 
 2. Agregando el archivo de solución `tsconfig.json` a la raíz del espacio de trabajo. Este archivo `tsconfig.json` solo contendrá referencias a archivos de configuración de TypeScript a nivel de proyecto y solo lo usarán editores/IDEs.
 
