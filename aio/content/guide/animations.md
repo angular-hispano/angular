@@ -12,7 +12,7 @@ Las animaciones bien diseñadas pueden hacer que su aplicación sea más diverti
 Normalmente, las animaciones implican múltiples *transformaciones* de estilo a lo largo del tiempo. Un elemento HTML puede moverse, cambiar de color, crecer o encogerse, desvanecerse o deslizarse fuera de la página. Estos cambios pueden ocurrir de forma simultánea o secuencial. Usted puede controlar el momento de cada transformación.
 
 El sistema de animación de Angular se basa en las funcionalidades  de CSS, lo que significa que puede animar cualquier propiedad que el navegador considere animable. Esto incluye posiciones, tamaños, transformaciones, colores, bordes, etc. El W3C mantiene una lista de propiedades animables en su página
-[CSS Transitions](https://www.w3.org/TR/css-transitions-1/).
+[Transiciones CSS](https://www.w3.org/TR/css-transitions-1/).
 
 ## Acerca esta guía
 Esta guía cubre las funcionalidades básicas de animación en Angular para comenzar a agregar animaciones de Angular a su proyecto.
@@ -23,7 +23,7 @@ Las funcionalidades descritas en esta guía &mdash; y las funcionalidades más a
 La guía asume que está familiarizado con la creación de aplicaciones básicas en Angular, como se describe en las siguientes secciones:
 
 * [Tutorial](tutorial)
-* [Architecture Overview](guide/architecture)
+* [Información sobre la arquitectura](guide/architecture)
 
 ## Comenzando
 
@@ -52,7 +52,7 @@ Si planea usar funciones específicas de animación en componentes, importe esas
 
 <div class="alert is-helpful">
 
-**Nota:** Ver una [summary of available animation functions](guide/animations#animation-api-summary) al final de esta guía.
+**Nota:** Ver [resumen de las funciones de animación disponibles](guide/animations#animation-api-summary) al final de esta guía.
 </div>
 
 ### Paso 3: Agregando la propiedad metadatos a la animación
@@ -76,9 +76,9 @@ En HTML, estos atributos se establecen habitualmente mediante estilos CSS, como 
 
 ### Animación, estados y estilos
 
-Use la función `state ()` de Angular para definir diferentes estados para llamar al final de cada transición. Esta función toma dos argumentos: un nombre único como `open` o `closed` y una función `style()`.
+Use la función `state()` de Angular para definir diferentes estados para llamar al final de cada transición. Esta función toma dos argumentos: un nombre único como `open` o `closed` y una función `style()`.
 
-Utilice la función `style ()` para definir un conjunto de estilos para asociarlos con un nombre de estado dado. Tenga en cuenta que los atributos de estilo deben estar en[*camelCase*](guide/glossary#case-conventions).
+Utilice la función `style()` para definir un conjunto de estilos para asociarlos con un nombre de estado dado. Tenga en cuenta que los atributos de estilo deben estar en[*camelCase*](guide/glossary#case-conventions).
 
 Vamos a ver como funciona la función `state()` de Angular trabajando con la función `style()` para establecer atributos de estilo CSS. En este fragmento de código, se establecen varios atributos de estilo al mismo tiempo para el estado. 
 En el estado `open`, el botón tiene una altura de 200 píxeles, una opacidad de 1 y un color de fondo amarillo.
@@ -86,7 +86,7 @@ En el estado `open`, el botón tiene una altura de 200 píxeles, una opacidad de
 <code-example path="animations/src/app/open-close.component.ts" header="src/app/open-close.component.ts" region="state1" language="typescript">
 </code-example>
 
-En el estado "`closed`, que se muestra a continuación, el botón tiene una altura de 100 píxeles, una opacidad de 0,5 y un color de fondo verde.
+En el estado `closed`, que se muestra a continuación, el botón tiene una altura de 100 píxeles, una opacidad de 0,5 y un color de fondo verde.
 
 <code-example path="animations/src/app/open-close.component.ts" header="src/app/open-close.component.ts" region="state2" language="typescript">
 </code-example>
@@ -108,7 +108,7 @@ La función `animate()` (Segundo argumento de la función transition) acepta los
 
 El parametro `timings` toma un string definido en tres partes.
 
->`animate ('duration delay easing')`
+>`animate('duration delay easing')`
 
 La primera parte, `duration`, es requerrida. La duración se puede expresar en milisegundos como un simple número sin comillas, o en segundos con comillas y un tiempo específico. Por ejemplo, una duración de una décima de segundo se puede expresar de la siguiente manera:
 
@@ -235,7 +235,7 @@ region="trigger">
 
 Aprendió a agregar animación a una transición simple entre dos estados, usando `style()` y `state()` junto con `animate()` para la sincronización.
 
-Puede aprender funciones de animaciones avanzada en Angular en la sección Animación, comenzando con técnicas avanzadas en [transition and triggers](guide/transition-and-triggers).
+Puede aprender funciones de animaciones avanzada en Angular en la sección Animación, comenzando con técnicas avanzadas en [Transición y disparadores](guide/transition-and-triggers).
 
 {@a animation-api-summary}
 ## Resumen de la API de animaciones
@@ -265,7 +265,7 @@ Nombre de la función
 
 <tr>
 <td><code><a href="api/animations/state" class="code-anchor">state()</a></code></td>
-<td>Creates a named set of CSS styles that should be applied on successful transition to a given state. The state can then be referenced by name within other animation functions.</td>
+<td>Crea un conjunto con nombre de estilos CSS que se deben aplicar en una transición exitosa a un estado dado. A continuación, se puede hacer referencia al estado por su nombre dentro de otras funciones de animación.</td>
 </tr>
 
 <tr>
@@ -285,51 +285,51 @@ Nombre de la función
 
 <tr>
 <td><code><a href="api/animations/group" class="code-anchor">group()</a></code></td>
-<td>Specifies a group of animation steps (<em>inner animations</em>) to be run in parallel. Animation continues only after all inner animation steps have completed. Used within <code>sequence()</code> or <code>transition().</code></td>
+<td>Especifica un grupo de animaciones internas de pasos (<em>de animación</em>) que se ejecutarán en paralelo. La animación continúa solo después de que se hayan completado todos los pasos de la animación interna. Usado dentro de <code>sequence()</code> o <code>transition().</code></td>
 </tr>
 
 <tr>
 <td><code>query()</code></td>
-<td>Use to find one or more inner HTML elements within the current element. </td>
+<td>Úselo para buscar uno o más elementos HTML internos dentro del elemento actual.</td>
 </tr>
 
 <tr>
 <td><code>sequence()</code></td>
-<td>Specifies a list of animation steps that are run sequentially, one by one.</td>
+<td>Especifica una lista de pasos de animación que se ejecutan secuencialmente, uno por uno.</td>
 </tr>
 
 <tr>
 <td><code>stagger()</code></td>
-<td>Staggers the starting time for animations for multiple elements.</td>
+<td>Escalona la hora de inicio de las animaciones de varios elementos.</td>
 </tr>
 
 <tr>
 <td><code>animation()</code></td>
-<td>Produces a reusable animation that can be invoked from elsewhere. Used together with <code>useAnimation()</code>.</td>
+<td>Produce una animación reutilizable que se puede invocar desde otro lugar. Usado junto con <code>useAnimation()</code>.</td>
 </tr>
 
 <tr>
 <td><code>useAnimation()</code></td>
-<td>Activates a reusable animation. Used with <code>animation()</code>.</td>
+<td>Activa una animación reutilizable. Usado con <code>animation()</code>.</td>
 </tr>
 
 <tr>
 <td><code>animateChild()</code></td>
-<td>Allows animations on child components to be run within the same timeframe as the parent.</td>
+<td>Permite que las animaciones de los componentes secundarios se ejecuten dentro del mismo período de tiempo que el principal.</td>
 </tr>
 
 </table>
 
-## More on Angular animations
+## Más sobre animaciones Angular
 
-You may also be interested in the following:
+También te puede interesar lo siguiente:
 
-* [Transition and triggers](guide/transition-and-triggers)
-* [Complex animation sequences](guide/complex-animation-sequences)
-* [Reusable animations](guide/reusable-animations)
-* [Route transition animations](guide/route-animations)
+* [Transición y disparadores](guide/transition-and-triggers)
+* [Secuencias de animación complejas](guide/complex-animation-sequences)
+* [Animaciones reutilizables](guide/reusable-animations)
+* [Animaciones de transición de ruta](guide/route-animations)
 
 <div class="alert is-helpful">
 
-Check out this full animation [demo](http://animationsftw.in/#/) with accompanying [presentation](https://www.youtube.com/watch?v=JhNo3Wvj6UQ&funcionalidad=youtu.be&t=2h47m53s), shown at the AngularConnect conference in November 2017.
+Mira esta animación completa [demo](http://animationsftw.in/#/) junto con la [presentación](https://www.youtube.com/watch?v=JhNo3Wvj6UQ&funcionalidad=youtu.be&t=2h47m53s), mostrado en la conferencia AngularConnect en noviembre de 2017.
 </div>
