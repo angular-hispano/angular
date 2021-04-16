@@ -114,7 +114,7 @@ Usando el enlace de datos, puedes controlar cosas como el estado de un botón:
 
 <code-example path="binding-syntax/src/app/app.component.html" region="disabled-button" header="src/app/app.component.html"></code-example>
 
-Puedes notar que el enlace se realiza a la propiedad `disabled` del elemento Botón del DOM,
+Puedes notar que el enlace se realiza a la propiedad `disabled` del elemento botón del DOM,
 **no** al atributo. Esto aplica al enlace de daos en general. El enlace de datos funciona con las *propiedades* de los elementos, componentes y directivas del DOM, no con los *atributos* HTML.
 
 {@a html-attribute-vs-dom-property}
