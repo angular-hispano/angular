@@ -102,7 +102,7 @@ No es necesario hacer nada especial para poder acceder al miembro de una directi
 
 ### Enlace de Datos y el HTML
 
-En condiciones normales para un desarrollo HTML, primero se crea la estructura visual con los elementos HTML y luego se modifica dichos elementos estableciendo los atributos de dichos elementos utilizando una cadena de caracteres.
+En condiciones normales para un desarrollo HTML, primero se crea la estructura visual con los elementos HTML y luego se modifican dichos elementos estableciendo los atributos de dichos elementos utilizando una cadena de caracteres.
 
 ```html
 <div class="special">HTML Simple</div>
