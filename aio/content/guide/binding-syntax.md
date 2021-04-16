@@ -179,7 +179,7 @@ Cuando añades el *atributo* `disabled`, su sola presencia inicializa la *propie
 
 Añadir y eliminar el *atributo* `disabled` desactiva y activa el botón.
 Sin embargo, el valor del *atributo* es irrelevante,
-lo cual es la razón del porque no puedes activar un botón escribiendo `<button disabled="false">Todavía Desactivado</button>`.
+lo cual es la razón del por qué no puedes activar un botón escribiendo `<button disabled="false">Todavía Desactivado</button>`.
 
 Para controlar el estado de un botón, establece la *propiedad* `disabled`.
 
