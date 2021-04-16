@@ -97,7 +97,7 @@ Los tipos de enlace distintos a la interporlación tienen un **nombre de destino
 
 El *destino* de un enlace es la propiedad o evento situado dentro de los signos de puntuación: `[]`, `()` or `[()]`.
 
-Cada miembro publico de una directiva **fuente** esta disponible automaticamente para ser utilizada con los enlaces.
+Cada miembro <span class="x x-first x-last">público</span> de una directiva **fuente** <span class="x x-first x-last">está</span> disponible automaticamente para ser utilizada con los enlaces.
 No es necesario hacer nada especial para poder acceder al miembro de una directiva en una expresión o declaración de plantilla.
 
 ### Enlace de Datos y el HTML
@@ -304,4 +304,3 @@ La siguiente tabla recoge los objetivos para los diferentes tipos de enlace.
     </td>
   </tr>
 </table>
-
