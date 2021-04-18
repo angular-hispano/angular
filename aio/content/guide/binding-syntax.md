@@ -1,17 +1,17 @@
 
 # Sintaxis de Enlace: una visión general
 
-El Enlace de datos es un mecanismo utilizado para coordinar los valores de los datos que los usuarios visualizan en la aplicación.
-Aunque puedas insertar y actualizar valores en el HTML, la aplicación es facil para escribir, leer y mantener si tu le dejas esas tareas al framework de enlace.
+El enlace de datos es un mecanismo utilizado para coordinar los valores de los datos que los usuarios visualizan en la aplicación.
+Aunque puedas insertar y actualizar valores en el HTML, la aplicación es más fácil de escribir, leer y mantener si tu le dejas esas tareas al framework de enlace.
 Por lo que simplemente debes declarar enlaces entre los datos del modelo y los elementos HTML y dejar al framework que haga el resto del trabajo.
 
 <div class="alert is-helpful">
 
-Consulta la <live-example>aplicación de muestra</live-example> que es un ejemplo funcional que contiene los fragmentos de codigo utilizados en esta guia.
+Consulta la <live-example>aplicación de muestra</live-example> que es un ejemplo funcional que contiene los fragmentos de código utilizados en esta guía.
 
 </div>
 
-Angular proporciona muchas formas para manejar el enlace de datos. Los tipos de enlace se pueden agrupar en tres categorias que se distinguen de acuerdo a la dirección del flujo de datos:
+Angular proporciona muchas formas para manejar el enlace de datos. Los tipos de enlace se pueden agrupar en tres categorías que se distinguen de acuerdo a la dirección del flujo de datos:
 
 * Desde el _modelo-hacia-vista_
 * Desde la _vista-hacia-modelo_
@@ -36,7 +36,7 @@ Angular proporciona muchas formas para manejar el enlace de datos. Los tipos de 
       Sintaxis
     </th>
     <th>
-      Categoria
+      Categoría
     </th>
 
   </tr>
@@ -115,7 +115,7 @@ Usando el enlace de datos, puedes controlar cosas como el estado de un botón:
 <code-example path="binding-syntax/src/app/app.component.html" region="disabled-button" header="src/app/app.component.html"></code-example>
 
 Puedes notar que el enlace se realiza a la propiedad `disabled` del elemento botón del DOM,
-**no** al atributo. Esto aplica al enlace de daos en general. El enlace de datos funciona con las *propiedades* de los elementos, componentes y directivas del DOM, no con los *atributos* HTML.
+**no** al atributo. Esto aplica al enlace de datos en general. El enlace de datos funciona con las *propiedades* de los elementos, componentes y directivas del DOM, no con los *atributos* HTML
 
 {@a html-attribute-vs-dom-property}
 
@@ -129,7 +129,7 @@ Distinguir la diferencia entre un atributo HTML y una propiedad del DOM es clave
 
 * Algunas propiedades del DOM no tienen su correspondencia hacia atributos; como por ejemplo, `textContent`.
 
-Es importante recordar que los **atributos HTML* y las *propiedades del DOM* son cosas muy diferentes, incluso cuando tienen el mismo nombre.
+Es importante recordar que los *atributos HTML* y las *propiedades del DOM* son cosas muy diferentes, incluso cuando tienen el mismo nombre.
 En Angular, el único rol de los atributos HTML es el de inicializar el estado de los elementos y las directivas.
 
 **El enlace de plantilla funciona con *propiedades* y *eventos*, no con *atributos*.**
@@ -168,7 +168,7 @@ Para consultar los atributos vs las propiedades del DOM en una aplicación funci
 
 #### Ejemplo 2: un botón desactivado
 
-El atributo `disabled` es otro ejemplo. La *propiedad** del botón `disabled`
+El atributo `disabled` es otro ejemplo. La *propiedad* del botón `disabled`
 *property* es `false` por defecto así que el botón esta activo.
 
 Cuando añades el *atributo* `disabled`, su sola presencia inicializa la *propiedad* del botón `disabled` con el valor de `true` por lo que el botón esta desactivado.
@@ -192,7 +192,7 @@ Aunque técnicamente podrías establecer el enlace de atributo `[attr.disabled]`
 <input [attr.disabled]="condition ? 'disabled' : null">
 ```
 
-Por lo general usa enlace de propiedades sobre enlace de atributos ya que es más intuitivo(siendo un valor booleano), tienen una sintaxis corta y es más eficaz.
+Por lo general usa enlace de propiedades sobre enlace de atributos ya que es más intuitivo (siendo un valor booleano), tienen una sintaxis corta y es más eficaz.
 
 </div>
 
