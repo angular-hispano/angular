@@ -153,7 +153,7 @@ La definición del módulo que pasamos a `configureTestingModule` es un subconju
   };
 </code-example>
 
-{@a objeto-sobreescrito-metadata}
+{@a metadata-override-object}
 
 Cada método de sobreescribir toma un `MetadataOverride<T>` donde  `T` es el tipo de metadato apropiado para el método, es decir, el parámetro de un `@NgModule`,
 `@Component`, `@Directive`, o `@Pipe`.
