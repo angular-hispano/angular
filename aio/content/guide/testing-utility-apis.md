@@ -337,7 +337,7 @@ Aquí están los métodos estáticos más importantes, en orden de posible utili
 
 Algunos de los métodos de instancia de `TestBed` no son cubiertos por los métodos estáticos de clase de  `TestBed`. Estos no suelen utilizarse.
 
-{@a resumen-componentes-fixture-api}
+{@a component-fixture-api-summary}
 
 ## El _ComponentFixture_
 
