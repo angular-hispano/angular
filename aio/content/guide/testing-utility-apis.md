@@ -167,7 +167,7 @@ Cada método de sobreescribir toma un `MetadataOverride<T>` donde  `T` es el tip
 </code-example>
 
 {@a testbed-métodos}
-{@a testbed-api-resumen}
+{@a testbed-api-summary}
 
 La API `TestBed` consiste de métodos de clase estáticos que o actualizan o referencian una instancia global de `TestBed`.
 
