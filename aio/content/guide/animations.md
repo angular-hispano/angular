@@ -124,7 +124,7 @@ El segundo argumento, `delay`, tiene la misma sintaxis que `duration`. Por ejemp
 
 El tercer argumento, `easing`, controla cómo la animación [acelera y desacelera](http://easings.net/) durante su tiempo de ejecución. Por ejemplo, `ease-in` hace que la animación comience lentamente y aumente la velocidad a medida que avanza.
 
-* Esperar por 100ms, correr por 200ms. Use una curva de desaceleración para comenzar rápido y desacelere lentamente hasta un punto de reposo: `'0.2s 100ms ease-out'`
+* Espera por 100ms, corre por 200ms. Usa una curva de desaceleración para comenzar rápido y desacelera lentamente hasta un punto de reposo: `'0.2s 100ms ease-out'`
 
 * Corre por 200ms, sin demora. Usa una curva estándar para comenzar lento, acelerar en el medio y luego desacelerar lentamente al final: `'0.2s ease-in-out'`
 
