@@ -20,7 +20,7 @@ Esta guía cubre las funcionalidades básicas de animación en Angular para come
 Las funcionalidades descritas en esta guía &mdash; y las funcionalidades más avanzadas descritas en las guías de animaciones en Angular relacionadas &mdash; se muestran en una aplicación de ejemplo disponible como <live-example></live-example>.
 
 #### Prerequisitos
-La guía asume que está familiarizado con la creación de aplicaciones básicas en Angular, como se describe en las siguientes secciones:
+La guía asume que estás familiarizado con la creación de aplicaciones básicas en Angular, como se describe en las siguientes secciones:
 
 * [Tutorial](tutorial)
 * [Información sobre la arquitectura](guide/architecture)
