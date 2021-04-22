@@ -66,7 +66,7 @@ Pon este disparador que define una animación dentro de la propiedad de metadato
 
 ## Animando una transición simple
 
-Vamos a animar una transición simple que cambia un solo elemento HTML de un estado a otro. Por ejemplo, puede especificar que un botón muestre **Open** o **Closed** basado en la última acción del usuario. Cuando el botón está en el estado "Open", es visible y amarillo. Cuando es el estado "Closed", es transparente y verde.
+Vamos a animar una transición simple que cambia un solo elemento HTML de un estado a otro. Por ejemplo, puedes especificar que un botón muestre **Open** o **Closed** basado en la última acción del usuario. Cuando el botón está en el estado "Open", es visible y amarillo. Cuando es el estado "Closed", es transparente y verde.
 
 En HTML, estos atributos se establecen habitualmente mediante estilos CSS, como el color y la opacidad. En Angular, use la función `style()` para especificar un conjunto de estilos CSS para usar con animaciones. Puede recopilar un conjunto de estilos en un estado de animación y darle un nombre al estado, como "open" o "closed".
 
