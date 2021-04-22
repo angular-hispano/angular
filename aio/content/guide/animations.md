@@ -280,7 +280,7 @@ Nombre de la función
 
 <tr>
 <td><code>keyframes()</code></td>
-<td>Permite un cambio secuencial entre estilos dentro de un intervalo de tiempo específico. Usa dentro <code>animate()</code>. Puede incluir dentro multiples llamadas <code>style()</code> dentro de cada <code>keyframe()</code>. Use la sintasis de array.</td>
+<td>Permite un cambio secuencial entre estilos dentro de un intervalo de tiempo específico. Usa dentro <code>animate()</code>. Puede incluir dentro múltiples llamadas <code>style()</code> dentro de cada <code>keyframe()</code>. Usa la sintasis de array.</td>
 </tr>
 
 <tr>
