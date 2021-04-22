@@ -14,7 +14,7 @@ Normalmente, las animaciones implican múltiples *transformaciones* de estilo a 
 El sistema de animación de Angular se basa en las funcionalidades  de CSS, lo que significa que puedes animar cualquier propiedad que el navegador considere animable. Esto incluye posiciones, tamaños, transformaciones, colores, bordes, etc. El W3C mantiene una lista de propiedades animables en tu página
 [Transiciones CSS](https://www.w3.org/TR/css-transitions-1/).
 
-## Acerca esta guía
+## Acerca de esta guía
 Esta guía cubre las funcionalidades básicas de animación en Angular para comenzar a agregar animaciones de Angular a su proyecto.
 
 Las funcionalidades descritas en esta guía &mdash; y las funcionalidades más avanzadas descritas en las guías de animaciones en Angular relacionadas &mdash; se muestran en una aplicación de ejemplo disponible como <live-example></live-example>.
