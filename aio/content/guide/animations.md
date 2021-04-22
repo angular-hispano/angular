@@ -5,7 +5,7 @@ Las animaciones bien diseñadas pueden hacer que tu aplicación sea más diverti
 
 * Sin animaciones, las transiciones de páginas web pueden parecer abruptas y discordantes.
 
-* El movimiento mejora en gran medida la experiencia del usuario, por lo que las animaciones les dan la oportunidad de detectar la respuesta de la aplicación a sus acciones.
+* El movimiento mejora en gran medida la experiencia del usuario, por lo que las animaciones brindan a los usuarios la oportunidad de detectar la respuesta de la aplicación a sus acciones.
 
 * Las buenas animaciones llaman la atención del usuario de forma intuitiva hacia donde se necesita.
 
