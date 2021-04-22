@@ -93,7 +93,7 @@ En el estado `closed`, que se muestra a continuación, el botón tiene una altur
 
 ### Transiciones y sincronización
 
-En Angular, puede establecer varios estilos sin ninguna animación. Sin embargo, sin más refinamiento, el botón se transforma instantáneamente sin desvanecimiento, sin encogimiento u otro indicador visible de que se está produciendo un cambio.
+En Angular, puedes establecer varios estilos sin ninguna animación. Sin embargo, sin más refinamiento, el botón se transforma instantáneamente sin desvanecimiento, sin encogimiento u otro indicador visible de que se está produciendo un cambio.
 
 Para que el cambio sea menos abrupto, necesitamos definir una animación *transition* para especificar los cambios que ocurren entre un estado y otro durante un período de tiempo. La función `transition()` acepta dos argumentos: el primer argumento acepta una expresión que define la dirección entre dos estados de transición, 
 y el segundo argumento acepta uno o una serie de pasos de `animate()`.
