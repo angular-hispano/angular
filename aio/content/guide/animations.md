@@ -114,7 +114,7 @@ La primera parte, `duration`, es requerida. La duración se puede expresar en mi
 
 * Como un número plano, en milisegundos: `100`
 
-* En un string, como milisegundos: `'100ms'`
+* En una cadena de texto, como milisegundos: `'100ms'`
 
 * En un string, como segundos: `'0.1s'`
 
