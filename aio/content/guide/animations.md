@@ -126,7 +126,7 @@ El tercer argumento, `easing`, controla cómo la animación [acelera y desaceler
 
 * Esperar por 100ms, correr por 200ms. Use una curva de desaceleración para comenzar rápido y desacelere lentamente hasta un punto de reposo: `'0.2s 100ms ease-out'`
 
-* correr por 200ms, sin demora. Use una curva estándar para comenzar lento, acelerar en el medio y luego desacelerar lentamente al final: `'0.2s ease-in-out'`
+* Corre por 200ms, sin demora. Usa una curva estándar para comenzar lento, acelerar en el medio y luego desacelerar lentamente al final: `'0.2s ease-in-out'`
 
 * Comenzar de inmediato, correr por 200ms. Use una curva de aceleración para comenzar lento y terminar a máxima velocidad: `'0.2s ease-in'`
 
