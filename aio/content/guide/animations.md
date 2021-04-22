@@ -208,7 +208,7 @@ Para los elementos que entran o salen de una página (insertados o eliminados de
 
 **Nota:** En el componente, establezca el disparador que define las animaciones como el valor de la propiedad `animations:` en el decorador `@Component ()`.
 
-En el archivo de la plantilla HTML, use el nombre del disparador para adjuntar las animaciones definidas al elemento HTML que se va a animar.
+En el archivo de la plantilla HTML, usa el nombre del disparador para adjuntar las animaciones definidas al elemento HTML que se va a animar.
 
 </div>
 
