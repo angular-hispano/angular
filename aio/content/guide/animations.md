@@ -110,7 +110,7 @@ El parámetro `timings` toma una cadena de texto definida en tres partes.
 
 >`animate('duration delay easing')`
 
-La primera parte, `duration`, es requerrida. La duración se puede expresar en milisegundos como un simple número sin comillas, o en segundos con comillas y un tiempo específico. Por ejemplo, una duración de una décima de segundo se puede expresar de la siguiente manera:
+La primera parte, `duration`, es requerida. La duración se puede expresar en milisegundos como un simple número sin comillas, o en segundos con comillas y un tiempo específico. Por ejemplo, una duración de una décima de segundo se puede expresar de la siguiente manera:
 
 * Como un número plano, en milisegundos: `100`
 
