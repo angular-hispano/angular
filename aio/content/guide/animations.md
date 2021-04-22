@@ -27,7 +27,7 @@ La guía asume que estás familiarizado con la creación de aplicaciones básica
 
 ## Comenzando
 
-Los principales módulos de Angular para animaciones son `@angular/animations` y `@angular/platform-browser`. Cuando crea un nuevo proyecto usando CLI, estas dependencias se agregan automáticamente a su proyecto.
+Los principales módulos de Angular para animaciones son `@angular/animations` y `@angular/platform-browser`. Cuando creas un nuevo proyecto usando CLI, estas dependencias se agregan automáticamente a tu proyecto.
 
 Para comenzar a agregar animaciones de Angular a su proyecto, importe los módulos específicos de animación junto con la funcionalidad estándar de Angular.
 
