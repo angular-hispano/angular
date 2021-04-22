@@ -31,7 +31,7 @@ Los principales módulos de Angular para animaciones son `@angular/animations` y
 
 Para comenzar a agregar animaciones de Angular a su proyecto, importa los módulos específicos de animación junto con la funcionalidad estándar de Angular.
 
-### Paso 1: Habilitando del módulo de animaciones
+### Paso 1: Habilitando el módulo de animaciones
 
 Importa `BrowserAnimationsmodule`, que introduce las capacidades de animación en el módulo raíz de tu aplicación Angular.
 
