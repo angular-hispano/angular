@@ -255,7 +255,7 @@ Nombre de la función
 
 <tr>
 <td><code>trigger()</code></td>
-<td>Inicia la animación y sirve como contenedor para todas las demás llamadas a funciones de animación. La plantilla HTML se une a <code>triggerName</code>. Utilice el primer argumento para declarar un nombre de disparador único. Utiliza sintaxis de array.</td>
+<td>Inicia la animación y sirve como contenedor para todas las demás llamadas a funciones de animación. La plantilla HTML se une a <code>triggerName</code>. Utiliza el primer argumento para declarar un nombre de disparador único. Utiliza sintaxis de array.</td>
 </tr>
 
 <tr>
