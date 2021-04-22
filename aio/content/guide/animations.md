@@ -104,7 +104,7 @@ Usa la función `animate()` para definir la duración, el retraso y la suavizaci
 
 #### Metadatos de animación: duración, retraso y suavizado
 
-La función `animate()` (Segundo argumento de la función transition) acepta los parámetros de entrada `timings` y `styles`.
+La función `animate()` (segundo argumento de la función de transición) acepta los parámetros de entrada `timings` y `styles`.
 
 El parametro `timings` toma un string definido en tres partes.
 
