@@ -15,7 +15,7 @@ El sistema de animación de Angular se basa en las funcionalidades  de CSS, lo q
 [Transiciones CSS](https://www.w3.org/TR/css-transitions-1/).
 
 ## Acerca de esta guía
-Esta guía cubre las funcionalidades básicas de animación en Angular para comenzar a agregar animaciones de Angular a su proyecto.
+Esta guía cubre las funcionalidades básicas de animación en Angular para comenzar a agregar animaciones de Angular a tu proyecto.
 
 Las funcionalidades descritas en esta guía &mdash; y las funcionalidades más avanzadas descritas en las guías de animaciones en Angular relacionadas &mdash; se muestran en una aplicación de ejemplo disponible como <live-example></live-example>.
 
