@@ -235,7 +235,7 @@ region="trigger">
 
 Aprendiste a agregar una animación a una transición simple entre dos estados, usando `style()` y `state()` junto con `animate()` para la sincronización.
 
-Puede aprender funciones de animaciones avanzada en Angular en la sección Animación, comenzando con técnicas avanzadas en [Transición y disparadores](guide/transition-and-triggers).
+Puedes aprender funciones de animaciones avanzada en Angular en la sección Animación, comenzando con técnicas avanzadas en [Transición y disparadores](guide/transition-and-triggers).
 
 {@a animation-api-summary}
 ## Resumen de la API de animaciones
