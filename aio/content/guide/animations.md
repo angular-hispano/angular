@@ -120,7 +120,7 @@ La primera parte, `duration`, es requerida. La duración se puede expresar en mi
 
 El segundo argumento, `delay`, tiene la misma sintaxis que `duration`. Por ejemplo:
 
-* Espere 100ms y luego ejecute  por 200ms: `'0.2s 100ms'`
+* Espera 100ms y luego ejecuta  por 200ms: `'0.2s 100ms'`
 
 El tercer argumento, `easing`, controla cómo la animación [acelera y desacelera](http://easings.net/) durante su tiempo de ejecución. Por ejemplo, `ease-in` hace que la animación comience lentamente y aumente la velocidad a medida que avanza.
 
