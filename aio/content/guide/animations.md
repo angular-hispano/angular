@@ -78,7 +78,7 @@ En HTML, estos atributos se establecen habitualmente mediante estilos CSS, como 
 
 Usa la función `state()` de Angular para definir diferentes estados para llamar al final de cada transición. Esta función toma dos argumentos: un nombre único como `open` o `closed` y una función `style()`.
 
-Utilice la función `style()` para definir un conjunto de estilos para asociarlos con un nombre de estado dado. Tenga en cuenta que los atributos de estilo deben estar en[*camelCase*](guide/glossary#case-conventions).
+Utiliza la función `style()` para definir un conjunto de estilos para asociarlos con un nombre de estado dado. Ten en cuenta que los atributos de estilo deben estar en [*camelCase*](guide/glossary#case-conventions).
 
 Vamos a ver como funciona la función `state()` de Angular trabajando con la función `style()` para establecer atributos de estilo CSS. En este fragmento de código, se establecen varios atributos de estilo al mismo tiempo para el estado. 
 En el estado `open`, el botón tiene una altura de 200 píxeles, una opacidad de 1 y un color de fondo amarillo.
