@@ -99,7 +99,7 @@ Para que el cambio sea menos abrupto, necesitamos definir una animación *transi
 y el segundo argumento acepta uno o una serie de pasos de `animate()`.
 
 
-Use la función `animate()` para definir la duración, el retraso y la suavización de una transición, y para designar la función de estilo para definir estilos mientras se realizan las transiciones. También puede utilizar la función `animate()` para definir la función `keyframes()` para animaciones de varios pasos. Estas definiciones se colocan en el segundo argumento de la función `animate()`.
+Usa la función `animate()` para definir la duración, el retraso y la suavización de una transición, y para designar la función de estilo para definir estilos mientras se realizan las transiciones. También puedes utilizar la función `animate()` para definir la función `keyframes()` para animaciones de varios pasos. Estas definiciones se colocan en el segundo argumento de la función `animate()`.
 
 
 #### Metadatos de animación: duración, retraso y suavizado
