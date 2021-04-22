@@ -45,7 +45,7 @@ Importa `BrowserAnimationsmodule`, que introduce las capacidades de animación e
 
 ### Paso 2: Importando funciones de animación en componentes
 
-Si planea usar funciones específicas de animación en componentes, importe esas funciones desde `@angular/animations`.
+Si planeas usar funciones específicas de animación en componentes, importa esas funciones desde `@angular/animations`.
 
 <code-example path="animations/src/app/app.component.ts" header="src/app/app.component.ts" region="imports" language="typescript">
 </code-example>
