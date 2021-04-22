@@ -116,7 +116,7 @@ La primera parte, `duration`, es requerida. La duración se puede expresar en mi
 
 * En una cadena de texto, como milisegundos: `'100ms'`
 
-* En un string, como segundos: `'0.1s'`
+* En una cadena de texto, como segundos: `'0.1s'`
 
 El segundo argumento, `delay`, tiene la misma sintaxis que `duration`. Por ejemplo:
 
