@@ -76,7 +76,7 @@ En HTML, estos atributos se establecen habitualmente mediante estilos CSS, como 
 
 ### Animación, estados y estilos
 
-Use la función `state()` de Angular para definir diferentes estados para llamar al final de cada transición. Esta función toma dos argumentos: un nombre único como `open` o `closed` y una función `style()`.
+Usa la función `state()` de Angular para definir diferentes estados para llamar al final de cada transición. Esta función toma dos argumentos: un nombre único como `open` o `closed` y una función `style()`.
 
 Utilice la función `style()` para definir un conjunto de estilos para asociarlos con un nombre de estado dado. Tenga en cuenta que los atributos de estilo deben estar en[*camelCase*](guide/glossary#case-conventions).
 
