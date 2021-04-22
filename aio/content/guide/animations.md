@@ -1,7 +1,7 @@
 # Introducción a las animaciones en Angular
 
 La animación proporciona la ilusión de movimiento: los elementos HTML cambian de estilo con el tiempo. 
-Las animaciones bien diseñadas pueden hacer que su aplicación sea más divertida y fácil de usar, pero no son sólo un decorado. Las animaciones pueden mejorar su aplicación y la experiencia del usuario de varias formas:
+Las animaciones bien diseñadas pueden hacer que tu aplicación sea más divertida y fácil de usar, pero no son sólo un decorado. Las animaciones pueden mejorar tu aplicación y la experiencia del usuario de varias formas:
 
 * Sin animaciones, las transiciones de páginas web pueden parecer abruptas y discordantes.
 
