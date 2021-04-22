@@ -106,7 +106,7 @@ Usa la función `animate()` para definir la duración, el retraso y la suavizaci
 
 La función `animate()` (segundo argumento de la función de transición) acepta los parámetros de entrada `timings` y `styles`.
 
-El parametro `timings` toma un string definido en tres partes.
+El parámetro `timings` toma una cadena de texto definida en tres partes.
 
 >`animate('duration delay easing')`
 
