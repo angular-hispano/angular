@@ -22,6 +22,7 @@ RxJS ofrece un sin fin de funciones que pueden ser usadas para crear nuevos obse
 
 <code-example path="rx-library/src/simple-creation.ts" region="ajax" header="Crear un observable que crea una petición AJAX"></code-example>
 
+{@a operators}
 ## Operadores
 
 Los operadores son funciones que construyen sobre la fundación de los observables para tener una manipulación más sofisticada de las colecciones. Por ejemplo, RxJS define operadores como `map()`, `filter()`, `concat()`, y `flatMap()`.
