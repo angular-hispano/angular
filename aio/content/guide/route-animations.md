@@ -2,7 +2,7 @@
 
 #### Prerrequisitos
 
-Una comprensión basica de los siguientes terminos:
+Una comprensión basica de los siguientes conceptos:
 
 * [Introducción a animaciones en Angular](guide/animations)
 * [Transición y desencadenadores](guide/transition-and-triggers)
