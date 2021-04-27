@@ -37,8 +37,8 @@ const routes: Routes = [
 
 </code-example>
 
-También asegurate de remover el `ItemsModule` de el `AppModule`.
-Para obtener instrucciones paso a paso sobre los módulos de carga diferida, continúa con las siguientes seciones de esta página.
+También asegúrate de remover el `ItemsModule` de el `AppModule`.
+Para obtener instrucciones paso a paso sobre los módulos de carga diferida, continúa con las siguientes secciones de esta página.
 
 {@a step-by-step}
 
@@ -67,7 +67,7 @@ Ve [Mantenerse actualizado](guide/updating).
 
 </div
 
-### Crea un módulo de funciones con routing
+### Crea un módulo de funciones con enrutamiento
 
 Para continuar, necesitarás un módulo de funciones con un componente a enrutar.
 Para hacer uno, ejecuta el siguiente comando en la terminal donde `customers` es el nombre de tu módulo de funciones. La ruta para cargar el módulo de `customers` es también `customers` porque está especificado con la opción `--route`.
@@ -76,7 +76,7 @@ Para hacer uno, ejecuta el siguiente comando en la terminal donde `customers` es
 ng generate module customers --route customers --module app.module
 </code-example>
 
-Este comando crea un directorio llamado `customers` con el nuevo módulo de carga diferida llamado `CustomersModule` definido en el archivo de `customers.module.ts`. El comando automaticamente declara el componente `CustomersComponent` dentro del nuevo módulo de funciones.
+Este comando crea un directorio llamado `customers` con el nuevo módulo de carga diferida llamado `CustomersModule` definido en el archivo de `customers.module.ts`. El comando automáticamente declara el componente `CustomersComponent` dentro del nuevo módulo de funciones.
 
 Debido a que se entiende que el nuevo módulo será con carga diferida, el comando no agrega una referencia al nuevo módulo de funciones en el archivo raíz del módulo de la aplicación, `app.module.ts`. En lugar de eso, se agrega la ruta declarada, `customers` al array `routes` declarado en el módulo proporcionado con la opción `---module`.
 
@@ -131,7 +131,7 @@ Estos botones funcionan porque el CLI agregó automáticamente las rutas de los 
 
 ### Importaciones y configuración del enrutador
 
-El CLI automáticament agregó cada módulo de funciones al mapa de rutas a nivel de la aplicación.
+El CLI automáticamente agregó cada módulo de funciones al mapa de rutas a nivel de la aplicación.
 Para terminar esto agrega una ruta predeterminada. En el archivo `app-routing.module.ts`, actualiza el array de `routes` con lo siguiente:
 
 <code-example path="lazy-loading-ngmodules/src/app/app-routing.module.ts" id="app-routing.module.ts" region="const-routes" header="src/app/app-routing.module.ts"></code-example>
@@ -173,7 +173,7 @@ Haz click en el botón de de Orders o Customers. Si ves que aparece un _chunk_, 
   <img src="generated/images/guide/lazy-loading-ngmodules/chunk-arrow.png" width="600" alt="diagrama de carga diferida">
 </div>
 
-Para verlo de nuevo, o probar después de trabajar en el proyecto, limpia todo dando click en el circulo que tiene una línea atravezada situado en la parte superior izquierda en la pestaña de Network.
+Para verlo de nuevo, o probar después de trabajar en el proyecto, limpia todo dando click en el circulo que tiene una línea atravesada situado en la parte superior izquierda en la pestaña de Red.
 
 <div class="lightbox">
   <img src="generated/images/guide/lazy-loading-ngmodules/clear.gif" width="200" alt="lazy loaded modules diagram">
@@ -184,7 +184,7 @@ Después recarga con `Cmd+r` o `Ctrl+r`, dependiend el sistema operativo que est
 ## `forRoot()` y `forChild()`
 
 Como ya habrás notado, el CLI agrega `RouterModule.forRoot(routes)` al array de `imports` en `AppRoutingModule`.
-Esto permite a Angular saber que `AppRoutingModule` es un módulo de enrutamiento y `forRoot()` especifica que que es el módulo raiz de rutas.
+Esto permite a Angular saber que `AppRoutingModule` es un módulo de enrutamiento y `forRoot()` especifica que es el módulo raíz de rutas.
 Esto configura todas las rutas que le pasas, dando acceso a las directivas del enrutador, y registra el servicio de `Router`.
 Usa `forRoot()` solamente una vez en la aplicación, dentro de `AppRoutingModule`.
 
