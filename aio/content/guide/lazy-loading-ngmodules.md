@@ -278,6 +278,7 @@ Agrega un objeto `resolver` a la configuración del `route` del componente.
 }
 </code-example>
 
+
 En el componente, usa un `Observable` para obtener datos desde el `ActivatedRoute`.
 
 <code-example header="Component (extracto)">
