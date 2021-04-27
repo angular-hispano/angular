@@ -1,4 +1,4 @@
-# Animaciónes para transición de rutas
+# Animaciones para transición de rutas
 
 #### Prerequisitos
 
