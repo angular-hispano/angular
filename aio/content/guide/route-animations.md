@@ -1,6 +1,6 @@
 # Animaciones para transición de rutas
 
-#### Prerequisitos
+#### Prerrequisitos
 
 Una comprensión basica de los siguientes terminos:
 
