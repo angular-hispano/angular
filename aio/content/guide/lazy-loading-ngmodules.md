@@ -242,6 +242,7 @@ Con el CLI, el comando para generar un servicio es el siguiente:
   ng generate service <service-name>
 </code-example>
 
+
 En tu servicio, importa los siguientes miembros del enrutador, implementa `Resolve`, e injecta el servicio de `Router`:
 
 <code-example header="Resolver service (extracto)">
