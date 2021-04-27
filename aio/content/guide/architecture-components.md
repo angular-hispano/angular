@@ -1,120 +1,127 @@
-# Introduction to components and templates
+# Introducción a componentes y plantillas
 
-A *component* controls a patch of screen called a [*view*](guide/glossary#view "Definition of view").
-For example, individual components define and control each of the following views from the [Tour of Heroes tutorial](tutorial):
+Un *componente* controla una parte en pantalla llamada [*vista*](guide/glossary#view "Definition of view").
+Por ejemplo, los componentes individuales definen y controlan cada una de las siguientes vistas del [tutorial Tour of Heroes](tutorial):
 
-* The app root with the navigation links.
-* The list of heroes.
-* The hero editor.
+* La raíz de la aplicación con los enlaces de navegación.
+* La lista de héroes.
+* El editor de héroe.
 
-You define a component's application logic&mdash;what it does to support the view&mdash;inside a class.
-The class interacts with the view through an API of properties and methods.
+Usted define la lógica de aplicación de un componente &mdash; lo que hace para apoyar la vista &mdash; dentro de una clase.
+La clase interactúa con la vista a través de una API de propiedades y métodos.
 
-For example, `HeroListComponent` has a `heroes` property that holds an array of heroes.
-Its `selectHero()` method sets a `selectedHero` property when the user clicks to choose a hero from that list.
-The component acquires the heroes from a service, which is a TypeScript [parameter property](http://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties) on the constructor.
-The service is provided to the component through the dependency injection system.
+Por ejemplo, `HeroListComponent` tiene una propiedad `heroes` que contiene un array de héroes.
+Su método `selectHero()` establece una propiedad `selectedHero` cuando el usuario hace clic para elegir un héroe de esa lista.
+El componente adquiere los héroes desde un servicio, que es una [propiedad de parámetro](http://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties) de TypeScript en el constructor.
+El servicio es proporcionado al componente a través del sistema de inyección de dependencias.
 
 <code-example path="architecture/src/app/hero-list.component.ts" header="src/app/hero-list.component.ts (class)" region="class"></code-example>
 
-Angular creates, updates, and destroys components as the user moves through the application. Your app can take action at each moment in this lifecycle through optional [lifecycle hooks](guide/lifecycle-hooks), like `ngOnInit()`.
+Angular crea, actualiza y destruye componentes a medida que el usuario se mueve por la aplicación. Su aplicación puede tomar medidas en cada momento de este ciclo de vida a través de [enlaces de ciclo de vida](guide/lifecycle-hooks) opcionales, como `ngOnInit()`.
 
-## Component metadata
+{@a component-metadata}
 
-<img src="generated/images/guide/architecture/metadata.png" alt="Metadata" class="left">
+## Metadatos de componentes
 
-The `@Component` decorator identifies the class immediately below it as a component class, and specifies its metadata. In the example code below, you can see that `HeroListComponent` is just a class, with no special Angular notation or syntax at all. It's not a component until you mark it as one with the `@Component` decorator.
+<img src="generated/images/guide/architecture/metadata.png" alt="Metadatos" class="left">
 
-The metadata for a component tells Angular where to get the major building blocks that it needs to create and present the component and its view. In particular, it associates a *template* with the component, either directly with inline code, or by reference. Together, the component and its template describe a *view*.
+El decorador `@Component` identifica la clase inmediatamente debajo de ella como una clase de componente y especifica sus metadatos. En el código de ejemplo a continuación, puede ver que `HeroListComponent` es solo una clase, sin ninguna notación o sintaxis de angular especial. No es un componente hasta que lo marca como uno con el decorador `@Component`.
 
-In addition to containing or pointing to the template, the `@Component` metadata configures, for example, how the component can be referenced in HTML and what services it requires.
+Los metadatos de un componente le dicen a Angular dónde obtener los bloques de construcción principales que necesita para crear y presentar el componente y su vista. En particular, asocia una *plantilla* con el componente, ya sea directamente con el código en línea o por referencia. Juntos, el componente y su plantilla describen una *vista*.
 
-Here's an example of basic metadata for `HeroListComponent`.
+Además de contener o apuntar a la plantilla, los metadatos de `@Component` configuran, por ejemplo, cómo puede ser referenciado en HTML el componente y qué servicios requiere.
+
+Aquí hay un ejemplo de metadatos básicos para `HeroListComponent`.
 
 <code-example path="architecture/src/app/hero-list.component.ts" header="src/app/hero-list.component.ts (metadata)" region="metadata"></code-example>
 
-This example shows some of the most useful `@Component` configuration options:
+Este ejemplo muestra algunas de las opciones de configuración de `@Component` más útiles:
 
-* `selector`: A CSS selector that tells Angular to create and insert an instance of this component wherever it finds the corresponding tag in template HTML. For example, if an app's HTML contains `<app-hero-list></app-hero-list>`, then
-Angular inserts an instance of the `HeroListComponent` view between those tags.
+* `selector`: Un selector de CSS que le dice a Angular que cree e inserte una instancia de este componente siempre que encuentre la etiqueta correspondiente en la plantilla HTML. Por ejemplo, si el HTML de una aplicación contiene `<app-hero-list></app-hero-list>`, entonces
+Angular inserta una instancia de la vista `HeroListComponent` entre esas etiquetas.
 
-* `templateUrl`: The module-relative address of this component's HTML template. Alternatively, you can provide the HTML template inline, as the value of the `template` property. This template defines the component's *host view*.
+* `templateUrl`: La dirección relativa al módulo de la plantilla HTML de este componente. Alternativamente, puede proporcionar la plantilla HTML en línea, como el valor de la propiedad `template`. Esta plantilla define la *vista host* del componente.
 
-* `providers`: An array of [providers](guide/glossary#provider) for services that the component requires. In the example, this tells Angular how to provide the `HeroService` instance that the component's constructor uses to get the list of heroes to display.
+* `proveedores`: Un array de [proveedores](guide/glossary#provider) para los servicios que requiere el componente. En el ejemplo, esto le dice a Angular cómo proporcionar la instancia de `HeroService` que el constructor del componente usa para obtener la lista de héroes para mostrar.
 
+{@a templates-and-views}
 
-## Templates and views
+## Plantillas y vistas
 
-<img src="generated/images/guide/architecture/template.png" alt="Template" class="left">
+<img src="generated/images/guide/architecture/template.png" alt="Plantilla" class="left">
 
-You define a component's view with its companion template. A template is a form of HTML that tells Angular how to render the component.
+Define la vista de un componente con su plantilla complementaria. Una plantilla es una forma de HTML que le dice a Angular cómo renderizar el componente.
 
-Views are typically arranged hierarchically, allowing you to modify or show and hide entire UI sections or pages as a unit. The template immediately associated with a component defines that component's *host view*. The component can also define a *view hierarchy*, which contains *embedded views*, hosted by other components.
+Las vistas generalmente se organizan jerárquicamente, lo que le permite modificar o mostrar y ocultar secciones enteras de UI o páginas como una unidad. La plantilla asociada inmediatamente con un componente define la *vista host* de ese componente. El componente también puede definir una *jerarquía de vistas*, que contiene *vistas incrustadas*, alojadas por otros componentes.
 
 <div class="lightbox">
-  <img src="generated/images/guide/architecture/component-tree.png" alt="Component tree" class="left">
+  <img src="generated/images/guide/architecture/component-tree.png" alt="Árbol de componentes" class="left">
 </div>
 
-A view hierarchy can include views from components in the same NgModule, but it also can (and often does) include views from components that are defined in different NgModules.
+Una jerarquía de vistas puede incluir vistas de componentes en el mismo NgModule, pero también puede (y a menudo lo hace) incluir vistas de componentes que están definidos en diferentes NgModules.
 
-## Template syntax
+{@a template-syntax}
 
-A template looks like regular HTML, except that it also contains Angular [template syntax](guide/template-syntax), which alters the HTML based on your app's logic and the state of app and DOM data. Your template can use *data binding* to coordinate the app and DOM data, *pipes* to transform data before it is displayed, and *directives* to apply app logic to what gets displayed.
+## Sintaxis de plantilla
 
-For example, here is a template for the Tutorial's `HeroListComponent`.
+Una plantilla se ve como HTML normal, excepto que también contiene [sintaxis de plantilla](guide/template-syntax) de Angular, que altera el HTML según la lógica de su aplicación y el estado de la aplicación y datos del DOM. Tu plantilla puede usar *el enlace de datos* para coordinar la aplicación y los datos del DOM, *pipes* para transformar los datos antes de que se muestren y *directivas* para aplicar lógica de aplicación a lo que es mostrado.
+
+Por ejemplo, aquí hay una plantilla para el `HeroListComponent` del Tutorial.
 
 <code-example path="architecture/src/app/hero-list.component.html" header="src/app/hero-list.component.html"></code-example>
 
-This template uses typical HTML elements like `<h2>` and  `<p>`, and also includes Angular template-syntax elements,  `*ngFor`, `{{hero.name}}`, `(click)`, `[hero]`, and `<app-hero-detail>`. The template-syntax elements tell Angular how to render the HTML to the screen, using program logic and data.
+Esta plantilla utiliza elementos HTML típicos como `<h2>` y `<p>`, y también incluye elementos de sintaxis de plantilla angular, `*ngFor`, `{{hero.name}}`, `(click)`, `[heroe]` y `<app-hero-detail>`. Los elementos de sintaxis de plantilla le dicen a Angular cómo representar el HTML en la pantalla, utilizando la lógica y los datos del programa.
 
-* The `*ngFor` directive tells Angular to iterate over a list.
-* `{{hero.name}}`, `(click)`, and `[hero]` bind program data to and from the DOM, responding to user input. See more about [data binding](#data-binding) below.
-* The `<app-hero-detail>` tag in the example is an element that represents a new component, `HeroDetailComponent`.
-`HeroDetailComponent` (code not shown) defines the hero-detail child view of `HeroListComponent`.
-Notice how custom components like this mix seamlessly with native HTML in the same layouts.
+* La directiva `*ngFor` le dice a Angular que itere una lista.
+* `{{hero.name}}`, `(click)`, y `[hero]` enlazan los datos del programa hacia y desde el DOM, respondiendo a entradas del usuario. Obtenga más información sobre [enlace de datos](#data-binding).
+* La etiqueta `<app-hero-detail>` en el ejemplo es un elemento que representa un nuevo componente, `HeroDetailComponent`.
+`HeroDetailComponent` (código no mostrado) define la vista del [PENDIENTE]hijo hero-detail `HeroListComponent`.
+Observe cómo los componentes personalizados como este se combinan a la perfección con HTML nativo en los mismos diseños.
 
-### Data binding
+{@a data-binding}
 
-Without a framework, you would be responsible for pushing data values into the HTML controls and turning user responses into actions and value updates. Writing such push and pull logic by hand is tedious, error-prone, and a nightmare to read, as any experienced front-end JavaScript programmer can attest.
+### Enlace de datos
 
-Angular supports *two-way data binding*, a mechanism for coordinating the parts of a template with the parts of a component. Add binding markup to the template HTML to tell Angular how to connect both sides.
+Sin un marco, sería responsable de introducir valores de datos en los controles HTML y convertir las respuestas de los usuarios en acciones y actualizaciones de valores. Escribir esa lógica de empujar y tirar a mano es tedioso, propenso a errores y una pesadilla de leer, como puede atestiguar cualquier programador de JavaScript de front-end experimentado.
 
-The following diagram shows the four forms of data binding markup. Each form has a direction: to the DOM, from the DOM, or both.
+Angular admite *enlace de datos bidireccional*, un mecanismo para coordinar las partes de una plantilla con las partes de un componente. Agregue marcado de enlace a la plantilla HTML para decirle a Angular cómo conectar ambos lados.
+
+El siguiente diagrama muestra las cuatro formas de marcado de enlace de datos. Cada formulario tiene una dirección: al DOM, desde el DOM o ambos.
 
 <div class="lightbox">
   <img src="generated/images/guide/architecture/databinding.png" alt="Data Binding" class="left">
 </div>
 
-This example from the `HeroListComponent` template uses three of these forms.
+Este ejemplo de la plantilla `HeroListComponent` utiliza tres de estos formularios.
 
 <code-example path="architecture/src/app/hero-list.component.1.html" header="src/app/hero-list.component.html (binding)" region="binding"></code-example>
 
-* The `{{hero.name}}` [*interpolation*](guide/displaying-data#interpolation)
-displays the component's `hero.name` property value within the `<li>` element.
+* El `{{hero.name}}` [*interpolación*](guide/displaying-data#interpolation)
+muestra el valor de la propiedad `hero.name` del componente dentro del elemento`<li>`.
 
-* The `[hero]` [*property binding*](guide/property-binding) passes the value of
-`selectedHero` from the parent `HeroListComponent` to the `hero` property of the child `HeroDetailComponent`.
+* El `[heroe]` [*enlace de propiedad*](guide/property-binding) pasa el valor de
+`selectedHero` del padre `HeroListComponent` a la propiedad `hero` del hijo `HeroDetailComponent`.
 
-* The `(click)` [*event binding*](guide/user-input#binding-to-user-input-events) calls the component's `selectHero` method when the user clicks a hero's name.
+* El `(click)` [*event binding*](guide/user-input#binding-to-user-input-events) llama al método `selectHero` del componente cuando el usuario hace clic en el nombre de un héroe.
 
-Two-way data binding (used mainly in [template-driven forms](guide/forms))
-combines property and event binding in a single notation.
-Here's an example from the `HeroDetailComponent` template that uses two-way data binding with the `ngModel` directive.
+Enlace de datos bidireccional (utilizado principalmente en [formularios basados ​​en plantillas](guide/forms))
+combina la propiedad y la vinculación de eventos en una sola notación.
+Aquí hay un ejemplo de la plantilla `HeroDetailComponent` que usa enlace de datos bidireccional con la directiva `ngModel`.
 
 <code-example path="architecture/src/app/hero-detail.component.html" header="src/app/hero-detail.component.html (ngModel)" region="ngModel"></code-example>
 
-In two-way binding, a data property value flows to the input box from the component as with property binding.
-The user's changes also flow back to the component, resetting the property to the latest value,
-as with event binding.
+En el enlace bidireccional, un valor de propiedad de datos fluye al cuadro de entrada desde el componente como con el enlace de propiedad.
+Los cambios del usuario también regresan al componente, restableciendo la propiedad al último valor,
+como con la vinculación de eventos.
 
-Angular processes *all* data bindings once for each JavaScript event cycle,
-from the root of the application component tree through all child components.
+Procesos angulares *todos* los enlaces de datos una vez para cada ciclo de eventos de JavaScript,
+desde la raíz del árbol de componentes de la aplicación a través de todos los componentes secundarios.
 
 <div class="lightbox">
   <img src="generated/images/guide/architecture/component-databinding.png" alt="Data Binding" class="left">
 </div>
 
-Data binding plays an important role in communication between a template and its component, and is also important for communication between parent and child components.
+El enlace de datos juega un papel importante en la comunicación entre una plantilla y su componente, y también es importante para la comunicación entre los componentes principal y secundario.
 
 <div class="lightbox">
   <img src="generated/images/guide/architecture/parent-child-binding.png" alt="Parent/Child binding" class="left">
@@ -122,69 +129,71 @@ Data binding plays an important role in communication between a template and its
 
 ### Pipes
 
-Angular pipes let you declare display-value transformations in your template HTML. A class with the `@Pipe` decorator defines a function that transforms input values to output values for display in a view.
+Las tuberías angulares le permiten declarar transformaciones de valor de visualización en su plantilla HTML. Una clase con el decorador `@Pipe` define una función que transforma los valores de entrada en valores de salida para mostrarlos en una vista.
 
-Angular defines various pipes, such as the [date](api/common/DatePipe) pipe and [currency](api/common/CurrencyPipe) pipe; for a complete list, see the [Pipes API list](api?type=pipe). You can also define new pipes.
+Angular define varias canalizaciones, como la canalización [date](api/common/DatePipe) y la canalización [currency](api/common/CurrencyPipe); para obtener una lista completa, consulte la [Lista de API de tuberías](api?type=pipe). También puede definir nuevas tuberías.
 
-To specify a value transformation in an HTML template, use the [pipe operator (|)](guide/template-expression-operators#pipe).
+Para especificar una transformación de valor en una plantilla HTML, use el [operador de tubería (|)](guide/template-expression-operators#pipe).
 
 `{{interpolated_value | pipe_name}}`
 
-You can chain pipes, sending the output of one pipe function to be transformed by another pipe function. A pipe can also take arguments that control how it performs its transformation. For example, you can pass the desired format to the `date` pipe.
+Puede encadenar tuberías, enviando la salida de una función de tubería para que sea transformada por otra función de tubería. Una tubería también puede tomar argumentos que controlen cómo realiza su transformación. Por ejemplo, puede pasar el formato deseado a la tubería `fecha`.
 
 ```
-  <!-- Default format: output 'Jun 15, 2015'-->
-  <p>Today is {{today | date}}</p>
+  <!-- Formato predeterminado: salida '15 de junio de 2015'-->
+  <p> Hoy es {{hoy | fecha}}</p>
 
- <!-- fullDate format: output 'Monday, June 15, 2015'-->
- <p>The date is {{today | date:'fullDate'}}</p>
+ <!-- formato fullDate: salida 'Lunes, 15 de junio de 2015'-->
+ <p> La fecha es {{hoy | fecha:'fullDate'}}</p>
 
-  <!-- shortTime format: output '9:43 AM'-->
-  <p>The time is {{today | date:'shortTime'}}</p>
+  <!-- formato de tiempo corto: salida '9:43 AM'-->
+  <p> La hora es {{hoy | fecha:'shortTime'}}</p>
 ```
 
-### Directives
+{@a directives}
+
+### Directivas
 
 <img src="generated/images/guide/architecture/directive.png" alt="Directives" class="left">
 
-Angular templates are *dynamic*. When Angular renders them, it transforms the DOM according to the instructions given by *directives*. A directive is a class with a `@Directive()` decorator.
+Las plantillas angulares son *dinámicas*. Cuando Angular los renderiza, transforma el DOM de acuerdo con las instrucciones dadas por *directivas*. Una directiva es una clase con un decorador `@Directive()`.
 
-A component is technically a directive.
-However, components are so distinctive and central to Angular applications that Angular
-defines the `@Component()` decorator, which extends the `@Directive()` decorator with
-template-oriented features.
+Un componente es técnicamente una directiva.
+Sin embargo, los componentes son tan distintivos y fundamentales para las aplicaciones de Angular que Angular
+define el decorador `@Component()`, que extiende el decorador `@Directive()` con
+características orientadas a plantillas.
 
-In addition to components, there are two other kinds of directives:  *structural* and *attribute*.
-Angular defines a number of directives of both kinds, and you can define your own using the  `@Directive()` decorator.
+Además de los componentes, existen otros dos tipos de directivas: *estructural* y *atributo*.
+Angular define una serie de directivas de ambos tipos, y puedes definir las tuyas propias usando el decorador `@Directive()`.
 
-Just as for components, the metadata for a directive associates the decorated class with a `selector` element that you use to insert it into HTML. In templates, directives typically appear within an element tag as attributes, either by name or as the target of an assignment or a binding.
+Al igual que para los componentes, los metadatos de una directiva asocian la clase decorada con un elemento `selector` que usas para insertarlo en HTML. En las plantillas, las directivas suelen aparecer dentro de una etiqueta de elemento como atributos, ya sea por nombre o como el destino de una asignación o un enlace.
 
-#### Structural directives
+#### Directivas estructurales
 
-*Structural directives* alter layout by adding, removing, and replacing elements in the DOM.
-The example template uses two built-in structural directives to add application logic to how the view is rendered.
+* Directivas estructurales * modifican el diseño agregando, quitando y reemplazando elementos en el DOM.
+La plantilla de ejemplo utiliza dos directivas estructurales integradas para agregar lógica de aplicación a cómo se representa la vista.
 
 <code-example path="architecture/src/app/hero-list.component.1.html" header="src/app/hero-list.component.html (structural)" region="structural"></code-example>
 
-* [`*ngFor`](guide/displaying-data#ngFor) is an iterative; it tells Angular to stamp out one `<li>` per hero in the `heroes` list.
-* [`*ngIf`](guide/displaying-data#ngIf) is a conditional; it includes the `HeroDetail` component only if a selected hero exists.
+* [`*ngFor`](guide/displaying-data#ngFor) es iterativo; le dice a Angular que elimine un `<li>` por héroe en la lista de `heroes`.
+* [`*ngIf`](guide/displaying-data#ngIf) es un condicional; incluye el componente `HeroDetail` solo si existe un héroe seleccionado.
 
-#### Attribute directives
+#### Directivas de atributos
 
-*Attribute directives* alter the appearance or behavior of an existing element.
-In templates they look like regular HTML attributes, hence the name.
+* Las directivas de atributos * alteran la apariencia o el comportamiento de un elemento existente.
+En las plantillas, se ven como atributos HTML normales, de ahí el nombre.
 
-The `ngModel` directive, which implements two-way data binding, is an example of an attribute directive. `ngModel` modifies the behavior of an existing element (typically `<input>`) by setting its display value property and responding to change events.
+La directiva `ngModel`, que implementa el enlace de datos bidireccional, es un ejemplo de directiva de atributo. `ngModel` modifica el comportamiento de un elemento existente (típicamente `<input>`) estableciendo su propiedad de valor de visualización y respondiendo a eventos de cambio.
 
 <code-example path="architecture/src/app/hero-detail.component.html" header="src/app/hero-detail.component.html (ngModel)" region="ngModel"></code-example>
 
-Angular has more pre-defined directives that either alter the layout structure
-(for example, [ngSwitch](guide/built-in-directives#ngSwitch))
-or modify aspects of DOM elements and components
-(for example, [ngStyle](guide/built-in-directives#ngStyle) and [ngClass](guide/built-in-directives#ngClass)).
+Angular tiene más directivas predefinidas que alteran la estructura del diseño
+(por ejemplo, [ngSwitch](guide/built-in-directives#ngSwitch))
+o modificar aspectos de elementos y componentes DOM
+(por ejemplo, [ngStyle](guide/built-in-directives#ngStyle) y [ngClass](guide/built-in-directives#ngClass)).
 
 <div class="alert is-helpful">
 
-Learn more in the [Attribute Directives](guide/attribute-directives) and [Structural Directives](guide/structural-directives) guides.
+Obtenga más información en las guías [Directivas de atributos](guide/attribute-directives) y [Directivas estructurales](guide/structural-directives).
 
 </div>
