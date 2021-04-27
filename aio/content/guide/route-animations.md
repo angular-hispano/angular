@@ -30,7 +30,7 @@ Imaginemos un enrutador de animación de transiciones mediante la navegación en
 
 ## Configuración de rutas
 
-Para empezar, configura un grupo de rutas usando los métodos disponibles en la clase `RouterModule`. Esta configuración de rutas le indica al enrutador como navegar.
+Para empezar, configura un grupo de rutas usando los métodos disponibles en la clase `RouterModule`. Esta configuración de rutas le indica al enrutador cómo navegar.
 
 Usa el método `RouterModule.forRoot` para definir un grupo de rutas. También, importa este `RouterModule` al array `imports` del módulo principal, `AppModule`.
 
