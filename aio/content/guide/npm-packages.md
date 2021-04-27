@@ -35,7 +35,7 @@ El `package.json` se organiza en dos grupos de paquetes:
 <div class="alert is-helpful">
 
 **Desarrolladores de librerías:** Por defecto el comando de CLI [`ng generate library`](cli/generate) crea un `package.json` para la nueva librería. Ese `package.json` es usado cuando se publica la librería en npm.
-Para más información mira la siguiente página de la wiki del CLI [Soporte para librerías](https://github.com/angular/angular-cli/wiki/stories-create-library).
+Para más información leer [Creando librerías](guide/creating-libraries).
 </div>
 
 
@@ -58,7 +58,7 @@ Para añadir una nueva dependencia usa el comando [`ng add`](cli/add).
 ### Paquetes de Angular
 
 Los siguientes paquetes de Angular se incluyen como dependencias en el archivo `package.json` por defecto en un nuevo proyecto de Angular.
-Para ver la lista completa de paquetes de Angular visita la siguiente [referencia a la API](http://angular.io/api?type=package).
+Para ver la lista completa de paquetes de Angular visita la siguiente [referencia a la API](api?type=package).
 
 Nombre del Paquete                               | Descripción
 ----------------------------------------   | --------------------------------------------------
