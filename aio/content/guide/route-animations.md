@@ -36,7 +36,7 @@ Usa el método `RouterModule.forRoot` para definir un grupo de rutas. También, 
 
 <div class="alert is-helpful">
 
-**Nota:** Usa el método `RouterModule.forRoot` en el módulo raíz, `AppModule`, para registrar rutas y proveedores de nivel superior de la aplicación. Para una característica de los módulos, llama el método `RouterModule.forChild` para registrar rutas adicionales.
+**Nota:** Usa el método `RouterModule.forRoot` en el módulo raíz, `AppModule`, para registrar rutas y proveedores de nivel superior de la aplicación. Para los módulos de funcionalidad, llama el método `RouterModule.forChild` para registrar rutas adicionales.
 
 </div>
 
