@@ -181,7 +181,7 @@ En este ejemplo, nombraremos el disparador `openClose` y lo adjuntaremos al elem
 
 ### Definir animaciones y adjuntarlas a la plantilla HTML
 
-Las animaciones se definen en los metadatos del componente que controla el elemento HTML a animar. Ponga el código que define sus animaciones debajo de la propiedad `animations:` dentro del decorador `@Component()`.
+Las animaciones se definen en los metadatos del componente que controla el elemento HTML a animar. Pon el código que define tus animaciones debajo de la propiedad `animations:` dentro del decorador `@Component()`.
 
 <code-example path="animations/src/app/open-close.component.ts" header="src/app/open-close.component.ts" language="typescript" region="component"></code-example>
 
