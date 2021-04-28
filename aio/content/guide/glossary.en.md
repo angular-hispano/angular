@@ -937,7 +937,7 @@ The alternative is a reactive form. For an introduction and comparison of both f
 
 A TypeScript-like syntax that Angular evaluates within a [data binding](#data-binding).
 
-Read about how to write template expressions in the [template expressions](guide/interpolation#template-expressions) section of the [Interpolation](guide/interpolation) guide.
+Read about how to write template expressions in the [template expressions](guide/interpolation#expresiones-de-plantilla) section of the [Interpolation](guide/interpolation) guide.
 
 {@a token}
 
