@@ -201,7 +201,7 @@ region="compare">
 
 En este ejemplo, cuando la expresión `isOpen` evalúa el estado definido de `open` o `closed`, esto notifica al disparador `openClose` de un cambio de estado. Entonces depende del código `openClose` manejar el cambio de estado e iniciar una animación de cambio de estado.
 
-Para los elementos que entran o salen de una página (insertados o eliminados del DOM), puede hacer que las animaciones sean condicionales. Por ejemplo, use `*ngIf` con el disparador de animación en la plantilla HTML.
+Para los elementos que entran o salen de una página (insertados o eliminados del DOM), puedes hacer que las animaciones sean condicionales. Por ejemplo, usa `*ngIf` con el disparador de animación en la plantilla HTML.
 
 <div class="alert is-helpful">
 
