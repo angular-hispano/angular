@@ -86,7 +86,7 @@ En el estado `open`, el botón tiene una altura de 200 píxeles, una opacidad de
 <code-example path="animations/src/app/open-close.component.ts" header="src/app/open-close.component.ts" region="state1" language="typescript">
 </code-example>
 
-En el estado `closed`, que se muestra a continuación, el botón tiene una altura de 100 píxeles, una opacidad de 0,5 y un color de fondo verde.
+En el estado `closed`, que se muestra a continuación, el botón tiene una altura de 100 píxeles, una opacidad de 0.5 y un color de fondo verde.
 
 <code-example path="animations/src/app/open-close.component.ts" header="src/app/open-close.component.ts" region="state2" language="typescript">
 </code-example>
