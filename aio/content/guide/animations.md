@@ -185,7 +185,7 @@ Las animaciones se definen en los metadatos del componente que controla el eleme
 
 <code-example path="animations/src/app/open-close.component.ts" header="src/app/open-close.component.ts" language="typescript" region="component"></code-example>
 
-Cuando haya definido un disparador de animación para un componente, puede adjuntarlo a un elemento en la plantilla de ese componente colocando el nombre del disparador entre paréntesis y precediéndolo con un símbolo `@`. Luego, puede vincular el disparador a una expresión de plantilla utilizando la sintaxis de enlace estandar en Angular como se muestra a continuación, Donde `triggerName` es el nombre del disparador, y `expression` evalúa un estado definido de la animación.
+Cuando hayas definido un disparador de animación para un componente, puedes adjuntarlo a un elemento en la plantilla de ese componente colocando el nombre del disparador entre paréntesis y precediéndolo con un símbolo `@`. Luego, puedes vincular el disparador a una expresión de plantilla utilizando la sintaxis de enlace estándar en Angular como se muestra a continuación, donde `triggerName` es el nombre del disparador, y `expression` evalúa un estado definido de la animación.
 
 ```
 <div [@triggerName]="expression">...</div>;
