@@ -159,7 +159,7 @@ region="transition2">
 
 * Cuando las animaciones están deshabilitadas, los estilos `transition()` se pueden omitir, pero los estilos `state()` no.
 
-* Puede incluir varios pares de estados dentro del mismo argumento `transition()`:<br/> `transition( 'on => off, off => void' )`.
+* Puedes incluir varios pares de estados dentro del mismo argumento `transition()`:<br/> `transition( 'on => off, off => void' )`.
 </div>
 
 ### Activando la animación
