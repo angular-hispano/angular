@@ -11,8 +11,7 @@ Las animaciones bien diseñadas pueden hacer que tu aplicación sea más diverti
 
 Normalmente, las animaciones implican múltiples *transformaciones* de estilo a lo largo del tiempo. Un elemento HTML puede moverse, cambiar de color, crecer o encogerse, desvanecerse o deslizarse fuera de la página. Estos cambios pueden ocurrir de forma simultánea o secuencial. Puedes controlar el momento de cada transformación.
 
-El sistema de animación de Angular se basa en las funcionalidades  de CSS, lo que significa que puedes animar cualquier propiedad que el navegador considere animable. Esto incluye posiciones, tamaños, transformaciones, colores, bordes, etc. El W3C mantiene una lista de propiedades animables en tu página
-[Transiciones CSS](https://www.w3.org/TR/css-transitions-1/).
+El sistema de animación de Angular se basa en las funcionalidades de CSS, lo que significa que puedes animar cualquier propiedad que el navegador considere animable. Esto incluye posiciones, tamaños, transformaciones, colores, bordes, etc. El W3C mantiene una lista de propiedades animables en tu página [Transiciones CSS](https://www.w3.org/TR/css-transitions-1/).
 
 ## Acerca de esta guía
 Esta guía cubre las funcionalidades básicas de animación en Angular para comenzar a agregar animaciones de Angular a tu proyecto.
