@@ -40,7 +40,7 @@ Si ese usuario habilita el análisis CLI en su propio proyecto, su análisis mue
 ng config --global cli.analyticsSharing.user SOME_USER_NAME
 </code-example>
 
-Para generar un nuevo ID aleatorio de usuario, ejecuta el siguiente comando:
+Para generar un nuevo ID de usuario aleatorio, ejecuta el siguiente comando:
 
 <code-example language="sh" class="code-shell">
 ng config --global cli.analyticsSharing.user ""
