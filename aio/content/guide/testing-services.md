@@ -92,7 +92,7 @@ Luego inyéctalo dentro de una prueba llamando `TestBed.inject()` con la clase d
 **Nota:** `TestBed.get()` quedó obsoleto a partir de la versión 9 de Angular.
 Para ayudar a minimizar los cambios importantes, Angular presenta una nueva función llamada `TestBed.inject()`, que deberas usar en su lugar.
 Para obtener información sobre la eliminación de `TestBed.get()`,
-consulta su entrada en el [Índice de bajas](guide/deprecations#index).
+consulta su entrada en el [Índice de bajas](guide/deprecations#indice).
 
 </div>
 

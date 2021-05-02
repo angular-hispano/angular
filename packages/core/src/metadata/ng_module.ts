@@ -83,7 +83,7 @@ export interface NgModuleDef<T> {
  * A wrapper around an NgModule that associates it with [providers](guide/glossary#provider
  * "Definition"). Usage without a generic type is deprecated.
  *
- * @see [Deprecations](guide/deprecations#modulewithproviders-type-without-a-generic)
+ * @see [Deprecations](guide/deprecations#modulewithproviders-tipo-sin-generico)
  *
  * @publicApi
  */
