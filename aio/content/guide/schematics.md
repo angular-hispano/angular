@@ -1,121 +1,129 @@
-# Generating code using schematics
+# Generando código usando esquemas
 
-A schematic is a template-based code generator that supports complex logic.
-It is a set of instructions for transforming a software project by generating or modifying code.
-Schematics are packaged into [collections](guide/glossary#collection) and installed with npm.
+Un esquema es un generador de código basado en plantillas que soporta lógica compleja.
+Es un set de instrucciones para transformar un proyecto de software, generando o modificando código.
+Los esquemas están en el package [collections](guide/glossary#collection)  e instalados con npm.
 
-The schematic collection can be a powerful tool for creating, modifying, and maintaining any software project, but is particularly useful for customizing Angular projects to suit the particular needs of your own organization.
-You might use schematics, for example, to generate commonly-used UI patterns or specific components, using predefined templates or layouts.
-You can use schematics to enforce architectural rules and conventions, making your projects consistent and inter-operative.
+La colección de esquemas puede ser una herramienta poderosa para la creación, modificación, y mantenimiento de cualquier proyecto de software, pero es particularmente útil para personalizar proyectos de Angular de acuerdo a las necesidades de su propia organización.
 
-## Schematics for the Angular CLI
+Podría utilizar esquemas, por ejemplo, para generar patrones UI o componentes específicos, usando templates o layouts.
+Puede usarlos también para hacer cumplir las reglas y convenciones arquitectónicas, haciendo que sus proyectos sean coherentes e inter operativos.
 
-Schematics are part of the Angular ecosystem. The [Angular CLI](guide/glossary#cli)  uses schematics to apply transforms to a web-app project.
-You can modify these schematics, and define new ones to do things like update your code to fix breaking changes in a dependency, for example, or to add a new configuration option or framework to an existing project.
-
-Schematics that are included in the `@schematics/angular` collection are run by default by the commands `ng generate` and `ng add`.
-The package contains named schematics that configure the options that are available to the CLI for `ng generate` sub-commands, such as `ng generate component` and `ng generate service`.
-The subcommands for `ng generate` are shorthand for the corresponding schematic. You can specify a particular schematic (or collection of schematics) to generate, using the long form:
-
+## Esquemas para Angular CLI
+ 
+Los esquemas son parte del ecosistema de Angular, [Angular CLI](guide/glossary#cli) usa esquemas para aplicar transformaciones a proyectos web.
+ 
+Usted puede modificar estos esquemas, y definir nuevos para hacer cosas como actualizar su código para corregir cambios importantes en una dependencia, o para agregar una nueva opción de configuración o bien un framework a un proyecto existente.
+ 
+Los esquemas que se incluyen en la colección `@schematics/angular` se ejecutan de forma predeterminada por los comandos `ng generate` y `ng add`.
+ 
+El package contiene esquemas con nombre que configuran las opciones que están disponibles en el CLI para los subcomandos `ng generate`, por ejemplo `ng generate component` y `ng generate service`.
+ 
+Los subcomandos para `ng generate` son una abreviatura para el schema correspondiente. Usted puede especificar un esquema particular (o colección de esquemas) para generar, utilizando la forma larga:
+ 
 <code-example language="bash">
 ng generate my-schematic-collection:my-schematic-name
 </code-example>
-
-or
-
+ 
+o
+ 
 <code-example language="bash">
 ng generate my-schematic-name --collection collection-name
 </code-example>
-
-### Configuring CLI schematics
-
-A JSON schema associated with a schematic tells the Angular CLI what options are available to commands and subcommands, and determines the defaults.
-These defaults can be overridden by providing a different value for an option on the command line.
-See [Workspace Configuration](guide/workspace-config) for information about how you can change the generation option defaults for your workspace.
-
-The JSON schemas for the default schematics used by the CLI to generate projects and parts of projects are collected in the package [`@schematics/angular`](https://raw.githubusercontent.com/angular/angular-cli/v7.0.0/packages/schematics/angular/application/schema.json).
-The schema describes the options available to the CLI for each of the `ng generate` sub-commands, as shown in the `--help` output.
-
-## Developing schematics for libraries
-
-As a library developer, you can create your own collections of custom schematics to integrate your library with the Angular CLI.
-
-* An *add schematic* allows developers to install your library in an Angular workspace using `ng add`.
-
-* *Generation schematics* can tell the `ng generate` subcommands how to modify projects, add configurations and scripts, and scaffold artifacts that are defined in your library.
-
-* An *update schematic* can tell the `ng update` command how to update your library's dependencies and adjust for breaking changes when you release a new version.
-
-For more details of what these look like and how to create them, see:
-* [Authoring Schematics](guide/schematics-authoring)
-* [Schematics for Libraries](guide/schematics-for-libraries)
-
-### Add schematics
-
-An add schematic is typically supplied with a library, so that the library can be added to an existing project with `ng add`.
-The `add` command uses your package manager to download new dependencies, and invokes an installation script that is implemented as a schematic.
-
-For example, the [`@angular/material`](https://material.angular.io/guide/schematics) schematic tells the `add` command to install and set up Angular Material and theming, and register new starter components that can be created with `ng generate`.
-You can look at this one as an example and model for your own add schematic.
-
-Partner and third party libraries also support the Angular CLI with add schematics.
-For example, `@ng-bootstrap/schematics` adds [ng-bootstrap](https://ng-bootstrap.github.io/)  to an app, and  `@clr/angular` installs and sets up [Clarity from VMWare](https://vmware.github.io/clarity/documentation/v1.0/get-started).
-
-An add schematic can also update a project with configuration changes, add additional dependencies (such as polyfills), or scaffold package-specific initialization code.
-For example, the `@angular/pwa` schematic turns your application into a PWA by adding an app manifest and service worker, and the `@angular/elements`  schematic adds the `document-register-element.js` polyfill and dependencies for Angular Elements.
-
-### Generation schematics
-
-Generation schematics are instructions for the `ng generate` command.
-The documented sub-commands use the default Angular generation schematics, but you can specify a different schematic (in place of a sub-command) to generate an artifact defined in your library.
-
-Angular Material, for example, supplies generation schematics for the UI components that it defines.
-The following command uses one of these schematics to render an Angular Material `<mat-table>` that is pre-configured with a datasource for sorting and pagination.
-
+ 
+### Configuración de esquemas de CLI
+Un schema JSON asociado con un schema le dice a Angular CLI qué opciones están disponibles para comandos y subcomandos, y determina los valores predeterminados.
+ 
+Estos valores predeterminados pueden ser sobrescritos para proporcionar un valor diferente para una opción en la línea de comandos.
+Puede ver [Workspace Configuration](guide/workspace-config) para obtener información de cómo usted puede cambiar la opción de generación predeterminada para su workspace.
+ 
+Los schemas JSON para los escquemas predeterminados que utiliza el CLI para generar proyectos y partes de proyectos estan ubicados en el package [`@schematics/angular`](https://raw.githubusercontent.com/angular/angular-cli/v7.0.0/packages/schematics/angular/application/schema.json).
+ 
+El schema describe las opciones disponibles para el CLI para cada subcomando de `ng generate`, como se muestra en la salida de `--help`.
+ 
+## Desarrollo schemas para librerías.
+ 
+Como desarrollador de librerías, usted puede crear sus propias colecciones con schemas personalizados para integrar sus librerías con Angular CLI.
+ 
+* Un *add schematic* permite a los desarrolladores instalar su librería en un workspace de angular usando `ng add`.
+ 
+* *Generation schematics* puede decirle a los subcomandos de  `ng generate` como modificar proyectos, configuraciones, scripts y la estructura de artefactos que están definidos en su librería.
+ 
+* Un *update schematic* puede decirle a los subcomandos de `ng update` como modificar las dependencias de las librerías y ajustarlos a los cambios importantes cuando lanza una nueva versión.
+ 
+Para más detalles de cómo se ven y cómo crearlos, visitar.
+* [Esquemas de autoria](guide/schematics-authoring)
+* [Esquemas para librerias](guide/schematics-for-libraries)
+ 
+### Esquemas de adición
+ 
+Un esquema de adición es típicamente suministrado por una librería, por lo que la librería puede ser agregado a un proyecto existente con `ng add`.
+ 
+El comando `add` usa su administrador de paquetes para descargar una nueva dependencia, e invocar una script de instalación que es implementado como un schama.
+ 
+Por ejemplo, el schema [`@angular/material`](https://material.angular.io/guide/schematics) le dice al comando `add` que instale y configure Angular Material junto con un theme, y registrar nuevos componentes que pueden ser creados con `ng generate`.
+ 
+Puede verlo como un ejemplo y modelo para su propio schema de adición.
+ 
+Las librerías de terceros también soportan Angular CLI con esquemas de adición.
+ 
+Por ejemplo, `@ng-bootstrap/schematics` agrega [ng-bootstrap](https://ng-bootstrap.github.io/) para una aplicación, y `@clr/angular` instala y configura [Clarity from VMWare](https://vmware.github.io/clarity/documentation/v1.0/get-started).
+ 
+Un esquema de adición también puede actualizar un proyecto con cambios de configuración, agregar dependencias adicionales (así como polyfills), o código de inicialización específico del paquete de scaffold.
+ 
+Por ejemplo, el schema `@angular/pwa` convierte su aplicación en una PWA agregando un archivo manifest y un service worker, y el schema `@angular/elements`  agrega el `document-register-element.js` polyfill y dependencias para Angular Elements.
+ 
+### Esquemas de Generación
+Los esquemas de generación, son instrucciones para el comando `ng generate`.
+ 
+Los sub comandos documentados usan esquemas de generación Angular predeterminados, pero usted puede especificar un esquema diferente (en lugar de un sub comando) para generar un artefacto definido en su librería.
+ 
+Angular Material, por ejemplo, proporciona esquemas de generación para el componentes UI que los definen.
+El siguiente comando usa uno de esos esquemas para renderizar Angular Material `<mat-table>`  que es preconfigurado con un datasource para ordenar y paginar.
+ 
 <code-example language="bash">
 ng generate @angular/material:table <component-name>
 </code-example>
-
-### Update schematics
-
- The `ng update` command can be used to update your workspace's library dependencies. If you supply no options or use the help option, the command examines your workspace and suggests libraries to update.
-
+ 
+### Actualizar esquemas.
+ 
+Los comandos `ng update` pueden ser usados para actualizar las dependencias de la librería de su workspace. Si usted no proporciona opciones o usa la opción help, el comando examina su workspace y sugiere librerías para actualizar.
+ 
 <code-example language="bash">
 ng update
-    We analyzed your package.json, there are some packages to update:
-
-      Name                               Version                  Command to update
-     --------------------------------------------------------------------------------
-      @angular/cdk                       7.2.2 -> 7.3.1           ng update @angular/cdk
-      @angular/cli                       7.2.3 -> 7.3.0           ng update @angular/cli
-      @angular/core                      7.2.2 -> 7.2.3           ng update @angular/core
-      @angular/material                  7.2.2 -> 7.3.1           ng update @angular/material
-      rxjs                               6.3.3 -> 6.4.0           ng update rxjs
-
-
-    There might be additional packages that are outdated.
-    Run "ng update --all" to try to update all at the same time.
+ 
+   Analizamos su package.json, Hay algunos packages para actualizar:
+     Name                               Version                  Command to update
+    --------------------------------------------------------------------------------
+     @angular/cdk                       7.2.2 -> 7.3.1           ng update @angular/cdk
+     @angular/cli                       7.2.3 -> 7.3.0           ng update @angular/cli
+     @angular/core                      7.2.2 -> 7.2.3           ng update @angular/core
+     @angular/material                  7.2.2 -> 7.3.1           ng update @angular/material
+     rxjs                               6.3.3 -> 6.4.0           ng update rxjs
+ 
+   Es posible que haya paquetes adicionales que están actualizados.
+   Ejecutar "ng update --all" trata de actualizar todos los packages al mismo tiempo.
 </code-example>
-
-If you pass the command a set of libraries to update (or the `--all` flag), it updates those libraries, their peer dependencies, and the peer dependencies that depend on them.
-
+ 
+Si le pasan el comando un set de librerías para actualizar (o la bandera `--all`), Este actualiza esas librerías, sus dependencias de pares, y las dependencias de pares que dependen de ellos.
+ 
 <div class="alert is-helpful">
-
-If there are inconsistencies (for example, if peer dependencies cannot be matched by a simple [semver](https://semver.io/) range), the command generates an error and does not change anything in the workspace.
-
-We recommend that you do not force an update of all dependencies by default. Try updating specific dependencies first.
-
-For more about how the `ng update` command works, see [Update Command](https://github.com/angular/angular-cli/blob/master/docs/specifications/update.md).
-
+ 
+Si hay inconsistencias (por ejemplo, si las dependencias de pares no coinciden con un simple range [semver](https://semver.io/)), El comando genera un error y no cambia nada en el workspace.
+ 
+Nosotros recomendamos que nos se force la actualización de todas la dependencias predeterminadas. Trata actualizando primero dependencias específicas.
+ 
+Para más información acerca del como trabaja el comando `ng update`, puedes vistar [Update Command](https://github.com/angular/angular-cli/blob/master/docs/specifications/update.md).
+ 
 </div>
-
-If you create a new version of your library that introduces potential breaking changes, you can provide an *update schematic* to enable the `ng update` command to automatically resolve any such changes in the project being updated.
-
-For example, suppose you want to update the Angular Material library.
-
+ 
+Si usted crea una nueva versión de su librería que introduce cambios importantes, usted puedes proveer un *update schematic* para habilitar el comando `ng update` para automáticamente resolver cualquier cambio en un proyecto que se actualiza.
+ 
+Por ejemplo, suponga que quiere actualizar la librería Angular Material.
+ 
 <code-example language="bash">
 ng update @angular/material
 </code-example>
-
-This command updates both `@angular/material` and its dependency `@angular/cdk` in your workspace's `package.json`.
-If either package contains an update schematic that covers migration from the existing version to a new version, the command runs that schematic on your workspace.
+ 
+Este comando actualiza ambos `@angular/material` y sus dependencias `@angular/cdk`  en su workspace `package.json`.
+Si alguno de los paquetes contiene un schema de actualización que cubre la migración de una versión existente hacia una nueva versión, el comando ejecuta ese esquema en su workspace.
