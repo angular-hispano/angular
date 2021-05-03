@@ -7,17 +7,17 @@ Por ejemplo, los componentes individuales definen y controlan cada una de las si
 * La lista de héroes.
 * El editor de héroe.
 
-Usted define la lógica de aplicación de un componente &mdash; lo que hace para apoyar la vista &mdash; dentro de una clase.
+Tu defines la lógica de aplicación de un componente &mdash; lo que hace para apoyar la vista &mdash; dentro de una clase.
 La clase interactúa con la vista a través de una API de propiedades y métodos.
 
 Por ejemplo, `HeroListComponent` tiene una propiedad `heroes` que contiene un array de héroes.
-Su método `selectHero()` establece una propiedad `selectedHero` cuando el usuario hace clic para elegir un héroe de esa lista.
+Tu método `selectHero()` establece una propiedad `selectedHero` cuando el usuario hace clic para elegir un héroe de esa lista.
 El componente adquiere los héroes desde un servicio, que es una [propiedad de parámetro](http://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties) de TypeScript en el constructor.
 El servicio es proporcionado al componente a través del sistema de inyección de dependencias.
 
 <code-example path="architecture/src/app/hero-list.component.ts" header="src/app/hero-list.component.ts (class)" region="class"></code-example>
 
-Angular crea, actualiza y destruye componentes a medida que el usuario se mueve por la aplicación. Su aplicación puede tomar medidas en cada momento de este ciclo de vida a través de [enlaces de ciclo de vida](guide/lifecycle-hooks) opcionales, como `ngOnInit()`.
+Angular crea, actualiza y destruye componentes a medida que el usuario se mueve por la aplicación. Tu aplicación puede tomar medidas en cada momento de este ciclo de vida a través de [enlaces de ciclo de vida](guide/lifecycle-hooks) opcionales, como `ngOnInit()`.
 
 {@a component-metadata}
 
@@ -25,7 +25,7 @@ Angular crea, actualiza y destruye componentes a medida que el usuario se mueve 
 
 <img src="generated/images/guide/architecture/metadata.png" alt="Metadatos" class="left">
 
-El decorador `@Component` identifica la clase inmediatamente debajo de ella como una clase de componente y especifica sus metadatos. En el código de ejemplo a continuación, puede ver que `HeroListComponent` es solo una clase, sin ninguna notación o sintaxis de angular especial. No es un componente hasta que lo marca como uno con el decorador `@Component`.
+El decorador `@Component` identifica la clase inmediatamente debajo de ella como una clase de componente y especifica sus metadatos. En el código de ejemplo a continuación, puedes ver que `HeroListComponent` es solo una clase, sin ninguna notación o sintaxis de angular especial. No es un componente hasta que lo marcas como uno con el decorador `@Component`.
 
 Los metadatos de un componente le dicen a Angular dónde obtener los bloques de construcción principales que necesita para crear y presentar el componente y su vista. En particular, asocia una *plantilla* con el componente, ya sea directamente con el código en línea o por referencia. Juntos, el componente y su plantilla describen una *vista*.
 
@@ -50,7 +50,7 @@ Angular inserta una instancia de la vista `HeroListComponent` entre esas etiquet
 
 <img src="generated/images/guide/architecture/template.png" alt="Plantilla" class="left">
 
-Define la vista de un componente con su plantilla complementaria. Una plantilla es una forma de HTML que le dice a Angular cómo renderizar el componente.
+Tu defines la vista de un componente con su plantilla complementaria. Una plantilla es una forma de HTML que le dice a Angular cómo renderizar el componente.
 
 Las vistas generalmente se organizan jerárquicamente, lo que le permite modificar o mostrar y ocultar secciones enteras de UI o páginas como una unidad. La plantilla asociada inmediatamente con un componente define la *vista host* de ese componente. El componente también puede definir una *jerarquía de vistas*, que contiene *vistas incrustadas*, alojadas por otros componentes.
 
@@ -137,7 +137,7 @@ Para especificar una transformación de valor en una plantilla HTML, use el [ope
 
 `{{interpolated_value | pipe_name}}`
 
-Puede encadenar tuberías, enviando la salida de una función de tubería para que sea transformada por otra función de tubería. Una tubería también puede tomar argumentos que controlen cómo realiza su transformación. Por ejemplo, puede pasar el formato deseado a la tubería `fecha`.
+Puedes encadenar tuberías, enviando la salida de una función de tubería para que sea transformada por otra función de tubería. Una tubería también puede tomar argumentos que controlen cómo realiza su transformación. Por ejemplo, puedes pasar el formato deseado a la tubería `fecha`.
 
 ```
   <!-- Formato predeterminado: salida '15 de junio de 2015'-->
@@ -194,6 +194,6 @@ o modificar aspectos de elementos y componentes DOM
 
 <div class="alert is-helpful">
 
-Obtenga más información en las guías [Directivas de atributos](guide/attribute-directives) y [Directivas estructurales](guide/structural-directives).
+Obtén más información en las guías [Directivas de atributos](guide/attribute-directives) y [Directivas estructurales](guide/structural-directives).
 
 </div>
