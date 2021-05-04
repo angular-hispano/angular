@@ -13,7 +13,7 @@ See the <live-example></live-example> de toda la sintaxis y fragmentos de códig
 ## Interpolación `{{...}}`
 
 La interpolación se refierea a insertar expresiones en texto de marcado.
-Por defecto, la interpolación utiliza como delimitador las llaves dobles, `{{` ... `}}`.
+Por defecto, la interpolación utiliza como delimitador las llaves dobles, `{{` y `}}`.
 
 El siguiente fragmento, `{{ currentCustomer }}` muestra un ejemplo de interpolación.
 
@@ -43,12 +43,12 @@ Angular evaluá todas las expresiones que estan dentro de las llaves dobles,
 convierte el resultado de la expresiones a cadenas y los víncula con cadenas literales cercanas.
 Por último, asigna el resultado de la interpolación compuesta a una **propiedad del elemento o de la directiva**.
 
-Parece que esta insertando el resultado entre las etiquetas de los elementos y asignandolos a atributos. Sin embargo,
+Parece que estas insertando el resultado entre las etiquetas de los elementos y asignandolos a atributos. Sin embargo,
 la interpolación es una sintaxis especial que Angular convierte a una *propiedad enlace* (*property binding*).
 
 <div class="alert is-helpful">
 
-Si prefieres utilizar algo diferente a las `{{` ... `}}`, puedes
+Si prefieres utilizar algo diferente a las `{{` y `}}`, puedes
 configurar el delimitador de interpolación en la opción [interpolation](api/core/Component#interpolation)
 de los metadatos del `Component`.
 
@@ -169,6 +169,6 @@ Si una expresión idempotente regresa una cadena o un número, debe regresar la 
 <div class="alert is-helpful">
 
 Existe una excepción a este comportamiento presente en el `*ngFor`. `*ngFor` tiene una funcionalidad `trackBy` que puede lidiar
-con una desigualdad referencial de los objetos sobre los que se esta iterando. Ver [*ngFor with `trackBy`](guide/built-in-directives#ngfor-with-trackby) para más información.
+con una desigualdad referencial de los objetos sobre los que se esta iterando. Ver [*ngFor con `trackBy`](guide/built-in-directives#ngfor-with-trackby) para más información.
 
 </div>
