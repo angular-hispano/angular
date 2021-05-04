@@ -65,7 +65,7 @@ La sintaxis del comando se muestra de la siguiente manera:
 
 `ng` _commandNameOrAlias_ _requiredArg_ [*optionalArg*] `[options]`
 
-- La mayoría de los comandos, y algunas opciones, tienen alias. Alias se muestran en la declaración de sintaxis para cada comando.
+- La mayoría de los comandos, y algunas opciones, tienen alias. Los alias son mostrados en la declaración de sintaxis para cada comando.
 
 - Nombres opcionales llevan como prefijo el doble guión (--). La opción alias lleva como prefijo un guión (-). Los argumentos no llevan prefijo. Por ejemplo:
 
@@ -79,7 +79,7 @@ La sintaxis del comando se muestra de la siguiente manera:
 
 ### Booleanos y opciones enumeradas
 
-Opciones booleanos tienen dos formas: `--thisOption` establece la bandera, `--noThisOption` la borra.
+Opciones booleanas tienen dos formas: `--thisOption` establece la bandera, `--noThisOption` la borra.
 Si no se proporciona ninguna de las opciones, la bandera permanece en su estado predeterminado, como se indica en la documentación de referencia.
 
 Los valores permitidos son dados con cada descripción de opción enumerada, con el valor predeterminado en **negrita**.
@@ -90,4 +90,4 @@ Las opciones que especifican archivos pueden ser dadas por rutas absolutas, o ru
 
 ### Esquemas
 
-Los comandos [ng generate](cli/generate) y [ng add](cli/add) toman como argumento el artefacto o la libreria para ser generado o agregado al proyecto actual. Además de las opciones generales, cada artefacto o libreria define sus propias opciones en un _esquema_. Las opciones de esquema se proporcionan al comando en el mismo formato que las opciones de comando inmediatas.
+Los comandos [ng generate](cli/generate) y [ng add](cli/add) toman como argumento el artefacto o la librería para ser generado o agregado al proyecto actual. Además de las opciones generales, cada artefacto o librería define sus propias opciones en un _esquema_. Las opciones de esquema se proporcionan al comando en el mismo formato que las opciones de comando inmediatas.
