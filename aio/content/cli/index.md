@@ -4,7 +4,7 @@ El CLI de Angular es una herramienta de línea de comandos que se utiliza para i
 
 ## Instalando el CLI de Angular
 
-Las últimas versiones del CLI de Angular pueden ser instaladas siguiendo los mismos lineamientos de la última versión de Angular respaldada, pero versiones menores pueden ser instaladas por separado.
+Las últimas versiones del CLI de Angular pueden ser instaladas siguiendo los mismos lineamientos de la última versión de Angular respaldada. Versiones menores pueden ser instaladas por separado.
 
 Instalar el CLI usando el gestor de paquetes `npm`:
 <code-example language="bash">
@@ -30,11 +30,11 @@ cd my-first-project
 ng serve
 </code-example>
 
-En tu navegador, abre http://localhost:4200/ para ver como esta ejecutando la nueva aplicación. Cuando usas el [ng serve](cli/serve) comando para construir una aplicación y servirla localmente, el servidor automáticamente reconstruye la aplicación y recarga la página cuando tu cambias cualquiera de los archivos base.
+En tu navegador, abre http://localhost:4200/ para ver como se esta ejecutando la nueva aplicación. Cuando usas el comando [ng serve](cli/serve) para construir una aplicación y servirla localmente, el servidor automáticamente reconstruye la aplicación y recarga la página cuando tu cambias cualquiera de los archivos base.
 
 <div class="alert is-helpful">
 
-Cuando tu ejecutas `ng new my-first-project` se creará una nueva carpeta, llamada `my-first-project`, en tu actual directorio de trabajo. Como tu quieres poder crear archivos dentro de un folder, asegurate que tienes los permisos necesarios en tu actual directorio de trabajo antes de ejecutar el comando.
+Cuando tu ejecutas `ng new my-first-project` se creará una nueva carpeta, llamada `my-first-project`, en tu actual directorio de trabajo. Cuando tu quieres crear archivos dentro de una carpeta, asegurate que tienes los permisos necesarios en tu actual directorio de trabajo antes de ejecutar el comando.
 
 Si tu actual directorio de trabajo no es el lugar adecuado para tu proyecto, lo puedes cambiar a un directorio más apropiado ejecutando primero `cd <path-to-other-directory>`.
 
@@ -42,9 +42,9 @@ Si tu actual directorio de trabajo no es el lugar adecuado para tu proyecto, lo 
 
 ## Área de trabajo y archivos del proyecto
 
-El comando [ng new](cli/new) crea un _área de trabajo de Angular_ en el folder y genera una nueva estructura de la aplicación. Un espacio de trabajo puede tener múltiples aplicaciones y librerías. La aplicación inicial creada por el comando [ng new](cli/new) está en el nivel superior del área de trabajo. Cuando generas una aplicación adicional o librería en tu área de trabajo, esta irá dentro una subcarpeta llamada `projects/`.
+El comando [ng new](cli/new) crea un _área de trabajo de Angular_ en la carpeta y genera una nueva estructura de la aplicación. El área trabajo puede tener múltiples aplicaciones y librerías. La aplicación inicial creada por el comando [ng new](cli/new) está en el nivel superior del área de trabajo. Cuando generas una aplicación adicional o librería en tu área de trabajo, esta irá dentro una subcarpeta llamada `projects/`.
 
-Una nueva aplicación generada consiste de archivos base para un módulo raíz, con un componente raíz y una plantilla. Cada aplicación tiene una carpeta `src` que contiene la lógica, datos y recursos.
+Una aplicación recientemente generada consiste en archivos base para un módulo raíz, con un componente raíz y una plantilla. Cada aplicación tiene una carpeta `src` que contiene la lógica, datos y recursos.
 
 Puedes editar los archivos generados directamente, o agregarlos y modificarlos usando los comandos del CLI. Usar el comando [ng generate](cli/generate) para agregar nuevos archivos para componentes adicionales y servicios, y código para nuevos pipes, directivas, etc. Comandos como son [add](cli/add) y [generate](cli/generate), los que crean y operan en aplicaciones y librerías, deben ser ejecutadas dentro del área de trabajo o carpeta del proyecto.
 
@@ -52,7 +52,7 @@ Puedes editar los archivos generados directamente, o agregarlos y modificarlos u
 
 ### Configuración del área de trabajo y proyecto.
 
-Se crea un único archivo de configuración de área de trabajo, `angular.json`, en el nivel superior del área de trabajo. Aquí es donde puedes establecer los valores predeterminados por proyecto las opciones de los comandos del CLI y especificar configuraciones que se usan cuando el CLI construye un proyecto para diferentes targets.
+Se crea un único archivo de configuración de área de trabajo, `angular.json`, en el nivel superior del área de trabajo. Aquí es donde estableces los valores predeterminados por proyecto para las opciones de los comandos CLI y especificar configuraciones que se usan cuando el CLI construye un proyecto para diferentes targets.
 
 El comando [ng config](cli/config) te permite establecer y recuperar valores de configuración desde la línea de comandos, o puedes editar directamente el archivo `angular.json`. Tenga en cuenta que los nombres opcionales en el archivo de configuración debe usar [camelCase](guide/glossary#case-types), mientras que los nombres opcionales que se suministra a los comandos pueden ser tanto camelCase o dash-case.
 
@@ -67,7 +67,7 @@ La sintaxis del comando se muestra de la siguiente manera:
 
 - La mayoría de los comandos, y algunas opciones, tienen alias. Alias se muestran en la declaración de sintaxis para cada comando.
 
-- Nombres opcionales llevan como prefijo el doble guión (--). La opción alias llevan como prefijo llevan un guión (-). Los argumentos no llevan prefijo. Por ejemplo:
+- Nombres opcionales llevan como prefijo el doble guión (--). La opción alias lleva como prefijo un guión (-). Los argumentos no llevan prefijo. Por ejemplo:
 
   <code-example language="bash">
   ng build my-app -c production
