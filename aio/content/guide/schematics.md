@@ -75,8 +75,7 @@ Por ejemplo, el schema `@angular/pwa` convierte su aplicación en una PWA agrega
 
 ### Esquemas de Generación
 Los esquemas de generación, son instrucciones para el comando `ng generate`.
-
-Los sub comandos documentados usan esquemas de generación Angular predeterminados, pero usted puede especificar un esquema diferente (en lugar de un sub comando) para generar un artefacto definido en su librería.
+Los sub comandos documentados usan esquemas de generación predeterminados de Angular , pero usted puede especificar un esquema diferente (en lugar de un sub comando) para generar un artefacto definido en su librería.
 
 Angular Material, por ejemplo, proporciona esquemas de generación para el componentes UI que los definen.
 El siguiente comando usa uno de esos esquemas para renderizar Angular Material `<mat-table>`  que es preconfigurado con un datasource para ordenar y paginar.
