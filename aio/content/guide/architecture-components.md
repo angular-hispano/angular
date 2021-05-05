@@ -114,7 +114,7 @@ En el enlace bidireccional, un valor de propiedad de datos fluye al cuadro de en
 Los cambios del usuario también regresan al componente, restableciendo la propiedad al último valor,
 como con la vinculación de eventos.
 
-Procesos angulares *todos* los enlaces de datos una vez para cada ciclo de eventos de JavaScript,
+Angular procesa *todos* los enlaces de datos una vez para cada ciclo de eventos de JavaScript,
 desde la raíz del árbol de componentes de la aplicación a través de todos los componentes secundarios.
 
 <div class="lightbox">
@@ -129,15 +129,15 @@ El enlace de datos juega un papel importante en la comunicación entre una plant
 
 ### Pipes
 
-Las tuberías angulares le permiten declarar transformaciones de valor de visualización en su plantilla HTML. Una clase con el decorador `@Pipe` define una función que transforma los valores de entrada en valores de salida para mostrarlos en una vista.
+Los pipes de Angular te permiten declarar transformaciones de valor de visualización en su plantilla HTML. Una clase con el decorador `@Pipe` define una función que transforma los valores de entrada en valores de salida para mostrarlos en una vista.
 
-Angular define varias canalizaciones, como la canalización [date](api/common/DatePipe) y la canalización [currency](api/common/CurrencyPipe); para obtener una lista completa, consulte la [Lista de API de tuberías](api?type=pipe). También puede definir nuevas tuberías.
+Angular define varios pipes, como el pipe [date](api/common/DatePipe) y el pipe [currency](api/common/CurrencyPipe); para obtener una lista completa, consulta la [Lista de API de pipes](api?type=pipe). También puedes definir nuevos pipe.
 
-Para especificar una transformación de valor en una plantilla HTML, use el [operador de tubería (|)](guide/template-expression-operators#pipe).
+Para especificar una transformación de valor en una plantilla HTML, usa el [operador de tubería (|)](guide/template-expression-operators#pipe).
 
 `{{interpolated_value | pipe_name}}`
 
-Puedes encadenar tuberías, enviando la salida de una función de tubería para que sea transformada por otra función de tubería. Una tubería también puede tomar argumentos que controlen cómo realiza su transformación. Por ejemplo, puedes pasar el formato deseado a la tubería `fecha`.
+Puedes encadenar pipes, enviando la salida de una función de pipe para que sea transformada por otra función de pipe. Un pipe también puede tomar argumentos que controlen cómo realiza su transformación. Por ejemplo, puedes pasar el formato deseado al pipe `fecha`.
 
 ```
   <!-- Formato predeterminado: salida '15 de junio de 2015'-->
@@ -156,7 +156,7 @@ Puedes encadenar tuberías, enviando la salida de una función de tubería para 
 
 <img src="generated/images/guide/architecture/directive.png" alt="Directives" class="left">
 
-Las plantillas angulares son *dinámicas*. Cuando Angular los renderiza, transforma el DOM de acuerdo con las instrucciones dadas por *directivas*. Una directiva es una clase con un decorador `@Directive()`.
+Las plantillas de Angular son *dinámicas*. Cuando Angular los renderiza, transforma el DOM de acuerdo con las instrucciones dadas por *directivas*. Una directiva es una clase con un decorador `@Directive()`.
 
 Un componente es técnicamente una directiva.
 Sin embargo, los componentes son tan distintivos y fundamentales para las aplicaciones de Angular que Angular
