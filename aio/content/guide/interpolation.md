@@ -6,13 +6,13 @@ Las expresiones de plantilla es lo que utilizas para calcular esas cadenas.
 
 <div class="alert is-helpful">
 
-See the <live-example></live-example> de toda la sintaxis y fragmentos de código utilizados en esta guía
+Ver el <live-example></live-example> de toda la sintaxis y fragmentos de código utilizados en esta guía
 
 </div>
 
 ## Interpolación `{{...}}`
 
-La interpolación se refierea a insertar expresiones en texto de marcado.
+La interpolación se refiere a insertar expresiones en texto de marcado.
 Por defecto, la interpolación utiliza como delimitador las llaves dobles, `{{` y `}}`.
 
 El siguiente fragmento, `{{ currentCustomer }}` muestra un ejemplo de interpolación.
@@ -39,11 +39,11 @@ en el siguiente ejemplo:
 
 <code-example path="interpolation/src/app/app.component.html" region="invoke-method" header="src/app/app.component.html"></code-example>
 
-Angular evaluá todas las expresiones que estan dentro de las llaves dobles,
-convierte el resultado de la expresiones a cadenas y los víncula con cadenas literales cercanas.
+Angular evalúa todas las expresiones que están dentro de las llaves dobles,
+convierte el resultado de las expresiones a cadenas y los vincula con cadenas literales cercanas.
 Por último, asigna el resultado de la interpolación compuesta a una **propiedad del elemento o de la directiva**.
 
-Parece que estas insertando el resultado entre las etiquetas de los elementos y asignandolos a atributos. Sin embargo,
+Parece que estás insertando el resultado entre las etiquetas de los elementos y asignándolos a atributos. Sin embargo,
 la interpolación es una sintaxis especial que Angular convierte a una *propiedad enlace* (*property binding*).
 
 <div class="alert is-helpful">
@@ -62,7 +62,7 @@ Angular ejecuta la expresión y la asigna a una propiedad de un objetivo de enla
 el objetivo puede ser un elemento HTML, un componente o una directiva.
 
 Las llaves de interpolación en `{{1 + 1}}` rodean la expresión de platilla `1 + 1`.
-En las propiedades enlace, una expresión de plantilla
+En las propiedades de enlace, una expresión de plantilla
 aparece entre comillas a la derecha del símbolo `=` como en `[property]="expression"`.
 
 En términos de sintaxis, las expresiones de plantilla son similares a JavaScript.
@@ -116,9 +116,9 @@ El `customer` en `{{customer.name}}`
 se refiere a la variable de plantilla, no a la propiedad del componente.
 
 Las expresiones de plantilla no pueden hacer referencia a nada del
-contexto global, a excepción de `undefined`. No pueden hacer refencia
+contexto global, a excepción de `undefined`. No pueden hacer referencia
 a `window` o `document`. Además, no pueden llamar a `console.log()` o `Math.max()`
-y estan limitadas a referenciar miembros del contexto de la expresión.
+y están limitadas a referenciar miembros del contexto de la expresión.
 
 </div>
 
@@ -142,8 +142,8 @@ donde es más fácil de desarrollar y probar.
 ### Rápida ejecución
 
 Angular ejecuta las expresiones de plantilla después de cada ciclo de detección de cambios.
-Los ciclos de detección de cambios son descandenados por muchas actividades asíncronas como
-la resolución de promesas, resutados HTTP, eventos temporizados, presión de teclas y movimientos del mouse.
+Los ciclos de detección de cambios son desencadenados por muchas actividades asíncronas como
+la resolución de promesas, resultados HTTP, eventos temporizados, presión de teclas y movimientos del mouse.
 
 Las expresiones deben terminar rápidamente o la experiencia del usuario puede verse afectada negativamente,
 especialmente en dispositivos más lentos.
@@ -164,11 +164,11 @@ En términos de Angular, una expresión idempotente siempre regresa
 *exactamente el mismo resultado* hasta que algunos de sus valores de los que depende cambie.
 
 Los valores dependientes no deben cambiar durante una vuelta del event loop.
-Si una expresión idempotente regresa una cadena o un número, debe regresar la mismo cadena o número cuando se llame por segunda ocasión. Si la expresión regresa un objeto, incluyendo un `array`, entonces regresa la misma *referencia* al objeto cuando se llame por segunda ocasión.
+Si una expresión idempotente regresa una cadena o un número, debe regresar la misma cadena o número cuando se llame por segunda ocasión. Si la expresión regresa un objeto, incluyendo un `array`, entonces regresa la misma *referencia* al objeto cuando se llame por segunda ocasión.
 
 <div class="alert is-helpful">
 
 Existe una excepción a este comportamiento presente en el `*ngFor`. `*ngFor` tiene una funcionalidad `trackBy` que puede lidiar
-con una desigualdad referencial de los objetos sobre los que se esta iterando. Ver [*ngFor con `trackBy`](guide/built-in-directives#ngfor-with-trackby) para más información.
+con una desigualdad referencial de los objetos sobre los que se está iterando. Ver [*ngFor con `trackBy`](guide/built-in-directives#ngfor-with-trackby) para más información.
 
 </div>
