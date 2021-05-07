@@ -1,16 +1,16 @@
-# API's y funcionalidades obsoletas
+# APIs y funcionalidades obsoletas
 
 Angular hace esfuerzos por equilibrar innovación y estabilidad. En ocasiones API’s y funcionalidades se vuelven obsoletas y necesitan ser eliminadas o reemplazadas para que Angular pueda mantenerse actualizado con nuevas mejores prácticas, cambios en las dependencias o cambios en la plataforma (web) en sí.
 
 Para hacer la transición lo más fácil posible, API’s y funcionalidades se vuelven obsoletas por un periodo de tiempo antes de eliminarlas. Esto da tiempo para que actualice sus aplicaciones a las nuevas API’s y a las mejores prácticas más recientes.
 
-Esta guía contiene un resumen de todas las API’s y funcionalidades de angular que están en desuso actualmente.
+Esta guía contiene un resumen de todas las API’s y funcionalidades de Angular que están en desuso actualmente.
 
 <div class="alert is-helpful">
 
 Las API’s y funcionalidades que fueron creadas en la versión 6 o anterior son candidatas para eliminarse en la versión 9 o cualquier otra versión posterior. Para información sobre las deprecaciones de Angular y la eliminación de prácticas, visita [Angular Release Practices](guide/releases#deprecation-practices "Angular Release Practices: Deprecation practices").
 
-Para informacion acercacomo actualizar Angular a la última versión, visita la guía interactiva en [update.angular.io](https://update.angular.io).
+Para información acerca de cómo actualizar Angular a la última versión, visita la guía interactiva en [update.angular.io](https://update.angular.io).
 
 </div>
 
@@ -28,7 +28,7 @@ v8 - v11
 v9 - v12
 -->
 
-| Area                          | API or Feature                                                                                | Probalemente Eliminada    |
+| Área                          | API o Funcionalidad                                                                           | Probalemente Eliminada    |
 | ----------------------------- | --------------------------------------------------------------------------------------------- | ------------------------- |
 | `@angular/bazel`              | [`Bazel builder and schematics`](#bazelbuilder)                                               | v10                       |
 | `@angular/common`             | [`ReflectiveInjector`](#reflectiveinjector)                                                   | <!--v8--> v11             |
@@ -66,7 +66,7 @@ Esta sección contiene un listado completo de todas las APIs que están actualme
 
 <div class="alert is-helpful">
 
-Tip: En la [Seccion de referencia de API's](api) de este documento, las API's obsoletas se muestran ~~tachadas.~~ Puedes filtrar la lista de API's por [**Estado: en desuso**](api?status=deprecated).
+Tip: En la [Sección de referencia de APIs](api) de este documento, las APIs obsoletas se muestran ~~tachadas.~~ Puedes filtrar la lista de APIs por [**Estado: en desuso**](api?status=deprecated).
 
 </div>
 
@@ -82,7 +82,7 @@ Tip: En la [Seccion de referencia de API's](api) de este documento, las API's ob
 
 ### @angular/core
 
-| API                                                                     | Replazo                                                               | Anuncio de su desuso | Notas                                                                                                                                                                                                     |
+| API                                                                     | Remplazo                                                              | Anuncio de su desuso | Notas                                                                                                                                                                                                     |
 | ----------------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`CollectionChangeRecord`](api/core/CollectionChangeRecord)             | [`IterableChangeRecord`](api/core/IterableChangeRecord)               | v4                   | ninguna                                                                                                                                                                                                   |
 | [`DefaultIterableDiffer`](api/core/DefaultIterableDiffer)               | n/a                                                                   | v4                   | Not part of public API.                                                                                                                                                                                   |
@@ -100,8 +100,8 @@ Tip: En la [Seccion de referencia de API's](api) de este documento, las API's ob
 
 | API                                           | Remplazo                                            | Anuncio de su desuso | Notas                                                               |
 | --------------------------------------------- | --------------------------------------------------- | -------------------- | ------------------------------------------------------------------- |
-| [`TestBed.get`](api/core/testing/TestBed#get) | [`TestBed.inject`](api/core/testing/TestBed#inject) | v9                   | Mismo comportamiento, pero con tipado mas seguro.                   |
-| [`async`](api/core/testing/async)             | [`waitForAsync`](api/core/testing/waitForAsync)     | v10                  | Mismo comportamiento pero ha sido renombrado para evitar confusion. |
+| [`TestBed.get`](api/core/testing/TestBed#get) | [`TestBed.inject`](api/core/testing/TestBed#inject) | v9                   | Mismo comportamiento, pero con tipado más seguro.                   |
+| [`async`](api/core/testing/async)             | [`waitForAsync`](api/core/testing/waitForAsync)     | v10                  | Mismo comportamiento pero ha sido renombrado para evitar confusión. |
 
 {@a forms}
 
@@ -156,13 +156,13 @@ Tip: En la [Seccion de referencia de API's](api) de este documento, las API's ob
 
 ## Funcionalidades obsoletas
 
-Esta sección contiene un listado de todas las funcionalidades que están en desuso actualmente en la cual se incluyen plantillas de sintaxis, opciones de configuración y otro tipo de deprecaciones no listadas en la seccion anterior [API's Obsoletas](#funcionalidades-obsoletas) . También complementa la sección anterior incluyendo los escenarios de uso o combinaciones de API's obsoletas.
+Esta sección contiene un listado de todas las funcionalidades que están en desuso actualmente en la cual se incluyen plantillas de sintaxis, opciones de configuración y otro tipo de deprecaciones no listadas en la sección anterior [APIs Obsoletas](#funcionalidades-obsoletas) . También complementa la sección anterior incluyendo los escenarios de uso o combinaciones de APIs obsoletas.
 
 {@a bazelbuilder}
 
 ### Constructor de Bazel y esquemas
 
-El constructor de bazel y esquemas fueron introducidos en Angular Labs para permitir a los usuarios probar Bazel sin tener que manejar versiones de Bazel y archivos BUILD. Esta característica ha sido deprecada. Para más información, por favor consulta el [documento de migracion](https://github.com/angular/angular/blob/master/packages/bazel/src/schematics/README.md).
+El constructor de bazel y esquemas fueron introducidos en Angular Labs para permitir a los usuarios probar Bazel sin tener que manejar versiones de Bazel y archivos BUILD. Esta característica ha sido deprecada. Para más información, por favor consulta el [documento de migración](https://github.com/angular/angular/blob/master/packages/bazel/src/schematics/README.md).
 
 {@a wtf}
 
@@ -176,20 +176,20 @@ Angular anteriormente soportaba la integración con [Web Tracing Framework (WTF)
 
 El combinado de descendientes shadow-dom-piercing está obsoleto y su soporte está siendo [retirado de la mayoría de los navegadores y herramientas.](https://developers.google.com/web/updates/2017/10/remove-shadow-piercing). Como resultado, en la versión 4 se volvió obsoleto el soporte in Angular para todos los 3 `/deep/`, `>>>` and `::ng-deep`. Hasta su eliminación, es preferido usar `::ng-deep` para mayor compatibilidad con las herramientas.
 
-Para mas informacion, visita [/deep/, >>>, and ::ng-deep](guide/component-styles#deprecated-deep--and-ng-deep "Component Styles guide, Deprecated deep and ngdeep")
+Para más información, visita [/deep/, >>>, and ::ng-deep](guide/component-styles#deprecated-deep--and-ng-deep "Component Styles guide, Deprecated deep and ngdeep")
 en la guía de Estilos de Componentes.
 
 {@a template-tag}
 
 ### etiqueta &lt;template&gt;
 
-La etiqueta `<template>` quedó obsoleta en la versión 4 para evitar colisionar con el elemento DOM del mismo nombre (como cuando se usan componentes web). Utiliza `<ng-template>` en su lugar. Para mas informacion visita la guía de [Compilación anticipada](guide/angular-compiler-options#enablelegacytemplate).
+La etiqueta `<template>` quedó obsoleta en la versión 4 para evitar colisionar con el elemento DOM del mismo nombre (como cuando se usan componentes web). Utiliza `<ng-template>` en su lugar. Para más información visita la guía de [Compilación anticipada](guide/angular-compiler-options#enablelegacytemplate).
 
 {@a ngmodel-reactive}
 
 ### ngModel with reactive forms
 
-El soporte para usar la propiedad de entrada `ngModel` y el evento `ngModelChange` con directivas de formulario reactivo ha quedado obsoleto en la version 6 de Angular y se eliminará en una versión futura de Angular.
+El soporte para usar la propiedad de entrada `ngModel` y el evento `ngModelChange` con directivas de formulario reactivo ha quedado obsoleto en la versión 6 de Angular y se eliminará en una versión futura de Angular.
 
 Ahora en desuso:
 
@@ -239,7 +239,7 @@ Después (opción 2: usar formularios basados en plantillas):
 this.value = "some value";
 ```
 
-De forma predeterminada, cuando use este patrón, verá una advertencia de deprecacion una vez en modo de desarrollo. Puede optar por silenciar esta advertencia proporcionando una configuración en`ReactiveFormsModule` en tiempo de imortacion:
+De forma predeterminada, cuando use este patrón, verá una advertencia de su desuso una vez en modo de desarrollo. Puede optar por silenciar esta advertencia proporcionando una configuración en`ReactiveFormsModule` en tiempo de impota:
 
 ```ts
 imports: [
@@ -255,7 +255,7 @@ el patrón se está utilizando a medida que se actualiza el código.
 
 ### ReflectiveInjector
 
-En la version 5, Angular remplazo `ReflectiveInjector` por `StaticInjector`. El inyector ya no requiere el polyfill Reflect, lo que reduce el tamaño de la aplicación para la mayoría de los desarrolladores.
+En la versión 5, Angular remplazó `ReflectiveInjector` por `StaticInjector`. El inyector ya no requiere el polyfill Reflect, lo que reduce el tamaño de la aplicación para la mayoría de los desarrolladores.
 
 Antes:
 
@@ -263,7 +263,7 @@ Antes:
 ReflectiveInjector.resolveAndCreate(providers);
 ```
 
-Despues:
+Después:
 
 ```
 Injector.create({providers});
@@ -299,13 +299,13 @@ const routes: Routes = [{
 
 <div class="alert is-helpful">
 
-**Actualizacion a la version 8**: cuando actualiza a la versión 8, el comando [`ng update`](cli/update) realiza la transformación automáticamente. Antes de la versión 7, la sintaxis `import ()` solo funcionaba en modo JIT (con motor de visualización).
+**Actualización a la versión 8**: cuando actualiza a la versión 8, el comando [`ng update`](cli/update) realiza la transformación automáticamente. Antes de la versión 7, la sintaxis `import ()` solo funcionaba en modo JIT (con motor de visualización).
 
 </div>
 
 <div class="alert is-helpful">
 
-**Sintaxis de declaracion**: Es importante seguir la sintaxis de declaración de ruta `loadChildren: () => import ('...'). Luego (m => m.ModuleName)` para permitir que `ngc` descubra el módulo de carga diferida y el` NgModule` asociado. Puede encontrar la lista completa de construcciones de sintaxis permitidas [aqui](https://github.com/angular/angular-cli/blob/a491b09800b493fe01301387fa9a025f7c7d4808/packages/ngtools/webpack/src/transformers/import_factory.ts#L104-L113). Estas restricciones se hacen menos con el lanzamiento de Ivy, ya que ya no usará `NgFactories`.
+**Sintaxis de declaración**: Es importante seguir la sintaxis de declaración de ruta `loadChildren: () => import ('...'). Luego (m => m.ModuleName)` para permitir que `ngc` descubra el módulo de carga diferida y el` NgModule` asociado. Puede encontrar la lista completa de construcciones de sintaxis permitidas [aqui](https://github.com/angular/angular-cli/blob/a491b09800b493fe01301387fa9a025f7c7d4808/packages/ngtools/webpack/src/transformers/import_factory.ts#L104-L113). Estas restricciones se hacen menos con el lanzamiento de Ivy, ya que ya no usará `NgFactories`.
 
 </div>
 
@@ -320,7 +320,7 @@ const routes: Routes = [{
 | `params`      | `paramMap`      |
 | `queryParams` | `queryParamMap` |
 
-Para mayor informacion visita [Obtener información de ruta](guide/router#activated-route) seccion de [Guia del Enrutador](guide/router).
+Para mayor información visita [Obtener información de ruta](guide/router#activated-route) sección de [Guía del Enrutador](guide/router).
 
 {@a reflect-metadata}
 
@@ -328,12 +328,12 @@ Para mayor informacion visita [Obtener información de ruta](guide/router#activa
 
 Las aplicaciones de Angular, y específicamente las aplicaciones que se basaban en el compilador JIT, solían requerir un polyfill para las APIs [reflect-metadata](https://github.com/rbuckton/reflect-metadata).
 
-La necesidad de este polyfill fue removida en la version de Angular 8.0 ([ver #14473](https://github.com/angular/angular-cli/pull/14473)), haciendo innecesaria la presencia de poylfill en la mayoría de las aplicaciones de Angular. Debido a que las bibliotecas de terceros pueden depender del polyfill, en lugar de eliminarlo de todos los proyectos de Angular, estamos desaprobando el requisito de este polyfill a partir de la versión 8.0. Esto debería dar a los autores de bibliotecas y desarrolladores de aplicaciones tiempo suficiente para evaluar si necesitan el polyfill y realizar cualquier refactorización necesaria para eliminar su dependencia.
+La necesidad de este polyfill fue removida en la versión de Angular 8.0 ([ver #14473](https://github.com/angular/angular-cli/pull/14473)), haciendo innecesaria la presencia de poylfill en la mayoría de las aplicaciones de Angular. Debido a que las bibliotecas de terceros pueden depender del polyfill, en lugar de eliminarlo de todos los proyectos de Angular, estamos desaprobando el requisito de este polyfill a partir de la versión 8.0. Esto debería dar a los autores de bibliotecas y desarrolladores de aplicaciones tiempo suficiente para evaluar si necesitan el polyfill y realizar cualquier refactorización necesaria para eliminar su dependencia.
 En un proyecto tipico de Angular, el polyfill no se usa en compilaciones de producción, por lo que eliminarlo no debería afectar las aplicaciones de producción. El objetivo detrás de esta eliminación es la simplificación general de la configuración de la compilación y la disminución del número de dependencias externas.
 
 {@a static-query-resolution}
 
-### `@ViewChild()` / `@ContentChild()` resolucion estatica por defecto
+### `@ViewChild()` / `@ContentChild()` resolución estática por defecto
 
 Visita la [guía de migración dedicada para queries estaticas](guide/static-query-migration).
 
@@ -365,7 +365,7 @@ debe escribirse cuando se dispara el evento `valueChange`.
 <option *ngFor="let optionName of options" [(value)]="optionName"></option>
 ```
 
-Sin embargo, en la práctica, Angular simplemente ignora los enlaces bidireccionales a las variables de plantilla. A partir de la versión 8, el intento de escribir en variables de plantilla ha quedado obsoleto. En una versión posterior, se lanzara una alerta para indicar que la escritura no es compatible.
+Sin embargo, en la práctica, Angular simplemente ignora los enlaces bidireccionales a las variables de plantilla. A partir de la versión 8, el intento de escribir en variables de plantilla ha quedado obsoleto. En una versión posterior, se lanzará una alerta para indicar que la escritura no es compatible.
 
 ```html
 <option *ngFor="let optionName of options" [value]="optionName"></option>
@@ -377,13 +377,13 @@ Sin embargo, en la práctica, Angular simplemente ignora los enlaces bidireccion
 
 El [Domino](https://github.com/fgnass/domino), que se usa en la representación del lado del servidor, no admite `innerText`, por lo que en el "adaptador domino" de la plataforma-servidor, había un código especial para volver a `textContent` si se intentaba enlazar a `innerText`.
 
-Estas dos propiedades tienen diferencias sutiles, por lo que cambiar a `textContent` bruscamente puede resultar sorprendente para los usuarios. Por esa razón, ese comportamiento esta quedando en desuso. En el futuro, los usuarios deben vincularse explícitamente a `textContent` cuando utilicen Domino.
+Estas dos propiedades tienen diferencias sutiles, por lo que cambiar a `textContent` bruscamente puede resultar sorprendente para los usuarios. Por esa razón, ese comportamiento está quedando en desuso. En el futuro, los usuarios deben vincularse explícitamente a `textContent` cuando utilicen Domino.
 
 {@a wtf-apis}
 
 ### `wtfStartTimeRange` y todas las APIs `wtf*`
 
-Todo acerca de las APIs `wtf*` ha quedado obsoleto y sera eliminado en la version posterior.
+Todo acerca de las APIs `wtf*` ha quedado obsoleto y será eliminado en la versión posterior.
 
 {@a webworker-apps}
 
@@ -397,7 +397,7 @@ permite que Angular se ejecute en un navegador web.
 de este experimento y hemos llegado a la conclusión de que ejecutar toda la aplicación en un web
 broker no es la mejor estrategia para la mayoría de las aplicaciones.
 
-En el futuro, centraremos nuestros esfuerzos relacionados con los web brokers en torno a su caso de uso principal de aminorar el trabajo intensivo y no crítico de la CPU necesario para la representación inicial (como la búsqueda en memoria y procesamiento de imágenes). Obtenga más información en la [guia para usar Web Brokers con Angular CLI](guide/web-worker).
+En el futuro, centraremos nuestros esfuerzos relacionados con los web brokers en torno a su caso de uso principal de aminorar el trabajo intensivo y no crítico de la CPU necesario para la representación inicial (como la búsqueda en memoria y procesamiento de imágenes). Obtenga más información en la [guía para usar Web Brokers con Angular CLI](guide/web-worker).
 
 A partir de la versión 8 de Angular, todas las APIs de `platform-webworker` son obsoletas.
 Esto incluye ambos paquetes: `@angular/platform-webworker` y
@@ -412,12 +412,12 @@ Anteriormente, el array `entryComponents` en la definición de` NgModule` se usa
 
 ### `ModuleWithProviders` tipo sin generico
 
-Algunas bibliotecas de Angular, como `@ angular / router` y` @ ngrx / store`, implementan una API que devuelve un tipo llamado `ModuleWithProviders` (normalmente a través de un método llamado `forRoot ()`).
+Algunas bibliotecas de Angular, como `@angular/router` y` @ngrx/store`, implementan una API que devuelve un tipo llamado `ModuleWithProviders` (normalmente a través de un método llamado `forRoot()`).
 Este tipo representa un `NgModule` junto con proveedores adicionales.
-La versión 9 de Angular ha dejado en desuso `ModuleWithProviders` sin un tipo explícitamente genérico, donde el tipo genérico se refiere al tipo de` NgModule`.
+La versión 9 de Angular ha dejado en desuso `ModuleWithProviders` sin un tipo explícitamente genérico, donde el tipo genérico se refiere al tipo de `NgModule`.
 En una versión futura de Angular, el genérico ya no será opcional.
 Más sobre el texto fuente
-Si está utilizando el CLI, "ng update" debería [migrar el codigo automaticamente](guide/migration-module-with-providers).
+Si está utilizando el CLI, "ng update" debería [migrar el código automáticamente](guide/migration-module-with-providers).
 Si no está utilizando el CLI, puede agregar los tipos genéricos que faltan a su aplicación manualmente.
 Por ejemplo:
 
@@ -437,7 +437,7 @@ export class MiModulo {
 }
 ```
 
-**Despues**
+**Después**
 
 ```ts
 @NgModule({...})
@@ -474,12 +474,12 @@ La decisión final se tomó sobre tres puntos clave:
 El propósito de "WrappedValue" es permitir, a la misma instancia del objeto ser tratada como diferente para efectos en la detección de cambios.
 Se usa comúnmente con el pipe `async` en el caso donde el `Observable` produce la misma instancia del valor.
 
-Dado que este caso de uso es relativamente raro y el manejo especial afecta el rendimiento de la aplicación, se ha vuelto obsoleto en la version 10.
+Dado que este caso de uso es relativamente raro y el manejo especial afecta el rendimiento de la aplicación, se ha vuelto obsoleto en la versión 10.
 No se prevé ningún reemplazo para este caso.
 
 Si confía en el comportamiento de que la misma instancia del objeto debería causar la detección de cambios, existen dos opciones:
 
-- Clonar el valor resultante para que lenga una nueva identidad.
+- Clonar el valor resultante para que tenga una nueva identidad.
 - Llamar explícitamente a [`ChangeDetectorRef.detectChanges()`](api/core/ChangeDetectorRef#detectchanges) para forzar la actualización.
 
 {@a deprecated-cli-flags}
@@ -490,11 +490,11 @@ Esta sección contiene una lista completa de todos flags del CLI actualmente en 
 
 ### @angular-devkit/build-angular
 
-| Opcion/API                  | Probable Eliminacion | Notas                                                                                      |
+| Opción/API                  | Probable Eliminación | Notas                                                                                      |
 | --------------------------- | -------------------- | ------------------------------------------------------------------------------------------ |
 | `i18nFile`                  | <!--v9--> v11        | Se especifica en la configuración regional del proyecto en la versión 9 y posteriores.     |
 | `i18nFormat`                | <!--v9--> v11        | El formato ahora se detecta automáticamente.                                               |
-| `i18nLocale`                | <!--v9--> v11        | Nueva [opción de localización](/guide/i18n#localize-config) en la version 9 y posteriores. |
+| `i18nLocale`                | <!--v9--> v11        | Nueva [opción de localización](/guide/i18n#localize-config) en la versión 9 y posteriores. |
 | `lazyModules`               | <!--v9--> v11        | Utilizado con SystemJsNgModuleLoader en desuso.                                            |
 | `rebaseRootRelativeCssUrls` | <!--v8--> v11        | Destinado solo para ayudar con problemas de migración específicos.                         |
 | `scripts[].lazy`            | <!--v8--> v11        | Renombrado a `scripts[].inject`.                                                           |
@@ -505,25 +505,25 @@ Esta sección contiene una lista completa de todos flags del CLI actualmente en 
 | `styles[].lazy`             | <!--v8--> v11        | Renombrado a `styles[].inject`.                                                            |
 | `i18nFile`                  | <!--v9--> v11        | Se especifica en la configuración regional del proyecto en la versión 9 y posteriores.     |
 | `i18nFormat`                | <!--v9--> v11        | El formato ahora se detecta automáticamente.                                               |
-| `i18nLocale`                | <!--v9--> v11        | Nueva [opción de localización](/guide/i18n#localize-config) en la version 9 y posteriores  |
+| `i18nLocale`                | <!--v9--> v11        | Nueva [opción de localización](/guide/i18n#localize-config) en la versión 9 y posteriores  |
 | `lazyModules`               | <!--v9--> v11        | Utilizado con SystemJsNgModuleLoader en desuso.                                            |
 
 ### @angular-devkit/core
 
-| API/Option                | Probable Eliminacion | Notas                                                                                                                                                                                                                                                          |
-| ------------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ModuleNotFoundException` | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las API's de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. Utilice Node.js [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options). |
-| `resolve`                 | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las API's de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. Utilice Node.js [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options). |
-| `setResolveHook`          | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las API's de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options).                 |
-| `ResolveOptions`          | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las API's de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options).                 |
-| `terminal`                | <!--v8--> v10        | Implementación no utilizada de códigos de terminal (color).                                                                                                                                                                                                    |
-| `isObservable`            | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con la API de herramientas. Utilice la función `isObservable` del paquete` rxjs`.                                                                                                                                  |
+| API/Option                | Probable Eliminación | Notas                                                                                                                                                                                                                                                         |
+| ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ModuleNotFoundException` | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las APIs de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. Utilice Node.js [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options). |
+| `resolve`                 | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las APIs de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. Utilice Node.js [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options). |
+| `setResolveHook`          | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las APIs de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options).                 |
+| `ResolveOptions`          | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con las APIs de herramientas. No es compatible con Yarn PnP y no se utiliza en el CLI de Angular. [require.resolve](https://nodejs.org/api/modules.html#modules_require_resolve_request_options).                 |
+| `terminal`                | <!--v8--> v10        | Implementación no utilizada de códigos de terminal (color).                                                                                                                                                                                                   |
+| `isObservable`            | <!--v8--> v10        | No se utiliza en proyectos. Se utiliza solo con la API de herramientas. Utilice la función `isObservable` del paquete` rxjs`.                                                                                                                                 |
 
 ### @ngtools/webpack
 
 | [](https://dle.rae.es/opci%C3%B3n)
 
-| Opción/API                      | Probable Eliminacion | Notas                                           |
+| Opción/API                      | Probable Eliminación | Notas                                           |
 | ------------------------------- | -------------------- | ----------------------------------------------- |
 | `discoverLazyRoutes`            | <!--v9--> TBD        | Utilizado con SystemJsNgModuleLoader en desuso. |
 | `additionalLazyModules`         | <!--v9--> TBD        | Utilizado con SystemJsNgModuleLoader en desuso. |
@@ -541,13 +541,13 @@ Esta sección contiene una lista completa de todos flags del CLI actualmente en 
 
 Las siguientes API se han eliminado a partir de la versión 10.0.0 \*:
 
-| Paquete         | API                                                         | Reemplazo                               | Notas                                                                                              |
-| --------------- | ----------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `@angular/core` | Clases base no decoradas que usan funcionalidades angulares | Agregar decorador angular               | Ver [guía de migración](guide/migration-undecorated-classes) para mas info.                        |
-| `@angular/core` | `ModuleWithProviders` sin un generico                       | `ModuleWithProviders` con un generico   | Ver [guía de migración](guide/migration-module-with-providers) para mas info.                      |
-| `@angular/core` | Sanitizacion de estilo                                      | No es necesario realizar ninguna acción | Ver [eliminación de la API de sanitizacion de estilo](#style-sanitization) para mayor informacion. |
+| Paquete         | API                                                          | Reemplazo                               | Notas                                                                                              |
+| --------------- | ------------------------------------------------------------ | --------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `@angular/core` | Clases base no decoradas que usan funcionalidades de Angular | Agregar decorador Angular               | Ver [guía de migración](guide/migration-undecorated-classes) para más info.                        |
+| `@angular/core` | `ModuleWithProviders` sin un generico                        | `ModuleWithProviders` con un generico   | Ver [guía de migración](guide/migration-module-with-providers) para más info.                      |
+| `@angular/core` | Sanitización de estilo                                       | No es necesario realizar ninguna acción | Ver [eliminación de la API de sanitización de estilo](#style-sanitization) para mayor información. |
 
-\*Para ver las API eliminadas en la versión 9, consulte esta guía en la [documentacion de la versión 9](https://v9.angular.io/guide/deprecations#removed).
+\*Para ver las API eliminadas en la versión 9, consulte esta guía en la [documentación de la versión 9](https://v9.angular.io/guide/deprecations#removed).
 
 {@a esm5-fesm5}
 
@@ -583,7 +583,7 @@ En términos prácticos, el `package.json` de todos los paquetes `@angular` han 
 }
 ```
 
-**Despues**:
+**Después**:
 
 ```
 {
@@ -598,23 +598,23 @@ En términos prácticos, el `package.json` de todos los paquetes `@angular` han 
 }
 ```
 
-Para obtener más información sobre el formato de paquete npm, consulte la [Especificación de formato de paquete angular](https://goo.gl/jB3GVv).
+Para obtener más información sobre el formato de paquete npm, consulte la [Especificación de formato de paquete Angular](https://goo.gl/jB3GVv).
 
 {@a removed}
 
-## API's Eliminadas
+## APIs Eliminadas
 
-Las siguientes API's han sido eliminadas a partir de la versión 10.0.0 \*:
+Las siguientes APIs han sido eliminadas a partir de la versión 10.0.0 \*:
 
 | Paquete         | API                                                          | Reemplazo                             | Notas                                                                         |
 | --------------- | ------------------------------------------------------------ | ------------------------------------- | ----------------------------------------------------------------------------- |
-| `@angular/core` | Clases base no decoradas que usan funcionalidades de Angular | Agregar decorador Angular             | Ver [guía de migración](guide/migration-undecorated-classes) para mas info.   |
-| `@angular/core` | `ModuleWithProviders` sin un generico                        | `ModuleWithProviders` con un generico | Ver [guía de migración](guide/migration-module-with-providers) para mas info. |
+| `@angular/core` | Clases base no decoradas que usan funcionalidades de Angular | Agregar decorador Angular             | Ver [guía de migración](guide/migration-undecorated-classes) para más info.   |
+| `@angular/core` | `ModuleWithProviders` sin un generico                        | `ModuleWithProviders` con un generico | Ver [guía de migración](guide/migration-module-with-providers) para más info. |
 
-- Para ver las API eliminadas en la versión 9, consulte esta guía en la [Documentacion de la versión 9](https://v9.angular.io/guide/deprecations#removed).
+- Para ver las API eliminadas en la versión 9, consulte esta guía en la [documentación de la versión 9](https://v9.angular.io/guide/deprecations#removed).
 
 {@a style-sanitization}
 
 ### Sanitizacion de estilo los enlaces de `[style]` y `[style.prop]`
 
-Angular solia sanitizar los enlaces de `[style]` y `[style.prop]` para evitar que se inserte código malicioso a través de las expresiones `javascript:` en las entradas `url ()` de CSS. Sin embargo, la mayoría de los navegadores modernos ya no admiten el uso de estas expresiones, por lo que la sanitizacion solo se mantuvo por el bien de IE 6 y 7. Dado que Angular no admite IE 6 o 7 y la sanitizacion tiene un costo de rendimiento, ya no sanitize los enlaces de estilo a partir de la versión 10 de Angular.
+Angular solía sanitizar los enlaces de `[style]` y `[style.prop]` para evitar que se inserte código malicioso a través de las expresiones `javascript:` en las entradas `url ()` de CSS. Sin embargo, la mayoría de los navegadores modernos ya no admiten el uso de estas expresiones, por lo que la sanitización solo se mantuvo por el bien de IE 6 y 7. Dado que Angular no admite IE 6 o 7 y la sanitización tiene un costo de rendimiento, ya no sanitize los enlaces de estilo a partir de la versión 10 de Angular.
