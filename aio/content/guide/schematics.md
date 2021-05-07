@@ -2,7 +2,7 @@
 
 Un esquema es un generador de código basado en plantillas que soporta lógica compleja.
 Es un conjunto de instrucciones para transformar un proyecto de software, generando o modificando código.
-Los esquemas están en el package [collections](guide/glossary#collection)  e instalados con npm.
+Los esquemas están en el paquete [collections](guide/glossary#collection)  e instalados con npm.
 
 La colección de esquemas puede ser una herramienta poderosa para la creación, modificación, y mantenimiento de cualquier proyecto de software, pero es particularmente útil para personalizar proyectos de Angular de acuerdo a las necesidades de tu propia organización.
 
@@ -17,9 +17,9 @@ Tu puedes modificar estos esquemas, y definir nuevos para hacer cosas como actua
 
 Los esquemas que se incluyen en la colección `@schematics/angular` se ejecutan de forma predeterminada por los comandos `ng generate` y `ng add`.
 
-El package contiene esquemas con nombre que configuran las opciones que están disponibles en el CLI para los subcomandos `ng generate`, por ejemplo `ng generate component` y `ng generate service`.
+El paquete contiene esquemas con nombre que configuran las opciones que están disponibles en el CLI para los subcomandos `ng generate`, por ejemplo `ng generate component` y `ng generate service`.
 
-Los subcomandos para `ng generate` son una abreviatura para el schema correspondiente. Usted puede especificar un esquema particular (o colección de esquemas) para generar, utilizando la forma larga:
+Los subcomandos para `ng generate` son una abreviatura para el schema correspondiente. Puedes especificar un esquema particular (o colección de esquemas) para generar, utilizando la forma larga:
 
 <code-example language="bash">
 ng generate my-schematic-collection:my-schematic-name
@@ -35,9 +35,9 @@ ng generate my-schematic-name --collection collection-name
 Un esquema JSON asociado con un esquema le dice a Angular CLI qué opciones están disponibles para comandos y subcomandos, y determina los valores predeterminados.
 
 Estos valores predeterminados pueden ser sobrescritos para proporcionar un valor diferente para una opción en la línea de comandos.
-Puede ver [Workspace Configuration](guide/workspace-config) para obtener información de cómo usted puede cambiar la opción de generación predeterminada para su workspace.
+Puede ver [Configuración del espacio de trabajo](guide/workspace-config) para obtener información de cómo puedes cambiar la opción de generación predeterminada para tu espacion de trabajo.
 
-Los esquemas JSON para los esquemas predeterminados que utiliza el CLI para generar proyectos y partes de proyectos están ubicados en el package [`@schematics/angular`](https://raw.githubusercontent.com/angular/angular-cli/v7.0.0/packages/schematics/angular/application/schema.json).
+Los esquemas JSON para los esquemas predeterminados que utiliza el CLI para generar proyectos y partes de proyectos están ubicados en el paquete [`@schematics/angular`](https://raw.githubusercontent.com/angular/angular-cli/v7.0.0/packages/schematics/angular/application/schema.json).
 
 El esquema describe las opciones disponibles para el CLI para cada subcomando de `ng generate`, como se muestra en la salida de `--help`.
 
