@@ -37,7 +37,7 @@ Un esquema JSON asociado con un esquema le dice a Angular CLI qué opciones est�
 Estos valores predeterminados pueden ser sobrescritos para proporcionar un valor diferente para una opción en la línea de comandos.
 Puede ver [Configuración del espacio de trabajo](guide/workspace-config) para obtener información de cómo puedes cambiar la opción de generación predeterminada para tu espacion de trabajo.
 
-Los esquemas JSON para los esquemas predeterminados que utiliza el CLI para generar proyectos y partes de proyectos están ubicados en el paquete [`@schematics/angular`](https://raw.githubusercontent.com/angular/angular-cli/v7.0.0/packages/schematics/angular/application/schema.json).
+Los esquemas JSON para los esquemas predeterminados que utiliza el CLI para generar proyectos y partes de proyectos están ubicados en el paquete [`@schematics/angular`](https://raw.githubusercontent.com/angular/angular-cli/v10.0.0/packages/schematics/angular/application/schema.json).
 
 El esquema describe las opciones disponibles para el CLI para cada subcomando de `ng generate`, como se muestra en la salida de `--help`.
 
@@ -67,7 +67,7 @@ Puedes verlo como un ejemplo y modelo para tu propio esquema de adición.
 
 Las librerías de terceros también soportan Angular CLI con esquemas de adición.
 
-Por ejemplo, `@ng-bootstrap/schematics` agrega [ng-bootstrap](https://ng-bootstrap.github.io/) para una aplicación, y `@clr/angular` instala y configura [Clarity from VMWare](https://vmware.github.io/clarity/documentation/v1.0/get-started).
+Por ejemplo, `@ng-bootstrap/schematics` agrega [ng-bootstrap](https://ng-bootstrap.github.io/) para una aplicación, y `@clr/angular` instala y configura [Clarity from VMWare](https://clarity.design/get-started/developing/angular/).
 
 Un esquema de adición también puede actualizar un proyecto con cambios de configuración, agregar dependencias adicionales (así como polyfills), o estructurar código de inicialización específico del paquete.
 
@@ -84,7 +84,7 @@ El siguiente comando usa uno de esos esquemas para renderizar Angular Material `
 ng generate @angular/material:table <component-name>
 </code-example>
 
-### Actualizar esquemas.
+### Actualizar esquemas
 
 Los comandos `ng update` pueden ser usados para actualizar las dependencias de la librería de tu espacio de trabajo. Si no proporcionas opciones o usas la opción help, el comando examina tu espácio de trabajo y sugiere librerías para actualizar.
 
