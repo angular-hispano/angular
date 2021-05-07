@@ -57,10 +57,9 @@ Las siguientes APIs se eliminaron a partir de la versión 11.0.0*:
 | `@angular/core` | `ViewEncapsulation.Native` | No es necesaria alguna acción | Anteriormente Angular admitía un modo encapsulado de vista `ViewEncapsulaion.Native` que se basaba en la v0 de APIs del Shadow DOM Draft. Estas APIs han sido reemplazadas por las APIs actualizadas del Shadow DOM, y que ahora están habilitadas en el `ViewEncapsulation.ShadowDom`. Para más información sobre este cambio, counsulta [Actualización de Componentes Web: actualice las APIs a la v1](https://developers.google.com/web/updates/2019/07/web-components-time-to-upgrade).|
 
 {@a ivy}
-
 ## Características compatibles del Ivy
 
-Desde la versíon 9,  Ivy es el motor de renderizado por defecto de Angular. Si no has escuchado hablar de Ivy, puedes leer al respecto en [La guía de Ivy de Angular](guide/ivy).
+Desde la versíon 9, Ivy es el motor de renderizado por defecto de Angular. Si no has escuchado hablar de Ivy, puedes leer al respecto en [La guía de Ivy de Angular](guide/ivy).
 
 * Entre otras características, Ivy introduce una verificación de tipo de plantilla más completa. Para más detalle, consulta [Verificación de tipo de plantilla](guide/template-typecheck).
 
