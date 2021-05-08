@@ -1,25 +1,27 @@
-# Entry components
+# Componentes de Entrada
 
-An entry component is any component that Angular loads imperatively, (which means you’re not referencing it in the template), by type. You specify an entry component by bootstrapping it in an NgModule, or including it in a routing definition.
+Un componente de entrada es cualquier componente que Angular carga imperativamente, (lo que significa que no está referenciando hacia la plantilla) por tipo.
+Tú especificas un componente de entrada inicializándolo en NgModule, o incluyéndolo en la definición de ruta.
 
 <div class="alert is-helpful">
 
-To contrast the two types of components, there are components which are included in the template, which are declarative. Additionally, there are components which you load imperatively; that is, entry components.
+Para contrastar los dos tipos de componentes, existen componentes que son incluidos en la plantilla, los cuales son declarativos.
+Adicionalmente existen componentes los cuales puedes cargarlos de forma imperativa; eso es un componente de entrada.
 
 </div>
 
 
-There are two main kinds of entry components:
+Hay dos principales tipos de componentes de entrada:
 
-* The bootstrapped root component.
-* A component you specify in a route definition.
-
-
-## A bootstrapped entry component
+* El componente inicializado de raíz.
+* Un componente especificado en una ruta definida.
 
 
-The following is an example of specifying a bootstrapped component,
-`AppComponent`, in a basic `app.module.ts`:
+## Inicio de un Componente de entrada
+
+
+Lo siguiente es un ejemplo de especificar un inicio de componente,
+`AppComponent`, en un básico `app.module.ts`:
 
 ```typescript
 @NgModule({
@@ -33,32 +35,29 @@ The following is an example of specifying a bootstrapped component,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent] // bootstrapped entry component
+  bootstrap: [AppComponent] // Inicio del componente de entrada
 })
 ```
 
-A bootstrapped component is an entry component
-that Angular loads into the DOM during the bootstrap process (application launch).
-Other entry components are loaded dynamically by other means, such as with the router.
+Un componente bootstrapped es un componente de entrada,
+Eso Angular lo carga dentro del DOM durante el proceso de arranque (lanzamiento de la aplicación).
+Otros componentes de entrada son cargados dinámicamente por otros medios, como con el enrutador.
 
-Angular loads a root `AppComponent` dynamically because it's listed by type in `@NgModule.bootstrap`.
+Angular carga de inicio `AppComponent` dinámicamente porque está siendo escuchado en el `@NgModule.bootstrap`.
 
 <div class="alert is-helpful">
 
-A component can also be bootstrapped imperatively in the module's `ngDoBootstrap()` method.
-The `@NgModule.bootstrap` property tells the compiler that this is an entry component and
-it should generate code to bootstrap the application with this component.
+Un componente puede también ser arrancado imperativamente en los módulos con el método `ngDoBootstrap()`.
+La propiedad `@NgModule.bootstrap` le dice al compilador que esto es un componente de entrada y
+debería generar el código de arranque de la aplicación con este componente.
 
 </div>
 
 
-A bootstrapped component is necessarily an entry component because bootstrapping is an imperative process, thus it needs to have an entry component.
+Un componente inicializado es necesariamente un componente de entrada porque es inicializado en un proceso imperativo, por lo tanto, debe tener un componente de entrada.
+## Un componente de entrada ruteado
 
-## A routed entry component
-
-
-The second kind of entry component occurs in a route definition like
-this:
+El segundo tipo de componente de entrada ocurre en una definición de ruta como esta:
 
 ```typescript
 const routes: Routes = [
@@ -69,38 +68,37 @@ const routes: Routes = [
 ];
 ```
 
-A route definition refers to a component by its type with `component: CustomerListComponent`.
+Una ruta definida que se refiera hacia un componente por su tipo con `component: CustomerListComponent`.
 
-All router components must be entry components. Because this would require you to add the component in two places (router and `entryComponents`) the Compiler is smart enough to recognize that this is a router definition and automatically add the router component into `entryComponents`.
+Todos los componentes de ruta deben ser componentes de entrada. Porque esto requeriría que agregues el componente en dos lugares (en el enrutador y en `entryComponents`)El Compilador es lo suficientemente listo para reconocer eso es un enrutador definido y automáticamente agrega la el componente enrutado dentro de `entryComponents`.
 
 
-## The `entryComponents` array
+## El array de `entryComponents`
 
-Though the `@NgModule` decorator has an `entryComponents` array, most of the time
-you won't have to explicitly set any entry components because Angular adds components listed in `@NgModule.bootstrap` and those in route definitions to entry components automatically. Though these two mechanisms account for most entry components, if your app happens to bootstrap or dynamically load a component by type imperatively,
-you must add it to `entryComponents` explicitly.
+Aunque el decorador `@NgModule` tiene un array de  `entryComponents`, la mayoría del tiempo
+tú no tienes que establecer explícitamente ningún componente de entrada porque Angular agrega los componentes listados en `@NgModule.bootstrap` y los que están definidos en la ruta como componentes de entrada de forma automática.Aunque estos dos mecanismos representan la mayoría de los componentes de entrada,si tu aplicación pasa de arranque o cargar de forma dinámica un componente por tipo imperativo,
+deberías agregarlo a `entryComponents` explícitamente.
 
-### `entryComponents` and the compiler
+### `entryComponents` y el compilador
 
-For production apps you want to load the smallest code possible.
-The code should contain only the classes that you actually need and
-exclude components that are never used. For this reason, the Angular compiler only generates code for components which are reachable from the `entryComponents`; This means that adding more references to `@NgModule.declarations` does not imply that they will necessarily be included in the final bundle.
+Para aplicaciones de producción quieres cargar el menor código posible.
+El código debería contener solo las clases que actualmente tú necesitas y
+excluir componentes que nunca son usados. Por esta razón, el compilador de Angular solo genera código para componentes que son accesibles desde el `entryComponents`; Esto significa que agregando más referencias a `@NgModule.declarations` no implica que necesariamente serán incluidas el empaquetado final.
 
-In fact, many libraries declare and export components you'll never use.
-For example, a material design library will export all components because it doesn’t know which ones you will use. However, it is unlikely that you will use them all.
-For the ones you don't reference, the tree shaker drops these components from the final code package.
+De hecho, muchas librerías declaran y exportan componentes que tú jamás usaras.
+Por ejemplo, Una librería de material design exportara todos los componentes porque no conoce cuáles usaras. Sin embargo, no es como si tú usaras todos ellos.
+Para los que no haces referencia, El "tree shaker" descarta esos componentes para el empaquetado del código final.
 
-If a component isn't an _entry component_ and isn't found in a template,
-the tree shaker will throw it away. So, it's best to add only the components that are truly entry components to help keep your app
-as trim as possible.
+Si un componente no es un _entry component_ y  no es encontrado en una plantilla,
+el "tree shaker" lo sacará del camino. Entonces, es mejor agregar únicamente los componentes que realmente son componentes de entrada para ayudar a mantener tu aplicación lo más limpia posible.
 
 
 <hr />
 
-## More on Angular modules
+## Más en módulos de Angular
 
-You may also be interested in the following:
-* [Types of NgModules](guide/module-types)
-* [Lazy Loading Modules with the Angular Router](guide/lazy-loading-ngmodules).
+Puede que estés interesado en continuar:
+* [Tipos de NgModules](guide/module-types)
+* [Modulos cargados Lazy con el enrutador de Angular](guide/lazy-loading-ngmodules).
 * [Providers](guide/providers).
 * [NgModules FAQ](guide/ngmodule-faq).
