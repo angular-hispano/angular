@@ -3,9 +3,16 @@
 JavaScript modules and NgModules can help you modularize your code, but they are very different.
 Angular apps rely on both kinds of modules.
 
-## JavaScript modules: Files containing code
+Los modulos y NgModules de JavaScript pueden ayudarte a modularizar tu código, pero son muy diferentes.
+Las aplicaciones de Angular se basan en ambos tipos de módulos.
 
-A [JavaScript module](https://javascript.info/modules "JavaScript.Info - Modules") is an individual file with JavaScript code, usually containing a class or a library of functions for a specific purpose within your app.
+## JavaScript modules: Files containing code
+## Modulos de JavaScript: Archivos que contienen código
+
+A [Modulos de JavaScript](https://javascript.info/modules "JavaScript.Info - Modules") is an individual file with JavaScript code, usually containing a class or a library of functions for a specific purpose within your app.
+JavaScript modules let you spread your work across multiple files.
+
+Los [Modulos de JavaScript](https://javascript.info/modules "JavaScript.Info - Modules") is an individual file with JavaScript code, usually containing a class or a library of functions for a specific purpose within your app.
 JavaScript modules let you spread your work across multiple files.
 
 <div class="alert is-helpful">
