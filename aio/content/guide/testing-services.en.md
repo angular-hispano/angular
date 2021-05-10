@@ -92,7 +92,7 @@ Then inject it inside a test by calling `TestBed.inject()` with the service clas
 **Note:** `TestBed.get()` was deprecated as of Angular version 9.
 To help minimize breaking changes, Angular introduces a new function called `TestBed.inject()`, which you should use instead.
 For information on the removal of `TestBed.get()`,
-see its entry in the [Deprecations index](guide/deprecations#indice).
+see its entry in the [Deprecations index](guide/deprecations#index).
 
 </div>
 

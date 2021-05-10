@@ -13,10 +13,10 @@ Las API’s y funcionalidades que fueron creadas en la versión 6 o anterior son
 Para información acerca de cómo actualizar Angular a la última versión, visita la guía interactiva en [update.angular.io](https://update.angular.io).
 
 </div>
-
+{@a index}
 ## Indice
 
-Para ayudarte a preparar tus apps para el futuro, la siguiente tabla contiene todas las API’s y funcionalidades obsoletas organizadas por la fecha en que serán eliminadas. Cada elemento está ligado a la sección posterior en esa guía la cual explica la razón de la depredación y opciones de reemplazo.
+Para ayudarte a preparar tus apps para el futuro, la siguiente tabla contiene todas las API’s y funcionalidades obsoletas organizadas por la fecha en que serán eliminadas. Cada elemento está ligado a la sección posterior en esa guía la cual explica la razón de porque se volvieron obsoletos y opciones de reemplazo.
 
 <!--
 deprecation -> removal cheat sheet
@@ -28,7 +28,7 @@ v8 - v11
 v9 - v12
 -->
 
-| Área                          | API o Funcionalidad                                                                           | Probalemente Eliminada    |
+| Área                          | API o Funcionalidad                                                                           | Probable Eliminación      |
 | ----------------------------- | --------------------------------------------------------------------------------------------- | ------------------------- |
 | `@angular/bazel`              | [`Bazel builder and schematics`](#bazelbuilder)                                               | v10                       |
 | `@angular/common`             | [`ReflectiveInjector`](#reflectiveinjector)                                                   | <!--v8--> v11             |
@@ -85,7 +85,7 @@ Tip: En la [Sección de referencia de APIs](api) de este documento, las APIs obs
 | API                                                                     | Remplazo                                                              | Anuncio de su desuso | Notas                                                                                                                                                                                                     |
 | ----------------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`CollectionChangeRecord`](api/core/CollectionChangeRecord)             | [`IterableChangeRecord`](api/core/IterableChangeRecord)               | v4                   | ninguna                                                                                                                                                                                                   |
-| [`DefaultIterableDiffer`](api/core/DefaultIterableDiffer)               | n/a                                                                   | v4                   | Not part of public API.                                                                                                                                                                                   |
+| [`DefaultIterableDiffer`](api/core/DefaultIterableDiffer)               | n/a                                                                   | v4                   | No forma parte de la API pública                                                                                                                                                                          |
 | [`ReflectiveInjector`](api/core/ReflectiveInjector)                     | [`Injector.create`](api/core/Injector#create)                         | v5                   | Ver [`ReflectiveInjector`](#reflectiveinjector)                                                                                                                                                           |
 | [`ReflectiveKey`](api/core/ReflectiveKey)                               | ninguna                                                               | v5                   | ninguna                                                                                                                                                                                                   |
 | [`ViewEncapsulation.Native`](api/core/ViewEncapsulation#Native)         | [`ViewEncapsulation.ShadowDom`](api/core/ViewEncapsulation#ShadowDom) | v6                   | Utilice el mecanismo de encapsulación nativo del renderizador. Visita [view.ts](https://github.com/angular/angular/blob/3e992e18ebf51d6036818f26c3d77b52d3ec48eb/packages/core/src/metadata/view.ts#L32). |
@@ -162,13 +162,13 @@ Esta sección contiene un listado de todas las funcionalidades que están en des
 
 ### Constructor de Bazel y esquemas
 
-El constructor de bazel y esquemas fueron introducidos en Angular Labs para permitir a los usuarios probar Bazel sin tener que manejar versiones de Bazel y archivos BUILD. Esta característica ha sido deprecada. Para más información, por favor consulta el [documento de migración](https://github.com/angular/angular/blob/master/packages/bazel/src/schematics/README.md).
+El constructor de bazel y esquemas fueron introducidos en Angular Labs para permitir a los usuarios probar Bazel sin tener que manejar versiones de Bazel y archivos BUILD. Esta característica se ha vuelto obsoleta. Para más información, por favor consulta el [documento de migración](https://github.com/angular/angular/blob/master/packages/bazel/src/schematics/README.md).
 
 {@a wtf}
 
 ### Web Tracing Framework integration
 
-Angular anteriormente soportaba la integración con [Web Tracing Framework (WTF)](https://google.github.io/tracing-framework/) para pruebas de rendimiento en Aplicaciones Angular. Esta integración dejó de ser mantenida y ya no existe. Como resultado la integración ha sido deprecada en la versión de Angular 8 y debido a la falta de evidencia de cualquier uso existente será removida en la versión 9.
+Angular anteriormente soportaba la integración con [Web Tracing Framework (WTF)](https://google.github.io/tracing-framework/) para pruebas de rendimiento en Aplicaciones Angular. Esta integración dejó de ser mantenida y ya no existe. Como resultado la integración se ha vuelto obsoleta. en la versión de Angular 8 y debido a la falta de evidencia de cualquier uso existente será removida en la versión 9.
 
 {@a deep-component-style-selector}
 
@@ -212,11 +212,11 @@ retrasar las actualizaciones con`ngModelOptions` o exportar la directiva, no fun
 Además, este patrón combina estrategias de formas reactivas y basadas en plantillas, que
 impiden aprovechar todos los beneficios de cualquiera de las estrategias.
 Establecer el valor en la plantilla viola los principios de la plantilla agnóstica
-que esta detrás de las formas reactivas, y agregar una capa `FormControl` /` FormGroup` en
+que esta detrás de las formas reactivas, y agregar una capa `FormControl`/` FormGroup` en
 la clase elimina la conveniencia de definir formularios en la plantilla.
 
 Para actualizar su código antes de que se elimine el soporte, querrá decidir si se queda
-con directivas de formas reactivas (y obtener / establecer valores usando patrones de formas reactivas) o
+con directivas de formas reactivas (y obtener/establecer valores usando patrones de formas reactivas) o
 cambiar a directivas basadas en plantillas.
 
 Después (opción 1 - usar formas reactivas):
@@ -273,7 +273,7 @@ Injector.create({providers});
 
 ### loadChildren string sintaxis
 
-Cuando Angular introdujo por primera vez las rutas diferidas, el navegador no era compatible con la carga dinámica de JavaScript adicional. Angular creó nuestro propio esquema usando la sintaxis `loadChildren: '. / Lazy / lazy.module # LazyModule'` y construyó herramientas para soportarlo. Ahora que muchos navegadores admiten la importación dinámica de ECMAScript, Angular se esta moviendo hacia esta nueva sintaxis.
+Cuando Angular introdujo por primera vez las rutas diferidas, el navegador no era compatible con la carga dinámica de JavaScript adicional. Angular creó nuestro propio esquema usando la sintaxis `loadChildren: './Lazy/lazy.module#LazyModule'` y construyó herramientas para soportarlo. Ahora que muchos navegadores admiten la importación dinámica de ECMAScript, Angular se esta moviendo hacia esta nueva sintaxis.
 
 En la versión 8, la sintaxis de string para la especificación de ruta [`loadChildren`](api/router/LoadChildren) quedó obsoleta, a favor de una nueva sintaxis que usa la sintaxis `import()`.
 
@@ -311,7 +311,7 @@ const routes: Routes = [{
 
 {@a activatedroute-props}
 
-### ActivatedRoute params and queryParams properties
+### Parametros de ActivatedRoute y propiedades de queryParams
 
 [ActivatedRoute](api/router/ActivatedRoute) contiene dos [propiedades](api/router/ActivatedRoute#properties) que son menos capaces que sus reemplazos y pueden quedar obsoletos en una futura versión de Angular.
 
@@ -393,7 +393,7 @@ Los paquetes `@angular/platform-*` permiten que Angular se ejecute en diferentes
 `@angular/platform-server` permite que Angular se ejecute en el servidor y `@angular/platform-browser`
 permite que Angular se ejecute en un navegador web.
 
-`@angular/platform-webworker` se introdujo en la versión 2 de Angular como un experimento del aprovechamiento de la Arquitectura de renderizado de Angular para ejecutar una aplicación web completa en un [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API). Hemos aprendido bastante
+`@angular/platform-webworker` se introdujo en la versión 2 de Angular como un experimento del aprovechamiento de la Arquitectura de renderizado de Angular para ejecutar una aplicación web completa en un [web worker](https://developer.mozilla.org/es/docs/Web/API/Web_Workers_API). Hemos aprendido bastante
 de este experimento y hemos llegado a la conclusión de que ejecutar toda la aplicación en un web
 broker no es la mejor estrategia para la mayoría de las aplicaciones.
 
@@ -402,17 +402,18 @@ En el futuro, centraremos nuestros esfuerzos relacionados con los web brokers en
 A partir de la versión 8 de Angular, todas las APIs de `platform-webworker` son obsoletas.
 Esto incluye ambos paquetes: `@angular/platform-webworker` y
 `@angular/platform-webworker-dynamic`.
+
 {@a entryComponents}
 
 ### `entryComponents` and `ANALYZE_FOR_ENTRY_COMPONENTS` ya no son requeridos
 
 Anteriormente, el array `entryComponents` en la definición de` NgModule` se usaba para decirle al compilador qué componentes se crearían e insertarían dinámicamente. Con Ivy, esto ya no es un requisito y el array `entryComponents` se puede eliminar de las declaraciones de módulos existentes. Lo mismo se aplica al token de inyección `ANALYZE_FOR_ENTRY_COMPONENTS`.
 
-{@a moduleWithProviders}
+{@a modulewithproviders-type-without-a-generic}
 
 ### `ModuleWithProviders` tipo sin generico
 
-Algunas bibliotecas de Angular, como `@angular/router` y` @ngrx/store`, implementan una API que devuelve un tipo llamado `ModuleWithProviders` (normalmente a través de un método llamado `forRoot()`).
+Algunas bibliotecas de Angular, como `@angular/router` y `@ngrx/store`, implementan una API que devuelve un tipo llamado `ModuleWithProviders` (normalmente a través de un método llamado `forRoot()`).
 Este tipo representa un `NgModule` junto con proveedores adicionales.
 La versión 9 de Angular ha dejado en desuso `ModuleWithProviders` sin un tipo explícitamente genérico, donde el tipo genérico se refiere al tipo de `NgModule`.
 En una versión futura de Angular, el genérico ya no será opcional.
@@ -457,7 +458,7 @@ export class MiModulo {
 
 ### IE 9, 10, and IE mobile support
 
-La compatibilidad con IE 9 y 10 ha quedado obsoleta, así como la compatibilidad con IE Mobile. Estas se eliminarán en una versión futura.
+La compatibilidad con IE 9 y 10 ha quedado obsoleta, así como la compatibilidad con IE Mobile. Estas se eliminarán en unasupport versión futura.
 La compatibilidad con navegadores obsoletos como estos aumenta el tamaño del paquete, la complejidad del código y la carga de prueba, y también requiere tiempo y esfuerzo que podrían dedicarse a mejorar el marco.
 Por ejemplo, solucionar problemas puede ser más difícil, ya que una solución sencilla para los navegadores modernos podría romper los antiguos que tienen peculiaridades debido a que no reciben actualizaciones de los proveedores.
 
@@ -484,7 +485,7 @@ Si confía en el comportamiento de que la misma instancia del objeto debería ca
 
 {@a deprecated-cli-flags}
 
-## Deprecated CLI APIs and Options
+## APIs del CLI y Opciones Obsoletas
 
 Esta sección contiene una lista completa de todos flags del CLI actualmente en desuso.
 
@@ -537,7 +538,7 @@ Esta sección contiene una lista completa de todos flags del CLI actualmente en 
 
 {@a removed}
 
-## Removed APIs
+## APIs Eliminadas
 
 Las siguientes API se han eliminado a partir de la versión 10.0.0 \*:
 
