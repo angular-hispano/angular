@@ -207,9 +207,5 @@
     "**/webdriver-manager": "12.1.7"
   },
   "cldr-data-coverage": "full",
-  "husky": {
-    "hooks": {
-      "commit-msg": "yarn -s ng-dev commit-message pre-commit-validate --file-env-variable HUSKY_GIT_PARAMS"
-    }
-  }
+  "husky": {}
 }

@@ -2789,6 +2789,6 @@ to see the finished route configuration.
 
 ## Final app
 
-For the completed router app, see the <live-example name="router"></live-example> for the final source code.
+Para obtener la aplicación de enrutador completa, consulta <live-example name="router"></live-example> para obtener el código fuente final.
 
 {@a link-parameters-array}
