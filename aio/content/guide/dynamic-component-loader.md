@@ -28,7 +28,7 @@ Antes de que pueda añadir componentes tu debes definir el punto de anclaje
 para decirle a Angular donde insertar componentes. 
 
 El banner publicitario utiliza una directiva de ayuda llamada `AdDirective` para
-marcar puntos validos de inserción en la plantilla.
+marcar puntos válidos de inserción en la plantilla.
 
 
 <code-example path="dynamic-component-loader/src/app/ad.directive.ts" header="src/app/ad.directive.ts"></code-example>
@@ -47,8 +47,7 @@ La siguiente sección te muestra como.
 ## Carga de componentes
 
 La mayor parte de la implementación del banner publicitario está en `ad-banner.component.ts`.
-Para mantener las cosas simples en este ejemplo, el HTML está en la `plantilla`  
-del decorador `@Component` como una propiedad de plantillas literales.
+Para mantener las cosas simples en este ejemplo, el HTML está en la `plantilla` del decorador `@Component` como una propiedad de plantillas literales.
 
 El elemento `<ng-template>` es donde se aplica la directiva que acabas de hacer.
 Para aplicar la `AdDirective`, recuerda el selector de `ad.directive.ts`,
@@ -72,7 +71,7 @@ porque no renderiza ninguna salida adicional.
 Mira más de cerca los métodos de `ad-banner.component.ts`.
 
 `AdBannerComponent` toma un array de objetos `AdItem` como entrada,
-que viene de `AdService`. Los objetos de `AdItem` específicamente
+que viene de `AdService`. Los objetos de `AdItem` específican
 el tipo de componente a cargar y cualquier dato que se vincule al
 componente.`AdService` retorna los anuncios actuales que componen la campaña publicitaria.
 
@@ -95,13 +94,13 @@ Hazlo paso a paso. Primero, elige un anuncio.
 
 
 
-**Como _loadComponent()_ escoge un anuncio**
+**¿Cómo _loadComponent()_ escoge un anuncio?**
 
 El método `loadComponent()` escoge un anuncio usando algo de matemática.
 
 Primero, coloca el `currentAdIndex` tomando lo que sea
 actualmente mas uno, dividiendo eso por el tamaño del array de `AdItem`, y
-usando el _sobrante_ como un nuevo valor de `currentAdIndex`. Entonces, usa ese 
+usando el _sobrante_ como un nuevo valor de `currentAdIndex`. Luego, usa ese 
 valor para seleccionar un `adItem` del array.
 
 
@@ -112,7 +111,7 @@ Después `loadComponent()` selecciona un anuncio, usa `ComponentFactoryResolver`
 para resolver un `ComponentFactory` para cada componente especifico.
 El `ComponentFactory` entonces crea una instancia de cada componente.
 
-A continuación, tu estas enfocando el `viewContainerRef` que
+A continuación, tu estás enfocando el `viewContainerRef` que
 existe en esta instancia específica del componente. ¿Cómo sabes que es
 esta instancia específica? Porque se está refiriendo a `adHost` y `adHost` es la 
 directiva que tú configuraste antes para decirle a Angular donde insertar los componentes dinámicos.
