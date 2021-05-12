@@ -14,7 +14,7 @@ Para obtener instrucciones paso a paso sobre cómo actualizar a la última versi
 
 Si tiene curiosidad acerca de las migraciones específicas que ejecuta la CLI, consulte  [sección de migraciones automatizadas](#migrations) para obtener detalles sobre qué código está cambiando y por qué.
 
-## Cambios y Obsoletas en Versión 10
+## Cambios y Obsolescencias en Versión 10
 
 <div class="alert is-helpful">
 
@@ -37,7 +37,7 @@ Si tiene curiosidad acerca de las migraciones específicas que ejecuta la CLI, c
 {@a deprecations}
 ### Nuevas Obsoletas
 
-| Area                          | API o Característica                                                                 | Puede ser eliminado |
+| Área                          | API o Característica                                                                 | Puede ser eliminado |
 | ----------------------------- | ---------------------------------------------------------------------------    | ----------------- |
 | `@angular/core`               | [`WrappedValue`](guide/deprecations#wrapped-value)                                     | <!--v10--> v12 |
 | navegador soportado               | [`IE 9, 10, and IE Mobile`](guide/deprecations#ie-9-10-and-ie-mobile-support) | <!--v10--> v11 |
@@ -56,7 +56,7 @@ Las siguientes APIs han sido eliminadas a partir de la versión 10.0.0*:
 | `@angular/bazel` | [`Bazel builder and schematics`](guide/deprecations#bazelbuilder) | `bazelbuild/rules_nodejs` | [Para más información](https://github.com/angular/angular/tree/10.0.x/packages/bazel/src/schematics) |
 
 
-*Para ver APIs eliminadas en la versión 9, consulte esta guía en el [versión 9 sitio de documentos](https://v9.angular.io/guide/deprecations#removed).
+*Para ver APIs eliminadas en la versión 9, consulte esta guía en la [versión 9 sitio de documentos](https://v9.angular.io/guide/deprecations#removed).
 
 {@a ivy}
 
