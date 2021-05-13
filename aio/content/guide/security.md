@@ -19,13 +19,9 @@ Para reportar vulnerabilidades en el propio Angular, envíanos un email a [secur
 Para más información sobre cómo Google maneja los problemas de seguridad, ve a [Google's security
 philosophy](https://www.google.com/about/appsecurity/).
 
-
-
 <h2 id='best-practices'>
   Mejores prácticas
 </h2>
-
-
 
 * **Mantente al corriente con los últimos lanzamientos de las librerías de Angular.**
 Regularmente actualizamos las librerías de Angular, y estas actualizaciones pueden arreglar defectos de seguridad descubiertos en versiones anteriores. Puedes ver el [registro de cambios](https://github.com/angular/angular/blob/master/CHANGELOG.md) de Angular para ver las actualizaciones relacionadas con la seguridad.
