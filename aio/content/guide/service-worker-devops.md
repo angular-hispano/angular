@@ -30,7 +30,7 @@ Con este comportamiento de control de versiones para el service worker de Angula
 
 #### Búsqueda de actualizaciones
 
-Cada vez que el usuario abre o refresca la aplicación, el service worker de Angular verifica si existen actualizaciones en la aplicación buscando cambios en el manifiesto `ngsw.json`. Si se encuentra alguna actualización, esta se descarga y se almacena en caché automáticamente, y se servirá la próxima vez que se cargue la aplicación. 
+Cada vez que el usuario abre o refresca la aplicación, el service worker de Angular verifica si existen actualizaciones en la aplicación buscando cambios en el manifiesto `ngsw.json`. Si se encuentra alguna actualización, esta se descarga y se almacena en caché automáticamente, y se servirá la próxima vez que se cargue la aplicación.
 
 ### Integridad de recursos
 
