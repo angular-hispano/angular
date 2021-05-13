@@ -94,19 +94,18 @@ Haz clic en el botón de retroceso del navegador o el vínculo de "Heroes" para 
   <img src='generated/images/guide/router/confirm-dialog.png' alt="Diálogo de Confirmación">
 </div>
 
-Tu puedes presionar "Ok" y perder tus cambios o hacer clic en "Cancel" y continuar editando.
+Puedes presionar "Ok" y perder tus cambios o hacer clic en "Cancel" y continuar editando.
 
-Detras de este comportamiento se encuentra el guard `CanDeactivate` del enrutador.
+Detrás de este comportamiento se encuentra el guard `CanDeactivate` del enrutador.
 Los guards te dan la oportunidad de limpiar o pedir permiso al usuario antes de navegar fuera de la vista actual.
 
-Los botones de `Admin` y `Login` muestran otras capacidades del enrutador que se cubriran mas adelante en la guía.
+Los botones de `Admin` y `Login` muestran otras capacidades del enrutador que se cubrirán más adelante en la guía.
 
 {@a getting-started}
 
 ## Hito 1: Primeros pasos
 
-Comienza con una version basica de la app que navega entre dos vistas vacias.
-Begin with a basic version of the app that navigates between two empty views.
+Comienza con una versión básica de la app que navega entre dos vistas vacías.
 
 <div class="lightbox">
   <img src='generated/images/guide/router/router-1-anim.gif' alt="App en acción">
@@ -134,7 +133,7 @@ La primera ruta hace lo siguiente:
 
 - Cuando la aplicación solicita a la navegación la ruta `/crisis-center`, el enrutador activa una instancia de `CrisisListComponent`, muestra su vista, y actualiza la dirección URL del navegador y el historial con la URL de esa ruta.
 
-La primera configuración define una matriz de dos elementos con las rutas minimas que conducen a `CrisisListComponent` y `HeroListComponent`.
+La primera configuración define una matriz de dos elementos con las rutas mínimas que conducen a `CrisisListComponent` y `HeroListComponent`.
 
 Genera los componentes `CrisisList` y `HeroList` para que el enrutador tenga algo que renderizar.
 
@@ -164,12 +163,12 @@ Remplaza el contenido de cada componente con el HTML de ejemplo que se muestra a
 
 Para utilizar el `Router`, primero debes de registrar `RouterModule` del paquete `@angular/router`.
 Definir una matriz de rutas, `appRoutes`, y pasarlas al método `RouterModule.forRoot()`.
-El método `RouterModule.forRoot()` devuelve un modulo que contiene el proovedor de servicios del `Router` configurado, ademas de otros proveedores que requiere la biblioteca del enrutador.
-Una vez que inicia la aplicación, el `Enrutador` realiza la navegación inicial basado en la URL actual del navegador.
+El método `RouterModule.forRoot()` devuelve un módulo que contiene el proveedor de servicios del `Router` configurado, además de otros proveedores que requiere la biblioteca del enrutador.
+Una vez que inicia la aplicación, el `Enrutador` realiza la navegación inicial basada en la URL actual del navegador.
 
 <div class="alert is-important">
 
-**Nota:** El método `RouterModule.forRoot()` es un patron usado para registrar los proveedores de toda la aplicación. Puedes encontrar más información sobre los proveedores de la aplicación en la guía de [servicios Singleton](guide/singleton-services#forRoot-router).
+**Nota:** El método `RouterModule.forRoot()` es un patrón usado para registrar los proveedores de toda la aplicación. Puedes encontrar más información sobre los proveedores de la aplicación en la guía de [servicios Singleton](guide/singleton-services#forRoot-router).
 
 </div>
 
@@ -177,8 +176,8 @@ Una vez que inicia la aplicación, el `Enrutador` realiza la navegación inicial
 
 <div class="alert is-helpful">
 
-Agregar el `RouterModule` configurado al `AppModule` es suficiente para una configuración minima de las rutas.
-Sin embargo, a medida que la aplicación crece, puedes realizar una [refactorización de la configuración del enrutador](#refactor-the-routing-configuration-into-a-routing-module) en un archivo separado y crear un [Modulo de Rutas](#routing-module).
+Agregar el `RouterModule` configurado al `AppModule` es suficiente para una configuración mínima de las rutas.
+Sin embargo, a medida que la aplicación crece, puedes realizar una [refactorización de la configuración del enrutador](#refactor-the-routing-configuration-into-a-routing-module) en un archivo separado y crear un [Módulo de Rutas](#routing-module).
 Un módulo de rutas es un tipo especial de `Service Module` dedicado al enrutamiento.
 
 </div>
@@ -199,7 +198,7 @@ La salida del enrutador sirve como contenedor donde los componentes enrutados so
 
 {@a shell-template}
 
-La plantilla correspondiente al componente se ve asi:
+La plantilla correspondiente al componente se ve así:
 
 <code-example path="router/src/app/app.component.1.html" header="src/app/app.component.html"></code-example>
 
@@ -208,9 +207,9 @@ La plantilla correspondiente al componente se ve asi:
 ### Definir una ruta comodín
 
 Hasta ahora has creado dos rutas en la app, una a `/crisis-center` y la otra a `/heroes`.
-Cualquier otra URL causara que el enrutador arroje un error y bloquee la app.
+Cualquier otra URL causará que el enrutador arroje un error y bloquee la app.
 
-Agrega un ruta comodín para interceptar URLs invalidas y manejarlas con elegancia.
+Agrega una ruta comodín para interceptar URLs inválidas y manejarlas con elegancia.
 Una ruta comodín tiene una ruta que consta de dos asteriscos.
 Coincide con cada URL.
 Por lo tanto, el enrutador selecciona esta ruta comodín si no coincide con otra ruta en la configuración.
@@ -219,15 +218,15 @@ Una ruta comodín puede navegar a un componente personalizado de "404 Not Found"
 <div class="alert is-helpful">
 
 El enrutador selecciona la ruta con la estrategia [_primera coincidencia gana_](/guide/router#example-config).
-Dado que la ruta comodín es la ruta menos especifica, colóquela en el último lugar en la configuración de la ruta.
+Dado que la ruta comodín es la ruta menos específica, colóquela en el último lugar en la configuración de la ruta.
 
 </div>
 
-Para probar esta funcionalidad, agrega un botón a `RouterLink` a la platilla `HeroListComponent` y establece un vínculo a una ruta aun no existente llamada `"/sidekicks"`.
+Para probar esta funcionalidad, agrega un botón a `RouterLink` a la platilla `HeroListComponent` y establece un vínculo a una ruta aún no existente llamada `"/sidekicks"`.
 
 <code-example path="router/src/app/hero-list/hero-list.component.1.html" header="src/app/hero-list/hero-list.component.html (excerpt)"></code-example>
 
-La aplicación fallara si el usuario hace clic en ese botón porque aún no hemos definido la ruta `"/sidekicks"`.
+La aplicación fallará si el usuario hace clic en ese botón porque aún no hemos definido la ruta `"/sidekicks"`.
 
 En lugar de agregar la ruta `"/sidekicks"`, define una ruta `comodín` y haz que navegue hasta el componente `PageNotFoundComponent`.
 
@@ -241,7 +240,7 @@ Crea el componente `PageNotFoundComponent` para que se muestre, cuando los usuar
 
 <code-example path="router/src/app/page-not-found/page-not-found.component.html" header="src/app/page-not-found.component.html (404 component)"></code-example>
 
-Ahora cuando el usuario vista `/sidekicks`, o cualquier otra URL no válida, el navegador muestra "Page not found".
+Ahora cuando el usuario visita `/sidekicks`, o cualquier otra URL no válida, el navegador muestra "Page not found".
 La barra de direcciones del navegador sigue apuntando a la URL no válida.
 
 {@a redirect}
@@ -254,44 +253,44 @@ Cuando se inicia la aplicación, la URL inicial en la barra del navegador es la 
   localhost:4200
 </code-example>
 
-Esto no coincide con ninguna de las rutas codificadas, lo que significa que el enrutados pasa la ruta comodín y muestra el componente `PageNotFoundComponent`.
+Esto no coincide con ninguna de las rutas codificadas, lo que significa que el enrutador pasa la ruta comodín y muestra el componente `PageNotFoundComponent`.
 
 La aplicación necesita una ruta predeterminada a una página válida.
 La página predeterminada de esta aplicación es la lista de héroes.
-La aplicación deberia de navegar ahí como si el usuario hubiera hecho clic en el enlace "Héroes" ó hubiera escrito `localhost:4200/heroes` en la barra de direcciones.
+La aplicación debería de navegar ahí como si el usuario hubiera hecho clic en el enlace "Héroes" ó hubiera escrito `localhost:4200/heroes` en la barra de direcciones.
 
 Agrega una ruta de `redireccionamiento` que traduzca la URL inicial relativa (`''`) hacia la ruta predeterminada deseada (`/heroes`).
 
-Agrega la ruta predeterminada en algun lugar _por encima_ de la ruta comodín.
+Agrega la ruta predeterminada en algún lugar _por encima_ de la ruta comodín.
 Es justo encima de la ruta comodín, en el siguiente extracto que muestra las `appRoutes` completas para este hito.
 
 <code-example path="router/src/app/app-routing.module.1.ts" header="src/app/app-routing.module.ts (appRoutes)" region="appRoutes"></code-example>
 
 La barra de direcciones del navegador muestra `.../heroes` como si se hubiera navegado allí directamente.
 
-Una ruta de redireccionamiento requiere una propiedad `pathMatch` para decirle al enrutador como hacer coincidir la URL con el ruta.
-En esta aplicación, el enrutador debe seleccionar la ruta de `HeroListComponent` solamente cuando la _URL completa_ coincida `''`, asi que configura el `pathMatch` con el valor de `'full'`.
+Una ruta de redireccionamiento requiere una propiedad `pathMatch` para decirle al enrutador como hacer coincidir la URL con la ruta.
+En esta aplicación, el enrutador debe seleccionar la ruta de `HeroListComponent` solamente cuando la _URL completa_ coincida `''`, así que configura el `pathMatch` con el valor de `'full'`.
 
 {@a pathmatch}
 
 <div class="callout is-helpful">
 
-  <header>Enfocandose en pathMatch</header>
+  <header>Enfocándose en pathMatch</header>
 
 Técnicamente, `pathMatch = 'full'` da como resultado un acierto de ruta cuando los segmentos _restantes_ no coincidentes de la URL coinciden con `''`.
 En este ejemplo, el redireccionamiento está en una ruta de nivel superior, por lo que la URL _restante_ y la URL _completa_ son la misma cosa.
 
 El otro posible valor de `pathMatch` es `'prefix'`, que le dice al enrutador que coincida con la ruta de redireccionamiento cuando la URL restante comience con el prefijo de la ruta de redireccionamiento.
-Esto no se aplica a esta aplicación de muestra por que si el valor de `pathMatch` fuera `'prefix'`, cada URL coincidiria con `''`.
+Esto no se aplica a esta aplicación de muestra porque si el valor de `pathMatch` fuera `'prefix'`, cada URL coincidiría con `''`.
 
 Intenta establecer el `'prefix'` y haz clic en el botón `Go to sidekicks`.
-Como es una URL incorrecta, deberias de ver la página de "Page not found".
+Como es una URL incorrecta, deberías de ver la página de "Page not found".
 En cambio, todavía estás en la página de "Héroes".
 Ingresa una URL incorrecta en la barra de direcciones del navegador.
-Seras redireccionado instantaneamente hacia `/heroes`.
-Cada URL, correcta o incorrecta, que entra en esta definicion de ruta es una coincidencia.
+Serás redireccionado instantáneamente hacia `/heroes`.
+Cada URL, correcta o incorrecta, que entra en esta definición de ruta es una coincidencia.
 
-La ruta predeterminada deberia redirigir al componente `HeroListComponent` solo cuando la URL completa sea `''`.
+La ruta predeterminada debería redirigir al componente `HeroListComponent` solo cuando la URL completa sea `''`.
 Recuerda restaurar la redirección de `pathMatch = 'full'`.
 
 Más información en Victor Savkin's
@@ -305,10 +304,10 @@ Tu aplicación de muestra puede cambiar entre dos vistas cuando el usuario hace 
 
 El hito 1 ha cubierto cómo hacer lo siguiente:
 
-- Cargar la libreria del enrutador.
+- Cargar la librería del enrutador.
 - Agregaste una barra de navegación a la coraza de la plantilla con las etiquetas de anclaje, y las directivas `routerLink` y `routerLinkActive`.
 - Agregaste un `router-outlet` a la coraza de la plantilla donde se muestran las vistas.
-- Configuraste el modulo del enrutador con `RouterModule.forRoot()`.
+- Configuraste el módulo del enrutador con `RouterModule.forRoot()`.
 - Estableciste el enrutador para componer las URLs del navegador HTML5.
 - Manejo de rutas no válidas con la ruta `comodín`.
 - Navegar a la ruta predeterminada cuando la aplicación se inicie con una ruta vacía.
@@ -495,13 +494,13 @@ Aquí están los archivos de este hito.
 
 ## Hito 2: _Módulo de enrutamiento_
 
-Este hito muestra como configurar un modulo de proposito especial llamado _Módulo de Enrutamiento_, el cual contiene la configuración de enrutamiento de tu aplicación.
+Este hito muestra como configurar un módulo de propósito especial llamado _Módulo de Enrutamiento_, el cual contiene la configuración de enrutamiento de tu aplicación.
 
-El Módulo de Enrutamiento contiene varias caracteristicas:
+El Módulo de Enrutamiento contiene varias características:
 
 - Separa las responsabilidades de enrutamiento de otras responsabilidades de la aplicación.
 - Provee de un módulo para reemplazar o remover al probar la aplicación.
-- Provee un espacio especifico para los proveedores de servicios de enrutamiento como guards y resolvers.
+- Provee un espacio específico para los proveedores de servicios de enrutamiento como guards y resolvers.
 - No declara componentes.
 
 {@a integrate-routing}
@@ -509,10 +508,10 @@ El Módulo de Enrutamiento contiene varias caracteristicas:
 ### Integrar el enrutamiento con tu aplicación
 
 La aplicación de enrutamiento de muestra no incluye un enrutador preestablecido.
-Cuando tu uses el [Angular CLI](cli) para crear un proyecto que use el enrutador, debes de establecer la opción de `--routing` para el proyecto o la aplicación, y para cada NgModule.
+Cuando uses el [Angular CLI](cli) para crear un proyecto que use el enrutador, debes de establecer la opción de `--routing` para el proyecto o la aplicación, y para cada NgModule.
 Cuando tu crear o inicializas un proyecto nuevo (usando el comando de CLI [`ng new`](cli/new)) o una nueva aplicación (usando el comando [`ng generate app`](cli/generate)), especifica la opción de `--routing`.
-Esto le dira al CLI que incluya el paquete de npm `@angular/router` y cree un archivo llamado `app-routing.module.ts`.
-Tu puedes usar ese enrutador en cualquier NgModule que agregues a tu proyecto ó aplicación.
+Esto le dirá al CLI que incluya el paquete de npm `@angular/router` y cree un archivo llamado `app-routing.module.ts`.
+Puedes usar ese enrutador en cualquier NgModule que agregues a tu proyecto ó aplicación.
 
 Por ejemplo, el siguiente comando genera un NgModule que puede usar ese enrutador.
 
@@ -521,7 +520,7 @@ ng generate module my-module --routing
 ```
 
 Esto crea un archivo separado llamado `my-module-routing.module.ts` para almacenar las rutas del NgModule.
-El archivo incluye un objecto de `Ruta` vacia que puedes llenar con rutas de diferentes componentes y NgModules.
+El archivo incluye un objeto de `Ruta` vacía que puedes llenar con rutas de diferentes componentes y NgModules.
 
 {@a routing-refactor}
 {@a refactor-the-routing-configuration-into-a-routing-module}
@@ -534,13 +533,13 @@ Crea un módulo llamado `AppRouting` en el directorio `/app` para guardar la con
   ng generate module app-routing --module app --flat
 </code-example>
 
-Importa los simbolos `CrisisListComponent`, `HeroListComponent`, y `PageNotFoundComponent` tal y mo lo hiciste en `app.module.ts`.
+Importa los símbolos `CrisisListComponent`, `HeroListComponent`, y `PageNotFoundComponent` tal y como lo hiciste en `app.module.ts`.
 A continuación mueve la importación del `Ennrutador` y la configuración de enrutamiento, incluyendo `RouterModule.forRoot()`, dentro de este módulo de enrutamiento.
 
-Vuelve a exportar el `RouterModule` de Angular agregandola al array de `exports` del modulo.
+Vuelve a exportar el `RouterModule` de Angular agregándola al array de `exports` del módulo.
 Al volver a exportar el `RouterModule` aquí, los componentes declarados en `AppModule` tienen acceso a las directivas del enrutador como `RouterLink` y `RouterOutlet`.
 
-Despues de estos pasos, el achivo deberia de verse asi:
+Después de estos pasos, el archivo debería de verse así:
 
 <code-example path="router/src/app/app-routing.module.1.ts" header="src/app/app-routing.module.ts"></code-example>
 
@@ -550,27 +549,27 @@ A continuación, actualiza el archivo `app.module.ts` removiendo el `RouterModul
 
 <div class="alert is-helpful">
 
-Despues, esta guía te mostrara como crear [multiples módulos de enrutamiento](#heroes-functionality) e importarlos [en el orden correcto](#routing-module-order).
+Después, esta guía te mostrará como crear [múltiples módulos de enrutamiento](#heroes-functionality) e importarlos [en el orden correcto](#routing-module-order).
 
 </div>
 
-La aplicación continua trabajando exatamente igual, y ahora puedes usar el `AppRoutingModule` como centro para mantener futuras configuraciones de enrutamiento.
+La aplicación continúa trabajando exactamente igual, y ahora puedes usar el `AppRoutingModule` como centro para mantener futuras configuraciones de enrutamiento.
 
 {@a why-routing-module}
 
-### Beneficios de un modulo de enrutamiento
+### Beneficios de un módulo de enrutamiento
 
-El módulo de enrutamiento, usualmente es llamado `AppRoutingModule`, reemplaza la configuración de enrutamiento de la raíz or el módulo de funciones.
+El módulo de enrutamiento, usualmente es llamado `AppRoutingModule`, reemplaza la configuración de enrutamiento de la raíz o el módulo de funciones.
 
-El módulo de enrutamiento es muy util cuando tu aplicación crece y cuando la configuración incluye servicios de guards y resolvers especializados.
+El módulo de enrutamiento es muy útil cuando tu aplicación crece y cuando la configuración incluye servicios de guards y resolvers especializados.
 
-Algunos desarrolladores omiten el modulo de enrutamiento cuando la configuración es mínima y combinan la configuración de enrutamiento directamente en el modulo complementario (por ejemplo, `AppModule`).
+Algunos desarrolladores omiten el módulo de enrutamiento cuando la configuración es mínima y combinan la configuración de enrutamiento directamente en el módulo complementario (por ejemplo, `AppModule`).
 
-La mayoria de las aplicaciónes deberian de implementar un modulo de enrutamiento para mantener la coherencia.
-Mantiene el codigo limpio cuando la configuración se vuelve compleja.
+La mayoria de las aplicaciónes deberian de implementar un módulo de enrutamiento para mantener la coherencia.
+Mantiene el código limpio cuando la configuración se vuelve compleja.
 Esto facilita las pruebas en el módulo de funciones.
-Su existencia llama la atención sobre el hecho de que un módulo esta enrutado.
-Es aquí donde los desarrolladores esperan encontrar y expendir la configuración de enrutamiento.
+Su existencia llama la atención sobre el hecho de que un módulo está enrutado.
+Es aquí donde los desarrolladores esperan encontrar y expandir la configuración de enrutamiento.
 
 {@a heroes-feature}
 
@@ -582,7 +581,7 @@ Este hito cubre lo siguiente:
 - Navegar imperativamente de un componente a otro.
 - Pasar la información requerida u opcional en parámetros de rutas.
 
-Esta aplicación de muesta recrea la funcionalidad de los héroes en la sección de "Services" del [Tutorial Tour de Héroes](tutorial/toh-pt4 "Tour de Héroes: Servicios"), y reusa mucho del codigo de <live-example name="toh-pt4" title="Tour of Héroes: Codigo de ejemplo de servicios"></live-example>.
+Esta aplicación de muestra recrea la funcionalidad de los héroes en la sección de "Services" del [Tutorial Tour de Héroes](tutorial/toh-pt4 "Tour de Héroes: Servicios"), y reúsa mucho del código de <live-example name="toh-pt4" title="Tour de Héroes: Codigo de ejemplo de servicios"></live-example>.
 
 <!-- KW - this gif isn't ideal for accessibility. Would like to remove it.-->
 <!-- Here's how the user will experience this version of the app:
@@ -592,9 +591,9 @@ Esta aplicación de muesta recrea la funcionalidad de los héroes en la sección
   <img src='generated/images/guide/router/router-2-anim.gif' alt="App in action">
 </div> -->
 
-Una aplicación tipica tiene multiples áreas funcionales, cada una dedicada a un proposito comercial particular con su propia carpeta.
+Una aplicación típica tiene múltiples áreas funcionales, cada una dedicada a un propósito comercial particular con su propia carpeta.
 
-Esta sección muesta como refactorizar la aplicación en diferentes módulos funcionales, importalos en el módulo principal y navegar entre ellos.
+Esta sección muestra como refactorizar la aplicación en diferentes módulos funcionales, impórtalos en el módulo principal y navegar entre ellos.
 
 {@a heroes-functionality}
 
@@ -602,7 +601,7 @@ Esta sección muesta como refactorizar la aplicación en diferentes módulos fun
 
 Sigue los siguientes pasos:
 
-- Para administrar los héroes, crea un `HeroesModule` con enrutador en la carpeta de heroes y regístralo en la raíz `AppModule`.
+- Para administrar los héroes, crea un `HeroesModule` con enrutador en la carpeta de héroes y regístralo en la raíz `AppModule`.
 
 <code-example language="none" class="code-shell">
   ng generate module heroes/heroes --module app --flat --routing
@@ -612,7 +611,7 @@ Sigue los siguientes pasos:
 - Copia el contenido de `heroes/heroes.component.html` desde el <live-example name="toh-pt4" title="Tour de Héroes: Codigo de ejemplo de servicios">tutorial de "Services"</live-example> en la plantilla `hero-list.component.html`.
 
   - Cambia la etiqueta `<h2>` con `<h2>HEROES</h2>`.
-  - Borra el componente `<app-hero-detail>` que esta en la parte inferior de la plantilla.
+  - Borra el componente `<app-hero-detail>` que está en la parte inferior de la plantilla.
 
 - Copia el contenido de `heroes/heroes.component.css` del ejemplo en vivo al archivo `hero-list.component.css`.
 - Copia el contenido de `heroes/heroes.component.ts` del ejemplo en vivo al archivo `hero-list.component.ts`.
@@ -622,11 +621,11 @@ Sigue los siguientes pasos:
 
 <div class="alert is-helpful">
 
-Los selectores no son requeridos por los componentes de enrutamiento por que los componentes son insertados dinamicamente cuando la página es renderizada. Sin embargo, son utiles para identificarlos en los elementos HTML del DOM.
+Los selectores no son requeridos por los componentes de enrutamiento porque los componentes son insertados dinámicamente cuando la página es renderizada. Sin embargo, son útiles para identificarlos en los elementos HTML del DOM.
 
 </div>
 
-- Copia la carpeta `hero-detail`, los archivos `hero.ts`, `hero.service.ts` y `mock-heroes.ts` dentro de la subcarpeta `heroes`.
+- Copia la carpeta `hero-detail`, los archivos `hero.ts`, `hero.service.ts` y `mock-heroes.ts` dentro de la sub carpeta `heroes`.
 - Copia el archivo `message.service.ts` en la carpeta `src/app`.
 - Actualiza la ruta relativa del import de `message.service` en el archivo `hero.service.ts`.
 
@@ -716,34 +715,34 @@ La estructura de archivos del administrador de héroes es la siguiente:
 
 #### Requisitos del enrutamiento de funciones de Héroe
 
-Las funcionalidades de los héroes tienen dos componentes que interactuan, la lista de héroes y el detalle de los héroes.
-Cuando tu navegas a la vista de lista, se obtiene una lista de héroes y la muestra.
+Las funcionalidades de los héroes tienen dos componentes que interactúan, la lista de héroes y el detalle de los héroes.
+Cuando navegas a la vista de lista, se obtiene una lista de héroes y la muestra.
 Cuando haces clic en un héroe, el detalle de la vista debe de mostrar ese héroe en particular.
 
-Tu puedes decirle a la vista de detalle cual es el héroe que mostrara, incluyendo el id del héroe seleccionado en la URL de la ruta.
+Puedes decirle a la vista de detalle cuál es el héroe que mostrara, incluyendo el `id` del héroe seleccionado en la URL de la ruta.
 
-Debes de importar los componente de héroe a sus nueva ubicación en la carpeta `src/app/heroes/` y definir las dos rutas del héroe.
+Debes de importar los componentes de héroe a su nueva ubicación en la carpeta `src/app/heroes/` y definir las dos rutas del héroe.
 
-Ahora que tienes las rutas del módulo de `Heroes`, registralas en el `Router` mediante el modulo `RouterModule` como lo hiciste anteriormente en `AppRoutingModule`, con una diferencia importante.
+Ahora que tienes las rutas del módulo de `Heroes`, registralas en el `Router` mediante el módulo `RouterModule` como lo hiciste anteriormente en `AppRoutingModule`, con una diferencia importante.
 
 En el `AppRoutingModule`, usaste el metodo estatico `RouterModule.forRoot()` para registrar las rutas y el nivel de aplicación de los proveedores de servicio.
-En el modulo de funciones usa el método estatico `forChild()`.
+En el módulo de funciones usa el método estatico `forChild()`.
 
 <div class="alert is-helpful">
 
 Solo llama `RouterModule.forRoot()` en la raíz `AppRoutingModule` (o el `AppModule` si es donde registraras las rutas de nivel superior de la aplicación).
-En cualquier otro módulo, tu debes de llamar el metodo `RouterModule.forChild()` para registrar las rutas adicionales.
+En cualquier otro módulo, debes llamar el metodo `RouterModule.forChild()` para registrar las rutas adicionales.
 
 </div>
 
-El modulo `HeroesRoutingModule` se ve así:
+El módulo `HeroesRoutingModule` se ve así:
 
 <code-example path="router/src/app/heroes/heroes-routing.module.1.ts" header="src/app/heroes/heroes-routing.module.ts"></code-example>
 
 <div class="alert is-helpful">
 
 Considera darle a cada módulo de funciones su propio archivo de configuraciones de rutas.
-Aunque las funciones de las rutas son minimas, estas tienen la tendencia de crecer y volverse mas complejas, incluso en aplicaciones pequeñas.
+Aunque las funciones de las rutas son mínimas, estas tienen la tendencia de crecer y volverse más complejas, incluso en aplicaciones pequeñas.
 
 </div>
 
@@ -751,14 +750,14 @@ Aunque las funciones de las rutas son minimas, estas tienen la tendencia de crec
 
 #### Remover rutas de héroes duplicadas
 
-Las rutas de los héroes estan actualmente definidas en dos lugares: en el `HeroesRoutingModule` a traves del `HeroesModule` y en el `AppRoutingModule`.
+Las rutas de los héroes actualmente están definidas en dos lugares: en el `HeroesRoutingModule` a través del `HeroesModule` y en el `AppRoutingModule`.
 
 Las rutas proporcionadas por los módulos de funciones se combinan en los módulos de rutas importados por el enrutador.
 Esto te permite continuar definiendo los módulos de funciones de rutas sin tener que modificar la configuración de la ruta principal.
 
 Eliminar la importación del `HeroListComponent` y la ruta `/heroes` del archivo `app-routing.module.ts`.
 
-Deja las rutas predeterminadas y las rutas de comodín, ya que todavia se estan usando en el nivel superior de la aplicación.
+Deja las rutas predeterminadas y las rutas de comodín, ya que todavía se están usando en el nivel superior de la aplicación.
 
 <code-example path="router/src/app/app-routing.module.2.ts" header="src/app/app-routing.module.ts (v2)"></code-example>
 
@@ -767,9 +766,9 @@ Deja las rutas predeterminadas y las rutas de comodín, ya que todavia se estan 
 #### Remover las declaraciones de los héroes
 
 Debido a que `HeroesModule` provee el `HeroListComponent`, puedes eliminarlo de array `declarations` en el `AppModule`'s.
-Ahora que tienes un `HeroesModule` separado, tu puedes evolucionar las funcionalidades del héroe con mas componentes y diferentes rutas.
+Ahora que tienes un `HeroesModule` separado, puedes mejorar las funcionalidades del héroe con más componentes y diferentes rutas.
 
-Despues de estos pasos el `AppModule` debería verse así:
+Después de estos pasos el `AppModule` debería verse así:
 
 <code-example path="router/src/app/app.module.3.ts" header="src/app/app.module.ts" region="remove-heroes"></code-example>
 
@@ -777,22 +776,22 @@ Despues de estos pasos el `AppModule` debería verse así:
 
 ### Orden de importación de módulos
 
-Observa que en el array de `imports` del modulo, `AppRoutingModule` es el último y viene _después_ del `HeroesModule`.
+Observa que en el array de `imports` del módulo, `AppRoutingModule` es el último y viene _después_ del `HeroesModule`.
 
 <code-example path="router/src/app/app.module.3.ts" region="module-imports" header="src/app/app.module.ts (module-imports)"></code-example>
 
-El orden de configuración de la ruta es importante por que el enrutador acepta la primera ruta que coincida con la ruta de navegación solicitada.
+El orden de configuración de la ruta es importante porque el enrutador acepta la primera ruta que coincida con la ruta de navegación solicitada.
 
-Cuando todas las rutas estan en un `AppRoutingModule`, tu pones las rutas predeterminadas y [comodín](#wildcard) al final, desíes de la ruta de `/heroes`, para que el enrutador tenga la oportunidad de encontrar la URL que coincide con la ruta de `/heroes` _antes_ de llegar a la ruta comodín y navegar a la página "Page not found".
+Cuando todas las rutas están en un `AppRoutingModule`, tu pones las rutas predeterminadas y [comodín](#wildcard) al final, después de la ruta de `/heroes`, para que el enrutador tenga la oportunidad de encontrar la URL que coincide con la ruta de `/heroes` _antes_ de llegar a la ruta comodín y navegar a la página "Page not found".
 
-Cada modulo de enrutamiento aumenta la configuración de la ruta en el orden de importación.
-Si tu pones `AppRoutingModule` primero, la ruta comodón se encontraria _antes_ que la ruta de héroes.
-La ruta comodín &mdash;coincide con _cada_ URL&mdash; e interceptaria el intento de navegar a la ruta de héroe.
+Cada módulo de enrutamiento aumenta la configuración de la ruta en el orden de importación.
+Si pones `AppRoutingModule` primero, la ruta comodín se encontraría _antes_ que la ruta de héroes.
+La ruta comodín &mdash;coincide con _cada_ URL&mdash; e interceptara el intento de navegar a la ruta de héroe.
 
 <div class="alert is-helpful">
 
-Invierte el orden del modulo de enrutamiento para ver que al hacer un clic en el enlace de héroes seras llebado a la página "Page not found".
-Obten mas información acerca de como inspeccionar la configuración del enrutador en tiempo de ejecución [a continuación](#inspect-config "Inspeccionar la configuración del enrutador").
+Invierte el orden del módulo de enrutamiento para ver que al hacer un clic en el enlace de héroes serás llevado a la página "Page not found".
+Obtén más información acerca de como inspeccionar la configuración del enrutador en tiempo de ejecución [a continuación](#inspect-config "Inspeccionar la configuración del enrutador").
 
 </div>
 
@@ -807,25 +806,25 @@ La ruta hacia `HeroDetailComponent` tiene un token `:id` en la ruta.
 
 <code-example path="router/src/app/heroes/heroes-routing.module.1.ts" header="src/app/heroes/heroes-routing.module.ts (excerpt)" region="hero-detail-route"></code-example>
 
-El token `:id` crea un espacio en la ruta para un parametro de ruta.
+El token `:id` crea un espacio en la ruta para un parámetro de ruta.
 En este caso, esta configuración cause que el enrutador inserte el `id` de un héroe en ese espacio.
 
-Si tu llamas la ruta para navegar al compomente de detalle y muestras "Magneta", tu esperas que el `id` del héroe aparezca en la URL del navegador como esta:
+Si llamas la ruta para navegar al componente de detalle y muestras "Magneta", esperas que el `id` del héroe aparezca en la URL del navegador como esta:
 
 <code-example format="nocode">
   localhost:4200/hero/15
 
 </code-example>
 
-Si un usuario escribe esa URL en la barra de direcciones de su navegador, el enrutador deberia de reconocer el patron e ir a la misma vista de detalle de "Magneta".
+Si un usuario escribe esa URL en la barra de direcciones de su navegador, el enrutador debería de reconocer el patrón e ir a la misma vista de detalle de "Magneta".
 
 <div class="callout is-helpful">
 
 <header>
-  Parametro de ruta: ¿obligatorio u opcional?
+  Parámetro de ruta: ¿obligatorio u opcional?
 </header>
 
-Al incrustar el token del parametro de ruta, `:id`, en la definicion de rutas es una buena opcion para este escenario, ya que el `:id` es _requerido_ por el `HeroDetailComponent` y el valor de `15` en la ruta, se distingue claramente de la ruta "Magneta" a cualquier ruta para otro héroe.
+Al incrustar el token del parámetro de ruta, `:id`, en la definición de rutas es una buena opción para este escenario, ya que el `:id` es _requerido_ por el `HeroDetailComponent` y el valor de `15` en la ruta, se distingue claramente de la ruta "Magneta" a cualquier ruta para otro héroe.
 
 </div>
 
@@ -833,16 +832,16 @@ Al incrustar el token del parametro de ruta, `:id`, en la definicion de rutas es
 
 #### Configurando los parámetros de la ruta en la vista de lista
 
-Despues de navegar a `HeroDetailComponent`, tu esperas ver los detalles del héroe seleccionado.
+Después de navegar a `HeroDetailComponent`, esperas ver los detalles del héroe seleccionado.
 Para esto se necesitan dos piezas de información: la ruta de enrutamiento al componente y el `id` del héroe.
 
-Por lo que, el _array de parámetros del enlace_ debe tener dos elementos: la _ruta_ del enrutador y el _parametro de ruta_ que especifica el `id` del héroe selecciondo.
+Por lo que, el _array de parámetros del enlace_ debe tener dos elementos: la _ruta_ del enrutador y el _parámetro de ruta_ que especifica el `id` del héroe seleccionado.
 
 <code-example path="router/src/app/heroes/hero-list/hero-list.component.1.html" header="src/app/heroes/hero-list/hero-list.component.html (link-parameters-array)" region="link-parameters-array"></code-example>
 
 El enrutador compone la URL de destino desde el array como esto: `localhost:4200/hero/15`.
 
-El enrutador extrae el parametro de la ruta (`id:15`) de la URL y lo proporciona a `HeroDetailComponent` a través del servicio `ActivatedRoute`.
+El enrutador extrae el parámetro de la ruta (`id:15`) de la URL y lo proporciona a `HeroDetailComponent` a través del servicio `ActivatedRoute`.
 
 {@a activated-route-in-action}
 
@@ -852,7 +851,7 @@ Importa el `Router`, `ActivatedRoute`, y `ParamMap` del paquete del enrutador.
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.1.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (activated route)" region="imports"></code-example>
 
-Importaremos el operador `switchMap` por que lo necesitaremos mas tarde para procesar los parámetros de la ruta `Observable`.
+Importaremos el operador `switchMap` porque lo necesitaremos más tarde para procesar los parámetros de la ruta `Observable`.
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.3.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (switchMap operator import)" region="rxjs-operator-import"></code-example>
 
@@ -862,22 +861,22 @@ Agrega los servicios como variables privadas al constructor para que Angular las
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.3.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (constructor)" region="ctor"></code-example>
 
-En el método `ngOnInit()`, usa el servicio de `ActivatedRoute` para recuperar los parámetros de la ruta, extrae el `id` del héroe de los parámetros y recuperalo para mostrar el héroe.
+En el método `ngOnInit()`, usa el servicio de `ActivatedRoute` para recuperar los parámetros de la ruta, extrae el `id` del héroe de los parámetros y recupéralo para mostrar el héroe.
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.3.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (ngOnInit)" region="ngOnInit"></code-example>
 
-Cuando el mapa cambie, `paramMap` tomara el parametro `id` de los parámetros modificados.
+Cuando el mapa cambie, `paramMap` tomara el parámetro `id` de los parámetros modificados.
 
-Entonces tu le diras al `HeroService` que busque el héroe con ese `id` y devuelva el resultado de la solicitud de `HeroService`.
+Entonces le indicaras al `HeroService` que busque el héroe con ese `id` y devuelva el resultado de la solicitud de `HeroService`.
 
 El operador `switchMap` hace dos cosas. Aplana el `Observable<Hero>` que devuelve `HeroService` y cancela las solicitudes pendientes anteriores.
-Si el usuario vuelve a navegar hacia la ruta con el nuevo `id` mientras el `HeroService` esta aun devolviendo un `id` anterior, `switchMap` descartara esa solicitud vieja y regresara el héroe para el nuevo `id`.
+Si el usuario vuelve a navegar hacia la ruta con el nuevo `id` mientras el `HeroService` está aun devolviendo un `id` anterior, `switchMap` descartara esa solicitud vieja y regresara el héroe para el nuevo `id`.
 
-`AsyncPipe` maneja la subscripción al observable y la propiedad `hero` del componente se re-establecera con el héroe recuperado.
+`AsyncPipe` maneja la subscripción al observable y la propiedad `hero` del componente se restablecerá con el héroe recuperado.
 
 #### _ParamMap_ API
 
-The API `ParamMap` esta inspirada en la [interface URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams).
+The API `ParamMap` está inspirada en la [interfaz URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams).
 Proporciona métodos para manejar el acceso a los parámetros tanto para los parámetros de ruta (`paramMap`) y los parámetros de consulta (`queryParamMap`).
 
 <table>
@@ -898,7 +897,7 @@ Proporciona métodos para manejar el acceso a los parámetros tanto para los par
     </td>
     <td>
 
-    Devuelve `true` si el nombre del parametro esta en el mapa de parámetros .
+    Devuelve `true` si el nombre del parámetro está en el mapa de parámetros .
 
     </td>
 
@@ -910,7 +909,7 @@ Proporciona métodos para manejar el acceso a los parámetros tanto para los par
     </td>
     <td>
 
-    Devuelve el nombre del valo del parametro (como `string`) si se encuentra, o `null` si el nombre del parametro no esta en el mapa. Regresa el _primer_ elemento si el valor del parametro es un array de valores.
+    Devuelve el nombre del valor del parámetro (como `string`) si se encuentra, o `null` si el nombre del parametro no está en el mapa. Regresa el _primer_ elemento si el valor del parámetro es un array de valores.
 
     </td>
 
@@ -922,7 +921,7 @@ Proporciona métodos para manejar el acceso a los parámetros tanto para los par
     </td>
     <td>
 
-    Devuelve un `string array` con el nombre del valor del parametro si lo encuentra, o un `array` vacio si el nombre del valor del parametro no esta en el mapa. Usa `getAll` cuando un solo parametro puede tener varios valores.
+    Devuelve un `string array` con el nombre del valor del parámetro si lo encuentra, o un `array` vacío si el nombre del valor del parámetro no está en el mapa. Usa `getAll` cuando un solo parámetro puede tener varios valores.
 
     </td>
 
@@ -945,24 +944,24 @@ Proporciona métodos para manejar el acceso a los parámetros tanto para los par
 
 #### <i>paramMap</i> observable y la reutilización de componentes
 
-En este ejemplo, recuperaras el mapa del parametro de ruta de un `Observable`.
+En este ejemplo, recuperarás el mapa del parámetro de ruta de un `Observable`.
 Esto implica que el mapa de parámetros de ruta pueda cambiar durante la vida útil de este componente.
 
-De manera predeterminada, el enrutador reutiliza la instancia del componente cuando vuelve a navegar componente del mismo tipo sin vistar un componente diferent. Los parámetros de la ruta puede cambiar cada vez.
+De manera predeterminada, el enrutador reutiliza la instancia del componente cuando vuelve a navegar componente del mismo tipo sin visitar un componente diferente. Los parámetros de la ruta puede cambiar cada vez.
 
 Supongamos que la barra de navegación de un componente principal tiene botones "Avanzar" y "Retroceder" para desplazarse por la lista de héroes.
-En cada clic navegara imperativamente al `HeroDetailComponent` con el `id` siguiente o previo.
+En cada clic navegará imperativamente al `HeroDetailComponent` con el `id` siguiente o previo.
 
-No querra que el enrutador elimine la instancia actual de `HeroDetailComponent` del DOM solo para volver a crearla para el proximo `id` ya que esto renderizara la vista de nuevo.
-Para una mejor UX, el enrutados reutiliza la misma instancia del componente y actualiza el parametro.
+No querrá que el enrutador elimine la instancia actual de `HeroDetailComponent` del DOM solo para volver a crearla para el próximo `id`, ya que esto renderizara la vista de nuevo.
+Para una mejor UX, el enrutador reutiliza la misma instancia del componente y actualiza el parámetro.
 
-Dado que `ngOnInit()` solo se llama una vez por cada instanciación de un componente, puedes detectar cuando los parámetros de la ruta cambian _dentro de la misma instancia_ utilizando la propiedad observable `paramMap.
+Dado que `ngOnInit()` solo se llama una vez por cada instancia de un componente, puedes detectar cuando los parámetros de la ruta cambian _dentro de la misma instancia_ utilizando la propiedad observable `paramMap.
 
 <div class="alert is-helpful">
 
 Cuando se suscribe a un observable en un componente, casi siempre se da de baja esta subscripción cuando el componente se destruye.
 
-Sin embargo, los observables de `ActivatedRoute` estan entre las excepciones por que `ActivatedRoute` y sus observables estan aislados del `Router`.
+Sin embargo, los observables de `ActivatedRoute` están entre las excepciones porque `ActivatedRoute` y sus observables están aislados del `Router`.
 El `Router` destruye un componente de ruta cuando ya no se necesita junto con el `ActivatedRoute` inyectado.
 
 </div>
@@ -973,14 +972,14 @@ El `Router` destruye un componente de ruta cuando ya no se necesita junto con el
 #### `snapshot`: la alternativa no observable
 
 Esta aplicación no reutilizará el `HeroDetailComponent`.
-El usuario siempre regresara a la lista de héroes para seleccionar otro héroe en la vista.
+El usuario siempre regresará a la lista de héroes para seleccionar otro héroe en la vista.
 No hay manera de navegar del detalle de un héroe al detalle de otro héroe sin visitar el componente de lista.
-Por lo tanto, el enrutador crea una nueva instancia `HeroDetailComponent` cada vez.}
+Por lo tanto, el enrutador crea una nueva instancia `HeroDetailComponent` cada vez.
 
-Cuando sepas con certeza que una instancia de `HeroDetailComponent` nunca sera reutilizada, puedes usar un `snapshot`.
+Cuando sepas con certeza que una instancia de `HeroDetailComponent` nunca será reutilizada, puedes usar un `snapshot`.
 
 `route.snapshot` proporciona el valor inicial del mapa de parámetros de ruta.
-Puedes acceder a los parámetros directamente sin subscribirse o agregar operadoradores observables como se muestra a continuación:
+Puedes acceder a los parámetros directamente sin subscribirse o agregar operadores observables como se muestra a continuación:
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.2.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (ngOnInit snapshot)" region="snapshot"></code-example>
 
@@ -1014,8 +1013,8 @@ Utiliza [parámetros de ruta](#route-parameters) para especificar el valor de un
 
 </code-example>
 
-Tambien puedes agregar información opcional a una solicitud de la ruta.
-Por ejemplo, al regresar a la lista `hero-detail.component.ts` desde la vista de detalles del héroe, seria agradable si el héroe visto estuviera pre-seleccionado en la lista.
+También puedes agregar información opcional a una solicitud de la ruta.
+Por ejemplo, al regresar a la lista `hero-detail.component.ts` desde la vista de detalles del héroe, sería agradable si el héroe visto estuviera preseleccionado en la lista.
 
 <div class="lightbox">
   <img src='generated/images/guide/router/selected-hero.png' alt="Héroe seleccionado">
@@ -1023,48 +1022,48 @@ Por ejemplo, al regresar a la lista `hero-detail.component.ts` desde la vista de
 
 Para implementar esta funcionalidad al incluir el `id` del héroe visto en la URL como parámetro opcional cuando regresas del `HeroDetailComponent`.
 
-La información opcional tambien puede incluir:
+La información opcional también puede incluir:
 
-- Criterios de busqueda poco estructurados; por ejemplo: `name='wind*'`.
-- Multiples valores; por ejemplo, `after='12/31/2015' & before='1/1/2017'`&mdash;sin un orden en particula&mdash;`before='1/1/2017' & after='12/31/2015'`&mdash; en una variedad de formatos&mdash;`during='currentYear'`.
+- Criterios de búsqueda poco estructurados; por ejemplo: `name='wind*'`.
+- Múltiples valores; por ejemplo, `after='12/31/2015' & before='1/1/2017'`&mdash;sin un orden en particula&mdash;`before='1/1/2017' & after='12/31/2015'`&mdash; en una variedad de formatos&mdash;`during='currentYear'`.
 
-Como este tipo de parámetros no encajan fácilmente en la ruta URL, puedes usar los parámetros opcionales para transmitir información arbitrariamente compleja durante la navehación.
-Los parámetros opcionales no estan involucrados en los patrones de coincidencia y permiten una expresión mas flexible.
+Como este tipo de parámetros no encajan fácilmente en la ruta URL, puedes usar los parámetros opcionales para transmitir información arbitrariamente compleja durante la navegación.
+Los parámetros opcionales no están involucrados en los patrones de coincidencia y permiten una expresión más flexible.
 
 El enrutador permite la navegación con parámetros opcionales, así como los parámetros de ruta requeridos.
-Define los parámetros opcionales en una objeto separado _despues_ de definir los parámetros de ruta requeridos.
+Define los parámetros opcionales en una objeto separado _después_ de definir los parámetros de ruta requeridos.
 
-En general, utiliza los parámetros de ruta requeridos cuando el valor es obligatorio (por ejemplo, si es necesario distinguir entre una ruta de otra): y agrega un parametro opcional cuando el valor es opcional, complejo y/o variado.
+En general, utiliza los parámetros de ruta requeridos cuando el valor es obligatorio (por ejemplo, si es necesario distinguir entre una ruta de otra): y agrega un parámetro opcional cuando el valor es opcional, complejo y/o variado.
 
 {@a optionally-selecting}
 
 #### Lista de Héroes: Seleccionado a un héroe opcional
 
-Al navegar a `HeroDetailComponent` se especifico el `id` requerido del héroe-a-editar en el parametro y se convirtio en el segundo elemento del [_array de parámetros del enlace_](#link-parameters-array).
+Al navegar a `HeroDetailComponent` se especificó el `id` requerido del héroe-a-editar en el parámetro y se convirtió en el segundo elemento del [_array de parámetros del enlace_](#link-parameters-array).
 
 <code-example path="router/src/app/heroes/hero-list/hero-list.component.1.html" header="src/app/heroes/hero-list/hero-list.component.html (link-parameters-array)" region="link-parameters-array"></code-example>
 
-El enrutador incrusta el valor `id` en la URL de la navegación por que esta definido en los parámetros de ruta como `:id` en la ruta `path`:
+El enrutador incrusta el valor `id` en la URL de la navegación porque está definido en los parámetros de ruta como `:id` en la ruta `path`:
 
 <code-example path="router/src/app/heroes/heroes-routing.module.1.ts" header="src/app/heroes/heroes-routing.module.ts (hero-detail-route)" region="hero-detail-route"></code-example>
 
-Cuando el usuario hace clic en el botón Atras, el `HeroDetailComponent` construye otro _array de parámetros de enlance_ que se utiliza para navegar de regreso al `HeroListComponent`.
+Cuando el usuario hace clic en el botón Atras, el `HeroDetailComponent` construye otro _array de parámetros de enlace_ que se utiliza para navegar de regreso al `HeroListComponent`.
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.1.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (gotoHeroes)" region="gotoHeroes"></code-example>
 
-Este array carece de parámetros de ruta por que previamente no era necesario enviar información al `HeroListComponent`.
+Este array carece de parámetros de ruta porque previamente no era necesario enviar información al `HeroListComponent`.
 
 Ahora, enviamos el `id` del héroe actual con la solicitud de navegación por eso el `HeroListComponent` puede destacar el héroe en esta lista.
 
-Enviar el `id` con un objeto que contiene un parametro `id` opcional. Para fines de demostración, hay un parámetro basura extra (`foo`) en el objeto que el `HeroListComponent` deberia de ignorar. Aquí esta la declaración de la navegación:
+Enviar el `id` con un objeto que contiene un parámetro `id` opcional. Para fines de demostración, hay un parámetro basura extra (`foo`) en el objeto que el `HeroListComponent` debería de ignorar. Aquí está la declaración de la navegación:
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.3.ts" header="src/app/heroes/hero-detail/hero-detail.component.ts (go to heroes)" region="gotoHeroes"></code-example>
 
-La aplicación aun funciona. Haciendo clic en "Retroceso" regresa a la vista de lista del héroe.
+La aplicación aún funciona. Haciendo clic en "Retroceso" regresa a la vista de lista del héroe.
 
 Mira la barra de direcciones del navegador.
 
-Deberia de verse algo como esto, dependiendo de donde lo ejecutes:
+Debería de verse algo como esto, dependiendo de donde lo ejecutes:
 
 <code-example language="bash">
   localhost:4200/heroes;id=15;foo=foo
@@ -1074,7 +1073,7 @@ Deberia de verse algo como esto, dependiendo de donde lo ejecutes:
 El valor `id` aparece en la URL como (`;id=15;foo=foo`), no en la ruta de la URL.
 La ruta para "Heroes" no tiene un token `:id`.
 
-Los parámetros de ruta opcionales no estan separador por un "?" o "&" como estarian en la cadena de consulta de la URL.
+Los parámetros de ruta opcionales no están separador por un "?" o "&" como estarían en la cadena de consulta de la URL.
 Estan separador por punto y coma ";".
 Esta es la notación de una matriz URL.
 
@@ -1082,7 +1081,7 @@ Esta es la notación de una matriz URL.
 
 La notación de una matriz URL es una idea introducida por primera vez en [propuesta de 1996](http://www.w3.org/DesignIssues/MatrixURIs.html) por el fundador de la web, Tim Berners-Lee.
 
-Aunque la notación de matriz nunca se incorporo al estandar de HTML, es legal y se hizo popular entre los sistemas de enrutamiento del navegador como una forma de aislar los parámetros que pertenecen a las rutas padres e hijas.
+Aunque la notación de matriz nunca se incorporó al estándar de HTML, es legal y se hizo popular entre los sistemas de enrutamiento del navegador como una forma de aislar los parámetros que pertenecen a las rutas padres e hijas.
 Como tal, el Enrutador proporciona soporte a la notación de matriz en todos los navegadores.
 
 </div>
@@ -1091,21 +1090,21 @@ Como tal, el Enrutador proporciona soporte a la notación de matriz en todos los
 
 ### Parámetros de ruta en el servicio `ActivatedRoute`
 
-En el estado actual del desarrollo, la lista de heroes no ha cambiado.
+En el estado actual del desarrollo, la lista de héroes no ha cambiado.
 No se resalta ninguna fila de héroe.
 
-El `HeroListComponent` necesita el codigo que espera parámetros.
+El `HeroListComponent` necesita el código que espera parámetros.
 
 Previamente, cuando navegamos desde el `HeroListComponent` hacia el `HeroDetailComponent`, es necesario suscribirse al mapa de parámetros de ruta `Observable` y ponerlo a disposición del `HeroDetailComponent` en el servicio de `ActivatedRoute`.
-Este servicio fue inyectado en el contructor de `HeroDetailComponent`.
+Este servicio fue inyectado en el constructor de `HeroDetailComponent`.
 
-Esta vez navagaras en dirección opuesta, desde el `HeroDetailComponent` al `HeroListComponent`.
+Esta vez navegarás en dirección opuesta, desde el `HeroDetailComponent` al `HeroListComponent`.
 
 Primero, extenderemos la declaración de importación del enrutador para incluir el servicio de `ActivatedRoute`.
 
 <code-example path="router/src/app/heroes/hero-list/hero-list.component.ts" header="src/app/heroes/hero-list/hero-list.component.ts (import)" region="import-router"></code-example>
 
-Importa el operador `switchMap` para realizar una operacion en el mapa de parámetros de ruta `Observable`.
+Importa el operador `switchMap` para realizar una operación en el mapa de parámetros de ruta `Observable`.
 
 <code-example path="router/src/app/heroes/hero-list/hero-list.component.ts" header="src/app/heroes/hero-list/hero-list.component.ts (rxjs imports)" region="rxjs-imports"></code-example>
 
@@ -1117,7 +1116,7 @@ La propiedad `ActivatedRoute.paramMap` es un mapa de ruta de parámetros `Observ
 `paramMap` emite un nuevo mapa de valores que incluye el `id` cuando el usuario navega al componente.
 En `ngOnInit()` te suscribes a esos valores, estableces el `selectedId` y obtienes los héroes.
 
-Actualiza la plantialla con un [enlace de clase](guide/attribute-binding#class-binding).
+Actualiza la plantilla con un [enlace de clase](guide/attribute-binding#class-binding).
 El enlace agrega la clase CSS `selected` cuando la comparación devuelve `true` y la elimina cuando es `false`.
 Busca dentro de la etiqueta repetida `<li>` como se muestra:
 
@@ -1141,12 +1140,12 @@ El parámetro de ruta opcional `foo` es inofensivo y el enrutador continúa igno
 
 Esta sección muestra como agregar algunas [animations](guide/animations) al `HeroDetailComponent`.
 
-Primero, importa el `BrowserAnimationsModule` y agregalo al array de `imports`:
+Primero, importa el `BrowserAnimationsModule` y agrégalo al array de `imports`:
 
 <code-example path="router/src/app/app.module.ts" header="src/app/app.module.ts (animations-module)" region="animations-module"></code-example>
 
 A continuación, agrega un objeto `data` a las rutas del `HeroListComponent` y `HeroDetailComponent`.
-Las transiciones se basan en `states` y se utilizan los dartos de `animation` desde el enrutador que proporciona un `state` con nombre `animation` para las transiciones.
+Las transiciones se basan en `states` y se utilizan los datos de `animation` desde el enrutador que proporciona un `state` con nombre `animation` para las transiciones.
 
 <code-example path="router/src/app/heroes/heroes-routing.module.2.ts" header="src/app/heroes/heroes-routing.module.ts (animation data)"></code-example>
 
@@ -1156,11 +1155,11 @@ Crea un archivo `animations.ts` en la carpeta raíz `src/app/`. El contenido se 
 
 Este archivo realiza lo siguiente:
 
-- Importa los simbolos de animación que crean los disparados de la animación, controlan el estado, y administran la transición entre estados.
+- Importa los símbolos de animación que crean los disparados de la animación, controlan el estado, y administran la transición entre estados.
 
 - Exporta una constante llamada `slideInAnimation` y establece un disparador de animación llamado `routeAnimation`.
 
-- Define una transición cuando se alterna entre las rutas `heroes` y `hero` que hace una animación para el componente desde la izquierda de la pantalla cuando entra a la vista de aplicación (`:enter`), la otra anima el componente a la derecha cuando sale de la vista de la aplicación (`:leave`).
+- Define una transición cuando se alterna entre las rutas `heroes` y `hero` que hace una animación para el componente desde la izquierda de la pantalla cuando entra a la vista de aplicación (`:enter`), la otra realiza una animación del componente a la derecha cuando sale de la vista de la aplicación (`:leave`).
 
 De vuelta al `AppComponent`, importa el token `RouterOutlet` desde el paquete `@angular/router` y el `slideInAnimation` de `'./animations.ts`.
 
@@ -1168,7 +1167,7 @@ Agrega el array `animations` a los metadatos de `@Component` que contiene `slide
 
 <code-example path="router/src/app/app.component.2.ts" header="src/app/app.component.ts (animations)" region="animation-imports"></code-example>
 
-Para usar las animaciones enrutables, envuelve el `RouterOutlet` dentro de un elemento, usa el disparador `@routeAnimation` y enlazalo al elemento.
+Para usar las animaciones enrutables, envuelve el `RouterOutlet` dentro de un elemento, usa el disparador `@routeAnimation` y enlázalo al elemento.
 
 Para la transición de `@routeAnimation` a un estado desactivado, proporciona `data` al `ActivatedRoute`.
 El `RouterOutlet` es expuesto como una variable de la plantilla `outlet`, por lo que enlaza la referencia a la salida del enrutador.
@@ -1176,8 +1175,8 @@ Este ejemplo usa una variable de `routerOutlet`.
 
 <code-example path="router/src/app/app.component.2.html" header="src/app/app.component.html (router outlet)"></code-example>
 
-La propiedad `@routeAnimation` esta vinculada a `getAnimationData()` con la referencia de `routerOutlet` proporciona, el siguiente paso es definir la funcion en el `AppComponent`.
-La funcion `getAnimationData()` devuelve una propiedad animación desde el `data` proporcionado por la `ActivatedRoute`. La propiedad `animation` coincide con el nombre de `transition` que usaste en `slideInAnimation` definido en `animations.ts`.
+La propiedad `@routeAnimation` está vinculada a `getAnimationData()` con la referencia de `routerOutlet` proporciona, el siguiente paso es definir la función en el `AppComponent`.
+La función `getAnimationData()` devuelve una propiedad animación desde el `data` proporcionado por la `ActivatedRoute`. La propiedad `animation` coincide con el nombre de `transition` que usaste en `slideInAnimation` definido en `animations.ts`.
 
 <code-example path="router/src/app/app.component.2.ts" header="src/app/app.component.ts (router outlet)" region="function-binding"></code-example>
 
@@ -1190,7 +1189,7 @@ Cuando se cambia entre las dos rutas, el `HeroDetailComponent` y `HeroListCompon
 En esta sección hemos cubierto lo siguiente:
 
 - Organizamos la aplicación en áreas de funcionalidad.
-- Navegacion imperativa de un componente a otro.
+- Navegación imperativa de un componente a otro.
 - Pasamos información en los parámetros de ruta y las subscribimos a un componente.
 - Importamos el área de funciones NgModule en el `AppModule`.
 - Aplicamos animaciones enrutables basadas en la página.
@@ -1391,7 +1390,7 @@ Después de estos cambios, la estructura de carpetas es la siguiente:
 
 </div>
 
-Aquí estan los archivos relevantes para esta versión de la aplicación de muestra.
+Aquí están los archivos relevantes para esta versión de la aplicación de muestra.
 
 <code-tabs>
 
@@ -1459,11 +1458,11 @@ Aquí estan los archivos relevantes para esta versión de la aplicación de mues
 
 En esta sección te mostraremos como agregar rutas hijas y usar el enrutamiento relativo en tu aplicación.
 
-Para agregas más funcionalidades al centro de crisis actual de la aplicación, sigue unos pasos similares a los de la función de héroes:
+Para agregar más funcionalidades al centro de crisis actual de la aplicación, sigue unos pasos similares a los de la función de héroes:
 
-- Crea una subcarpeta `crisis-center` en la carpeta `src/app`.
+- Crea una sub carpeta `crisis-center` en la carpeta `src/app`.
 - Copia los archivos y carpetas de `app/heroes` en la nueva carpeta `crisis-center`.
-- En los archivos nuevos, cambia cada mencion de "hero" por "crisis", y "heroes" por "crises".
+- En los archivos nuevos, cambia cada mención de "hero" por "crisis", y "heroes" por "crises".
 - Renombra los archivos de NgModule de `crisis-center.module.ts` y `crisis-center-routing.module.ts`.
 
 Utiliza el mock de crisis en lugar del mock de héroes.
@@ -1474,7 +1473,7 @@ El centro de crisis resultante es una base para la introducción de un nuevo con
 
 <div class="alert is-helpful">
 
-De acuerod con <a href="https://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html" title="Separación de Responsabilidad">Principio de separación de responsabilidades</a>, los cambios al Centro de Crisis no afectan el `AppModule` o las funcionalidades de otros componentes.
+De acuerdo con <a href="https://blog.8thlight.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html" title="Separación de Responsabilidad">Principio de separación de responsabilidades</a>, los cambios al Centro de Crisis no afectan el `AppModule` o las funcionalidades de otros componentes.
 
 </div>
 
@@ -1483,7 +1482,7 @@ De acuerod con <a href="https://blog.8thlight.com/uncle-bob/2014/05/08/SingleRep
 
 ### Un centro de crisis con rutas hijas
 
-En esta senccion te mostrara como organizar el centro de crisis de acuerdo a los siguientes patrones recomendados para aplicaciónes en Angular:
+Esta sección te mostrará como organizar el centro de crisis de acuerdo a los siguientes patrones recomendados para aplicaciones en Angular:
 
 - Cada área de funcionalidad reside en su propia carpeta.
 - Cada funcionalidad tiene su propio módulo de función de Angular.
@@ -1491,7 +1490,7 @@ En esta senccion te mostrara como organizar el centro de crisis de acuerdo a los
 - Cada componente en raíz tiene su propia salida de enrutamiento y rutas hijas.
 - Las áreas de funcionalidad de rutas rara vez (si alguna vez) se cruzan con otras rutas de otras funcionalidades.
 
-Si tu aplicación tiene muchas áreas de funcionalidad, el arbol de componentes de la aplicación podria verse asi:
+Si tu aplicación tiene muchas áreas de funcionalidad, el árbol de componentes de la aplicación podría verse así:
 
 <div class="lightbox">
   <img src='generated/images/guide/router/component-tree.png' alt="Component Tree">
@@ -1511,12 +1510,12 @@ Actualiza la plantilla del componente con las siguientes etiquetas:
 
 <code-example path="router/src/app/crisis-center/crisis-center/crisis-center.component.html" header="src/app/crisis-center/crisis-center/crisis-center.component.html"></code-example>
 
-El `CrisisCenterComponent` tiene lo siguiente en comun con el `AppComponent`:
+El `CrisisCenterComponent` tiene lo siguiente en común con el `AppComponent`:
 
-- Es la raíz del área del centro de crisis, solo que el `AppComponent` esta en la raíz de toda la aplicación.
+- Es la raíz del área del centro de crisis, solo que el `AppComponent` está en la raíz de toda la aplicación.
 - Es una carcasa para el área de funcionalidad de la gestion de crisis, solamente que el `AppComponent` es una carcasa para administrar el flujo de trabajo de alto nivel.
 
-Como la mayoria de las carcasas, la clase `CrisisCenterComponent` es minima por que no tiene logica de negocios, y su plantilla no tiene vínculos, solamente `<router-outlet>` para el componente hijo del centro de crisis.
+Como la mayoría de las carcasas, la clase `CrisisCenterComponent` es mínima porque no tiene lógica de negocios, y su plantilla no tiene vínculos, solamente `<router-outlet>` para el componente hijo del centro de crisis.
 
 {@a child-route-config}
 
@@ -1532,12 +1531,12 @@ Actualiza la plantilla con el mensaje de bienvenida al `Crisis Center`.
 
 <code-example path="router/src/app/crisis-center/crisis-center-home/crisis-center-home.component.html" header="src/app/crisis-center/crisis-center-home/crisis-center-home.component.html"></code-example>
 
-Actualiza el archivo `crisis-center-routing.module.ts` que renombraste despues de copiarlo del archivo `heroes-routing.module.ts`.
-Esta vez, definiras las rutas hijas dentro de la ruta padre `crisis-center`.
+Actualiza el archivo `crisis-center-routing.module.ts` que renombraste después de copiarlo del archivo `heroes-routing.module.ts`.
+Esta vez, definirás las rutas hijas dentro de la ruta padre `crisis-center`.
 
 <code-example path="router/src/app/crisis-center/crisis-center-routing.module.1.ts" header="src/app/crisis-center/crisis-center-routing.module.ts (Routes)" region="routes"></code-example>
 
-Observa que la ruta padre `crisis-center` tiene una propiedad `children` con una única ruta que contiene el `CrisisListComponent`. La ruta `CrisisListComponent` tambien tiene un array `children` con dos rutas.
+Observa que la ruta padre `crisis-center` tiene una propiedad `children` con una única ruta que contiene el `CrisisListComponent`. La ruta `CrisisListComponent` también tiene un array `children` con dos rutas.
 
 Estas dos rutas navegan hacia los componentes hijos del centro de crisis, `CrisisCenterHomeComponent` y `CrisisDetailComponent`, respectivamente.
 
@@ -1548,12 +1547,12 @@ El enrutador muestra los componentes de estas rutas en el `RouterOutlet` de `Cri
 El `CrisisListComponent` contiene la lista de crisis y un `RouterOutlet` para mostrar los componentes de ruta de `Crisis Center Home` y `Crisis Detail`.
 
 La ruta de `Crisis Detail` es un hijo de `Crisis List`.
-El enrutador [reutiliza componentes](#reuse) de forma predeterminada, por lo que el componente `Crisis Detail` sera reutilizado cada vez que selecciones una crisis diferente.
+El enrutador [reutiliza componentes](#reuse) de forma predeterminada, por lo que el componente `Crisis Detail` será reutilizado cada vez que selecciones una crisis diferente.
 Por el contrario, en la ruta de `Hero Detail` [el componente es creado de nuevo](#snapshot-the-no-observable-alternative) cada vez que seleccionas un héroe diferente de la lista de héroes.
 
 En un nivel superior, las rutas comienza con `/` para referirse a la raíz de la aplicación.
 Pero las rutas hijas extienden la ruta padre.
-En cada paso del arbol de ruta, agrega una barra (`/`) seguida de la ruta, a menos que la ruta este vacia.
+En cada paso del árbol de ruta, agrega una barra (`/`) seguida de la ruta, a menos que la ruta este vacía.
 
 Aplica esta lógica a la navegación dentro del centro de crisis con la ruta padre `/crisis-center`.
 
@@ -1568,7 +1567,7 @@ La URL absoluta para el último ejemplo, incluido el origen `localhost`, es la s
 
 </code-example>
 
-Aquí esta el archivo completo `crisis-center-routing.module.ts` con sus respectivos `imports`.
+Aquí está el archivo completo `crisis-center-routing.module.ts` con sus respectivos `imports`.
 
 <code-example path="router/src/app/crisis-center/crisis-center-routing.module.1.ts" header="src/app/crisis-center/crisis-center-routing.module.ts (excerpt)"></code-example>
 
@@ -1590,7 +1589,7 @@ Al igual que con el `HeroesModule`, debes agregar el `CrisisCenterModule` al arr
 
 </code-tabs>
 
-Elimina la ruta de centro de crisis inivial del archivo `app-routing.module.ts` por que ahora los módulos de `HeroesModule` y `CrisisCenter` proporcionan la funcionalidad de las rutas.
+Elimina la ruta de centro de crisis inicial del archivo `app-routing.module.ts` porque ahora los módulos de `HeroesModule` y `CrisisCenter` proporcionan la funcionalidad de las rutas.
 
 El archivo `app-routing.module.ts` conserva las rutas de nivel superior de la aplicación, como las rutas predeterminadas y las rutas comodín.
 
@@ -1600,19 +1599,19 @@ El archivo `app-routing.module.ts` conserva las rutas de nivel superior de la ap
 
 ### Navegación relativa
 
-Mientras contruias la funcionalidad del centro de crisis, navegaste a la ruta del detalle de crisis usando una ruta absoluta que comienza con una barra.
+Mientras construías la funcionalidad del centro de crisis, navegaste a la ruta del detalle de crisis usando una ruta absoluta que comienza con una barra.
 
-El enrutador hace coincidir las rutas absolutas con las rutas comenzado desde la parte superior de la configuración de la ruta.
+El enrutador hace coincidir las rutas absolutas con las rutas, comenzado desde la parte superior de la configuración de la ruta.
 
 Puedes seguir usando rutas absolutas como estas para navegar dentro de la funcionalidad del Centro de Crisis, pero eso fija los enlaces a la estructura del enrutamiento padre.
-Si cambias la ruta padre `/crisis-center`, tendrias que cambiar el array con los parámetros del enlace.
+Si cambias la ruta padre `/crisis-center`, tendrías que cambiar el array con los parámetros del enlace.
 
 Puedes liberar los enlaces de esta dependencia definiendo las rutas que son relativas al segmento de URL actual.
 La navegación dentro del área de funcionalidad permanece intacta incluso si cambias la ruta padre a esta funcionalidad.
 
 <div class="alert is-helpful">
 
-El enrutador admite una sintaxis similar a un directorio en una _lista de parámetros de enlace_ para ayudarte a guíar la busqueda de nombres de rutas:
+El enrutador admite una sintaxis similar a un directorio en una _lista de parámetros de enlace_ para ayudarte a guiar la búsqueda de nombres de rutas:
 
 `./` o `sin barra inclinada` es relativa al nivel actual.
 
@@ -1625,7 +1624,7 @@ Si debes navegar a una ruta hermana, puedes usar la convención `../<sibling>` p
 
 Para navegar por una ruta relativa con el método `Router.navigate`, debes proporcionar el `ActivatedRoute` para informar al enrutador donde te encuentras en el árbol de rutas actual.
 
-Después del _array de parámetros de enlaces_, agrega un objecto con la propiedad `relativeTo` establecida en la `ActivatedRoute`.
+Después del _array de parámetros de enlaces_, agrega un objeto con la propiedad `relativeTo` establecida en la `ActivatedRoute`.
 Luego el enrutador calculara la URL de destino en función de la ubicación de la ruta activa.
 
 <div class="alert is-helpful">
@@ -1638,7 +1637,7 @@ Siempre especifica la ruta absoluta completa cuando llames al método `navigateB
 
 ### Navega a la lista de crisis usando una URL relativa
 
-Ya haz inyectado el `ActivatedRoute` que se necesita para componer la ruta de navegación relativa.
+Ya has inyectado el `ActivatedRoute` que se necesita para componer la ruta de navegación relativa.
 
 Al usar el `RouterLink` para navegar en lugar del servicio del `Router`, utilizara el mismo array de parámetros de enlace, pero no proporcionara al objeto la propiedad `relativeTo`.
 El `ActivatedRoute` está implícito en la directiva `RouterLink`.
@@ -1652,20 +1651,20 @@ Si la crisis actual tiene un `id` de `3`, la ruta resultante de regreso a la lis
 
 {@a named-outlets}
 
-### Visualizando multiples rutas en outlets nombrados
+### Visualizando múltiples rutas en outlets nombrados
 
 Decides darle a los usuarios una manera de contactar con el centro de crisis.
 Cuando un usuario hace clic en el botón de "Contact", quieres mostrar un mensaje en una vista emergente.
 
 La ventana emergente debe de permanecer abierta, incluso al cambiar de página en la aplicación, hasta que el usuario la cierre enviando el mensaje o cancelando.
-laramente no puedes colocar la ventana emergente en el mismo outlet que las otras paginas.
+Claramente no puedes colocar la ventana emergente en el mismo outlet que las otras páginas.
 
 Hasta ahora, has definido un único outlet y has anidado rutas hijas debajo de ese outlet para agrupar las rutas.
 El enrutador solo admite una salida principal de un outlet sin nombre por plantilla.
 
 Una plantilla puede tener cualquier cantidad de outlets con nombre.
 Cada outlet nombrado tiene su propio conjunto de rutas con sus propios componentes.
-Multiples outlets pueden mostrar diferente contenido, determinado por diferentes rutas, todas al mismo tiempo.
+Múltiples outlets pueden mostrar diferente contenido, determinado por diferentes rutas, todas al mismo tiempo.
 
 Agrega un outlet llamado "popup" en el `AppComponent`, directamente debajo del outlet sin nombre.
 
@@ -1682,7 +1681,7 @@ Los outlets nombrados son objetivo de las _rutas secundarias_.
 Las rutas secundarias se ven como rutas principales y se configuran de la misma manera.
 Se diferencian en algunos aspectos clave:
 
-- Son independientes entre si.
+- Son independientes entre sí.
 - Funcionan en combinación con otras rutas.
 - Se muestran en puntos con outlets nombrados.
 
@@ -1698,7 +1697,7 @@ Muestra un formulario con un encabezado corto, una caja de input para el mensaje
   <img src='generated/images/guide/router/contact-popup.png' alt="Ventana emergente de contacto">
 </div>
 
-Aquí esta el componente, la plantilla y sus estilos:
+Aquí está el componente, la plantilla y sus estilos:
 
 <code-tabs>
 
@@ -1730,17 +1729,17 @@ Abre el `AppRoutingModule` y agrega una nueva ruta `compose` a las `appRoutes`.
 
 <code-example path="router/src/app/app-routing.module.3.ts" header="src/app/app-routing.module.ts (compose route)" region="compose"></code-example>
 
-Ademas de las propiedades `path` y `component`, hay una nueva propiedad llamada `outlet`, que se establece en `'popup'`.
+Además de las propiedades `path` y `component`, hay una nueva propiedad llamada `outlet`, que se establece en `'popup'`.
 Esta ruta ahora apunta al outlet popup y el `ComposeMessageComponent` se mostrará allí.
 
 Para darle a los usuarios una forma de abrir la ventana emergente, agrega un enlace de "Contact" a la plantilla `AppComponent`.
 
 <code-example path="router/src/app/app.component.4.html" header="src/app/app.component.html (contact-link)" region="contact-link"></code-example>
 
-Aunque la ruta `compose` esta configurada para el outlet "popup", eso no es suficiente para conectar la ruta con la directiva `RouterLink`.
-Tienes que especifica el outlet con nombre en un _array de parámetros de enlace_ y enlaza la al `RouterLink` con la propiedad binding.
+Aunque la ruta `compose` está configurada para el outlet "popup", eso no es suficiente para conectar la ruta con la directiva `RouterLink`.
+Tienes que especificar el outlet con nombre en un _array de parámetros de enlace_ y enlaza la al `RouterLink` con la propiedad binding.
 
-El _array de parámetros de enlace_ contiene un objeto con una única propiedad `outlets`, cuyo valor es otro objeto con una (ó mas) nombres de outlets.
+El _array de parámetros de enlace_ contiene un objeto con una única propiedad `outlets`, cuyo valor es otro objeto con una (ó más) nombres de outlets.
 En este caso hay solo un outlet con la propiedad "popup" y su valor es otro _array de parámetros de enlace_ que especifica la ruta `compose`.
 
 En otras palabras, cuando el usuario hace clic en este enlace, el enrutador muestra el componente asociado con la ruta `compose` en el outlet `popup`.
@@ -1761,7 +1760,7 @@ Puedes apuntar a multiples outlets con multiples rutas en una misma directiva `R
 #### Navegación de ruta secundaria: combinando rutas durante la navegación
 
 Navega al _Centro de Crisis_ y haz clic en "Contact".
-Deberias de ver algo como la siguiente URL en la barra de direcciones del navegador:
+Deberías de ver algo como la siguiente URL en la barra de direcciones del navegador:
 
 <code-example>
   http://.../crisis-center(popup:compose)
@@ -1782,9 +1781,9 @@ Haz clic en el enlace de _Héroes_ y vuelve a mirar la URL.
 
 La parte de la navegación primaria ha cambiado; la ruta secundaria es la misma.
 
-El enrutador realiza un seguimiento de dos ramas separadas en un mismo arbol de navegación y genera una representación de ese árbol en la URL.
+El enrutador realiza un seguimiento de dos ramas separadas en un mismo árbol de navegación y genera una representación de ese árbol en la URL.
 
-Puedes agregas muchos mas outlets y rutas, en el nivel superior y en niveles anidades, creando una navehación de árbol con muchas ramas y el enrutador va a generar las URLs correpondientes.
+Puedes agregas muchos más outlets y rutas, en el nivel superior y en niveles anidados, creando una navegación de árbol con muchas ramas y el enrutador va a generar las URLs correspondientes.
 
 Puedes decirle al enrutador que navegue hacia una por un árbol completo a la vez completando el objeto `outlets` y luego pasar ese objeto dentro de un _array de parámetros de enlace_ al método `router.navigate`.
 
@@ -1794,19 +1793,19 @@ Puedes decirle al enrutador que navegue hacia una por un árbol completo a la ve
 
 Al igual que los outlets regulares, los outlets secundarios persisten hasta que navegas hacia un nuevo componente.
 
-Cada outlet secundario tiene su propia navegación, independiente de la navegación del outlet principal. Cambiar la ruta actual que se muestra en el outlet primario no tiene efecto en el outlet de la ventana emergente. Eso es por que la ventana emergente se mantiene visible mientras navegas entre las crisis y los héroes.
+Cada outlet secundario tiene su propia navegación, independiente de la navegación del outlet principal. Cambiar la ruta actual que se muestra en el outlet primario no tiene efecto en el outlet de la ventana emergente. Eso es porque la ventana emergente se mantiene visible mientras navegas entre las crisis y los héroes.
 
 De nuevo el método `closePopup()`:
 
 <code-example path="router/src/app/compose-message/compose-message.component.ts" header="src/app/compose-message/compose-message.component.ts (closePopup)" region="closePopup"></code-example>
 
-Al hacer clic en los botón de de "send" o "cancel", se borra la vista de la ventana emergente.
+Al hacer clic en los botones de "send" o "cancel", se borra la vista de la ventana emergente.
 La función `closePopup()` navega imperativamente con el método `Router.navigate()`, pasando un [array de parámetros de enlace](#link-parameters-array).
 
-Al igual que el array vinculado al _Contacto_ del `RouterLink` en el `AppComponent`, este incluye un objeto con una propiedad `outlets`. El valor de la propiedad `outlets` es otro objeto con los nombres de los outlets. El unico outlet nombrado es `'popup'`.
+Al igual que el array vinculado al _Contacto_ del `RouterLink` en el `AppComponent`, este incluye un objeto con una propiedad `outlets`. El valor de la propiedad `outlets` es otro objeto con los nombres de los outlets. El único outlet nombrado es `'popup'`.
 
 Esta vez, el valor de `'popup'` es `null`.
-Esa no es una ruta, pero es un valor legitimo. Establecer la ventana emergente del `RouterOutlet` a `null` borra el outlet y elimina la ruta secundaria de la ventana emergente de la URL actual.
+Esa no es una ruta, pero es un valor legítimo. Establecer la ventana emergente del `RouterOutlet` a `null` borra el outlet y elimina la ruta secundaria de la ventana emergente de la URL actual.
 
 {@a guards}
 
@@ -1816,11 +1815,11 @@ Esa no es una ruta, pero es un valor legitimo. Establecer la ventana emergente d
 
 Por el momento, cualquier usuario puede navegar a cualquier lugar de la aplicación en cualquier momento, pero en a veces es necesario controlar el acceso a diferentes partes de la aplicación por varias razones. Alguna de las cuales pueden ser:
 
-- Quizas el usuario no este autorizado a navegar hacia un componente en especifico.
-- Quizas el usuario deberias de iniciar sesion (autenticarse) antes.
-- Quizas deberia de buscar algunos datos antes de mostrar un componente en especifico.
+- Quizás el usuario no este autorizado a navegar hacia un componente en específico.
+- Quizás el usuario deberías de iniciar sesión (autenticarse) antes.
+- Quizás debería de buscar algunos datos antes de mostrar un componente en específico.
 - Es posible que desee guardar los cambios antes de salir del componente actual.
-- Es posible que debas preguntarle al usuario si esta bien descartar los cambios pendientes en lugar de ser guardados.
+- Es posible que debas preguntarle al usuario si está bien descartar los cambios pendientes en lugar de ser guardados.
 
 Puedes agregar guards a la configuración de la ruta para manejar estos escenarios.
 
@@ -1832,14 +1831,14 @@ El valor de retorno de un guard controla el comportamiento del enrutador:
 
 <div class="alert is-helpful">
 
-**Note:** The guard can also tell the router to navigate elsewhere, effectively canceling the current navigation.
-When doing so inside a guard, the guard should return `false`;
+**Nota:** El guard también puede decirle al enrutador que navegue a otra parte, cancelando efectivamente la navegación actual.
+Al hacerlo dentro de un guard, el guard debe devolver `false`;
 
 </div>
 
-El guard podria devolver una respuesta booleana sincrona. Pero en muchos casos, el guard no puede producir una respuesta sincrona. El guard podria hacerle una pregunta al usuario, guardar cambios en el servidor o buscar nuevos datos. Todas son operaciones asincronas.
+El guard podría devolver una respuesta booleana síncrona. Pero en muchos casos, el guard no puede producir una respuesta síncrona. El guard podría hacerle una pregunta al usuario, guardar cambios en el servidor o buscar nuevos datos. Todas son operaciones asíncronas.
 
-En consecuencia, un guard de enrutamimento puede devovler un `Observable<boolean>` o un `Promise<boolean>` y el enrutador esperará a que el observable se resuelva en `true` o `false`.
+En consecuencia, un guard de enrutamiento puede devolver un `Observable<boolean>` o un `Promise<boolean>` y el enrutador esperará a que el observable se resuelva en `true` o `false`.
 
 <div class="alert is-critical">
 
@@ -1847,7 +1846,7 @@ En consecuencia, un guard de enrutamimento puede devovler un `Observable<boolean
 
 </div>
 
-The router supports multiple guard interfaces:
+El enrutador admite múltiples interfaces de guard:
 
 - [`CanActivate`](api/router/CanActivate) para mediar la navegación _hacia_ una ruta.
 
@@ -1857,9 +1856,9 @@ The router supports multiple guard interfaces:
 
 - [`Resolve`](api/router/Resolve) para realizar la recuperación de datos _antes_ de la activación de la ruta.
 
-- [`CanLoad`](api/router/CanLoad) para mediar la navegación _hacia_ un módulo de funciones cargado _asincronamente_.
+- [`CanLoad`](api/router/CanLoad) para mediar la navegación _hacia_ un módulo de funciones cargado _asíncronamente_.
 
-Puedes tener varios gards en cada nivel de la jerarquia de enrutamiento. El enrutador comprueba primero los guards `CanDeactivate` y `CanActivateChild`, desde la ruta hija mas profunda hasta la parte superior. Luego verifica los guards `CanActivate` desde la ruta superior hasta la ruta hija mas profunda. Si el módulo de funciones se carga de manera asincrona, el guard `CanLoad` se verifica antes que el módulo sea cargado. Si _cualquier_ guard devuelve `false`, los guards pendientes que no se hayan completado se cancelarán y se cancelará toda la navegación.
+Puedes tener varios gards en cada nivel de la jerarquía de enrutamiento. El enrutador comprueba primero los guards `CanDeactivate` y `CanActivateChild`, desde la ruta hija más profunda hasta la parte superior. Luego verifica los guards `CanActivate` desde la ruta superior hasta la ruta hija más profunda. Si el módulo de funciones se carga de manera asíncrona, el guard `CanLoad` se verifica antes que el módulo sea cargado. Si _cualquier_ guard devuelve `false`, los guards pendientes que no se hayan completado se cancelarán y se cancelará toda la navegación.
 
 Hay varios ejemplos en las siguientes secciones:
 
@@ -1867,14 +1866,14 @@ Hay varios ejemplos en las siguientes secciones:
 
 ### `CanActivate`: requiere autenticación
 
-Las aplicaciones a menudo restringen el acceso a una área de funciones basadas en la identidad del usuario. Puedes permitir el acceso solo a los usuarios autenticados o a los usuarios con un role en especifico. Puedes bloquear o limitar el acceso hasta que la cuenta del usuaria sea activada.
+Las aplicaciones a menudo restringen el acceso a una área de funciones basadas en la identidad del usuario. Puedes permitir el acceso solo a los usuarios autenticados o a los usuarios con un rol en específico. Puedes bloquear o limitar el acceso hasta que la cuenta del usuario sea activado.
 
 El guard `CanActivate` es la herramienta para administrar estas reglas de negocio en la navegación.
 
-#### Agregar un modulo de funciones de administrador
+#### Agregar un módulo de funciones de administrador
 
-Esta seccion te guíara para extender el centro de crisis con algunas nuevas funcionalidades administrativas.
-Empieza agregando un nuevo modulo de funcion llamado `AdminModule`.
+Esta sección te guiará para extender el centro de crisis con algunas nuevas funcionalidades administrativas.
+Empieza agregando un nuevo módulo de función llamado `AdminModule`.
 
 Genera una carpeta `admin` con un archivo de módulo de funciones y un archivo de configuración de enrutamiento.
 
@@ -1900,7 +1899,7 @@ Ahora, genera los componentes de apoyo.
   ng generate component admin/manage-heroes
 </code-example>
 
-La estructura de archivos de la funcionalida del administrados se ve así:
+La estructura de archivos de la funcionalidad del administrador se ve así:
 
 <div class='filetree'>
 
@@ -2002,7 +2001,7 @@ La estructura de archivos de la funcionalida del administrados se ve así:
 
 </div>
 
-El modulo de funciones del administración contiene el `AdminComponent` utilizado para el enrutamiento dentro del módulo de funciones, una ruta al tablero y dos componentes sin terminar para gestionar las crisis y héroes.
+El módulo de funciones de la administración contiene el `AdminComponent` utilizado para el enrutamiento dentro del módulo de funciones, una ruta al tablero y dos componentes sin terminar para gestionar las crisis y héroes.
 
 <code-tabs>
 
@@ -2030,7 +2029,7 @@ El modulo de funciones del administración contiene el `AdminComponent` utilizad
 
 <div class="alert is-helpful">
 
-Aunque el panel de administración `RouterLink` solo contiene un barra inclinada relativa, sin un segmento de URL adicional, coincide con cualquier ruta dentro del área de funciones administrativas. Solo deseas que el enlace al `Dashboard` este activado cuando el usuario visite esa ruta. Añadiendo un enlace adicional al `Dashboard` routerLink, [routerLinkActiveOptions]="{ exact: true }"`, marca el enlace `./`como activo cuando el usuario navega a la URL de`/admin` y no cuando navegas a cualquiera de las rutas hijas.
+Aunque el panel de administración `RouterLink` solo contiene una barra inclinada relativa, sin un segmento de URL adicional, coincide con cualquier ruta dentro del área de funciones administrativas. Solo deseas que el enlace al `Dashboard` esté activado cuando el usuario visite esa ruta. Añadiendo un enlace adicional al `Dashboard` routerLink, [routerLinkActiveOptions]="{ exact: true }"`, marca el enlace `./`como activo cuando el usuario navega a la URL de`/admin` y no cuando navegas a cualquiera de las rutas hijas.
 
 </div>
 
@@ -2049,7 +2048,7 @@ Esto se define como una ruta _sin componente_.
 Para agrupar las rutas de gestión del `Crisis Center` bajo la ruta `admin` no es necesario un componente.
 Ademas una ruta _sin componente_ facilita el [proteger las rutas hijas](#can-activate-child-guard).
 
-A continuación, importa el `AdminModule` en `app.module.ts` y agregalo al array de `imports` para registrar las rutas de administración.
+A continuación, importa el `AdminModule` en `app.module.ts` y agrégalo al array de `imports` para registrar las rutas de administración.
 
 <code-example path="router/src/app/app.module.4.ts" header="src/app/app.module.ts (admin module)" region="admin-module"></code-example>
 
@@ -2061,9 +2060,9 @@ Agrega un enlace "Admin" a la carcasa de `AppComponent` para que los usuarios, p
 
 #### Protege la función de administrador
 
-Actualmento, todas las rutas del Centro de Crisis estan abiertas para todos. La nueva funcionalidad de administración deberia de ser accesible solo para los usuario autenticados.
+Actualmente, todas las rutas del Centro de Crisis están abiertas para todos. La nueva funcionalidad de administración debería de ser accesible solo para los usuarios autenticados.
 
-Escribe un método guard `canActivate()` para redirigir a los usuarios anonimos a la página de inicio de sesión cuanto intenten ingresar al área de administración.
+Escribe un método guard `canActivate()` para redirigir a los usuarios anónimos a la página de inicio de sesión cuanto intenten ingresar al área de administración.
 
 Genera un `AuthGuard` en la carpeta de `auth`.
 
@@ -2071,7 +2070,7 @@ Genera un `AuthGuard` en la carpeta de `auth`.
   ng generate guard auth/auth
 </code-example>
 
-Para demostrar los fundamentos, este ejemplo solo registra en consola, `returns` verdadero inmediatamente, y permite que la navegación continue:
+Para demostrar los fundamentos, este ejemplo solo registra en consola, `returns` verdadero inmediatamente, y permite que la navegación continúe:
 
 <code-example path="router/src/app/auth/auth.guard.1.ts" header="src/app/auth/auth.guard.ts (excerpt)"></code-example>
 
@@ -2079,7 +2078,7 @@ A continuación, abre el archivo `admin-routing.module.ts `. importa la clase `A
 
 <code-example path="router/src/app/admin/admin-routing.module.2.ts" header="src/app/admin/admin-routing.module.ts (guarded admin route)" region="admin-route"></code-example>
 
-La función de administración ahora esta protegida por el guard, pero el guard requiere mas personalización para funcionar completamente.
+La función de administración ahora esta protegida por el guard, pero el guard requiere más personalización para funcionar completamente.
 
 {@a teach-auth}
 
@@ -2099,9 +2098,9 @@ Actualiza el `AuthService` para iniciar sesión como usuario:
 
 <code-example path="router/src/app/auth/auth.service.ts" header="src/app/auth/auth.service.ts (excerpt)"></code-example>
 
-Aunque en realidad no inicia sesión, tiene una bandera `isLoggedIn` para indicar que el usuario esta autenticado.
-Su método `login()` simula una llamada a un servicio de API externo al devolver un obervable que resuelve con écito después de una breve pausa.
-La propiedad `redirectUrl` almacena la URL a la cual el usuario queria acceder para que pueda navegar a ella después de la autenticación.
+Aunque en realidad no inicia sesión, tiene una bandera `isLoggedIn` para indicar que el usuario está autenticado.
+Su método `login()` simula una llamada a un servicio de API externo al devolver un observable que resuelve con éxito después de una breve pausa.
+La propiedad `redirectUrl` almacena la URL a la cual el usuario quería acceder para que pueda navegar a ella después de la autenticación.
 
 <div class="alert is-helpful">
 
@@ -2113,22 +2112,22 @@ Revisa el `AuthGuard` para llamar al `AuthService`.
 
 <code-example path="router/src/app/auth/auth.guard.2.ts" header="src/app/auth/auth.guard.ts (v2)"></code-example>
 
-Observa que se inyectaron el `AuthService` y el `Router` en el contructor.
-Aun no has proporcionado el `AuthService` pero es bueno saber que puedes inyectar servicios utiles en los guards del enrutador.
+Observa que se inyectaron el `AuthService` y el `Router` en el constructor.
+Aún no has proporcionado el `AuthService`, pero es bueno saber que puedes inyectar servicios útiles en los guards del enrutador.
 
-Este guard retorna un resultado booleano sincróno.
+Este guard retorna un resultado booleano síncrono.
 Si el usuario ha iniciado sesión, regresara verdadero y la navegación continuara.
 
 El `ActivatedRouteSnapshot` contiene la ruta _futura_ que se activara y `RouterStateSnapshot` contiene el _futuro_ `RouterState` de la aplicación, en caso de que pase por el guard.
 
-Si el usuario no ha iniciado sesión, alamacena el intento URL de donde proviene el usuario usando el `RouterStateSnapshot.url` y le dice al enrutador que lo redireccione a la página de inicio de sesión&mdash; página que aún no has creado.
+Si el usuario no ha iniciado sesión, almacena el intento URL de donde proviene el usuario usando el `RouterStateSnapshot.url` y le dice al enrutador que lo redireccione a la página de inicio de sesión&mdash; página que aún no has creado.
 Devuelve un `UrlTree` que llama al `Router` a cancelar la navegación actual y programa una nueva para redirigir al usuario.
 
 {@a add-login-component}
 
 #### Agrega el `LoginComponent`
 
-Necesitas un `LoginComponent` para que el usuario inicie sesión en la aplicación. Después de iniciar sesión, sera redireccionado a la URL almacenada si esta disponible o usara la URL predeterminada.
+Necesitas un `LoginComponent` para que el usuario inicie sesión en la aplicación. Después de iniciar sesión, será redireccionado a la URL almacenada si esta disponible o usara la URL predeterminada.
 No hay nada nuevo en este componente o en la forma en que se utiliza la configuración del enrutador.
 
 <code-example language="none" class="code-shell">
@@ -2162,19 +2161,19 @@ En `app.module.ts`, importa y agrega el `AuthModule` al import de `AppModule`.
 
 ### `CanActivateChild`: protegiendo las rutas hijas
 
-Tambien puedes proteger las rutas hijas con el guard `CanActivateChild`.
+También puedes proteger las rutas hijas con el guard `CanActivateChild`.
 El guard `CanActivateChild` es similar al guard `CanActivate`.
 La diferencia clave es que corre antes de que se active cualquier ruta hija.
 
-El módulo de función de administración esta protegido de accesos no autorizados.
-Tambien deben de ser protegidas las hijas rutas _dentro_ del módulo de funciones.
+El módulo de función de administración está protegido de accesos no autorizados.
+También deben de ser protegidas las hijas rutas _dentro_ del módulo de funciones.
 
 Extiende el `AuthGuard` para proteger al navegar entre las rutas de `admin`.
 Abre el archivo `auth.guard.ts` y agrega la interfaz `CanActivateChild` a los tokens importados del paquete del enrutador.
 
 A continuación implementa el método `canActivateChild()` el cual toma los mismos argumentos que el método `canActivate()`: un `ActivatedRouteSnapshot` y el `RouterStateSnapshot`.
-El método `canActivateChild()` puede devolver un `Observable<boolean|UrlTree>` o `Promise<boolean|UrlTree>` para comprobaciones asíncronas y un `boolean` or `UrlTree` para comprobaciones sincronas.
-Este devuelve `true` para permitir al usuario acceder al módulo de funciones de administración o `UrlTree` que redirije al usuario a la pagina de inicio de sesión:
+El método `canActivateChild()` puede devolver un `Observable<boolean|UrlTree>` o `Promise<boolean|UrlTree>` para comprobaciones asíncronas y un `boolean` or `UrlTree` para comprobaciones síncronas.
+Este devuelve `true` para permitir al usuario acceder al módulo de funciones de administración o `UrlTree` que redirige al usuario a la página de inicio de sesión:
 
 <code-example path="router/src/app/auth/auth.guard.3.ts" header="src/app/auth/auth.guard.ts (excerpt)" region="can-activate-child"></code-example>
 
@@ -2184,123 +2183,122 @@ Agrega el mismo `AuthGuard` a la ruta de administración `component-less` para p
 
 {@a can-deactivate-guard}
 
-### `CanDeactivate`: handling unsaved changes
+### `CanDeactivate`: manejo de cambios no guardados
 
-Back in the "Heroes" workflow, the app accepts every change to a hero immediately without validation.
+De vuelta al flujo de trabajo de "Héroes", la aplicación acepta cambios en los héroes inmediatamente sin ningún tipo de validación.
 
-In the real world, you might have to accumulate the users changes, validate across fields, validate on the server, or hold changes in a pending state until the user confirms them as a group or cancels and reverts all changes.
+En el mundo real, es posible que debas de acumular los cambios de los usuarios, validar los campos, validar en el servidor ó mantener los cambios en pendiente hasta que el usuario los confirme ó los cancele y revertir todos los cambios.
 
-When the user navigates away, you can let the user decide what to do with unsaved changes.
-If the user cancels, you'll stay put and allow more changes.
-If the user approves, the app can save.
+Cuando el usuario sale de la página, puedes permitir que el usuario decida que hacer con los cambios no guardados.
+Si el usuario los cancela, se mantendrá en la misma página y permitira continuar con los cambios.
+Si el usuario los aprueba, la aplicación deberá guardarlos.
 
-You still might delay navigation until the save succeeds.
-If you let the user move to the next screen immediately and saving were to fail (perhaps the data is ruled invalid), you would lose the context of the error.
+Aún puedes retrasar la navegación hasta que el guardado de los cambios se realice correctamente.
+Si permites que el usuario cambie de pantalla inmediatamente y el guardado fallara (talvez los datos se consideren inválidos), perderías el contexto del error.
 
-You need to stop the navigation while you wait, asynchronously, for the server to return with its answer.
+Se necesita parar la navegación mientras esperas, de forma asíncrona, hasta que el servidor devuelva la respuesta.
 
-The `CanDeactivate` guard helps you decide what to do with unsaved changes and how to proceed.
+El guard `CanDeactivate` te ayuda a decidir que hacer con los cambios no guardados y cómo proceder.
 
 {@a cancel-save}
 
-#### Cancel and save
+#### Cancelar y guardar
 
-Users update crisis information in the `CrisisDetailComponent`.
-Unlike the `HeroDetailComponent`, the user changes do not update the crisis entity immediately.
-Instead, the app updates the entity when the user presses the Save button and discards the changes when the user presses the Cancel button.
+Los usuarios actualizan la información de una crisis en el `CrisisDetailComponent`.
+A diferencia del `HeroDetailComponent`, los cambios del usuario no actualizan la entidad de la crisis inmediatamente.
+En cambio, la aplicación actualiza la entidad cuando el usuario presiona el botón de Guardar y descarta los cambios cuando el usuario presiona el botón de Cancelar.
 
-Both buttons navigate back to the crisis list after save or cancel.
+Ambos botones regresan a la lista de crisis después de guardar o cancelar.
 
 <code-example path="router/src/app/crisis-center/crisis-detail/crisis-detail.component.ts" header="src/app/crisis-center/crisis-detail/crisis-detail.component.ts (cancel and save methods)" region="cancel-save"></code-example>
 
-In this scenario, the user could clic the heroes link, cancel, push the browser back button, or navigate away without saving.
+En este escenario, el usuario podría hacer clic en el enlace de héroes, cancelar, presionar el botón del navegador para volver, o cambiar la página sin guardar.
 
-This example app asks the user to be explicit with a confirmation dialog box that waits asynchronously for the user's
-response.
+Esta aplicación de ejemplo le pide al usuario que sea explícito con un cuadro de diálogo que espera sincrónicamente la respuesta del usuario.
 
 <div class="alert is-helpful">
 
-You could wait for the user's answer with synchronous, blocking code, however, the app is more responsive&mdash;and can do other work&mdash;by waiting for the user's answer asynchronously.
+Podrías esperar la respuesta del usuario con bloque de código sincrónico, sin embargo, la aplicación responde mejor&mdash; y puedes continuar trabajando&mdash; mientras esperas la respuesta del usuario de forma asincrónica.
 
 </div>
 
-Generate a `Dialog` service to handle user confirmation.
+Genera un servicio de `Dialog` para manejar la confirmación del usuario.
 
 <code-example language="none" class="code-shell">
   ng generate service dialog
 </code-example>
 
-Add a `confirm()` method to the `DialogService` to prompt the user to confirm their intent.
-The `window.confirm` is a blocking action that displays a modal dialog and waits for user interaction.
+Agrega un método `confirm()` al `DialogService` para pedirle al usuario que confirme su intención.
+El `window.confirm` es una acción de bloqueo que muestra un diálogo modal y espera la interacción del usuario.
 
 <code-example path="router/src/app/dialog.service.ts" header="src/app/dialog.service.ts"></code-example>
 
-It returns an `Observable` that resolves when the user eventually decides what to do: either to discard changes and navigate away (`true`) or to preserve the pending changes and stay in the crisis editor (`false`).
+Devuelve un `Observable` que resuelve cuando el usuario finalmente decide que hacer: descartar los cambios y continuar navegando (`true`) ó mantener los cambios pendientes y permanecer en el editor de crisis (`false`).
 
 {@a CanDeactivate}
 
-Generate a guard that checks for the presence of a `canDeactivate()` method in a component&mdash;any component.
+Genera un guard que compruebe la presencia de un método `canDeactivate()` en un componente&mdash; cualquier componente.
 
 <code-example language="none" class="code-shell">
   ng generate guard can-deactivate
 </code-example>
 
-Paste the following code into your guard.
+Pega el siguiente código en tu guard.
 
 <code-example path="router/src/app/can-deactivate.guard.ts" header="src/app/can-deactivate.guard.ts"></code-example>
 
-While the guard doesn't have to know which component has a deactivate method, it can detect that the `CrisisDetailComponent` component has the `canDeactivate()` method and call it.
-The guard not knowing the details of any component's deactivation method makes the guard reusable.
+Si bien el guard no tiene porque saber cuál componente tiene un método de desactivación, puede detectar que el componente `CrisisDetailComponent` tiene un método `canDeactivate()` y llamarlo.
+Que el guard no conozca los detalles del método de desactivación de ningún componente, hace que el guard sea re usable.
 
-Alternatively, you could make a component-specific `CanDeactivate` guard for the `CrisisDetailComponent`.
-The `canDeactivate()` method provides you with the current instance of the `component`, the current `ActivatedRoute`, and `RouterStateSnapshot` in case you needed to access some external information.
-This would be useful if you only wanted to use this guard for this component and needed to get the component's properties or confirm whether the router should allow navigation away from it.
+Alternativamente, puedes crear un guard `CanDeactivate` específicamente para el componente de `CrisisDetailComponent`.
+El método `canDeactivate()` proporciona la instancia actual del `component`, su actual `ActivatedRoute`, y `RouterStateSnapshot` en caso de que se necesite acceder a información externa.
+
+Esto sería útil si solo quisieras usar este guard para este componente y necesitaras obtener las propiedades del componente o confirmar si el enrutador debe permitir la navegación fuera de él.
 
 <code-example path="router/src/app/can-deactivate.guard.1.ts" header="src/app/can-deactivate.guard.ts (component-specific)"></code-example>
 
-Looking back at the `CrisisDetailComponent`, it implements the confirmation workflow for unsaved changes.
+Mirando de vuelta al `CrisisDetailComponent`, implementa el flujo de trabajo de confirmación para los cambios no guardados.
 
 <code-example path="router/src/app/crisis-center/crisis-detail/crisis-detail.component.ts" header="src/app/crisis-center/crisis-detail/crisis-detail.component.ts (excerpt)" region="canDeactivate"></code-example>
 
-Notice that the `canDeactivate()` method can return synchronously; it returns `true` immediately if there is no crisis or there are no pending changes.
-But it can also return a `Promise` or an `Observable` and the router will wait for that to resolve to truthy (navigate) or falsy (stay on the current route).
+Observa que el método `canDeactivate()` puede regresar sincrónicamente; devuelve `true` inmediatamente si no hay crisis o cambios pendientes.
+Pero también puede devolver una `Promise` o un `Observable` y el enrutador esperará a que se resuelva como verdadero (navegar) ó falso (permanecer en la ruta actual).
 
-Add the `Guard` to the crisis detail route in `crisis-center-routing.module.ts` using the `canDeactivate` array property.
+Agrega el `Guard` a la ruta del detalle de crisis en `crisis-center-routing.module.ts` usando la propiedad del array `canDeactivate`.
 
 <code-example path="router/src/app/crisis-center/crisis-center-routing.module.3.ts" header="src/app/crisis-center/crisis-center-routing.module.ts (can deactivate guard)"></code-example>
 
-Now you have given the user a safeguard against unsaved changes.
+Ahora el usuario tiene una protección contra los cambios no guardados.
 
 {@a Resolve}
 
 {@a resolve-guard}
 
-### _Resolve_: pre-fetching component data
+### _Resolve_: pre-cargando datos de componente
 
-In the `Hero Detail` and `Crisis Detail`, the app waited until the route was activated to fetch the respective hero or crisis.
+En el `Hero Detail` y `Crisis Detail`, la aplicación espera hasta que enrutador sea activado para buscar héroe o crisis correspondiente.
 
-If you were using a real world API, there might be some delay before the data to display is returned from the server.
-You don't want to display a blank component while waiting for the data.
+Si está utilizando una API del mundo real, puede haber algún retraso antes que el servidor devuelva los datos a mostrar.
+No deseamos mostrar un componente vacío mientras esperamos por los datos.
 
-To improve this behavior, you can pre-fetch data from the server using a resolver so it's ready the
-moment the route is activated.
-This also allows you to handle errors before routing to the component.
-There's no point in navigating to a crisis detail for an `id` that doesn't have a record.
-It'd be better to send the user back to the `Crisis List` that shows only valid crisis centers.
+Para mejorar este comportamiento, puedes pre-cargar datos del servidor usando un resolver para que los datos estén listos al momento en que la ruta sea activada.
+Esto también permite el manejar los errores antes de enrutar al componente.
+No tiene sentido navegar al detalle de una crisis por un `id` que no tiene un registro.
+Sería mejor enviar al usuario de vuelta a `Crisis List` que muestra solo los centros de crisis válidos.
 
-In summary, you want to delay rendering the routed component until all necessary data has been fetched.
+En resumen, deseas retrasar la renderización del componente enrutado hasta que se hayan obtenido todos los datos necesarios.
 
 {@a fetch-before-navigating}
 
-#### Fetch data before navigating
+#### Obtener datos antes de navegar
 
-At the moment, the `CrisisDetailComponent` retrieves the selected crisis.
-If the crisis is not found, the router navigates back to the crisis list view.
+Por el momento el `CrisisDetailComponent` recupera la información de la crisis seleccionada.
+Si la crisis no es encontrada, el enrutador vuelve a la vista de la lista de crisis.
 
-The experience might be better if all of this were handled first, before the route is activated.
-A `CrisisDetailResolver` service could retrieve a `Crisis` or navigate away, if the `Crisis` did not exist, _before_ activating the route and creating the `CrisisDetailComponent`.
+La experiencia podría ser mejor si todo se manejara primero, antes que la ruta sea activada.
+El servicio `CrisisDetailResolver` podria recuperar una `Crisis` o navegar fuera, si la `Crisis` no existiera, _antes_ de activar la ruta y crear el `CrisisDetailComponent`.
 
-Generate a `CrisisDetailResolver` service file within the `Crisis Center` feature área.
+Genera un archivo para el servicio `CrisisDetailResolver` dentro del área de función de `Crisis Center`.
 
 <code-example language="none" class="code-shell">
   ng generate service crisis-center/crisis-detail-resolver
@@ -2308,45 +2306,44 @@ Generate a `CrisisDetailResolver` service file within the `Crisis Center` featur
 
 <code-example path="router/src/app/crisis-center/crisis-detail-resolver.service.1.ts" header="src/app/crisis-center/crisis-detail-resolver.service.ts (generated)"></code-example>
 
-Move the relevant parts of the crisis retrieval logic in `CrisisDetailComponent.ngOnInit()` into the `CrisisDetailResolverService`.
-Import the `Crisis` model, `CrisisService`, and the `Router` so you can navigate elsewhere if you can't fetch the crisis.
+Mueve las partes relevantes de la lógica de recuperación de crisis en `CrisisDetailComponent.ngOnInit()` a `CrisisDetailResolverService`.
+Importa el modelo `Crisis`, `CrisisService`, y el `Router` para que pueda navegar a otra parte si no pudiera encontrar la crisis.
 
-Be explicit and implement the `Resolve` interface with a type of `Crisis`.
+Se explicitó e implementa la interfaz del `Resolve` con un tipo de `Crisis`.
 
-Inject the `CrisisService` and `Router` and implement the `resolve()` method.
-That method could return a `Promise`, an `Observable`, or a synchronous return value.
+Inyecta el `CrisisService` y `Router` e implementa el método `resolve()`.
+Este método podría devolver una `Promise`, y un `Observable`, o un valor sincrónico.
 
-The `CrisisService.getCrisis()` method returns an observable in order to prevent the route from loading until the data is fetched.
-The `Router` guards require an observable to `complete`, which means it has emitted all
-of its values.
-You use the `take` operator with an argument of `1` to ensure that the `Observable` completes after retrieving the first value from the Observable returned by the `getCrisis()` method.
+El método `CrisisService.getCrisis()` devuelve un observable para evitar que la ruta cargue hasta que se obtengan los datos.
+El guard `Router` requiere un observable `complete`, lo que significa que ha emitido todos sus valores.
+Puedes usar el operador `take` con el argumento `1` para asegurar que el `Observable` se completa después de recuperar el primer valor del Observable devuelto por el método `getCrisis()`.
 
-If it doesn't return a valid `Crisis`, then return an empty `Observable`, cancel the previous in-progress navigation to the `CrisisDetailComponent`, and navigate the user back to the `CrisisListComponent`.
-The updated resolver service looks like this:
+Si no devuelve una `Crisis` válida, entonces devuelve un `Observable` vacío, cancela la navegación en progreso al `CrisisDetailComponent`, y regresa al usuario al `CrisisListComponent`.
+La actualización del servicio resolver tiene este aspecto:
 
 <code-example path="router/src/app/crisis-center/crisis-detail-resolver.service.ts" header="src/app/crisis-center/crisis-detail-resolver.service.ts"></code-example>
 
-Import this resolver in the `crisis-center-routing.module.ts` and add a `resolve` object to the `CrisisDetailComponent` route configuration.
+Importar este resolver en el archivo `crisis-center-routing.module.ts` y agrega el objeto `resolve` en la configuración de ruta de `CrisisDetailComponent`.
 
 <code-example path="router/src/app/crisis-center/crisis-center-routing.module.4.ts" header="src/app/crisis-center/crisis-center-routing.module.ts (resolver)"></code-example>
 
-The `CrisisDetailComponent` should no longer fetch the crisis.
-When you re-configured the route, you changed where the crisis is.
-Update the `CrisisDetailComponent` to get the crisis from the `ActivatedRoute.data.crisis` property instead;
+El `CrisisDetailComponent` ya no debería de buscar la crisis.
+Cuando reconfiguras la ruta, cambias donde está la crisis.
+Actualiza el `CrisisDetailComponent` para obtener la crisis de la propiedad `ActivatedRoute.data.crisis` en su lugar.
 
 <code-example path="router/src/app/crisis-center/crisis-detail/crisis-detail.component.ts" header="src/app/crisis-center/crisis-detail/crisis-detail.component.ts (ngOnInit v2)" region="ngOnInit"></code-example>
 
-Note the following three important points:
+Ten en cuenta los siguientes puntos importantes:
 
-1. The router's `Resolve` interface is optional.
-   The `CrisisDetailResolverService` doesn't inherit from a base class.
-   The router looks for that method and calls it if found.
+1. La interfaz del `Resolve` del enrutador es opcional.
+   El `CrisisDetailResolverService` no hereda de una clase base.
+   El enrutador busca ese método y lo llama si lo encuentra.
 
-1. The router calls the resolver in any case where the the user could navigate away so you don't have to code for each use case.
+1. El enrutador llama el resolver en cualquier caso donde el usuario pueda navegar para que no tengas que codificar cada caso de uso.
 
-1. Returning an empty `Observable` in at least one resolver will cancel navigation.
+1. Devolver un `Observable` vacío en al menos un resolver cancelará la navegación.
 
-The relevant Crisis Center code for this milestone follows.
+A continuación, el código relevante para el Centro de Crisis para este hito:
 
 <code-tabs>
 
@@ -2413,208 +2410,198 @@ Guards
 {@a query-parameters}
 
 {@a fragment}
+{@a query-parameters-and-fragments}
 
-### Query parameters and fragments
+### Parámetros de consulta y fragmentos
 
-In the [route parameters](#optional-route-parameters) section, you only dealt with parameters specific to the route.
-However, you can use query parameters to get optional parameters available to all routes.
+En la sección de [parametros de ruta](#optional-route-parameters), solo se trataron los parámetros específicos de la ruta.
+Sin embargo, puedes utilizar parámetros opcionales disponibles para todas las rutas.
 
-[Fragments](https://en.wikipedia.org/wiki/Fragment_identifier) refer to certain elements on the page
-identified with an `id` attribute.
+Los [Fragmentos](https://en.wikipedia.org/wiki/Fragment_identifier) hacen referencia a ciertos elementos en la página identificados con un atributo `id`.
 
-Update the `AuthGuard` to provide a `session_id` query that will remain after navigating to another route.
+Actualiza el `AuthGuard` para proporcionar una consulta de `session_id` que permanecerá después de navegar a otra ruta.
 
-Add an `anchor` element so you can jump to a certain point on the page.
+Agrega un elemento `anchor` para que puedas dar un salto a un punto determinado de la página.
 
-Add the `NavigationExtras` object to the `router.navigate()` method that navigates you to the `/login` route.
+Agrega el objeto `NavigationExtras` al método `router.navigate()` que te lleva a la ruta `/login`.
 
 <code-example path="router/src/app/auth/auth.guard.4.ts" header="src/app/auth/auth.guard.ts (v3)"></code-example>
 
-You can also preserve query parameters and fragments across navigations without having to provide them again when navigating.
-In the `LoginComponent`, you'll add an _object_ as the second argument in the `router.navigateUrl()` function and provide the `queryParamsHandling` and `preserveFragment` to pass along the current query parameters and fragment to the next route.
+También puedes conservar los parámetros de consulta y los fragmentos en la navegación sin necesidad de volverlos a proporcionar.
+En el `LoginComponent`, agrega un _objeto_ como segundo argumento en la función `router.navigateUrl()` y proporcionara el `queryParamsHandling` y `preserveFragment` para pasar los parámetros de consulta actuales y el fragmento a la siguiente ruta.
 
 <code-example path="router/src/app/auth/login/login.component.ts" header="src/app/auth/login/login.component.ts (preserve)" region="preserve"></code-example>
 
 <div class="alert is-helpful">
 
-The `queryParamsHandling` feature also provides a `merge` option, which preserves and combines the current query parameters with any provided query parameters when navigating.
+La función `queryParamsHandling` proporciona una opción de `merge`, que conserva y combina los parámetros de consulta actuales con cualquier parámetro de consulta proporcionado al navegar.
 
 </div>
 
-To navigate to the Admin Dashboard route after logging in, update `admin-dashboard.component.ts` to handle the
-query parameters and fragment.
+Para navegar a la ruta de Admin Dashboard después de iniciar sesión, actualiza el archivo `admin-dashboard.component.ts` para manejar los parámetros de consulta y fragmentos.
 
 <code-example path="router/src/app/admin/admin-dashboard/admin-dashboard.component.1.ts" header="src/app/admin/admin-dashboard/admin-dashboard.component.ts (v2)"></code-example>
 
-Query parameters and fragments are also available through the `ActivatedRoute` service.
-Just like route parameters, the query parameters and fragments are provided as an `Observable`.
-The updated Crisis Admin component feeds the `Observable` directly into the template using the `AsyncPipe`.
+Los parámetros de consulta y los fragmentos también están disponibles a través del servicio `ActivatedRoute`.
+Al igual que los parámetros de ruta, los parámetros de consulta y los fragmentos se proporcionan como un `Observable`.
+El componente de Administración de Crisis alimenta el `Observable` directamente en la plantilla utilizando el `AsyncPipe`.
 
-Now, you can clic on the Admin button, which takes you to the Login page with the provided `queryParamMap` and `fragment`.
-After you clic the login button, notice that you have been redirected to the `Admin Dashboard` page with the query parameters and fragment still intact in the address bar.
+Ahora, puedes hacer clic en el botón de administración, el cual te lleva a la página de Login con el `queryParamMap` y `fragment` proporcionados.
+Después de hacer clic en el botón de Login, te darás cuenta de que has sido redirigido a la página `Admin Dashboard` con los parámetros de consulta y fragmentos aún intactos en la barra de direcciones.
 
-You can use these persistent bits of information for things that need to be provided across pages like authentication tokens or session ids.
+Puedes usas esos bits persistentes de información para cosas que deben proporcionarse en páginas como tokens de autenticación ó ids de sesión.
 
 <div class="alert is-helpful">
 
-The `query params` and `fragment` can also be preserved using a `RouterLink` with
-the `queryParamsHandling` and `preserveFragment` bindings respectively.
+Los `query params` y `fragment` también pueden ser preservados usando un `RouterLink` con los enlaces a `queryParamsHandling` y `preserveFragment` respectivamente.
 
 </div>
 
 {@a asynchronous-routing}
 
-## Milestone 6: Asynchronous routing
+## Hito 6: Enrutamiento asincrónico
 
-As you've worked through the milestones, the application has naturally gotten larger.
-At some point you'll reach a point where the application takes a long time to load.
+A medida que has trabajado en los hitos, la aplicación ha ido creciendo de manera natural.
+En algún momento, llegará un punto en el que la aplicación tendrá tiempos de carga muy largos.
 
-To remedy this issue, use asynchronous routing, which loads feature modules lazily, on request.
-Lazy loading has multiple benefits.
+Para solucionar este problema, usa el enrutamiento asincrónico, que carga módulos de funciones de manera perezosa sobre pedido.
+El `Lazy loading` tiene múltiples beneficios.
 
-- You can load feature áreas only when requested by the user.
-- You can speed up load time for users that only visit certain áreas of the application.
-- You can continue expanding lazy loaded feature áreas without increasing the size of the initial load bundle.
+- Puedes cargar áreas de funciones solo cuando sean solicitadas por el usuario.
+- Puede acelerar el tiempo de carga para los usuarios que solo visiten determinadas áreas de la aplicación.
+- Puedes continuar expandiendo las áreas de funciones sin incrementar el tamaño del paquete en la carga inicial.
 
-You're already part of the way there.
-By organizing the application into modules&mdash;`AppModule`,
-`HeroesModule`, `AdminModule` and `CrisisCenterModule`&mdash;you
-have natural candidates for lazy loading.
+Ya eres parte del camino.
+Al organizar la aplicación en módulos&mdash;`AppModule`,`HeroesModule`, `AdminModule` y `CrisisCenterModule`&mdash;tienes candidatos naturales para la carga diferida.
 
-Some modules, like `AppModule`, must be loaded from the start.
-But others can and should be lazy loaded.
-The `AdminModule`, for example, is needed by a few authorized users, so
-you should only load it when requested by the right people.
+Algunos módulos, como el `AppModule`, deben de ser cargados desde el inicio.
+Pero otros pueden y deben cargar de manera diferida.
+El `AdminModule`, por ejemplo, es necesario para algunos usuarios autorizados, por lo que solo debe de ser cargado cuando lo soliciten las personas adecuadas.
 
 {@a lazy-loading-route-config}
 {@a lazy-loading-route-configuration}
 
-### Lazy Loading route configuration
+### Configuración de ruta de carga diferida
 
-Change the `admin` path in the `admin-routing.module.ts` from `'admin'` to an empty string, `''`, the empty path.
+Cambia la ruta `admin` en el archivo `admin-routing.module.ts` de `'admin'` a una cadena vacía, `''`, la ruta vacía.
 
-Use empty path routes to group routes together without adding any additional path segments to the URL.
-Users will still visit `/admin` and the `AdminComponent` still serves as the Routing Component containing child routes.
+Utiliza rutas vacías para agrupar las rutas sin agregar ningún segmento de ruta adicional a la URL.
+Los usuarios seguirán visitando `/admin` y el `AdminComponent` seguiran sirviendo el Componente de Enrutamiento que contiene las rutas hijas.
 
-Open the `AppRoutingModule` and add a new `admin` route to its `appRoutes` array.
+Abre el `AppRoutingModule` y agrega una nueva ruta `admin` al array de `appRoutes`.
 
-Give it a `loadChildren` property instead of a `children` property.
-The `loadChildren` property takes a function that returns a promise using the browser's built-in syntax for lazy loading code using dynamic imports `import('...')`.
-The path is the location of the `AdminModule` (relative to the app root).
-After the code is requested and loaded, the `Promise` resolves an object that contains the `NgModule`, in this case the `AdminModule`.
+Asigna una propiedad `loadChildren` en lugar de una propiedad `children`.
+La propiedad `loadChildren` toma una función que devuelve una promesa usando la sintaxis incorporada en el navegador para el código de carga diferida usando imports dinámicos `import('...')`.
+La ruta es la ubicación de `AdminModule` (relativa a la raíz de la aplicación).
+Después de que se solicita y carga el código, la `Promise` resuelve un objeto que contiene el `NgModule` en este caso el `AdminModule`.
 
 <code-example path="router/src/app/app-routing.module.5.ts" region="admin-1" header="app-routing.module.ts (load children)"></code-example>
 
 <div class="alert is-important">
 
-_Note_: When using absolute paths, the `NgModule` file location must begin with `src/app` in order to resolve correctly. For custom [path mapping with absolute paths](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping), you must configure the `baseUrl` and `paths` properties in the project `tsconfig.json`.
+_Nota_: Cuando se utilizan rutas absolutas, la ubicación del archivo `NgModule` debe de comenzar con `src/app` para que resuelva correctamente. Para un [mapeo de ruta con rutas absolutas](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping) personalizado, debes de configurar las propiedades `baseUrl` y `paths` en el proyecto `tsconfig.json`.
 
 </div>
 
-When the router navigates to this route, it uses the `loadChildren` string to dynamically load the `AdminModule`.
-Then it adds the `AdminModule` routes to its current route configuration.
-Finally, it loads the requested route to the destination admin component.
+Cuando el enrutador navega a esta ruta, usa la cadena `loadChildren` para cargar dinámicamente el `AdminModule`.
+Entonces agrega las rutas del `AdminModule` a su configuración de ruta actual.
+Finalmente, carga la ruta solicitada al componente admin de destino.
 
-The lazy loading and re-configuration happen just once, when the route is first requested; the module and routes are available immediately for subsequent requests.
+La carga diferida y la reconfiguración ocurren solo una vez, cuando la ruta es solicitada por primera vez; el módulo y las rutas están disponibles inmediatamente para las solicitudes posteriores.
 
 <div class="alert is-helpful">
 
-Angular provides a built-in module loader that supports SystemJS to load modules asynchronously. If you were
-using another bundling tool, such as Webpack, you would use the Webpack mechanism for asynchronously loading modules.
+Angular proporciona un cargador de módulos incorporado que soporta SystemJS para cargar módulos de forma asincrónica. Su fueras a usar otra herramienta de empaquetado, como Webpack, se utilizara el mecanismo de Webpack para cargar módulos de manera asincrónica.
 
 </div>
 
-Take the final step and detach the admin feature set from the main application.
-The root `AppModule` must neither load nor reference the `AdminModule` or its files.
+Da el último pasa y desconecta el conjunto de funciones de administración de la aplicación principal.
+La raíz `AppModule` no debe cargar ni hacer referencia al `AdminModule` ó sus archivos.
 
-In `app.module.ts`, remove the `AdminModule` import statement from the top of the file
-and remove the `AdminModule` from the NgModule's `imports` array.
+En `app.module.ts`, elimina la declaración del import a `AdminModule` de la parte superior del archivo y elimina el `AdminModule` del array de `imports` de NgModule.
 
 {@a can-load-guard}
 {@a can-load-guard-unauthorized-loading-of-feature-modules}
 
-### `CanLoad`: guarding unauthorized loading of feature modules
+### `CanLoad`: proteger la carga no autorizada de módulos de funciones
 
-You're already protecting the `AdminModule` with a `CanActivate` guard that prevents unauthorized users from accessing the admin feature área.
-It redirects to the login page if the user is not authorized.
+Ya estás protegiendo el `AdminModule` con el guard `CanActivate` que evita que usuarios no autorizados accedan al área de funciones de administración.
+Redirige a la página de inicio de sesión si el usuario no está autorizado.
 
-But the router is still loading the `AdminModule` even if the user can't visit any of its components.
-Ideally, you'd only load the `AdminModule` if the user is logged in.
+Pero el enrutador todavía está cargando el `AdminModule` incluso si el usuario no puede visitar ninguno de esos componentes.
+Idealmente, solo debería de cargar el `AdminModule` si el usuario inicio sesión.
 
-Add a `CanLoad` guard that only loads the `AdminModule` once the user is logged in _and_ attempts to access the admin feature área.
+Agrega un guard `CanLoad` que solo cargue el `AdminModule` una vez que el usuario tenga una sesión iniciada _y_ intente acceder al área de funciones de administración.
 
-The existing `AuthGuard` already has the essential logic in its `checkLogin()` method to support the `CanLoad` guard.
+El `AuthGuard` existente ya cuenta con la lógica esencial en su método `checkLogin()` para dar soporte al guard `CanLoad`.
 
-Open `auth.guard.ts`.
-Import the `CanLoad` interface from `@angular/router`.
-Add it to the `AuthGuard` class's `implements` list.
-Then implement `canLoad()` as follows:
+Abre el archivo `auth.guard.ts`.
+Importa la interfaz `CanLoad` de `@angular/router`.
+Agrégalo a la lista de implementos de la clase `AuthGuard`.
+Entonces implementa `canLoad()` de la siguiente manera:
 
 <code-example path="router/src/app/auth/auth.guard.ts" header="src/app/auth/auth.guard.ts (CanLoad guard)" region="canLoad"></code-example>
 
-The router sets the `canLoad()` method's `route` parameter to the intended destination URL.
-The `checkLogin()` method redirects to that URL once the user has logged in.
+El enrutador establece el parámetro `route` del método `canLoad()` en la URL de destino deseada.
+El método `checkLogin()` redirige esa URL una vez que el usuario ha iniciado sesión.
 
-Now import the `AuthGuard` into the `AppRoutingModule` and add the `AuthGuard` to the `canLoad`
-array property for the `admin` route.
-The completed admin route looks like this:
+Ahora importa el `AuthGuard` en el `AppRoutingModule` y agrega el `AuthGuard` al array la propiedad de `canLoad` para la ruta de `admin`.
+La ruta de administración completa se ve así:
 
 <code-example path="router/src/app/app-routing.module.5.ts" region="admin" header="app-routing.module.ts (lazy admin route)"></code-example>
 
 {@a preloading}
 {@a preloading-background-loading-of-feature-areas}
 
-### Preloading: background loading of feature áreas
+### Precarga: carga en segundo plano las áreas de funciones
 
-In addition to loading modules on-demand, you can load modules asynchronously with preloading.
+Además de cargar módulos bajo demanda, puedes cargar módulos de forma asíncrona con la precarga.
 
-The `AppModule` is eagerly loaded when the application starts, meaning that it loads right away.
-Now the `AdminModule` loads only when the user clics on a link, which is called lazy loading.
+El `AppModule` es cargado cuando la aplicación inicial, lo que significa que se carga de inmediato.
+Ahora el `AdminModule` carga solo cuando el usuario hace clic en un enlace, lo que se denomina carga diferida.
 
-Preloading allows you to load modules in the background so that the data is ready to render when the user activates a particular route.
-Consider the Crisis Center.
-It isn't the first view that a user sees.
-By default, the Heroes are the first view.
-For the smallest initial payload and fastest launch time, you should eagerly load the `AppModule` and the `HeroesModule`.
+La precarga permite el cargar módulos en segundo plano para que los datos estén listos para renderizarse cuando el usuario activa una ruta en particular.
+Considera el Centro de Crisis
+No es la primera vista que ve un usuario.
+Por defecto, los héroes son la primera vista.
+Para obtener una carga inicial pequeña y un tiempo de inicio veloz, deben de cargar con entusiasmo el `AppModule` and the `HeroesModule`.
 
-You could lazy load the Crisis Center.
-But you're almost certain that the user will visit the Crisis Center within minutes of launching the app.
-Ideally, the app would launch with just the `AppModule` and the `HeroesModule` loaded and then, almost immediately, load the `CrisisCenterModule` in the background.
-By the time the user navigates to the Crisis Center, its module will have been loaded and ready.
+Podrías cargar el Centro de Crisis de forma diferida.
+Pero estás casi seguro que el usuario visitara el Centro de Crisis en los primeros minutos después de iniciar la aplicación.
+Idealmente, la aplicación se inciaría solo con el `AppModule` y el `HeroesModule` cargados y entonces, casi inmediatamente, cargar el `CrisisCenterModule` en segundo plano.
+Para cuando el usuario navegue al Crisis Center, el módulo estará cargado y listo.
 
 {@a how-preloading}
+{@a how-preloading-works}
 
-#### How preloading works
+#### Cómo funciona la precarga
 
-After each successful navigation, the router looks in its configuration for an unloaded module that it can preload.
-Whether it preloads a module, and which modules it preloads, depends upon the preload strategy.
+Después de cada navegación exitosa, el enrutador busca en su configuración un módulo que aún no haya sido cargado que pueda pre cargar.
+Si va a pre cargar un módulo, y que módulo pre cargara, depende de la estrategia de precarga.
 
-The `Router` offers two preloading strategies:
+El `Router` ofrece dos estrategias de precarga:
 
-- No preloading, which is the default. Lazy loaded feature áreas are still loaded on-demand.
-- Preloading of all lazy loaded feature áreas.
+- Sin precarga, que es la opción predeterminada. Las áreas de funciones cargadas de forma diferida todavía se cargan bajo demanda.
+- Precarga todas las áreas de funciones de forma diferida.
 
-The router either never preloads, or preloads every lazy loaded module.
-The `Router` also supports [custom preloading strategies](#custom-preloading) for fine control over which modules to preload and when.
+El enrutador nunca precarga, o precarga todos los módulos de forma diferida.
+El `Router` incluso soporta [estrategias personalizadas de precarga](#custom-preloading) para un control fino sobre cuáles módulos pre cargar y cuando.
 
-This section guides you through updating the `CrisisCenterModule` to load lazily by default and use the `PreloadAllModules` strategy to load all lazy loaded modules.
+Esta sección te guía a través de la actualización del `CrisisCenterModule` para cargar de forma diferida por defecto y utilizar la estrategia `PreloadAllModules` para cargar todos los módulos cargados de forma diferida.
 
 {@a lazy-load-crisis-center}
 
-#### Lazy load the crisis center
+#### Carga diferida del centro de crisis
 
-Update the route configuration to lazy load the `CrisisCenterModule`.
-Take the same steps you used to configure `AdminModule` for lazy loading.
+Actualiza la configuración de la ruta para cargar de forma diferida el `CrisisCenterModule`.
+Sigue los mismos pasos que utilizaste para configurar el `AdminModule` para la carga diferida.
 
-1. Change the `crisis-center` path in the `CrisisCenterRoutingModule` to an empty string.
+1. Cambia la ruta del `crisis-center` en el `CrisisCenterRoutingModule` a una cadena vacía.
+2. Agrega la ruta `crisis-center` al `AppRoutingModule`.
+3. Configura la cadena `loadChildren` para cargar el `CrisisCenterModule`.
+4. Elimina todas las menciones de `CrisisCenterModule` del archivo `app.module.ts`.
 
-1. Add a `crisis-center` route to the `AppRoutingModule`.
-
-1. Set the `loadChildren` string to load the `CrisisCenterModule`.
-
-1. Remove all mention of the `CrisisCenterModule` from `app.module.ts`.
-
-Here are the updated modules _before enabling preload_:
+Aquí están los módulos actualizados _antes de habilitar la precarga_:
 
 <code-tabs>
 
@@ -2632,162 +2619,165 @@ Here are the updated modules _before enabling preload_:
 
 </code-tabs>
 
-You could try this now and confirm that the `CrisisCenterModule` loads after you clic the "Crisis Center" button.
+Puedes probarlo ahora y confirmar que el `CrisisCenterModule` carga después de que hagas clic en el botón de "Crisis Center".
 
-To enable preloading of all lazy loaded modules, import the `PreloadAllModules` token from the Angular router package.
+Para habilitar la precarga de todos los módulos cargados de forma diferida, importa el token `PreloadAllModules` del paquete del enrutador de Angular.
 
-The second argument in the `RouterModule.forRoot()` method takes an object for additional configuration options.
-The `preloadingStrategy` is one of those options.
-Add the `PreloadAllModules` token to the `forRoot()` call:
+El segundo argumento en el método `RouterModule.forRoot()` toma un objeto con opciones de configuración adicionales.
+El `preloadingStrategy` es una de esas opciones.
+Agrega el token `PreloadAllModules` a la llamada `forRoot()`:
 
 <code-example path="router/src/app/app-routing.module.6.ts" header="src/app/app-routing.module.ts (preload all)" region="forRoot"></code-example>
 
-This configures the `Router` preloader to immediately load all lazy loaded routes (routes with a `loadChildren` property).
+Estas configuraciones a la precarga del `Router` para cargar inmediatamente todas las rutas cargadas de forma diferida (rutas con una propiedad `loadChildren`).
 
-When you visit `http://localhost:4200`, the `/heroes` route loads immediately upon launch and the router starts loading the `CrisisCenterModule` right after the `HeroesModule` loads.
+Cuando visitas `http://localhost:4200`, la ruta `/heroes` carga inmediatamente después del lanzamiento y el enrutador comienza a cargar el `CrisisCenterModule` justo después que el `HeroesModule` cargue.
 
-Currently, the `AdminModule` does not preload because `CanLoad` is blocking it.
+Actualmente, el `AdminModule` no precarga porque `CanLoad` está bloqueándolo.
 
 {@a preload-canload}
 
-#### `CanLoad` blocks preload
+#### `CanLoad` bloqueo de precarga
 
-The `PreloadAllModules` strategy does not load feature áreas protected by a [CanLoad](#can-load-guard) guard.
+La estrategia `PreloadAllModules` no carga todas las áreas de funciones protegidas por un guard [CanLoad](#can-load-guard).
 
-You added a `CanLoad` guard to the route in the `AdminModule` a few steps back to block loading of that module until the user is authorized.
-That `CanLoad` guard takes precedence over the preload strategy.
+Agrega un guard `CanLoad` a la ruta en el `AdminModule`, unos pasos hacia atrás para bloquear la carga de ese módulo hasta que el usuario esté autorizado.
+Ese guard `CanLoad` tiene prioridad sobre la estrategia de precarga.
 
-If you want to preload a module as well as guard against unauthorized access, remove the `canLoad()` guard method and rely on the [canActivate()](#can-activate-guard) guard alone.
+Si deseas pre cargar un módulo y protegerte contra el acceso no autorizado, elimina el método guard `canLoad()` y confía solo en el guard [canActivate()](#can-activate-guard).
 
 {@a custom-preloading}
+{@a custom-preloading-strategy}
 
-### Custom Preloading Strategy
+### Estrategia de precarga personalizada
 
-Preloading every lazy loaded module works well in many situations.
-However, in consideration of things such as low bandwidth and user metrics, you can use a custom preloading strategy for specific feature modules.
+Pre cargar cada módulo cargado de forma diferida funciona bien en muchas situaciones.
+Sin embargo, en consideración de ciertos aspectos como un ancho de banda bajo y las métricas de usuario, puedes usar una estrategia de precarga personalizada para módulos de funciones específicas.
 
-This section guides you through adding a custom strategy that only preloads routes whose `data.preload` flag is set to `true`.
-Recall that you can add anything to the `data` property of a route.
+Esta sección lo guía a través de la adición de una estrategia personalizada que solamente pre cargue las rutas con el indicador `data.preload` está establecido en `true`.
+Recuerda que puedes agregar cualquier cosa a la propiedad `data` de una ruta.
 
-Set the `data.preload` flag in the `crisis-center` route in the `AppRoutingModule`.
+Establece el indicador `data.preload` en la ruta `crisis-center` en el `AppRoutingModule`.
 
 <code-example path="router/src/app/app-routing.module.ts" header="src/app/app-routing.module.ts (route data preload)" region="preload-v2"></code-example>
 
-Generate a new `SelectivePreloadingStrategy` service.
+Genera un nuevo servicio `SelectivePreloadingStrategy`.
 
 <code-example language="none" class="code-shell">
   ng generate service selective-preloading-strategy
 </code-example>
 
-Replace the contents of `selective-preloading-strategy.service.ts` with the following:
+Reemplaza el contenido del archivo `selective-preloading-strategy.service.ts` por lo siguiente:
 
 <code-example path="router/src/app/selective-preloading-strategy.service.ts" header="src/app/selective-preloading-strategy.service.ts"></code-example>
 
-`SelectivePreloadingStrategyService` implements the `PreloadingStrategy`, which has one method, `preload()`.
+`SelectivePreloadingStrategyService` implementa la `PreloadingStrategy`, que tiene un método, `preload()`.
 
-The router calls the `preload()` method with two arguments:
+En enrutador llama al método `preload()` con dos argumentos:
 
-1. The route to consider.
-1. A loader function that can load the routed module asynchronously.
+1. La ruta a considerar.
+2. Una función de carga que puede cargar el módulo enrutado de forma asíncrona.
 
-An implementation of `preload` must return an `Observable`.
-If the route does preload, it returns the observable returned by calling the loader function.
-If the route does not preload, it returns an `Observable` of `null`.
+Una implementación de `preload` debe de devolver un `Observable`.
+Si la ruta precarga, devuelve el observable devuelto al llamar la función de carga.
+Si la ruta no precarga, devuelve un `Observable` con `null`.
 
-In this sample, the `preload()` method loads the route if the route's `data.preload` flag is truthy.
+En esta muestra, el método `preload()` carga la ruta si el indicador `data.preload` de la ruta es verdadero.
 
-As a side-effect, `SelectivePreloadingStrategyService` logs the `path` of a selected route in its public `preloadedModules` array.
+Como efecto secundario, `SelectivePreloadingStrategyService` registra el `path` de la ruta seleccionada en su array publico `preloadedModules`.
 
-Shortly, you'll extend the `AdminDashboardComponent` to inject this service and display its `preloadedModules` array.
+En breve, extendrás el `AdminDashboardComponent` para inyectar este servicio y mostrar su array `preloadedModules`.
 
-But first, make a few changes to the `AppRoutingModule`.
+Pero primero, haremos unos cambios al `AppRoutingModule`.
 
-1. Import `SelectivePreloadingStrategyService` into `AppRoutingModule`.
-1. Replace the `PreloadAllModules` strategy in the call to `forRoot()` with this `SelectivePreloadingStrategyService`.
-1. Add the `SelectivePreloadingStrategyService` strategy to the `AppRoutingModule` providers array so you can inject it elsewhere in the app.
+1. Importa `SelectivePreloadingStrategyService` en el `AppRoutingModule`.
+2. Reemplaza la estrategia `PreloadAllModules` en la llamada de `forRoot()` con este `SelectivePreloadingStrategyService`.
+3. Agrega la estrategia `SelectivePreloadingStrategyService` al array de proveedores `AppRoutingModule` para que puedas inyectarlo en cualquier parte de la aplicación.
 
-Now edit the `AdminDashboardComponent` to display the log of preloaded routes.
+Ahora edita el `AdminDashboardComponent` para mostrar el registro de rutas pre cargadas.
 
-1. Import the `SelectivePreloadingStrategyService`.
-1. Inject it into the dashboard's constructor.
-1. Update the template to display the strategy service's `preloadedModules` array.
+1. Importa el `SelectivePreloadingStrategyService`.
+2. Inyéctalo en el contructor del dashboard.
+3. Actualiza la plantilla para mostrar el array `preloadedModules` del servicio de estrategia.
 
-Now the file is as follows:
+Ahora el archivo es el siguiente:
 
 <code-example path="router/src/app/admin/admin-dashboard/admin-dashboard.component.ts" header="src/app/admin/admin-dashboard/admin-dashboard.component.ts (preloaded modules)"></code-example>
 
-Once the application loads the initial route, the `CrisisCenterModule` is preloaded.
-Verify this by logging in to the `Admin` feature área and noting that the `crisis-center` is listed in the `Preloaded Modules`.
-It also logs to the browser's console.
+Una vez que la aplicación carga la ruta inicial, él `CrisisCenterModule` es pre cargado.
+Verifica esto iniciando sesión en el área de función del `Admin` y observa que el `crisis-center` está listado en el `Preloaded Modules`.
+Incluso se registra en la consola del navegador.
 
 {@a redirect-advanced}
+{@a migrating-urls-with-redirects}
 
-### Migrating URLs with redirects
+### Migrando URLs con redireccionamientos
 
-You've setup the routes for navigating around your application and used navigation imperatively and declaratively.
-But like any application, requirements change over time.
-You've setup links and navigation to `/heroes` and `/hero/:id` from the `HeroListComponent` and `HeroDetailComponent` components.
-If there were a requirement that links to `heroes` become `superheroes`, you would still want the previous URLs to navigate correctly.
-You also don't want to update every link in your application, so redirects makes refactoring routes trivial.
+Has configurado las rutas para navegar por tu aplicación y utilizado la navegación de manera imperativa y declarativa.
+Pero como cualquier aplicación, los requisitos cambian con el tiempo.
+Has configurado enlaces y navegación a `/heroes` y `/hero/:id` desde los componentes `HeroListComponent` y `HeroDetailComponent`.
+Si existiera el requisito de que los enlaces a `heroes` se convirtieran en `superheroes`, aún querrías que las URLs anteriores navegaran correctamente.
+Tampoco deseas actualizar cada enlace en tu aplicación, por lo que los redireccionamientos hacen que la refactorización de rutas sea trivial.
 
 {@a url-refactor}
+{@a changing-heroes-to-superheroes}
 
-#### Changing `/heroes` to `/superheroes`
+#### Cambiando `/heroes` a `/superheroes`
 
-This section guides you through migrating the `Hero` routes to new URLs.
-The `Router` checks for redirects in your configuration before navigating, so each redirect is triggered when needed. To support this change, add redirects from the old routes to the new routes in the `heroes-routing.module`.
+Esta sección te guía a través de la migración de las rutas `Hero` a nuevas URLs.
+El `Router` comprueba si hay redireccionamientos en su configuración antes de navegar, porque cada redireccionamiento se activa cuando es necesario. Para respaldar este cambio, agrega redireccionamientos de las rutas antiguas a las nuevas rutas en el `heroes-routing.module`.
 
 <code-example path="router/src/app/heroes/heroes-routing.module.ts" header="src/app/heroes/heroes-routing.module.ts (heroes redirects)"></code-example>
 
-Notice two different types of redirects.
-The first change is from `/heroes` to `/superheroes` without any parameters.
-The second change is from `/hero/:id` to `/superhero/:id`, which includes the `:id` route parameter.
-Router redirects also use powerful pattern-matching, so the `Router` inspects the URL and replaces route parameters in the `path` with their appropriate destination.
-Previously, you navigated to a URL such as `/hero/15` with a route parameter `id` of `15`.
+Observa que hay dos diferentes tipos de redireccionamiento.
+El primero cambia de `/heroes` a `/superheroes` sin ningún parámetro.
+El segundo cambia de `/hero/:id` a `/superhero/:id`, el cual incluye el parámetro de ruta `:id`.
+El redireccionamiento del enrutador también utiliza una potente coincidencia de patrones, por lo que el `Router` inspecciona la URL y reemplaza los parámetros de ruta en el `path` con el destino apropiado.
+Anteriormente, navegaba a una URL como `/hero/15` con un parámetro de ruta `id` de `15`.
 
 <div class="alert is-helpful">
 
-The `Router` also supports [query parameters](#query-parameters) and the [fragment](#fragment) when using redirects.
+El `Router` también admite [parámetros de consulta](#query-parameters) y fragmentos [fragment](#fragment) cuando usa redireccionamientos.
 
-- When using absolute redirects, the `Router` will use the query parameters and the fragment from the `redirectTo` in the route config.
-- When using relative redirects, the `Router` use the query params and the fragment from the source URL.
+- Al usar redireccionamientos absolutos, el `Router` usará los parámetros de consulta y el fragmento `redirectTo` en la configuración de ruta.
+- Cuando se usan redireccionamientos relativos, el `Router` usa parámetros de consulta y el fragmento de la URL de origen.
 
 </div>
 
-Currently, the empty path route redirects to `/heroes`, which redirects to `/superheroes`.
-This won't work because the `Router` handles redirects once at each level of routing configuration.
-This prevents chaining of redirects, which can lead to endless redirect loops.
+Actualmente, la ruta vacía redirige a `/heroes`, que redirige a `/superheroes`.
+Esto no funciona porque el `Router` maneja el redireccionamiento una vez en cada nivel de configuración del enrutamiento.
+Esto evita el encadenamiento de redireccionamientos, lo que puede dar lugar a bucles de redireccionamiento interminables.
 
-Instead, update the empty path route in `app-routing.module.ts` to redirect to `/superheroes`.
+En su lugar, actualiza la ruta vacía en `app-routing.module.ts` para redirigir a `/superheroes`.
 
 <code-example path="router/src/app/app-routing.module.ts" header="src/app/app-routing.module.ts (superheroes redirect)"></code-example>
 
-A `routerLink` isn't tied to route configuration, so update the associated router links to remain active when the new route is active.
-Update the `app.component.ts` template for the `/heroes` `routerLink`.
+Un `routerLink` no está vinculado a la configuración de la ruta, así que actualiza los enlaces del enrutador asociados para que permanezcan activos cuando la nueva ruta esté activa.
+Actualiza la plantilla `app.component.ts` para el `/heroes` `routerLink`.
 
 <code-example path="router/src/app/app.component.html" header="src/app/app.component.html (superheroes active routerLink)"></code-example>
 
-Update the `goToHeroes()` method in the `hero-detail.component.ts` to navigate back to `/superheroes` with the optional route parameters.
+Actualiza el método `goToHeroes()` en el archivo `hero-detail.component.ts` para navegar de regreso a `/superheroes` con los parámetros de ruta opcionales.
 
 <code-example path="router/src/app/heroes/hero-detail/hero-detail.component.ts" region="redirect" header="src/app/heroes/hero-detail/hero-detail.component.ts (goToHeroes)"></code-example>
 
-With the redirects setup, all previous routes now point to their new destinations and both URLs still function as intended.
+Con la configuración de redireccionamientos, todas las rutas anteriores ahora apuntan a sus nuevos destinos y ambas URLs funcionan según lo previsto.
 
 {@a inspect-config}
+{@a inspect-the-routers-configuration}
 
-### Inspect the router's configuration
+### Inspecciona la configuración del enrutador
 
-To determine if your routes are actually evaluated [in the proper order](#routing-module-order), you can inspect the router's configuration.
+Para determinar si las rutas se evalúan [en el orden correcto](#routing-module-order), puedes inspecciona la configuración del enrutador.
 
-Do this by injecting the router and logging to the console its `config` property.
-For example, update the `AppModule` as follows and look in the browser console window
-to see the finished route configuration.
+Haz esto inyectando el enrutador y registrando en la consola su propiedad `config`.
+Por ejemplo, actualiza el `AppModule` de la siguiente manera y mira en la consola del navegador para ver la configuración de la ruta terminada.
 
 <code-example path="router/src/app/app.module.7.ts" header="src/app/app.module.ts (inspect the router config)" region="inspect-config"></code-example>
 
 {@a final-app}
 
-## Final app
+## Aplicación Final
 
 Para obtener la aplicación de enrutador completa, consulta <live-example name="router"></live-example> para obtener el código fuente final.
 
