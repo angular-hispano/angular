@@ -5,7 +5,7 @@ Para desplegar tu aplicación, tienes que compilarla, y después alojar el JavaS
 
 <div class="alert is-helpful">
 
-Si llegaste aquí directamente desde la [Parte 1](start "Una aplicación básica"), o completaste toda la aplicación de la tienda en línea atravéz de las secciones [Navegación en la aplicación](start/start-routing "Pruébalo: Navegación en la aplicación"), [Gestión de datos](start/start-data "Pruébalo: Gestión de datos"), y [Formularios para la entrada del usuario](start/start-forms "Pruébalo: Formularios para la entrada del usuario"), tienes una aplicación que puedes desplegar siguiendo las instrucciones en esta sección.
+Si llegaste aquí directamente desde la [Parte 1](start "Una aplicación básica"), o completaste toda la aplicación de la tienda en línea a través de las secciones [Navegación en la aplicación](start/start-routing "Pruébalo: Navegación en la aplicación"), [Gestión de datos](start/start-data "Pruébalo: Gestión de datos"), y [Formularios para la entrada del usuario](start/start-forms "Pruébalo: Formularios para la entrada del usuario"), tienes una aplicación que puedes desplegar siguiendo las instrucciones en esta sección.
 
 </div>
 
@@ -20,7 +20,7 @@ Los proyectos en StackBlitz son públicos por defecto, permitiéndote compartir 
 
 ## Creando localmente
 
-Para crear tu aplicación localmente o para producción, descarga el codigo fuente desde tu proyecto StackBlitz haciendo click en el icono `Download Project` en el menú de la izquierda frente a `Project` para descargar tus archivos.
+Para crear tu aplicación localmente o para producción, descarga el código fuente desde tu proyecto StackBlitz haciendo click en el icono `Download Project` en el menú de la izquierda frente a `Project` para descargar tus archivos.
 
 Una vez que descargues y descomprimas el código fuente, instala `Node.js` y sirve tu aplicación con el CLI de Angular.
 
@@ -72,15 +72,15 @@ Una de las formas más sencillas de hacer que su sitio esté activo es alojarlo 
 
 ### Alojando una aplicación angular en otro lado
 
-Para alojar una aplicación Angular en otro aojamiento web, carga o envía los archivos al servidor.
+Para alojar una aplicación Angular en otro alojamiento web, carga o envía los archivos al servidor.
 Debido a que estás creando una aplicación de una sola página, también deberás asegurarte de redirigir cualquier URL no válida a tu archivo `index.html`.
-Obtén más información sobre el desarrollo y la distribución de tu aplicación en las guías [Craendo & Sirviendo](guide/build "Creando y Sirviendo aplicaciones Angular") y [Despliegue](guide/deployment "Guia de despliegue").
+Obtén más información sobre el desarrollo y la distribución de tu aplicación en las guías [Creando & Sirviendo](guide/build "Creando y Sirviendo aplicaciones Angular") y [Despliegue](guide/deployment "Guia de despliegue").
 
 ## Únete a la comunidad Angular
 
 ¡Ahora eres un desarrollador Angular! [Comparte este momento](https://twitter.com/intent/tweet?url=https://angular.io/start&text=I%20just%20finished%20the%20Angular%20Getting%20Started%20Tutorial "Angular en Twitter"), cuéntanos que te pareció este ejercicio de introducción, o envía [sugerencias para ediciones futuras](https://github.com/angular/angular/issues/new/choose "GitHub de Angular formulario de nuevo issue").
 
-Angular ofrece muchas mas capacidades, y ahora tienes las bases que te permiten crear una aplicación y explorar esas otras capacidades:
+Angular ofrece muchas más capacidades, y ahora tienes las bases que te permiten crear una aplicación y explorar esas otras capacidades:
 
 * Angular proporciona capacidades avanzadas para aplicaciones móviles, animación, internacionalización, renderizado del lado del servidor y más.
 * [Angular Material](https://material.angular.io/ "Sitio web de Angular Material") ofrece una extensa biblioteca de componentes de Material Design.
