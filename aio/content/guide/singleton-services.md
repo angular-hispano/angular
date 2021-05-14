@@ -1,33 +1,30 @@
-# Singleton services
+# Servicios únicos
 
-A singleton service is a service for which only one instance exists in an app.
+Un servicio único es un servicio de una única instancia existente en una aplicación.
 
-For a sample app using the app-wide singleton service that this page describes, see the
-<live-example name="ngmodules"></live-example> showcasing all the documented features of NgModules.
+Para una aplicación de muestra utilizando un servicio singleton en toda la aplicación que describe esta pagina, mira el <live-example name="ngmodules"></live-example> mostrando todas las funcionalidades documentadas de NgModules.
 
-## Providing a singleton service
+## Proveyendo un servicio único
 
-There are two ways to make a service a singleton in Angular:
+Hay dos maneras de crear un servicio único en Angular:
 
-* Set the `providedIn` property of the `@Injectable()` to `"root"`.
-* Include the service in the `AppModule` or in a module that is only imported by the `AppModule`
+* Colocando la propiedad `providedIn` de el `@Injectable()` a `"root"`.
+* Incluyendo el servicio en el `AppModule` ó en un modulo que es sólo importado por el `AppModule`.
 
 
 {@a providedIn}
 
-### Using `providedIn`
+### Usando `providedIn`
 
-Beginning with Angular 6.0, the preferred way to create a singleton service is to set `providedIn` to `root` on the service's `@Injectable()` decorator. This tells Angular
-to provide the service in the application root.
+Iniciando con Angular 6.0, la forma preferida de crear un servicio único es colocar `providedIn` a `root` en el decorar de servicios `@Injectable()`. Esto le indica a Angular a proveer el servicio en la aplicación raíz.
 
 <code-example path="providers/src/app/user.service.0.ts"  header="src/app/user.service.ts"></code-example>
 
-For more detailed information on services, see the [Services](tutorial/toh-pt4) chapter of the
-[Tour of Heroes tutorial](tutorial).
+Para información más detallada en servicios, mira el capitulo [Servicios](tutorial/toh-pt4) del [Tutorial Excursión de Héroes](tutorial).
 
-### NgModule `providers` array
+### NgModule array `providers`
 
-In apps built with Angular versions prior to 6.0, services are registered NgModule `providers` arrays as follows:
+En aplicaciones creadas con versiones de Angular previas a 6.0, los servicios son registrados en los arrays `providers` de NgModule, como se muestra a continuación:
 
 ```ts
 @NgModule({
@@ -38,37 +35,33 @@ In apps built with Angular versions prior to 6.0, services are registered NgModu
 
 ```
 
-If this NgModule were the root `AppModule`, the `UserService` would be a singleton and available
-throughout the app. Though you may see it coded this way, using the `providedIn` property of the `@Injectable()` decorator on the service itself is preferable as of Angular 6.0 as it makes your services tree-shakable.
+Si este NgModule fue el `AppModule` raíz, el `UserService` será único y disponible a traves de toda la aplicación. Aunque puedes ver lo codificado de esta manera, usando la propiedad `providedIn` de el decorador `@Injectable()` en el servicio mismo es preferible a partir de Angular 6.0, ya que hace tus servicios tree-shakable.
 
 {@a forRoot}
 
 ## The `forRoot()` pattern
 
-Generally, you'll only need `providedIn` for providing services and `forRoot()`/`forChild()` for routing. However, understanding how `forRoot()` works to make sure a service is a singleton will inform your development at a deeper level.
+Generalmente, solamente necesitaras `providedIn` para proveer servicios y `forRoot()`/`forChild()` para enrutar. Sin embargo, entendiendo como `forRoot()` trabaja para asegurarse que un servicio es único, informará su desarrollo a un nivel profundo.
 
-If a module defines both providers and declarations (components, directives, pipes),
-then loading the module in multiple feature modules would duplicate the registration of the service. This could result in multiple service instances and the service would no longer behave as a singleton.
+Si un modulo define ambos, proveedores y declaraciones (componentes, directivas, pipes), luego cargando el modulo en multiples módulos de funcionalidades, duplicaría el registro del servicio. Esto puede resultar en multiples instancias del servicio y el servicio ya no se comportaría cómo un servicio único.
 
-There are multiple ways to prevent this:
+Hay multiples formas de prevenir esto:
 
-* Use the [`providedIn` syntax](guide/singleton-services#providedIn) instead of registering the service in the module.
-* Separate your services into their own module.
-* Define `forRoot()` and `forChild()` methods in the module.
+* Utilizando la [sintaxis `providedIn`](guide/singleton-services#providedIn) en vez de registrando el servicio en el modulo.
+* Separando tus servicios en su propio modulo.
+* Definiendo los métodos `forRoot()` y `forChild()` en el modulo.
 
 <div class="alert is-helpful">
 
-**Note:** There are two example apps where you can see this scenario; the more advanced <live-example noDownload name="ngmodules">NgModules live example</live-example>, which contains `forRoot()` and `forChild()` in the routing modules and the `GreetingModule`, and the simpler <live-example name="lazy-loading-ngmodules" noDownload>Lazy Loading live example</live-example>. For an introductory explanation see the [Lazy Loading Feature Modules](guide/lazy-loading-ngmodules) guide.
+**Nota:** Hay dos aplicaciones de ejemplo donde tú puedes ver este escenario; el más avanzado <live-example noDownload name="ngmodules">ejemplo en vivo NgModules</live-example>, el cual contiene `forRoot()` y `forChild()` en los módulos de enrutamiento y el `GreetingModule`, y en el más simple <live-example name="lazy-loading-ngmodules" noDownload>Ejemplo en vivo Carga Diferida</live-example>. Para una explicación introductoria mira la guiá [Módulos de funcionalidad de Carga Diferida](guide/lazy-loading-ngmodules).
 
 </div>
 
 
-Use `forRoot()` to
-separate providers from a module so you can import that module into the root module
-with `providers` and child modules without `providers`.
+Utilizando `forRoot()` para separar proveedores de un modulo, puedes importar ese modulo dentro del módulo raíz con `providers` y los módulos hijos sin `providers`.
 
-1. Create a static method `forRoot()` on the module.
-2. Place the providers into the `forRoot()` method.
+1. Cree el método estático `forRoot()` en el modulo.
+2. Coloque los proveedores dentro del método `forRoot()`.
 
 <code-example path="ngmodules/src/app/greeting/greeting.module.ts" region="for-root" header="src/app/greeting/greeting.module.ts"></code-example>
 
@@ -77,92 +70,70 @@ with `providers` and child modules without `providers`.
 
 ### `forRoot()` and the `Router`
 
-`RouterModule` provides the `Router` service, as well as router directives, such as `RouterOutlet` and `routerLink`. The root application module imports `RouterModule` so that the application has a `Router` and the root application components can access the router directives. Any feature modules must also import `RouterModule` so that their components can place router directives into their templates.
+`RouterModule` provee el servicio `Router`, así como las directivas de enrutador, tales como `RouterOutlet` y `routerLink`. El modulo raíz de la aplicación importa `RouterModule`, de modo que la aplicación tenga un `Router` y los componentes de la aplicación raíz puedan acceder al enrutador de directivas. Cualquier modulo de funcionalidades debería también importar `RouterModule`, de modo que sus componentes puedan colocar directivas del enrutador dentro de sus plantillas.
 
-If the `RouterModule` didn’t have `forRoot()` then each feature module would instantiate a new `Router` instance, which would break the application as there can only be one `Router`. By using the `forRoot()` method, the root application module imports `RouterModule.forRoot(...)` and gets a `Router`, and all feature modules import `RouterModule.forChild(...)` which does not instantiate another `Router`.
+Si el `RouterModule` no tuviera `forRoot()`, cada modulo de funcionalidad instanciaría una nueva instancia de `Router`, lo cual rompería la aplicación, ya que solo puede haber un `Router`.
 
 <div class="alert is-helpful">
 
-**Note:** If you have a module which has both providers and declarations,
-you _can_ use this
-technique to separate them out and you may see this pattern in legacy apps.
-However, since Angular 6.0, the best practice for providing services is with the
-`@Injectable()` `providedIn` property.
+**Nota:** Si tienes un modulo el cual tiene proveedores y declaraciones, _puedes_ usar esta técnica para separarlos y podrías ver este patrón en aplicaciones legadas. Sin embargo, desde Angular 6.0, la mejor practica para proveer servicios es con la propiedad `providedIn` del decorador `@Injectable()`.
 
 </div>
 
-### How `forRoot()` works
+### Cómo funciona `forRoot()`
 
-`forRoot()` takes a service configuration object and returns a
-[ModuleWithProviders](api/core/ModuleWithProviders), which is
-a simple object with the following properties:
+`forRoot()` toma un objeto de configuración de servicio y retorna un
+[ModuloConProveedores](api/core/ModuleWithProviders), el cual es un simple objeto con las siguientes propiedades:
 
-* `ngModule`: in this example, the `GreetingModule` class
-* `providers`: the configured providers
+* `ngModule`: en este ejemplo, la clase `GreetingModule`
+* `providers`: los proveedores configurados
 
-In the <live-example name="ngmodules">live example</live-example>
-the root `AppModule` imports the `GreetingModule` and adds the
-`providers` to the `AppModule` providers. Specifically,
-Angular accumulates all imported providers
-before appending the items listed in `@NgModule.providers`.
-This sequence ensures that whatever you add explicitly to
-the `AppModule` providers takes precedence over the providers
-of imported modules.
+En el <live-example name="ngmodules">ejemplo en vivo</live-example>
+la raíz `AppModule` importa el `GreetingModule` y añade los `providers` al `AppModule`. Específicamente, Angular acumula todos los proveedores importados antes de añadir los elementos listados en `@NgModule.providers`. Esta secuencia asegura lo que añades específicamente al proveedores `AppModules` toma precedencia sobre los proveedores de módulos importados.
 
-The sample app imports `GreetingModule` and uses its `forRoot()` method one time, in `AppModule`. Registering it once like this prevents multiple instances.
+La aplicación de muestra importa `GreetingModule` y usa su método `foorRoot()` una vez, en `AppModule`. Registrando lo una vez para prevenir multiples instancias.
 
-You can also add a `forRoot()` method in the `GreetingModule` that configures
-the greeting `UserService`.
+También puedes agregar al método `forRoot()` en el `GreetingModule` que configura el saludo a `UserService`.
 
-In the following example, the optional, injected `UserServiceConfig`
-extends the greeting `UserService`. If a `UserServiceConfig` exists, the `UserService` sets the user name from that config.
+En el siguiente ejemplo, el opcional, `UserServiceConfig` inyectado extiende el saludo de `UserService`. Si un `UserServiceConfig` existe, el `UserService` coloca el nombre del usuario desde esa configuración.
 
 <code-example path="ngmodules/src/app/greeting/user.service.ts" region="ctor" header="src/app/greeting/user.service.ts (constructor)"></code-example>
 
-Here's `forRoot()` that takes a `UserServiceConfig` object:
+Aquí es donde `forRoot()` toma al objeto `UserServiceConfig`:
 
 <code-example path="ngmodules/src/app/greeting/greeting.module.ts" region="for-root" header="src/app/greeting/greeting.module.ts (forRoot)"></code-example>
 
-Lastly, call it within the `imports` list of the `AppModule`. In the following
-snippet, other parts of the file are left out. For the complete file, see the <live-example name="ngmodules"></live-example>, or continue to the next section of this document.
+Finalmente, llamalo dentro de la lista `imports` de el `AppModule`. En el siguiente fragmento de código, otras partes del archivo se dejan fuera. Para el archivo completo, mira el  <live-example name="ngmodules"></live-example>, ó continua con la siguiente sección de este documento.
 
 <code-example path="ngmodules/src/app/app.module.ts" region="import-for-root" header="src/app/app.module.ts (imports)"></code-example>
 
-The app displays "Miss Marple" as the user instead of the default "Sherlock Holmes".
+La aplicación muestra "Miss Marple" como el usuario en vez del por defecto "Sherlock Holmes".
 
-Remember to import `GreetingModule` as a Javascript import at the top of the file and don't add it to more than one `@NgModule` `imports` list.
+Recuerda importar `GreetingModule` como una importación de Javascript al inicio del archivo y no añadirlo a más de una lista de `imports` de `@NgModule`.
 
-## Prevent reimport of the `GreetingModule`
+## Previniendo reimportar el `GreetingModule`
 
-Only the root `AppModule` should import the `GreetingModule`. If a
-lazy-loaded module imports it too, the app can generate
-[multiple instances](guide/ngmodule-faq#q-why-bad) of a service.
+Solo el `AppModule` raíz debería importar el `GreetingModule`. Si el modulo de carga diferida también lo importa, la aplicación puede generar [multiples instancias](guide/ngmodule-faq#q-why-bad) del servicio.
 
-To guard against a lazy loaded module re-importing `GreetingModule`, add the following `GreetingModule` constructor.
+Para prevenir el reimporte de `GreetingModule` de un modulo de carga diferida, agrega el siguiente constructor `GreetingModule`.
 
 <code-example path="ngmodules/src/app/greeting/greeting.module.ts" region="ctor" header="src/app/greeting/greeting.module.ts"></code-example>
 
-The constructor tells Angular to inject the `GreetingModule` into itself.
-The injection would be circular if Angular looked for
-`GreetingModule` in the _current_ injector, but the `@SkipSelf()`
-decorator means "look for `GreetingModule` in an ancestor
-injector, above me in the injector hierarchy."
+El constructor de indica a Angular inyectar el `GreetingModule` dentro de si mismo.
+La inyección debería de ser circular si Angular busca `GreetingModule` en el inyector _actual_, pero el decorador `@SkipSelf()` significa "mira por `GreetingModule` en un inyector ancestro, arriba de mí en la jerarquía de inyección."
 
-By default, the injector throws an error when it can't
-find a requested provider.
-The `@Optional()` decorator means not finding the service is OK.
-The injector returns `null`, the `parentModule` parameter is null,
-and the constructor concludes uneventfully.
+Por defecto, el inyector arroja un error cuando no puede encontrar el proveedor solicitado.
+El decorador `@Optional()` indica que el no encontrar el servicio es OK.
+El inyector regresa `null`, el parámetro `parentModule` es null, y el constructor concluye sin mayor inconveniente.
 
-It's a different story if you improperly import `GreetingModule` into a lazy loaded module such as `CustomersModule`.
+Es una historia diferente, si de manera incorrecta importa `GreetingModule` dentro de un modulo cargado de forma diferida, como `CustomersModule`.
 
-Angular creates a lazy loaded module with its own injector,
-a child of the root injector.
-`@SkipSelf()` causes Angular to look for a `GreetingModule` in the parent injector, which this time is the root injector.
-Of course it finds the instance imported by the root `AppModule`.
-Now `parentModule` exists and the constructor throws the error.
+Angular crea un modulo cargado de forma diferida con su propio inyector, un hijo de el inyector raíz.
+`@SkipSelf()` causa que Angular busque a `GreetingModule` en el inyector padre, el cual en este momento es el inyector raíz.
+Por supuesto, encuentra la instancia importada por el `AppModule` raíz.
+Ahora `parentModule` existe y el constructor arroja el error.
 
-Here are the two files in their entirety for reference:
+Hay dos archivos enteros para su entera referencia:
 
 <code-tabs>
  <code-pane header="app.module.ts" path="ngmodules/src/app/app.module.ts">
@@ -173,9 +144,10 @@ Here are the two files in their entirety for reference:
 
 <hr />
 
-## More on NgModules
+## Más sobre NgModules
 
-You may also be interested in:
-* [Sharing Modules](guide/sharing-ngmodules), which elaborates on the concepts covered on this page.
-* [Lazy Loading Modules](guide/lazy-loading-ngmodules).
+También podrías estar interesado en:
+
+* [Módulos Compartidos](guide/sharing-ngmodules), el cual trabaja en los conceptos cubiertos en esta pagina.
+* [Módulos de Carga Diferida](guide/lazy-loading-ngmodules).
 * [NgModule FAQ](guide/ngmodule-faq).
