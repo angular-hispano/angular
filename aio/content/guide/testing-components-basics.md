@@ -2,8 +2,8 @@
 
 Un componente, a diferencia de otros partes de una aplicación de angular,
 combina una plantilla HTML y una clase de TypeScript.
-El componente realmente es la plantilla y la clase _trabajando_ juntas. Para probar adecuadamente un componente debe probar que funcionan juntas 
-como se espera.
+El componente realmente es la plantilla y la clase _trabajando_ juntas. Para probar adecuadamente un
+componente debe probar que funcionan juntas como se espera.
 
 Tal prueba requiere la creación del elemento host del componente en el DOM del navegador,
 como lo hace Angular, e investigando la interacción de la clase del componente con
@@ -124,7 +124,8 @@ componentes realmente se comportan en la pantalla.
 - ¿Se muestra el nombre del héroe como se esperaba (es decir, en mayúsculas)?
 - ¿Se muestra el mensaje de bienvenida por la plantilla de `WelcomeComponent`?
 
-Es posible que estas no sean preguntas preocupantes para los componentes simples ilustrados anteriormente.
+Es posible que estas no sean preguntas preocupantes para los componentes simples ilustrados
+anteriormente.
 Pero muchos componentes tienen interacciones complejas con elementos DOM
 descritos en sus plantillas, causando que HTML aparezca y desaparezca como
 el estado del componente cambia.
@@ -143,7 +144,8 @@ así como otros ayudantes de prueba.
 El CLI crea un archivo de prueba inicial para usted de forma predeterminada cuando se le solicita
 que genere un nuevo componente.
 
-Por ejemplo, el siguiente comando CLI genera un `BannerComponent` en la carpeta `app/banner` (con plantilla y estilos en línea):
+Por ejemplo, el siguiente comando CLI genera un `BannerComponent` en la carpeta `app/banner` 
+(con plantilla y estilos en línea):
 
 <code-example language="sh" class="code-shell">
 ng generate component banner --inline-template --inline-style --module app
@@ -281,7 +283,8 @@ una de sus clases derivadas.
 Sabiendo que es un "HTMLElement" de algún tipo, `querySelector` puede usar
 el estándar HTML para sumergirse más profundamente en el árbol de elementos.
 
-Aquí hay otra prueba que llama a `HTMLElement.querySelector` para obtener el elemento de párrafo y buscar el texto del banner:
+Aquí hay otra prueba que llama a `HTMLElement.querySelector` para obtener el elemento de párrafo y
+buscar el texto del banner:
 
 <code-example
   path="testing/src/app/banner/banner-initial.component.spec.ts"
@@ -299,7 +302,8 @@ El _fixture_ de Angular proporciona el elemento del componente directamente a tr
   region="nativeElement">
 </code-example>
 
-Este es actualmente un método conveniente, implementado como `fixture.debugElement.nativeElement`.
+Este es actualmente un método conveniente, implementado como
+`fixture.debugElement.nativeElement`.
 
 <code-example
   path="testing/src/app/banner/banner-initial.component.spec.ts"
@@ -312,9 +316,11 @@ Las propiedades del `nativeElement` depende del entorno de ejecución.
 Podría ser ejecutadas esas pruebas sobre una plataforma _no-navegador_ que no tiene DOM o
 cuya emulación DOM no sea compatible con la API completa de `HTMLElement`.
 
-Angular se basa en la abstracción del `DebugElement` para trabajar de forma segura en _todas las plataformas compatibles_.
+Angular se basa en la abstracción del `DebugElement` para trabajar de forma segura en
+_todas las plataformas compatibles_.
 En lugar de crear un árbol elementos HTML, Angular crea un árbol `DebugElement` que envuelve los _elementos nativos_ para la plataforma de ejecución.
-La propiedad `nativeElement` desenvuelve `DebugElement` y retorna el objecto de elemento especifico de la plataforma.
+La propiedad `nativeElement` desenvuelve `DebugElement` y retorna el objecto de elemento especifico
+de la plataforma.
 
 Dado que las pruebas de muestra para esta guía son diseñadas para ejecutarse solo en un navegador,
 un `nativeElement` en estas pruebas es siempre un `HTMLElement`
@@ -347,7 +353,8 @@ Por ejemplo, el componente podría renderizarse primero en el servidor�
 Sí no es compatible con el `querySelector`, la prueba anterior podría fallar.
 
 El `DebugElement` ofrece métodos de consulta que funcionan para todas las plataformas.
-Estos métodos de consulta toman una función _predicado_ que devuelve `verdadero` cuando un nodo en el árbol `DebugElement` coincide con los criterios de selección.
+Estos métodos de consulta toman una función _predicado_ que devuelve `verdadero` cuando un nodo
+en el árbol `DebugElement` coincide con los criterios de selección.
 
 Creas un _predicado_ con la ayuda de una clase `By` importada desde una
 librería para la plataforma de ejecución. Aquí está la importación `By` para la plataforma del navegador:
