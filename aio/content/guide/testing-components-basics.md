@@ -384,4 +384,3 @@ Cuando estás filtrando por un selector CSS y solo pruebas propiedades de un _el
 A menudo es mas facil y claro filtrar con un metodo estandar de `HTMLElement`
 como `querySelector()` o `querySelectorAll()`,
 como veras en el siguiente conjunto de pruebas.
-
