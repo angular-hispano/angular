@@ -16,10 +16,10 @@ Para aplicar la carga diferida en los módulos de angular usa `loadchildren` (en
 <code-example header="AppRoutingModule (extracto)">
 
 const routes: Routes = [
-  {
-    path: 'items',
-    loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
-  }
+{
+path: 'items',
+loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+}
 ];
 
 </code-example>
@@ -29,10 +29,10 @@ En el módulo de enrutamiento del módulo de carga diferida, agregue una ruta pa
 <code-example header="Módulo de enrutamiento para el módulo de carga diferida (extracto)">
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ItemsComponent
-  }
+{
+path: '',
+component: ItemsComponent
+}
 ];
 
 </code-example>
@@ -51,7 +51,7 @@ Hay dos pasos principales para configurar la carga diferida en el módulo de fun
 
 ### Configurar una aplicación
 
-Si no tienes una aplicación, puedes seguir los pasos que están abajo para crear una con el CLI. Si ya tienes una aplicación, ve a [Configurar las rutas](#config-routes). Ejecuta el siguiente comando en el cuál `customer-app` es el nombre de tu aplicación:
+Si no tienes una aplicación, puedes seguir los pasos que están abajo para crear una con el CLI. Si ya tienes una aplicación, ve a [Configurar las rutas](#config-routes). Ejecuta el siguiente comando en el cual `customer-app` es el nombre de tu aplicación:
 
 <code-example language="bash">
 ng new customer-app --routing
@@ -62,7 +62,7 @@ Entra a tu proyecto ejecutando el comando `cd customer-app`.
 
 <div class="alert is-helpful">
 
-La opcion `--routing` requiere Angular/CLI versión 8.1 o superior.
+La opción `--routing` requiere Angular/CLI versión 8.1 o superior.
 Ve [Mantenerse actualizado](guide/updating).
 
 </div
@@ -125,7 +125,7 @@ Ahora puedes ir a `localhost:4200` donde deberías ver “customer-app” y tres
   <img src="generated/images/guide/lazy-loading-ngmodules/three-buttons.png" width="300" alt="tres botones en el navegador">
 </div>
 
-Estos botones funcionan porque el CLI agregó automáticamente las rutas de los módulos de funionalidades en el array `routes` dentro del `app.module.ts`.
+Estos botones funcionan porque el CLI agregó automáticamente las rutas de los módulos de funcionalidades en el array `routes` dentro del `app.module.ts`.
 
 {@a config-routes}
 
@@ -147,7 +147,7 @@ Para continuar, echa un vistazo al archivo `customers.module.ts`. Si estás usan
 
 El archivo `customers.module.ts` importa los archivos `customers-routing.module.ts` y `customers.component.ts`. `CustomerRoutingModule` está listado en el array de `imports` en `@NgModule` dando acceso a `CustomersModule` a su propio módulo de enrutamiento. `CustomersComponent` está en el array de `declarations`, esto significa que `CustomersComponent` pertenece a `CustomersModule`.
 
-El archivo `app-routing.module.ts` importa el módulo de funciones, `customers.module.ts` usando importación dinámica.
+El archivo `app-routing.module.ts` importa el módulo de funciones, `customers.module.ts` usando importación dinámica de Javascript.
 
 El archivo específico de definición de ruta `customers-routing.module.ts` importa su propio componente de funcionalidades definido en el archivo `customers.component.ts`, junto con las otras declaraciones de importaciones de JavaScript. A continuación asigna la ruta vacía al `CustomerComponent`,
 
@@ -167,19 +167,19 @@ Ahora puedes revisar que un módulo está siendo cargado de manera diferida con 
   <img src="generated/images/guide/lazy-loading-ngmodules/network-tab.png" width="600" alt="diagrama de módulos con carga diferida ">
 </div>
 
-Haz click en el botón de de Orders o Customers. Si ves que aparece un _chunk_, todo está configurado de manera adecuada y el módulo de funciones está siendo cargado de manera diferida. Un _chunk_ debería aparecer para Orders y para Customers pero sólo aparecerá una vez para cada uno.
+Haz click en el botón de Orders o Customers. Si ves que aparece un _chunk_, todo está configurado de manera adecuada y el módulo de funciones está siendo cargado de manera diferida. Un _chunk_ debería aparecer para Orders y para Customers pero sólo aparecerá una vez para cada uno.
 
 <div class="lightbox">
   <img src="generated/images/guide/lazy-loading-ngmodules/chunk-arrow.png" width="600" alt="diagrama de carga diferida">
 </div>
 
-Para verlo de nuevo, o probar después de trabajar en el proyecto, limpia todo dando click en el circulo que tiene una línea atravesada situado en la parte superior izquierda en la pestaña de Red.
+Para verlo de nuevo, o probar después de trabajar en el proyecto, limpia todo dando click en el círculo que tiene una línea atravesada situado en la parte superior izquierda en la pestaña de Red.
 
 <div class="lightbox">
   <img src="generated/images/guide/lazy-loading-ngmodules/clear.gif" width="200" alt="lazy loaded modules diagram">
 </div>
 
-Después recarga con `Cmd+r` o `Ctrl+r`, dependiend el sistema operativo que estés utilizando.
+Después recarga con `Cmd+r` o `Ctrl+r`, dependiendo el sistema operativo que estés utilizando.
 
 ## `forRoot()` y `forChild()`
 
@@ -220,10 +220,10 @@ En el archivo `AppRoutingModule`, especifica tu estrategia de precarga en `forRo
 <code-example header="AppRoutingModule (extracto)">
 
 RouterModule.forRoot(
-  appRoutes,
-  {
-    preloadingStrategy: PreloadAllModules
-  }
+appRoutes,
+{
+preloadingStrategy: PreloadAllModules
+}
 )
 
 </code-example>
@@ -251,9 +251,9 @@ import { Resolve } from '@angular/router';
 ...
 
 export class CrisisDetailResolverService implements Resolve<> {
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<> {
-    // tu lógica aquí
-  }
+resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<> {
+// tu lógica aquí
+}
 }
 
 </code-example>
@@ -278,7 +278,6 @@ Agrega un objeto `resolver` a la configuración del `route` del componente.
 }
 </code-example>
 
-
 En el componente, usa un `Observable` para obtener datos desde el `ActivatedRoute`.
 
 <code-example header="Component (extracto)">
@@ -290,7 +289,7 @@ ngOnInit() {
 }
 </code-example>
 
-Para más información con un ejemplo práctico, ve el [tutorial de enrutamiento sobre prearga](guide/router-tutorial-toh#preloading-background-loading-of-feature-areas).
+Para más información con un ejemplo práctico, ve el [tutorial de enrutamiento sobre precarga](guide/router-tutorial-toh#preloading-background-loading-of-feature-areas).
 
 <hr>
 
