@@ -1,22 +1,22 @@
-# Dependency injection in Angular
+# Inyección de dependencias en Angular
 
-Dependency injection (DI), is an important application design pattern.
-Angular has its own DI framework, which is typically
-used in the design of Angular applications to increase their efficiency and modularity.
+La inyección de dependencias (ID), es un importante patrón de diseño de aplicaciones.
+Angular tiene su propio framework de ID, el cual es típicamente
+usado en el diseño de aplicaciones de Angular para incrementar su eficiencia y modularidad.
 
-Dependencies are services or objects that a class needs to perform its function.
-DI is a coding pattern in which a class asks for dependencies from external sources rather than creating them itself.
+Las dependencias son servicios u objetos que una clase necesita para llevar a cabo su función.
+ID es un patrón de código en el cual una clase pregunta por sus dependencias a fuentes externas en vez de crearlas ella misma.
 
-In Angular, the DI framework provides declared dependencies to a class when that class is instantiated. This guide explains how DI works in Angular, and how you use it to make your apps flexible, efficient, and robust, as well as testable and maintainable.
+En Angular, el framework de ID provee dependencias declaradas a una clase cuando la clase es instanciada. Esta guía explica como la ID trabaja en Angular, y como puedes usarla para hacer tus apps flexibles, eficientes, y robustas, así como testeables y mantenibles.
 
 <div class="alert is-helpful">
 
- You can run the <live-example></live-example> of the sample app that accompanies this guide.
+ Puedes correr el <live-example></live-example> del ejemplo que acompaña esta guía.
 
 </div>
 
-Start by reviewing this simplified version of the _heroes_ feature
-from the [The Tour of Heroes](tutorial/). This simple version doesn't use DI; we'll walk through converting it to do so.
+Empieza revisando esta versión simplificada de la funcionalidad de _héroes_
+de [El Tour de Héroes](tutorial/). Esta simple versión no hace uso de ID; Veremos como convertirla para que lo haga.
 
 <code-tabs>
   <code-pane header="src/app/heroes/heroes.component.ts" path="dependency-injection/src/app/heroes/heroes.component.1.ts" region="v1">
@@ -33,53 +33,53 @@ from the [The Tour of Heroes](tutorial/). This simple version doesn't use DI; we
 
 </code-tabs>
 
-`HeroesComponent` is the top-level heroes component.
-Its only purpose is to display `HeroListComponent`, which displays a list of hero names.
+`HeroesComponent` es el componente de héroes de nivel superior.
+Su único propósito en mostrar `HeroListComponent`, el cual muestra una lista de nombres de héroes.
 
-This version of the `HeroListComponent` gets heroes from the `HEROES` array, an in-memory collection
-defined in a separate `mock-heroes` file.
+Esta versión de `HeroListComponent` obtiene los héroes de la lista `HEROES`, una colección en memoria
+definida en un archivo `mock-heroes` separado.
 
 <code-example header="src/app/heroes/hero-list.component.ts (class)" path="dependency-injection/src/app/heroes/hero-list.component.1.ts" region="class">
 </code-example>
 
-This approach works for prototyping, but is not robust or maintainable.
-As soon as you try to test this component or get heroes from a remote server,
-you have to change the implementation of `HeroesListComponent` and
-replace every use of the `HEROES` mock data.
+Este enfoque funciona para prototipado, pero no es robusto ni mantenible.
+Tan pronto como intentes probar este componente u obtener los héroes de un servidor remoto,
+debes cambiar la implementación de `HeroesListComponent` y
+cada uso de los datos simulados de `HEROES`.
 
 
-## Create and register an injectable service
+## Crear y registrar un servicio inyectable
 
-The DI framework lets you supply data to a component from an injectable _service_ class, defined in its own file. To demonstrate, we'll create an injectable service class that provides a list of heroes, and register that class as a provider of that service.
+El framework de ID te permite proveer datos a un componente desde una clase de _servicio_ inyectable, definida en su propio archivo. Para demostrarlo, vamos a crear una clase de servicio inyectable que provee una lista de heroes, y registrarla como un proveedor del servicio. 
 
 <div class="alert is-helpful">
 
-Having multiple classes in the same file can be confusing. We generally recommend that you define components and services in separate files.
+Tener múltiples clases en el mismo archivo puede ser confuso. Generalmente recomendamos que definas componentes y servicios en archivos separados.
 
-If you do combine a component and service in the same file,
-it is important to define the service first, and then the component. If you define the component before the service, you get a run-time null reference error.
+Si vas a definir un componente y un servicio en el mismo archivo,
+es importante definir el servicio primero, y luego el componente. Si defines el componente antes que el servicio, vas a obtener un error de referencia nula (null reference) en tiempo de ejecución.
 
-It is possible to define the component first with the help of the `forwardRef()` method as explained in this [blog post](http://blog.thoughtram.io/angular/2015/09/03/forward-references-in-angular-2.html).
+Es posible definir el componente primero con la ayuda del método `forwardRef()` como hemos explicado en este [blog post](http://blog.thoughtram.io/angular/2015/09/03/forward-references-in-angular-2.html).
 
-You can also use forward references to break circular dependencies.
-See an example in the [DI Cookbook](guide/dependency-injection-in-action#forwardref).
+También puedes usar reenvío de referencias para romper dependencias circulares.
+Mira un ejemplo en la [guía de ID](guide/dependency-injection-in-action#forwardref).
 
 </div>
 
-### Create an injectable service class
+### Crear una clase de servicio inyectable
 
-The [Angular CLI](cli) can generate a new `HeroService` class in the `src/app/heroes` folder with this command.
+El [CLI de Angular](cli) puede generar una nueva clase `HeroService` en la carpeta `src/app/heroes` con este comando.
 
 <code-example language="sh" class="code-shell">
 ng generate service heroes/hero
 </code-example>
 
-The command creates the following `HeroService` skeleton.
+El comando crea la siguiente estructura de `HeroService`.
 
 <code-example path="dependency-injection/src/app/heroes/hero.service.0.ts" header="src/app/heroes/hero.service.ts (CLI-generated)">
 </code-example>
 
-The `@Injectable()` is an essential ingredient in every Angular service definition. The rest of the class has been written to expose a `getHeroes` method that returns the same mock data as before. (A real app would probably get its data asynchronously from a remote server, but we'll ignore that to focus on the mechanics of injecting the service.)
+`@Injectable()` es un ingrediente esencial en la definición de cada servicio en Angular. El resto de la clase ha sido escrito para exponer el método `getHeroes` que retorna los mismos datos de prueba anteriores. (Una aplicación real probablemente podría obtener estos datos asíncronamente desde un servidor remoto, pero ignoraremos eso para enfocarnos en la mecánica de inyectar el servicio.)
 
 <code-example path="dependency-injection/src/app/heroes/hero.service.3.ts" header="src/app/heroes/hero.service.ts">
 </code-example>
@@ -88,71 +88,71 @@ The `@Injectable()` is an essential ingredient in every Angular service definiti
 {@a injector-config}
 {@a bootstrap}
 
-### Configure an injector with a service provider
+### Configurar un inyector con un proveedor de servicio
 
-The class we have created provides a service. The `@Injectable()` decorator marks it as a service
-that can be injected, but Angular can't actually inject it anywhere until you configure
-an Angular [dependency injector](guide/glossary#injector) with a [provider](guide/glossary#provider) of that service.
+La clase que hemos creado provee un servicio. El decorador `@Injectable()` lo marca como un servicio
+que puede ser inyectado, pero de hecho, Angular no puede inyectar este hasta que configures
+un [inyector de dependencias](guide/glossary#injector) de Angular con un [proveedor](guide/glossary#provider) del servicio.
 
-The injector is responsible for creating service instances and injecting them into classes like `HeroListComponent`.
-You rarely create an Angular injector yourself. Angular creates injectors for you as it executes the app, starting with the _root injector_ that it creates during the [bootstrap process](guide/bootstrapping).
+El inyector es el responsable de crear las instancias de los servicios e inyectarlos en las clases como `HeroListComponent`.
+Raramente vas a crear un inyector de Angular tú mismo. Angular crea inyectores para ti a medida que ejecuta la aplicación, empezando por el _inyector raíz_ que es creado durante el [proceso de carga](guide/bootstrapping).
 
-A provider tells an injector _how to create the service_.
-You must configure an injector with a provider before that injector can create a service (or provide any other kind of dependency).
+Un proveedor le dice a un inyector _como crear el servicio_.
+Debes configurar un inyector con un proveedor antes que el inyector pueda crear un servicio (o proveer cualquier tipo de dependencia).
 
-A provider can be the service class itself, so that the injector can use `new` to create an instance.
-You might also define more than one class to provide the same service in different ways,
-and configure different injectors with different providers.
+Un proveedor puede ser la misma clase de servicio, de modo que el inyector puede usar `new` para crear una instancia.
+También puedes definir más de una clase que provee el mismo servicio de diferentes maneras,
+y configurar diferentes inyectores con diferentes proveedores.
 
 <div class="alert is-helpful">
 
-Injectors are inherited, which means that if a given injector can't resolve a dependency,
-it asks the parent injector to resolve it.
-A component can get services from its own injector,
-from the injectors of its component ancestors,
-from the injector of its parent NgModule, or from the `root` injector.
+Los inyectores se heredan, lo que significa que si un determinado inyector no puede resolver una dependencia,
+este pregunta al inyector padre para que la resuelva.
+Un componente puede obtener servicios de su propio inyector,
+de los inyectores de sus componentes padres,
+del inyector de su NgModule padre, o del inyector `raíz`.
 
-* Learn more about the [different kinds of providers](guide/dependency-injection-providers).
+* Obtén más información de los [diferentes tipos de proveedores](guide/dependency-injection-providers).
 
-* Learn more about how the [injector hierarchy](guide/hierarchical-dependency-injection) works.
+* Obtén más información de como la [jerarquía de inyectores](guide/hierarchical-dependency-injection) trabaja.
 
 </div>
 
-You can configure injectors with providers at different levels of your app, by setting a metadata value in one of three places:
+Puedes configurar inyectores con proveedores a diferentes niveles en tu aplicación, estableciendo un valor de metadatos en uno de tres lugares:
 
-* In the `@Injectable()` decorator for the service itself.
+* En el decorador `@Injectable()` para el servicio mismo.
 
-* In the `@NgModule()` decorator for an NgModule.
+* En el decorador `@NgModule()` para un NgModule.
 
-* In the `@Component()` decorator for a component.
+* En el decorador `@Component()` para un componente.
 
-The `@Injectable()` decorator has the `providedIn` metadata option, where you can specify the provider of the decorated service class with the `root` injector, or with the injector for a specific NgModule.
+El decorador `@Injectable()` tiene la opción del metadato `providedIn`, donde puedes especificar el proveedor de la clase de servicio decorada con el inyector `root`, o con el inyector para el NgModule especifico. 
 
-The `@NgModule()` and `@Component()` decorators have the `providers` metadata option, where you can configure providers for NgModule-level or component-level injectors.
+Los decoradores `@NgModule()` y `@Component()` tienen la opción del metadato `providers`, donde puedes configurar proveedores para los inyectores al nivel del NgModule o del componente.
 
 <div class="alert is-helpful">
 
-Components are directives, and the `providers` option is inherited from `@Directive()`. You can also configure providers for directives and pipes at the same level as the component.
+Los componentes son directivas, y la opción `providers` es heredada de `@Directive()`. También puedes configurar proveedores para directivas y pipes al mismo nivel que el componente.
 
-Learn more about [where to configure providers](guide/hierarchical-dependency-injection).
+Obtén más información sobre [donde configurar los proveedores](guide/hierarchical-dependency-injection).
 
 </div>
 
 {@a injector-config}
 {@a bootstrap}
 
-## Injecting services
+## Inyectando servicios
 
-In order for `HeroListComponent` to get heroes from `HeroService`, it needs to ask for `HeroService` to be injected, rather than creating its own `HeroService` instance with `new`.
+Para que `HeroListComponent` obtenga los héroes de `HeroService`, este necesita pedir que `HeroService` sea inyectado, en lugar de crear su propia instancia de `HeroService` con `new`.
 
-You can tell Angular to inject a dependency in a component's constructor by specifying a **constructor parameter with the dependency type**. Here's the `HeroListComponent` constructor, asking for the `HeroService` to be injected.
+Puedes decirle a Angular que inyecte una dependencia en el constructor de un componente especificando un **parámetro en el constructor con el tipo de dependencia**. Allí es donde el constructor de `HeroListComponent` pide que `HeroService` sea inyectado
 
 <code-example header="src/app/heroes/hero-list.component (constructor signature)" path="dependency-injection/src/app/heroes/hero-list.component.ts"
 region="ctor-signature">
 </code-example>
 
-Of course, `HeroListComponent` should do something with the injected `HeroService`.
-Here's the revised component, making use of the injected service, side-by-side with the previous version for comparison.
+Por supuesto, `HeroListComponent` debería hacer algo con el `HeroService` inyectado.
+Aquí está el componente revisado, haciendo uso del servicio inyectado, en paralelo con la versión previa para su comparación .
 
 <code-tabs>
   <code-pane header="hero-list.component (with DI)" path="dependency-injection/src/app/heroes/hero-list.component.2.ts">
@@ -162,56 +162,56 @@ Here's the revised component, making use of the injected service, side-by-side w
   </code-pane>
 </code-tabs>
 
-`HeroService` must be provided in some parent injector. The code in `HeroListComponent` doesn't depend on where `HeroService` comes from.
-If you decided to provide `HeroService` in `AppModule`, `HeroListComponent` wouldn't change.
+`HeroService` debe proveerse en algún inyector padre. El código en `HeroListComponent` no depende de donde proviene `HeroService`.
+Si decidiste proveer `HeroService` en `AppModule`, `HeroListComponent` no cambiaría.
 
 {@a singleton-services}
 {@a component-child-injectors}
 
-### Injector hierarchy and service instances
+### Jerarquía de inyectores e instancias del servicio
 
-Services are singletons _within the scope of an injector_. That is, there is at most one instance of a service in a given injector.
+Los servicios son singletons _dentro del ámbito de un inyector_. Es decir, hay como máximo una instancia de un servicio en un inyector dado.
 
-There is only one root injector for an app. Providing `UserService` at the `root` or `AppModule` level means it is registered with the root injector. There is just one `UserService` instance in the entire app and every class that injects `UserService` gets this service instance _unless_ you configure another provider with a _child injector_.
+Solo hay un inyector raíz para una aplicación. Proporcionar `UserService` en el nivel `root` o `AppModule` significa que está registrado con el inyector raíz. Solo hay una instancia de `UserService` en toda la aplicación y cada clase que inyecta `UserService` obtiene la instancia del servicio _a menos que_  configures otro proveedor con un _inyector hijo_.
 
-Angular DI has a [hierarchical injection system](guide/hierarchical-dependency-injection), which means that nested injectors can create their own service instances.
-Angular regularly creates nested injectors. Whenever Angular creates a new instance of a component that has `providers` specified in `@Component()`, it also creates a new _child injector_ for that instance.
-Similarly, when a new NgModule is lazy-loaded at run time, Angular can create an injector for it with its own providers.
+Angular ID tiene un [sistema de inyección jerárquico](guide/hierarchical-dependency-injection), lo que significa que los inyectores anidados pueden crear sus propias instancias de servicio.
+Angular crea inyectores anidados regularmente. Siempre que Angular crea una nueva instancia de un componente que tiene `proveedores` especificados en `@Component()`, también crea un nuevo _inyector hijo_ para la instancia.
+Similarmente, cuando un nuevo NgModule se carga de forma diferida (lazy-loading) en tiempo de ejecución, Angular puede crear un inyector para el con sus propios proveedores.
 
-Child modules and component injectors are independent of each other, and create their own separate instances of the provided services. When Angular destroys an NgModule or component instance, it also destroys that injector and that injector's service instances.
+Los módulos hijos y los inyectores de los componentes son independientes entre sí, y crean sus propias instancias independientes de los servicios proporcionados. Cuando Angular destruye una instancia de un NgModule o de un componente, también destruye el inyector y las instancias de los servicios del inyector.
 
-Thanks to [injector inheritance](guide/hierarchical-dependency-injection),
-you can still inject application-wide services into these components.
-A component's injector is a child of its parent component's injector, and inherits from all ancestor injectors all the way back to the application's _root_ injector. Angular can inject a service provided by any injector in that lineage.
+Gracias a la [herencia del inyector](guide/hierarchical-dependency-injection),
+aún puedes inyectar servicios para toda la aplicación en esos componentes.
+El inyector de un componente es hijo del inyector de sus componentes padre, y hereda de todos los inyectores padres hasta el inyector _raíz_ de la aplicación. Angular puede inyectar un servicio proporcionado por cualquier inyector de ese linaje.
 
-For example, Angular can inject `HeroListComponent` with both the `HeroService` provided in `HeroComponent` and the `UserService` provided in `AppModule`.
+Por ejemplo, Angular puede inyectar `HeroListComponent` tanto con `HeroService` proporcionado en `HeroComponent`, como `UserService` proporcionado en `AppModule`.
 
 {@a testing-the-component}
 
-## Testing components with dependencies
+## Probando componentes con dependencias
 
-Designing a class with dependency injection makes the class easier to test.
-Listing dependencies as constructor parameters may be all you need to test application parts effectively.
+Diseñar una clase con inyección de dependencias hace que la clase sea más fácil de probar.
+Listar dependencias como parámetros del constructor puede ser todo lo que necesites para probar partes de la aplicación de manera efectiva.
 
-For example, you can create a new `HeroListComponent` with a mock service that you can manipulate
-under test.
+Por ejemplo, puedes crear un nuevo `HeroListComponent` con un servicio simulado que puedas manipular
+en pruebas.
 
 <code-example path="dependency-injection/src/app/test.component.ts" region="spec" header="src/app/test.component.ts"></code-example>
 
 <div class="alert is-helpful">
 
-Learn more in the [Testing](guide/testing) guide.
+Obtén más información en la guía de [Testing](guide/testing).
 
 </div>
 
 {@a service-needs-service}
 
-## Services that need other services
+## Servicios que necesitan otros servicios
 
-Services can have their own dependencies. `HeroService` is very simple and doesn't have any dependencies of its own. Suppose, however, that you want it to report its activities through a logging service. You can apply the same *constructor injection* pattern,
-adding a constructor that takes a `Logger` parameter.
+Los servicios pueden tener sus propias dependencias. `HeroService` es muy simple y no tiene dependencias propias. Supón, sin embargo, que quieres registrar sus actividades a través de un servicio de logging. Puedes aplicar el mismo patrón *inyección de constructor*,
+adicionando un constructor que tome un parámetro `Logger`.
 
-Here is the revised `HeroService` that injects `Logger`, side by side with the previous service for comparison.
+Este es el `HeroService` revisado que inyecta `Logger`, paralelo con la versión previa para su comparación.
 
 <code-tabs>
 
@@ -227,20 +227,20 @@ Here is the revised `HeroService` that injects `Logger`, side by side with the p
 
 </code-tabs>
 
-The constructor asks for an injected instance of `Logger` and stores it in a private field called `logger`. The `getHeroes()` method logs a message when asked to fetch heroes.
+El constructor pide una instancia inyectada de `Logger` y lo almacena en un campo privado llamado `logger`. El método `getHeroes()` registra un mensaje cuando es llamado para proveer los héroes.
 
-Notice that the `Logger` service also has the `@Injectable()` decorator, even though it might not need its own dependencies. In fact, the `@Injectable()` decorator is **required for all services**.
+Observa que el servicio `Logger` también tiene el decorador `@Injectable()`, aunque puede que no necesite sus propias dependencias. De hecho, el decorador `@Injectable()` es **requerido para todos los servicios**.
 
-When Angular creates a class whose constructor has parameters, it looks for type and injection metadata about those parameters so that it can inject the correct service.
-If Angular can't find that parameter information, it throws an error.
-Angular can only find the parameter information _if the class has a decorator of some kind_.
-The `@Injectable()` decorator is the standard decorator for service classes.
+Cuando Angular crea una clase donde su constructor tiene parámetros, busca el tipo y los metadatos de inyección de esos parámetros para poder inyectar el servicio correcto.
+Si Angular no puede encontrar la información para el parámetro, lanza un error.
+Angular solo puede buscar la información del parámetro _si la clase tiene un decorador de algún tipo_.
+El decorador `@Injectable()` es el decorador estándar para las clases de servicio. 
 
 <div class="alert is-helpful">
 
- The decorator requirement is imposed by TypeScript. TypeScript normally discards parameter type information when it [transpiles](guide/glossary#transpile) the code to JavaScript. TypeScript preserves this information if the class has a decorator and the `emitDecoratorMetadata` compiler option is set `true` in TypeScript's `tsconfig.json` configuration file. The CLI configures `tsconfig.json` with `emitDecoratorMetadata: true`.
+ El requerimiento del decorador es impuesto por TypeScript. TypeScript normalmente descarta la información del tipo del parámetro cuando [transpila](guide/glossary#transpile) el código a JavaScript. TypeScript mantiene esta información si la clase tiene un decorador y la opción `emitDecoratorMetadata` del compilador se establece en `true` en el archivo de configuración `tsconfig.json` de TypeScript. El CLI configura `tsconfig.json` con `emitDecoratorMetadata: true`.
 
- This means you're responsible for putting `@Injectable()` on your service classes.
+ Esto significa que eres el responsable de poner `@Injectable()` en tus clases de servicio. 
 
 </div>
 
@@ -248,69 +248,69 @@ The `@Injectable()` decorator is the standard decorator for service classes.
 
 {@a injection-token}
 
-### Dependency injection tokens
+### Tokens en inyección de dependencias
 
-When you configure an injector with a provider, you associate that provider with a [DI token](guide/glossary#di-token).
-The injector maintains an internal *token-provider* map that it references when
-asked for a dependency. The token is the key to the map.
+Cuando configuras un inyector con un proveedor, asocias el proveedor con un [token ID](guide/glossary#di-token).
+El inyector mantiene un map interno *proveedor-token* al que referencia cuando
+pide una dependencia. El token es la llave del map.
 
-In simple examples, the dependency value is an *instance*, and
-the class *type* serves as its own lookup key.
-Here you get a `HeroService` directly from the injector by supplying the `HeroService` type as the token:
+De manera simple, el valor de la dependencia es una *instancia*, y
+el *tipo* de la clase sirve como su propia llave de búsqueda.
+Aquí obtienes un `HeroService` directamente del inyector proporcionando el tipo de `HeroService` como token:
 
 <code-example path="dependency-injection/src/app/injector.component.ts" region="get-hero-service" header="src/app/injector.component.ts"></code-example>
 
-The behavior is similar when you write a constructor that requires an injected class-based dependency.
-When you define a constructor parameter with the `HeroService` class type,
-Angular knows to inject the service associated with that `HeroService` class token:
+El comportamiento es similar cuando escribes un constructor que necesita una dependencia basada en una clase inyectada.
+Cuando defines un parámetro del constructor con la clase tipo `HeroService`,
+Angular sabe inyectar el servicio asociado con el token de la clase `HeroService`:
 
 <code-example path="dependency-injection/src/app/heroes/hero-list.component.ts" region="ctor-signature" header="src/app/heroes/hero-list.component.ts">
 </code-example>
 
-Many dependency values are provided by classes, but not all. The expanded *provide* object lets you associate different kinds of providers with a DI token.
+Muchos valores de dependencias son proporcionados por clases, pero no todos. El objeto *provide* expandido te permite asociar diferentes tipos de proveedores con tokens DI.
 
-* Learn more about [different kinds of providers](guide/dependency-injection-providers).
+* Obtén más información acerca de los [diferentes tipos de proveedores](guide/dependency-injection-providers).
 
 {@a optional}
 
-### Optional dependencies
+### Dependencias opcionales
 
-`HeroService` *requires* a logger, but what if it could get by without
-one?
+`HeroService` *requiere* un logger, pero ¿y si pudiera funcionar sin
+uno?
 
-When a component or service declares a dependency, the class constructor takes that dependency as a parameter.
-You can tell Angular that the dependency is optional by annotating the
-constructor parameter with `@Optional()`.
+Cuando un componente o servicio declara una dependencia, el constructor de la clase toma la dependencia como paramero.
+Puedes decirle a Angular que la dependencia es opcional anotando el
+parámetro del constructor con `@Optional()`.
 
 <code-example path="dependency-injection/src/app/providers.component.ts" region="import-optional">
 </code-example>
 
 <code-example path="dependency-injection/src/app/providers.component.ts" region="provider-10-ctor"></code-example>
 
-When using `@Optional()`, your code must be prepared for a null value. If you
-don't register a logger provider anywhere, the injector sets the
-value of `logger` to null.
+Cuando usas `@Optional()`, tu código debe estar preparado para un valor null. Si no
+registras un proveedor de logger en ningún lugar, el inyector establece el 
+valor de `logger` en null.
 
 <div class="alert is-helpful">
 
-`@Inject()` and `@Optional()` are _parameter decorators_. They alter the way the DI framework provides a dependency, by annotating the dependency parameter on the constructor of the class that requires the dependency.
+`@Inject()` y `@Optional()` son _decoradores de parametros_. Estos alteran la manera en que el framework de ID proporciona una dependencia, al anotar el parámetro de dependencia en el constructor de la clase que requiere la dependencia.
 
-Learn more about parameter decorators in [Hierarchical Dependency Injectors](guide/hierarchical-dependency-injection).
+Obtén más información acerca de los decoradores de parámetros en [Jerarquía de inyectores de dependencias](guide/hierarchical-dependency-injection).
 
 </div>
 
-## Summary
+## Resumen
 
-You learned the basics of Angular dependency injection in this page.
-You can register various kinds of providers,
-and you know how to ask for an injected object (such as a service) by
-adding a parameter to a constructor.
+En esta página has aprendido las bases de inyección de dependencias en Angular.
+Puedes registrar varios tipos de proveedores, 
+y sabes cómo pedir un objeto inyectado (como un servicio) 
+agregando un parámetro al constructor
 
-Dive deeper into the capabilities and advanced feature of the Angular DI system in the following pages:
+Profundiza en las capacidades y funcionalidades avanzadas del sistema de DI de Angular en las siguientes páginas:
 
-* Learn more about nested injectors in
-[Hierarchical Dependency Injection](guide/hierarchical-dependency-injection).
+* Obtén más información acerca de inyectores anidados en
+[Jerarquía de inyección de dependencias](guide/hierarchical-dependency-injection).
 
-* Learn more about [DI tokens and providers](guide/dependency-injection-providers).
+* Obtén más información acerca de [ID tokens y proveedores](guide/dependency-injection-providers).
 
-* [Dependency Injection in Action](guide/dependency-injection-in-action) is a cookbook for some of the interesting things you can do with DI.
+* [Inyección de dependencias en acción](guide/dependency-injection-in-action) es una guía de algunas de las cosas más interesantes que puedes hacer con ID.
