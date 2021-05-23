@@ -1,6 +1,6 @@
 # Recopilación y visualización de análisis de uso
 
-Los usuarios pueden optar por compartir sus datos de uso del Angular CLI con [Google Analytics](https://support.google.com/analytics/answer/1008015?hl=en), usando el [comando del CLI `ng analytics`](analytics).
+Los usuarios pueden optar por compartir sus datos de uso del Angular CLI con [Google Analytics](https://support.google.com/analytics/answer/1008015?hl=es), usando el [comando del CLI `ng analytics`](analytics).
 Los datos también son compartidos con el equipo de Angular, y son usados para mejorar el CLI.
 
 La recopilación de los datos analíticos del CLI están deshabilitados por defecto, y deben ser habilitados al nivel del proyecto por usuarios individuales. Estos no pueden ser habilitados a nivel de proyecto por todos los usuarios.
@@ -11,7 +11,7 @@ Esta opción de configuración es independiente y adicional a otros análisis de
 
 ## Habilitar el acceso a los datos de uso del CLI
 
-Para configurar el acceso a los datos de uso del CLI de tus usuarios, usa el comando `ng config`  para añadir una llave al archivo de configuración global [`angular.json` workspace configuration file](guide/workspace-config).
+Para configurar el acceso a los datos de uso del CLI de tus usuarios, usa el comando `ng config`  para añadir una llave al archivo de configuración global [`angular.json` espacio de trabajo](guide/workspace-config).
 La llave se encuentra debajo de `cli.analyticsSharing` en el nivel superior del archivo, fuera de la sección `projects`.
 El valor de la llave es el tracking ID de tu organización, asignada por Google Analytics
 Este ID es una cadena parecida a `UA-123456-12`.
