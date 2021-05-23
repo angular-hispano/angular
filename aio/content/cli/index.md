@@ -57,7 +57,7 @@ Se crea un único archivo de configuración de área de trabajo, `angular.json`,
 El comando [ng config](cli/config) te permite establecer y recuperar valores de configuración desde la línea de comandos, o puedes editar directamente el archivo `angular.json`. Tenga en cuenta que los nombres opcionales en el archivo de configuración debe usar [camelCase](guide/glossary#case-types), mientras que los nombres opcionales que se suministra a los comandos pueden ser tanto camelCase o dash-case.
 
 - Para más información [configuración de área de trabajo](guide/workspace-config).
-- Vea el [schema completo](https://github.com/angular/angular-cli/wiki/angular-workspace) para `angular.json`.
+- Vea el [schema completo](https://github.com/angular/angular-cli/blob/master/packages/schematics/angular/workspace/schema.json) para `angular.json`.
 
 ## La sintaxis del lenguaje de comando del CLI
 
@@ -90,4 +90,4 @@ Las opciones que especifican archivos pueden ser dadas por rutas absolutas, o ru
 
 ### Esquemas
 
-Los comandos [ng generate](cli/generate) y [ng add](cli/add) toman como argumento el artefacto o la librería para ser generado o agregado al proyecto actual. Además de las opciones generales, cada artefacto o librería define sus propias opciones en un _esquema_. Las opciones de esquema se proporcionan al comando en el mismo formato que las opciones de comando inmediatas.
+Los comandos [ng generate](cli/generate) y [ng add](cli/add) toman como argumento el artefacto o la librería para ser generado o agregado al proyecto actual. Además de las opciones generales, cada artefacto o librería define sus propias opciones en un *esquema*. Las opciones de esquema se proporcionan al comando en el mismo formato que las opciones de comando inmediatas.
