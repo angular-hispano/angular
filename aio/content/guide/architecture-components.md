@@ -12,7 +12,7 @@ La clase interactúa con la vista a través de una API de propiedades y métodos
 
 Por ejemplo, `HeroListComponent` tiene una propiedad `heroes` que contiene un array de héroes.
 Tu método `selectHero()` establece una propiedad `selectedHero` cuando el usuario hace clic para elegir un héroe de esa lista.
-El componente adquiere los héroes desde un servicio, que es una [propiedad de parámetro](http://www.typescriptlang.org/docs/handbook/classes.html#parameter-properties) de TypeScript en el constructor.
+El componente adquiere los héroes desde un servicio, que es una [propiedad de parámetro](https://www.typescriptlang.org/docs/handbook/2/classes.html#parameter-properties) de TypeScript en el constructor.
 El servicio es proporcionado al componente a través del sistema de inyección de dependencias.
 
 <code-example path="architecture/src/app/hero-list.component.ts" header="src/app/hero-list.component.ts (class)" region="class"></code-example>
