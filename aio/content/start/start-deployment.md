@@ -59,7 +59,7 @@ Los archivos en la carpeta `dist/my-project-name` son estáticos, Esto quiere de
 
 Una de las formas más sencillas de hacer que su sitio esté activo es alojarlo con Firebase.
 
-1. Registra una cuenta firebase en [Firebase](https://firebase.google.com/ "sitio web Firebase").
+1. Registra una cuenta Firebase en [Firebase](https://firebase.google.com/ "sitio web Firebase").
 1. Crea un nuevo proyecto, proporcionando el nombre que quieras.
 1. Agrega los esquemas `@angular/fire` que manejarán tu despliegue usando `ng add @angular/fire`.
 1. Conecta tu CLI a tu cuenta Firebase e inicializa la conexión de tu proyecto usando `firebase login` y `firebase init`.
@@ -68,7 +68,7 @@ Una de las formas más sencillas de hacer que su sitio esté activo es alojarlo 
     - Selecciona el proyecto que previamente creaste en Firebase.
     - Selecciona `dist/my-project-name` como directorio público.
 1. Despliega tu aplicación con `ng deploy`.
-1. Una vez desplegado, visita https://your-firebase-project-name.firebaseapp.com para verlo activo!
+1. Una vez desplegado, visita https://your-firebase-project-name.web.app para verlo activo!
 
 ### Alojando una aplicación angular en otro lado
 
