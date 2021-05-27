@@ -137,3 +137,91 @@ Ver el ejemplo en [Crear objetivo](#build-target) a continuación.
       }
 
 </code-example>
+
+* La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. 
+Ver [build target](#build-target) a continuación para más información.
+
+* La sección `architect/serve` anula los valores por defecto de creacion y suministra los valores por defecto servidos( <--PREGUNTAR A NICO) por el comando `ng serve`. Además de las opciones disponibles por el comando `ng build`, Esta agrega opciones relacionadas con el servicio de la aplicación.
+
+* La sección `architect/e2e` anula las opciones por defecto de creación para la crear aplicaciones de pruebas end-to-end usando el comando `ng e2e`.
+
+* La sección `architect/test` anula las opciones por defecto de creacion para crear pruebas y adicional suministrar los valores por defecto para la ejecucion de pruebas para el comando `ng test`.
+
+* La sección `architect/lint` configura los valores por defecto para las opciones del comando `ng lint`, que realiza analisis de codigo sobre los archivos fuentes del proyecto. La herramienta LINTING por defecto para Angular es [TSLint](https://palantir.github.io/tslint/).
+
+* La sección `architect/extract-i18n` configura los valores por defecto para las opciones de la herramienta `ng-xi18n` usada por el comando `ng xi18n`, la cual extrae  cadenas de texto marcadas como mensaje desde el codigo fuente y las salidas de archivos de traducción.
+
+* La sección `architect/server` configura los valores por defecto para la creacion de una aplicación universal con server-side rendenring, usando el comando `ng run <project>:server`.
+
+* La sección `architect/app-shell` configura los valores por defecto para la creacion de una aplicación carcaza para una aplicación web progresiva (PWA), usando el comando `ng run <project>:app-shell`.
+
+En general, las opciones para las cuales puedes configurar valores por defecto corresponden a las opciones de comandos listados en la [pagina de referencia del CLI](cli) para cada comando.
+Observe que todas las opciones en el archivo de configuración debe usar [camelCase](guide/glossary#case-conventions), en vez de dash-case.
+
+{@a build-target}
+
+## Crear destino
+
+La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. Este tiene las siguientes propiedades de nivel superior.
+
+| PROPIEDAD | DESCRIPCIÓN |
+| :-------------- | :---------------------------- |
+| `builder`       | El paquete npm en la herramienta de creación se uso para crear este destino, el constructor por defecto para una aplicación (`ng build myApp`) es `@angular-devkit/build-angular:browser`, que usa el paquete empaquetador[webpack](https://webpack.js.org/). Observe que un constructor diferente es usado para construir una libreria (`ng build myLib`). |
+| `options`       |Esta sección contiene las opciones por defecto para crear destino, usadas cuando una configuración alternativa no nombrada es especificada. Ver [Crear destinos por defecto](#default-build-targets) a continuación. |
+| `configurations`| Esta seccion define y nombra configuraciones alternativas para diferentes destinos deseados. Este contiene una seccion para cada configuracion nombrada, que establece las opciones por defecto para los ambientes planeados. Ver [configuraciones de creación alternas](#build-configs) a continuación.|(PREGUNTAR A NICO)
+
+
+{@a build-configs}
+
+### Configuraciones de creación alternas
+
+Por defecto, una configuracion de `production` es definida, y el comando `ng build` tiene la opción `--prod` que crea usando esta configuracion. La configuracion de `production` establece valor por defecto que optimizan la aplicación de varias formas, como empaquetar archivos, minimizando el exceso de espacios en blanco, removiendo comentarios y codigo muerto, y reescribiendo codigo para usar nombres breves y cripticos ("minificación").
+
+Puedes definir y nombrar configuraciones alternas adicionales (como `stage`, por ejemplo) apropiandas para tu proceso de desarrollo. algunos ejemplo de diferentes configuraciones de creacion son `stable`, `archive` y `next` usados por el mismo AIO, y las configuraciones locales especificas individuales requeridas para la creacion de versiones localizadas de una aplicación. Para más detalles, ver [Internacionalizacion (i18n)](guide/i18n#merge-aot).
+
+Puedes seleccionar una configuración alterna pasando el nombre en la linea de comandos con la bandera `--configuration`
+
+Puedes ademas pasar más que un nombre de configuración como una lista separada por comas. Por ejemplo, para aplicar las configuraciones creadas de `stage` y `fr`, use el comando `ng build --configuration stage,fr`. En este caso, el comando analiza las configuraciones nombradas de izquierda a derecha. Si multiples configuraciones cambian la misma configuracion, el ultimo valor establecido es el valor final.
+
+Si la bandera `--prod` es usada en la linea de comandos, esta sé aplica primero, y estas configuraciones puedes ser anuladas por cualquier configuración especificada por medio de la bandera `--configuration`.
+
+{@a build-props}
+
+### Opciones adicionales de creacion y prueba
+
+Las opciones configurables por defecto o un destino de creacion generalmente corresponden a las opciones disponibles para los comandos [`ng build`](cli/build), [`ng serve`](cli/serve), y [`ng test`](cli/test). Para mas detalles de aquellas opciones y sus posibles valores, ver el [Referencia del CLI](cli). 
+
+Algunas opciones adicionales puedes solo ser establecidas a traves de el archivo de configuracion, o ya sea directamente editando o con el comando [`ng config`](cli/config).
+
+| PROPIEDADES OPCIONALES | DESCRIPCIÓN |
+| :------------------------- | :---------------------------- |
+| `assets`                   | Un objeto contiene rutas a activos estaticos para agregar el contexto global del proyecto. Las rutas por defecto apuntan a el archivo icono del proyecto y su carpeta `assets`. Ver mas en [Configuración de activos](#asset-config) a continuación |
+| `styles`                   | Un array de archivos de estilo para agregar al contexto global del proyecto. El CLI de Angular soporta importaciones de CSS y todos los principales pre-pocesadores de CSS: [sass/scss](http://sass-lang.com/), [less](http://lesscss.org/), y [stylus](http://stylus-lang.com/). Ver mas en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `stylePreprocessorOptions` | Un objeto contiene pares de opciones y valores para pasar a los pre-procesadores de estilo. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación.|
+| `scripts`                  | Un objeto que contiene archivos de script JavaScript para agregar a el contexto global del proyecto. Los scripts son cargados exactamente como si los hubieras agregado en una etiqueta `<script>` dentro de `index.html`. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación.|
+| `budgets`                  | Tipo de tamaño presupuestado por defecto y umbrales para toda tu aplicación o partes de esta. Puedes configurar el constructor para notificar una advertencia o un error cuando la salida alcance o exceda un umbrar de tamaño. Ver [configurar tamaño presupuestado](guide/build#configure-size-budgets).(No disponible en la sección de `test`) | 
+| `fileReplacements`         | Un objeto que contiene archivos y sus reemplazos en tiempo de copilación. Ver más en [Configurar reemplazos de archivos especificos de destino](guide/build#configure-target-specific-file-replacements).| 
+
+{@a complex-config}
+
+## Valores complejos de configuración
+
+Las opciones `assets`, `styles`, y `scripts` pueden tener o un valor de cadena de ruta simple, o valores de objeto con campos especificos.
+Las opciones `sourceMap` y `optimization` pueden ser establecidas con un valor Booleano simple con un comando bandera, pero puede ademas ser dado un valor complejo usando el archivo de configuración.
+Las siguientes secciones proveen mas detalles de como estos valores complejos son usados en cada caso .
+
+{@a asset-config}
+
+### Configuración de activos
+
+Cada destino de configuración `build` puede incluir un array `assets` que lista archivos o carpetas que quieras copiar como es cuando construyes tu proyecto.
+Por defecto, la carpeta `src/assets/` y `src/favicon.ico` son copiadas.
+
+<code-example language="json">
+
+"assets": [
+  "src/assets",
+  "src/favicon.ico"
+]
+
+</code-example>
