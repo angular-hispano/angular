@@ -63,7 +63,7 @@ Las siguientes propiedades de configuración superiores están disponibles para 
 
 </code-example>
 
-| PROPIEDADES | DESCRIPCIONES |
+| PROPIEDAD | DESCRIPCIONES |
 | :-------------- | :---------------------------- |
 | `root`          | La carpeta raíz para los archivos del proyecto, relativa a la carpeta del espacio de trabajo. Vacía para la aplicación inicial, que reside en la parte superior del espacio de trabajo. |
 | `sourceRoot`    | La carpeta raíz de los archivos fuente del proyecto |
@@ -139,7 +139,7 @@ Ver el ejemplo en [Crear objetivo](#build-target) a continuación.
 </code-example>
 
 * La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. 
-Ver [build target](#build-target) a continuación para más información.
+Ver [crear destino](#build-target) a continuación para más información.
 
 * La sección `architect/serve` anula los valores por defecto de creacion y suministra los valores por defecto servidos( <--PREGUNTAR A NICO) por el comando `ng serve`. Además de las opciones disponibles por el comando `ng build`, Esta agrega opciones relacionadas con el servicio de la aplicación.
 
@@ -179,7 +179,7 @@ Por defecto, una configuracion de `production` es definida, y el comando `ng bui
 
 Puedes definir y nombrar configuraciones alternas adicionales (como `stage`, por ejemplo) apropiandas para tu proceso de desarrollo. algunos ejemplo de diferentes configuraciones de creacion son `stable`, `archive` y `next` usados por el mismo AIO, y las configuraciones locales especificas individuales requeridas para la creacion de versiones localizadas de una aplicación. Para más detalles, ver [Internacionalizacion (i18n)](guide/i18n#merge-aot).
 
-Puedes seleccionar una configuración alterna pasando el nombre en la linea de comandos con la bandera `--configuration`
+Puedes seleccionar una configuración alterna pasando el nombre en la linea de comandos con la bandera `--configuration`.
 
 Puedes ademas pasar más que un nombre de configuración como una lista separada por comas. Por ejemplo, para aplicar las configuraciones creadas de `stage` y `fr`, use el comando `ng build --configuration stage,fr`. En este caso, el comando analiza las configuraciones nombradas de izquierda a derecha. Si multiples configuraciones cambian la misma configuracion, el ultimo valor establecido es el valor final.
 
@@ -208,7 +208,7 @@ Algunas opciones adicionales puedes solo ser establecidas a traves de el archivo
 
 Las opciones `assets`, `styles`, y `scripts` pueden tener o un valor de cadena de ruta simple, o valores de objeto con campos especificos.
 Las opciones `sourceMap` y `optimization` pueden ser establecidas con un valor Booleano simple con un comando bandera, pero puede ademas ser dado un valor complejo usando el archivo de configuración.
-Las siguientes secciones proveen mas detalles de como estos valores complejos son usados en cada caso .
+Las siguientes secciones proveen mas detalles de como estos valores complejos son usados en cada caso.
 
 {@a asset-config}
 
@@ -225,3 +225,151 @@ Por defecto, la carpeta `src/assets/` y `src/favicon.ico` son copiadas.
 ]
 
 </code-example>
+
+Para excluir un activo, puedes removerlo de la configuración de activos.
+
+Puedes configurar más los activos para ser copiados especificando los activos como objetos, en vez de simples rutas relativas a la raiz del espacio de trabajo.
+Un activo puede tener los siguientes campos. 
+
+* `glob`:  Un [node-glob](https://github.com/isaacs/node-glob/blob/master/README.md) usa `input` como directorio base.
+* `input`: Una ruta relativa a la raiz del espacio de trabajo.
+* `output`: Una ruta relativa a `outDir` (el valor por defecto es `dist/`*project-name*). Debido a las implicaciones de seguridad, el CLI nunca escribe archivos fuera de la ruta de salida del proyecto.
+* `ignore`: Una lista de globs a excluir.s
+
+Por ejemplo, Las rutas por defecto de activos pueden ser representadas en más detalle usando los siguientes objetos.
+
+<code-example language="json">
+
+"assets": [
+  { "glob": "**/*", "input": "src/assets/", "output": "/assets/" },
+  { "glob": "favicon.ico", "input": "src/", "output": "/" }
+]
+
+</code-example>
+
+Puedes usar esta configuración extendida para copiar activos desde afuera de tu proyecto.
+Por ejemplo, las siguientes copias de configuración de activos desde un paquete de node.
+
+<code-example language="json">
+
+"assets": [
+ { "glob": "**/*", "input": "./node_modules/some-package/images", "output": "/some-package/" },
+]
+
+</code-example>
+
+El contenido de  `node_modules/some-package/images/` estara disponible en `dist/some-package/`.
+
+Los siguientes ejemplos usa el campo `ignore` para excluir ciertos archivos en la carpeta de activos de ser copiados dentro de build:
+
+<code-example language="json">
+
+"assets": [
+ { "glob": "**/*", "input": "src/assets/", "ignore": ["**/*.svg"], "output": "/assets/" },
+]
+
+</code-example>
+
+{@a style-script-config}
+
+### Configuración de estilos y scripts
+
+Una array de entrada para las opciones de `styles` y `scripts` pueden ser una cadena de rutas simple, o un objeto que apuntua a un archivo de punto de entrada extra.
+El constructor asociado cargara su archivo y sus dependencias como un paquete separado durante la creación.
+Con un objeto de configuracion, tienes la opcion de nombrar el paquete para un punto de entrada, usando un campo `bundleName`.
+
+El paquete es inyectado de forma predeterminada, pero puedes establecer `inject` como false para excluir el paquete en la inyección.
+Por ejemplo, los siguientes valores de objetos crean y nombran un paquete que contiene estilos y scripts, y excluir este en la inyección:  
+
+<code-example language="json">
+
+   "styles": [
+     { "input": "src/external-module/styles.scss", "inject": false, "bundleName": "external-module" }
+   ],
+   "scripts": [
+     { "input": "src/external-module/main.js", "inject": false, "bundleName": "external-module" }
+   ]
+
+</code-example>
+
+Puedes mezclar referencias de archivos simples y complejos para estilos y scripts.
+
+<code-example language="json">
+
+"styles": [
+  "src/styles.css",
+  "src/more-styles.css",
+  { "input": "src/lazy-style.scss", "inject": false },
+  { "input": "src/pre-rename-style.scss", "bundleName": "renamed-style" },
+]
+
+</code-example>
+
+{@a style-preprocessor}
+
+#### Opciones de pre-procesadores de estilo
+
+En Sass y Stylus puedes hacer uso de la funcionalidad `includePaths` para estilos de componentes y estilos globales, que te permiten agregar rutas de base adicionales que serán comprobadas para importaciones. 
+
+Para agregar rutas, use la opcion `stylePreprocessorOptions`:
+
+<code-example language="json">
+
+"stylePreprocessorOptions": {
+  "includePaths": [
+    "src/style-paths"
+  ]
+}
+
+</code-example>
+
+Archivos en esa carpeta como `src/style-paths/_variables.scss`, pueden ser importados desde cualquier lugar en tu proyecto sin necesitar de una ruta relativa.
+
+```ts
+// src/app/app.component.scss
+// A relative path works
+@import '../style-paths/variables';
+// But now this works as well
+@import 'variables';
+```
+
+Observe que además necesitara agregar cualquier estilo o script a el constructor `test` si las necesita para pruebas unitarias. 
+Ver también [Usar librerias globales en tiempo de ejecución dentro de tu aplicación](guide/using-libraries#using-runtime-global-libraries-inside-your-app).
+
+
+{@a optimize-and-srcmap}
+
+### Configuración y optimización del mapa de origen
+
+Las opciones del comando `optimization` y `sourceMap` son simples banderas Booleanos.
+Puedes suministrar un objeto como un valor de configuracion para ya sea proveer de estos instrucciones detalladas.
+
+* La bandera `--optimization="true"` aplica para los scripts y los estilos. Puedes suministrar un valor como los siguientes para aplicar optimizacion a uno u otro:
+
+<code-example language="json">
+
+   "optimization": { "scripts": true, "styles": false }
+
+</code-example>
+
+* la bandera `--sourceMap="true"` produce mapas de origen para los scripts y los estilos.
+Puedes configurar la opción para aplicar a uno o a otro.
+Puedes tambien escoger producir mapas de origen ocultos, o resolver mapas de origen de paquetes de vendedores.
+Por ejemplo:
+
+<code-example language="json">
+
+   "sourceMap": { "scripts": true, "styles": false, "hidden": true, "vendor": true }
+
+</code-example>
+
+<div class="alert is-helpful">
+
+   Cuando usas mapas de origen ocultos, los mapas de origen no estaran referenciados en el paquete.
+   Estos som útiles si solo quieres mapas de origen para mapear los rastros de la pila de errores en herramientas de informe de errores, pero no quiere exponer sus mapas de origen en las herramientas de desarrollo del navegador.
+
+
+   Para [Universal](guide/glossary#universal), 
+   puedes reducir el codigo renderizado en la pagina HTML estableciendo optimizacion de estilos como `true` y los mapas de origen como `false`. 
+   
+</div>
