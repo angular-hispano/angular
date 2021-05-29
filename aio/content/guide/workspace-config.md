@@ -141,80 +141,80 @@ Ver el ejemplo en [Crear objetivo](#build-target) a continuación.
 * La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. 
 Ver [crear destino](#build-target) a continuación para más información.
 
-* La sección `architect/serve` anula los valores por defecto de creacion y suministra los valores por defecto servidos( <--PREGUNTAR A NICO) por el comando `ng serve`. Además de las opciones disponibles por el comando `ng build`, Esta agrega opciones relacionadas con el servicio de la aplicación.
+* La sección `architect/serve` anula los valores por defecto de creación y suministra los valores por defecto servidos por el comando `ng serve`. Además de las opciones disponibles por el comando `ng build`, Este agrega opciones relacionadas con el servicio de la aplicación.
 
-* La sección `architect/e2e` anula las opciones por defecto de creación para la crear aplicaciones de pruebas end-to-end usando el comando `ng e2e`.
+* La sección `architect/e2e` anula las opciones por defecto de creación para crear aplicaciones de pruebas end-to-end usando el comando `ng e2e`.
 
-* La sección `architect/test` anula las opciones por defecto de creacion para crear pruebas y adicional suministrar los valores por defecto para la ejecucion de pruebas para el comando `ng test`.
+* La sección `architect/test` anula las opciones por defecto de creación, para crear pruebas y adicional suministrar los valores por defecto para la ejecución de pruebas para el comando `ng test`.
 
-* La sección `architect/lint` configura los valores por defecto para las opciones del comando `ng lint`, que realiza analisis de codigo sobre los archivos fuentes del proyecto. La herramienta LINTING por defecto para Angular es [TSLint](https://palantir.github.io/tslint/).
+* La sección `architect/lint` configura los valores por defecto para las opciones del comando `ng lint`, el cual realiza análisis de código sobre los archivos fuentes del proyecto. La herramienta por defecto de linting para Angular es [TSLint](https://palantir.github.io/tslint/).
 
-* La sección `architect/extract-i18n` configura los valores por defecto para las opciones de la herramienta `ng-xi18n` usada por el comando `ng xi18n`, la cual extrae  cadenas de texto marcadas como mensaje desde el codigo fuente y las salidas de archivos de traducción.
+* La sección `architect/extract-i18n` configura los valores por defecto para las opciones de la herramienta `ng-xi18n` usada por el comando `ng xi18n`, el cual extrae cadenas de texto marcadas como mensaje desde el código fuente y las salidas de los archivos de traducción.
 
-* La sección `architect/server` configura los valores por defecto para la creacion de una aplicación universal con server-side rendenring, usando el comando `ng run <project>:server`.
+* La sección `architect/server` configura los valores por defecto para la creación de una aplicación universal con renderizado en el lado del servidor, usando el comando `ng run <project>:server`.
 
-* La sección `architect/app-shell` configura los valores por defecto para la creacion de una aplicación carcaza para una aplicación web progresiva (PWA), usando el comando `ng run <project>:app-shell`.
+* La sección `architect/app-shell` configura los valores por defecto para la creación de un armazón de una aplicación para una aplicación web progresiva (PWA), usando el comando `ng run <project>:app-shell`.
 
-En general, las opciones para las cuales puedes configurar valores por defecto corresponden a las opciones de comandos listados en la [pagina de referencia del CLI](cli) para cada comando.
+En general, las opciones para las cuales puedes configurar valores por defecto corresponden a las opciones de comandos listados en la [página de referencia del CLI](cli) para cada comando.
 Observe que todas las opciones en el archivo de configuración debe usar [camelCase](guide/glossary#case-conventions), en vez de dash-case.
 
 {@a build-target}
 
-## Crear destino
+## Crear objetivo
 
 La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. Este tiene las siguientes propiedades de nivel superior.
 
 | PROPIEDAD | DESCRIPCIÓN |
 | :-------------- | :---------------------------- |
-| `builder`       | El paquete npm en la herramienta de creación se uso para crear este destino, el constructor por defecto para una aplicación (`ng build myApp`) es `@angular-devkit/build-angular:browser`, que usa el paquete empaquetador[webpack](https://webpack.js.org/). Observe que un constructor diferente es usado para construir una libreria (`ng build myLib`). |
-| `options`       |Esta sección contiene las opciones por defecto para crear destino, usadas cuando una configuración alternativa no nombrada es especificada. Ver [Crear destinos por defecto](#default-build-targets) a continuación. |
-| `configurations`| Esta seccion define y nombra configuraciones alternativas para diferentes destinos deseados. Este contiene una seccion para cada configuracion nombrada, que establece las opciones por defecto para los ambientes planeados. Ver [configuraciones de creación alternas](#build-configs) a continuación.|(PREGUNTAR A NICO)
+| `builder`       | El paquete npm en la herramienta de creación usado para crear este objetivo, el constructor por defecto para una aplicación (`ng build myApp`) es `@angular-devkit/build-angular:browser`, que usa el paquete empaquetador [webpack](https://webpack.js.org/). Observe que un constructor diferente es usado para construir una librería (`ng build myLib`). |
+| `options`       | Esta sección contiene las opciones por defecto para crear objetivos, usadas cuando una configuración alternativa no nombrada es especificada. Ver [objetivos de creación por defecto](#default-build-targets) a continuación. |
+| `configurations`| Esta sección define y nombra configuraciones alternativas para diferentes destinos deseados. Este contiene una sección para cada configuración nombrada, que establece las opciones por defecto para los ambientes planeados. Ver [configuraciones alternas de creación](#build-configs) a continuación. |
 
 
 {@a build-configs}
 
-### Configuraciones de creación alternas
+### Configuraciones alternas de creación
 
-Por defecto, una configuracion de `production` es definida, y el comando `ng build` tiene la opción `--prod` que crea usando esta configuracion. La configuracion de `production` establece valor por defecto que optimizan la aplicación de varias formas, como empaquetar archivos, minimizando el exceso de espacios en blanco, removiendo comentarios y codigo muerto, y reescribiendo codigo para usar nombres breves y cripticos ("minificación").
+Por defecto, una configuración de `production` es definida, y el comando `ng build` tiene la opción `--prod` que crea usando esta configuración. La configuración de `production` establece valores por defecto que optimizan la aplicación de varias maneras, como empaquetar archivos, minimizando el exceso de espacios en blanco, removiendo comentarios y código muerto, y reescribiendo código para usar nombres breves y crípticos ("minificación").
 
-Puedes definir y nombrar configuraciones alternas adicionales (como `stage`, por ejemplo) apropiandas para tu proceso de desarrollo. algunos ejemplo de diferentes configuraciones de creacion son `stable`, `archive` y `next` usados por el mismo AIO, y las configuraciones locales especificas individuales requeridas para la creacion de versiones localizadas de una aplicación. Para más detalles, ver [Internacionalizacion (i18n)](guide/i18n#merge-aot).
+Puedes definir y nombrar configuraciones alternas adicionales (como `stage`, por ejemplo) apropiadas para tu proceso de desarrollo. algunos ejemplos de diferentes configuraciones de creación son `stable`, `archive` y `next` usados por el mismo AIO, y las configuraciones individuales locales y especificas requeridas para la creación de versiones localizadas de una versión de una aplicación. Para más detalles, ver [Internacionalización (i18n)](guide/i18n#merge-aot).
 
-Puedes seleccionar una configuración alterna pasando el nombre en la linea de comandos con la bandera `--configuration`.
+Puedes seleccionar una configuración alterna pasando su nombre en la línea de comandos con la bandera `--configuration`.
 
-Puedes ademas pasar más que un nombre de configuración como una lista separada por comas. Por ejemplo, para aplicar las configuraciones creadas de `stage` y `fr`, use el comando `ng build --configuration stage,fr`. En este caso, el comando analiza las configuraciones nombradas de izquierda a derecha. Si multiples configuraciones cambian la misma configuracion, el ultimo valor establecido es el valor final.
+Puedes además pasar más que un nombre de configuración como una lista separada por comas. Por ejemplo, para aplicar ambas configuraciones creadas por `stage` y `fr`, use el comando `ng build --configuration stage,fr`. En este caso, el comando analiza las configuraciones nombradas de izquierda a derecha. Si múltiples configuraciones cambian la misma configuración, el último valor establecido es el valor final.
 
-Si la bandera `--prod` es usada en la linea de comandos, esta sé aplica primero, y estas configuraciones puedes ser anuladas por cualquier configuración especificada por medio de la bandera `--configuration`.
+Si la bandera `--prod` es usada en la línea de comandos, esta sé aplica primero, y sus configuraciones puedes ser anuladas por cualquier configuración especificada por medio de la bandera `--configuration`.
 
 {@a build-props}
 
-### Opciones adicionales de creacion y prueba
+### Opciones adicionales de creación y pruebas
 
-Las opciones configurables por defecto o un destino de creacion generalmente corresponden a las opciones disponibles para los comandos [`ng build`](cli/build), [`ng serve`](cli/serve), y [`ng test`](cli/test). Para mas detalles de aquellas opciones y sus posibles valores, ver el [Referencia del CLI](cli). 
+Las opciones configurables por defecto o por un objetivo de creación generalmente corresponden a las opciones disponibles para los comandos [`ng build`](cli/build), [`ng serve`](cli/serve), y [`ng test`](cli/test). Para más detalles de aquellas opciones y sus posibles valores, ver la [Referencia del CLI](cli). 
 
-Algunas opciones adicionales puedes solo ser establecidas a traves de el archivo de configuracion, o ya sea directamente editando o con el comando [`ng config`](cli/config).
+Algunas opciones adicionales puedes solo ser establecidas a través del archivo de configuración, o ya sea directamente editando o con el comando [`ng config`](cli/config).
 
 | PROPIEDADES OPCIONALES | DESCRIPCIÓN |
 | :------------------------- | :---------------------------- |
-| `assets`                   | Un objeto contiene rutas a activos estaticos para agregar el contexto global del proyecto. Las rutas por defecto apuntan a el archivo icono del proyecto y su carpeta `assets`. Ver mas en [Configuración de activos](#asset-config) a continuación |
-| `styles`                   | Un array de archivos de estilo para agregar al contexto global del proyecto. El CLI de Angular soporta importaciones de CSS y todos los principales pre-pocesadores de CSS: [sass/scss](http://sass-lang.com/), [less](http://lesscss.org/), y [stylus](http://stylus-lang.com/). Ver mas en [Configuración de estilos y scripts](#style-script-config) a continuación. |
-| `stylePreprocessorOptions` | Un objeto contiene pares de opciones y valores para pasar a los pre-procesadores de estilo. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación.|
-| `scripts`                  | Un objeto que contiene archivos de script JavaScript para agregar a el contexto global del proyecto. Los scripts son cargados exactamente como si los hubieras agregado en una etiqueta `<script>` dentro de `index.html`. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación.|
-| `budgets`                  | Tipo de tamaño presupuestado por defecto y umbrales para toda tu aplicación o partes de esta. Puedes configurar el constructor para notificar una advertencia o un error cuando la salida alcance o exceda un umbrar de tamaño. Ver [configurar tamaño presupuestado](guide/build#configure-size-budgets).(No disponible en la sección de `test`) | 
-| `fileReplacements`         | Un objeto que contiene archivos y sus reemplazos en tiempo de copilación. Ver más en [Configurar reemplazos de archivos especificos de destino](guide/build#configure-target-specific-file-replacements).| 
+| `assets`                   | Un objeto contiene rutas a activos estáticos para agregar al contexto global del proyecto. Las rutas por defecto apuntan al archivo icono del proyecto y su carpeta `assets`. Ver más en [Configuración de activos](#asset-config) a continuación |
+| `styles`                   | Un array de archivos de estilo para agregar al contexto global del proyecto. El CLI de Angular soporta importaciones de CSS y todos los principales prepocesadores de CSS: [sass/scss](http://sass-lang.com/), [less](http://lesscss.org/), y [stylus](http://stylus-lang.com/). Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `stylePreprocessorOptions` | Un objeto contiene pares de opciones y valores para pasar a los preprocesadores de estilo. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `scripts`                  | Un objeto que contiene archivos de texto JavaScript para agregar al contexto global del proyecto. Los scripts son cargados exactamente como si los hubieras agregado en una etiqueta `<script>` dentro de `index.html`. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `budgets`                  | Tipo de tamaño presupuestado por defecto y umbrales para toda tu aplicación o partes de esta. Puedes configurar el constructor para notificar una advertencia o un error cuando la salida alcance o exceda un umbral de tamaño. Ver [configurar tamaño presupuestado](guide/build#configure-size-budgets). (No disponible en la sección de `test`) | 
+| `fileReplacements`         | Un objeto que contiene archivos y sus reemplazos en tiempo de compilación. Ver más en [Configurar reemplazos de archivos específicos de destino](guide/build#configure-target-specific-file-replacements).| 
 
 {@a complex-config}
 
 ## Valores complejos de configuración
 
-Las opciones `assets`, `styles`, y `scripts` pueden tener o un valor de cadena de ruta simple, o valores de objeto con campos especificos.
-Las opciones `sourceMap` y `optimization` pueden ser establecidas con un valor Booleano simple con un comando bandera, pero puede ademas ser dado un valor complejo usando el archivo de configuración.
-Las siguientes secciones proveen mas detalles de como estos valores complejos son usados en cada caso.
+Las opciones `assets`, `styles`, y `scripts` pueden tener ya sea un valor de cadena de ruta simple, o valores de objeto con campos específicos.
+Las opciones `sourceMap` y `optimization` pueden ser establecidas con un valor Booleano simple con un comando bandera, pero también puede ser dado un valor complejo usando el archivo de configuración.
+Las siguientes secciones proveen más detalles de como estos valores complejos son usados en cada caso.
 
 {@a asset-config}
 
 ### Configuración de activos
 
-Cada destino de configuración `build` puede incluir un array `assets` que lista archivos o carpetas que quieras copiar como es cuando construyes tu proyecto.
+Cada configuración de objetivo `build` puede incluir un array `assets` que lista los archivos o carpetas que quieras copiar como es cuando construyes tu proyecto.
 Por defecto, la carpeta `src/assets/` y `src/favicon.ico` son copiadas.
 
 <code-example language="json">
@@ -228,13 +228,13 @@ Por defecto, la carpeta `src/assets/` y `src/favicon.ico` son copiadas.
 
 Para excluir un activo, puedes removerlo de la configuración de activos.
 
-Puedes configurar más los activos para ser copiados especificando los activos como objetos, en vez de simples rutas relativas a la raiz del espacio de trabajo.
-Un activo puede tener los siguientes campos. 
+Puedes configurar más los activos para ser copiados especificando los activos como objetos, en vez de rutas simples relativas a la raíz del espacio de trabajo.
+Un objeto de especificación de activos puede tener los siguientes campos. 
 
 * `glob`:  Un [node-glob](https://github.com/isaacs/node-glob/blob/master/README.md) usa `input` como directorio base.
-* `input`: Una ruta relativa a la raiz del espacio de trabajo.
+* `input`: Una ruta relativa a la raíz del espacio de trabajo.
 * `output`: Una ruta relativa a `outDir` (el valor por defecto es `dist/`*project-name*). Debido a las implicaciones de seguridad, el CLI nunca escribe archivos fuera de la ruta de salida del proyecto.
-* `ignore`: Una lista de globs a excluir.s
+* `ignore`: Una lista de globs a excluir.
 
 Por ejemplo, Las rutas por defecto de activos pueden ser representadas en más detalle usando los siguientes objetos.
 
@@ -258,9 +258,9 @@ Por ejemplo, las siguientes copias de configuración de activos desde un paquete
 
 </code-example>
 
-El contenido de  `node_modules/some-package/images/` estara disponible en `dist/some-package/`.
+El contenido de  `node_modules/some-package/images/` estará disponible en `dist/some-package/`.
 
-Los siguientes ejemplos usa el campo `ignore` para excluir ciertos archivos en la carpeta de activos de ser copiados dentro de build:
+Los siguientes ejemplos usa el campo `ignore` para excluir ciertos archivos en la carpeta de activos de ser copiados dentro del build:
 
 <code-example language="json">
 
@@ -274,12 +274,12 @@ Los siguientes ejemplos usa el campo `ignore` para excluir ciertos archivos en l
 
 ### Configuración de estilos y scripts
 
-Una array de entrada para las opciones de `styles` y `scripts` pueden ser una cadena de rutas simple, o un objeto que apuntua a un archivo de punto de entrada extra.
-El constructor asociado cargara su archivo y sus dependencias como un paquete separado durante la creación.
-Con un objeto de configuracion, tienes la opcion de nombrar el paquete para un punto de entrada, usando un campo `bundleName`.
+Una array de entrada para las opciones de `styles` y `scripts` pueden ser una cadena simple de ruta, o un objeto que apunta a un archivo de punto de entrada extra.
+El constructor asociado cargará sus archivos y sus dependencias como un paquete separado durante la creación.
+Con un objeto de configuración, tienes la opción de nombrar el paquete para un punto de entrada, usando un campo `bundleName`.
 
-El paquete es inyectado de forma predeterminada, pero puedes establecer `inject` como false para excluir el paquete en la inyección.
-Por ejemplo, los siguientes valores de objetos crean y nombran un paquete que contiene estilos y scripts, y excluir este en la inyección:  
+El paquete es inyectado de forma por defecto, pero puedes establecer `inject` como false para excluir el paquete en la inyección.
+Por ejemplo, los siguientes valores de objetos crean y nombran un paquete que contiene estilos y scripts, y excluyen este en la inyección:  
 
 <code-example language="json">
 
@@ -307,11 +307,11 @@ Puedes mezclar referencias de archivos simples y complejos para estilos y script
 
 {@a style-preprocessor}
 
-#### Opciones de pre-procesadores de estilo
+#### Opciones de preprocesadores de estilo
 
-En Sass y Stylus puedes hacer uso de la funcionalidad `includePaths` para estilos de componentes y estilos globales, que te permiten agregar rutas de base adicionales que serán comprobadas para importaciones. 
+En Sass y Stylus puedes hacer uso de la funcionalidad `includePaths` tanto para estilos de componentes y estilos globales, que te permiten agregar rutas de base extra que serán comprobadas para importaciones. 
 
-Para agregar rutas, use la opcion `stylePreprocessorOptions`:
+Para agregar rutas, use la opción `stylePreprocessorOptions`:
 
 <code-example language="json">
 
@@ -323,7 +323,7 @@ Para agregar rutas, use la opcion `stylePreprocessorOptions`:
 
 </code-example>
 
-Archivos en esa carpeta como `src/style-paths/_variables.scss`, pueden ser importados desde cualquier lugar en tu proyecto sin necesitar de una ruta relativa.
+Archivos en esa carpeta, como `src/style-paths/_variables.scss`, pueden ser importados desde cualquier lugar en tu proyecto sin necesitar de una ruta relativa.
 
 ```ts
 // src/app/app.component.scss
@@ -333,18 +333,18 @@ Archivos en esa carpeta como `src/style-paths/_variables.scss`, pueden ser impor
 @import 'variables';
 ```
 
-Observe que además necesitara agregar cualquier estilo o script a el constructor `test` si las necesita para pruebas unitarias. 
-Ver también [Usar librerias globales en tiempo de ejecución dentro de tu aplicación](guide/using-libraries#using-runtime-global-libraries-inside-your-app).
+Observe que además necesitara agregar cualquier estilo o script al constructor `test` si les necesitas para pruebas unitarias. 
+Ver también [Usar librerías globales en tiempo de ejecución dentro de tu aplicación](guide/using-libraries#using-runtime-global-libraries-inside-your-app).
 
 
 {@a optimize-and-srcmap}
 
 ### Configuración y optimización del mapa de origen
 
-Las opciones del comando `optimization` y `sourceMap` son simples banderas Booleanos.
-Puedes suministrar un objeto como un valor de configuracion para ya sea proveer de estos instrucciones detalladas.
+Las opciones del comando `optimization` y `sourceMap` son banderas simples Booleanas.
+Puedes suministrar un objeto como un valor de configuración para ya sea proveer de estas instrucciones detalladas.
 
-* La bandera `--optimization="true"` aplica para los scripts y los estilos. Puedes suministrar un valor como los siguientes para aplicar optimizacion a uno u otro:
+* La bandera `--optimization="true"` aplica para los scripts y los estilos. Puedes suministrar un valor como los siguientes para aplicar optimización a uno u otro:
 
 <code-example language="json">
 
@@ -354,7 +354,7 @@ Puedes suministrar un objeto como un valor de configuracion para ya sea proveer 
 
 * la bandera `--sourceMap="true"` produce mapas de origen para los scripts y los estilos.
 Puedes configurar la opción para aplicar a uno o a otro.
-Puedes tambien escoger producir mapas de origen ocultos, o resolver mapas de origen de paquetes de vendedores.
+Puedes también escoger producir mapas de origen ocultos, o resolver mapas de origen de paquetes de vendedores.
 Por ejemplo:
 
 <code-example language="json">
@@ -365,11 +365,11 @@ Por ejemplo:
 
 <div class="alert is-helpful">
 
-   Cuando usas mapas de origen ocultos, los mapas de origen no estaran referenciados en el paquete.
-   Estos som útiles si solo quieres mapas de origen para mapear los rastros de la pila de errores en herramientas de informe de errores, pero no quiere exponer sus mapas de origen en las herramientas de desarrollo del navegador.
+   Cuando usas mapas de origen ocultos, estos mapas de origen no estarán referenciados en el paquete.
+   Estos son útiles si solo quieres mapas de origen para mapear los rastros de la pila de errores en herramientas de informe de errores, 
+   pero no quieres exponer tus mapas de origen en las herramientas de desarrollo del navegador.
 
-
-   Para [Universal](guide/glossary#universal), 
-   puedes reducir el codigo renderizado en la pagina HTML estableciendo optimizacion de estilos como `true` y los mapas de origen como `false`. 
+   Para [Universal](guide/glossary#universal), puedes reducir el código renderizado en la página HTML estableciendo 
+   optimización de estilos como `true` y los mapas de origen como `false`. 
    
 </div>
