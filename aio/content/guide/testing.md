@@ -2,13 +2,13 @@
 
 # Testing
 
-Testing your Angular application helps you check that your app is working as you expect.
+Testear tu aplicación Angular te ayuda a comprobar que tu app funciona como esperabas. 
 
-## Prerequisites
+## Prerequisitos
 
-Before writing tests for your Angular app, you should have a basic understanding of the following concepts:
+Antes de escribir tests para tu aplicación Angular, deberías tener un conocimiento básico de los siguientes conceptos:
 
-* Angular fundamentals
+* Fundamentos de Angular
 * JavaScript
 * HTML
 * CSS
@@ -16,34 +16,35 @@ Before writing tests for your Angular app, you should have a basic understanding
 
 <hr>
 
-The testing documentation offers tips and techniques for unit and integration testing Angular applications through a sample application created with the [Angular CLI](cli).
-This sample application is much like the one in the [_Tour of Heroes_ tutorial](tutorial).
+La documentación de testing ofrece consejos y técnicas para test unitarios y de integración para aplicaciones Angular a través de una aplicación de ejemplo
+creada con [Angular CLI](cli).
+Esta aplicación de ejemplo es muy parecida a la aplicación [_Tour de Heroes_ tutorial](tutorial).
 
 <div class="alert is-helpful">
 
-  For the sample app that the testing guides describe, see the <live-example noDownload>sample app</live-example>.
+  Para la aplicación que la guía de testing describe, mira la <live-example noDownload>aplicación de ejemplo</live-example>.
 
-  For the tests features in the testing guides, see <live-example stackblitz="specs" noDownload>tests</live-example>.
+  Para las características de tests en las guías de testing, mira see <live-example stackblitz="specs" noDownload>tests</live-example>.
 
 </div>
 
 {@a setup}
 
-## Set up testing
+## Preparando los tests
 
-The Angular CLI downloads and installs everything you need to test an Angular application with the [Jasmine test framework](https://jasmine.github.io/).
+La CLI de Angular descarga e instala todo lo que necesitas para testear una aplicación Angular con el [Jasmine test framework](https://jasmine.github.io/).
 
-The project you create with the CLI is immediately ready to test.
-Just run the [`ng test`](cli/test) CLI command:
+El proyecto que creas con el CLI esta inmediatamente preparado para testing.
+Solo ejecuta el comando CLI [`ng test`](cli/test):
 
 <code-example language="sh" class="code-shell">
   ng test
 </code-example>
 
-The `ng test` command builds the app in _watch mode_,
-and launches the [Karma test runner](https://karma-runner.github.io).
+El comando `ng test` compila la aplicación en _watch mode_,
+y lanza el [Karma test runner](https://karma-runner.github.io).
 
-The console output looks a bit like this:
+La salida de la consola se parece un poco a esto:
 
 <code-example language="sh" class="code-shell">
 10% building modules 1/1 modules 0 active
@@ -54,107 +55,109 @@ The console output looks a bit like this:
 Chrome ...: Executed 3 of 3 SUCCESS (0.135 secs / 0.205 secs)
 </code-example>
 
-The last line of the log is the most important.
-It shows that Karma ran three tests that all passed.
+La última linea del log es la más importante:
+Muestra que Karma ejecutó tres test y todos pasaron correctamente.
 
-A Chrome browser also opens and displays the test output in the "Jasmine HTML Reporter" like this.
+Un navegador Chrome también se abre y muestra la salida de los tests en un "Jasmine HTML Reporter" como este.
 
 <div class="lightbox">
   <img src='generated/images/guide/testing/initial-jasmine-html-reporter.png' alt="Jasmine HTML Reporter in the browser">
 </div>
 
-Most people find this browser output easier to read than the console log.
-You can click on a test row to re-run just that test or click on a description to re-run the tests in the selected test group ("test suite").
+La mayoría de la gente encuentra esta salida del navegador más facil de leer que la salida del log de la consola.
+Puedes hacer click en una linea de test para re-ejecutar ese test o hacer click en una descripcion para re-ejecutar los tests in el grupo de test seleccionado
+("test suite").
 
-Meanwhile, the `ng test` command is watching for changes.
+Mientras tando, el comando `ng test` está observando si hay cambios.
 
-To see this in action, make a small change to `app.component.ts` and save.
-The tests run again, the browser refreshes, and the new test results appear.
+Para ver esto en acción, haz un pequeño cambio al `app.component.ts` y guarda.
+Los test se ejecutan otra vez, el navegador se refresca, y los nuevos resultados de los tests aparecen.
 
-## Configuration
+## Configuración
 
-The CLI takes care of Jasmine and Karma configuration for you.
+La CLI se encarga de la configuración de Jasmine y Karma por ti.
 
-You can fine-tune many options by editing the `karma.conf.js` and
-the `test.ts` files in the `src/` folder.
+Puedes ajustar muchas opciones editando los archivos `karma.conf.js` y 
+`test.ts` en la carpeta `src/`.
 
-The `karma.conf.js` file is a partial Karma configuration file.
-The CLI constructs the full runtime configuration in memory, based on application structure specified in the `angular.json` file, supplemented by `karma.conf.js`.
+El archivo `karma.conf.js` es un archivo de configuración parcial de Karma.
+La CLI construye la configuración de ejecución completa en memoria, basada en la estructura de la aplicación especificada en el archivo `angular.json`,
+suplementada por el archivo `karma.conf.js`.
 
-Search the web for more details about Jasmine and Karma configuration.
+Busca en la web para más detalles sobre las configuraciones de Jasmine y Karma.
 
-### Other test frameworks
+### Otros frameworks de testing
 
-You can also unit test an Angular app with other testing libraries and test runners.
-Each library and runner has its own distinctive installation procedures, configuration, and syntax.
+También puedes hacer test unitarios de Angular con otras librerías de testing y ejecutores de test. 
+Cada librería y ejecutor tienen sus propios procedimientos de instalación distinctivos, configuración y sintaxis. 
 
-Search the web to learn more.
+Busca en la web para aprender más.
 
-### Test file name and location
+### Nombre del archivo de test y localización
 
-Look inside the `src/app` folder.
+Mira dentro de la carpeta `src/app`.
 
-The CLI generated a test file for the `AppComponent` named `app.component.spec.ts`.
+La CLI genera un archivo de test para `AppComponent` llamado `app.component.spec.ts`.
 
 <div class="alert is-important">
 
-The test file extension **must be `.spec.ts`** so that tooling can identify it as a file with tests (AKA, a _spec_ file).
+La extensión del archivo **debe ser `.spec.ts`** para que la herramienta pueda identificarlo como un archivos con tests (AKA, un archivo _spec_).
 
 </div>
 
-The `app.component.ts` and `app.component.spec.ts` files are siblings in the same folder.
-The root file names (`app.component`) are the same for both files.
+Los archivos `app.component.ts` y `app.component.spec.ts` son hermanos en el mismo directorio.
+La raiz del nombre de los archivos (`app.component`) es la misma para ambos archivos.
 
-Adopt these two conventions in your own projects for _every kind_ of test file.
+Adopta estas dos convenciones en tus proyectos para _todo tipo_ de archivos de test.
 
 {@a q-spec-file-location}
 
-#### Place your spec file next to the file it tests
+#### Pon tus archivos spec junto al archivo al que testea 
 
-It's a good idea to put unit test spec files in the same folder
-as the application source code files that they test:
+Es una buena idea poner los archivos spec de tests unitarios en la misma carpeta
+que el archivo del codigo fuente de la aplicación que testean.
 
-- Such tests are easy to find.
-- You see at a glance if a part of your application lacks tests.
-- Nearby tests can reveal how a part works in context.
-- When you move the source (inevitable), you remember to move the test.
-- When you rename the source file (inevitable), you remember to rename the test file.
+- Estos tests son fáciles de encontrar.
+- Se puede ver de un vistazo si una parte de tu aplicación carece de pruebas.
+- Los tests cercanos pueden revelar como funciona una pieza en su contexto.
+- Cuando es inevitable mover un archivo, recuerdas mover con él sus tests.
+- Cuando es inevitable mover un archivo, recuerdas renombrar el archivo de tests.
 
 {@a q-specs-in-test-folder}
 
-#### Place your spec files in a test folder
+#### Pon tus archivos spec en un directorio de test
 
-Application integration specs can test the interactions of multiple parts
-spread across folders and modules.
-They don't really belong to any part in particular, so they don't have a
-natural home next to any one file.
+Los archivos spec de integración de la aplicación pueden testear la interacción
+de múltiples partes repartidas a lo largo de los directorios y modulos.
+No pertenecen a ningun lugar en particular, así que no tienen un hogar
+natural junto a ningun archivo.
 
-It's often better to create an appropriate folder for them in the `tests` directory.
+A menudo es mejor crear una carpeta apropiada para ellos en el directorio `tests`. 
 
-Of course specs that test the test helpers belong in the `test` folder,
-next to their corresponding helper files.
-
+Por supesto, specs que testean los test helpers pertenecen al directorio `test`,
+junto a su correspondiente archivo de ayuda.
 
 {@a ci}
 
-## Set up continuous integration
+## Configurando la integración continua
 
-One of the best ways to keep your project bug-free is through a test suite, but it's easy to forget to run tests all the time.
-Continuous integration (CI) servers let you set up your project repository so that your tests run on every commit and pull request.
+Una de las mejores formas de mantener tu proyecto libre de bugs es a través de una test suite, pero es fácil olvidarse de ejecutar los tests todo el tiempo.
+Los servidores de Integración Contínua (CI) te dejan configurar el repositorio de tu proyecto para ejecutar los tests en cada commit y pull request. 
 
-There are paid CI services like Circle CI and Travis CI, and you can also host your own for free using Jenkins and others.
-Although Circle CI and Travis CI are paid services, they are provided free for open source projects.
-You can create a public project on GitHub and add these services without paying.
-Contributions to the Angular repo are automatically run through a whole suite of Circle CI tests.
+Hay servicios CI de pago como Circle CI y Travis CI, y puedes incluso hostear tus propios gratuitos usando Jenkins y otros.
+Aunque Circle CI y Travis CI son servicios de pago, se proporcionan de forma gratuita para proyectos open source.
+Puedes crear un proyecto publico en GitHub y añadir estos servicios sin pagar.
+Las contribuciones al repositorio de Angular son automaticamente ejecutadas a través de una suite completa de tests de Circle CI.
 
-This article explains how to configure your project to run Circle CI and Travis CI, and also update your test configuration to be able to run tests in the Chrome browser in either environment.
+Este artículo explica como configurar tu proyecto para ejecutra Circle CI y Travis CI, y además actualizar tu configuración de test para ser capaz de ejecutar
+tests en el navegador Chrome en cualquier entorno.
 
 
-### Configure project for Circle CI
+### Configuración para Circle CI
 
-Step 1: Create a folder called `.circleci` at the project root.
+Paso 1: Crea una carpeta llamada `.circleci` en la raiz del proyecto.
 
-Step 2: In the new folder, create a file called `config.yml` with the following content:
+Paso 2: En la nueva carpeta, crea un archivo llamado `config.yml` con el siguiente contenido:
 
 ```
 version: 2
@@ -176,19 +179,20 @@ jobs:
       - run: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 ```
 
-This configuration caches `node_modules/` and uses [`npm run`](https://docs.npmjs.com/cli/run-script) to run CLI commands, because `@angular/cli` is not installed globally.
-The double dash (`--`) is needed to pass arguments into the `npm` script.
+Esta configuración cachea `node_modules/` y usa [`npm run`](https://docs.npmjs.com/cli/run-script) para ejecutar comandos CLI, debido a que `@angular/cli`
+no está instalado globalmente.
+El doble guión (`--`) es necesario para pasar argumentos al script `npm`.
 
-Step 3: Commit your changes and push them to your repository.
+Paso 3: Haz commit de tus cambios y subelos a tu repositorio.
 
-Step 4: [Sign up for Circle CI](https://circleci.com/docs/2.0/first-steps/) and [add your project](https://circleci.com/add-projects).
-Your project should start building.
+Paso 4: [Registrate en Circle CI](https://circleci.com/docs/2.0/first-steps/) y [añadelo a tu proyecto](https://circleci.com/add-projects).
+Tu proyecto debería empezar a compilarse.
 
-* Learn more about Circle CI from [Circle CI documentation](https://circleci.com/docs/2.0/).
+* Aprende mas sobre Circle CI  en [Documentacion de Circle CI](https://circleci.com/docs/2.0/).
 
-### Configure project for Travis CI
+### Configuración para Travis CI
 
-Step 1: Create a file called `.travis.yml` at the project root, with the following content:
+Paso 1: Crea un archivo llamado `.travis.yml` en la raiz del proyecto, con el siguiente contenido:
 
 ```
 dist: trusty
@@ -217,26 +221,26 @@ script:
   - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 ```
 
-This does the same things as the Circle CI configuration, except that Travis doesn't come with Chrome, so we use Chromium instead.
+Esto hace lo mismo que la configuración de Circle CI, excepto que Travis no viene con Chrome, así que usamos Chromium en su lugar.
 
-Step 2: Commit your changes and push them to your repository.
+Paso 2: Haz commit de tus cambios y subelos a tu repositorio.
 
-Step 3: [Sign up for Travis CI](https://travis-ci.org/auth) and [add your project](https://travis-ci.org/profile).
-You'll need to push a new commit to trigger a build.
+Paso 3: [Registrate en Travis CI](https://travis-ci.org/auth) y [añade tu proyecto](https://travis-ci.org/profile).
+Necesitarás subir un nuevo commit para disparar la compilación del proyecto.
 
-* Learn more about Travis CI testing from [Travis CI documentation](https://docs.travis-ci.com/).
+* Aprende mas sobre Travis CI en [Documentación de Travis CI](https://docs.travis-ci.com/).
 
-### Configure CLI for CI testing in Chrome
+### Configuración de la CLI para el testeo de CI en Chrome
 
-When the CLI commands `ng test` and `ng e2e` are generally running the CI tests in your environment, you might still need to adjust your configuration to run the Chrome browser tests.
+Normalmente, cuando los comandos CLI `ng test` y `ng e2e` son ejecutados la CI se testea en tu entorno, quizas tendrías todavía que ajustar tu configuración para ejecutar los test en Chrome.
 
-There are configuration files for both the [Karma JavaScript test runner](https://karma-runner.github.io/latest/config/configuration-file.html)
-and [Protractor](https://www.protractortest.org/#/api-overview) end-to-end testing tool,
-which you must adjust to start Chrome without sandboxing.
+Existen archivos de configuracion para ambos [Karma JavaScript test runner](https://karma-runner.github.io/latest/config/configuration-file.html)
+y [Protractor](https://www.protractortest.org/#/api-overview) end-to-end herramienta de testing,
+que debes configurar para ejecutar Chrome sin sandboxing.
 
-We'll be using [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome#cli) in these examples.
+Usaremos [Headless Chrome](https://developers.google.com/web/updates/2017/04/headless-chrome#cli) en estos ejemplos.
 
-* In the Karma configuration file, `karma.conf.js`, add a custom launcher called ChromeHeadlessCI below browsers:
+* En el archivo de configuración de Karma, `karma.conf.js`, añade un disparador personalizado llamado ChromeHeadlessCI debajo de browsers:
 ```
 browsers: ['Chrome'],
 customLaunchers: {
@@ -247,7 +251,7 @@ customLaunchers: {
 },
 ```
 
-* In the root folder of your e2e tests project, create a new file named `protractor-ci.conf.js`. This new file extends the original `protractor.conf.js`.
+* En el directorio raiz de tu proyecto de tests e2e, crea un nuevo archivo llamado `protractor-ci.conf.js`. Este nuevo archivo extiende el original `protractor.conf.js`.
 ```
 const config = require('./protractor.conf').config;
 
@@ -261,7 +265,7 @@ config.capabilities = {
 exports.config = config;
 ```
 
-Now you can run the following commands to use the `--no-sandbox` flag:
+Ahora puedes ejecutar los siguientes comandos para usar el flag `--no-sandbox`:
 
 <code-example language="sh" class="code-shell">
   ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
@@ -270,24 +274,24 @@ Now you can run the following commands to use the `--no-sandbox` flag:
 
 <div class="alert is-helpful">
 
-   **Note:** Right now, you'll also want to include the `--disable-gpu` flag if you're running on Windows. See [crbug.com/737678](https://crbug.com/737678).
+   **Nota:** Justo ahora, querrás incluir el flag `--disable-gpu` si estás ejecutando en Windows. Visita [crbug.com/737678](https://crbug.com/737678).
 
 </div>
 
 
 <hr />
 
-## More info on testing
+## Mas información para testing
 
-After you've set up your app for testing, you may find the following testing  guides useful.
+Después de configurar tu aplicación para testing, quizas encuentres útiles las siguientes guias para test.
 
-* [Code coverage](guide/testing-code-coverage)&mdash;find out how much of your app your tests are covering and how to specify required amounts.
-* [Testing services](guide/testing-services)&mdash;learn how to test the services your app uses.
-* [Basics of testing components](guide/testing-components-basics)&mdash;discover the basics of testing Angular components.
-* [Component testing scenarios](guide/testing-components-scenarios)&mdash;read about the various kinds of component testing scenarios and use cases.
-* [Testing attribute directives](guide/testing-attribute-directives)&mdash;learn about how to test your attribute directives.
-* [Testing pipes](guide/testing-pipes)&mdash;find out how to test attribute directives.
-* [Debugging tests](guide/testing-attribute-directives)&mdash;uncover common testing bugs.
-* [Testing utility APIs](guide/testing-utility-apis)&mdash;get familiar with Angular testing features.
+* [Cobertura de código](guide/testing-code-coverage)&mdash;averigua cuanto de tu aplicación tus tests están cubriendo y como especificar cantidades requeridas.
+* [Testing de servicios](guide/testing-services)&mdash;aprende como testear los servicios que usa tu aplicación.
+* [Fundamentos del testing de componentes](guide/testing-components-basics)&mdash;descubre los fundamentos de testear componentes Angular.
+* [Escenarios del testing de componentes](guide/testing-components-scenarios)&mdash;lee sobre los varios tipos de escenarios de testeo de componentes y casos de uso.
+* [Testing de directivas de atributo](guide/testing-attribute-directives)&mdash;aprende como testear tus directivas de atributo.
+* [Testing de pipes](guide/testing-pipes)&mdash;aprende como testear tu pipes.
+* [Debugeando tests](guide/testing-attribute-directives)&mdash;Descubre bugs de testing comunes.
+* [APIs de utilidades de testing](guide/testing-utility-apis)&mdash;familiarízate con las funcionalidades de testing de Angular.
 
 
