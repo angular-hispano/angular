@@ -1,290 +1,281 @@
-# Introduction to forms in Angular
+# Introducción a los formularios en Angular
 
-Handling user input with forms is the cornerstone of many common applications. Applications use forms to enable users to log in, to update a profile, to enter sensitive information, and to perform many other data-entry tasks.
+El manejo de los input con formularios es la piedra angular de muchas aplicaciones comunes. Las aplicaciones utilizan formularios para permitir a los usuarios iniciar sesión, actualizar un perfil, introducir información sensible y realizar muchas otras tareas de entrada de datos.
 
-Angular provides two different approaches to handling user input through forms: reactive and template-driven. Both capture user input events from the view, validate the user input, create a form model and data model to update, and provide a way to track changes.
+Angular proporciona dos enfoques diferentes para manejar los input del usuario a través de los formularios: reactivo y basado en plantillas. Ambos capturan los eventos input del usuario desde la vista, validan la entrada del usuario, crean un modelo de formulario y un modelo de datos para actualizar, y proporcionan una forma de rastrear los cambios.
 
-This guide provides information to help you decide which type of form works best for your situation. It introduces the common building blocks used by both approaches. It also summarizes the key differences between the two approaches, and demonstrates those differences in the context of setup, data flow, and testing.
+Esta guía proporciona información que ayuda a decidir qué tipo de formulario es el más adecuado para su situación. Presenta los bloques de construcción comunes utilizados por ambos enfoques. También resume las diferencias clave entre los dos enfoques y demuestra esas diferencias en el contexto de la configuración, el flujo de datos y las pruebas. 
 
-## Prerequisites
+## Pre requisitos
 
-This guide assumes that you have a basic understanding of the following.
+ Esta guía asume que tienes un entendimiento básico de lo siguiente:
 
-* [TypeScript](https://www.typescriptlang.org/docs/home.html "The TypeScript language") and HTML5 programming.
+* [TypeScript](https://www.typescriptlang.org/docs/home.html "The TypeScript language") y HTML5.
 
-* Angular app-design fundamentals, as described in [Angular Concepts](guide/architecture "Introduction to Angular concepts.").
+* Fundamentos de diseño de aplicaciones de Angular, como se describe en los [Conceptos de Angular](guide/architecture "Introduction to Angular concepts.").
 
-* The basics of [Angular template syntax](guide/architecture-components#template-syntax "Template syntax intro").
+* Los fundamentos de la [sintaxis de las plantillas de Angular](guide/architecture-components#template-syntax "Template syntax intro").
 
-## Choosing an approach
+## Elección de un enfoque
 
-Reactive forms and template-driven forms process and manage form data differently. Each approach offers different advantages.
+Los formularios reactivos y los formularios basados en plantillas procesan y gestionan los datos del formulario de forma diferente. Cada enfoque ofrece diferentes ventajas.
 
-* **Reactive forms** provide direct, explicit access to the underlying forms object model. Compared to template-driven forms, they are more robust: they're more scalable, reusable, and testable. If forms are a key part of your application, or you're already using reactive patterns for building your application, use reactive forms.
+* **Formularios reactivos** proporcionan un acceso directo y explícito al modelo de objetos de los formularios subyacentes. En comparación con los formularios basados en plantillas, son másfuertes: son más escalables, reutilizables y comprobables. Si los formularios son una parte clave de su aplicación, o si ya está utilizando patrones reactivos para construir su aplicación, utilizar formularios reactivos.
 
-* **Template-driven forms** rely on directives in the template to create and manipulate the underlying object model. They are useful for adding a simple form to an app, such as an email list signup form. They're easy to add to an app, but they don't scale as well as reactive forms. If you have very basic form requirements and logic that can be managed solely in the template, template-driven forms could be a good fit.
+* **Formularios basados en plantillas** se basan en las directivas de la plantilla para crear y manipular el modelo de objetos subyacente. Son útiles para añadir un formulario sencillo a una aplicación, como un formulario de inscripción a una lista de correo electrónico. Son fáciles de añadir a una aplicación, pero no escalan tan bien como los formularios reactivos. Si tienes unos requisitos de formulario muy básicos y una lógica que puede gestionarse únicamente en la plantilla, los formularios impulsados por plantillas podrían ser una buena opción.
 
-### Key differences
+### Diferencias clave
 
-The table below summarizes the key differences between reactive and template-driven forms.
+La siguiente tabla resume las principales diferencias entre los formularios reactivos y los basados en plantillas.
 
 <style>
   table {width: 100%};
   td, th {vertical-align: top};
 </style>
 
-||Reactive|Template-driven|
+||Reactivo|Formulario basado en plantillas|
 |--- |--- |--- |
-|[Setup of form model](#setup) | Explicit, created in component class | Implicit, created by directives |
-|[Data model](#data-flow-in-forms) | Structured and immutable | Unstructured and mutable |
-|Predictability | Synchronous | Asynchronous |
-|[Form validation](#validation) | Functions | Directives |
+|[Configuración del modelo de formulario](#setup) | Explícita, creada en la clase del componente	 | Implícita, creada por directivas |
+|[Data model](#data-flow-in-forms) | Estructurado e inmutable | No estructurado y mutable |
+|Predecible | Sincrónico | Asíncrono |
+|[Validación de formularios](#validation) | Funciones | Directivas |
 
-### Scalability
+### Escalabilidad
 
-If forms are a central part of your application, scalability is very important. Being able to reuse form models across components is critical.
+Si los formularios son una parte central de su aplicación, la escalabilidad es muy importante. Poder reutilizar los modelos de formularios en todos los componentes es fundamental. 
 
-Reactive forms are more scalable than template-driven forms. They provide direct access to the underlying form API, and synchronous access to the form data model, making creating large-scale forms easier.
-Reactive forms require less setup for testing, and testing does not require deep understanding of change detection to properly test form updates and validation.
+Los formularios reactivos son más escalables que los formularios basados en plantillas. Proporcionan acceso directo a la API subyacente del formulario y acceso sincrónico al modelo de datos del formulario, lo que facilita la creación de formularios a gran escala. Los formularios reactivos requieren menos configuración para las pruebas, y las pruebas no requieren un conocimiento profundo de la detección de cambios para probar adecuadamente las actualizaciones y la validación de los formularios.
 
-Template-driven forms focus on simple scenarios and are not as reusable.
-They abstract away the underlying form API, and provide only asynchronous access to the form data model.
-The abstraction of template-driven forms also affects testing.
-Tests are deeply reliant on manual change detection execution to run properly, and require more setup.
+Los formularios basados en plantillas se centran en escenarios simples y no son tan reutilizables. Abstraen la API subyacente del formulario y sólo proporcionan acceso asíncrono al modelo de datos del formulario. La abstracción de los formularios basados en plantillas también afecta a las pruebas. Las pruebas dependen en gran medida de la ejecución manual de la detección de cambios para ejecutarse correctamente, y requieren más configuración.
 
 {@a setup}
 
-## Setting up the form model
+## Configuración del modelo de formulario
 
-Both reactive and template-driven forms track value changes between the form input elements that users interact with and the form data in your component model.
-The two approaches share underlying building blocks, but differ in how you create and manage the common form-control instances.
+Tanto los formularios reactivos como los impulsados por plantillas hacen un seguimiento de los cambios de valor entre los elementos input del formulario con los que interactúan los usuarios y los datos del formulario en su modelo de componentes. Los dos enfoques comparten bloques de construcción subyacentes, pero difieren en la forma de crear y gestionar las instancias comunes de control del formulario.
 
-### Common form foundation classes
+### Clases base de formularios comunes
 
-Both reactive and template-driven forms are built on the following base classes.
+Tanto los formularios reactivos como los impulsados por plantillas están construidos sobre las siguientes clases base.
 
-* `FormControl` tracks the value and validation status of an individual form control.
+* `FormControl` registra el valor y el estado de validación de un control de formulario individual.
 
-* `FormGroup` tracks the same values and status for a collection of form controls.
+* `FormGroup` registra los mismos valores y estados de una colección de controles de formulario.
 
-* `FormArray` tracks the same values and status for an array of form controls.
+* `FormArray` registra los mismos valores y estados para un array de controles de formulario.
 
-* `ControlValueAccessor` creates a bridge between Angular `FormControl` instances and native DOM elements.
+* `ControlValueAccessor` crea un puente entre las instancias de Angular `FormControl` y los elementos nativos del DOM.
 
 {@a setup-the-form-model}
 
-### Setup in reactive forms
+### Configuración en los formularios reactivos
 
-With reactive forms, you define the form model directly in the component class.
-The `[formControl]` directive links the explicitly created `FormControl` instance to a specific form element in the view, using an internal value accessor.
+Con los formularios reactivos, se define el modelo de formulario directamente en la clase del componente. La directiva `[formControl]` vincula la instancia de `FormControl` creada explícitamente a un elemento de formulario específico en la vista, utilizando un accesorio de valor interno.
 
-The following component implements an input field for a single control, using reactive forms. In this example, the form model is the `FormControl` instance.
+El siguiente componente implementa un campo input para un solo control, utilizando formularios reactivos. En este ejemplo, el modelo de formulario es la instancia `FormControl`.
 
 <code-example path="forms-overview/src/app/reactive/favorite-color/favorite-color.component.ts">
 </code-example>
 
-Figure 1 shows how, in reactive forms, the form model is the source of truth; it provides the value and status of the form element at any given point in time, through the `[formControl]` directive on the input element.
+La figura 1 muestra cómo, en los formularios reactivos, el modelo de formulario es la fuente de la verdad; proporciona el valor y el estado del elemento del formulario en cualquier momento, a través de la directiva `[formControl]` en el elemento input.
 
-**Figure 1.** *Direct access to forms model in a reactive form.*
+**Figura 1.** *Acceso directo al modelo de formularios en un formulario reactivo.*
 
 <div class="lightbox">
-  <img src="generated/images/guide/forms-overview/key-diff-reactive-forms.png" alt="Reactive forms key differences">
+  <img src="generated/images/guide/forms-overview/key-diff-reactive-forms.png" alt="Formularios reactivos key differences">
 </div>
 
-### Setup in template-driven forms
+### Configuración en formularios basados en plantillas
 
-In template-driven forms, the form model is implicit, rather than explicit. The directive `NgModel` creates and manages a `FormControl` instance for a given form element.
+En los formularios basados en plantillas, el modelo de formulario es implícito, en lugar de explícito. La directiva `NgModel` crea y gestiona una instancia de `FormControl` para un elemento de formulario determinado.
 
-The following component implements the same input field for a single control, using template-driven forms.
+El siguiente componente implementa el mismo campo input para un único control, utilizando formularios basados en plantillas.
 
 <code-example path="forms-overview/src/app/template/favorite-color/favorite-color.component.ts">
 </code-example>
 
-In a template-driven form the source of truth is the template. You do not have direct programmatic access to the `FormControl` instance, as shown in Figure 2.
+En un formulario dirigido por una plantilla, la fuente de verdad es la plantilla. No tienes acceso programático directo a la instancia `FormControl`, como se muestra en la Figura 2.
 
-**Figure 2.** *Indirect access to forms model in a template-driven form.*
+**Figura 2.** *Acceso indirecto al modelo de formularios en un formulario basado en plantillas.*
 
 <div class="lightbox">
-  <img src="generated/images/guide/forms-overview/key-diff-td-forms.png" alt="Template-driven forms key differences">
+  <img src="generated/images/guide/forms-overview/key-diff-td-forms.png" alt="Formularios basados en plantillas key differences">
 </div>
 
 {@a data-flow-in-forms}
 
-## Data flow in forms
+## Flujo de datos en los formularios
 
-When an application contains a form, Angular must keep the view in sync with the component model and the component model in sync with the view.
-As users change values and make selections through the view, the new values must be reflected in the data model.
-Similarly, when the program logic changes values in the data model, those values must be reflected in the view.
+Cuando una aplicación contiene un formulario, Angular debe mantener la vista sincronizada con el modelo de componentes y el modelo de componentes sincronizado con la vista. A medida que los usuarios cambian valores y hacen selecciones a través de la vista, los nuevos valores deben reflejarse en el modelo de datos. Del mismo modo, cuando la lógica del programa cambia los valores en el modelo de datos, esos valores deben reflejarse en la vista.
 
-Reactive and template-driven forms differ in how they handle data flowing from the user or from programmatic changes.
-The following diagrams illustrate both kinds of data flow for each type of form, using the favorite-color input field defined above.
+Los formularios reactivos y los impulsados por plantillas difieren en cómo manejan los datos que fluyen desde el usuario o desde los cambios programáticos. Los siguientes diagramas ilustran ambos tipos de flujo de datos para cada tipo de formulario, utilizando el campo input de color favorito definido anteriormente.
 
-### Data flow in reactive forms
+### Flujo de datos en los formularios reactivos
 
-In reactive forms each form element in the view is directly linked to the form model (a `FormControl` instance). Updates from the view to the model and from the model to the view are synchronous and do not depend on how the UI is rendered.
+En los formularios reactivos cada elemento del formulario en la vista está directamente vinculado al modelo del formulario (una instancia de `FormControl`). Las actualizaciones de la vista al modelo y del modelo a la vista son síncronas y no dependen de cómo se renderice la UI.
 
-The view-to-model diagram shows how data flows when an input field's value is changed from the view through the following steps.
+El diagrama de la vista al modelo muestra cómo fluyen los datos cuando se cambia el valor de un campo input desde la vista a través de los siguientes pasos.
 
-1. The user types a value into the input element, in this case the favorite color *Blue*.
-1. The form input element emits an "input" event with the latest value.
-1. The control value accessor listening for events on the form input element immediately relays the new value to the `FormControl` instance.
-1. The `FormControl` instance emits the new value through the `valueChanges` observable.
-1. Any subscribers to the `valueChanges` observable receive the new value.
+1. El usuario escribe un valor en el elemento input, en este caso el color favorito *Azul*.
+1. El elemento input del formulario emite un evento "input" con el último valor.
+1. El accesorio de control de valores que escucha los eventos del elemento input del formulario transmite inmediatamente el nuevo valor a la instancia de `FormControl`
+1. La instancia de `FormControl` emite el nuevo valor a través del observable `valueChanges`.
+1. Cualquier suscriptor del observable `valueChanges` recibe el nuevo valor.
 
 <div class="lightbox">
-  <img src="generated/images/guide/forms-overview/dataflow-reactive-forms-vtm.png" alt="Reactive forms data flow - view to model">
+  <img src="generated/images/guide/forms-overview/dataflow-reactive-forms-vtm.png" alt="Formularios reactivos data flow - view to model">
 </div>
 
-The model-to-view diagram shows how a programmatic change to the model is propagated to the view through the following steps.
+El diagrama modelo-vista muestra cómo un cambio programático en el modelo se propaga a la vista a través de los siguientes pasos.
 
-1. The user calls the `favoriteColorControl.setValue()` method, which updates the `FormControl` value.
-1. The `FormControl` instance emits the new value through the `valueChanges` observable.
-1. Any subscribers to the `valueChanges` observable receive the new value.
-1. The control value accessor on the form input element updates the element with the new value.
+1. El usuario llama al método `favoriteColorControl.setValue()`, que actualiza el valor del `FormControl`.
+1. La instancia `FormControl` emite el nuevo valor a través del observable `valueChanges`.
+1. Los suscriptores del observable `valueChanges` reciben el nuevo valor.
+1. El accesor del valor del control en el elemento input del formulario actualiza el elemento con el nuevo valor.
 
 <div class="lightbox">
-  <img src="generated/images/guide/forms-overview/dataflow-reactive-forms-mtv.png" alt="Reactive forms data flow - model to view">
+  <img src="generated/images/guide/forms-overview/dataflow-reactive-forms-mtv.png" alt="Formularios reactivos data flow - model to view">
 </div>
 
-### Data flow in template-driven forms
+### Flujo de datos en formularios basados en plantillas
 
-In template-driven forms, each form element is linked to a directive that manages the form model internally.
+En los formularios basados en plantillas, cada elemento del formulario está vinculado a una directiva que gestiona internamente el modelo del formulario.
 
-The view-to-model diagram shows how data flows when an input field's value is changed from the view through the following steps.
+El diagrama de la vista al modelo muestra cómo fluyen los datos cuando se cambia el valor de un campo input desde la vista a través de los siguientes pasos.
 
-1. The user types *Blue* into the input element.
-1. The input element emits an "input" event with the value *Blue*.
-1. The control value accessor attached to the input triggers the `setValue()` method on the `FormControl` instance.
-1. The `FormControl` instance emits the new value through the `valueChanges` observable.
-1. Any subscribers to the `valueChanges` observable receive the new value.
-1. The control value accessor also calls the `NgModel.viewToModelUpdate()` method which emits an `ngModelChange` event.
-1. Because the component template uses two-way data binding for the `favoriteColor` property, the `favoriteColor` property in the component
-is updated to the value emitted by the `ngModelChange` event (*Blue*).
+1. El usuario escribe *Azul* en el elemento input.
+1. El elemento input emite un evento "input" con el valor *Azul*.
+1. El accesorio de valor del control adjunto al input activa el método `setValue()` en la instancia `FormControl`.
+1. La instancia `FormControl` emite el nuevo valor a través del observable `valueChanges`.
+1. Los suscriptores del observable `valueChanges` reciben el nuevo valor.
+1. El accesor del valor de control también llama al método `NgModel.viewToModelUpdate()` que emite un evento `ngModelChange`.
+1. Dado que la plantilla del componente utiliza un enlace de datos bidireccional para la propiedad `favoriteColor`, la propiedad `favoriteColor` del componente
+se actualiza con el valor emitido por el evento `ngModelChange` (*Azul*).
 
 <div class="lightbox">
-  <img src="generated/images/guide/forms-overview/dataflow-td-forms-vtm.png" alt="Template-driven forms data flow - view to model" width="100%">
+  <img src="generated/images/guide/forms-overview/dataflow-td-forms-vtm.png" alt="Formularios basados en plantillas data flow - view to model" width="100%">
 </div>
 
-The model-to-view diagram shows how data flows from model to view when the `favoriteColor` changes from *Blue* to *Red*, through the following steps
+El diagrama modelo-vista muestra cómo fluyen los datos del modelo a la vista cuando el `ColorFavorito` cambia de *Azul* a *Rojo*, a través de los siguientes pasos
 
-1. The `favoriteColor` value is updated in the component.
-1. Change detection begins.
-1. During change detection, the `ngOnChanges` lifecycle hook is called on the `NgModel` directive instance because the value of one of its inputs has changed.
-1. The `ngOnChanges()` method queues an async task to set the value for the internal `FormControl` instance.
-1. Change detection completes.
-1. On the next tick, the task to set the `FormControl` instance value is executed.
-1. The `FormControl` instance emits the latest value through the `valueChanges` observable.
-1. Any subscribers to the `valueChanges` observable receive the new value.
-1. The control value accessor updates the form input element in the view with the latest `favoriteColor` value.
+1. El valor de `ColorFavorito` se actualiza en el componente.
+1. Comienza la detección de cambios.
+1. Durante la detección de cambios, el hook del ciclo de vida `ngOnChanges` es llamado en la instancia de la directiva `NgModel` porque el valor de una de sus input han cambiado.
+1. El método `ngOnChanges()` pone en cola una tarea asíncrona para establecer el valor de la instancia interna `FormControl`.
+1. La detección de cambios se ha completado.
+1. En el siguiente tick, se ejecuta la tarea para establecer el valor de la instancia `FormControl`.
+1. La instancia `FormControl` emite el último valor a través del observable `valueChanges`.
+1. Los suscriptores del observable `valueChanges` reciben el nuevo valor.
+1. El accesorio de valor del control actualiza el elemento input del formulario en la vista con el último valor de `favoriteColor`.
 
 <div class="lightbox">
-  <img src="generated/images/guide/forms-overview/dataflow-td-forms-mtv.png" alt="Template-driven forms data flow - model to view" width="100%">
+  <img src="generated/images/guide/forms-overview/dataflow-td-forms-mtv.png" alt="Formularios basados en plantillas data flow - model to view" width="100%">
 </div>
 
-### Mutability of the data model
+### Mutabilidad del modelo de datos
 
-The change-tracking method plays a role in the efficiency of your application.
+El método de seguimiento de los cambios influye en la eficacia de su aplicación.
 
-* **Reactive forms** keep the data model pure by providing it as an immutable data structure.
-Each time a change is triggered on the data model, the `FormControl` instance returns a new data model rather than updating the existing data model.
-This gives you the ability to track unique changes to the data model through the control's observable.
-Change detection is more efficient because it only needs to update on unique changes.
-Because data updates follow reactive patterns, you can integrate with observable operators to transform data.
+* **Formularios reactivos** mantener el modelo de datos puro proporcionándolo como una estructura de datos inmutable.
+Cada vez que se activa un cambio en el modelo de datos, la instancia `FormControl` devuelve un nuevo modelo de datos en lugar de actualizar el modelo de datos existente.
+Esto le da la capacidad de rastrear cambios únicos en el modelo de datos a través del observable del control.
+La detección de cambios es más eficiente porque sólo necesita actualizar los cambios únicos.
+Dado que las actualizaciones de datos siguen patrones reactivos, puede integrarse con operadores observables para transformar los datos.
 
-* **Template-driven** forms rely on mutability with two-way data binding to update the data model in the component as changes are made in the template.
-Because there are no unique changes to track on the data model when using two-way data binding, change detection is less efficient at determining when updates are required.
+* **Formularios basados en plantillas** Los formularios se basan en la mutabilidad con enlace de datos bidireccional para actualizar el modelo de datos en el componente a medida que se realizan cambios en el modelo.
+Debido a que no hay cambios únicos que rastrear en el modelo de datos cuando se utiliza la vinculación de datos bidireccional, la detección de cambios es menos eficiente para determinar cuándo se requieren actualizaciones.
 
-The difference is demonstrated in the previous examples that use the favorite-color input element.
+La diferencia se demuestra en los ejemplos anteriores que utilizan el elemento input favorite-color.
 
-* With reactive forms, the **`FormControl` instance** always returns a new value when the control's value is updated.
+* Con los formularios reactivos, la instancia **`FormControl`** siempre devuelve un nuevo valor cuando se actualiza el valor del control.
 
-* With template-driven forms, the **favorite color property** is always modified to its new value.
+* En los formularios basados en plantillas, la propiedad **color favorito** siempre se modifica a su nuevo valor.
 
 {@a validation}
-## Form validation
+## Validación de formularios
 
-Validation is an integral part of managing any set of forms. Whether you're checking for required fields or querying an external API for an existing username, Angular provides a set of built-in validators as well as the ability to create custom validators.
+La validación es una parte integral de la gestión de cualquier conjunto de formularios. Ya sea que esté comprobando los campos obligatorios o consultando una API externa para un nombre de usuario existente, Angular proporciona un conjunto de validadores incorporados, así como la capacidad de crear validadores personalizados.
 
-* **Reactive forms** define custom validators as **functions** that receive a control to validate.
-* **Template-driven forms** are tied to template **directives**, and must provide custom validator directives that wrap validation functions.
+* **Formularios reactivos** definir validadores personalizados como **funciones** que reciben un control para validar.
+* **Formularios basados en plantillas** están ligados a las **directivas** de las plantillas, y deben proporcionar directivas de validación personalizadas que envuelvan las funciones de validación.
 
-For more information, see [Form Validation](guide/form-validation).
+Para más información, consulte [Validación de Formularios](guide/form-validation).
 
-## Testing
+## Pruebas
 
-Testing plays a large part in complex applications. A simpler testing strategy is useful when validating that your forms function correctly.
-Reactive forms and template-driven forms have different levels of reliance on rendering the UI to perform assertions based on form control and form field changes.
-The following examples demonstrate the process of testing forms with reactive and template-driven forms.
+Las pruebas juegan un papel importante en las aplicaciones complejas. Una estrategia de pruebas más simple es útil cuando se valida que sus formularios funcionan correctamente.
+Los Formularios reactivos y los Formularios basados en plantillas tienen diferentes niveles de dependencia de la renderización de la UI para realizar aserciones basadas en el control del formulario y en los cambios del campo del formulario.
+Los siguientes ejemplos demuestran el proceso de prueba de formularios reactivos y Formularios basados en plantillas.
 
-### Testing reactive forms
+### Probando Formularios reactivos
 
-Reactive forms provide a relatively easy testing strategy because they provide synchronous access to the form and data models, and they can be tested without rendering the UI.
-In these tests, status and data are queried and manipulated through the control without interacting with the change detection cycle.
+Los formularios reactivos proporcionan una estrategia de pruebas relativamente fácil porque proporcionan acceso sincrónico a los modelos de formulario y de datos, y pueden ser probados sin renderizar la UI.
+En estas pruebas, el estado y los datos se consultan y manipulan a través del control sin interactuar con el ciclo de detección de cambios.
 
-The following tests use the favorite-color components from previous examples to verify the view-to-model and model-to-view data flows for a reactive form.
+Las siguientes pruebas utilizan los componentes de color favorito de los ejemplos anteriores para verificar los flujos de datos de vista a modelo y de modelo a vista para un formulario reactivo.
 
-**Verifying view-to-model data flow**
+**Verificación del flujo de datos de la vista al modelo**
 
-The first example performs the following steps to verify the view-to-model data flow.
+El primer ejemplo realiza los siguientes pasos para verificar el flujo de datos de la vista al modelo.
 
-1. Query the view for the form input element, and create a custom "input" event for the test.
-1. Set the new value for the input to *Red*, and dispatch the "input" event on the form input element.
-1. Assert that the component's `favoriteColorControl` value matches the value from the input.
+1. Consulta la vista para el elemento input del formulario, y crea un evento "input" personalizado para la prueba.
+1. Establezca el nuevo valor del input como *Rojo*, y envíe el evento "input" en el elemento input del formulario.
+1. Comprueba que el valor del componente `favoriteColorControl` coincide con el valor del input.
 
 <code-example path="forms-overview/src/app/reactive/favorite-color/favorite-color.component.spec.ts" region="view-to-model" header="Favorite color test - view to model">
 </code-example>
 
-The next example performs the following steps to verify the model-to-view data flow.
+El siguiente ejemplo realiza los siguientes pasos para verificar el flujo de datos del modelo a la vista.
 
-1. Use the `favoriteColorControl`, a `FormControl` instance, to set the new value.
-1. Query the view for the form input element.
-1. Assert that the new value set on the control matches the value in the input.
+1. Utilice el `favoriteColorControl`, una instancia de `FormControl`, para establecer el nuevo valor.
+1. Consulte la vista para el elemento input del formulario.
+1. Compruebe que el nuevo valor establecido en el control coincide con el valor de la entrada.
 
 <code-example path="forms-overview/src/app/reactive/favorite-color/favorite-color.component.spec.ts" region="model-to-view" header="Favorite color test - model to view">
 </code-example>
 
-### Testing template-driven forms
+### Testing Formularios basados en plantillas
 
-Writing tests with template-driven forms requires a detailed knowledge of the change detection process and an understanding of how directives run on each cycle to ensure that elements are queried, tested, or changed at the correct time.
+Escribir pruebas con Formularios basados en plantillas requiere un conocimiento detallado del proceso de detección de cambios y una comprensión de cómo se ejecutan las directivas en cada ciclo para asegurar que los elementos son consultados, probados o cambiados en el momento correcto.
 
-The following tests use the favorite color components mentioned earlier to verify the data flows from view to model and model to view for a template-driven form.
+Las siguientes pruebas utilizan los componentes de color favoritos mencionados anteriormente para verificar los flujos de datos de la vista al modelo y del modelo a la vista para un formulario basado en plantillas.
 
-The following test verifies the data flow from view to model.
+La siguiente prueba verifica el flujo de datos de la vista al modelo.
 
 <code-example path="forms-overview/src/app/template/favorite-color/favorite-color.component.spec.ts" region="view-to-model" header="Favorite color test - view to model">
 </code-example>
 
-Here are the steps performed in the view to model test.
+Estos son los pasos que se realizan en la prueba de la vista al modelo.
 
-1. Query the view for the form input element, and create a custom "input" event for the test.
-1. Set the new value for the input to *Red*, and dispatch the "input" event on the form input element.
-1. Run change detection through the test fixture.
-1. Assert that the component `favoriteColor` property value matches the value from the input.
+1. Consultar la vista para el elemento input del formulario, y crear un evento "input" personalizado para la prueba.
+1. Establezca el nuevo valor del input como *Rojo*, y envíe el evento "input" en el elemento input del formulario.
+1. Ejecute la detección de cambios a través del dispositivo de prueba.
+1. Compruebe que el valor de la propiedad `favoriteColor` del componente coincide con el valor del input.
 
-The following test verifies the data flow from model to view.
+La siguiente prueba verifica el flujo de datos del modelo a la vista.
 
 <code-example path="forms-overview/src/app/template/favorite-color/favorite-color.component.spec.ts" region="model-to-view" header="Favorite color test - model to view">
 </code-example>
 
-Here are the steps performed in the model to view test.
+Estos son los pasos que se realizan en la prueba del modelo a la vista.
 
-1. Use the component instance to set the value of the `favoriteColor` property.
-1. Run change detection through the test fixture.
-1. Use the `tick()` method to simulate the passage of time within the `fakeAsync()` task.
-1. Query the view for the form input element.
-1. Assert that the input value matches the value of the `favoriteColor` property in the component instance.
+1. Utilice la instancia del componente para establecer el valor de la propiedad `favoriteColor`.
+1. Ejecutar la detección de cambios a través del test fixture.
+1. Utilice el método `tick()` para simular el paso del tiempo dentro de la tarea `fakeAsync()`.
+1. Consultar la vista para el elemento input del formulario.
+1. Asegura que el valor de la entrada coincide con el valor de la propiedad `favoriteColor` en la instancia del componente.
 
 
-## Next steps
+## Próximos pasos
 
-To learn more about reactive forms, see the following guides:
+Para saber más sobre los Formularios reactivos, consulte las siguientes guías:
 
-* [Reactive forms](guide/reactive-forms)
-* [Form validation](guide/form-validation#reactive-form-validation)
-* [Dynamic forms](guide/dynamic-form)
+* [Formularios reactivos](guide/reactive-forms)
+* [Validación de formularios](guide/form-validation#reactive-form-validation)
+* [Formas dinámicas](guide/dynamic-form)
 
-To learn more about template-driven forms, see the following guides:
+Para saber más sobre Formularios basados en plantillas, consulte las siguientes guías:
 
-* [Building a template-driven form](guide/forms) tutorial
-* [Form validation](guide/form-validation#template-driven-validation)
+* [Construir un formulario basado en una plantilla](guide/forms) tutorial
+* [Validación de formularios](guide/form-validation#template-driven-validation)
 * `NgForm` directive API reference
