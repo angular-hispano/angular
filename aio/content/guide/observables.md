@@ -1,119 +1,120 @@
-# Using observables to pass values
+# Usando observables para pasar valores
 
-Observables provide support for passing messages between parts of your application.
-They are used frequently in Angular and are the recommended technique for event handling, asynchronous programming, and handling multiple values.
+Los observables proporcionan soporte al pase de mensajes entre partes de su aplicación.
+Se usan frecuentemente en Angular y son la técnica recomendada para el manejo de eventos, programación asíncrona y manejar valores múltiples.
 
-The observer pattern is a software design pattern in which an object, called the *subject*, maintains a list of its dependents, called *observers*, and notifies them automatically of state changes.
-This pattern is similar (but not identical) to the [publish/subscribe](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) design pattern.
+El patrón de observador es un patrón de diseño en el cual un objeto, llamado el *sujeto*, mantiene una lista de sus dependientes, llamados *observadores* y los notifica automáticamente de cambios de estado.
+Este patrón es similar (pero no idéntico) al patrón de diseño editor/suscriptor.
 
-Observables are declarative&mdash;that is, you define a function for publishing values, but it is not executed until a consumer subscribes to it.
-The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
+Los observables son declarativos&mdash;esto es, se define una función para publicar valores, pero no se ejecuta hasta que un consumidor se suscribe a ésta.
+El consumidor suscrito ahora recibe notificaciones hasta que la función termina, o hasta que anule su suscripción.
 
-An observable can deliver multiple values of any type&mdash;literals, messages, or events, depending on the context. The API for receiving values is the same whether the values are delivered synchronously or asynchronously. Because setup and teardown logic are both handled by the observable, your application code only needs to worry about subscribing to consume values, and when done, unsubscribing. Whether the stream was keystrokes, an HTTP response, or an interval timer, the interface for listening to values and stopping listening is the same.
+Un observable puede entregar múltiples valores de cualquier tipo&mdash;literales, mensajes o eventos dependiendo del contexto. La API para recibir valores es la misma sin importar que los valores sean entregados sincrónicamente o asincrónicamente. Ya que el observable se encarga de la lógica de inicio y desmontaje, su codigo en la aplicación sólo debe preocuparse sobre suscribirse para consumir valores, y al terminal, anular la suscripción. Sin importar que el flujo fuera presiones de teclas, una respuesta HTTP o un intervalo del temporizador, la interface para escuchar a los valores y dejar de escuchar es la misma.
 
-Because of these advantages, observables are used extensively within Angular, and are recommended for app development as well.
+Debido a estas ventajas, los observables son usados extensamente en Angular y se recomiendan para el desarrollo de aplicaciones también.
 
-## Basic usage and terms
+## Uso y términos básicos
 
-As a publisher, you create an `Observable` instance that defines a *subscriber* function. This is the function that is executed when a consumer calls the `subscribe()` method. The subscriber function defines how to obtain or generate values or messages to be published.
+Como un emisor, puede crear una instancia `Observable` que define una función *suscriber*. Esta es la función queque es ejecutada cuando un consumidor llama al método `subscribe()`. La función suscriptora define cómo obtener o generar valores o mensajes a ser publicados.
 
-To execute the observable you have created and begin receiving notifications, you call its `subscribe()` method, passing an *observer*. This is a JavaScript object that defines the handlers for the notifications you receive. The `subscribe()` call returns a `Subscription` object that has an `unsubscribe()` method, which you call to stop receiving notifications.
+Para ejecutar el observable que ha creado y empezar a recibir notificaciones, llame al método `subscribe()`, pasando un *observer*. Este es un objeto JavaScript que define los manejadores para las notificaciones que recibe. La llamada `subscribe()` retorna un objeto`Subscription` que tiene un método `unsubscribe()`, que puede llamar para dejar de recibir notificaciones.
 
-Here's an example that demonstrates the basic usage model by showing how an observable could be used to provide geolocation updates.
+Encuentre al continuar un ejemplo que demuestra el modelo de uso básico demostrando cómo un observable puede ser usado para emitir actualizaciones de geolocalización.
 
-<code-example class="no-auto-link" path="observables/src/geolocation.ts" header="Observe geolocation updates"></code-example>
+<code-example class="no-auto-link" path="observables/src/geolocation.ts" header="Observar actualizaciones de geolocalización"></code-example>
 
-## Defining observers
+## Definiendo observadores
 
-A handler for receiving observable notifications implements the `Observer` interface. It is an object that defines callback methods to handle the three types of notifications that an observable can send:
+Un manejador para recibir notificaciones de un observable implementa la interface `Observer`. Es un objeto que defina los métodos de retrollamada (callback) para manejar los tres tipos de notificaciones que un observador puede enviar:
 
-| Notification type | Description |
-|:---------|:-------------------------------------------|
-| `next`  | Required. A handler for each delivered value. Called zero or more times after execution starts.|
-| `error` | Optional. A handler for an error notification. An error halts execution of the observable instance.|
-| `complete` | Optional. A handler for the execution-complete notification. Delayed values can continue to be delivered to the next handler after execution is complete.|
+| Tipo de notificación | Descripción                                                  |
+| :------------------- | :----------------------------------------------------------- |
+| `next`               | Requerido. Un manejador por cada valor entregado. Llamado cero o más veces después de que la ejecución empieza. |
+| `error`              | Opcional. Un manejador para una notificación de error. Un error detiene la ejecución de la instancia observable. |
+| `complete`           | Opcional. Un manejador de la notificación "ejecución completa". Los valores retrasados pueden seguir siendo entregados al siguiente manejador después de que la ejecución se completa. |
 
-An observer object can define any combination of these handlers. If you don't supply a handler for a notification type, the observer ignores notifications of that type.
+Un objeto observador puede definir cualquier combinación de estos manejadores, Si no provee un método para un tipo de notificación, el observador ignora notificaciones de ese tipo.
 
-## Subscribing
+## Suscribiéndose
 
-An `Observable` instance begins publishing values only when someone subscribes to it. You subscribe by calling the `subscribe()` method of the instance, passing an observer object to receive the notifications.
+Una instancia `Observable` empieza publicando valores sólo cuando alguien se suscribe a ésta llamando al método `subscribe()` de la instancia, pasando un objeto observer para recibir las notificaciones.
 
 <div class="alert is-helpful">
 
-In order to show how subscribing works, we need to create a new observable. There is a constructor that you use to create new instances, but for illustration, we can use some methods from the RxJS library that create simple observables of frequently used types:
+En orden para mostrar cómo funcionan las suscripciones, necesitamos crear un observable. Hay un constructor que se usa para crear nuevas instancias, pero a manera ilustrativa, podemos usar algunos médotos de la librería RxJS que crea observables simples de tipos usados frecuentemente:
 
-  * `of(...items)`&mdash;Returns an `Observable` instance that synchronously delivers the values provided as arguments.
-  * `from(iterable)`&mdash;Converts its argument to an `Observable` instance. This method is commonly used to convert an array to an observable.
+  * `of(...items)`&mdash;Retorna una instancia `Observable` que entrega sincrónicamente los valores envíados como argumentos.
+  * `from(iterable)`&mdash;Convierte sus argumentos a una instancia `Observable`. Éste método es usado comúnmente para convertir un array en un observable.
 
 </div>
 
-Here's an example of creating and subscribing to a simple observable, with an observer that logs the received message to the console:
+Acá hay un ejemplo creando y suscribiéndose a un observable simple, con son observador que muestra los mensajes recibidos en la consola:
 
 <code-example
   path="observables/src/subscribing.ts"
   region="observer"
-  header="Subscribe using observer"></code-example>
+  header="Subscribirse usand observador"></code-example>
 
-Alternatively, the `subscribe()` method can accept callback function definitions in line, for `next`, `error`, and `complete` handlers. For example, the following `subscribe()` call is the same as the one that specifies the predefined observer:
+Alternativamente, el método `subscribe()` puede aceptar funciónes retrollamada en la línea para los manejadores de `next`, `error`, y `complete`. Por ejemplo, la siguiente llamada `subscribe()` es la misma a la que especifica el observador predefinido:
 
-<code-example path="observables/src/subscribing.ts" region="sub_fn" header="Subscribe with positional arguments"></code-example>
+<code-example path="observables/src/subscribing.ts" region="sub_fn" header="Subscribirse con argumentos posicionales"></code-example>
 
-In either case, a `next` handler is required. The `error` and `complete` handlers are optional.
+En cualquier caso, un manejador `next`es necesario. Los manejadores `error` y `complete` son opcionales.
 
-Note that a `next()` function could receive, for instance, message strings, or event objects, numeric values, or structures, depending on context. As a general term, we refer to data published by an observable as a *stream*. Any type of value can be represented with an observable, and the values are published as a stream.
+Tome en cuenta que la función `next()` puede recibir, por ejemplo, cadenas de mensajes, eventos de objetos, valores numéricos o estructuras, dependiendo del contexto. Como un término general, nos referimos a la data publicada por un observable como un *stream*. Cualquier tipo de valor puede representarse con un observable y los valores publicados como un stream.
 
-## Creating observables
+## Creando observables
 
-Use the `Observable` constructor to create an observable stream of any type. The constructor takes as its argument the subscriber function to run when the observable’s `subscribe()` method executes. A subscriber function receives an `Observer` object, and can publish values to the observer's `next()` method.
+Use el constructor `Observable` para crear un stream observable de cualquier tipo. El constructor toma como su argumento la función de suscriptor para ejecutarse cuando el método `subscribe()` se ejecuta. Una función suscriptora recibe un objeto `Observer` y puede publicar valores al método `next()`.
 
-For example, to create an observable equivalent to the `of(1, 2, 3)` above, you could do something like this:
+Por ejemplo, para crear un observable equivalente al `of(1, 2, 3)` encontrado anteriormente, debería hacer algo como esto:
 
-<code-example path="observables/src/creating.ts" region="subscriber" header="Create observable with constructor"></code-example>
+<code-example path="observables/src/creating.ts" region="subscriber" header="Crear observable con un constructor"></code-example>
 
-To take this example a little further, we can create an observable that publishes events. In this example, the subscriber function is defined inline.
+Para tomar este ejemplo más lejos, podemos crear un observable que publica eventos. En este ejemplo, la función suscriptora se define en la línea.
 
-<code-example path="observables/src/creating.ts" region="fromevent" header="Create with custom fromEvent function"></code-example>
+<code-example path="observables/src/creating.ts" region="fromevent" header="Crear con función fromEvent personalizada"></code-example>
 
-Now you can use this function to create an observable that publishes keydown events:
+Ahora puede usar esta función para crear un observable que publica eventos de presiones de teclas:
 
-<code-example path="observables/src/creating.ts" region="fromevent_use" header="Use custom fromEvent function"></code-example>
+<code-example path="observables/src/creating.ts" region="fromevent_use" header="Usando función fromEvent personalizada"></code-example>
 
-## Multicasting
+## Multidifusión (Multicasting)
 
-A typical observable creates a new, independent execution for each subscribed observer. When an observer subscribes, the observable wires up an event handler and delivers values to that observer. When a second observer subscribes, the observable then wires up a new event handler and delivers values to that second observer in a separate execution.
+Un observable típico crea una ejecución nueva e independiente para cada observador suscrito. Cuando un observador se suscribe, el observable conecta un manejador de evento y entrega valores a ese observador. Cuando un segundo observador se suscribe, el observable conecta a un nuevo manejador de eventos y entrega valores a el segundo observador en una ejecución separada.
 
-Sometimes, instead of starting an independent execution for each subscriber, you want each subscription to get the same values&mdash;even if values have already started emitting. This might be the case with something like an observable of clicks on the document object.
+Algunas veces, en vez de comenzar una ejecución independiente ara cada suscriptor, quiere que cada suscripción obtenga los mismos valores&mdash;incluso si los valores ya empezaron e emitirse. Este sería el caso con algo como un observable de click en el objeto de documento.
 
-*Multicasting* is the practice of broadcasting to a list of multiple subscribers in a single execution. With a multicasting observable, you don't register multiple listeners on the document, but instead re-use the first listener and send values out to each subscriber.
+*Multidifusión* es la práctica de difundir a una lista de múltiples suscriptores en una sola ejecución. Con un observable en multidifusión, no necesita registrar varios oyentes en el documento, prefiriendo reutilizar el primer oyente y mandar valores a cada suscriptor.
 
-When creating an observable you should determine how you want that observable to be used and whether or not you want to multicast its values.
+Cuando cree un observable debería determinar cómo quiere que ese observable se use y si quiere o no que se multidifusión en sus valores.
 
-Let’s look at an example that counts from 1 to 3, with a one-second delay after each number emitted.
+Veamos un ejemplo que cuenta de 1 a 3, con un retraso de un segundo después de que cada número es emitido.
 
-<code-example path="observables/src/multicasting.ts" region="delay_sequence" header="Create a delayed sequence"></code-example>
+<code-example path="observables/src/multicasting.ts" region="delay_sequence" header="Crer una secuencia retrasada"></code-example>
 
-Notice that if you subscribe twice, there will be two separate streams, each emitting values every second. It looks something like this:
+Tome en cuenta que si se suscribe dos veces, habrán dos streams separados, cada una emitiendo valores cada segundo. Se ve parecido a esto:
 
-<code-example path="observables/src/multicasting.ts" region="subscribe_twice" header="Two subscriptions"></code-example>
+<code-example path="observables/src/multicasting.ts" region="subscribe_twice" header="Dos suscripciones"></code-example>
 
- Changing the observable to be multicasting could look something like this:
+Cambiando al observable a multidifusión se vería similar a esta manera:
 
-<code-example path="observables/src/multicasting.ts" region="multicast_sequence" header="Create a multicast subscriber"></code-example>
+<code-example path="observables/src/multicasting.ts" region="multicast_sequence" header="Crear suscriptor multidifusión"></code-example>
 
 <div class="alert is-helpful">
-   Multicasting observables take a bit more setup, but they can be useful for certain applications. Later we will look at tools that simplify the process of multicasting, allowing you to take any observable and make it multicasting.
+   Los observables multidifusión toman más tiempo empezando, pero pueden ser más útiles para cieras aplicaciones. Más adelante veremos herramientas que simiplifican el proceso de multidifusión, permitiéndole tomar cualquier observable y volverlo multidifusión.
 </div>
 
-## Error handling
 
-Because observables produce values asynchronously, try/catch will not effectively catch errors. Instead, you handle errors by specifying an `error` callback on the observer. Producing an error also causes the observable to clean up subscriptions and stop producing values. An observable can either produce values (calling the `next` callback), or it can complete, calling either the `complete` or `error` callback.
+## Manejo de errores
+
+Como los observable producen valores de manera asíncrona, try/catch no va a detectar errores efectivamente. Los errores se manejan especificando una retrollamada `error` en el observador. Produciendo un error también causa que el observable limpie sus suscripciones y deje de producir valores. Un observable puede producir (haciendo retrollamada a `next`), o puede completar, con la retrollamda `complete` o `error`.
 
 <code-example>
 myObservable.subscribe({
-  next(num) { console.log('Next num: ' + num)},
-  error(err) { console.log('Received an error: ' + err)}
+  next(num) { console.log('Siguiente número: ' + num)},
+  error(err) { console.log('Se recibió el error: ' + err)}
 });
 </code-example>
 
-Error handling (and specifically recovering from an error) is covered in more detail in a later section.
+El manejo de errores (y especialmente la recuperación de un error) se cubre en mayor detalle  más adelante.
