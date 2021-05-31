@@ -1,16 +1,16 @@
 
-# Dynamic queries flag migration
+# Migración de indicadores dinámicos de consultas
 
-## What does this migration do?
+## ¿Qué hace esta migración?
 
-In Angular version 8, a schematic added `static` flags to all `@ViewChild()` and `@ContentChild()` queries.
-This was the first step towards changing the default behavior.
-With version 9, the default value changes to `static: false` and the flag becomes optional.
+En la versión 8 de Angular, un esquema agregó el indicador `static` a todas las consultas `@ViewChild()` y `@ContentChild()`.
+Este fue el primer paso para cambiar el comportamiento por defecto.
+En la versión 9, el valor por defecto cambió a `static: false` y el indicador se volvió opcional.
 
-This schematic scans classes in the compilation and for each class, checks if the members have a `@ViewChild()` or `@ContentChild()` query with the `static` flag set to `false`.
-If so, the schematic removes the flag, as it now matches the default.
+Este esquema escanea las clases en compilación y por cada clase revisa si los miembros tienen una consulta `@ViewChild()` o `@ContentChild()` con el indicador `static` fijado en `false`
+Si es así, el esquema remueve el indicador para que tome el valor por defecto.
 
-**Before:**
+**Antes:**
 ```ts
 @ViewChild('foo', {static: false}) foo: ElementRef;
 
@@ -18,65 +18,65 @@ If so, the schematic removes the flag, as it now matches the default.
 ```
 
 
-**After:**
+**Después:**
 ```ts
 @ViewChild('foo') foo: ElementRef;
 
-// this query doesn't change because the static value is true
+// esta consulta no cambia porque el valor de static es true
 @ViewChild('bar', {static: true}) bar: ElementRef;
 ```
 
-Note that the flag is not supported in `@ViewChildren()` or `@ContentChildren()` queries, so the schematic will not check these properties.
+Note que el indicador no está soportado en las consultas `@ViewChildren()` o `@ContentChildren()`, entonces el esquema no revisará esas propiedades.
 
 
-## Why is this migration necessary?
+## ¿Por qué es necesaria esta migración?
 
-This schematic performs a code cleanup to remove `static` flags that match the default, as they are no longer necessary.
-Functionally, the code change should be a noop.
+Este esquema realiza una limpieza de código al remover el indicador `static` que coincide con el predeterminado, ya que no son necesarios.
+Funcionalmente, el cambio de código debería afectar su comportamiento.
 
-Before version 9, Angular figured out the static or dynamic nature of a query automatically, based on how the template was written.
-Looking at templates in this way, however, caused buggy and surprising behavior (see more about that in the [Static Query Migration Guide](guide/static-query-migration#what-does-this-flag-mean)).
-As of version 9, Angular uses dynamic queries (`static: false`) by default, which simplifies queries.
-Developers can still explicitly set a query to `static: true` if necessary.
+Antes de la versión 9, Angular descubrió la naturaleza estática o dinámica de una consulta automáticamente, basada en como fue escrita la plantilla.
+Sin embargo, mirar las plantillas de esta manera, provocó un comportamiento defecuoso sorprendente (ver más sobre esto en [Guía para la migración de consultas estáticas](guide/static-query-migration#what-does-this-flag-mean)).
+A partir de la versión 9, Angular usa consultas dinámicas (`static: false`) por defecto, lo cuál simplifica las consultas.
+Pero los desarrolladores aún pueden fijar una consulta como `static: true` si es necesario.
 
 
 <div class=" alert is-helpful">
 
-### What is the difference between static and dynamic queries?
+### ¿Cuál es la diferencia entre consultas estáticas y dinámicas?
 
-The `static` option for `@ViewChild()` and `@ContentChild()` queries determines when the query results become available.
+La opción `static` para las consultas `@ViewChild()` y `@ContentChild()` determina cuando los resultados de la consulta están disponibles.
 
-With static queries (`static: true`), the query resolves once the view has been created, but before change detection runs.
-The result, though, will never be updated to reflect changes to your view, such as changes to `ngIf` and `ngFor` blocks.
+Con las consultas estáticas (`static: true`), la consulta se resuelve una vez la vista ha sido creada, pero antes de que se ejecute la detección de cambios.
+Sin embargo, el resultado nunca se actualizará para reflejar los cambios en tu vista, por ejemplo para cambios en bloques `ngIf` y `ngFor`.
 
-With dynamic queries (`static: false`), the query resolves after either `ngAfterViewInit()` or `ngAfterContentInit()` for `@ViewChild()` and `@ContentChild()` respectively.
-The result will be updated for changes to your view, such as changes to `ngIf` and `ngFor` blocks.
+Con las consultas dinámicas (`static: false`), la consulta se resuelve después de `ngAfterViewInit()` o `ngAfterContentInit()` para `@ViewChild()` y `@ContentChild()` respectivamente.
+El resultado estará actualizado para los cambios en tu vista, por ejemplo para cambios en bloques `ngIf` y `ngFor`.
 
-For more information, see the following entries in the
-[Static Query Migration Guide](guide/static-query-migration):
+Para más información, mira las siguientes entradas en
+[Guía para la migración de consultas estáticas](guide/static-query-migration):
 
-* [How do I choose which `static` flag value to use: `true` or `false`?](guide/static-query-migration#how-do-i-choose-which-static-flag-value-to-use-true-or-false)
+* [¿Cómo elegir qué valor de indicador `static` usar: `true` o `false`?](guide/static-query-migration#how-do-i-choose-which-static-flag-value-to-use-true-or-false)
 
-* [Is there a case where I should use `{static: true}`?](guide/static-query-migration#is-there-a-case-where-i-should-use-static-true)
+* [¿Hay un caso donde debería usar `{static: true}`?](guide/static-query-migration#is-there-a-case-where-i-should-use-static-true)
 
 </div>
 
 
-## What does this mean for libraries?
+## ¿Qué significa esto para las librerías?
 
-In order to support applications that are still running with version 8, the safest option for libraries is to retain the `static` flag to keep the resolution timing consistent.
+Para apoyar las aplicaciones que aún están funcionando con la versión 8, la opción más segura para las librerías es conservar el indicador `static` para mantener consistencia en el tiempo de resolución.
 
-- *Libraries on version 9 with applications running version 8: *
+- *Librerías en la versión 9 con aplicaciones funcionando en la versión 8: *
 
-  The schematic won't run on libraries.
-  As long as libraries retain their `static` flags from version 8, they should work with apps on 8.
+  El esquema no se ejecutará en librerías.
+  Mientras las librerías conserven sus indicadores `static` de la versión 8, podrán funcionar con aplicaciones en la versión 8.
 
-- *Libraries on version 8 with applications running version 9: *
+- *Librerías en la versión 8 con aplicaciones funcionando en la versión 9: *
 
-  Libraries will have explicit flags defined.
-  The behavior with explicit flags has not changed.
+  Las librerías tendrán que definir explícitamente los indicadores.
+  El comportamiento con los indicadores explícitos no ha cambiado.
 
 
-### What about applications using non-migrated libraries?
+### ¿Qué pasa con las aplicaciones que están usando librerías que no han migrado?
 
-Because this is a code cleanup that is a noop, non-migrated libraries will work the same either way.
+Como esta es una limpieza de código no afecta el comportamiento, las librerías que no han migrado funcionarán igual de cualquier forma.
