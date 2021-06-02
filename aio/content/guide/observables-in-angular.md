@@ -1,53 +1,54 @@
-# Observables in Angular
+# Observables en Angular
 
-Angular makes use of observables as an interface to handle a variety of common asynchronous operations. For example:
+Angular utiliza observables para manejar operaciones asincronas. Por ejemplo:
 
-* You can define [custom events](guide/event-binding#custom-events-with-eventemitter) that send observable output data from a child to a parent component.
-* The HTTP module uses observables to handle AJAX requests and responses.
-* The Router and Forms modules use observables to listen for and respond to user-input events.
+- Puedes definir [custom events](guide/event-binding#custom-events-with-eventemitter) que envían la informacion de un componente hijo a un componente padre.
+- El módulo HTTP usa observables para manejar la peticiones y respuestas AJAX.
+- Los módulos Router (Enrutador) y Forms usa observables para escuchar y responder a los eventos del usuario.
 
-## Transmitting data between components
+## Trasmitir informacion entre componentes
 
-Angular provides an `EventEmitter` class that is used when publishing values from a component through the [`@Output()` decorator](guide/inputs-outputs#how-to-use-output).
-`EventEmitter` extends [RxJS `Subject`](https://rxjs.dev/api/index/class/Subject), adding an `emit()` method so it can send arbitrary values.
-When you call `emit()`, it passes the emitted value to the `next()` method of any subscribed observer.
+Angular provee una clase llamada `EventEmitter` la cual se utiliza para emitir valores desde un componente a través del [`@Output()` decorator](guide/inputs-outputs#how-to-use-output).
+`EventEmitter` extiende el [RxJS `Subject`](https://rxjs.dev/api/index/class/Subject), agregandole el metodo `emit()` para que pueda enviar valores arbitrarios.
+Cuando llamamos a `emit()`, se pasa el valor emitido al metodo `next()` de cualquier observable subscrito.
 
-A good example of usage can be found in the [EventEmitter](api/core/EventEmitter) documentation. Here is the example component that listens for open and close events:
+Un buen ejemplo de uso puede encontrarse en la documentación de [EventEmitter](api/core/EventEmitter). Aqui podemos encontrar un ejemplo de componente que escucha eventos de open y close:
 
 `<app-zippy (open)="onOpen($event)" (close)="onClose($event)"></app-zippy>`
 
-Here is the component definition:
+La definicion del componente es:
 
 <code-example path="observables-in-angular/src/main.ts" header="EventEmitter" region="eventemitter"></code-example>
 
 ## HTTP
-Angular’s `HttpClient` returns observables from HTTP method calls. For instance, `http.get(‘/api’)` returns an observable. This provides several advantages over promise-based HTTP APIs:
 
-* Observables do not mutate the server response (as can occur through chained `.then()` calls on promises). Instead, you can use a series of operators to transform values as needed.
-* HTTP requests are cancellable through the `unsubscribe()` method.
-* Requests can be configured to get progress event updates.
-* Failed requests can be retried easily.
+Angular `HttpClient` retorna un observable cuando un metodo HTTP es llamado. Por ejemplo `http.get(‘/api’)` retorna un observable. Esto proporciona varias ventajas sobre las promesas basadas en HTTP APIs:
+
+- Los Observables no mutan la respuesta del servidor (como puede ocurrir encadenandos llamadas a `.then()` en las promesas). En su lugar, se usaran una serie de operadores para transformar la respuesta segun necesitemos.
+- Las peticiones HTTP pueden ser cancelables mediante el metodo `unsubscribe()`.
+- Se puede obtener informacion acerca del progreso de la peticion.
+- Las peticiones fallidas se pueden reintentar fácilmente.
 
 ## Async pipe
 
-The [AsyncPipe](api/common/AsyncPipe) subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
+El [AsyncPipe](api/common/AsyncPipe) se subscribe a un observable o promesa y devuelve el ultimo valor que ha sido emitido. Cuando se emite un nuevo valor, el pipe marca el componente, para verificar si hay cambios.
 
-The following example binds the `time` observable to the component's view. The observable continuously updates the view with the current time.
+El siguiente ejemplo combina un observable de tiempo con la vista del componente. El observable actualiza continuamente la vista con la hora actual.
 
 <code-example path="observables-in-angular/src/main.ts" header="Using async pipe" region="pipe"></code-example>
 
 ## Router
 
-[`Router.events`](api/router/Router#events) provides events as observables. You can use the `filter()` operator from RxJS to look for events of interest, and subscribe to them in order to make decisions based on the sequence of events in the navigation process. Here's an example:
+[`Router.events`](api/router/Router#events) proporciona eventos como observables. Puedes usar el operador `filter()` desde RxJS y obtener los eventos que sean de tu interes, y subscribirte a ellos con el fin de tomar decisiones basadas en la secuencia de eventos en el proceso de navegación. Aquí hay un ejemplo:
 
 <code-example path="observables-in-angular/src/main.ts" header="Router events" region="router"></code-example>
 
-The [ActivatedRoute](api/router/ActivatedRoute) is an injected router service that makes use of observables to get information about a route path and parameters. For example, `ActivatedRoute.url` contains an observable that reports the route path or paths. Here's an example:
+El [ActivatedRoute](api/router/ActivatedRoute) es un servicio de router inyectado que utiliza observables para obtener información acerca de una ruta y parámetros. Por ejemplo, "ActivatedRoute.url" contiene un observable que informa la ruta o las rutas. He aquí un ejemplo:
 
 <code-example path="observables-in-angular/src/main.ts" header="ActivatedRoute" region="activated_route"></code-example>
 
-## Reactive forms
+## Formularios Reactivos
 
-Reactive forms have properties that use observables to monitor form control values. The [`FormControl`](api/forms/FormControl) properties `valueChanges` and `statusChanges` contain observables that raise change events. Subscribing to an observable form-control property is a way of triggering application logic within the component class. For example:
+Los formularios reactivos tienen propiedades que usan observables para monitorear los valores de los FormControl. El [`FormControl`](api/forms/FormControl) tiene las propiedaded `valueChanges` y `statusChanges` que contienen observables los cuales generan eventos de cambio. Suscribirse a una propiedad observable de form-control es una forma de activar la lógica de la aplicación dentro de la clase del componente. Por ejemplo:
 
 <code-example path="observables-in-angular/src/main.ts" header="Reactive forms" region="forms"></code-example>
