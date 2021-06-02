@@ -424,7 +424,7 @@ Para obtener más información, consulta [Configuración del espacio de trabajo]
 
 Una sintaxis tipo TypeScript que Angular evalúa dentro de un [enlace de datos](#data-binding).
 
-Lee acerca de cómo escribir expresiones de plantilla en la sección [expresiones de plantilla](guide/interpolation#expresiones-de-plantilla) de la guía [Interpolación](guide/interpolation).
+Lee acerca de cómo escribir expresiones de plantilla en la sección [expresiones de plantilla](guide/interpolation#template-expressions) de la guía [Interpolación](guide/interpolation).
 
 {@a F}
 

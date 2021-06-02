@@ -55,6 +55,7 @@ de los metadatos del `Component`.
 </div>
 
 ## Expresiones de plantilla
+{@a template-expressions}
 
 Una **expresión** de plantilla produce un valor y se muestra dentro de
 las llaves dobles, `{{ }}`.

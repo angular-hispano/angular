@@ -266,7 +266,7 @@ When the component's list of heroes has more than three items, Angular adds the 
 to the DOM and the message appears.
 If there are three or fewer items, Angular omits the paragraph, so no message appears.
 
-For more information, see [template expression operators](guide/interpolation#expresiones-de-plantilla).
+For more information, see [template expression operators](guide/interpolation#template-expressions).
 
 
 <div class="alert is-helpful">

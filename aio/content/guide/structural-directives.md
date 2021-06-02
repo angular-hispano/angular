@@ -39,7 +39,7 @@ No brackets. No parentheses. Just `*ngIf` set to a string.
 
 You'll learn in this guide that the [asterisk (*) is a convenience notation](guide/structural-directives#asterisk)
 and the string is a [_microsyntax_](guide/structural-directives#microsyntax) rather than the usual
-[template expression](guide/interpolation#expresiones-de-plantilla).
+[template expression](guide/interpolation#template-expressions).
 Angular desugars this notation into a marked-up `<ng-template>` that surrounds the
 host element and its descendants.
 Each structural directive does something different with that template.
