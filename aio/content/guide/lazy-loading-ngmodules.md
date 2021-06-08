@@ -1,96 +1,84 @@
-# Lazy-loading feature modules
+# Módulos de funciones de carga diferida
 
-By default, NgModules are eagerly loaded, which means that as soon as the app loads, so do all the NgModules, whether or not they are immediately necessary. For large apps with lots of routes, consider lazy loading&mdash;a design pattern that loads NgModules as needed. Lazy loading helps keep initial
-bundle sizes smaller, which in turn helps decrease load times.
+Por defecto, los NgModules son cargados de manera _eagerly_, esto significa que tan pronto como la aplicación cargue, también cargarán todos los NgModules, sean o no inmediatamente necesarios. Para aplicaciones grandes con muchas rutas, considera la carga diferida&mdash;un patrón de diseño que carga los NgModules como se vayan necesitando. La carga diferida ayuda a mantener más pequeño el tamaño de los bundles iniciales, lo que a su vez ayuda a disminuir los tiempos de carga.
 
 <div class="alert is-helpful">
-
-For the final sample app with two lazy-loaded modules that this page describes, see the
-<live-example></live-example>.
-
+  Para la aplicación final de muestra con los dos módulos de carga diferida que se describen en esta pagina, ve el <live-example></live-example>.
 </div>
 
 {@a lazy-loading}
 
-## Lazy loading basics
+## Conceptos básicos de carga diferida
 
-This section introduces the basic procedure for configuring a lazy-loaded route.
-For a step-by-step example, see the [step-by-step setup](#step-by-step) section on this page.
+Esta sección introduce el procedimiento básico para configurar rutas con carga diferida. Para un ejemplo paso a paso, ve la sección [paso a paso](#step-by-step) en esta página.
+Para aplicar la carga diferida en los módulos de angular usa `loadchildren` (en lugar de `component`) en tu configuración de `routes` en `AppRoutingModule` como se describe en el siguiente ejemplo.
 
-To lazy load Angular modules, use `loadchildren` (instead of `component`) in your `AppRoutingModule` `routes` configuration as follows.
-
-<code-example header="AppRoutingModule (excerpt)">
+<code-example header="AppRoutingModule (extracto)">
 
 const routes: Routes = [
-  {
-    path: 'items',
-    loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
-  }
+{
+path: 'items',
+loadChildren: () => import('./items/items.module').then(m => m.ItemsModule)
+}
 ];
 
 </code-example>
 
-In the lazy-loaded module's routing module, add a route for the component.
+En el módulo de enrutamiento del módulo de carga diferida, agregue una ruta para el componente.
 
-<code-example header="Routing module for lazy loaded module (excerpt)">
+<code-example header="Módulo de enrutamiento para el módulo de carga diferida (extracto)">
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ItemsComponent
-  }
+{
+path: '',
+component: ItemsComponent
+}
 ];
 
 </code-example>
 
-Also be sure to remove the `ItemsModule` from the `AppModule`.
-For step-by-step instructions on lazy loading modules, continue with the following sections of this page.
+También asegúrate de remover el `ItemsModule` de el `AppModule`.
+Para obtener instrucciones paso a paso sobre los módulos de carga diferida, continúa con las siguientes secciones de esta página.
 
 {@a step-by-step}
 
-## Step-by-step setup
+## Preparación del paso a paso
 
-There are two main steps to setting up a lazy-loaded feature module:
+Hay dos pasos principales para configurar la carga diferida en el módulo de funciones:
 
-1. Create the feature module with the CLI, using the `--route` flag.
-1. Configure the routes.
+1. Crear un módulo de funciones con el CLI, usando la bandera `--route`.
+2. Configurar las rutas.
 
-### Set up an app
+### Configurar una aplicación
 
-If you don’t already have an app, you can follow the steps below to
-create one with the CLI. If you already have an app, skip to
-[Configure the routes](#config-routes). Enter the following command
-where `customer-app` is the name of your app:
+Si no tienes una aplicación, puedes seguir los pasos que están abajo para crear una con el CLI. Si ya tienes una aplicación, ve a [Configurar las rutas](#config-routes). Ejecuta el siguiente comando en el cual `customer-app` es el nombre de tu aplicación:
 
 <code-example language="bash">
 ng new customer-app --routing
 </code-example>
 
-This creates an app called `customer-app` and the `--routing` flag
-generates a file called `app-routing.module.ts`, which is one of
-the files you need for setting up lazy loading for your feature module.
-Navigate into the project by issuing the command `cd customer-app`.
+Este comando crea una aplicación llamada `customer-app` y la bandera `--routing` genera un archivo llamado `app-routing.module.ts`, el cuál es uno de los archivos que se necesitan para configurar la funcionalidad de carga diferida en tu módulo.
+Entra a tu proyecto ejecutando el comando `cd customer-app`.
 
 <div class="alert is-helpful">
 
-The `--routing` option requires Angular/CLI version 8.1 or higher.
-See [Keeping Up to Date](guide/updating).
+La opción `--routing` requiere Angular/CLI versión 8.1 o superior.
+Ve [Mantenerse actualizado](guide/updating).
 
-</div>
+</div
 
-### Create a feature module with routing
+### Crea un módulo de funciones con enrutamiento
 
-Next, you’ll need a feature module with a component to route to.
-To make one, enter the following command in the terminal, where `customers` is the name of the feature module. The path for loading the `customers` feature modules is also `customers` because it is specified with the `--route` option:
+Para continuar, necesitarás un módulo de funciones con un componente a enrutar.
+Para hacer uno, ejecuta el siguiente comando en la terminal donde `customers` es el nombre de tu módulo de funciones. La ruta para cargar el módulo de `customers` es también `customers` porque está especificado con la opción `--route`.
 
 <code-example language="bash">
 ng generate module customers --route customers --module app.module
 </code-example>
 
-This creates a `customers` folder with the new lazy-loadable module `CustomersModule` defined in the `customers.module.ts` file. The command automatically declares the `CustomersComponent` inside the new feature module.
+Este comando crea un directorio llamado `customers` con el nuevo módulo de carga diferida llamado `CustomersModule` definido en el archivo de `customers.module.ts`. El comando automáticamente declara el componente `CustomersComponent` dentro del nuevo módulo de funciones.
 
-Because the new module is meant to be lazy-loaded, the command does NOT add a reference to the new feature module in the application's root module file, `app.module.ts`.
-Instead, it adds the declared route, `customers` to the `routes` array declared in the module provided as the `--module` option.
+Debido a que se entiende que el nuevo módulo será con carga diferida, el comando no agrega una referencia al nuevo módulo de funciones en el archivo raíz del módulo de la aplicación, `app.module.ts`. En lugar de eso, se agrega la ruta declarada, `customers` al array `routes` declarado en el módulo proporcionado con la opción `---module`.
 
 <code-example
   header="src/app/app-routing.module.ts"
@@ -98,19 +86,19 @@ Instead, it adds the declared route, `customers` to the `routes` array declared 
   region="routes-customers">
 </code-example>
 
-Notice that the lazy-loading syntax uses `loadChildren` followed by a function that uses the browser's built-in `import('...')` syntax for dynamic imports.
-The import path is the relative path to the module.
+Nota que en la sintaxis de la carga diferida se usa `loadChildren` seguido de una función que usa la sintaxis `import('...')` incorporada en el navegador para importaciones dinámicas.
+La ruta de importación es relativa a la ruta del módulo.
 
-#### Add another feature module
+#### Agregar otro módulo de funciones
 
-Use the same command to create a second lazy-loaded feature module with routing, along with its stub component.
+Usa el mismo comando para crear un segundo módulo de carga diferida con enrutador, junto con su componente auxiliar.
 
 <code-example language="bash">
 ng generate module orders --route orders --module app.module
 </code-example>
 
-This creates a new folder called `orders` containing the `OrdersModule` and `OrdersRoutingModule`, along with the new `OrdersComponent` source files.
-The `orders` route, specified with the `--route` option, is added to the `routes` array inside the `app-routing.module.ts` file, using the lazy-loading syntax.
+Esto crea un nuevo directorio llamado `orders`, contiene los archivos `OrdersModule` y `OrdersRoutingModule`, junto con el nuevo componente `OrdersComponent`.
+La ruta de `orders`, especificada con la opción `--route`, es agregada al array de `routes` dentro del archivo `app-routing.module.ts`, usando la sintaxis de carga diferida.
 
 <code-example
   header="src/app/app-routing.module.ts"
@@ -118,177 +106,169 @@ The `orders` route, specified with the `--route` option, is added to the `routes
   region="routes-customers-orders">
 </code-example>
 
-### Set up the UI
+### Preparar la UI
 
-Though you can type the URL into the address bar, a navigation UI is easier for the user and more common.
-Replace the default placeholder markup in `app.component.html` with a custom nav
-so you can easily navigate to your modules in the browser:
+Aunque puedes escribir la URL en la barra de dirección, una interfaz de usuario de navegación es más fácil para el usuario y más común.
+Reemplaza el contenido que viene por defecto en `app.component.html` por una barra de navegación personalizada para que puedas navegar de manera sencilla por los módulos en el navegador.
 
 <code-example path="lazy-loading-ngmodules/src/app/app.component.html" header="app.component.html" region="app-component-template" header="src/app/app.component.html"></code-example>
 
-To see your app in the browser so far, enter the following command in the terminal window:
+Para ver tu aplicación hasta el momento en el navegador, ingresa el siguiente comando en la terminal:
 
 <code-example language="bash">
 ng serve
 </code-example>
 
-Then go to `localhost:4200` where you should see “customer-app” and three buttons.
+Ahora puedes ir a `localhost:4200` donde deberías ver “customer-app” y tres botones.
 
 <div class="lightbox">
-  <img src="generated/images/guide/lazy-loading-ngmodules/three-buttons.png" width="300" alt="three buttons in the browser">
+  <img src="generated/images/guide/lazy-loading-ngmodules/three-buttons.png" width="300" alt="tres botones en el navegador">
 </div>
 
-These buttons work, because the CLI automatically added the routes to the feature modules to the `routes` array in `app.module.ts`.
+Estos botones funcionan porque el CLI agregó automáticamente las rutas de los módulos de funcionalidades en el array `routes` dentro del `app.module.ts`.
 
 {@a config-routes}
 
-### Imports and route configuration
+### Importaciones y configuración del enrutador
 
-The CLI automatically added each feature module to the routes map at the application level.
-Finish this off by adding the default route. In the `app-routing.module.ts` file, update the `routes` array with the following:
+El CLI automáticamente agregó cada módulo de funciones al mapa de rutas a nivel de la aplicación.
+Para terminar esto agrega una ruta predeterminada. En el archivo `app-routing.module.ts`, actualiza el array de `routes` con lo siguiente:
 
 <code-example path="lazy-loading-ngmodules/src/app/app-routing.module.ts" id="app-routing.module.ts" region="const-routes" header="src/app/app-routing.module.ts"></code-example>
 
-The first two paths are the routes to the `CustomersModule` and the `OrdersModule`.
-The final entry defines a default route. The empty path matches everything that doesn't match an earlier path.
+Las primeras dos rutas son las rutas de `CustomerModule` y de `OrdersModule`.
+La entrada final define la ruta predeterminada. La ruta vacía coincide con todo lo que no haya coincidido con las rutas anteriores.
 
+### Dentro del módulo de funciones
 
-### Inside the feature module
-
-Next, take a look at the `customers.module.ts` file. If you’re using the CLI and following the steps outlined in this page, you don’t have to do anything here.
+Para continuar, echa un vistazo al archivo `customers.module.ts`. Si estás usando el CLI y siguiendo los pasos resumidos en esta página, no tienes que hacer nada aquí.
 
 <code-example path="lazy-loading-ngmodules/src/app/customers/customers.module.ts" id="customers.module.ts" region="customers-module" header="src/app/customers/customers.module.ts"></code-example>
 
-The `customers.module.ts` file imports the `customers-routing.module.ts` and `customers.component.ts` files. `CustomersRoutingModule` is listed in the `@NgModule` `imports` array giving `CustomersModule` access to its own routing module. `CustomersComponent` is in the `declarations` array, which means `CustomersComponent` belongs to the `CustomersModule`.
+El archivo `customers.module.ts` importa los archivos `customers-routing.module.ts` y `customers.component.ts`. `CustomerRoutingModule` está listado en el array de `imports` en `@NgModule` dando acceso a `CustomersModule` a su propio módulo de enrutamiento. `CustomersComponent` está en el array de `declarations`, esto significa que `CustomersComponent` pertenece a `CustomersModule`.
 
+El archivo `app-routing.module.ts` importa el módulo de funciones, `customers.module.ts` usando importación dinámica de Javascript.
 
-The `app-routing.module.ts` then imports the feature module, `customers.module.ts` using JavaScript's dynamic import.
-
-The feature-specific route definition file `customers-routing.module.ts` imports its own feature component defined in the `customers.component.ts` file, along with the other JavaScript import statements. It then maps the empty path to the `CustomersComponent`.
+El archivo específico de definición de ruta `customers-routing.module.ts` importa su propio componente de funcionalidades definido en el archivo `customers.component.ts`, junto con las otras declaraciones de importaciones de JavaScript. A continuación asigna la ruta vacía al `CustomerComponent`,
 
 <code-example path="lazy-loading-ngmodules/src/app/customers/customers-routing.module.ts" id="customers-routing.module.ts" region="customers-routing-module" header="src/app/customers/customers-routing.module.ts"></code-example>
 
-The `path` here is set to an empty string because the path in `AppRoutingModule` is already set to `customers`, so this route in the `CustomersRoutingModule`, is already within the `customers` context. Every route in this routing module is a child route.
+El `path` aquí está como una string vacía porque la ruta en `AppRoutingModule` ya está configurada como `customers`, por lo tanto esta ruta en `CustomersRoutingModule`, ya está dentro del contexto de `customers`. Toda ruta en este módulo de enrutamiento es una ruta hija.
 
-The other feature module's routing module is configured similarly.
+El módulo de enrutamiento del otro módulo de funciones está configurado de una manera similar.
 
-<code-example path="lazy-loading-ngmodules/src/app/orders/orders-routing.module.ts" id="orders-routing.module.ts" region="orders-routing-module-detail" header="src/app/orders/orders-routing.module.ts (excerpt)"></code-example>
+<code-example path="lazy-loading-ngmodules/src/app/orders/orders-routing.module.ts" id="orders-routing.module.ts" region="orders-routing-module-detail" header="src/app/orders/orders-routing.module.ts (extracto)"></code-example>
 
-### Verify lazy loading
+### Verifica la carga diferida
 
-You can check to see that a module is indeed being lazy loaded with the Chrome developer tools. In Chrome, open the dev tools by pressing `Cmd+Option+i` on a Mac or `Ctrl+Shift+j` on a PC and go to the Network Tab.
-
-<div class="lightbox">
-  <img src="generated/images/guide/lazy-loading-ngmodules/network-tab.png" width="600" alt="lazy loaded modules diagram">
-</div>
-
-
-Click on the Orders or Customers button. If you see a chunk appear, everything is wired up properly and the feature module is being lazy loaded. A chunk should appear for Orders and for Customers but will only appear once for each.
-
+Ahora puedes revisar que un módulo está siendo cargado de manera diferida con las herramientas de desarrollador de Chrome. En Chrome, abre las herramientas de desarrollador presionando `Cmd+Option+i` en Mac o `Ctrl+Shift+j` en una PC y ve a la pestaña de Red o Network.
 
 <div class="lightbox">
-  <img src="generated/images/guide/lazy-loading-ngmodules/chunk-arrow.png" width="600" alt="lazy loaded modules diagram">
+  <img src="generated/images/guide/lazy-loading-ngmodules/network-tab.png" width="600" alt="diagrama de módulos con carga diferida ">
 </div>
 
+Haz click en el botón de Orders o Customers. Si ves que aparece un _chunk_, todo está configurado de manera adecuada y el módulo de funciones está siendo cargado de manera diferida. Un _chunk_ debería aparecer para Orders y para Customers pero sólo aparecerá una vez para cada uno.
 
-To see it again, or to test after working in the project, clear everything out by clicking the circle with a line through it in the upper left of the Network Tab:
+<div class="lightbox">
+  <img src="generated/images/guide/lazy-loading-ngmodules/chunk-arrow.png" width="600" alt="diagrama de carga diferida">
+</div>
+
+Para verlo de nuevo, o probar después de trabajar en el proyecto, limpia todo dando click en el círculo que tiene una línea atravesada situado en la parte superior izquierda en la pestaña de Red.
 
 <div class="lightbox">
   <img src="generated/images/guide/lazy-loading-ngmodules/clear.gif" width="200" alt="lazy loaded modules diagram">
 </div>
 
+Después recarga con `Cmd+r` o `Ctrl+r`, dependiendo el sistema operativo que estés utilizando.
 
-Then reload with `Cmd+r` or `Ctrl+r`, depending on your platform.
+## `forRoot()` y `forChild()`
 
-## `forRoot()` and `forChild()`
+Como ya habrás notado, el CLI agrega `RouterModule.forRoot(routes)` al array de `imports` en `AppRoutingModule`.
+Esto permite a Angular saber que `AppRoutingModule` es un módulo de enrutamiento y `forRoot()` especifica que es el módulo raíz de rutas.
+Esto configura todas las rutas que le pasas, dando acceso a las directivas del enrutador, y registra el servicio de `Router`.
+Usa `forRoot()` solamente una vez en la aplicación, dentro de `AppRoutingModule`.
 
-You might have noticed that the CLI adds `RouterModule.forRoot(routes)` to the `AppRoutingModule` `imports` array.
-This lets Angular know that the `AppRoutingModule` is a routing module and `forRoot()` specifies that this is the root routing module.
-It configures all the routes you pass to it, gives you access to the router directives, and registers the `Router` service.
-Use `forRoot()` only once in the application, inside the `AppRoutingModule`.
+El CLI también agrega `RouterModule.forChild(routes)` al módulo de enrutamiento.
+De esta manera, Angular sabe que la lista de rutas solo es responsable de proporcionar rutas adicionales y está destinado a módulos de funciones.
+También puedes usar `forChild()` en múltiples módulos.
 
-The CLI also adds `RouterModule.forChild(routes)` to feature routing modules.
-This way, Angular knows that the route list is only responsible for providing additional routes and is intended for feature modules.
-You can use `forChild()` in multiple modules.
-
-The `forRoot()` method takes care of the *global* injector configuration for the Router.
-The `forChild()` method has no injector configuration. It uses directives such as `RouterOutlet` and `RouterLink`.
-For more information, see the [`forRoot()` pattern](guide/singleton-services#forRoot) section of the [Singleton Services](guide/singleton-services) guide.
+El método `forRoot()` se encarga de la configuración del inyector _global_ para el enrutador.
+El método `forChild()` no tiene configuración de inyector. Se usan directivas como `RouterOutlet` y `RouterLink`.
+Para más información, revisa la sección de [patrón `forRoot()`](guide/singleton-services#forRoot) de la guía [Servicios Singleton](guide/singleton-services)
 
 {@a preloading}
 
-## Preloading
+## Precarga
 
-Preloading improves UX by loading parts of your app in the background.
-You can preload modules or component data.
+La precarga mejora la experiencia de usuario cargando partes de tu aplicación en segundo plano.
+Puedes precargar módulos o datos de componentes.
 
-### Preloading modules
+### Precarga de módulos
 
-Preloading modules improves UX by loading parts of your app in the background so users don't have to wait for the elements to download when they activate a route.
+La precarga de módulos mejora la experiencia de usuario cargando partes de tu aplicación en segundo plano para que los usuarios no tengan que esperar hasta que se descarguen estos elementos cuando activen una ruta.
 
-To enable preloading of all lazy loaded modules, import the `PreloadAllModules` token from the Angular `router`.
+Para habilitar la precarga de todos los módulos con carga diferida, importa el token `PreloadAllModules` desde Angular `router`.
 
-<code-example header="AppRoutingModule (excerpt)">
+<code-example header="AppRoutingModule (extracto)">
 
 import { PreloadAllModules } from '@angular/router';
 
 </code-example>
 
-Still in the `AppRoutingModule`, specify your preloading strategy in `forRoot()`.
+En el archivo `AppRoutingModule`, especifica tu estrategia de precarga en `forRoot()`.
 
-<code-example header="AppRoutingModule (excerpt)">
+<code-example header="AppRoutingModule (extracto)">
 
 RouterModule.forRoot(
-  appRoutes,
-  {
-    preloadingStrategy: PreloadAllModules
-  }
+appRoutes,
+{
+preloadingStrategy: PreloadAllModules
+}
 )
 
 </code-example>
 
-### Preloading component data
+### Precargando datos de componentes
 
-To preload component data, you can use a `resolver`.
-Resolvers improve UX by blocking the page load until all necessary data is available to fully display the page.
+Para precargar datos de componentes puedes usar un `resolver`.
+Los _resolvers_ mejoran la experiencia de usuario al bloquear la carga de la página hasta que todos los datos necesarios estén disponibles para mostrar la página por completo.
 
 #### Resolvers
 
-Create a resolver service.
-With the CLI, the command to generate a service is as follows:
-
+Crea un servicio de _resolvers_.
+Con el CLI, el comando para generar un servicio es el siguiente:
 
 <code-example language="none" class="code-shell">
   ng generate service <service-name>
 </code-example>
 
-In your service, import the following router members, implement `Resolve`, and inject the `Router` service:
+En tu servicio, importa los siguientes miembros del enrutador, implementa `Resolve`, e injecta el servicio de `Router`:
 
-<code-example header="Resolver service (excerpt)">
+<code-example header="Resolver service (extracto)">
 
 import { Resolve } from '@angular/router';
 
 ...
 
 export class CrisisDetailResolverService implements Resolve<> {
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<> {
-    // your logic goes here
-  }
+resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<> {
+// tu lógica aquí
+}
 }
 
 </code-example>
 
-Import this resolver into your module's routing module.
+Importa este _resolver_ al módulo de enrutamiento de tu módulo.
 
-<code-example header="Feature module's routing module (excerpt)">
+<code-example header="Feature module's routing module (extracto)">
 
-import { YourResolverService }    from './your-resolver.service';
+import { YourResolverService } from './your-resolver.service';
 
 </code-example>
 
-Add a `resolve` object to the component's `route` configuration.
+Agrega un objeto `resolver` a la configuración del `route` del componente.
 
-<code-example header="Feature module's routing module (excerpt)">
+<code-example header="Feature module's routing module (extracto)">
 {
   path: '/your-path',
   component: YourComponent,
@@ -298,29 +278,27 @@ Add a `resolve` object to the component's `route` configuration.
 }
 </code-example>
 
+En el componente, usa un `Observable` para obtener datos desde el `ActivatedRoute`.
 
-In the component, use an `Observable` to get the data from the `ActivatedRoute`.
-
-
-<code-example header="Component (excerpt)">
+<code-example header="Component (extracto)">
 ngOnInit() {
   this.route.data
     .subscribe((your-parameters) => {
-      // your data-specific code goes here
+      // el código de tus datos específicos va aquí
     });
 }
 </code-example>
 
-For more information with a working example, see the [routing tutorial section on preloading](guide/router-tutorial-toh#preloading-background-loading-of-feature-areas).
-
+Para más información con un ejemplo práctico, ve el [tutorial de enrutamiento sobre precarga](guide/router-tutorial-toh#preloading-background-loading-of-feature-areas).
 
 <hr>
 
-## More on NgModules and routing
+## Más sobre NgModules y routing
 
-You may also be interested in the following:
-* [Routing and Navigation](guide/router).
-* [Providers](guide/providers).
-* [Types of Feature Modules](guide/module-types).
-* [Route-level code-splitting in Angular](https://web.dev/route-level-code-splitting-in-angular/)
-* [Route preloading strategies in Angular](https://web.dev/route-preloading-in-angular/)
+También te podría interesar lo siguiente:
+
+- [Enrutamiento y navegación](guide/router).
+- [Providers](guide/providers).
+- [Tipos en los módulos de funciones](guide/module-types).
+- [División de código a nivel de ruta en Angular](https://web.dev/route-level-code-splitting-in-angular/)
+- [Estrategias de precarga en Angular](https://web.dev/route-preloading-in-angular/)
