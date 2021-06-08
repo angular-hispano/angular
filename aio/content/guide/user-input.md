@@ -1,80 +1,80 @@
-# User input
+# Entrada del usuario
 
-User actions such as clicking a link, pushing a button, and entering
-text raise DOM events.
-This page explains how to bind those events to component event handlers using the Angular
-event binding syntax.
+Acciones del usuario como hacer clic a un enlace, presionando un botón, e ingresando
+texto genera eventos al DOM.
+Esta página explica cómo vincular esos eventos a los controladores de eventos de componentes utilizando
+la sintaxis de enlace de eventos de Angular.
 
 Run the <live-example></live-example>.
 
+{@a binding-to-user-input-events}
+## Enlace a los eventos de entrada del usuario
 
-## Binding to user input events
+Usted puede usar [Enlace de eventos Angular](guide/event-binding)
+y responder a algún [Evento del DOM](https://developer.mozilla.org/en-US/docs/Web/Events).
+Muchos eventos del DOM son activados por la entrada de usuario. El enlace a estos eventos proporciona una forma de 
+obtener información del usuario.
 
-You can use [Angular event bindings](guide/event-binding)
-to respond to any [DOM event](https://developer.mozilla.org/en-US/docs/Web/Events).
-Many DOM events are triggered by user input. Binding to these events provides a way to
-get input from the user.
+Para enlazar el evento del DOM, envuelva el nombre del evento del DOM entre paréntesis y asígnele una
+[Declaración de plantilla](guide/template-statements) entre comillas.
 
-To bind to a DOM event, surround the DOM event name in parentheses and assign a quoted
-[template statement](guide/template-statements) to it.
-
-The following example shows an event binding that implements a click handler:
+El siguiente ejemplo muestra un enlace de eventos que implementa el controlador de clic:
 
 <code-example path="user-input/src/app/click-me.component.ts" region="click-me-button" header="src/app/click-me.component.ts"></code-example>
 
 {@a click}
 
-The `(click)` to the left of the equals sign identifies the button's click event as the **target of the binding**.
-The text in quotes to the right of the equals sign
-is the **template statement**, which responds
-to the click event by calling the component's `onClickMe` method.
+El `(click)` a la izquierda del signo igual identifica el evento de clic del botón como el **objetivo del enlace**.
+El texto entre comillas a la derecha del signo igual
+es la **declaración de plantilla**, que responde
+al evento de clic llamando al método del componente `onClickMe`.
 
-When writing a binding, be aware of a template statement's **execution context**.
-The identifiers in a template statement belong to a specific context object,
-usually the Angular component controlling the template.
-The example above shows a single line of HTML, but that HTML belongs to a larger component:
+Cuando escriba un enlace, tenga en cuenta las declaraciones de platillas **contexto de ejecución**.
+Los identificadores en una declaración de plantilla pertenecen a un objeto de contexto específico,
+generalmente el componente de Angular es quien controla la plantilla.
+El ejemplo anterior muestra una sola línea de HTML, pero ese HTML pertenece a un componente más grande:
 
 
 <code-example path="user-input/src/app/click-me.component.ts" region="click-me-component" header="src/app/click-me.component.ts"></code-example>
 
 
 
-When the user clicks the button, Angular calls the `onClickMe` method from `ClickMeComponent`.
+Cuando el usuario hace clic en el botón, Angular llama al método `onClickMe` desde `ClickMeComponent`.
 
 
 
-## Get user input from the $event object
-DOM events carry a payload of information that may be useful to the component.
-This section shows how to bind to the `keyup` event of an input box to get the user's input after each keystroke.
+## Obtener la entrada del usuario del objeto de $evento
+Los eventos del DOM llevan una carga de información que puede ser útil para el componente.
+Esta sección muestra cómo enlaza al evento `keyup` de un cuadro de entrada para obtener la entrada del usuario después de cada pulsación de tecla.
 
-The following code listens to the `keyup` event and passes the entire event payload (`$event`) to the component event handler.
+El siguiente código escucha el evento `keyup` y pasa toda la carga del evento (`$event`) al controlador de eventos del componente.
 
 <code-example path="user-input/src/app/keyup.components.ts" region="key-up-component-1-template" header="src/app/keyup.components.ts (template v.1)"></code-example>
 
 
 
-When a user presses and releases a key, the `keyup` event occurs, and Angular provides a corresponding
-DOM event object in the `$event` variable which this code passes as a parameter to the component's `onKey()` method.
+Cuando un usuario presiona y suelta una tecla, se produce el evento `keyup` y Angular proporciona el correspondiente
+objeto de evento del DOM en la variable `$event` este código pasa como parámetro al método `onKey()` del componente.
 
 <code-example path="user-input/src/app/keyup.components.ts" region="key-up-component-1-class-no-type" header="src/app/keyup.components.ts (class v.1)"></code-example>
 
 
 
-The properties of an `$event` object vary depending on the type of DOM event. For example,
-a mouse event includes different information than an input box editing event.
+Las propiedades de un objeto `$event` varían según el tipo de evento del DOM. Por ejemplo,
+un evento de mouse incluye información diferente a la de un evento de edición de cuadro de entrada.
 
-All [standard DOM event objects](https://developer.mozilla.org/en-US/docs/Web/API/Event)
-have a `target` property, a reference to the element that raised the event.
-In this case, `target` refers to the [`<input>` element](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) and
-`event.target.value` returns the current contents of that element.
+Todos los [objetos de eventos del DOM estándar](https://developer.mozilla.org/en-US/docs/Web/API/Event)
+tienen una propiedad `target`, una referencia al elemento que generó el evento.
+En este caso, `target` se refiere a [`<input>` element](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) and
+`event.target.value` devuelve el contenido actual de ese elemento.
 
-After each call, the `onKey()` method appends the contents of the input box value to the list
-in the component's `values` property, followed by a separator character (|).
-The [interpolation](guide/interpolation)
-displays the accumulating input box changes from the `values` property.
+Después de cada llamada, el método `onKey()` agrega el contenido del valor del cuadro de entrada a la lista
+en la propiedad `values` del componente, seguida de un carácter separador (|).
+La [interpolación](guide/interpolation)
+muestra los cambios acumulados en el cuadro de entrada de la propiedad `values`.
 
-Suppose the user enters the letters "abc", and then backspaces to remove them one by one.
-Here's what the UI displays:
+Suponga que el usuario ingresa las letras "abc" y luego retrocede para eliminarlas una por una.
+Esto es lo que muestra la interfaz de usuario:
 
 <code-example>
   a | ab | abc | ab | a | |
@@ -92,8 +92,8 @@ Here's what the UI displays:
 
 
 
-Alternatively, you could accumulate the individual keys themselves by substituting `event.key`
-for `event.target.value` in which case the same user input would produce:
+Alternativamente, puede acumular las keys individuales sustituyendo `event.key`
+por `event.target.value` en cuyo caso la misma entrada del usuario produciría:
 
 <code-example>
   a | b | c | backspace | backspace | backspace |
@@ -109,56 +109,56 @@ for `event.target.value` in which case the same user input would produce:
 {@a keyup1}
 
 
-### Type the _$event_
+### Escribir el _$evento_
 
-The example above casts the `$event` as an `any` type.
-That simplifies the code at a cost.
-There is no type information
-that could reveal properties of the event object and prevent silly mistakes.
+El ejemplo anterior arroja el `$event` como un tipo `any`.
+Eso simplifica el código con un costo.
+No hay información de ese tipo
+que podría revelar las propiedades del objeto del evento y evitar errores tontos.
 
-The following example rewrites the method with types:
+El siguiente ejemplo reescribe el método con tipos:
 
 <code-example path="user-input/src/app/keyup.components.ts" region="key-up-component-1-class" header="src/app/keyup.components.ts (class v.1 - typed )"></code-example>
 
 
 
-The `$event` is now a specific `KeyboardEvent`.
-Not all elements have a `value` property so it casts `target` to an input element.
-The `OnKey` method more clearly expresses what it expects from the template and how it interprets the event.
+El `$evento` es ahora un específico `KeyboardEvent`.
+No todos los elementos tienen una propiedad `value` por lo que lanza `target` a un elemento de entrada.
+El método `OnKey` expresa más claramente lo que espera de la plantilla y cómo interpreta el evento.
 
-### Passing _$event_ is a dubious practice
-Typing the event object reveals a significant objection to passing the entire DOM event into the method:
-the component has too much awareness of the template details.
-It can't extract information without knowing more than it should about the HTML implementation.
-That breaks the separation of concerns between the template (_what the user sees_)
-and the component (_how the application processes user data_).
+### Pasando el _$evento_ es una práctica dudosa
+Escribir el objeto de evento revela una objeción significativa a pasar todo el evento del DOM al método:
+el componente tiene demasiado conocimiento de los detalles de la plantilla.
+No puede extraer información sin saber más de lo que debería sobre la implementación de HTML.
+Que rompe la separación de importancia entre la plantilla (_lo que ve el usuario_)
+y el componente (_cómo la aplicación procesa los datos del usuario_).
 
-The next section shows how to use template reference variables to address this problem.
+La siguiente sección muestra cómo usar las variables de referencia de la plantilla para abordar este problema.
 
 
 
-## Get user input from a template reference variable
-There's another way to get the user data: use Angular
-[**template reference variables**](guide/template-reference-variables).
-These variables provide direct access to an element from within the template.
-To declare a template reference variable, precede an identifier with a hash (or pound) character (#).
+## Obtener la entrada del usuario de una variable de referencia de plantilla
+Hay otra forma de obtener los datos del usuario: use Angular
+[**variables de referencia de plantilla**](guide/template-reference-variables).
+Estas variables proporcionan acceso directo a un elemento desde dentro de la plantilla.
+Para declarar una variable de referencia de plantilla, preceda el identificador con un carácter de almohadilla (#).
 
-The following example uses a template reference variable
-to implement a keystroke loopback in a simple template.
+El siguiente ejemplo usa una variable de referencia de plantilla.
+Para implementar un loopback de pulsaciones de teclas en una plantilla simple.
 
 <code-example path="user-input/src/app/loop-back.component.ts" region="loop-back-component" header="src/app/loop-back.component.ts"></code-example>
 
 
 
-The template reference variable named `box`, declared on the `<input>` element,
-refers to the `<input>` element itself.
-The code uses the `box` variable to get the input element's `value` and display it
-with interpolation between `<p>` tags.
+La variable de referencia de plantilla llamada `box`, declarada en el elemento `<input>`,
+se refiere al elemento `<input>` elemento en si.
+El código usa la variable `box` para obtener el `value` del elemento de entrada y mostrarlo
+con interpolación entre etiquetas `<p>`.
 
-The template is completely self contained. It doesn't bind to the component,
-and the component does nothing.
+La plantilla es completamente autónoma. No se une al componente,
+y el componente no hace nada.
 
-Type something in the input box, and watch the display update with each keystroke.
+Escriba algo en el cuadro de entrada y observe cómo se actualiza la pantalla con cada pulsación de tecla.
 
 
 <div class="lightbox">
@@ -171,45 +171,45 @@ Type something in the input box, and watch the display update with each keystrok
 
 
 
-**This won't work at all unless you bind to an event**.
+**Esto no funcionará en absoluto a menos que se enlace a un evento**.
 
-Angular updates the bindings (and therefore the screen)
-only if the app does something in response to asynchronous events, such as keystrokes.
-This example code binds the `keyup` event
-to the number 0, the shortest template statement possible.
-While the statement does nothing useful,
-it satisfies Angular's requirement so that Angular will update the screen.
+Angular actualiza los enlaces (y por lo tanto la pantalla)
+solo si la aplicación hace algo en respuesta a eventos asincrónicos, como pulsaciones de teclas.
+Este código de ejemplo enlaza el evento `keyup`
+al número 0, la declaración de plantilla más corta posible.
+Si bien la declaración no hace nada útil,
+satisface el requisito de Angular para que Angular actualice la pantalla.
 
 </div>
 
 
 
-It's easier to get to the input box with the template reference
-variable than to go through the `$event` object. Here's a rewrite of the previous
-`keyup` example that uses a template reference variable to get the user's input.
+Es más fácil llegar al cuadro de entrada con la referencia de la plantilla
+variable que pasa por el objeto `$evento`. Aquí hay una reescritura de la anterior.
+Ejemplo de `keyup` que usa una variable de referencia de plantilla para obtener la entrada del usuario.
 
 <code-example path="user-input/src/app/keyup.components.ts" region="key-up-component-2" header="src/app/keyup.components.ts (v2)"></code-example>
 
 
 
-A nice aspect of this approach is that the component gets clean data values from the view.
-It no longer requires knowledge of the `$event` and its structure.
+Un buen aspecto de este enfoque es que el componente obtiene valores de datos limpios de la vista.
+Ya no requiere conocimiento del `$evento` y su estructura.
 {@a key-event}
 
 
-## Key event filtering (with `key.enter`)
-The `(keyup)` event handler hears *every keystroke*.
-Sometimes only the _Enter_ key matters, because it signals that the user has finished typing.
-One way to reduce the noise would be to examine every `$event.keyCode` and take action only when the key is _Enter_.
+## Filtrado de eventos clave (con `key.enter`)
+El controlador de eventos `(keyup)` escucha *cada pulsación de tecla*.
+A veces, solo importa la tecla _Enter_, porque indica que el usuario ha terminado de escribir.
+Una forma de reducir el ruido sería examinar cada `$event.keyCode` y actuar solo cuando la tecla sea _Enter_.
 
-There's an easier way: bind to Angular's `keyup.enter` pseudo-event.
-Then Angular calls the event handler only when the user presses _Enter_.
+Hay una manera más fácil: enlazarse con el pseudo-evento `keyup.enter` de Angular.
+Entonces Angular llama al controlador de eventos solo cuando el usuario presiona _Enter_.
 
 <code-example path="user-input/src/app/keyup.components.ts" region="key-up-component-3" header="src/app/keyup.components.ts (v3)"></code-example>
 
 
 
-Here's how it works.
+Así es como funciona.
 
 <div class="lightbox">
   <img src='generated/images/guide/user-input/keyup3-anim.gif' alt="key up 3">
@@ -218,14 +218,14 @@ Here's how it works.
 
 
 
-## On blur
+## En desenfoque
 
-In the previous example, the current state of the input box
-is lost if the user mouses away and clicks elsewhere on the page
-without first pressing _Enter_.
-The component's `value` property is updated only when the user presses _Enter_.
+En el ejemplo anterior, el estado actual del cuadro de entrada
+se pierde si el usuario aleja el mouse y hace clic en otra parte de la página
+sin presionar primero _Enter_.
+La propiedad `value` del componente se actualiza solo cuando el usuario presiona _Enter_.
 
-To fix this issue, listen to both the _Enter_ key and the _blur_ event.
+Para solucionar este problema, escuche ambas teclas _Enter_ y el evento _blur_.
 
 
 <code-example path="user-input/src/app/keyup.components.ts" region="key-up-component-4" header="src/app/keyup.components.ts (v4)"></code-example>
@@ -233,14 +233,14 @@ To fix this issue, listen to both the _Enter_ key and the _blur_ event.
 
 
 
-## Put it all together
-The previous page showed how to [display data](guide/displaying-data).
-This page demonstrated event binding techniques.
+## Ponlo todo junto
+La página anterior mostró cómo [mostrar datos](guide/displaying-data).
+Esta página demostró técnicas de enlace de eventos.
 
-Now, put it all together in a micro-app
-that can display a list of heroes and add new heroes to the list.
-The user can add a hero by typing the hero's name in the input box and
-clicking **Add**.
+Ahora, ponlo todo junto en una micro-aplicación
+que puede mostrar una lista de héroes y agregar nuevos héroes a la lista.
+El usuario puede agregar un héroe escribiendo el nombre del héroe en el cuadro de entrada y
+haciendo clic en **Add**.
 
 
 <div class="lightbox">
@@ -249,33 +249,33 @@ clicking **Add**.
 
 
 
-Below is the "Little Tour of Heroes"  component.
+A continuación se muestra el componente "Pequeño Tour de Heroes".
 
 
 <code-example path="user-input/src/app/little-tour.component.ts" region="little-tour" header="src/app/little-tour.component.ts"></code-example>
 
 
 
-### Observations
+### Observaciones
 
-* **Use template variables to refer to elements** &mdash;
-The `newHero` template variable refers to the `<input>` element.
-You can reference `newHero` from any sibling or child of the `<input>` element.
+* **Utilice variables de plantilla para hacer referencia a elementos** &mdash;
+la variable de plantilla `newHero` se refiere al elemento `<input>`.
+Puede hacer referencia a `newHero` desde cualquier hermano o hijo del elemento `<input>`.
 
-* **Pass values, not elements** &mdash;
-Instead of passing the `newHero` into the component's `addHero` method,
-get the input box value and pass *that* to `addHero`.
+* **Pasar valores, no elementos** &mdash;
+En lugar de pasar el `newHero` al método `addHero` del componente,
+obtenga el valor del cuadro de entrada y pase *ese* a `addHero`.
 
-* **Keep template statements simple** &mdash;
-The `(blur)` event is bound to two JavaScript statements.
-The first statement calls `addHero`. The second statement, `newHero.value=''`,
-clears the input box after a new hero is added to the list.
+* **Mantenga las declaraciones de plantilla simples** &mdash;
+El evento `(blur)` está vinculado a dos declaraciones de JavaScript.
+La primera declaración llama a `addHero`. La segunda declaración, `newHero.value=''`,
+borra el cuadro de entrada después de que se agregue un nuevo héroe a la lista.
 
 
 
-## Source code
+## Código fuente
 
-Following is all the code discussed in this page.
+A continuación se muestra todo el código discutido en esta página.
 
 <code-tabs>
 
@@ -298,31 +298,31 @@ Following is all the code discussed in this page.
 </code-tabs>
 
 
-Angular also supports passive event listeners. For example, you can use the following steps to make the scroll event passive.
+Angular también admite detectores de eventos pasivos. Por ejemplo, puede utilizar los siguientes pasos para convertir el evento de scroll en pasivo.
 
-1. Create a file `zone-flags.ts` under `src` directory.
-2. Add the following line into this file.
+1. Cree un archivo `zone-flags.ts` en el directorio `src`.
+2. Agregue la siguiente línea a este archivo.
 
 ```
 (window as any)['__zone_symbol__PASSIVE_EVENTS'] = ['scroll'];
 ```
 
-3. In the `src/polyfills.ts` file, before importing zone.js, import the newly created `zone-flags`.
+3. En el archivo `src/polyfills.ts`, antes de importar zone.js, importe los `zone-flags` recién creados.
 
 ```
 import './zone-flags';
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 ```
 
-After those steps, if you add event listeners for the `scroll` event, the listeners will be `passive`.
+Después de esos pasos, si agrega detectores de eventos para el evento `scroll`, los detectores serán `passive`.
 
-## Summary
+## Resumen
 
-You have mastered the basic primitives for responding to user input and gestures.
+Ha dominado las primitivas básicas para responder a las entradas y los gestos del usuario..
 
-These techniques are useful for small-scale demonstrations, but they
-quickly become verbose and clumsy when handling large amounts of user input.
-Two-way data binding is a more elegant and compact way to move
-values between data entry fields and model properties.
-The next page, `Forms`, explains how to write
-two-way bindings with `NgModel`.
+Estas técnicas son útiles para demostraciones a pequeña escala, pero
+rápidamente se vuelven verbosos y torpes cuando manejan grandes cantidades de información de usuario.
+El enlace de datos bidireccional es una forma más elegante y compacta de moverse
+valores entre los campos de entrada de datos y las propiedades del modelo.
+La página siguiente, `Formularios`, explica cómo escribir
+enlaces bidireccionales con `NgModel`.
