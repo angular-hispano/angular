@@ -1,85 +1,84 @@
-# Try it: Use forms for user input
+# Inténtalo: Usa formularios para capturar la información del usuario
 
-At the end of [Managing Data](start/start-data "Try it: Managing Data"), the online store application has a product catalog and a shopping cart.
+Una vez terminado [Gestión de datos](start/start-data "Try it: Managing Data"), la aplicación tienda en línea tiene un catálogo de productos y un carrito de compras.
 
-This section walks you through adding a form-based checkout feature to collect user information as part of checkout.
+Esta sección te guía para agregar una funcionalidad de pago con un formulario para capturar los datos del usuario.
 
-## Forms in Angular
+## Formularios en Angular
 
-Forms in Angular build upon the standard HTML forms to help you create custom form controls and easy validation experiences. There are two parts to an Angular Reactive form: the objects that live in the component to store and manage the form, and the visualization of the form that lives in the template.
+Los formularios en Angular están construidos sobre el formulario HTML estándar, para ayudarte a crear controladores personalizados y simplificar la experiencia de validación de campos. Un formulario reactivo en Angular se compone de dos partes: los objetos que viven en el componente para almacenar y gestionar el formulario, y la visualización que vive en la plantilla.
 
-## Define the checkout form model
+## Definir el modelo del formulario de pago
 
-First, set up the checkout form model. Defined in the component class, the form model is the source of truth for the status of the form.
+Primero, configura el modelo del formulario de pago. Se define en el componente clase, este modelo es la fuente de la verdad para el estado del formulario.
 
-1. Open `cart.component.ts`.
+1. Abre `cart.component.ts`.
 
-1. Angular's `FormBuilder` service provides convenient methods for generating controls. As with the other services you've used, you need to import and inject the service before you can use it:
+2. El servicio de Angular `FormBuilder` proporciona los métodos para crear los controladores. Tal como otros servicios que hayas usado, necesitas importar e inyectar el servicio antes de usarlo:
 
-    1. Import the `FormBuilder` service from the `@angular/forms` package.
+   1. Importar `FormBuilder` del módulo `@angular/forms`.
 
-      <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="imports">
-      </code-example>
+     <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="imports">
+     </code-example>
 
-      The `ReactiveFormsModule` provides the `FormBuilder` service, which `AppModule` (in `app.module.ts`) already imports.
+   El módulo `ReactiveFormsModule` proporciona el servicio `FormBuilder`, ya ha importado `AppModule` (en `app.module.ts`).
 
-    1. Inject the `FormBuilder` service.
+   2. Inyecta el servicio `FormBuilder`.
 
-      <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="inject-form-builder">
-      </code-example>
+     <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="inject-form-builder">
+     </code-example>
 
-1. Still in the `CartComponent` class, define the `checkoutForm` property to store the form model.
+3. En la clase `CartComponent`, define la propiedad `checkoutForm` para almacenar el modelo del formulario.
 
-    <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="checkout-form">
-    </code-example>
+<code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="checkout-form">
+</code-example>
 
-1. To gather the user's name and address, set the `checkoutForm` property with a form model containing `name` and `address` fields, using the `FormBuilder` `group()` method. Add this between the curly braces, `{}`,
-of the constructor.
+4. Para capturar el nombre y la dirección del usuario, configura la propiedad `checkoutForm` usando el método `group()` de `FormBuilder` a un formulario que contenga los campos `name` y `addess`. Agrega esto entre las llaves, `{}`, del constructor.
 
-    <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="checkout-form-group"></code-example>
+   <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts" region="checkout-form-group"></code-example>
 
-1. For the checkout process, users need to submit their name and address. When they submit their order, the form should reset and the cart should clear.
+5. Para el proceso de pago, el usuario debe enviar el nombre y la dirección. Una vez enviada la orden se debe limpiar el formulario y el carrito.
 
-    1. In `cart.component.ts`, define an `onSubmit()` method to process the form. Use the `CartService` `clearCart()` method to empty the cart items and reset the form after its submission. In a real-world app, this method would also submit the data to an external server. The entire cart component class is as follows:
+   1. En `cart.component.ts`, define un método `onSubmit()` para procesar el formulario. Usa el método `clearCart()` de `CartService` para eliminar los elementos del carrito y restaurar el formulario después de enviarlo. En una aplicación de la vida real, este método también debe enviar los datos a un servidor externo. Por último el componente completo se vería así:
 
-    <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts">
-    </code-example>
+   <code-example header="src/app/cart/cart.component.ts" path="getting-started/src/app/cart/cart.component.ts">
+   </code-example>
 
-Now that you've defined the form model in the component class, you need a checkout form to reflect the model in the view.
+Habiendo definido el modelo del formulario en el componente, necesitas un formulario de pago que refleje el modelo en la vista.
 
-## Create the checkout form
+## Crear el formulario de pago
 
-Use the following steps to add a checkout form at the bottom of the "Cart" view.
+Sigue estos pasos para agregar un formulario de pago en la sección inferior de la vista del componente "Cart".
 
-1. Open `cart.component.html`.
+1. Abre `cart.component.html`.
 
-1. At the bottom of the template, add an HTML form to capture user information.
+2. Al final de la plantilla agrega un formulario HTML para capturar los datos del usuario.
 
-1. Use a `formGroup` property binding to bind the `checkoutForm` to the `form` tag in the template. Also include a "Purchase" button to submit the form.
+3. Usa el enlace de propiedades de `formGroup` para enlazar el `checkoutForm` a la etiqueta `form` en la plantilla. También agrega un botón 'Comprar' para enviar el formulario.
 
   <code-example header="src/app/cart/cart.component.html" path="getting-started/src/app/cart/cart.component.3.html" region="checkout-form">
   </code-example>
 
-1. On the `form` tag, use an `ngSubmit` event binding to listen for the form submission and call the `onSubmit()` method with the `checkoutForm` value.
+4. En la etiqueta form, usa el evento `ngSubmit` para escuchar el envío del formulario e invocar el método `onSubmit()` con el valor `checkoutForm`.
 
   <code-example path="getting-started/src/app/cart/cart.component.html" header="src/app/cart/cart.component.html (cart component template detail)" region="checkout-form-1">
   </code-example>
 
-1. Add input fields for `name` and `address`.  Use the `formControlName` attribute binding to bind the `checkoutForm` form controls for `name` and `address` to their input fields. The final complete component is as follows:
+5. Agrega los campos `name` y `address`. Usa el atributo enlazador `formControlName` para enlazar los controladores `name` y `address` de `checkoutForm` a sus respectivas etiquetas input. El componente final es el siguiente:
 
   <code-example path="getting-started/src/app/cart/cart.component.html" header="src/app/cart/cart.component.html" region="checkout-form-2">
   </code-example>
 
-After putting a few items in the cart, users can now review their items, enter their name and address, and submit their purchase:
+Después de agregar algunos elementos en el carrito, el usuario ahora puede verificar los artículos a comprar, ingresar su nombre y dirección y enviar su compra:
 
 <div class="lightbox">
   <img src='generated/images/guide/start/cart-with-items-and-form.png' alt="Cart view with checkout form">
 </div>
 
-To confirm submission, open the console where you should see an object containing the name and address you submitted.
+Para confirmar el envío del formulario, abre la consola donde podrás ver un objeto que contiene el nombre y la dirección enviadas.
 
-## Next steps
+## Siguientes pasos
 
-Congratulations! You have a complete online store application with a product catalog, a shopping cart, and a checkout function.
+¡Felicitaciones! Has completado una tienda online con un catálogo de productos, un carrito de compras, y una funcionalidad de pagos.
 
-[Continue to the "Deployment" section](start/start-deployment "Try it: Deployment") to move to local development, or deploy your app to Firebase or your own server.
+[Continúa con la sección "Despliegue"](start/start-deployment "Try it: Deployment") para desplegar en local, o despliega tu aplicación en Firebase o tu propio servidor.
