@@ -1,33 +1,32 @@
-# Deployment
+# Despliegue 
 
-When you are ready to deploy your Angular application to a remote server, you have various options for deployment.
+Cuando estas listo para hacer el despliegue de tu aplicación en Angular hacia un servidor, tienes varias opciones para hacer el despliegue.
 
 {@a dev-deploy}
 {@a copy-files}
 
+## Opciones de un despliegue simple
 
-## Simple deployment options
+Antes de desplegar su aplicación completamente, puede probar el proceso, crear la configuración, y el comportamiento de la implementación mediante uso de una de las técnicas provisionales.
 
-Before fully deploying your application, you can test the process, build configuration, and deployed behavior by using one of these interim techniques.
+### Creando y sirviendo desde el disco.
 
-### Building and serving from disk
+Durante el desarrollo, típicamente se usa el comando `ng serve` para crear, visualizar y servir la aplicación desde la memoria local usando [webpack-dev-server](https://webpack.js.org/guides/development/#webpack-dev-server).
 
-During development, you typically use the `ng serve` command to build, watch, and serve the application from local memory, using [webpack-dev-server](https://webpack.js.org/guides/development/#webpack-dev-server).
-When you are ready to deploy, however, you must use the `ng build` command to build the app and deploy the build artifacts elsewhere.
-
-Both `ng build` and `ng serve` clear the output folder before they build the project, but only the `ng build` command writes the generated build artifacts to the output folder.
+Usando `ng build` y `ng serve` limpian la carpeta de salida antes de crear el proyecto, pero solo el comando `ng build` escribe los artefactos de construcción generados en la carpeta de salida.
 
 <div class="alert is-helpful">
 
-The output folder is  `dist/project-name/` by default.
-To output to a different folder, change the `outputPath` in `angular.json`.
+El folder de salida es `dist/project-name/` por defecto.
+Para obtener la salida en un folder diferente, cambia el `outputPath` en `angular.json`.
 
 </div>
 
-As you near the end of the development process, serving the contents of your output folder from a local web server can give you a better idea of how your application will behave when it is deployed to a remote server.
-You will need two terminals to get the live-reload experience.
+Conforme se termina el proceso de desarrollo, servir el contenido que se encuentra en la carpeta de salida hacia un servidor web local, le dará una mejor idea de como se comportara su aplicación cuando se despliegue en un servidor remoto.
 
-* On the first terminal, run the [`ng build` command](cli/build) in *watch* mode to compile the application to the `dist` folder.
+Necesitara dos terminales para tener la experiencia de recarga automática.
+
+* En la primera terminal, ejecuta el comando [`ng build` command](cli/build) en modo *observador* para compilar la aplicación que se encuentra en la carpeta `dist`.
 
   <code-example language="none" class="code-shell">
 
@@ -35,9 +34,9 @@ You will need two terminals to get the live-reload experience.
 
   </code-example>
 
-  Like the `ng serve` command, this regenerates output files when source files change.
+  Asi como el comando `ng-serve`, esto regenerara los archivos de salida cuando cambie la fuente de los archivos.
 
-* On the second terminal, install a web server (such as [lite-server](https://github.com/johnpapa/lite-server)), and run it against the output folder. For example:
+* En la segunda terminal, instala un servidor web (como [lite-server](https://github.com/johnpapa/lite-server))), y ejecutalo en la carpeta de salida. Por ejemplo:
 
   <code-example language="none" class="code-shell">
 
@@ -45,34 +44,34 @@ You will need two terminals to get the live-reload experience.
 
   </code-example>
 
-   The server will automatically reload your browser when new files are output.
+   El servidor automáticamente se recargara en el navegador con los nuevos archivos de salida.
 
 <div class="alert is-critical">
 
-This method is for development and testing only, and is not a supported or secure way of deploying an application.
+Este método es solamente para desarrollo y ambiente de pruebas, y no es soportado o seguro para desplegar la aplicación a producción.
 
 </div>
 
-### Automatic deployment with the CLI
+### Despliegue automático con la CLI
 
-The Angular CLI command `ng deploy` (introduced in version 8.3.0) executes the `deploy` [CLI builder](guide/cli-builder) associated with your project. A number of third-party builders implement deployment capabilities to different platforms. You can add any of them to your project by running `ng add [package name]`.
+El comando de Angular CLI `ng deploy` (lanzado en la version 8.3.0) ejecuta `deploy` [CLI builder](guide/cli-builder) asociado con su proyecto. Varios constructores de terceros tienen la capacidad de desplegar en diferentes plataformas. Puede agregar cualquiera de ellos para ejecutar su proyecto como `ng add [nombre del paquete]`.
 
-When you add a package with deployment capability, it'll automatically update your workspace configuration (`angular.json` file) with a `deploy` section for the selected project. You can then use the `ng deploy` command to deploy that project.
+Cuando agrega un paquete con capacidad de despliegue, Se ejecutara automáticamente la actualización en su entorno de configuración (archivo `angular.json`) con una sección `deploy` para el proyecto seleccionado. Puede usar el comando `ng deploy` para desplegar su proyecto.
 
-For example, the following command automatically deploys a project to Firebase.
+Por ejemplo, el siguiente comando automáticamente desplegara su proyecto en Firebase.
 
 <code-example language="none" class="code-shell">
 ng add @angular/fire
 ng deploy
 </code-example>
 
-The command is interactive. In this case, you must have or create a Firebase account, and authenticate using that account. The command prompts you to select a Firebase project for deployment
+El comando es interactivo. En este caso, debe tener o crear una cuenta de Firebase, y autenticarse con su cuenta. El comando solicita que seleccione un proyecto en Firebase para el despliegue
 
-After the command produces an optimal build of your application (equivalent to `ng deploy --prod`), it'll upload the production assets to Firebase.
+Después que el comando produce una compilación optima de la aplicación (equivalente a `ng deploy --prod`), se cargaran los archivos activos a Firebase.
 
-In the table below, you can find a list of packages which implement deployment functionality to different platforms. The `deploy` command for each package may require different command line options. You can read more by following the links associated with the package names below:
+En la tabla a continuación, se encuentra una lista de paquetes, con los cuales se implementa el despliegue hacia diferentes plataformas. El comando `deploy` para cada paquete puede requerir diferentes opciones en la linea de comandos. Para mas información puede acceder a los enlaces asociados en cada nombre de los paquetes:
 
-| Deployment to                                                 | Package                                                                        |
+| Desplegar hacia                                                 | Paquete                                                                        |
 |---------------------------------------------------------------|--------------------------------------------------------------------------------|
 | [Firebase hosting](https://firebase.google.com/docs/hosting)  | [`@angular/fire`](https://npmjs.org/package/@angular/fire)                     |
 | [Azure](https://azure.microsoft.com/en-us/)                   | [`@azure/ng-deploy`](https://npmjs.org/package/@azure/ng-deploy)               |
@@ -82,13 +81,13 @@ In the table below, you can find a list of packages which implement deployment f
 | [NPM](https://npmjs.com/)                                     | [`ngx-deploy-npm`](https://npmjs.org/package/ngx-deploy-npm)                   |
 | [Amazon Cloud S3](https://aws.amazon.com/s3/?nc2=h_ql_prod_st_s3) | [`@jefiozie/ngx-aws-deploy`](https://www.npmjs.com/package/@jefiozie/ngx-aws-deploy) |
 
-If you're deploying to a self-managed server or there's no builder for your favorite cloud platform, you can either create a builder that allows you to use the `ng deploy` command, or read through this guide to learn how to manually deploy your app.
+Si se esta desplegando hacia un servidor auto gestionado o no se encuentra un constructor para su plataforma favorita, se puede crear un constructor que permita usar el comando `ng deploy`, o lea esta documentación para aprender como desplegar manualmente su aplicación.
 
-### Basic deployment to a remote server
+### Despliegue básico a un servidor remoto
 
-For the simplest deployment, create a production build and copy the output directory to a web server.
+Para un despliegue simple, se debe crear un constructor de producción y copiar el directorio de salida hacia un servidor web.
 
-1. Start with the production build:
+1. Empieza con el constructor de producción:
 
   <code-example language="none" class="code-shell">
 
@@ -96,24 +95,25 @@ For the simplest deployment, create a production build and copy the output direc
 
   </code-example>
 
+2. Copiar _everything_ desde la carpeta de salida (`dist/` por defecto) hacia el folder del servidor.
 
-2. Copy _everything_ within the output folder (`dist/` by default) to a folder on the server.
+3. Configure el servidor para redirigir los archivos no existentes hacia `index.html`.
 
-3. Configure the server to redirect requests for missing files to `index.html`.
-Learn more about server-side redirects [below](#fallback).
+Aprenda mas acerca de redirecciones en el servidor [a continuación](#fallback).
 
-This is the simplest production-ready deployment of your application.
+Este es un despliegue simple de producción para su aplicación.
 
 {@a deploy-to-github}
 
-### Deploy to GitHub pages
+### Desplegar en Github pages
 
-Another simple way to deploy your Angular app is to use [GitHub Pages](https://help.github.com/articles/what-is-github-pages/).
+Otro forma de desplegar su aplicación de Angular usando [GitHub Pages](https://help.github.com/articles/what-is-github-pages/).
 
-1. You need to [create a GitHub account](https://github.com/join) if you don't have one, and then [create a repository](https://help.github.com/articles/create-a-repo/) for your project.
-Make a note of the user name and project name in GitHub.
+1. Necesita [crear una cuenta en GitHub](https://github.com/join) si es que no tiene una, para después [crear un repositorio](https://help.github.com/articles/create-a-repo/) para su proyecto.
 
-1. Build your project using Github project name, with the Angular CLI command [`ng build`](cli/build) and the options shown here:
+Guarde su nombre de usuario y el nombre del proyecto en GitHub.
+
+2. Cree su proyecto usando el nombre de su proyecto en GitHub, con el comando [`ng build`](cli/build) en Angular CLI y las opciones que a continuación se muestran:
 
   <code-example language="none" class="code-shell">
 
@@ -121,17 +121,17 @@ Make a note of the user name and project name in GitHub.
 
   </code-example>
 
-1. When the build is complete, make a copy of `docs/index.html` and name it `docs/404.html`.
+1. Cuando su proyecto esta construido completamente, haga una copia de `docs/index.html` y asigne el nombre de `docs/404.html`.
 
-1. Commit your changes and push.
+2. Haga un commit de sus cambios y suba los cambios a su repositorio.
 
-1. On the GitHub project page, configure it to [publish from the docs folder](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch).
+3. En la pagina del proyecto en GitHub, configure todo para [publicar su aplicación desde la carpeta de documentos](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch).
 
-You can see your deployed page at `https://<user_name>.github.io/<project_name>/`.
+Puede ver su aplicación desde la pagina `https://<user_name>.github.io/<project_name>/`.
 
 <div class="alert is-helpful">
 
-Check out [angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages), a full featured package that does all this for you and has extra functionality.
+Verifique [angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpages), un paquete con todas las funciones que hace todo esto por usted y tiene una funcionalidad adicional.
 
 </div>
 
@@ -139,48 +139,49 @@ Check out [angular-cli-ghpages](https://github.com/angular-buch/angular-cli-ghpa
 
 {@a server-configuration}
 
-## Server configuration
 
-This section covers changes you may have to make to the server or to files deployed on the server.
+## Configuración del servidor
+
+Esta sección cubre los cambios que debe hacer en el servidor o los archivos que se desplegaron en el servidor.
 
 {@a fallback}
 
-### Routed apps must fallback to `index.html`
+### Las aplicaciónes con rutas deben redirigirse a `index.html`
 
-Angular apps are perfect candidates for serving with a simple static HTML server.
-You don't need a server-side engine to dynamically compose application pages because
-Angular does that on the client-side.
+Las aplicaciónes de Angular son los candidatos perfectos para desplegar con un servidor HTML estático.
+No se necesita un server-side engine para crear su aplicación dinámica porque
+Angular hace eso desde el lado del cliente.
 
-If the app uses the Angular router, you must configure the server
-to return the application's host page (`index.html`) when asked for a file that it does not have.
+Si la aplicación usar rutas de Angular, debe configurar el servidor
+para que regresen a la pagina principal (`index.html`) cuando se pida una ruta que no existe.
 
 {@a deep-link}
 
-A routed application should support "deep links".
-A _deep link_ is a URL that specifies a path to a component inside the app.
-For example, `http://www.mysite.com/heroes/42` is a _deep link_ to the hero detail page
-that displays the hero with `id: 42`.
+Una aplicación con rutas debe soportar "enlaces profundos".
+Un _deep link_ es una URL que especifica la ruta a un componente dentro de la aplicación.
+Por ejemplo, `http://www.mysite.com/heroes/42` es un _deep link_ para la pagina que contiene el detalle del héroe,
+la cual despliega el héroe con el `id: 42`.
 
-There is no issue when the user navigates to that URL from within a running client.
-The Angular router interprets the URL and routes to that page and hero.
+No hay problema cuando el usuario navega hacia la URL dentro de un cliente en ejecución.
+Las rutas de Angular interpreta la URL y las rutas de esa pagina.
 
-But clicking a link in an email, entering it in the browser address bar,
-or merely refreshing the browser while on the hero detail page &mdash;
-all of these actions are handled by the browser itself, _outside_ the running application.
-The browser makes a direct request to the server for that URL, bypassing the router.
+Pero al hacer clic en un correo electrónico, se debe ingresar en la barra de direcciones,
+o simplemente refresque el navegador mientras se encuentra en la pagina del detalle del héroe &mdash;
+todas estas acciones son manejadas por el navegador, _outside_ fuera de la aplicación.
+El navegador hace la redirección con un pedido hacia la URL del servidor, pasando por alto el router.
 
-A static server routinely returns `index.html` when it receives a request for `http://www.mysite.com/`.
-But it rejects `http://www.mysite.com/heroes/42` and returns a `404 - Not Found` error *unless* it is
-configured to return `index.html` instead.
+Un servidor estático retorna rutinariamente index.html cuando recibe un pedido para `http://www.misitio.com/`.
+Pero es rechazada para `http://www.mysite.com/heroes/42` y retorna un error `404 - Not Found` *a menos* 
+que este este configurado para devolver `index.html`.
 
-#### Fallback configuration examples
+#### Ejemplos de configuración de reserva
 
-There is no single configuration that works for every server.
-The following sections describe configurations for some of the most popular servers.
-The list is by no means exhaustive, but should provide you with a good starting point.
+No hay una sola manera para trabajar con cada servidor.
+Las siguientes secciones se describe la configuración para algunos de los servidores mas populares.
+La lista de ninguna manera es exhaustivo, pero debería proporcionarle un buen punto de partida.
 
-* [Apache](https://httpd.apache.org/): add a
-[rewrite rule](http://httpd.apache.org/docs/current/mod/mod_rewrite.html) to the `.htaccess` file as shown
+* [Apache](https://httpd.apache.org/): agregar a
+[regla de sobre escritura](http://httpd.apache.org/docs/current/mod/mod_rewrite.html) a el archivo `.htaccess` como muestra
   (https://ngmilk.rocks/2015/03/09/angularjs-html5-mode-or-pretty-urls-on-apache-using-htaccess/):
 
   <code-example>
@@ -194,15 +195,15 @@ The list is by no means exhaustive, but should provide you with a good starting 
   </code-example>
 
 
-* [Nginx](http://nginx.org/): use `try_files`, as described in
+* [Nginx](http://nginx.org/): usa `try_files`, como se describe en
 [Front Controller Pattern Web Apps](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/#front-controller-pattern-web-apps),
-modified to serve `index.html`:
+modifica el servidor `index.html`:
 
   ```
   try_files $uri $uri/ /index.html;
   ```
 
-* [Ruby](https://www.ruby-lang.org/): create a Ruby server using ([sinatra](http://sinatrarb.com/)) with a basic Ruby file that configures the server `server.rb`:
+* [Ruby](https://www.ruby-lang.org/): crea un servidor Ruby usando ([sinatra](http://sinatrarb.com/)) con un archivo basico que configure el servidor `server.rb`:
 
   ``` ruby
   require 'sinatra'
@@ -221,8 +222,8 @@ modified to serve `index.html`:
   ```
 
 
-* [IIS](https://www.iis.net/): add a rewrite rule to `web.config`, similar to the one shown
-[here](http://stackoverflow.com/a/26152011/2116927):
+* [IIS](https://www.iis.net/): agregar la regla de sobreescritura a `web.config`, similar al mostrado
+[aqui](http://stackoverflow.com/a/26152011/2116927):
 
   <code-example format='.' language="xml">
     &lt;system.webServer&gt;
@@ -242,19 +243,19 @@ modified to serve `index.html`:
   </code-example>
 
 
-* [GitHub Pages](https://pages.github.com/): you can't
-[directly configure](https://github.com/isaacs/github/issues/408)
-the GitHub Pages server, but you can add a 404 page.
-Copy `index.html` into `404.html`.
-It will still be served as the 404 response, but the browser will process that page and load the app properly.
-It's also a good idea to
-[serve from `docs/` on master](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch)
-and to
-[create a `.nojekyll` file](https://www.bennadel.com/blog/3181-including-node-modules-and-vendors-folders-in-your-github-pages-site.htm)
+* En [GitHub Pages](https://pages.github.com/): no puedes
+[configurar directamente](https://github.com/isaacs/github/issues/408)
+el servidor de GitHub, pero puedes agregar una pagina 404.
+Solo copia `index.html` dentro `404.html`.
+Esto servirá una respuesta 404, y el navegador procesara la pagina y la cargara apropiadamente.
+También otra buena idea es
+[servir desde `docs/` en master](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#publishing-your-github-pages-site-from-a-docs-folder-on-your-master-branch)
+y
+[crear un archivo `.nojekyll`](https://www.bennadel.com/blog/3181-including-node-modules-and-vendors-folders-in-your-github-pages-site.htm)
 
 
-* [Firebase hosting](https://firebase.google.com/docs/hosting/): add a
-[rewrite rule](https://firebase.google.com/docs/hosting/url-redirects-rewrites#section-rewrites).
+* [Firebase hosting](https://firebase.google.com/docs/hosting/): Agregar una
+[regla de sobreescritura](https://firebase.google.com/docs/hosting/url-redirects-rewrites#section-rewrites).
 
   <code-example language="json">
     "rewrites": [ {
@@ -265,109 +266,108 @@ and to
 
 {@a cors}
 
-### Requesting services from a different server (CORS)
+### Requiriendo servicios desde diferentes servidores (CORS)
 
-Angular developers may encounter a
+Los desarrolladores de Angular pueden encontrar un error
 <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" title="Cross-origin resource sharing">
-<i>cross-origin resource sharing</i></a> error when making a service request (typically a data service request)
-to a server other than the application's own host server.
-Browsers forbid such requests unless the server permits them explicitly.
+<i>cross-origin resource sharing</i></a> cuando se hace una solicitud al servicio (normalmente una solicitud de servicio de datos)
+hacia un servidor de otra aplicación que no sea el host del propio servidor.
+Los navegadores prohíben estas solicitudes a menos que el servidor las permita explícitamente.
 
-There isn't anything the client application can do about these errors.
-The server must be configured to accept the application's requests.
-Read about how to enable CORS for specific servers at
+No existe nada que el cliente de la aplicación pueda hacer con estos errores.
+El servidor debe ser configurado para aceptar las solicitudes de las aplicaciónes.
+Para mas información acerca de como activar las CORS para servidores específicos en
 <a href="http://enable-cors.org/server.html" title="Enabling CORS server">enable-cors.org</a>.
 
 <hr>
 
 {@a optimize}
 
-## Production optimizations
+## Optimizacion en producción
 
-The `--prod` _meta-flag_ engages the following build optimization features.
+La bandera `--prod` _meta-flag_ compromete las siguientes características para la optimización.
 
-* [Ahead-of-Time (AOT) Compilation](guide/aot-compiler): pre-compiles Angular component templates.
-* [Production mode](#enable-prod-mode): deploys the production environment which enables _production mode_.
-* Bundling: concatenates your many application and library files into a few bundles.
-* Minification: removes excess whitespace, comments, and optional tokens.
-* Uglification: rewrites code to use short, cryptic variable and function names.
-* Dead code elimination: removes unreferenced modules and much unused code.
+* [Ahead-of-Time (AOT) Compilation](guide/aot-compiler): pre compila las plantillas de los componentes de Angular
+* [Modo de producción](#enable-prod-mode): despliega un ambiente de producción que habilita el _production mode_.
+* Empaquetado: concatena tus aplicación y los archivos de las librerías dentro de algunos empaquetados.
+* Minificación: remueve los espacios en blanco excedentes, comentarios y token adicionales.
+* Uglificación: reescribe el código para hacerlo mas corto, encripta las variables y los nombres de las funciones.
+* Eliminación de código muerto: remueve módulos sin referencia y el código que no es usado en la aplicación.
 
-See [`ng build`](cli/build) for more about CLI build options and what they do.
+Ver [`ng build`](cli/build) para mas información acerca de las opciones de construcción y que hacen en el CLI.
 
 
 {@a enable-prod-mode}
 
-### Enable runtime production mode
+### Habilitar el tiempo de ejecución en modo de producción
 
-In addition to build optimizations, Angular also has a runtime production mode. Angular apps run in development mode by default, as you can see by the following message on the browser console:
+Adicionalmente para optimizar la creación de aplicaciónes, Angular también posee tiempo de ejecución en el modo de producción. Las aplicaciónes de Angular se ejecutan en modo de desarrollo por defecto, tal como se puede ver en los siguientes mensajes de la consola:
 
 <code-example format="nocode">
 
-  Angular is running in development mode. Call enableProdMode() to enable production mode.
+  Angular se esta ejecutando en modo desarrollador. Para habilitar el modo de producción habilite enableProdMode().
 
 </code-example>
 
-Switching to _production mode_ makes it run faster by disabling development specific checks such as the dual change detection cycles.
+Cambiando a _production mode_ hará que se ejecute mas rápido al deshabilitar las comprobaciones especificas del desarrollo, como los ciclos de detección de cambio dual.
 
-When you enable production builds via `--prod` command line flag, the runtime production mode is enabled as well.
+Cuando la habilita las compilaciones de producción a través de la bandera `--prod` al termino del comando, el modo de producción en tiempo de ejecución también se habilita.
 
 {@a lazy-loading}
 
-### Lazy loading
+### Carga lenta
 
-You can dramatically reduce launch time by only loading the application modules that
-absolutely must be present when the app starts.
+Puede reducir dramáticamente el tiempo de carga solo cargando los módulos de la aplicación que
+solo estará presentes cuando se inicie la aplicación.
 
-Configure the Angular Router to defer loading of all other modules (and their associated code), either by
-[waiting until the app has launched](guide/router-tutorial-toh#preloading  "Preloading")
-or by [_lazy loading_](guide/router#lazy-loading "Lazy loading")
-them on demand.
+Para configurar las rutas en Angular para cargar los demás módulos (u otros asociados en el código), ya sea
+[esperando hasta que se inicie la aplicación](guide/router-tutorial-toh#preloading  "Preloading")
+o bien, con la [_lazy loading_](guide/router#lazy-loading "Lazy loading")
+dependiendo la demanda.
 
 <div class="callout is-helpful">
+<header>No importe algo de un modulo cargándolo de forma diferida</header>
 
-<header>Don't eagerly import something from a lazy-loaded module</header>
+Si piensa hacer una carga lenta de un modulo de forma diferida, sea cuidadoso
+de no importarlo dentro de un archivo que se inicia con la aplicación (como la raíz en `AppModule`)
+si lo hace, el modulo se cargara inmediatamente.
 
-If you mean to lazy-load a module, be careful not to import it
-in a file that's eagerly loaded when the app starts (such as the root `AppModule`).
-If you do that, the module will be loaded immediately.
+La configuración de agrupación debe tener en cuenta la carga diferida.
+Debido a que los módulos de carga diferida no se importan en JavaScript, los paquetes los excluyen de forma predeterminada.
+Los empaquetadores no conocen la configuración del enrutador y no pueden crear paquetes separados para módulos de carga diferida.
+Tendría que crear estos paquetes manualmente.
 
-The bundling configuration must take lazy loading into consideration.
-Because lazy-loaded modules aren't imported in JavaScript, bundlers exclude them by default.
-Bundlers don't know about the router configuration and can't create separate bundles for lazy-loaded modules.
-You would have to create these bundles manually.
-
-The CLI runs the
+El CLI ejecuta el 
 [Angular Ahead-of-Time Webpack Plugin](https://github.com/angular/angular-cli/tree/master/packages/ngtools/webpack)
-which automatically recognizes lazy-loaded `NgModules` and creates separate bundles for them.
+que reconoce automáticamente los `NgModules` cargados de forma diferida y crea paquetes separados para ellos.
 
 </div>
 
 {@a measure}
 
-### Measure performance
+### Medición del rendimiento
 
-You can make better decisions about what to optimize and how when you have a clear and accurate understanding of
-what's making the application slow.
-The cause may not be what you think it is.
-You can waste a lot of time and money optimizing something that has no tangible benefit or even makes the app slower.
-You should measure the app's actual behavior when running in the environments that are important to you.
+Puede tomar una mejor decision acerca de la optimizacion cuando conoce y tiene un claro entendimiento de
+porque su aplicación es lenta.
+La causa es posible no sea lo que piense.
+Puede llegar a gastar mucho tiempo y dinero optimizando algo que no le dará un beneficio tangible o a veces la aplicación sera mas lenta.
+Puede medir el comportamiento de su aplicación cuando ejecuta los ambientes correctos y de importancia para usted.
 
-The
+La
 <a href="https://developers.google.com/web/tools/chrome-devtools/network-performance/understanding-resource-timing" title="Chrome DevTools Network Performance">
-Chrome DevTools Network Performance page</a> is a good place to start learning about measuring performance.
+herramienta de la pagina en Chrome DevTools Network Performance</a> es un buen lugar para comenzar a aprender como medir el rendimiento de su aplicación.
 
-The [WebPageTest](https://www.webpagetest.org/) tool is another good choice
-that can also help verify that your deployment was successful.
+La herramienta [WebPageTest](https://www.webpagetest.org/) es otra buena opción
+que también le ayuda a verificar si su despliegue ha sido exitoso.
 
 {@a inspect-bundle}
 
-### Inspect the bundles
+### Inspeccionado de paquetes
 
-The <a href="https://github.com/danvk/source-map-explorer/blob/master/README.md">source-map-explorer</a>
-tool is a great way to inspect the generated JavaScript bundles after a production build.
+La herramienta <a href="https://github.com/danvk/source-map-explorer/blob/master/README.md">source-map-explorer</a>
+es otro buen camino para inspeccionar los paquetes generados de JavaScript después de la creación de producción.
 
-Install `source-map-explorer`:
+Instala `source-map-explorer`:
 
 <code-example language="none" class="code-shell">
 
@@ -375,7 +375,7 @@ Install `source-map-explorer`:
 
 </code-example>
 
-Build your app for production _including the source maps_
+Crea tu aplicación para producción _including the source maps_
 
 <code-example language="none" class="code-shell">
 
@@ -383,7 +383,7 @@ Build your app for production _including the source maps_
 
 </code-example>
 
-List the generated bundles in the `dist/` folder.
+Los paquetes generados esta en la carpeta `dist/`.
 
 <code-example language="none" class="code-shell">
 
@@ -391,8 +391,8 @@ List the generated bundles in the `dist/` folder.
 
 </code-example>
 
-Run the explorer to generate a graphical representation of one of the bundles.
-The following example displays the graph for the _main_ bundle.
+Ejecuta el explorador para generar una representación gráfica de uno de los paquetes.
+El siguiente ejemplo muestra el gráfico del paquete _main_.
 
 <code-example language="none" class="code-shell">
 
@@ -400,10 +400,10 @@ The following example displays the graph for the _main_ bundle.
 
 </code-example>
 
-The `source-map-explorer` analyzes the source map generated with the bundle and draws a map of all dependencies,
-showing exactly which classes are included in the bundle.
+El `source-map-explorer` analiza el mapa fuente generado con el paquete y crea un mapa de todas las dependencias,
+mostrando exactamente todas las clases incluidas en el paquete.
 
-Here's the output for the _main_ bundle of an example app called `cli-quickstart`.
+La salida del paquete _main_ puede ser llamado `cli-quickstart` por ejemplo.
 
 <div class="lightbox">
   <img src="generated/images/guide/deployment/quickstart-sourcemap-explorer.png" alt="quickstart sourcemap explorer">
@@ -411,77 +411,76 @@ Here's the output for the _main_ bundle of an example app called `cli-quickstart
 
 {@a base-tag}
 
-## The `base` tag
+## La etiqueta `base`
 
-The HTML [_&lt;base href="..."/&gt;_](/guide/router)
-specifies a base path for resolving relative URLs to assets such as images, scripts, and style sheets.
-For example, given the `<base href="/my/app/">`, the browser resolves a URL such as `some/place/foo.jpg`
-into a server request for `my/app/some/place/foo.jpg`.
-During navigation, the Angular router uses the _base href_ as the base path to component, template, and module files.
+El HTML [_&lt;base href="..."/&gt;_](/guide/router)
+especifica una ruta base para resolver URL relativas a activos como imágenes, scripts y hojas de estilo.
+Por ejemplo, teniendo `<base href="/my/app/">`, el navegador resolverá la URL como `some/place/foo.jpg`
+dentro de el llamado del servidor para `my/app/some/place/foo.jpg`.
+Durante la navegación, La ruta de Angular usara _base href_ como base para el componente, la plantilla y los archivos del modulo.
 
 <div class="alert is-helpful">
 
-See also the [*APP_BASE_HREF*](api/common/APP_BASE_HREF "API: APP_BASE_HREF") alternative.
+Puede ver también [*APP_BASE_HREF*](api/common/APP_BASE_HREF "API: APP_BASE_HREF") como alternativa.
 
 </div>
 
-In development, you typically start the server in the folder that holds `index.html`.
-That's the root folder and you'd add `<base href="/">` near the top of `index.html` because `/` is the root of the app.
+En desarrollo, típicamente el servidor comienza cargando el `index.html`.
+Eso esta en la carpeta raíz y se agrega como `<base href="/">` al principio del `index.html` porque `/` es la raíz de la aplicación.
 
-But on the shared or production server, you might serve the app from a subfolder.
-For example, when the URL to load the app is something like `http://www.mysite.com/my/app/`,
-the subfolder is `my/app/` and you should add `<base href="/my/app/">` to the server version of the `index.html`.
+Pero en el servidor compartido o de producción, puede servir la aplicación desde una subcarpeta.
+Por ejemplo cuando la URL de carga se algo como `http://www.mysite.com/my/app/`,
+la subcarpeta es `my/app/` y debera agregar `<base href="/my/app/">` para la version en el servidor del `index.html`.
 
-When the `base` tag is mis-configured, the app fails to load and the browser console displays `404 - Not Found` errors
-for the missing files. Look at where it _tried_ to find those files and adjust the base tag appropriately.
+Cuando la etiqueta `base` no se haya configurado, la aplicación fallara en la carga y el navegador imprimirá el error `404 - Not Found` en consola
+para los archivos no encontrados. Vea donde _tried_ encontrar los archivos y ajuste la etiqueta base de manera apropiada.
 
 {@a differential-loading}
 
-## Differential Loading
+## Carga diferencial
 
-When building web applications, you want to make sure your application is compatible with the majority of browsers.
-Even as JavaScript continues to evolve, with new features being introduced, not all browsers are updated with support for these new features at the same pace.
+En la aplicación web, quiere asegurar que la aplicación se compatible con la mayoría de los navegadores.
+Incluso a medida que JavaScript continúa evolucionando, con la introducción de nuevas funciones, no todos los navegadores se actualizan con soporte para estas nuevas funciones al mismo ritmo.
 
-The code you write in development using TypeScript is compiled and bundled into ES2015, the JavaScript syntax that is compatible with most browsers.
-All modern browsers support ES2015 and beyond, but in most cases, you still have to account for users accessing your application from a browser that doesn't.
-When targeting older browsers, [polyfills](guide/browser-support#polyfills) can bridge the gap by providing functionality that doesn't exist in the older versions of JavaScript supported by those browsers.
+El código que se encuentra usando TypeScript es compilado y empaquetado para  ES2015, y asi la sintaxis de JavaScript es compatible con la mayoría de los navegadores.
+Todos los navegadores modernos soportan ES2015 o menores, pero en la mayoría de los casos, debe tener en cuenta los navegadores que no cuentan con esta compatibilidad.
+Cuando el objetivo sean navegadores antiguos, [polyfills](guide/browser-support#polyfills) puede cerrar la brecha al proporcionar una funcionalidad que no existe en las versiones anteriores de JavaScript compatibles con esos navegadores.
 
-To maximize compatibility, you could ship a single bundle that includes all your compiled code, plus any polyfills that may be needed.
-Users with modern browsers, however, shouldn't have to pay the price of increased bundle size that comes with polyfills they don't need.
-Differential loading, which is supported in Angular CLI version 8 and higher, can help solve this problem.
+Para maximizar la compatibilidad, puede enviar un solo paquete que incluya todo su código compilado, más cualquier polyfills que pueda ser necesario.
+Los usuarios con navegadores modernos, sin embargo, no deberían tener que pagar el precio de un paquete de mayor tamaño que viene con polyfills que no necesitan.
+La carga diferencial, que es compatible con Angular CLI versión 8 y superior, puede ayudar a resolver este problema.
 
-Differential loading is a strategy that allows your web application to support multiple browsers, but only load the necessary code that the browser needs. When differential loading is enabled the CLI builds two separate bundles as part of your deployed application.
+La carga diferencial es una estrategia que permite que su aplicación web admita varios navegadores, pero solo cargue el código necesario que el navegador necesita. Cuando la carga diferencial está habilitada, la CLI crea dos paquetes separados como parte de su aplicación implementada.
 
-* The first bundle contains modern ES2015 syntax. This bundle takes advantage of built-in support in modern browsers, ships fewer polyfills, and results in a smaller bundle size.
+* El primer paquete contiene la sintaxis moderna de ES2015. Este paquete aprovecha la compatibilidad integrada en los navegadores modernos, envía menos polyfills y da como resultado un tamaño de paquete más pequeño.
 
-* The second bundle contains code in the old ES5 syntax, along with all necessary polyfills. This second bundle is larger, but supports older browsers.
+* El segundo paquete contiene código en la antigua sintaxis de ES5, junto con todos los polyfills necesarios. Este segundo paquete es más grande, pero es compatible con navegadores más antiguos.
 
-### Differential builds
+### Creadores diferenciales
 
-When you deploy using the Angular CLI build process, you can choose how and when to support differential loading.
-The [`ng build` CLI command](cli/build) queries the browser configuration and the configured build target to determine if support for legacy browsers is required, and whether the build should produce the necessary bundles used for differential loading.
-
-The following configurations determine your requirements.
+Cuando el despliegue utiliza el proceso de creación de Angular CLI, puede elegir como y cuando soportara la carga diferencial.
+El [comando `ng build`](cli/build) consulta la configuración del navegador y el destino de compilación configurado para determinar si se requiere compatibilidad con navegadores heredados y si la compilación debe producir los paquetes necesarios para la carga diferencial.
+Las siguientes configuraciónes determinan sus requerimientos.
 
 * Browserslist
 
-   The Browserslist configuration file is included in your application [project structure](guide/file-structure#application-configuration-files) and provides the minimum browsers your application supports. See the [Browserslist spec](https://github.com/browserslist/browserslist) for complete configuration options.
+   El archivo de configuración Browserslist esta incluido en la [estructura del proyecto de la aplicación](guide/file-structure#application-configuration-files) y provee del mínimo soporte a la aplicación desde el navegador. Ver la [especificación Browserslist](https://github.com/browserslist/browserslist) para todas las opciones de la configuración.
 
-* TypeScript configuration
+* Configuración de TypeScript
 
-   In the TypeScript configuration file, the "target" option in the `compilerOptions` section determines the ECMAScript target version that the code is compiled to.
-   Modern browsers support ES2015 natively, while ES5 is more commonly used to support legacy browsers.
+   En el archivo de configuración de TypeScript, la opción "target" en la sección `compilerOptions` determina la versión de destino de ECMAScript en la que se compila el código.
+   Los navegadores modernos admiten ES2015 de forma nativa, mientras que ES5 se usa más comúnmente para admitir navegadores heredados.
 
 <div class="alert is-helpful">
-
-   Differential loading is currently only supported when using `es2015` as a compilation target. When used with targets higher than `es2015`, the build process emits a warning.
+   
+   Actualmente, la carga diferencial solo se admite cuando se usa "es2015" como destino de compilación. Cuando se usa con objetivos superiores a "es2015", el proceso de compilación emite una advertencia.
 
 </div>
 
-For a development build, the output produced by `ng build` is simpler and easier to debug, allowing you to rely less on sourcemaps of compiled code.
+Para una compilación de desarrollo, la salida producida por `ng build` es más simple y más fácil de depurar, lo que le permite depender menos de los mapas fuente del código compilado.
 
-For a production build, your configuration determines which bundles are created for deployment of your application.
-When needed, the `index.html` file is also modified during the build process to include script tags that enable differential loading, as shown in the following example.
+Para una compilación de producción, su configuración determina qué paquetes se crean para la implementación de su aplicación.
+Cuando es necesario, el archivo `index.html` también se modifica durante el proceso de compilación para incluir etiquetas de secuencia de comandos que permiten la carga diferencial, como se muestra en el siguiente ejemplo.
 
 <code-example language="html" header="index.html">
 &lt;body>
@@ -499,29 +498,29 @@ When needed, the `index.html` file is also modified during the build process to 
 &lt;/body>
 </code-example>
 
-Each script tag has a `type="module"` or `nomodule` attribute. Browsers with native support for ES modules only load the scripts with the `module` type attribute and ignore scripts with the `nomodule` attribute. Legacy browsers only load the scripts with the `nomodule` attribute, and ignore the script tags with the `module` type that load ES modules.
+Cada etiqueta del script tiene un `type="module"` o un atributo `nomodule`. Los navegadores con soporte nativo para módulos ES solo cargan los scripts con el atributo de tipo `module` e ignoran los scripts con el atributo` nomodule`. Los navegadores heredados solo cargan los scripts con el atributo `nomodule` e ignoran las etiquetas del script con el tipo de` module` que cargan los módulos ES.
 
 <div class="alert is-helpful">
 
-   Some legacy browsers still download both bundles, but only execute the appropriate scripts based on the attributes mentioned above. You can read more on the issue [here](https://github.com/philipwalton/webpack-esnext-boilerplate/issues/1).
+   Algunos navegadores heredados aún descargan ambos paquetes, pero solo ejecutan los scripts apropiados según los atributos mencionados anteriormente. Puedes leer más sobre el tema [aqui](https://github.com/philipwalton/webpack-esnext-boilerplate/issues/1).
 
 </div>
 
-### Configuring differential loading
+### Configuración de carga diferencial
 
-To include differential loading in your application builds, you must configure the Browserslist and TypeScript configuration files in your application project.
+Para incluir la carga diferencial en la compilación de su aplicación, debe configurar el Browserslist y la configuración de TypeScript en los archivos de su aplicación.
 
-The following examples show a `browserlistrc` and `tsconfig.json` file for a newly created Angular application. In this configuration, legacy browsers such as IE 9-11 are ignored, and the compilation target is ES2015.
+Los siguientes ejemplos muestran un archivo `browserlistrc` y` tsconfig.json` para una aplicación Angular recién creada. En esta configuración, los navegadores heredados como IE 9-11 se ignoran y el objetivo de compilación es ES2015.
 
 <code-example language="none" header="browserslistrc">
-# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
-# For additional information regarding the format and rule options, please see:
+# El sistema de compilación utiliza este archivo para ajustar la salida de CSS y JS para admitir los navegadores especificados a continuación.
+# Para obtener información adicional sobre las opciones de formato y regla, consulte:
 # https://github.com/browserslist/browserslist#queries
 
-# For the full list of supported browsers by the Angular framework, please see:
+# Para obtener la lista completa de navegadores compatibles con el marco Angular, consulte:
 # https://angular.io/guide/browser-support
 
-# You can see what browsers were selected by your queries by running:
+# Puede ver qué navegadores fueron seleccionados por sus consultas ejecutando:
 #   npx browserslist
 
 last 1 Chrome version
@@ -562,37 +561,37 @@ not IE 9-11 # For IE 9-11 support, remove 'not'.
 
 <div class="alert is-important">
 
-   To see which browsers are supported and determine which settings meet to your browser support requirements, see the [Browserslist compatibility page](https://browserl.ist/?q=%3E+0.5%25%2C+last+2+versions%2C+Firefox+ESR%2C+not+dead%2C+not+IE+9-11).
+   Para ver que navegador es soportado y determinar que configuración se asemeja a los requerimientos de su navegador, vea la [pagina de compatibilidad de Browserslist](https://browserl.ist/?q=%3E+0.5%25%2C+last+2+versions%2C+Firefox+ESR%2C+not+dead%2C+not+IE+9-11).
 
 </div>
 
-The Browserslist configuration allows you to ignore browsers without ES2015 support. In this case, a single build is produced.
+La configuración de la lista de navegadores le permite ignorar los navegadores que no son compatibles con ES2015. En este caso, se produce una sola construcción.
 
-If your Browserslist configuration includes support for any legacy browsers, the build target in the TypeScript configuration determines whether the build will support differential loading.
+Si su configuración de Browserslist incluye soporte para navegadores heredados, el destino de compilación en la configuración de TypeScript determina si la compilación admitirá la carga diferencial.
 
 {@a configuration-table }
 
 | Browserslist | ES target | Build result |
 | -------- | -------- | -------- |
-| ES5 support disabled | es2015  | Single build, ES5 not required |
-| ES5 support enabled  | es5     | Single build w/conditional polyfills for ES5 only |
-| ES5 support enabled  | es2015  | Differential loading (two builds w/conditional polyfills) |
+| ES5 soporte deshabilitado | es2015  | Empaquetado simple, ES5 no requerido |
+| ES5 soporte habilitado  | es5     | Empaquetado simple con condiciones polyfills solo es para ES5 |
+| ES5 soporte habilitado  | es2015  | Carga diferencial (dos o mas condiciones polyfills) |
 
 {@a test-and-serve}
 
-## Local development in older browsers
+## Desarrollo local en navegadores viejos
 
-In Angular CLI version 8 and higher, differential loading is enabled by default for the `ng build` command.
-The `ng serve`, `ng test`, and `ng e2e` commands, however, generate a single ES2015 build which cannot run in older browsers that don't support the modules, such as IE 11.
+En Angular CLI versión 8 y superior, la carga diferencial está habilitada de forma predeterminada para el comando `ng build`.
+Sin embargo, los comandos `ng serve`,` ng test` y `ng e2e` generan una única compilación de ES2015 que no se puede ejecutar en navegadores antiguos que no admiten los módulos, como IE 11.
 
-If you want to run ES5 code during development, you could disable differential loading completely.
-To maintain the benefits of differential loading, however, a better option is to define multiple configurations for `ng serve`, `ng e2e`, and `ng test`.
+Si desea ejecutar el código ES5 durante el desarrollo, puede deshabilitar la carga diferencial por completo.
+Sin embargo, para mantener los beneficios de la carga diferencial, una mejor opción es definir múltiples configuraciónes para "ng serve", "ng e2e" y "ng test".
 
 {@a differential-serve}
+{@a configuring-serve-for-es5}
+### Configurar el servicio para ES5
 
-### Configuring serve for ES5
-
-To do this for `ng serve`, create a new file, `tsconfig-es5.app.json` next to `tsconfig.app.json` with the following content.
+Para hacer esto para `ng serve`, cree un nuevo archivo,` tsconfig-es5.app.json` junto a `tsconfig.app.json` con el siguiente contenido.
 
 <code-example language="json">
 
@@ -605,7 +604,7 @@ To do this for `ng serve`, create a new file, `tsconfig-es5.app.json` next to `t
 
 </code-example>
 
-In `angular.json` add two new configuration sections under the `build` and `serve` targets to point to the new TypeScript configuration.
+En `angular.json` agregue dos nuevas secciones en la configuración debajo de `build` y `serve` para apuntar a la nueva configuración de TypeScript.
 
 <code-example language="json">
 
@@ -640,7 +639,7 @@ In `angular.json` add two new configuration sections under the `build` and `serv
 
 </code-example>
 
-You can then run the `ng serve` command with this configuration. Make sure to replace `<app-name>` (in `"<app-name>:build:es5"`) with the actual name of the app, as it appears under `projects` in `angular.json`. For example, if your app name is `myAngularApp` the config will become `"browserTarget": "myAngularApp:build:es5"`.
+Luego puede ejecutar el comando `ng serve` con esta configuración. Asegúrese de reemplazar `<app-name>` (en `" <app-name>: build: es5 "`) con el nombre real de la aplicación, como aparece en `projects` en` angular.json`. Por ejemplo, si el nombre de su aplicación es `myAngularApp`, la configuración se convertirá en` "browserTarget": "myAngularApp: build: es5" `.
 
 <code-example language="none" class="code-shell">
 
@@ -650,9 +649,9 @@ ng serve --configuration es5
 
 {@a differential-test}
 
-### Configuring the test command
+### Configuración del comando de prueba
 
-Create a new file, `tsconfig-es5.spec.json` next to `tsconfig.spec.json` with the following content.
+Cree un nuevo archivo, `tsconfig-es5.spec.json` junto a` tsconfig.spec.json` con el siguiente contenido.
 
 <code-example language="json">
 
@@ -681,7 +680,7 @@ Create a new file, `tsconfig-es5.spec.json` next to `tsconfig.spec.json` with th
 
 </code-example>
 
-You can then run the tests with this configuration
+Luego puede ejecutar las pruebas con esta configuración
 
 <code-example language="none" class="code-shell">
 
@@ -689,9 +688,9 @@ ng test --configuration es5
 
 </code-example>
 
-### Configuring the e2e command
+### Configurando el comando e2e
 
-Create an [ES5 serve configuration](guide/deployment#configuring-serve-for-es5) as explained above, and configuration an ES5 configuration for the E2E target.
+Cree una [configuración de servicio ES5](guide/deployment#configuring-serve-for-es5) como se explica anteriormente, y configure una configuración para el destino E2E.
 
 <code-example language="json">
 
@@ -712,7 +711,7 @@ Create an [ES5 serve configuration](guide/deployment#configuring-serve-for-es5) 
 
 </code-example>
 
-You can then run the `ng e2e` command with this configuration. Make sure to replace `<app-name>` (in `"<app-name>:serve:es5"`) with the actual name of the app, as it appears under `projects` in `angular.json`. For example, if your app name is `myAngularApp` the config will become `"devServerTarget": "myAngularApp:serve:es5"`.
+Luego puede ejecutar el comando `ng e2e` con esta configuración. Asegúrese de reemplazar `<app-name>` (en `" <app-name>: serve: es5 "`) con el nombre real de la aplicación, como aparece en `projects` en` angular.json`. Por ejemplo, si el nombre de su aplicación es `myAngularApp`, la configuración se convertirá en` "devServerTarget": "myAngularApp: serve: es5" `.
 
 <code-example language="none" class="code-shell">
 
