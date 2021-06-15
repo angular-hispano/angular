@@ -1,54 +1,54 @@
-# Angular workspace configuration
+# Configuración del espacio de trabajo Angular
 
-A file named `angular.json` at the root level of an Angular [workspace](guide/glossary#workspace) provides workspace-wide and project-specific configuration defaults for build and development tools provided by the Angular CLI.
-Path values given in the configuration are relative to the root workspace folder.
+Un archivo llamado `angular.json` al nivel raíz de un [espacio de trabajo](guide/glossary#workspace) Angular proporciona los valores por defecto de configuración específicos del proyecto y todo el espacio de trabajo para construir y desarrollar herramientas proporcionadas por el CLI de Angular. 
+Los valores de ruta dados en la configuración son relativos a la carpeta raíz del espacio de trabajo.
 
-## Overall JSON structure
+## Estructura general de JSON
 
-At the top level of `angular.json`, a few properties configure the workspace, and a `projects` section contains the remaining per-project configuration options. CLI defaults set at the workspace level can be overridden by defaults set at the project level, and defaults set at the project level can be overridden on the command line.
+En la parte superior del `angular.json`, algunas pocas propiedades configuran el espacio de trabajo, y una sección de `projects` contiene las opciones de configuración restantes por proyectos. Los valores por defecto del CLI establecidos al nivel del espacio de trabajo pueden ser anulados por los valores por defecto establecidos al nivel del proyecto, y valores por defecto establecidos al nivel del proyecto pueden ser anulados en la línea de comandos.
 
-The following properties, at the top level of the file, configure the workspace.
+Las siguientes propiedades, en la parte superior del archivo, configuran el espacio de trabajo.
 
-* `version`: The configuration-file version.
-* `newProjectRoot`: Path where new projects are created. Absolute or relative to the workspace folder.
-* `defaultProject`: Default project name to use in commands, where not provided as an argument. When you use `ng new` to create a new app in a new workspace, that app is the default project for the workspace until you change it here.
-* `schematics` : A set of [schematics](guide/glossary#schematic) that customize the `ng generate` sub-command option defaults for this workspace. See [Generation schematics](#schematics) below.
-* `projects` : Contains a subsection for each project (library or application) in the workspace, with the per-project configuration options.
+* `version`: La versión del archivo de configuración.
+* `newProjectRoot`: Ruta donde los nuevos proyectos son creados. Absolutas o relativas a la carpeta de espacio de trabajo.
+* `defaultProject`: Nombre por defecto del proyecto para usar en comandos, donde no se proporciona como un argumento. Cuando uses `ng new` para crear una nueva aplicación en un nuevo espacio de trabajo, esta aplicación será el proyecto por defecto en el espacio de trabajo hasta que lo cambies aquí.
+* `schematics` : Un grupo de [esquemas](guide/glossary#schematic) que personaliza la opción por defecto del subcomando `ng generate` para este espacio de trabajo. Ver [Generación de esquemas](#schematics) a continuación.
+* `projects` : Contiene una subsección por cada proyecto (librería o aplicación) en el espacio de trabajo, con las opciones de configuración por proyecto.
 
-The initial app that you create with `ng new app_name` is listed under "projects":
+La aplicación inicial que crees con `ng new app_name` se listara debajo de "projects":
 
 <code-example language="json">
 
 "projects": {
-  "app_name": {
-    ...
-  }
-  ...
+"app_name": {
+...
+}
+...
 }
 
 </code-example>
 
-Each additional app that you create with `ng generate application` has a corresponding end-to-end test project, with its own configuration section.
-When you create a library project with `ng generate library`, the library project is also added to the `projects` section.
+Cada aplicación adicional que crees con `ng generate application` tiene su correspondiente prueba end-to-end del proyecto, con su propia sección de configuración.
+Cuando creas un proyecto como librería con `ng generate librery`, el proyecto de librería es además agregada a la sección de `projects`.
 
 <div class="alert is-helpful">
 
-  Note that the `projects` section of the configuration file does not correspond exactly to the workspace file structure.
-  * The initial app created by `ng new` is at the top level of the workspace file structure.
-  * Additional applications and libraries go into a `projects` folder in the workspace.
+Observe que la sección `projects` del archivo de configuración no corresponde exactamente a la estructura de archivos del espacio de trabajo.
+- La aplicación inicial creada con `ng new` está en la parte superior de la estructura de archivos del espacio de trabajo.
+- Aplicaciones y librerías adicionales van dentro de la carpeta `projects` en el espacio de trabajo.
 
-  For more information, see [Workspace and project file structure](guide/file-structure).
+Para más información, ver [Espacio de trabajo y estructura de archivos del proyecto](guide/file-structure).
 
 </div>
 
-## Strict mode
+## Modo Estricto
 
-When you create new workspaces and projects, you have the option to use Angular's strict mode, which can help you write better, more maintainable code.
-For more information, see [Strict mode](/guide/strict-mode).
+Cuando creas nuevos proyectos y espacios de trabajo, tienes la opción de usar el modo estricto de Angular, que puede ayudarte a escribir mejor código y más mantenible.
+Para más información, ver [Modo estricto](/guide/strict-mode).
 
-## Project configuration options
+## Opciones de configuración del proyecto
 
-The following top-level configuration properties are available for each project, under `projects:<project_name>`.
+Las siguientes propiedades de configuración superiores están disponibles para cada proyecto, debajo de `projects:<project_name>`.
 
 <code-example language="json">
 
@@ -63,65 +63,65 @@ The following top-level configuration properties are available for each project,
 
 </code-example>
 
-| PROPERTY | DESCRIPTION |
+| PROPIEDAD | DESCRIPCIONES |
 | :-------------- | :---------------------------- |
-| `root`          | The root folder for this project's files, relative to the workspace folder. Empty for the initial app, which resides at the top level of the workspace. |
-| `sourceRoot`    | The root folder for this project's source files. |
-| `projectType`   | One of "application" or "library". An application can run independently in a browser, while a library cannot.|
-| `prefix`        | A string that Angular prepends to generated selectors. Can be customized to identify an app or feature area. |
-| `schematics`    | A set of schematics that customize the `ng generate` sub-command option defaults for this project. See [Generation schematics](#schematics) below.  |
-| `architect`     | Configuration defaults for Architect builder targets for this project. |
+| `root`          | La carpeta raíz para los archivos del proyecto, relativa a la carpeta del espacio de trabajo. Vacía para la aplicación inicial, que reside en la parte superior del espacio de trabajo. |
+| `sourceRoot`    | La carpeta raíz de los archivos fuente del proyecto |
+| `projectType`   | Admite solo uno de "application" o "library". Una aplicación puede corren independientemente en un navegador, mientras que una librería no. |
+| `prefix`        | Una cadena de caracteres que Angular antepone a los selectores generados. Pueden ser personalizados para identificar una aplicación o área de características. |
+| `schematics`    | Un grupo de esquemas que personaliza las opciones por defecto del subcomando `ng generate ` para el proyecto. Ver [Esquemas de generación](#schematics) a continuación. |
+| `architect`     | Valores por defecto de configuración para los objetivos del constructor del Arquitect para este proyecto. |
 
 {@a schematics}
 
-## Generation schematics
+## Esquemas de generación
 
-Angular generation [schematics](guide/glossary#schematic) are instructions for modifying a project by adding files or modifying existing files.
-Individual schematics for the default Angular CLI `ng generate` sub-commands are collected in the package `@angular`.
-Specify the schematic name for a subcommand in the format `schematic-package:schematic-name`;
-for example, the schematic for generating a component is `@angular:component`.
+Los [esquemas](guide/glossary#schematic) de generación Angular son instrucciones para modificar un proyecto agregando o modificando archivos existentes.
+Los esquemas individuales en los valores por defecto del subcomando `ng generate` del CLI de Angular son recolectados en el paquete `@angular`.
+Especifique el nombre del esquema para un subcomando en el formato `schematic-package:schematic-name`;
+Por ejemplo, el esquema para generar un componente es `@angular:component`.
 
-The JSON schemas for the default schematics used by the CLI to generate projects and parts of projects are collected in the package [`@schematics/angular`](https://github.com/angular/angular-cli/blob/7.0.x/packages/schematics/angular/application/schema.json).
-The schema describes the options available to the CLI for each of the `ng generate` sub-commands, as shown in the `--help` output.
+Los esquemas JSON en los esquemas predeterminados usados en el CLI para generar proyectos y partes de proyectos son recolectados en el paquete [`@schematics/angular`](https://github.com/angular/angular-cli/blob/7.0.x/packages/schematics/angular/application/schema.json).
+El esquema describe las opciones disponibles en el CLI para cada uno de los subcomandos `ng generate`, como muestra en el resultado de `--help`.
 
-The fields given in the schema correspond to the allowed argument values and defaults for the CLI sub-command options.
-You can update your workspace schema file to set a different default for a sub-command option.
+Los campos dados en el esquema corresponden a los valores de los argumentos permitidos y los valores por defecto para las opciones del subcomando CLI.
+Puedes actualizar tu archivo de esquema del espacio de trabajo para establecer diferentes valores por defecto para una opción de subcomando.
 
 {@a architect}
 
-## Project tool configuration options
+## Opciones de configuración de la herramienta de proyecto
 
-Architect is the tool that the CLI uses to perform complex tasks, such as compilation and test running.
-Architect is a shell that runs a specified [builder](guide/glossary#builder) to perform a given task, according to a [target](guide/glossary#target) configuration.
-You can define and configure new builders and targets to extend the CLI.
-See [Angular CLI Builders](guide/cli-builder).
+Arquitect es la herramienta que usa el CLI para realizar tareas complejas, como compilación y ejecutar pruebas de funcionamiento.
+Arquitect es una cáscara que corre un [constructor](guide/glossary#builder) específico para realizar una tarea dada, de acuerdo a un [objetivo](guide/glossary#target) específico de configuración.
+Puedes definir y configurar nuevos constructores y objetivos para extender el CLI.
+Ver [Constructores del CLI de Angular](guide/cli-builder).
 
 {@a default-build-targets}
 
-### Default Architect builders and targets
+### Constructores y objetivos por defecto del Architec 
 
-Angular defines default builders for use with specific CLI commands, or with the general `ng run` command.
-The JSON schemas that the define the options and defaults for each of these default builders are collected in the [`@angular-devkit/build-angular`](https://github.com/angular/angular-cli/blob/8.0.x/packages/angular/cli/lib/config/schema.json) package.
-The schemas configure options for the following builders.
+Angular define los constructores por defecto que usara con comandos específicos del CLI, o con el comando general `ng run`.
+Los esquemas JSON que definen las opciones por defecto de cada uno de estos constructores por defecto son recolectados en el paquete [`@angular-devkit/build-angular`](https://github.com/angular/angular-cli/blob/8.0.x/packages/angular/cli/lib/config/schema.json) 
+Los esquemas configuran opciones para los siguientes constructores.
 
-* app-shell
-* browser
-* dev-server
-* extract-i18n
-* karma
-* protractor
-* server
-* tslint
+- app-shell
+- browser
+- dev-server
+- extract-i18n
+- karma
+- protractor
+- server
+- tslint
 
-### Configuring builder targets
+### Configurando los objetivos del constructor
 
-The `architect` section of `angular.json` contains a set of Architect targets.
-Many of the targets correspond to the CLI commands that run them.
-Some additional predefined targets can be run using the `ng run` command, and you can define your own targets.
+La sección `architect` del `angular.json` contiene un grupo de objetivos del Architect.
+Muchos de los objetivos corresponden a los comandos CLI que se ejecutan.
+Algunos objetivos adicionales predefinidos pueden ser ejecutados usando el comando `ng run`, y puedes definir sus propios objetivos.
 
-Each target object specifies the `builder` for that target, which is the npm package for the tool that Architect runs.
-In addition, each target has an `options` section that configures default options for the target, and a `configurations` section that names and specifies alternative configurations for the target.
-See the example in [Build target](#build-target) below.
+Cada objeto de destino especifica el `builder` para el propósito, que es el paquete npm para la herramienta que utiliza Architect.
+Adicionalmente, acá objetivo tiene una sección `options` que configura las opciones por defecto para los objetivos, y una sección `configurations` que especifica y nombra configuraciones alternativas para los objetivos.
+Ver el ejemplo en [Crear objetivo](#build-target) a continuación.
 
 <code-example language="json">
 
@@ -138,84 +138,84 @@ See the example in [Build target](#build-target) below.
 
 </code-example>
 
-* The `architect/build` section configures defaults for options of the `ng build` command.
-See [Build target](#build-target) below for more information.
+* La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. 
+Ver [crear destino](#build-target) a continuación para más información.
 
-* The `architect/serve` section overrides build defaults and supplies additional serve defaults for the `ng serve` command. In addition to the options available for the `ng build` command, it adds options related to serving the app.
+* La sección `architect/serve` anula los valores por defecto de creación y suministra los valores por defecto servidos por el comando `ng serve`. Además de las opciones disponibles por el comando `ng build`, Este agrega opciones relacionadas con el servicio de la aplicación.
 
-* The `architect/e2e` section overrides build-option defaults for building end-to-end testing apps using the `ng e2e` command.
+* La sección `architect/e2e` anula las opciones por defecto de creación para crear aplicaciones de pruebas end-to-end usando el comando `ng e2e`.
 
-* The `architect/test` section overrides build-option defaults for test builds and supplies additional test-running defaults for the `ng test` command.
+* La sección `architect/test` anula las opciones por defecto de creación, para crear pruebas y adicional suministrar los valores por defecto para la ejecución de pruebas para el comando `ng test`.
 
-* The `architect/lint` section configures defaults for options of the `ng lint` command, which performs code analysis on project source files. The default linting tool for Angular is [TSLint](https://palantir.github.io/tslint/).
+* La sección `architect/lint` configura los valores por defecto para las opciones del comando `ng lint`, el cual realiza análisis de código sobre los archivos fuentes del proyecto. La herramienta por defecto de linting para Angular es [TSLint](https://palantir.github.io/tslint/).
 
-* The `architect/extract-i18n` section configures defaults for options of the `ng-xi18n` tool used by the `ng xi18n` command, which extracts marked message strings from source code and outputs translation files.
+* La sección `architect/extract-i18n` configura los valores por defecto para las opciones de la herramienta `ng-xi18n` usada por el comando `ng xi18n`, el cual extrae cadenas de texto marcadas como mensaje desde el código fuente y las salidas de los archivos de traducción.
 
-* The `architect/server` section configures defaults for creating a Universal app with server-side rendering, using the `ng run <project>:server` command.
+* La sección `architect/server` configura los valores por defecto para la creación de una aplicación universal con renderizado en el lado del servidor, usando el comando `ng run <project>:server`.
 
-* The `architect/app-shell` section configures defaults for creating an app shell for a progressive web app (PWA), using the `ng run <project>:app-shell` command.
+* La sección `architect/app-shell` configura los valores por defecto para la creación de un armazón de una aplicación para una aplicación web progresiva (PWA), usando el comando `ng run <project>:app-shell`.
 
-In general, the options for which you can configure defaults correspond to the command options listed in the [CLI reference page](cli) for each command.
-Note that all options in the configuration file must use [camelCase](guide/glossary#case-conventions), rather than dash-case.
+En general, las opciones para las cuales puedes configurar valores por defecto corresponden a las opciones de comandos listados en la [página de referencia del CLI](cli) para cada comando.
+Observe que todas las opciones en el archivo de configuración debe usar [camelCase](guide/glossary#case-conventions), en vez de dash-case.
 
 {@a build-target}
 
-## Build target
+## Crear objetivo
 
-The `architect/build` section configures defaults for options of the `ng build` command. It has the following top-level properties.
+La sección `architect/build` configura los valores por defecto para las opciones del comando `ng build`. Este tiene las siguientes propiedades de nivel superior.
 
-| PROPERTY | DESCRIPTION |
+| PROPIEDAD | DESCRIPCIÓN |
 | :-------------- | :---------------------------- |
-| `builder`       | The npm package for the build tool used to create this target. The default builder for an application (`ng build myApp`) is `@angular-devkit/build-angular:browser`, which uses the [webpack](https://webpack.js.org/) package bundler. Note that a different builder is used for building a library (`ng build myLib`). |
-| `options`       | This section contains default build target options, used when no named alternative configuration is specified. See [Default build targets](#default-build-targets) below. |
-| `configurations`| This section defines and names alternative configurations for different intended destinations. It contains a section for each named configuration, which sets the default options for that intended environment. See [Alternate build configurations](#build-configs) below. |
+| `builder`       | El paquete npm en la herramienta de creación usado para crear este objetivo, el constructor por defecto para una aplicación (`ng build myApp`) es `@angular-devkit/build-angular:browser`, que usa el paquete empaquetador [webpack](https://webpack.js.org/). Observe que un constructor diferente es usado para construir una librería (`ng build myLib`). |
+| `options`       | Esta sección contiene las opciones por defecto para crear objetivos, usadas cuando una configuración alternativa no nombrada es especificada. Ver [objetivos de creación por defecto](#default-build-targets) a continuación. |
+| `configurations`| Esta sección define y nombra configuraciones alternativas para diferentes destinos deseados. Este contiene una sección para cada configuración nombrada, que establece las opciones por defecto para los ambientes planeados. Ver [configuraciones alternas de creación](#build-configs) a continuación. |
 
 
 {@a build-configs}
 
-### Alternate build configurations
+### Configuraciones alternas de creación
 
-By default, a `production` configuration is defined, and the `ng build` command has `--prod` option that builds using this configuration. The `production` configuration sets defaults that optimize the app in a number of ways, such as bundling files, minimizing excess whitespace, removing comments and dead code, and rewriting code to use short, cryptic names ("minification").
+Por defecto, una configuración de `production` es definida, y el comando `ng build` tiene la opción `--prod` que crea usando esta configuración. La configuración de `production` establece valores por defecto que optimizan la aplicación de varias maneras, como empaquetar archivos, minimizando el exceso de espacios en blanco, removiendo comentarios y código muerto, y reescribiendo código para usar nombres breves y crípticos ("minificación").
 
-You can define and name additional alternate configurations (such as `stage`, for instance) appropriate to your development process. Some examples of different build configurations are `stable`, `archive` and `next` used by AIO itself, and the individual locale-specific configurations required for building localized versions of an app. For details, see [Internationalization (i18n)](guide/i18n#merge-aot).
+Puedes definir y nombrar configuraciones alternas adicionales (como `stage`, por ejemplo) apropiadas para tu proceso de desarrollo. algunos ejemplos de diferentes configuraciones de creación son `stable`, `archive` y `next` usados por el mismo AIO, y las configuraciones individuales locales y especificas requeridas para la creación de versiones localizadas de una versión de una aplicación. Para más detalles, ver [Internacionalización (i18n)](guide/i18n#merge-aot).
 
-You can select an alternate configuration by passing its name to the `--configuration` command line flag.
+Puedes seleccionar una configuración alterna pasando su nombre en la línea de comandos con la bandera `--configuration`.
 
-You can also pass in more than one configuration name as a comma-separated list. For example, to apply both `stage` and `fr` build configurations, use the command `ng build --configuration stage,fr`. In this case,  the command parses the named configurations from left to right. If multiple configurations change the same setting, the last-set value is the final one.
+Puedes además pasar más que un nombre de configuración como una lista separada por comas. Por ejemplo, para aplicar ambas configuraciones creadas por `stage` y `fr`, use el comando `ng build --configuration stage,fr`. En este caso, el comando analiza las configuraciones nombradas de izquierda a derecha. Si múltiples configuraciones cambian la misma configuración, el último valor establecido es el valor final.
 
-If the `--prod` command line flag is also used, it is applied first, and its settings can be overridden by any configurations specified via the `--configuration` flag.
+Si la bandera `--prod` es usada en la línea de comandos, esta sé aplica primero, y sus configuraciones puedes ser anuladas por cualquier configuración especificada por medio de la bandera `--configuration`.
 
 {@a build-props}
 
-### Additional build and test options
+### Opciones adicionales de creación y pruebas
 
-The configurable options for a default or targeted build generally correspond to the options available for the [`ng build`](cli/build), [`ng serve`](cli/serve), and [`ng test`](cli/test) commands. For details of those options and their possible values, see the [CLI Reference](cli).
+Las opciones configurables por defecto o por un objetivo de creación generalmente corresponden a las opciones disponibles para los comandos [`ng build`](cli/build), [`ng serve`](cli/serve), y [`ng test`](cli/test). Para más detalles de aquellas opciones y sus posibles valores, ver la [Referencia del CLI](cli). 
 
-Some additional options can only be set through the configuration file, either by direct editing or with the [`ng config`](cli/config) command.
+Algunas opciones adicionales puedes solo ser establecidas a través del archivo de configuración, o ya sea directamente editando o con el comando [`ng config`](cli/config).
 
-| OPTIONS PROPERTIES | DESCRIPTION |
+| PROPIEDADES OPCIONALES | DESCRIPCIÓN |
 | :------------------------- | :---------------------------- |
-| `assets`                   | An object containing paths to static assets to add to the global context of the project. The default paths point to the project's icon file and its `assets` folder. See more in [Assets configuration](#asset-config) below. |
-| `styles`                   | An array of style files to add to the global context of the project. Angular CLI supports CSS imports and all major CSS preprocessors: [sass/scss](http://sass-lang.com/), [less](http://lesscss.org/), and [stylus](http://stylus-lang.com/). See more in [Styles and scripts configuration](#style-script-config) below. |
-| `stylePreprocessorOptions` | An object containing option-value pairs to pass to style preprocessors. See more in [Styles and scripts configuration](#style-script-config) below. |
-| `scripts`                  | An object containing JavaScript script files to add to the global context of the project. The scripts are loaded exactly as if you had added them in a `<script>` tag inside `index.html`. See more in [Styles and scripts configuration](#style-script-config) below. |
-| `budgets`                  | Default size-budget type and threshholds for all or parts of your app. You can configure the builder to report a warning or an error when the output reaches or exceeds a threshold size. See [Configure size budgets](guide/build#configure-size-budgets). (Not available in `test` section.) |
-| `fileReplacements`         | An object containing files and their compile-time replacements. See more in [Configure target-specific file replacements](guide/build#configure-target-specific-file-replacements).|
+| `assets`                   | Un objeto contiene rutas a activos estáticos para agregar al contexto global del proyecto. Las rutas por defecto apuntan al archivo icono del proyecto y su carpeta `assets`. Ver más en [Configuración de activos](#asset-config) a continuación |
+| `styles`                   | Un array de archivos de estilo para agregar al contexto global del proyecto. El CLI de Angular soporta importaciones de CSS y todos los principales prepocesadores de CSS: [sass/scss](http://sass-lang.com/), [less](http://lesscss.org/), y [stylus](http://stylus-lang.com/). Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `stylePreprocessorOptions` | Un objeto contiene pares de opciones y valores para pasar a los preprocesadores de estilo. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `scripts`                  | Un objeto que contiene archivos de texto JavaScript para agregar al contexto global del proyecto. Los scripts son cargados exactamente como si los hubieras agregado en una etiqueta `<script>` dentro de `index.html`. Ver más en [Configuración de estilos y scripts](#style-script-config) a continuación. |
+| `budgets`                  | Tipo de tamaño presupuestado por defecto y umbrales para toda tu aplicación o partes de esta. Puedes configurar el constructor para notificar una advertencia o un error cuando la salida alcance o exceda un umbral de tamaño. Ver [configurar tamaño presupuestado](guide/build#configure-size-budgets). (No disponible en la sección de `test`) | 
+| `fileReplacements`         | Un objeto que contiene archivos y sus reemplazos en tiempo de compilación. Ver más en [Configurar reemplazos de archivos específicos de destino](guide/build#configure-target-specific-file-replacements).| 
 
 {@a complex-config}
 
-## Complex configuration values
+## Valores complejos de configuración
 
-The options `assets`, `styles`, and `scripts` can have either simple path string values, or object values with specific fields.
-The `sourceMap` and `optimization` options can be set to a simple Boolean value with a command flag, but can also be given a complex value using the configuration file.
-The following sections provide more details of how these complex values are used in each case.
+Las opciones `assets`, `styles`, y `scripts` pueden tener ya sea un valor de cadena de ruta simple, o valores de objeto con campos específicos.
+Las opciones `sourceMap` y `optimization` pueden ser establecidas con un valor Booleano simple con un comando bandera, pero también puede ser dado un valor complejo usando el archivo de configuración.
+Las siguientes secciones proveen más detalles de como estos valores complejos son usados en cada caso.
 
 {@a asset-config}
 
-### Assets configuration
+### Configuración de activos
 
-Each `build` target configuration can include an `assets` array that lists files or folders you want to copy as-is when building your project.
-By default, the `src/assets/` folder and `src/favicon.ico` are copied over.
+Cada configuración de objetivo `build` puede incluir un array `assets` que lista los archivos o carpetas que quieras copiar como es cuando construyes tu proyecto.
+Por defecto, la carpeta `src/assets/` y `src/favicon.ico` son copiadas.
 
 <code-example language="json">
 
@@ -226,17 +226,17 @@ By default, the `src/assets/` folder and `src/favicon.ico` are copied over.
 
 </code-example>
 
-To exclude an asset, you can remove it from the assets configuration.
+Para excluir un activo, puedes removerlo de la configuración de activos.
 
-You can further configure assets to be copied by specifying assets as objects, rather than as simple paths relative to the workspace root.
-A asset specification object can have the following fields.
+Puedes configurar más los activos para ser copiados especificando los activos como objetos, en vez de rutas simples relativas a la raíz del espacio de trabajo.
+Un objeto de especificación de activos puede tener los siguientes campos. 
 
-* `glob`:  A [node-glob](https://github.com/isaacs/node-glob/blob/master/README.md) using `input` as base directory.
-* `input`: A path relative to the workspace root.
-* `output`: A path relative to `outDir` (default is `dist/`*project-name*). Because of the security implications, the CLI never writes files outside of the project output path.
-* `ignore`: A list of globs to exclude.
+* `glob`:  Un [node-glob](https://github.com/isaacs/node-glob/blob/master/README.md) usa `input` como directorio base.
+* `input`: Una ruta relativa a la raíz del espacio de trabajo.
+* `output`: Una ruta relativa a `outDir` (el valor por defecto es `dist/`*project-name*). Debido a las implicaciones de seguridad, el CLI nunca escribe archivos fuera de la ruta de salida del proyecto.
+* `ignore`: Una lista de globs a excluir.
 
-For example, the default asset paths can be represented in more detail using the following objects.
+Por ejemplo, Las rutas por defecto de activos pueden ser representadas en más detalle usando los siguientes objetos.
 
 <code-example language="json">
 
@@ -247,8 +247,8 @@ For example, the default asset paths can be represented in more detail using the
 
 </code-example>
 
-You can use this extended configuration to copy assets from outside your project.
-For example, the following configuration copies assets from a node package:
+Puedes usar esta configuración extendida para copiar activos desde afuera de tu proyecto.
+Por ejemplo, las siguientes copias de configuración de activos desde un paquete de node.
 
 <code-example language="json">
 
@@ -258,9 +258,9 @@ For example, the following configuration copies assets from a node package:
 
 </code-example>
 
-The contents of `node_modules/some-package/images/` will be available in `dist/some-package/`.
+El contenido de  `node_modules/some-package/images/` estará disponible en `dist/some-package/`.
 
-The following example uses the `ignore` field to exclude certain files in the assets folder from being copied into the build:
+Los siguientes ejemplos usa el campo `ignore` para excluir ciertos archivos en la carpeta de activos de ser copiados dentro del build:
 
 <code-example language="json">
 
@@ -272,14 +272,14 @@ The following example uses the `ignore` field to exclude certain files in the as
 
 {@a style-script-config}
 
-### Styles and scripts configuration
+### Configuración de estilos y scripts
 
-An array entry for the `styles` and `scripts` options can be a simple path string, or an object that points to an extra entry-point file.
-The associated builder will load that file and its dependencies as a separate bundle during the build.
-With a configuration object, you have the option of naming the bundle for the entry point, using a `bundleName` field.
+Una array de entrada para las opciones de `styles` y `scripts` pueden ser una cadena simple de ruta, o un objeto que apunta a un archivo de punto de entrada extra.
+El constructor asociado cargará sus archivos y sus dependencias como un paquete separado durante la creación.
+Con un objeto de configuración, tienes la opción de nombrar el paquete para un punto de entrada, usando un campo `bundleName`.
 
-The bundle is injected by default, but you can set `inject` to false to exclude the bundle from injection.
-For example, the following object values create and name a bundle that contains styles and scripts, and excludes it from injection:
+El paquete es inyectado de forma por defecto, pero puedes establecer `inject` como false para excluir el paquete en la inyección.
+Por ejemplo, los siguientes valores de objetos crean y nombran un paquete que contiene estilos y scripts, y excluyen este en la inyección:  
 
 <code-example language="json">
 
@@ -292,7 +292,7 @@ For example, the following object values create and name a bundle that contains 
 
 </code-example>
 
-You can mix simple and complex file references for styles and scripts.
+Puedes mezclar referencias de archivos simples y complejos para estilos y scripts.
 
 <code-example language="json">
 
@@ -307,11 +307,11 @@ You can mix simple and complex file references for styles and scripts.
 
 {@a style-preprocessor}
 
-#### Style preprocessor options
+#### Opciones de preprocesadores de estilo
 
-In Sass and Stylus you can make use of the `includePaths` functionality for both component and global styles, which allows you to add extra base paths that will be checked for imports.
+En Sass y Stylus puedes hacer uso de la funcionalidad `includePaths` tanto para estilos de componentes y estilos globales, que te permiten agregar rutas de base extra que serán comprobadas para importaciones. 
 
-To add paths, use the `stylePreprocessorOptions` option:
+Para agregar rutas, use la opción `stylePreprocessorOptions`:
 
 <code-example language="json">
 
@@ -323,7 +323,7 @@ To add paths, use the `stylePreprocessorOptions` option:
 
 </code-example>
 
-Files in that folder, such as `src/style-paths/_variables.scss`, can be imported from anywhere in your project without the need for a relative path:
+Archivos en esa carpeta, como `src/style-paths/_variables.scss`, pueden ser importados desde cualquier lugar en tu proyecto sin necesitar de una ruta relativa.
 
 ```ts
 // src/app/app.component.scss
@@ -333,18 +333,18 @@ Files in that folder, such as `src/style-paths/_variables.scss`, can be imported
 @import 'variables';
 ```
 
-Note that you will also need to add any styles or scripts to the `test` builder if you need them for unit tests.
-See also [Using runtime-global libraries inside your app](guide/using-libraries#using-runtime-global-libraries-inside-your-app).
+Observe que además necesitara agregar cualquier estilo o script al constructor `test` si les necesitas para pruebas unitarias. 
+Ver también [Usar librerías globales en tiempo de ejecución dentro de tu aplicación](guide/using-libraries#using-runtime-global-libraries-inside-your-app).
 
 
 {@a optimize-and-srcmap}
 
-### Optimization and source map configuration
+### Configuración y optimización del mapa de origen
 
-The `optimization` and `sourceMap` command options are simple Boolean flags.
-You can supply an object as a configuration value for either of these to provide more detailed instruction.
+Las opciones del comando `optimization` y `sourceMap` son banderas simples Booleanas.
+Puedes suministrar un objeto como un valor de configuración para ya sea proveer de estas instrucciones detalladas.
 
-* The flag `--optimization="true"` applies to both scripts and styles. You can supply a value such as the following to apply optimization to one or the other:
+* La bandera `--optimization="true"` aplica para los scripts y los estilos. Puedes suministrar un valor como los siguientes para aplicar optimización a uno u otro:
 
 <code-example language="json">
 
@@ -352,10 +352,10 @@ You can supply an object as a configuration value for either of these to provide
 
 </code-example>
 
-* The flag `--sourceMap="true"` outputs source maps for both scripts and styles.
-You can configure the option to apply to one or the other.
-You can also choose to output hidden source maps, or resolve vendor package source maps.
-For example:
+* la bandera `--sourceMap="true"` produce mapas de origen para los scripts y los estilos.
+Puedes configurar la opción para aplicar a uno o a otro.
+Puedes también escoger producir mapas de origen ocultos, o resolver mapas de origen de paquetes de vendedores.
+Por ejemplo:
 
 <code-example language="json">
 
@@ -365,11 +365,11 @@ For example:
 
 <div class="alert is-helpful">
 
-   When using hidden source maps, source maps will not be referenced in the bundle.
-   These are useful if you only want source maps to map error stack traces in error reporting tools,
-   but don't want to expose your source maps in the browser developer tools.
+   Cuando usas mapas de origen ocultos, estos mapas de origen no estarán referenciados en el paquete.
+   Estos son útiles si solo quieres mapas de origen para mapear los rastros de la pila de errores en herramientas de informe de errores, 
+   pero no quieres exponer tus mapas de origen en las herramientas de desarrollo del navegador.
 
-   For [Universal](guide/glossary#universal), you can reduce the code rendered in the HTML page by
-   setting styles optimization to `true` and styles source maps to `false`.
-
+   Para [Universal](guide/glossary#universal), puedes reducir el código renderizado en la página HTML estableciendo 
+   optimización de estilos como `true` y los mapas de origen como `false`. 
+   
 </div>
