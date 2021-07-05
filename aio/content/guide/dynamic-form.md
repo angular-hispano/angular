@@ -1,53 +1,52 @@
-# Building dynamic forms
+# Construyendo formularios dinámicos
 
-Many forms, such as questionaires, can be very similar to one another in format and intent.
-To make it faster and easier to generate different versions of such a form,
-you can create a *dynamic form template* based on metadata that describes the business object model.
-You can then use the template to generate new forms automatically, according to changes in the data model.
+Muchos formularios, como cuestionarios, pueden ser muy similares entre sí en formato e intención.
+Para que sea más rápido y fácil generar diferentes versiones de dicho formulario, puedes crear una _plantilla de un formulario dinámico_ basado en metadatos que describen el modelo de negocio.
 
-The technique is particularly useful when you have a type of form whose content must
-change frequently to meet rapidly changing business and regulatory requirements.
-A typical use case is a questionaire. You might need to get input from users in different contexts.
-The format and style of the forms a user sees should remain constant, while the actual questions you need to ask vary with the context.
+Después puedes usar la plantilla para generar nuevos formularios automáticamente, acorde a los cambios en los datos del modelo.
 
-In this tutorial you will build a dynamic form that presents a basic questionaire.
-You will build an online application for heroes seeking employment.
-The agency is constantly tinkering with the application process, but by using the dynamic form
-you can create the new forms on the fly without changing the application code.
+La técnica es particularmente útil cuando tienes un tipo de formularios cuyo contenido debe cambiar con frecuencia para cumplir con los requisitos y cambios del negocio que están en constante evolución.
 
-The tutorial walks you through the following steps.
+Un típico caso de uso es un cuestionario. Puede que necesites obtener el input de los usuarios en diferentes contextos.
 
-1. Enable reactive forms for a project.
-2. Establish a data model to represent form controls.
-3. Populate the model with sample data.
-4. Develop a component to create form controls dynamically.
+El formato y estilo de los formularios que ve un usuario deben permanecer constantes, mientras que las preguntas reales que debes preguntar varían según el contexto.
 
-The form you create uses input validation and styling to improve the user experience.
-It has a Submit button that is only enabled when all user input is valid, and flags invalid input with color coding and error messages.
+En este tutorial construirás un formulario dinámico que representa un cuestionario básico.
+Construirás una aplicación online para héroes en búsqueda de empleo.
+La agencia está jugando constantemente con el proceso de aplicación, pero usando formularios dinámicos puedes crear nuevos formularios sobre la marcha sin cambiar el código de la aplicación.
 
-The basic version can evolve to support a richer variety of questions, more graceful rendering, and superior user experience.
+El tutorial se desarrolla a través de los siguientes pasos.
+
+1. Habilita los formularios reactivos para un proyecto.
+2. Estabiliza un modelo de datos para representar los controles del formulario.
+3. Poblar el modelo con datos de muestra.
+4. Desarrolla un componente para crear dinámicamente los controles del formulario.
+
+El formulario a crear usa validaciones en los inputs y estilos para mejorar la experiencia de usuario. Tiene un botón de envío que solo es habilitado cuando todos los inputs del usuario son válidos, remarca los inputs inválidos con un color y muestra mensajes de error.
+
+La versión básica puede evolucionar para dar soporte a una variedad más rica de preguntas, una representación más elegante y una experiencia de usuario superior.
 
 <div class="alert is-helpful">
 
-See the <live-example name="dynamic-form"></live-example>.
+Ver el <live-example name="dynamic-form"></live-example>.
 
 </div>
 
-## Prerequisites
+## Prerrequisitos
 
-Before doing this tutorial, you should have a basic understanding to the following.
+Antes de comenzar con este tutorial, deberías tener conocimiento básico de lo siguiente:
 
-* [TypeScript](https://www.typescriptlang.org/docs/home.html "The TypeScript language") and HTML5 programming.
+- Programación con [TypeScript](https://www.typescriptlang.org/docs/home.html "El lenguaje TypeScript") y HTML5.
 
-* Fundamental concepts of [Angular app design](guide/architecture "Introduction to Angular app-design concepts").
+- Conceptos fundamentales de [diseño de aplicaciones con Angular](guide/architecture "Introducción a los conceptos de Angular").
 
-* Basic knowledge of [reactive forms](guide/reactive-forms "Reactive forms guide").
+- Conocimiento básico de [formularios reactivos](guide/reactive-forms "Guía de formularios reactivos").
 
-## Enable reactive forms for your project
+## Activar formularios reactivos para tu proyecto
 
-Dynamic forms are based on reactive forms. To give the application access reactive forms directives, the [root module](guide/bootstrapping "Learn about bootstrapping an app from the root module.") imports `ReactiveFormsModule` from the `@angular/forms` library.
+Los formularios dinámicos están basados en formularios reactivos. Para que la aplicación tenga acceso a las directivas de los formularios reactivos, el [módulo raíz](guide/bootstrapping "Aprende sobre bootstrapping una aplicación desde el módulo raíz.") importa `ReactiveFormsModule` desde la librería `@angular/forms`.
 
-The following code from the example shows the setup in the root module.
+El siguiente código de ejemplo muestra la configuración del módulo raíz.
 
 <code-tabs>
 
@@ -63,54 +62,53 @@ The following code from the example shows the setup in the root module.
 
 {@a object-model}
 
-## Create a form object model
+## Crear un objeto modelo de formulario
 
-A dynamic form requires an object model that can describe all scenarios needed by the form functionality.
-The example hero-application form is a set of questions&mdash;that is, each control in the form must ask a question and accept an answer.
+Un formulario dinámico requiere un objeto modelo que puede describir todos los escenarios que se necesitan para la funcionalidad del formulario.
+El formulario para el ejemplo de la solicitud del héroe es un conjunto de preguntas&mdash;en el cual, cada control en el formulario debe hacer una pregunta y aceptar una respuesta.
 
-The data model for this type of form must represent a question.
-The example includes the `DynamicFormQuestionComponent`, which defines a  question as the fundamental object in the model.
+El modelo de datos para este tipo de formulario debe representar una pregunta.
+El ejemplo incluye el `DynamicFormQuestionComponent`, el cual define una pregunta como el objeto fundamental en el modelo.
 
-The following `QuestionBase` is a base class for a set of controls that can represent the question and its answer in the form.
+El siguiente `QuestionBase` es una clase base para un conjunto de controles que pueden representar la pregunta y su respuesta en el formulario.
 
 <code-example path="dynamic-form/src/app/question-base.ts" header="src/app/question-base.ts">
 
 </code-example>
 
-### Define control classes
+### Define clases de control
 
-From this base, the example derives two new classes, `TextboxQuestion` and `DropdownQuestion`,
-that represent different control types.
-When you create the form template in the next step, you will instantiate these specific question types in order to render the appropriate controls dynamically.
+De esta base, el ejemplo deriva dos nuevas clases, `TextboxQuestion` y `DropdownQuestion`, que representa diferentes tipos de controles.
+Cuando crees la plantilla del formulario en el siguiente paso, crearás una instancia de estos tipos de preguntas específicas para representar los controles apropiados de forma dinámica.
 
-* The `TextboxQuestion` control type presents a question and allows users to enter input.
+- El tipo de control `TextboxQuestion` presenta una pregunta y permite a los usuarios ingresar datos.
 
-   <code-example path="dynamic-form/src/app/question-textbox.ts" header="src/app/question-textbox.ts"></code-example>
+  <code-example path="dynamic-form/src/app/question-textbox.ts" header="src/app/question-textbox.ts"></code-example>
 
-   The `TextboxQuestion` control type will be represented in a form template using an `<input>` element.
-   The `type` attribute of the element will be defined based on the `type` field specified in the `options` argument (for example `text`, `email`, `url`).
+  El tipo de control `TextboxQuestion` será representado en una plantilla de formulario usando un elemento `<input>`.
+  El atributo `type` del elemento será definido con base en el campo `type` especificado en el argumento `options` (por ejemplo `text`, `email`, `url`).
 
-* The `DropdownQuestion` control presents a list of choices in a select box.
+- El control `DropdownQuestion` presenta una lista de opciones en una caja de selección.
 
-   <code-example path="dynamic-form/src/app/question-dropdown.ts" header="src/app/question-dropdown.ts"></code-example>
+  <code-example path="dynamic-form/src/app/question-dropdown.ts" header="src/app/question-dropdown.ts"></code-example>
 
-### Compose form groups
+### Crear grupos de formularios
 
-A dynamic form uses a service to create grouped sets of input controls, based on the form model.
-The following `QuestionControlService` collects a set of `FormGroup` instances that consume the metadata from the question model. You can specify default values and validation rules.
+Un formulario dinámico usa un servicio para crear un conjunto de controles de entrada agrupados, basados en el modelo del formulario.
+El siguiente `QuestionControlService` toma un conjunto de instancias de `FormGroup` que consumen metadatos desde el modelo de pregunta. Puedes especificar valores por defecto y reglas de validación.
 
 <code-example path="dynamic-form/src/app/question-control.service.ts" header="src/app/question-control.service.ts"></code-example>
 
 {@a form-component}
 
-## Compose dynamic form contents
+## Crear contenidos de formularios dinámicos
 
-The dynamic form itself will be represented by a container component, which you will add in a later step.
-Each question is represented in the form component's template by an `<app-question>` tag, which matches an instance of `DynamicFormQuestionComponent`.
+El formulario dinámico en sí será representado por un componente contenedor, el cual agregarás en un paso más adelante.
+Cada pregunta es representada en la plantilla del componente del formulario mediante una etiqueta `<app-question>`, la cual coincide con una instancia de `DynamicFormQuestionComponent`.
 
-The `DynamicFormQuestionComponent` is responsible for rendering the details of an individual question based on values in the data-bound question object.
-The form relies on a [`[formGroup]` directive](api/forms/FormGroupDirective "API reference") to connect the template HTML to the underlying control objects.
-The `DynamicFormQuestionComponent` creates form groups and populates them with controls defined in the question model, specifying display and validation rules.
+El `DynamicFormQuestionComponent` es responsable de renderizar los detalles de una pregunta individual con base en los datos del objeto asociados a la pregunta.
+El formulario utiliza una [directiva `[formGroup]`](api/forms/FormGroupDirective "referencia a la API") para conectar la plantilla HTML a los objetos de control subyacentes.
+El `DynamicFormQuestionComponent` crea grupos de formularios y los completa con controles definidos en el modelo de preguntas, especificando reglas de visualización y validación.
 
 <code-tabs>
 
@@ -124,36 +122,34 @@ The `DynamicFormQuestionComponent` creates form groups and populates them with c
 
 </code-tabs>
 
-The goal of the `DynamicFormQuestionComponent` is to present question types defined in your model.
-You only have two types of questions at this point but you can imagine many more.
-The `ngSwitch` statement in the template determines which type of question to display.
-The switch uses directives with the [`formControlName`](api/forms/FormControlName "FormControlName directive API reference") and [`formGroup`](api/forms/FormGroupDirective "FormGroupDirective API reference") selectors. Both directives are defined in `ReactiveFormsModule`.
+El objetivo del `DynamicFormQuestionComponent` es presentar tipos de preguntas definidas en tu modelo.
+Solo tienes dos tipos de preguntas hasta este punto, pero puedes imaginar muchas más.
+La declaración `ngSwitch` en la plantilla determina qué tipo de pregunta mostrar.
+El switch utiliza las directivas con los selectores [`formControlName`](api/forms/FormControlName "referencia a la API de la directiva FormControlName") y [`formGroup`](api/forms/FormGroupDirective "reerencia a la API de la directiva FormGroupDirective"). Ambas directivas son definidas en el módulo `ReactiveFormsModule`.
 
 {@a questionnaire-data}
 
-### Supply data
+### Suministrar datos
 
-Another service is needed to supply a specific set of questions from which to build an individual form.
-For this exercise you will create the `QuestionService` to supply this array of questions from the hard-coded sample data.
-In a real-world app, the service might fetch data from a backend system.
-The key point, however, is that you control the hero job-application questions entirely through the objects returned from `QuestionService`.
-To maintain the questionnaire as requirements change, you only need to add, update, and remove objects from the `questions` array.
+Se necesita de otro servicio para suministrar un conjunto específico de preguntas a través de las cuales construir un formulario individual.
+Para este ejercicio crearás un servicio llamado `QuestionService` para proporcionar un array de preguntas a partir de los datos de muestra codificados de forma rígida.
+En una aplicación del mundo real, el servicio debe traer los datos desde un backend.
+El punto clave, sin embargo, es que tú controlas las preguntas de la solicitud de empleo del héroe por completo a través de los objetos devueltos por `QuestionService`.
+Para mantener el cuestionario a medida que cambian los requisitos, solo necesitas agregar, actualizar y eliminar objetos desde el array de `questions`.
 
-
-The `QuestionService` supplies a set of questions in the form of an array bound to `@Input()` questions.
+El `QuestionService` proporciona un conjunto de preguntas en forma de un array vinculado a las preguntas de `@Input()`
 
 <code-example path="dynamic-form/src/app/question.service.ts" header="src/app/question.service.ts">
 
 </code-example>
 
-
 {@a dynamic-template}
 
-## Create a dynamic form template
+## Crea una plantilla para el formulario dinámico
 
-The `DynamicFormComponent` component is the entry point and the main container for the form, which is represented using the `<app-dynamic-form>` in a template.
+El componente `DynamicFormComponent` es el punto de entrada y el contenedor principal para el formulario, el cual es representado con la etiqueta `<app-dynamic-form>`.
 
-The `DynamicFormComponent` component presents a list of questions by binding each one to an `<app-question>` element that matches the `DynamicFormQuestionComponent`.
+El componente `DynamicFormComponent` presenta una lista de preguntas vinculada cada una a un elemento `<app-question>` que coincide con el componente `DynamicFormQuestionComponent`.
 
 <code-tabs>
 
@@ -167,45 +163,38 @@ The `DynamicFormComponent` component presents a list of questions by binding eac
 
 </code-tabs>
 
-### Display the form
+### Visualizar el formulario
 
-To display an instance of the dynamic form, the `AppComponent` shell template passes the `questions` array returned by the `QuestionService` to the form container component, `<app-dynamic-form>`.
+Para visualizar una instancia del formulario dinámico, la plantilla del `AppComponent` pasa el array de `questions` retornado por el servicio `QuestionService` al componente contenedor del formulario, `<app-dynamic-form>`.
 
 <code-example path="dynamic-form/src/app/app.component.ts" header="app.component.ts">
 
 </code-example>
 
-The example provides a model for a job application for heroes, but there are
-no references to any specific hero question other than the objects returned by `QuestionService`.
-This separation of model and data allows you to repurpose the components for any type of survey
-as long as it's compatible with the *question* object model.
+El ejemplo proporciona un modelo para una solicitud de empleo para héroes, pero no hay referencias a ninguna pregunta específica de algún héroe que no sean los objetos devueltos por `QuestionService`.
+Esta separación de datos y modelos te permite reutilizar los componentes para cualquier tipo de encuesta siempre y cuando sea compatible con el objeto modelo _question_.
 
-### Ensuring valid data
+### Asegurando datos válidos
 
-The form template uses dynamic data binding of metadata to render the form
-without making any hardcoded assumptions about specific questions.
-It adds both control metadata and validation criteria dynamically.
+La plantilla del formulario utiliza el enlace de datos dinámicos de metadatos para renderizar el formulario sin hacer suposiciones con datos en duro sobre preguntas específicas.
+Agrega tanto metadatos de control como criterios de validación de forma dinámica.
 
-To ensure valid input, the *Save* button is disabled until the form is in a valid state.
-When the form is valid, you can click *Save* and the app renders the current form values as JSON.
+Para asegurar que los inputs sean válidos, el botón de _Save_ está deshabilitado hasta que el formulario esté en un estado válido. Cuando el formulario es válido, puedes dar click en _Save_ y la aplicación renderizará los actuales valores del formulario en formato JSON.
 
-The following figure shows the final form.
+La siguiente imagen muestra el formulario final.
 
 <div class="lightbox">
   <img src="generated/images/guide/dynamic-form/dynamic-form.png" alt="Dynamic-Form">
 </div>
 
-## Next steps
+## Pasos siguientes
 
-* **Different types of forms and control collection**
+- **Diferentes tipos de formularios y colecciones de controles**
+  Este tutorial muestra como construir un cuestionario, el cual es solo un tipo de formulario dinámico.
+  Para un ejemplo de un formulario dinámico diferente, ve la sección [Crear formularios dinámicos](guide/reactive-forms#creating-dynamic-forms "Crear formularios dinámicos con arrays") en la guía de formularios reactivos.
+  El ejemplo también muestra como usar `FormArray` en lugar de `FormGroup` para recopilar un conjunto de controles.
 
-   This tutorial shows how to build a a questionaire, which is just one kind of dynamic form.
-   The example uses `FormGroup` to collect a set of controls.
-   For an example of a different type of dynamic form, see the section [Creating dynamic forms](guide/reactive-forms#creating-dynamic-forms "Create dynamic forms with arrays") in the Reactive Forms guide.
-   That example also shows how to use `FormArray` instead of `FormGroup` to collect a set of controls.
+- **Validando el input de usuario**
+  La sección [Validando el input de un formulario](guide/reactive-forms#validating-form-input "Validación básica de input") introduce las bases de como funcionan las validaciones en los inputs para los formularios reactivos.
 
-* **Validating user input**
-
-   The section [Validating form input](guide/reactive-forms#validating-form-input "Basic input validation") introduces the basics of how input validation works in reactive forms.
-
-   The [Form validation guide](guide/form-validation "Form validation guide") covers the topic in more depth.
+  La [Guía de validación de formularios](guide/form-validation "Guía de validación de formularios") toca el tema más a profundidad.
