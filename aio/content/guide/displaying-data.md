@@ -1,21 +1,21 @@
-# Displaying data in views
+# Mostrando Datos en vistas
 
-Angular [components](guide/glossary#component) form the data structure of your application.
-The HTML [template](guide/glossary#template) associated with a component provides the means to display that data in the context of a web page.
-Together, a component's class and template form a [view](guide/glossary#view) of your application data.
+Los [componentes](guide/glossary#component) de Angular forman la estructura de los datos de su aplicación.
+La [plantilla](guide/glossary#template) asociado con un componente provee los medios para mostrar esos datos en el contexto de una página web.
+Juntos, una clase y un template de un componente forman una [vista](guide/glossary#view) de los datos de su aplicación.
 
-The process of combining data values with their representation on the page is called [data binding](guide/glossary#data-binding).
-You display your data to a user (and collect data from the user) by *binding* controls in the HTML template to the data properties of the component class.
+El proceso de combinar valores con su representación en la página es llamado [Enlace de Datos](guide/glossary#data-binding).
+Muestra tus datos a un usuario (y obtener datos del usuario) por *enlace* de controles en la plantilla HTML a las propiedades de datos de la clase del componente. 
 
-In addition, you can add logic to the template by including [directives](guide/glossary#directive), which tell Angular how to modify the page as it is rendered.
+En adición, puedes incluir lógica a la plantilla incluyendo [directivas](guide/glossary#directive), las cuales le dicen a Angular como modificar la página cuando es renderizada.
 
-Angular defines a *template language* that expands HTML notation with syntax that allows you to define various kinds of data binding and logical directives.
-When the page is rendered, Angular interprets the template syntax to update the HTML according to your logic and current data state.
-Before you read the complete [template syntax guide](guide/template-syntax), the exercises on this page give you a quick demonstration of how template syntax works.
+Angular define un *lenguaje de plantilla* que expande la notación HTML con sintáxis que permite definir varios tipos de enlaces de datos y directivas lógicas.
+Cuando una página es renderizada, Angular interpreta la sintáxis de la plantilla para actualizar el HTML de acuerdo a su lógica y el estado actual de sus datos.
+Antes de leer la completa [guía de sintaxis de plantilla](guide/template-syntax), los ejercicios en esta página te dan una rápida demostración de como funciona la sintaxis de plantilla.
 
-In this demo, you'll create a component with a list of heroes.
-You'll display the list of hero names and conditionally show a message below the list.
-The final UI looks like this:
+En este demo, podrás crear un componente con una lista de héroes.
+Podrás mostrar la lista de nombres de los héroes y condicionalmente mostrar un mensaje debajo de la lista.
+La interfaz de usuario final se verá así:
 
 <div class="lightbox">
   <img src="generated/images/guide/displaying-data/final.png" alt="Final UI">
@@ -23,90 +23,86 @@ The final UI looks like this:
 
 <div class="alert is-helpful">
 
-The <live-example></live-example> demonstrates all of the syntax and code snippets described in this page.
+El <live-example></live-example> demuestra toda la sintaxis y los fragmentos de código descritos en esta página.
 
 </div>
 
 {@a interpolation}
 
-## Showing component properties with interpolation
-The easiest way to display a component property is to bind the property name through interpolation.
-With interpolation, you put the property name in the view template, enclosed in double curly braces: `{{myHero}}`.
+## Mostrando propiedades del componente con interpolación
+La manera mas sencilla de mostrar la propiedad de un componente es realizar el enlace del nombre de la propiedad por medio de interpolación.
+Con interpolación, pones el nombre de la propiedad en la plantilla de vista, encerrado en llaves dobles: `{{myHero}}`.
 
-Use the CLI command [`ng new displaying-data`](cli/new) to create a workspace and app named `displaying-data`.
+Usa el comando CLI [`ng new displaying-data`](cli/new) para crear un nuevo espacio de trabajo y una aplicacón llamada `displaying-data`.
 
-Delete the <code>app.component.html</code> file. It is not needed for this example.
+Borra el archivo <code>app.component.html</code>. Este no es necesario para este ejemplo.
 
-Then modify the <code>app.component.ts</code> file by
-changing the template and the body of the component.
+Entonces modifica el archivo <code>app.component.ts</code> 
+cambiando la plantilla y el cuerpo del componente.
 
-When you're done, it should look like this:
+Cuando hayas terminado, debería verse de la siguiente manera:
 
 <code-example path="displaying-data/src/app/app.component.1.ts" header="src/app/app.component.ts"></code-example>
 
-You added two properties to the formerly empty component: `title` and `myHero`.
+Agregaste dos propiedades al componente anteriormente vacío: `title` y `myHero`.
 
-The template displays the two component properties using double curly brace
-interpolation:
+La plantilla muestra las propiedades de los dos componentes usando la interpolación de dobles llaves:
 
 <code-example path="displaying-data/src/app/app.component.1.ts" header="src/app/app.component.ts (template)" region="template"></code-example>
 
 <div class="alert is-helpful">
 
-The template is a multi-line string within ECMAScript 2015 backticks (<code>\`</code>).
-The backtick (<code>\`</code>)&mdash;which is *not* the same character as a single
-quote (`'`)&mdash;allows you to compose a string over several lines, which makes the
-HTML more readable.
+La plantilla es una cadena de texto multi-línea dentro de las comillas invertidas de ECMAScript 2015 (<code>\`</code>).
+La comilla invertida (<code>\`</code>)&mdash;que *no* es la misma que una comilla sencilla (`'`)&mdash;te permite componer una cadena de texto de muchas líneas, 
+lo que hace que el HTML sea mas legible.
 
 </div>
 
-Angular automatically pulls the value of the `title` and `myHero` properties from the component and
-inserts those values into the browser. Angular updates the display
-when these properties change.
+Angular automaticamente pone el valor de las propiedades `title` y `myHero` del componente
+ e inserta dichos valores en el navegador. Angular actualiza la vista cuando esas propiedades cambian.
 
 <div class="alert is-helpful">
 
-More precisely, the redisplay occurs after some kind of asynchronous event related to
-the view, such as a keystroke, a timer completion, or a response to an HTTP request.
+Mas precisamente, la revisualización ocurre despues de algun tipo de evento asíncrono relacionado a 
+la vista, como pulsaciones de teclas, finalización de un temporizador, o la respuesta de una solicitud HTTP.
 
 </div>
 
-Notice that you don't call **new** to create an instance of the `AppComponent` class.
-Angular is creating an instance for you. How?
+Observa que no se usa **new** para crear una instancia de una clase de `AppComponent`.
+Angular está creando la instancia por tí, ¿Como?
 
-The CSS `selector` in the `@Component` decorator specifies an element named `<app-root>`.
-That element is a placeholder in the body of your `index.html` file:
+El `selector` CSS en el decorador `@Component` especifica un elemento llamado `<app-root>`.
+Ese elemento es un marcador de posición en el cuerpo de su archivo `index.html`:
 
 <code-example path="displaying-data/src/index.html" header="src/index.html (body)" region="body"></code-example>
 
-When you bootstrap with the `AppComponent` class (in <code>main.ts</code>), Angular looks for a `<app-root>`
-in the `index.html`, finds it, instantiates an instance of `AppComponent`, and renders it
-inside the `<app-root>` tag.
+Cuando arranca con la clase `AppComponent` (en <code>main.ts</code>), Angular busca un `<app-root>`
+en el `index.html`, lo encuentra, crea una instancia de `AppComponent`, y lo representa 
+dentro de la etiqueta `<app-root>`.
 
-Now run the app. It should display the title and hero name:
+Ahora corre la app. Debería mostrar el título y el nombre del héroe:
 
 <div class="lightbox">
   <img src="generated/images/guide/displaying-data/title-and-hero.png" alt="Title and Hero">
 </div>
 
-The next few sections review some of the coding choices in the app.
+Las siguientes secciones revisan algunas de las opciones de codificación de la aplicación.
 
+## Escogiendo el origen de la plantilla
 
-## Choosing the template source
+Los metadatos del `@Component` le dicen a Angular donde encontrar la plantilla del componente.
+Puedes guardar la plantilla de tu componente en uno de dos lugares.
 
-The `@Component` metadata tells Angular where to find the component's template.
-You can store your component's template in one of two places.
+* Puedes definir la plantilla *inline* usando la propiedad `template` del decorador `@Component`. Una plantilla en línea es útil para un pequeño demo o prueba.
+* Alternativamente, puedes definir la plantilla en un archivo HTML separado y enlazar ese archivo en la propiedad `templateUrl` del decorador `@Component`. Esta es una configuración típica para cualquier cosa mas compleja que un pequeño test o demo, y esto pasa por defecto cuando se genera un nuevo componente.
 
-* You can define the template *inline* using the `template` property of the `@Component` decorator. An inline template is useful for a small demo or test.
-* Alternatively, you can define the template in a separate HTML file and link to that file in the `templateUrl` property of the `@Component` decorator. This configuration is typical for anything more complex than a small test or demo, and is the default when you generate a new component.
-
-In either style, the template data bindings have the same access to the component's properties.
-Here the app uses inline HTML because the template is small and the demo is simpler without the additional HTML file.
+En cualquier estilo, el enlace de datos de la plantilla tiene el mismo acceso a las propiedades del componente.
+Aquí la app usa HTML en línea por que la plantilla es pequeña y el demo es mas simple sin el archivo HTML adicional.
 
 <div class="alert is-helpful">
 
-  By default, the Angular CLI command [`ng generate component`](cli/generate) generates components with a template file.
-  You can override that by adding the "-t" (short for `inlineTemplate=true`) option:
+  Por defecto, el comando de la CLI de Angular [`ng generate component`](cli/generate) genera componentes con un archivo de plantilla.
+  Puede anular esto adicionando la opción "-t" (abreviación para `inlineTemplate=true`)
 
   <code-example hideCopy language="sh" class="code-shell">
     ng generate component hero -t
@@ -115,138 +111,133 @@ Here the app uses inline HTML because the template is small and the demo is simp
 </div>
 
 
-## Initialization
+## Inicialización
 
-The following example uses variable assignment to initialize the components.
+El siguiente ejemplo usa asignación de variables para inicializar los componentes.
 
 <code-example path="displaying-data/src/app/app-ctor.component.1.ts" region="class"></code-example>
 
- You could instead declare and initialize the properties using a constructor.
- This app uses more terse "variable assignment" style simply for brevity.
-
+ En su lugar, podrías declarar e inicializar las propiedades utilizando un constructor.
+ Esta aplicación utiliza un estilo de "asignación de variables" más conciso simplemente por brevedad.
 
 {@a ngFor}
 
-## Add logic to loop through data
+## Agregue lógica para recorrer los datos
 
-The `*ngFor` directive (predefined by Angular) lets you loop through data. The following example uses the directive to show all of the values in an array property.
+La directiva `*ngFor` (predefinida por Anglar) permite recorrer los datos. El siguiente ejemplo usa la directiva para mostrar todos los valores de las propiedades de un arreglo.
 
-To display a list of heroes, begin by adding an array of hero names to the component and redefine `myHero` to be the first name in the array.
-
+Para mostrar una lista de héroes, comienza agregando un arreglo de nombres de héroes al componente y redefinir `myHero` para ser el primer nombre en el arreglo.
 
 <code-example path="displaying-data/src/app/app.component.2.ts" header="src/app/app.component.ts (class)" region="class"></code-example>
 
 
-Now use the Angular `ngFor` directive in the template to display each item in the `heroes` list.
+Ahora usa la directiva de Angular  `ngFor` en la plantilla para mostrar cada item en la lista de `heroes`.
 
 
 <code-example path="displaying-data/src/app/app.component.2.ts" header="src/app/app.component.ts (template)" region="template"></code-example>
 
 
-This UI uses the HTML unordered list with `<ul>` and `<li>` tags. The `*ngFor`
-in the `<li>` element is the Angular "repeater" directive.
-It marks that `<li>` element (and its children) as the "repeater template":
+Esta interfaz de usuario usa una lista desordenada de HTML con las etiquetas `<ul>` y `<li>`. El `*ngFor`
+en el elemento `<li>` es la directiva "repetidora" de Angular.
+Esto marca el elemento `<li>` (y sus hijos) como la "plantilla repetidora":
 
 
 <code-example path="displaying-data/src/app/app.component.2.ts" header="src/app/app.component.ts (li)" region="li"></code-example>
 
 <div class="alert is-important">
 
-Don't forget the leading asterisk (\*) in `*ngFor`. It is an essential part of the syntax.
-Read more about `ngFor` and `*` in the [ngFor section](guide/built-in-directives#ngfor) of the [Built-in directives](guide/built-in-directives) page.
+No olvides el asterisco inicial (\*) en `*ngFor`. Esto es parte escencial de la sintaxis.
+Lee más acerca de `ngFor` y `*` en la [sección ngFor](guide/built-in-directives#ngfor) de la página de [directivas integradas](guide/built-in-directives).
 
 </div>
 
-Notice the `hero` in the `ngFor` double-quoted instruction;
-it is an example of a template input variable. Read
-more about template input variables in the [microsyntax](guide/built-in-directives#microsyntax) section of
-the [Built-in directives](guide/built-in-directives) page.
+Observa el `hero` en la instrucción` ngFor` entre comillas dobles;
+este es un ejemplo de una plantilla de variable de entrada. 
+Lee más acerca de plantillas de variables de entrada en la sección [microsintaxis](guide/built-in-directives#microsyntax) de
+la página de [directivas integradas](guide/built-in-directives).
 
-Angular duplicates the `<li>` for each item in the list, setting the `hero` variable
-to the item (the hero) in the current iteration. Angular uses that variable as the
-context for the interpolation in the double curly braces.
+Angular duplica el `<li>` por cada elemento en la lista, configurando la variable `hero`
+para el elemento (el héroe) en la iteración actual. Angular usa esta variable como el 
+contexto para la interpolación dentro de las llaves dobles.
 
 <div class="alert is-helpful">
 
-In this case, `ngFor` is displaying an array, but `ngFor` can
-repeat items for any [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols) object.
+En este caso, `ngFor` está mostrando un arreglo, pero `ngFor` puede
+repetir elementos para cualquier objeto [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
 
 </div>
 
-Now the heroes appear in an unordered list.
+Ahora los héroes aparecen en una lista desordenada.
 
 <div class="lightbox">
   <img src="generated/images/guide/displaying-data/hero-names-list.png" alt="After ngfor">
 </div>
 
 
-## Creating a class for the data
+## Creando una clase para los datos
 
-The app's code defines the data directly inside the component, which isn't best practice.
-In a simple demo, however, it's fine.
+El código de la aplicación define los datos directamente dentro del componente, lo cual no es la mejor practica.
+Sin embargo en un demo simple, está bien.
 
-At the moment, the binding is to an array of strings.
-In real applications, most bindings are to more specialized objects.
+Hasta el momento, el enlace es a un arreglo de cadenas de texto.
+En aplicaciones reales, muchos enlaces son a objetos mas especializados.
 
-To convert this binding to use specialized objects, turn the array
-of hero names into an array of `Hero` objects. For that you'll need a `Hero` class:
+Para convertir este enlace para usar objetos especializados, convierta el arreglo
+de nombres de héroes en un arreglo de objetos `Hero`. Para esto necesitarás una clase `Hero`:
 
 <code-example language="sh" class="code-shell">
   ng generate class hero
 </code-example>
 
-This command creates the following code.
+Este comando crea el siguiente código.
 
 
 <code-example path="displaying-data/src/app/hero.ts" header="src/app/hero.ts"></code-example>
 
-You've defined a class with a constructor and two properties: `id` and `name`.
+Has definido una clase con un constructor y dos propiedades: `id` y `name`.
 
-It might not look like the class has properties, but it does.
-The declaration of the constructor parameters takes advantage of a TypeScript shortcut.
+Puede que parezca que la clase no tiene propiedades, pero las tiene.
+La declaración de los parámetros del constructor aprovecha un atajo de TypeScript.
 
-Consider the first parameter:
+Considera el primer parámetro;
 
 
 <code-example path="displaying-data/src/app/hero.ts" header="src/app/hero.ts (id)" region="id"></code-example>
 
-That brief syntax does a lot:
+Esa breve sintaxis hace mucho:
 
-* Declares a constructor parameter and its type.
-* Declares a public property of the same name.
-* Initializes that property with the corresponding argument when creating an instance of the class.
+* Declara un parametro del constructor y su tipo.
+* Declara una propiedad pública del mismo nombre.
+* Inicializa esa propiedad con el argumento correspondiente cuando se crea una instancia de la clase.
 
+### Usando la clase Hero
 
-### Using the Hero class
-
-After importing the `Hero` class, the `AppComponent.heroes` property can return a _typed_ array
-of `Hero` objects:
+Después de importar la clase `Hero`, la propiedad `AppComponent.heroes` puede retornar un arreglo _tipeado_ 
+de objetos `Hero`.
 
 
 <code-example path="displaying-data/src/app/app.component.3.ts" header="src/app/app.component.ts (heroes)" region="heroes"></code-example>
 
 
 
-Next, update the template.
-At the moment it displays the hero's `id` and `name`.
-Fix that to display only the hero's `name` property.
-
+Ahora, actualiza la plantilla.
+Hasta el momento esto muestra los `id` y `name` de héroe.
+Cámbialo para mostrar solo la propiedad `name` de héroe.
 
 <code-example path="displaying-data/src/app/app.component.3.ts" header="src/app/app.component.ts (template)" region="template"></code-example>
 
-
-The display looks the same, but the code is clearer.
+La visualización parece la misma, pero el código es mas claro.
 
 {@a ngIf}
 
-## Conditional display with NgIf
+## Visualización condicional con NgIf
 
-Sometimes an app needs to display a view or a portion of a view only under specific circumstances.
+A veces una app necesita mostrar una vista o una porción de la vista solo bajo circunstancias específicas.
 
-Let's change the example to display a message if there are more than three heroes.
+Cambiemos el ejemplo para mostrar un mensaje si hay más de tres héroes.
 
-The Angular `ngIf` directive inserts or removes an element based on a _truthy/falsy_ condition.
-To see it in action, add the following paragraph at the bottom of the template:
+La directiva de Angular `ngIf` inserta o remueve un elemento basado en una condición _verdadera/falsa_.
+Para verlo en acción, agrega el siguiente párrafo al final de la plantilla:
 
 
 <code-example path="displaying-data/src/app/app.component.ts" header="src/app/app.component.ts (message)" region="message"></code-example>
@@ -254,42 +245,42 @@ To see it in action, add the following paragraph at the bottom of the template:
 
 <div class="alert is-important">
 
-Don't forget the leading asterisk (\*) in `*ngIf`. It is an essential part of the syntax.
-Read more about `ngIf` and `*` in the [ngIf section](guide/built-in-directives#ngIf) of the [Built-in directives](guide/built-in-directives) page.
+No olvides el asterisco inicial (\*) en `*ngIf`. Esto es parte escencial de la sintaxis.
+Lee mas acerca de `ngIf` y `*` en la [sección ngIf](guide/built-in-directives#ngIf) de la página [Directivas integradas](guide/built-in-directives).
 
 </div>
 
 
-The template expression inside the double quotes,
-`*ngIf="heroes.length > 3"`, looks and behaves much like TypeScript.
-When the component's list of heroes has more than three items, Angular adds the paragraph
-to the DOM and the message appears.
-If there are three or fewer items, Angular omits the paragraph, so no message appears.
+La expresión de plantilla dentro de las comillas dobles,
+`*ngIf="heroes.length > 3"`, parece y se comporta como TypeScript.
+Cuando la lista de héroes del componente tiene mas de tres elementos, Angular agrega el párrafo
+al DOM y el mensaje aparece.
+Si hay tres o ménos items, Angular omite el párrafo, entonces el mensaje no aparece.
 
-For more information, see [template expression operators](guide/interpolation#template-expressions).
+Para mas información, visita [operadores de expresión de plantilla](guide/interpolation#template-expressions).
 
 
 <div class="alert is-helpful">
 
-Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM. That improves performance, especially in larger projects when conditionally including or excluding
-big chunks of HTML with many data bindings.
+Angular no está mostrando y escondiendo el mensaje. El elemento párrafo es agregado o removido del DOM. Esto mejora el desempeño, especialmente en grandes proyectos cuando
+condicionalmente se incluyen o excluyen 
+grandes porciones de HTML con muchos enlaces de datos.
 
 </div>
 
-Try it out. Because the array has four items, the message should appear.
-Go back into <code>app.component.ts</code> and delete or comment out one of the elements from the heroes array.
-The browser should refresh automatically and the message should disappear.
+Probemoslo. Como el arreglo tiene cuatro elementos, el mensaje debe aparecer.
+Vuelve al <code>app.component.ts</code> y elimina o comenta uno de los elementos del arreglo de héroes.
+El navegador debería actualizarse automáticamente y el mensaje debería desaparecer.
 
+## En Resumen
+Ahora sabes cómo usar:
 
-## Summary
-Now you know how to use:
+* **Interpolación** con dobles llaves para mostrar la propiedad de un componente.
+* **ngFor** para mostrar un arreglo de elementos.
+* Una clase de TypeScript para dar forma a los **datos del modelo** para su componente y mostrar las propiedades de ese modelo.
+* **ngIf** para mostrar condicionalmente un trozo de HTML basado en una expresión booleana.
 
-* **Interpolation** with double curly braces to display a component property.
-* **ngFor** to display an array of items.
-* A TypeScript class to shape the **model data** for your component and display properties of that model.
-* **ngIf** to conditionally display a chunk of HTML based on a boolean expression.
-
-Here's the final code:
+Este es el código final:
 
 <code-tabs>
 
