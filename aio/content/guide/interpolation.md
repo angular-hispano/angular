@@ -1,175 +1,127 @@
-# Interpolation and template expressions
+# Expresiones de interpolación y plantilla
 
-Interpolation allows you to incorporate calculated strings into the text
-between HTML element tags and within attribute assignments. Template
-expressions are what you use to calculate those strings.
+La interpolación le permite incorporar cadenas calculadas en el texto entre etiquetas de elementos HTML y dentro de las asignaciones de atributos. Las expresiones de plantilla son lo que tu usas para calcular esas cadenas.
 
-<div class="alert is-helpful">
+Consulta para toda la sintáxis y  todos los fragmentos de código en esta guía.
 
-See the <live-example></live-example> for all of
-the syntax and code snippets in this guide.
+## Interpolación `{{...}}`
 
-</div>
+La interpolación se refiere a incrustar expresiones en texto marcado.
+Por defecto, la interpolación usa si delimitador de doble llaves, `{{` and `}}`.
 
-## Interpolation `{{...}}`
+El siguiente fragmento, `{{ currentCustomer }}` es un ejemplo de interpolación.
 
-Interpolation refers to embedding expressions into marked up text.
-By default, interpolation uses as its delimiter the double curly braces, `{{` and `}}`.
+El texto entre llaves suele ser el nombre de una propiedad de componente. Angular reemplaza ese nombre con el 
+valor de cadena de la propiedad del componente correspondiente.
 
-In the following snippet, `{{ currentCustomer }}` is an example of interpolation.
+En el ejemplo anterior, angular evalúa ls propiedades `title` y `itemImageUrl` y llena los espacios en blanco, 
+primero mostrando el texto del título y luego una imagen.
 
-<code-example path="interpolation/src/app/app.component.html" region="interpolation-example1" header="src/app/app.component.html"></code-example>
+De manera más general, el texto entre llaves es una **expresión de plantilla** que Angular primero **evalúa** y luego **se convierte en una cadena**.
+La siguiente interpolación ilustra el punto agregando dos números:
 
-The text between the braces is often the name of a component
-property. Angular replaces that name with the
-string value of the corresponding component property.
+La expresión puede invocar métodos del componente de host como `getVal ()` en el siguiente ejemplo:
 
-<code-example path="interpolation/src/app/app.component.html" region="component-property" header="src/app/app.component.html"></code-example>
+Angular evalúa todas las expresiones entre llaves dobles,
+convierte los resultados de la expresión en cadenas y los vincula con cadenas literales vecinas.
+Finalmente, asigna este resultado interpolado compuesto a un **elemento o propiedad directiva**.
 
-In the example above, Angular evaluates the `title` and `itemImageUrl` properties
-and fills in the blanks, first displaying some title text and then an image.
+Parece que está insertando el resultado entre las etiquetas de los elementos y asignándolo a los atributos. 
+Sin embargo, la interpolación es una sintaxis especial que Angular convierte en un *enlace de propiedad*.
 
-More generally, the text between the braces is a **template expression**
-that Angular first **evaluates** and then **converts to a string**.
-The following interpolation illustrates the point by adding two numbers:
+Si desea utilizar algo que no sea `{{` y `}}`, puedes configurar el delimitador de interpolación
+a través de la opción [interpolación](api/core/Component#interpolation) en la opción en los metadatos de `Component`.
 
-<code-example path="interpolation/src/app/app.component.html" region="convert-string" header="src/app/app.component.html"></code-example>
+## Expresiones de plantilla
 
-The expression can invoke methods of the host component such as `getVal()` in
-the following example:
+Una plantilla **expresión** produce un valor y aparece dentro de las doble llaves, `{{ }}`.
+ 
+Angular ejecuta la expresión y la asigna a una propiedad de un objetivo de enlace; 
+el destino podría ser un elemento HTML, un componente o una directiva.
 
-<code-example path="interpolation/src/app/app.component.html" region="invoke-method" header="src/app/app.component.html"></code-example>
+Las llaves de interpolación en `{{1 + 1}}` rodean la expresión de la plantilla `1 + 1`.
+En la vinculación de propiedades, 
+una expresión de plantilla aparece entre comillas a la derecha del símbolo `=` como en `[propiedad] ="expresión"`
 
-Angular evaluates all expressions in double curly braces,
-converts the expression results to strings, and links them with neighboring literal strings. Finally,
-it assigns this composite interpolated result to an **element or directive property**.
+En términos de sintaxis, las expresiones de plantilla son similares a JavaScript.
+Muchas expresiones de JavaScript son expresiones de plantilla legales, con algunas excepciones.
 
-You appear to be inserting the result between element tags and assigning it to attributes.
-However, interpolation is a special syntax that Angular converts into a *property binding*.
+No puede usar expresiones de JavaScript que tengan o promuevan efectos secundarios,
+incluyendo:
 
-<div class="alert is-helpful">
+* Asignaciones (`=`, `+ =`, `- =`, `...`)
+* Operadores como `new`,` typeof`, `instanceof`, etc.
+* Encadenando expresiones con <code>; </code> o <code>, </code>
+* Los operadores de incremento y decremento `++` y `--`
+* Algunos de los operadores de ES2015+
 
-If you'd like to use something other than `{{` and `}}`, you can
-configure the interpolation delimiter via the
-[interpolation](api/core/Component#interpolation)
-option in the `Component` metadata.
+Otras diferencias notables de la sintaxis de JavaScript incluyen:
 
-</div>
+* No hay soporte para los operadores bit a bit como `|` y `&`
+* Nuevos [operadores de expresión de plantilla] (operadores de expresión de plantilla / guía), como `|`, `? .` y`! `
 
-## Template expressions
+## Contexto de expresión
 
-A template **expression** produces a value and appears within the double
-curly braces, `{{ }}`.
-Angular executes the expression and assigns it to a property of a binding target;
-the target could be an HTML element, a component, or a directive.
+El *contexto de expresión* es típicamente la instancia del _componente_.
+En los siguientes fragmentos, el `recommendado` entre llaves dobles y el
+`itemImageUrl2` en comilla, se refiere a las propiedades de `AppComponent`.
 
-The interpolation braces in `{{1 + 1}}` surround the template expression `1 + 1`.
-In the property binding,
-a template expression appears in quotes to the right of the&nbsp;`=` symbol as in `[property]="expression"`.
+Una expresión también puede referirse a propiedades del contexto de _template_
+como una variable de entrada de plantilla,
 
-In terms of syntax, template expressions are similar to JavaScript.
-Many JavaScript expressions are legal template expressions, with a few exceptions.
+`let customer`, o una variable de referencia de plantilla,` #customerInput`.
 
-You can't use JavaScript expressions that have or promote side effects,
-including:
+El contexto de los términos de una expresión es una combinación de _variables de plantilla_,
+el objeto _context_ de la directiva (si tiene uno) y los _members_ del componente.
+Si hace referencia a un nombre que pertenece a más de uno de estos espacios de nombres,
+el nombre de la variable de la plantilla tiene prioridad, seguido de un nombre en el _context_ de la directiva,
+y, por último, los nombres de los miembros del componente.
 
-* Assignments (`=`, `+=`, `-=`, `...`)
-* Operators such as `new`, `typeof`, `instanceof`, etc.
-* Chaining expressions with <code>;</code> or <code>,</code>
-* The increment and decrement operators `++` and `--`
-* Some of the ES2015+ operators
+El ejemplo anterior presenta tal colisión de nombres. El componente tiene una propiedad `customer` y el `* ngFor` define una variable de plantilla` customer`.
 
-Other notable differences from JavaScript syntax include:
+El `customer` en `{{customer.name}}` se refiere a la variable de entrada de la plantilla, no a la propiedad del componente.
 
-* No support for the bitwise operators such as `|` and `&`
-* New [template expression operators](guide/template-expression-operators), such as `|`, `?.` and `!`
+Las expresiones de plantilla no pueden hacer referencia a nada en el espacio de nombres global, excepto `undefined`. No pueden referirse a `window` o `document`. Además, ellos no pueden llamar a `console.log ()` o `Math.max ()` y están restringidos a hacer referencia miembros del contexto de expresión.
 
+## Normas de expresión
 
-## Expression context
+Cuando use expresiones de plantilla, siga estas pautas:
 
-The *expression context* is typically the _component_ instance.
-In the following snippets, the `recommended` within double curly braces and the
-`itemImageUrl2` in quotes refer to properties of the `AppComponent`.
+* [Simplicidad](guide/interpolation#simplicity)
+* [Ejecución Rápida](guide/interpolation#quick-execution)
+* [Sin efectos secundarios visibles](guide/interpolation#no-visible-side-effects)
 
-<code-example path="interpolation/src/app/app.component.html" region="component-context" header="src/app/app.component.html"></code-example>
+### Simplicidad
 
-An expression may also refer to properties of the _template's_ context
-such as a template input variable,
-<!-- link to built-in-directives#template-input-variables -->
-`let customer`, or a template reference variable, `#customerInput`.
-<!-- link to guide/template-ref-variables -->
+Aunque es posible escribir expresiones de plantilla complejas, es mejor practica evitarlos.
 
-<code-example path="interpolation/src/app/app.component.html" region="template-input-variable" header="src/app/app.component.html (template input variable)"></code-example>
+Un nombre de propiedad o una llamada a un método debería ser la norma, pero una negación booleana ocasional, `!`, está bien.
+De lo contrario, limite la aplicación y la lógica de negocios al componente,
+donde es más fácil de desarrollar y probar.
 
-<code-example path="interpolation/src/app/app.component.html" region="template-reference-variable" header="src/app/app.component.html (template reference variable)"></code-example>
+### Ejecución rápida
 
-The context for terms in an expression is a blend of the _template variables_,
-the directive's _context_ object (if it has one), and the component's _members_.
-If you reference a name that belongs to more than one of these namespaces,
-the template variable name takes precedence, followed by a name in the directive's _context_,
-and, lastly, the component's member names.
+Angular ejecuta expresiones de plantilla después de cada ciclo de detección de cambios.
+Los ciclos de detección de cambios se desencadenan por muchas actividades asincrónicas, como
+promesas de resoluciones, resultados HTTP, eventos de temporizador, pulsaciones de teclas y movimientos del ratón.
 
-The previous example presents such a name collision. The component has a `customer`
-property and the `*ngFor` defines a `customer` template variable.
+Las expresiones deben terminar rápidamente o la experiencia del usuario puede arrastrarse, especialmente en dispositivos más lentos.
+Considere almacenar en caché los valores cuando su cálculo sea costoso.
 
-<div class="alert is-helpful">
+### Sin efectos secundarios visibles
 
-The `customer` in `{{customer.name}}`
-refers to the template input variable, not the component's property.
+Una expresión de plantilla no debe cambiar ningún estado de la aplicación que no sea el valor del propiedad de destino.
 
-Template expressions cannot refer to anything in
-the global namespace, except `undefined`. They can't refer to
-`window` or `document`. Additionally, they
-can't call `console.log()` or `Math.max()` and they are restricted to referencing
-members of the expression context.
+Esta regla es esencial para la política de "flujo de datos unidireccional" de Angular.
+Nunca debe preocuparse de que la lectura del valor de un componente pueda cambiar algún otro valor mostrado.
+La vista debe ser estable durante una sola pasada de renderizado.
 
-</div>
+Una expresión [idempotente](https://en.wikipedia.org/wiki/Idempotence) es ideal porque
+está libre de efectos secundarios y mejora el rendimiento de detección de cambios de Angular.
+En términos de Angular, una expresión idempotente siempre devuelve
+*exactamente lo mismo* hasta que cambie uno de sus valores dependientes.
 
-## Expression guidelines
+Los valores dependientes no deben cambiar durante un solo turno del bucle de eventos.
+Si una expresión idempotente devuelve una cadena o un número, devuelve la misma cadena o número cuando se llama dos veces seguidas. Si la expresión devuelve un objeto, incluida una "matriz", devuelve el mismo objeto * referencia * cuando se llama dos veces seguidas.
 
-When using template expressions follow these guidelines:
-
-* [Simplicity](guide/interpolation#simplicity)
-* [Quick execution](guide/interpolation#quick-execution)
-* [No visible side effects](guide/interpolation#no-visible-side-effects)
-
-### Simplicity
-
-Although it's possible to write complex template expressions, it's a better
-practice to avoid them.
-
-A property name or method call should be the norm, but an occasional Boolean negation, `!`, is OK.
-Otherwise, confine application and business logic to the component,
-where it is easier to develop and test.
-
-### Quick execution
-
-Angular executes template expressions after every change detection cycle.
-Change detection cycles are triggered by many asynchronous activities such as
-promise resolutions, HTTP results, timer events, key presses and mouse moves.
-
-Expressions should finish quickly or the user experience may drag, especially on slower devices.
-Consider caching values when their computation is expensive.
-
-### No visible side effects
-
-A template expression should not change any application state other than the value of the
-target property.
-
-This rule is essential to Angular's "unidirectional data flow" policy.
-You should never worry that reading a component value might change some other displayed value.
-The view should be stable throughout a single rendering pass.
-
-An [idempotent](https://en.wikipedia.org/wiki/Idempotence) expression is ideal because
-it is free of side effects and improves Angular's change detection performance.
-In Angular terms, an idempotent expression always returns
-*exactly the same thing* until one of its dependent values changes.
-
-Dependent values should not change during a single turn of the event loop.
-If an idempotent expression returns a string or a number, it returns the same string or number when called twice in a row. If the expression returns an object, including an `array`, it returns the same object *reference* when called twice in a row.
-
-<div class="alert is-helpful">
-
-There is one exception to this behavior that applies to `*ngFor`. `*ngFor` has `trackBy` functionality that can deal with referential inequality of objects when iterating over them. See [*ngFor with `trackBy`](guide/built-in-directives#ngfor-with-trackby) for details.
-
-</div>
+Hay una excepción a este comportamiento que se aplica a `*ngFor`. `*ngFor` tiene la funcionalidad `trackBy` que puede lidiar con la desigualdad referencial de los objetos cuando se itera sobre ellos. Consulte [*ngFor con `trackBy`](guide/built-in-directives#ngfor-with-trackby) para obtener más detalles.
