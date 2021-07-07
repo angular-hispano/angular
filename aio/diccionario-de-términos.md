@@ -24,8 +24,8 @@ A continuación algunas palabras las cuales hemos definido como traducción corr
 | Contributor | colaborador |
 | Company | Empresa |
 | Collaborator | colaborador |
-| Dependency Injection | Inyeción de dependencias |
-| Deployment | Despliege |
+| Dependency Injection | Inyección de dependencias |
+| Deployment | Despliegue |
 | DI | ID |
 | Feature | Funcionalidad |
 | Lazy load | Carga diferida |
@@ -44,7 +44,9 @@ A continuación algunas palabras las cuales hemos definido como traducción corr
 | Server-side Rendering | renderizado del lado del servidor |
 | Setup | Preparar |
 | Service Workers | Trabajadores de Servicio |
-| Shell | Armazón/Carcaza |
+| Shell | Armazón/Carcasa |
 | Schematics | Esquemas |
 | Template HTML  | Plantilla HTML |
 | Cross Platform | Multiplataforma |
+| Snippet | Fragmento de código |
+| Tree-Shakable | Tree-Shakable |
