@@ -1,38 +1,32 @@
-# Using Angular with Visual Studio 2015
+# Usando Angular con Visual Studio 2015
 
 {@a top}
 
-Some developers prefer Visual Studio as their Integrated Development Environment (IDE).
+Algunos desarrolladores prefieren Visual Studio como su Entorno de Desarrollo Integrado (EDI).
 
-This cookbook describes the steps required to set up and use Angular app files in Visual Studio 2015 within an ASP.NET 4.x project.
+Este tutorial describe los pasos necesarios para el uso y configuración de los archivos de la app de Angular en Visual Studio 2015 para un proyecto con ASP.NET 4.x.
+
 
 <div class="alert is-helpful">
 
-
-
-There is no *live example* for this cookbook because it describes Visual Studio, not 
-the Angular application itself. It uses the starter Angular application created by the CLI command [`ng new`](cli/new) as an example.
-
+No hay un *ejemplo en tiempo real* para este tutorial porque se describe Visual Studio, y no en sí la propia aplicación Angular. Visual Studio utiliza la aplicación inicial de Angular creada por el comando CLI [`ng new`](cli/new) como ejemplo.
 
 </div>
 
 
 {@a asp-net-4}
 
-## ASP.NET 4.x Project
+## Proyectos con ASP.NET 4.x
 
-To set up the Getting Started files with an **ASP.NET 4.x project** in
-Visual Studio 2015, follow these steps:
+Para configurar los archivos de inicio para un **Proyecto con ASP.NET 4.x** en
+Visual Studio 2015, siga estos pasos:
 
 <div class="alert is-helpful">
 
-
-
-If you prefer a `File | New Project` experience and are using **ASP.NET Core**, 
-then consider the _experimental_
-<a href="http://blog.stevensanderson.com/2016/10/04/angular2-template-for-visual-studio/">ASP.NET Core + Angular template for Visual Studio 2015</a>.
-Note that the resulting code does not map to the docs. Adjust accordingly.
-
+Si prefiere la experiencia de usar `Archivo | Nuevo Proyecto` y el **Núcleo ASP.NET**, 
+entonces considere usar la plantilla _experimental_
+<a href="http://blog.stevensanderson.com/2016/10/04/angular2-template-for-visual-studio/">Núcleo ASP.NET +  Angular para Visual Studio 2015</a>.
+Tenga en cuenta que el código resultante no se asigna a los documentos. Ajústelos en consecuencia.
 
 </div>
 
@@ -40,14 +34,13 @@ Note that the resulting code does not map to the docs. Adjust accordingly.
 
 
 <h2 id='prereq1'>
-  Prerequisite: Node.js
+  Pre-requisito: Node.js
 </h2>
 
 
 
-Install **[Node.js® and npm](https://nodejs.org/en/download/)**
-if they are not already on your machine.
-See [Local Environment Setup](guide/setup-local "Setting up for Local Development") for supported versions and instructions.
+Instale **[Node.js® y npm](https://nodejs.org/en/download/)**, si no están ya en su máquina.
+Vea [Instalación Local del Entorno](guide/setup-local "Setting up for Local Development") para versiones soportadas e instrucciones.
 
 
 
@@ -55,94 +48,80 @@ See [Local Environment Setup](guide/setup-local "Setting up for Local Developmen
 
 
 <h2 id='prereq2'>
-  Prerequisite: Visual Studio 2015 Update 3
+  Pre-requisito: Visual Studio 2015 Update 3
 </h2>
 
+El requisito mínimo para desarrollar aplicaciones Angular con Visual Studio es el Update 3.
+Las versiones anteriores no siguen las mejores prácticas para desarrollar aplicaciones con TypeScript.
+Para ver su versión de Visual Studio 2015, vaya a `Ayuda | Acerca de Visual Studio`.
 
-
-The minimum requirement for developing Angular applications with Visual Studio is Update 3.
-Earlier versions do not follow the best practices for developing applications with TypeScript.
-To view your version of Visual Studio 2015, go to `Help | About Visual Studio`.
-
-If you don't have it, install **[Visual Studio 2015 Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2015-update3-vs)**.
-Or use `Tools | Extensions and Updates` to update to Update 3 directly from Visual Studio 2015.
-
+Si no lo tiene, instale **[Visual Studio 2015 Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2015-update3-vs)**.
+O de click en `Herramientas | Extensiones y Actualizaciones` para actualizar a Update 3 directamente desde Visual Studio 2015.
 
 
 <h2 id='prereq3'>
-  Prerequisite: Configure External Web tools
+  Pre-requisito: Configure Herramientas Web Externas
 </h2>
 
+Configure Visual Studio para usar las herramientas web externas globales en lugar de las herramientas que se incluyen con Visual Studio:
 
+  * Abra la caja de diálogo **Opciones** desde `Herramientas` | `Opciones`.
+  * En el árbol de la izquierda, seleccione `Proyectos y soluciones` | `Herramientas web externas`.
+  * A la derecha, mueva la entrada `$(PATH)` a por encima de las entradas `$(DevEnvDir`). Esto le dirá a Visual Studio que
+    use las herramientas externas (como npm) que se encuentran en la ruta global antes de usar su propia versión de las herramientas externas.
+  * Haga clic en Aceptar para cerrar el cuadro de diálogo.
+  * Reinicie Visual Studio para que este cambio surta efecto.
 
-Configure Visual Studio to use the global external web tools instead of the tools that ship with Visual Studio:
-
-  * Open the **Options** dialog with `Tools` | `Options`.
-  * In the tree on the left, select `Projects and Solutions` | `External Web Tools`.
-  * On the right, move the `$(PATH)` entry above the `$(DevEnvDir`) entries. This tells Visual Studio to
-    use the external tools (such as npm) found in the global path before using its own version of the external tools.
-  * Click OK to close the dialog.
-  * Restart Visual Studio for this change to take effect.
-
-Visual Studio now looks first for external tools in the current workspace and 
-if it doesn't find them, it looks in the global path. If Visual Studio doesn't 
-find them in either location, it will use its own versions of the tools.
-
-
+Visual Studio ahora buscará primero las herramientas externas en el espacio de trabajo actual, 
+si no los encuentra, buscará en la ruta global. Si Visual Studio no puede
+encontrarlos en ninguna de ambas ubicaciones, utilizará sus propias versiones de las herramientas.
 
 <h2 id='prereq4'>
-  Prerequisite: Install TypeScript for Visual Studio 2015
+  Pre-requisito: Instale Typescript para Visual Studio 2015
 </h2>
 
+Si bien Visual Studio Update 3 viene con soporte para TypeScript listo para usar, no cuenta con versiones recientes de TypeScript necesarias para desarrollar aplicaciones Angular.
 
+Para instalar la última versión de TypeScript:
 
-While Visual Studio Update 3 ships with TypeScript support out of the box, it currently doesn’t ship with more recent versions of TypeScript, which you need to develop Angular applications.
+ * Descargue e instale la última versión de [TypeScript para Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48593),
 
-To install the latest version of TypeScript:
+  * O instalelo con npm: `npm install -g typescript@latest`.
 
- * Download and install the latest [TypeScript for Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48593),
-
- * OR install it with npm: `npm install -g typescript@latest`.
-
-You can find out more about TypeScript support in Visual Studio **[here](https://blogs.msdn.microsoft.com/typescript/announcing-typescript-3-1/)**.
+Puede obtener mayor información sobre TypeScript con Visual Studio **[Aquí](https://blogs.msdn.microsoft.com/typescript/announcing-typescript-3-1/)**.
 
 At this point, Visual Studio is ready. It’s a good idea to close Visual Studio and 
 restart it to make sure everything is clean.
 
-
+En este punto, Visual Studio estará listo. Es una buena idea cerrar Visual Studio y
+reiníciarlo para asegurarse de que todo este correcto.
 
 <h2 id='download'>
-  Step 1: Create a starter Angular app
+  Paso 1: Crear una aplicación desde cero con Angular
 </h2>
 
 
- Follow the instructions in [Local Environment Setup](guide/setup-local "Setting up for Local Development") to create a starter Angular app using the CLI command [`ng new`](cli/new).
-
+Siga las instrucciones [Instalación de Entorno Local](guide/setup-local "Configuración de desarrollo local") para crear desde inicio una aplicación con Angular usando el comando CLI [`ng new`](cli/new).
 
 
 
 
 <h2 id='create-project'>
-  Step 2: Create the Visual Studio ASP.NET project
+  Paso 2: Crear un proyecto ASP.NET en Visual Studio
 </h2>
 
+Crear un proyecto con ASP.NET 4.x de la forma usual realizando las siguientes acciones:
 
-
-Create the ASP.NET 4.x project in the usual way as follows:
-
-* In Visual Studio, select `File` | `New` | `Project` from the menu.
-* In the template tree, select `Templates` | `Visual C#` (or `Visual Basic`) | `Web`.
-* Select the `ASP.NET Web Application` template, give the project a name, and click OK.
-* Select the desired ASP.NET 4.5.2 template and click OK.
+* En Visual Studio, seleccionar desde el menu `Archivo` | `Nuevo` | `Proyecto`.
+* En el árbol de la plantilla, seleccione `Plantilla` | `Visual C#` (ó `Visual Basic`) | `Web`.
+* Seleccione la plantilla `Aplicación Web ASP.NET`, de un nombre al proyecto, y dé click en Aceptar.
+* Seleccione la plantilla ASP.NET 4.5.2 deseada y dé click en Aceptar.
 
 
 <div class="alert is-helpful">
 
-
-
-This cookbook uses the `Empty` template with no added folders, 
-no authentication, and no hosting. Pick the template and options appropriate for your project.
-
+Este tutorial utiliza la plantilla `Vacío` sin carpetas agregadas,
+sin autenticación y sin alojamiento. Elija la plantilla y las opciones adecuadas para su proyecto.
 
 </div>
 
@@ -150,17 +129,18 @@ no authentication, and no hosting. Pick the template and options appropriate for
 
 
 <h2 id='copy'>
-  Step 3: Copy the Angular project files into the ASP.NET project folder
+  Paso 3: Copie los archivos del proyecto de Angular dentro de la carpeta ASP.NET
 </h2>
 
-Copy files from the starter Angular app into the folder containing the `.csproj` file.
-Include the files in the Visual Studio project as follows:
+Copie los archivos de inicio de la aplicación Angular en la carpeta que contiene el archivo `.csproj`.
+Incluya los archivos en el proyecto de Visual Studio de la siguiente manera:
 
-* Click the `Show All Files` button in Solution Explorer to reveal all of the hidden files in the project.
-* Right-click on each folder/file to be included in the project and select `Include in Project`.
-  Minimally, include the following folder/files:
+* De click en el botón `Mostrar todos los archivos` en el Explorador de Soluciones para revelar todos los archivos ocultos del proyecto.
+* De click derecho en cada carpeta/archivo a incluir en el proyecto y seleccione `Incluir en el Proyecto`.
 
-  * src/app folder (answer *No*  if asked to search for TypeScript Typings)
+  Minimamente incluya los siguientes carpetas/archivos:
+
+  * Carpeta src/app (Responda *No*,  Si se le pide buscar tipificaciones de TypeScript)
   * src/styles.css
   * src/index.html
   * package.json
@@ -169,85 +149,72 @@ Include the files in the Visual Studio project as follows:
 
 
 <h2 id='restore'>
-  Step 4: Restore the required packages
+  Paso 4: Restaure los paquetes necesarios
 </h2>
 
+Restaure los paquetes necesarios para una aplicación Angular de la siguiente manera:
 
-
-Restore the packages required for an Angular application as follows:
-
-* Right-click on the `package.json` file in Solution Explorer and select `Restore Packages`.
-  <br>This uses `npm` to install all of the packages defined in the `package.json` file.
-  It may take some time.
-* If desired, open the Output window (`View` | `Output`) to watch the npm commands execute.
-* Ignore the warnings.
-* When the restore is finished, a message in the bottom message bar of Visual Studio 
-  should say: `Installing packages complete`. Be patient. This could take a while.
-* Click the `Refresh` icon in Solution Explorer.
-* **Do not** include the `node_modules` folder in the project. Let it be a hidden project folder.
-
+* Haga clic derecho en el archivo `package.json` en el Explorador de Soluciones y seleccione` Restaurar Paquetes`.
+  <br> Este proceso usa `npm` para instalar todos los paquetes definidos en el archivo` package.json`.
+  Puede tardar algún tiempo.
+* Si lo desea, abra la consola (`Ver` |` Salida`) para ver cómo se ejecutan los comandos npm.
+* Ignore las advertencias.
+* Cuando finalize la restauración, aparecerá un mensaje en la barra de mensajes inferior de Visual Studio
+  Podría decir: `Instalación de paquetes completa`. Sea paciente. Podría tomar tiempo.
+* Haga clic en el ícono `Actualizar` en el Explorador de soluciones.
+* **No** incluir la carpeta `node_modules` en el proyecto. Dejarla como una carpeta oculta del proyecto .
 
 
 <h2 id='build-and-run'>
-  Step 5: Build and run the app
+  Paso 5: Cree y ejecute la aplicación
 </h2>
 
+Primero, asegúrese de que `src / index.html` esté configurado como la página de inicio.
+Haga clic derecho en `index.html` en el Explorador de Soluciones y seleccione la opción` Establecer como página de inicio`.
 
+### Para ejecutar en VS con F5
 
-First, ensure that `src/index.html` is set as the start page.
-Right-click `index.html` in Solution Explorer and select option `Set As Start Page`.
+A la mayoría de los desarrolladores que usan Visual Studio les gusta presionar la tecla F5 y ver aparecer el servidor IIS.
+Para utilizar el servidor IIS con la aplicación de inicio debe realizar los siguientes tres cambios.
 
-### To run in VS with F5
-
-Most Visual Studio developers like to press the F5 key and see the IIS server come up.
-To use the IIS server with the Getting Started app, you must make the following three changes.
-
-1. In `index.html`, change base href from `<base href="/">` to `<base href="/src/">`.
-2. Also in `index.html`, change the scripts to use `/node_modules` with a slash 
-instead of `node_modules` without the slash.
-3. In `src/systemjs.config.js`, near the top of the file, 
-change the npm `path` to `/node_modules/` with a slash.
-
+1. En `index.html`, cambie el href base de `<base href = "/">` a `<base href = "/src/">`.
+2. Igualmente en `index.html`, cambie el script para usar `/node_modules` con la barra diagonal
+en lugar de `node_modules` sin la barra.
+3. En `src/systemjs.config.js`, cerca del inicio del archivo,
+cambie la `ruta` de npm a `/node_modules/` con una barra diagonal.
 
 <div class="alert is-important">
 
-
-
-After these changes, `npm start` no longer works.
-You must choose to configure _either_ for F5 with IIS _or_ for  `npm start` with the lite-server.
+Después de estos cambios, `npm start` no funcionará.
+Deberá elegir configurar _ya sea_ con F5 con IIS _o_ `npm start` con el lite-server.
 
 
 </div>
 
+### Para aplicaciones que usan enrutamiento
 
+Si su aplicación utiliza enrutamiento, debe enseñarle al servidor a que siempre regrese
+`index.html` cuando el usuario solicita una página HTML
+por los motivos que se explican en la guía de [Despliegue](guide/deployment#fallback).
 
-### For apps that use routing
+Todo parece estar bien mientras te mueves _dentro_ de la aplicación.
+Pero verá el problema de inmediato si actualiza el navegador
+o pegue un enlace a la página de una aplicación (llamado "enlace profundo") en la barra de direcciones del navegador.
 
-If your app uses routing, you need to teach the server to always return 
-`index.html` when the user asks for an HTML page
-for reasons explained in the [Deployment](guide/deployment#fallback) guide.
+Lo más probable es que obtenga una respuesta *404 - Página no encontrada* del servidor
+para cualquier dirección que no sea `/` ó `/index.html`.
 
-Everything seems fine while you move about _within_ the app.
-But you'll see the problem right away if you refresh the browser
-or paste a link to an app page (called a "deep link") into the browser address bar.
+Tendrá que configurar el servidor para que devuelva `index.html` para las solicitudes a estas páginas "desconocidas".
+El servidor de desarrollo `lite-server` lo resulve desde su inicio.
+Si ha cambiado a F5 e IIS, deberá configurar IIS para hacerlo.
+Esta sección describe los pasos para adaptar la aplicación de inicio.
 
-You'll most likely get a *404 - Page Not Found* response from the server
-for any address other than `/` or `/index.html`.
+#### Configurar reglas de reescritura de IIS
 
-You have to configure the server to return `index.html` for requests to these "unknown" pages.
-The `lite-server` development server does out-of-the-box.
-If you've switched over to F5 and IIS, you have to configure IIS to do it.
-This section walks through the steps to adapt the Getting Started application.
+Visual Studio viene con IIS Express, el cuál tiene un módulo de reescritura integrado.
+Sin embargo, si está utilizando IIS normal, tendrá que instalar el módulo de reescritura.
 
-#### Configure IIS rewrite rules
-
-Visual Studio ships with IIS Express, which has the rewrite module baked in.
-However, if you're using regular IIS you'll have to install the rewrite 
-module.
-
-Tell Visual Studio how to handle requests for route app pages by adding these
-rewrite rules near the bottom of the `web.config`:
-
+Indique a Visual Studio cómo manejar las rutas para las solicitudes de páginas de la aplicación  agregando estas reglas de reescritura, cerca del final del archivo `web.config`:
 
 <code-example format='.'>
   &lt;system.webServer&gt;
@@ -271,33 +238,31 @@ rewrite rules near the bottom of the `web.config`:
 
 <div class="alert is-helpful">
 
+La coincidencia Url, `<match url=".*" />`, Reescribirá toda solicitud. Tendrá que ajustar esto si
+desea que pasen algunas solicitudes, como las solicitudes de API web.
 
-
-The match url, `<match url=".*" />`, will rewrite every request. You'll have to adjust this if 
-you want some requests to get through, such as web API requests.
-
-The URL in `<action type="Rewrite" url="/src/"/>` should 
-match the base href in `index.html`.
+La URL en `<action type = "Rewrite" url = "/src/" />` deberá
+coincidir con el href base en `index.html`.
 
 
 </div>
 
 
 
-Build and launch the app with debugger by clicking the **Run** button or by pressing `F5`.
+Cree e inicie la aplicación con el depurador haciendo clic en el botón **Ejecutar** o presionando `F5`.
 
 
 <div class="alert is-helpful">
 
 
 
-It's faster to run without the debugger by pressing `Ctrl-F5`.
+Se ejecutará más rápido sin el depurador presionando `Ctrl-F5`.
 
 </div>
 
 
 
-The default browser opens and displays the Getting Started sample application.
+El navegador predeterminado se abrirá y mostrará la aplicación de inicio de ejemplo.
 
-Try editing any of the project files. Save and refresh the browser to
-see the changes.
+Intente editar cualquiera de los archivos del proyecto. Guarde y actualice el navegador para
+ver los cambios.
