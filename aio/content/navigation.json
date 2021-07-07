@@ -2,7 +2,7 @@
   "TopBar": [
     {
       "url": "features",
-      "title": "Caracteristicas"
+      "title": "Características"
     },
     {
       "url": "docs",
@@ -27,7 +27,7 @@
       "children": [
         {
           "url": "features",
-          "title": "Caracteristicas"
+          "title": "Características"
         },
         {
           "url": "resources",
@@ -76,8 +76,8 @@
             },
             {
               "url": "guide/architecture-components",
-              "title": "Intro to Components",
-              "tooltip": "Acerca de componentes, Plantillas y Vistas."
+              "title": "Introducción a los componentes",
+              "tooltip": "Acerca de componentes, plantillas y vistas."
             },
             {
               "url": "guide/architecture-services",
@@ -98,12 +98,12 @@
         },
         {
             "title": "Pruébalo",
-            "tooltip": "Examine y trabaje con una aplicación de muestra lista para usar, sin configuración.",
+            "tooltip": "Examina y trabaja con una aplicación de muestra lista para usar, sin configuración.",
             "children": [
               {
                 "url": "start",
                 "title": "Aplicación de muestra",
-                "tooltip": "Eche un vistazo al modelo de componentes de Angular, la sintaxis de la plantilla y la comunicación de componentes."
+                "tooltip": "Echa un vistazo al modelo de componentes de Angular, la sintaxis de la plantilla y la comunicación de componentes."
               },
               {
                 "url": "start/start-routing",
@@ -113,17 +113,17 @@
               {
                 "url": "start/start-data",
                 "title": "Gestión de datos",
-                "tooltip": "Utilice servicios y acceda a datos externos a través de HTTP."
+                "tooltip": "Utiliza servicios y accede a datos externos a través de HTTP."
               },
               {
                 "url": "start/start-forms",
                 "title": "Formularios para la entrada del usuario",
-                "tooltip": "Obtenga información sobre cómo obtener y administrar datos de usuarios con formularios."
+                "tooltip": "Obtén información sobre cómo obtener y administrar datos de usuarios con formularios."
               },
               {
                 "url": "start/start-deployment",
                 "title": "Desplegar",
-                "tooltip": "Migre al desarrollo local, o despliegue su aplicación en Firebase o en su propio servidor"
+                "tooltip": "Migra al desarrollo local, o despliega tu aplicación en Firebase o en tu propio servidor"
               }
             ]
         },
@@ -154,7 +154,7 @@
             {
               "url": "tutorial/toh-pt3",
               "title": "3. Crear un componente de función ",
-              "tooltip": "Parte 3: Refactorice las vistas maestra detallada en componentes separados."
+              "tooltip": "Parte 3: Refactoriza las vistas maestra detallada en componentes separados."
             },
             {
               "url": "tutorial/toh-pt4",
@@ -164,12 +164,12 @@
             {
               "url": "tutorial/toh-pt5",
               "title": "5. Agregar navegación en la aplicación",
-              "tooltip": "Parte 5: Agregue el enrutador Angular para moverse entre vistas."
+              "tooltip": "Parte 5: Agrega el enrutador Angular para moverte entre vistas."
             },
             {
               "url": "tutorial/toh-pt6",
               "title": "6. Obtener datos del servidor",
-              "tooltip": "Parte 6: Utilice HTTP para recuperar y guardar datos de héroe."
+              "tooltip": "Parte 6: Utiliza HTTP para recuperar y guardar datos de héroes."
             }
           ]
         }
@@ -262,7 +262,7 @@
             {
               "url": "guide/user-input",
               "title": "Entrada del usuario",
-              "tooltip": "La entrada del usuario desencadena eventos DOM. Angular escucha esos eventos con enlaces de eventos que canalizan los valores actualizados hacia los componentes y modelos de su aplicación."
+              "tooltip": "La entrada del usuario desencadena eventos DOM. Angular escucha esos eventos con enlaces de eventos que canalizan los valores actualizados hacia los componentes y modelos de tu aplicación."
             },
             {
               "url": "guide/attribute-directives",
@@ -287,38 +287,38 @@
             {
               "url": "guide/component-interaction",
               "title": "Interacción de componentes",
-              "tooltip": "Comparta información entre diferentes directivas y componentes."
+              "tooltip": "Comparte información entre diferentes directivas y componentes."
             },
             {
               "url": "guide/component-styles",
               "title": "Estilos de componentes",
-              "tooltip": "Agregue estilos CSS que sean específicos de un componente."
+              "tooltip": "Agrega estilos CSS que sean específicos de un componente."
             },
             {
               "url": "guide/dynamic-component-loader",
               "title": "Componentes dinámicos",
-              "tooltip": "Cargue componentes de forma dinámica."
+              "tooltip": "Carga componentes de forma dinámica."
             },
             {
               "url": "guide/elements",
               "title": "Elementos Angular",
-              "tooltip": "Convierta componentes en elementos personalizados."
+              "tooltip": "Convierte componentes en elementos personalizados."
             }
           ]
         },
         {
           "title": "Formularios para la entrada del usuario",
-          "tooltip": "Forms crea una experiencia de entrada de datos coherente, eficaz y convincente.",
+          "tooltip": "Los formularios crean una experiencia de entrada de datos coherente, eficaz y convincente.",
           "children": [
             {
               "url": "guide/forms-overview",
               "title": "Introducción",
-              "tooltip": "Una forma Angular coordina un conjunto de controles de usuario vinculados a datos, realiza un seguimiento de los cambios, valida la entrada y presenta errores."
+              "tooltip": "Una formulario de Angular coordina un conjunto de controles de usuario vinculados a datos, realiza un seguimiento de los cambios, valida la entrada y presenta errores."
             },
             {
               "url": "guide/reactive-forms",
               "title": "Formularios Reactivos",
-              "tooltip": "Cree un formulario reactivo utilizando FormBuilder, grupos y arrays."
+              "tooltip": "Crea un formulario reactivo utilizando FormBuilder, grupos y arrays."
             },
             {
               "url": "guide/form-validation",
@@ -328,7 +328,7 @@
             {
               "url": "guide/dynamic-form",
               "title": "Construyendo formularios dinámicos",
-              "tooltip": "Cree plantillas de formulario dinámicas con FormGroup."
+              "tooltip": "Crea plantillas de formulario dinámicas con FormGroup."
             }
           ]
         },
@@ -353,12 +353,12 @@
             },
             {
               "url": "guide/practical-observable-usage",
-              "title": "Practical Usage",
+              "title": "Uso práctico",
               "tooltip": "Dominios en los que los observables son particularmente útiles."
             },
             {
               "url": "guide/comparing-observables",
-              "title": "Comparar con otras técnicas",
+              "title": "Comparación con otras técnicas",
               "tooltip": "Cómo se comparan los observables con las promesas y otras técnicas de transmisión de mensajes."
             }
           ]
@@ -370,7 +370,7 @@
             {
               "url": "guide/ngmodules",
               "title": "Introducción a NgModules",
-              "tooltip": "Utilice NgModules para hacer que sus aplicaciones sean eficientes."
+              "tooltip": "Utiliza NgModules para hacer que tus aplicaciones sean eficientes."
             },
             {
               "url": "guide/ngmodule-vs-jsmodule",
@@ -380,7 +380,7 @@
             {
               "url": "guide/bootstrapping",
               "title": "Lanzamiento de aplicaciones con un módulo raíz",
-              "tooltip": "Dígale a Angular cómo construir y arrancar la aplicación en la raíz \"AppModule\"."
+              "tooltip": "Dile a Angular cómo construir y arrancar la aplicación en la raíz \"AppModule\"."
             },
             {
               "url": "guide/frequent-ngmodules",
@@ -389,8 +389,8 @@
             },
             {
               "url": "guide/module-types",
-              "title": "Tipos de módulos de funciones",
-              "tooltip": "Descripción de los diferentes tipos de módulos de funciones."
+              "title": "Tipos de módulos de funcionalidad",
+              "tooltip": "Descripción de los diferentes tipos de módulos de funcionalidad."
             },
             {
               "url": "guide/entry-components",
@@ -399,8 +399,8 @@
             },
             {
               "url": "guide/feature-modules",
-              "title": "Módulos de funciones",
-              "tooltip": "Cree módulos de funciones para organizar su código."
+              "title": "Módulos de funcionalidad",
+              "tooltip": "Crea módulos de funcionalidad para organizar tu código."
             },
             {
               "url": "guide/providers",
@@ -415,17 +415,17 @@
             {
               "url": "guide/lazy-loading-ngmodules",
               "title": "Módulos de funciones de carga diferida",
-              "tooltip": "Módulos de carga diferida para acelerar sus aplicaciones."
+              "tooltip": "Módulos de carga diferida para acelerar tus aplicaciones."
             },
             {
               "url": "guide/sharing-ngmodules",
-              "title": "Comparta NgModules para optimizar sus aplicaciones",
-              "tooltip": "Share NgModules to streamline your apps."
+              "title": "Comparte NgModules para optimizar tus aplicaciones",
+              "tooltip": "Comparte NgModules para optimizar tus aplicaciones."
             },
             {
               "url": "guide/ngmodule-api",
               "title": "API NgModule",
-              "tooltip": "Comprenda los detalles de NgModules."
+              "tooltip": "Comprende los detalles de NgModules."
             },
             {
               "url": "guide/ngmodule-faq",
@@ -461,19 +461,19 @@
             {
               "url": "guide/dependency-injection-navtree",
               "title": "Navegar por el árbol de componentes",
-              "tooltip": "Utilice el árbol de inyección para encontrar los componentes principales."
+              "tooltip": "Utiliza el árbol de inyección para encontrar los componentes principales."
             }
           ]
         },
         {
           "url": "guide/http",
           "title": "Acceder a los servidores a través de HTTP",
-          "tooltip": "Utilice HTTP para comunicarse con un servidor remoto."
+          "tooltip": "Utiliza HTTP para comunicarte con un servidor remoto."
         },
         {
           "url": "guide/router",
-          "title": "Enrutamiento & navegación",
-          "tooltip": "Cree una navegación dentro de la aplicación entre vistas usando el enrutador Angular."
+          "title": "Enrutamiento y navegación",
+          "tooltip": "Crea una navegación dentro de la aplicación entre vistas usando el enrutador Angular."
         },
         {
           "url": "guide/security",
@@ -484,15 +484,15 @@
     },
     {
       "title": "Técnicas",
-      "tooltip": "Técnicas para poner Angular a trabajar en su entorno",
+      "tooltip": "Técnicas para poner Angular a trabajar en tu entorno",
       "children": [
         {
           "title": "Animaciones",
-          "tooltip": "Mejore la experiencia del usuario con animación.",
+          "tooltip": "Mejora la experiencia del usuario con animaciones.",
           "children": [
             {
               "url": "guide/animations",
-              "title": "Introduction",
+              "title": "Introducción",
               "tooltip": "Técnicas básicas en animaciones Angular."
             },
             {
@@ -519,13 +519,13 @@
         },
         {
           "url": "guide/i18n",
-          "title": "Internationalization (i18n)",
+          "title": "Internacionalización (i18n)",
           "tooltip": "Traduce el texto de la plantilla de la aplicación a varios idiomas."
         },
         {
           "url": "guide/accessibility",
           "title": "Accesibilidad",
-          "tooltip": "Diseñe aplicaciones para que sean accesibles a todos los usuarios."
+          "tooltip": "Diseña aplicaciones para que sean accesibles a todos los usuarios."
         },
         {
           "title": "Trabajadores de servicios & PWA",
@@ -544,7 +544,7 @@
             {
               "url": "guide/app-shell",
               "title": "Armazón de la aplicación",
-              "tooltip": "Renderice una parte de su aplicación rápidamente para mejorar la experiencia de inicio."
+              "tooltip": "Renderiza una parte de tu aplicación rápidamente para mejorar la experiencia de inicio."
             },
             {
               "url": "guide/service-worker-communications",
@@ -570,8 +570,8 @@
         },
         {
           "url": "guide/universal",
-          "title": "Representación del lado del servidor",
-          "tooltip": "Renderice HTML del lado del servidor con Angular Universal."
+          "title": "Renderización del lado del servidor",
+          "tooltip": "Renderiza HTML del lado del servidor con Angular Universal."
         }
       ]
     },
@@ -586,7 +586,7 @@
             {
               "url": "guide/aot-compiler",
               "title": "Compilación anticipada (AOT)",
-              "tooltip": "Aprenda por qué y cómo utilizar el compilador Ahead-of-Time (AOT)."
+              "tooltip": "Aprende por qué y cómo utilizar el compilador Ahead-of-Time (AOT)."
             },
             {
               "url": "guide/angular-compiler-options",
@@ -612,7 +612,7 @@
         },
         {
           "title": "Pruebas",
-          "tooltip": "Probando sus aplicaciones Angulars.",
+          "tooltip": "Probando tus aplicaciones Angular.",
           "children": [
             {
               "url": "guide/testing",
@@ -664,16 +664,16 @@
         {
           "url": "guide/deployment",
           "title": "Despliegue",
-          "tooltip": "Aprenda a desplegar su aplicación Angular."
+          "tooltip": "Aprende a desplegar tu aplicación Angular."
         },
         {
           "title": "Integración de herramientas de desarrollo",
-          "tooltip": "Integre con su entorno y herramientas de desarrollo.",
+          "tooltip": "Integra con tu entorno y herramientas de desarrollo.",
           "children": [
             {
               "url": "guide/language-service",
               "title": "Servicio de Idiomas",
-              "tooltip": "Use Angular Language Service to speed up dev time."
+              "tooltip": "Utiliza Angular Language Service para acelerar el tiempo de desarrollo."
             },
             {
               "url": "guide/visual-studio-2015",
@@ -692,7 +692,7 @@
         {
           "url": "guide/file-structure",
           "title": "Estructura del archivo del proyecto",
-          "tooltip": "Cómo se ve su espacio de trabajo Angular en su sistema de archivos."
+          "tooltip": "Cómo se ve tu espacio de trabajo Angular en tu sistema de archivos."
         },
         {
           "url": "guide/workspace-config",
@@ -742,12 +742,12 @@
             {
               "url": "guide/creating-libraries",
               "title": "Creando Librerías",
-              "tooltip": "Amplíe Angular creando, publicando y usando sus propias librerías."
+              "tooltip": "Amplía Angular creando, publicando y usando tus propias librerías."
             },
             {
               "url": "guide/lightweight-injection-tokens",
               "title": "Tokens de inyección ligeros para librerías",
-              "tooltip": "Optimice el tamaño de la aplicación cliente diseñando servicios de librería con tokens de inyección ligeros."
+              "tooltip": "Optimiza el tamaño de la aplicación cliente diseñando servicios de librería con tokens de inyección ligeros."
             }
           ]
         },
@@ -768,7 +768,7 @@
             {
               "url": "guide/schematics-for-libraries",
               "title": "Esquemas para librerías",
-              "tooltip": "Use esquemas para integrar su librería con el CLI Angular."
+              "tooltip": "Usa esquemas para integrar tu librería con el CLI Angular."
             }
           ]
         },
@@ -785,7 +785,7 @@
       "children": [
         {
           "title": "Enrutamiento",
-          "tooltip": "End-to-end tutorials for learning about Angular's router.",
+          "tooltip": "Tutoriales de principio a fin para aprender sobre el enrutador de Angular",
           "children": [
             {
               "url": "guide/router-tutorial",
@@ -802,7 +802,7 @@
         {
           "url": "guide/forms",
           "title": "Creación de un formulario basado en plantillas",
-          "tooltip": "Cree un formulario basado en plantillas utilizando directivas y sintaxis de plantilla Angular."
+          "tooltip": "Crea un formulario basado en plantillas utilizando directivas y sintaxis de plantilla Angular."
         }
       ]
     },
@@ -827,17 +827,17 @@
         },
         {
           "title": "Actualización a la versión 10",
-          "tooltip": "Soporte para actualizar su aplicación de la versión 9 a la 10.",
+          "tooltip": "Soporte para actualizar tu aplicación de la versión 9 a la 10.",
           "children": [
             {
               "url": "guide/updating-to-version-10",
               "title": "Visión general",
-              "tooltip": "Todo lo que necesita saber para actualizar su aplicación de la versión 9 a la 10."
+              "tooltip": "Todo lo que necesitas saber para actualizar tu aplicación de la versión 9 a la 10."
             },
             {
               "url": "guide/ivy-compatibility",
               "title": "Guía de compatibilidad de Ivy",
-              "tooltip": "Detalles para ayudarlo a asegurarse de que su aplicación sea compatible con Ivy."
+              "tooltip": "Detalles para ayudarte a asegurarte que tu aplicación sea compatible con Ivy."
             },
             {
               "title": "Migraciones",
@@ -856,7 +856,7 @@
                 {
                   "url": "guide/migration-injectable",
                   "title": "Missing @Injectable() Decorators",
-                  "tooltip": "Migration to add missing @Injectable() decorators and incomplete provider definitions."
+                  "tooltip": "Migración para agregar decoradores @Injectable() faltantes y definiciones de proveedor incompletas."
                 },
                 {
                   "url": "guide/migration-solution-style-tsconfig",
@@ -866,7 +866,7 @@
                 {
                   "url": "guide/migration-update-libraries-tslib",
                   "title": "`tslib` dependencia directa",
-                  "tooltip": "Migration to a direct dependency on the `tslib` npm package."
+                  "tooltip": "Migración a una dependencia directa del paquete npm `tslib`."
                 },
                 {
                   "url": "guide/migration-update-module-and-target-compiler-options",
@@ -880,7 +880,7 @@
         {
           "url": "guide/deprecations",
           "title": "Deprecación",
-          "tooltip": "Resumen de las API y las características de Angular que están en obsoletas."
+          "tooltip": "Resumen de las API y las características de Angular que están obsoletas."
         },
         {
           "url": "guide/ivy",
@@ -889,27 +889,27 @@
         },
         {
           "title": "Actualización desde AngularJS",
-          "tooltip": "Actualice gradualmente una aplicación AngularJS a Angular.",
+          "tooltip": "Actualiza gradualmente una aplicación AngularJS a Angular.",
           "children": [
             {
               "url": "guide/upgrade",
               "title": "Instrucciones de actualización",
-              "tooltip": "Actualice gradualmente una aplicación AngularJS a Angular."
+              "tooltip": "Actualiza gradualmente una aplicación AngularJS a Angular."
             },
             {
               "url": "guide/upgrade-setup",
               "title": "Configuración para actualizar desde AngularJS",
-              "tooltip": "Use el código de la semilla Angular QuickStart como parte de la actualización de AngularJS."
+              "tooltip": "Usa el código de la semilla Angular QuickStart como parte de la actualización de AngularJS."
             },
             {
               "url": "guide/upgrade-performance",
               "title": "Actualización para mejorar el rendimiento",
-              "tooltip": "Actualice de AngularJS a Angular de una manera más flexible."
+              "tooltip": "Actualiza de AngularJS a Angular de una manera más flexible."
             },
             {
               "url": "guide/ajs-quick-reference",
               "title": "Conceptos de AngularJS-Angular",
-              "tooltip": "Aprenda cómo los conceptos y técnicas de AngularJS se asignan a Angular."
+              "tooltip": "Aprende cómo los conceptos y técnicas de AngularJS se asignan a Angular."
             }
           ]
         }
@@ -917,7 +917,7 @@
     },
     {
       "title": "Estilo y uso de Angular",
-      "tooltip": "Resúmenes de sintaxis Angular, codificación y estilos doc.",
+      "tooltip": "Resúmenes de sintaxis Angular, codificación y estilos de la documentación.",
       "children": [
         {
           "url": "guide/cheatsheet",
@@ -947,14 +947,14 @@
         },
         {
           "title": "Análisis de Uso",
-          "tooltip": "Para los administradores, guía para recopilar análisis de uso de sus usuarios.",
+          "tooltip": "Para los administradores, guía para recopilar análisis de uso de tus usuarios.",
           "url": "cli/usage-analytics-gathering"
         }
       ]
     },
     {
       "title": "Referencia de API",
-      "tooltip": "Details of the Angular packages, classes, interfaces, and other types.",
+      "tooltip": "Detalles de los paquetes de Angular, clases, interfaces y otros tipos.",
       "url": "api"
     }
   ],
@@ -995,7 +995,7 @@
         {
           "url": "https://chat.angular.lat/",
           "title": "Angular Hispano Chat",
-          "tooltip": "Chatea en castellano sobre Angular con otros miembros de la comunidad."
+          "tooltip": "Chatea en español sobre Angular con otros miembros de la comunidad."
         },
         {
           "url": "https://angular.lat/coc",
@@ -1005,7 +1005,7 @@
         {
           "url": "https://stackoverflow.com/questions/tagged/angular",
           "title": "Stack Overflow",
-          "tooltip": "Stack Overflow: donde la comunidad responde sus preguntas técnicas de Angular."
+          "tooltip": "Stack Overflow: donde la comunidad responde tus preguntas técnicas de Angular."
         },
         {
           "url": "https://gitter.im/angular/angular",
@@ -1029,22 +1029,22 @@
       "children": [
         {
           "url": "https://angular.lat/conferencias",
-          "title": "Eventos Hispanos",
-          "tooltip": "Eventos en castellano de Angular alrededor del mundo."
+          "title": "Eventos en español",
+          "tooltip": "Eventos en español de Angular alrededor del mundo."
         },
         {
           "url": "https://angular.lat/meetups",
-          "title": "Meetups Hispanos",
-          "tooltip": "Asista a una reunión y aprenda de otros desarrolladores."
+          "title": "Meetups en español",
+          "tooltip": "Asiste a reuniones y aprende de otros desarrolladores."
         },
         {
           "url": "http://www.meetup.com/topics/angularjs/",
           "title": "Mas Meetups",
-          "tooltip": "Asista a una reunión y aprenda de otros desarrolladores."
+          "tooltip": "Asiste reuniones y aprende de otros desarrolladores."
         },
         {
           "url": "events",
-          "title": "Mas Eventos",
+          "title": "Más eventos",
           "tooltip": "Eventos de Angular alrededor del mundo."
         },
         {
