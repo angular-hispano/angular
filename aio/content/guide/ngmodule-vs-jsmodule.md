@@ -1,82 +1,83 @@
-# JavaScript modules vs. NgModules
+# Modulos en JavaScript vs. NgModules
 
-JavaScript modules and NgModules can help you modularize your code, but they are very different.
-Angular apps rely on both kinds of modules.
+Los modulos en JavaScript y los NgModules ayudan a modularizar tu codigo, pero tienen muchas diferencias.
+Las aplicaciones Angular se basan en ambos tipos de modulos.
 
-## JavaScript modules: Files containing code
+## Modulos en JavaScript: Archivos que contienen codigo
 
-A [JavaScript module](https://javascript.info/modules "JavaScript.Info - Modules") is an individual file with JavaScript code, usually containing a class or a library of functions for a specific purpose within your app.
-JavaScript modules let you spread your work across multiple files.
+Un [Modulo en JavaScript](https://javascript.info/modules "JavaScript.Info - Modules") es un archivo con codigo JavaScript que, usualmente contiene una clase o una libreria de funciones para un proposito en especifico dentro de tu aplicacion.
+Los modulos en JavaScript te permiten propagar tu trabajo a travez de multiples archivos.
 
 <div class="alert is-helpful">
 
-To learn more about JavaScript modules, see [ES6 In Depth: Modules](https://hacks.mozilla.org/2015/08/es6-in-depth-modules/).
-For the module specification, see the [6th Edition of the ECMAScript standard](http://www.ecma-international.org/ecma-262/6.0/#sec-modules).
+Para aprender mas acerca de los modulos en JavaScript, puedes visitar [ES6 A Fondo: Modulos](https://hacks.mozilla.org/2015/08/es6-in-depth-modules/).
+Para la especificacion del modulo, puedes ver la [6ta Edicion del estandar de ECMAScript](http://www.ecma-international.org/ecma-262/6.0/#sec-modules).
 
 </div>
 
-To make the code in a JavaScript module available to other modules, use an `export` statement at the end of the relevant code in the module, such as the following:
+Para hacer que el codigo de un modulo de JavaScript este disponible para otros modulos, use una declaracion de `export` al final del codigo relevante en el modulo, como la siguiente:
 
 ```typescript
 export class AppComponent { ... }
 ```
 
-When you need that module’s code in another module, use an `import` statement as follows:
+Cuando necesites el codigo de ese modulo en otro modulo, use una declaracion de `import` de la siguiente manera:
 
 ```typescript
 import { AppComponent } from './app.component';
 ```
 
-Each module has its own top-level scope.
-In other words, top-level variables and functions in a module are not seen in other scripts or modules.
-Each module provides a namespace for identifiers to prevent them from clashing with identifiers in other modules.
-With multiple modules, you can prevent accidental global variables by creating a single global namespace and adding sub-modules to it.
+Cada modulo tiene su propio alcance de nivel superior.
+En otras palabras, las variables y funciones de nivel superior en un modulo no son vistas en otros modulos o scrips.
+Cada modulo proporciona un namespace para los identificadores esto para prevenir conflictos con otros identificadores en otro modulo.
+Con varios modulos, se puede evitar variables globales accidentales creando un unico namespace y aniadiendole sub-modulos.
 
-The Angular framework itself is loaded as a set of JavaScript modules.
+El framework de Angular en si se carga como un conjunto de modulos de JavaScript
 
-## NgModules: Classes with metadata for compiling
+## NgModules: Clases con metadatos para compilar
 
-An [NgModule](guide/glossary#ngmodule "Definition of NgModule") is a class marked by the `@NgModule` decorator with a metadata object that describes how that particular part of the app fits together with the other parts.
-NgModules are specific to Angular.
-While classes with an `@NgModule` decorator are by convention kept in their own files, they differ from JavaScript modules because they include this metadata.
+Un [NgModule](guide/glossary#ngmodule "Definicion de NgModule") es una clase marcada por el decorador `@NgModule` con  un objeto de metadatos que describe como esa particular parte de la aplicacion encaja junto con las otras partes.
+NgModules son especificamente para Angular.
+Mientras las clases con un decorador `@NgModule` mantienen por convencion sus propios archivos, se diferencian de los modulos de JavaScript porque incluyen estos metadatos.
 
-The `@NgModule` metadata plays an important role in guiding the Angular compilation process that converts the app code you write into highly performant JavaScript code.
-The metadata describes how to compile a component's template and how to create an [injector](guide/glossary#injector "Definition of injector") at runtime.
-It identifies the NgModule's [components](guide/glossary#component "Definition of component"), [directives](guide/glossary#directive "Definition of directive"), and [pipes](guide/glossary#pipe "Definition of pipe)"),
-and makes some of them public through the `exports` property so that external components can use them.
-You can also use an NgModule to add [providers](guide/glossary#provider "Definition of provider") for [services](guide/glossary#service "Definition of a service"), so that the services are available elsewhere in your app.
+Los metadatos en `@NgModule` juegan un importante papel en guiar el proceso de compilación de Angular en el que convierte el código de la aplicación que escribes en código JavaScript de alto desempeño.
+Los metadatos describen como compilar componentes plantilla y como crear un [injector](guide/glossary#injector "Definicion de injector") en tiempo de ejecución.
+IEsto identifica los componentes  [componentes](guide/glossary#component "Definicion de componente"), [directivas](guide/glossary#directive "Definicion de directiva"), y [pipes](guide/glossary#pipe "Definicion de pipe)"),
+y hace algunos de ellos públicos a través de la propiedad ` exports` así esos componentes externos pueden usarlos.
 
-Rather than defining all member classes in one giant file as a JavaScript module, declare which components, directives, and pipes belong to the NgModule in the `@NgModule.declarations` list.
-These classes are called [declarables](guide/glossary#declarable "Definition of a declarable").
-An NgModule can export only the declarable classes it owns or imports from other NgModules.
-It doesn't declare or export any other kind of class.
-Declarables are the only classes that matter to the Angular compilation process.
+Puedes también usar un NgModule para agregar [providers](guide/glossary#provider "Definicion de provider") para [services](guide/glossary#service "Definicion of a service"), de modo que esos servicios estén disponibles en cualquier lugar de tu aplicación.
 
-For a complete description of the NgModule metadata properties, see [Using the NgModule metadata](guide/ngmodule-api "Using the NgModule metadata").
+En lugar de definir todas las clases en un archivo gigante como un modulo de JavaScript, declare cuales componentes, directivas y pipes pertenecen al NgModule en la lista de declaraciones `@NgModule.declarations`.
+Estas clases se llaman [declarables](guide/glossary#declarable "Definicion of a declarable").
+Un NgModule puede exportar solo las clases declarables que posee o las importadas desde otros NgModules.
+No puede exportar o declarar ningún otro tipo de clases.
+Estas Declarables son solo clases que importan en el proceso de compilación de Angular.
 
-## An example that uses both
+Para una complete descripción de las propiedades de los metadatos de NgModule, ver [El Uso de los metadatos de  NgModule metadata](guide/ngmodule-api "Usando la metadata de NgModule").
 
-The root NgModule `AppModule` generated by the [Angular CLI](cli) for a new app project demonstrates how you use both kinds of modules:
+## Un ejemplo usando los dos
+
+La raiz de NgModule `AppModule` generado por el [Angular CLI](cli) para un nuevo proyecto demuestra como se usan las dos clases de modulos:
 
 <code-example path="ngmodules/src/app/app.module.1.ts" header="src/app/app.module.ts (default AppModule)"></code-example>
 
-The root NgModule starts with `import` statements to import JavaScript modules.
-It then configures the `@NgModule` with the following arrays:
+La raiz de NgModule empieza con la declaracion `import` para importar los modulos de JavaScript.
+Esto luego configura el `@NgModule` con los siguientes arreglos:
 
-* `declarations`: The components, directives, and pipes that belong to the NgModule.
-  A new app project's root NgModule has only one component, called `AppComponent`.
+* `declarations`: Los componentes, directivas y pipes que pertenecen al NgModule.
+  La raiz de un nuevo proyecto o aplicacion tiene un solo componente, llamado `AppComponent`.
 
-* `imports`: Other NgModules you are using, so that you can use their declarables.
-  The newly generated root NgModule imports [`BrowserModule`](api/platform-browser/BrowserModule "BrowserModule NgModule") in order to use browser-specific services such as [DOM](https://www.w3.org/TR/DOM-Level-2-Core/introduction.html "Definition of Document Object Model") rendering, sanitization, and location.
+* `imports`: Otro NgModules que usas, para que tu puedas usar sus declarables.
+  La recien generada raiz de NgModule importa [`BrowserModule`](api/platform-browser/BrowserModule "BrowserModule NgModule") para usar servicios especificos como [DOM](https://www.w3.org/TR/DOM-Level-2-Core/introduction.html "Definicion de Document Object Model") representación, desinversización y ubicación.
 
-* `providers`: Providers of services that components in other NgModules can use.
-  There are no providers in a newly generated root NgModule.
+* `providers`: Providers de servicios que los componentes en otros NgModules puedan usar.
+  No hay providers en un NgModule recien generado.
 
-* `bootstrap`: The [entry component](guide/entry-components "Specifying an entry component") that Angular creates and inserts into the `index.html` host web page, thereby bootstrapping the app.
-  This entry component, `AppComponent`, appears in both the `declarations` and the `bootstrap` arrays.
+* `bootstrap`: El [componente de entrada](guide/entry-components "Especificando un componente de entrada") que Angular creo e inserto dentro del host de la pagina web `index.html`, de este modo se hace bootstrapping de la aplicacion.
+  Este componente de entrada, `AppComponent`, aparece en las dos `declarations` y en los arreglos `bootstrap`.
 
-## Next steps
+## Siguientes Pasos
 
-* For more about NgModules, see [Organizing your app with NgModules](guide/ngmodules "Organizing your app with NgModules").
-* To learn more about the root NgModule, see [Launching an app with a root NgModule](guide/bootstrapping "Launching an app with a root NgModule").
-* To learn about frequently used Angular NgModules and how to import them into your app, see [Frequently-used modules](guide/frequent-ngmodules "Frequently-used modules").
+* Para mas acerca de NgModules, ver [Organizando su aplicacion con NgModules](guide/ngmodules "Organizando su aplicacion con NgModules").
+* Para aprender mas acerca de la raiz de NgModule, ver [Lanzando aplicaciones con la raiz de NgModule](guide/bootstrapping "Lanzando aplicaciones con la raiz de NgModule").
+* Para aprender sobre el uso frecuente de Angular NgModules y como importarlos dentro de tu aplicacion, ver [Uso frecuente de modulos](guide/frequent-ngmodules "Uso frecuente de modulos").
