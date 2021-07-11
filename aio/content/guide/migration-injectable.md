@@ -1,4 +1,4 @@
-# Migración por falta de decoradores `@Injectable()` y definiciones incompletas de los provider
+# Migración por falta de decoradores `@Injectable()` y definiciones incompletas de los proveedores
 
 ### ¿Para qué sirve este esquema?
 
@@ -68,7 +68,7 @@ Este esquema añade cualquier decorador `@Injectable()` que pueda hacer falta pa
 
 ### ¿Por qué es necesario añadir `useValue: undefined`?
 
-Considere el siguiente patrón:
+Considera el siguiente patrón:
 
 ```typescript
 @NgModule({
@@ -77,7 +77,7 @@ Considere el siguiente patrón:
 ```
 Los proveedores que utilicen este patrón se comportarán como si se proporcionara `MyService` como [DI token][DI_TOKEN] con el valor de `undefined`.
 Este no es el caso de Ivy, donde los proveedores serán interpretados como si `useClass: MyService` fuera especificado. Esto significa que los proveedores se comportarán de manera diferente cuando se actualicen a la version 9 o superiores. Para estar seguros de que el proveedor se comporte de la misma manera que antes, el valor del DI debería ser explícitamente `undefined`.
-### ¿Cuando debería agregar el decorador `@Injectable()` a las clases ?
+### ¿Cuándo debería agregar el decorador `@Injectable()` a las clases ?
 
 Cualquier clase que sea un proveedor debe tener un decorador `@Injectable()`
 El decorador es necesario para el framework cree correctamente una instancia de esa clase a través del DI.
@@ -88,6 +88,6 @@ El decorador de la clase existente ya le da instrucciones al compilador para gen
 Si, sí tu librería tiene alguna clase que debería ser inyectada, estas deberían ser actualizadas con el decorador `@Injectable()`
 En una futura versión de Angular, la falta del decorador `@Injectable()` siempre arrojará un error.
 
-Adicionalmente, los proveedores de las librerías que siguen el patrón `{provide: X}` deberían ser actualizadas para especificar un valor explicito. Sin un valor explicito, estos proveedores podrán comportarse diferente de acuerdo a la versión de Angular en aplicaciones que consumen su librería.
+Adicionalmente, los proveedores de las librerías que siguen el patrón `{provide: X}` deberían ser actualizadas para especificar un valor explícito. Sin un valor explícito, estos proveedores podrán comportarse diferente de acuerdo a la versión de Angular en aplicaciones que consumen tu librería.
 
 [DI_TOKEN]: guide/glossary#di-token
