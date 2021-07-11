@@ -24,8 +24,8 @@ Angular viene con su propio API para cargar componentes dinámicamente.
 
 ## La directiva de anclaje
 
-Antes de que pueda añadir componentes tu debes definir el punto de anclaje
-para decirle a Angular donde insertar componentes. 
+Antes de añadir componentes debes definir el punto de anclaje
+para decirle a Angular dónde insertar componentes. 
 
 El banner publicitario utiliza una directiva de ayuda llamada `AdDirective` para
 marcar puntos válidos de inserción en la plantilla.
@@ -70,15 +70,15 @@ porque no renderiza ninguna salida adicional.
 
 Mira más de cerca los métodos de `ad-banner.component.ts`.
 
-`AdBannerComponent` toma un array de objetos `AdItem` como entrada,
+`AdBannerComponent` toma un arreglo de objetos `AdItem` como entrada,
 que viene de `AdService`. Los objetos de `AdItem` específican
 el tipo de componente a cargar y cualquier dato que se vincule al
 componente.`AdService` retorna los anuncios actuales que componen la campaña publicitaria.
 
-Pasando un array de componentes a `AdBannerComponent` permite una
+Pasando un arreglo de componentes a `AdBannerComponent` permite una
 lista dinámica de anuncios sin elementos estáticos en la plantilla.
 
-Con su método `getAds()`, `AdBannerComponent` recorre el array de `AdItems`
+Con su método `getAds()`, `AdBannerComponent` recorre el arreglo de `AdItems`
 y carga un nuevo componente cada 3 segundos llamando a `loadComponent()`.
 
 
